@@ -3,7 +3,12 @@ namespace Utility.SaveSystem
     [System.Serializable]
     public class SaveData
     {
-        private static int _hp;
-        public static int hp => _hp;
+        private int _hp;
+        public int hp => _hp;
+
+        public void SetHp(int hp)
+        {
+            _hp = hp;
+        }
     }
 }
