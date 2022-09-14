@@ -12,8 +12,6 @@ public enum EXPRESSION
   Suspicion = 7,
   Fear = 8,
   Curious = 9,
-  Anim_One = 10,
-  Anim_Two = 11
 }
 
 [Serializable]

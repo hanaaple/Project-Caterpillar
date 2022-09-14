@@ -1,11 +1,17 @@
-using UnityEngine;
-
 namespace Dialogue
 {
     [System.Serializable]
-    public class DialogueProps
+    public struct DialogueProps
+    {
+        public int index;
+        public DialogueItemProps[] datas;
+    }
+    
+    [System.Serializable]
+    public struct DialogueItemProps
     {
         public string subject;
         public string contents;
     }
+    
 }

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using Utility.JsonLoader;
-using Utility.SaveSystem;
 
 public class jsontest : MonoBehaviour
 {

@@ -63,7 +63,6 @@ public class SaveLoadTest : MonoBehaviour
     private void SaveButton(int idx)
     {
         var saveData = SaveManager.GetSaveData();
-        Debug.Log(saveData.hp);
         saveData.SetHp(idx * 100);
         
         SaveManager.Save(idx);
