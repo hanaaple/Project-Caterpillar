@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b716c6c9-e84b-4568-a90c-116c77de1448" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/001010.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/001010.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.bat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/build.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Json/build.bat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartScene.unity" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2EtybrNDfMjx5rmckkMFdg3QM8c" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b716c6c9-e84b-4568-a90c-116c77de1448" name="Changes" comment="" />
+      <created>1663429254134</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663429254134</updated>
+      <workItem from="1663429256143" duration="34000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
