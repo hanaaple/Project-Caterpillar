@@ -10,11 +10,7 @@ public class SaveLoadTest : MonoBehaviour
     
     public GameObject continuePanel;
     public List<Button> loadButtons;
-    private void Awake()
-    {
-        SaveManager.Init();   
-    }
-
+    
     void Start()
     {
         saveButtons = new List<Button>();
