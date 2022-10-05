@@ -18,7 +18,7 @@ namespace Utility.SaveSystem
         public static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
         
         
-        public static void Init()
+        static SaveManager()
         {
             _saveData = new SaveData();
 #if UNITY_IPHONE
