@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     public static event Action RebindComplete;
     public static event Action RebindCanceled;
     public static event Action<InputAction, int> RebindStarted;
-    
+
     private void Awake()
     {
         if (inputControl == null)

@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &152561341
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up
+  m_text: Move
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1134525419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 086bbc8c16a4c1249b68faf113d72305, type: 3}
+  m_Script: {fileID: 11500000, guid: a7e17f01f00c29f418838b2579e5f38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1134525423
@@ -3728,7 +3728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4c3505fd68491254f9af2524d5012dd0, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -5327,11 +5327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488007973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c00dca5b38fa8f42816a4ec9f953676, type: 3}
+  m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curInput: {x: 0, y: 0}
-  inputActionReference: {fileID: -5975700408244109779, guid: 4c3505fd68491254f9af2524d5012dd0, type: 3}
+  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 1
   displayStringOptions: 0
@@ -5344,7 +5344,7 @@ MonoBehaviour:
     m_Groups: KeyBoard
     m_Action: Move
     m_Flags: 8
-  actionText: {fileID: 0}
+  actionText: {fileID: 671646520}
   rebindButton: {fileID: 1798834531}
   rebindText: {fileID: 517876489}
   resetButton: {fileID: 2021859493}
@@ -5397,11 +5397,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524752838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c00dca5b38fa8f42816a4ec9f953676, type: 3}
+  m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curInput: {x: 0, y: 0}
-  inputActionReference: {fileID: -5975700408244109779, guid: 4c3505fd68491254f9af2524d5012dd0, type: 3}
+  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 2
   displayStringOptions: 0
@@ -5414,7 +5414,7 @@ MonoBehaviour:
     m_Groups: KeyBoard
     m_Action: Move
     m_Flags: 8
-  actionText: {fileID: 0}
+  actionText: {fileID: 1990142906}
   rebindButton: {fileID: 584099306}
   rebindText: {fileID: 1198885218}
   resetButton: {fileID: 849600045}
@@ -7634,7 +7634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Down
+  m_text: Move
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
