@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - ShadowMonster
+  - FlashLight
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Monster
     uniqueID: 3515624433
+    locked: 0
+  - name: Not Lighting
+    uniqueID: 769042183
     locked: 0
