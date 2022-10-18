@@ -6,7 +6,7 @@ public class TestPlayer : MonoBehaviour
     public Vector3 input;
 
     [Range(1, 20f)]
-    public float speed;
+    public float playerSpeed;
     
     [Range(1, 20f)]
     public float cameraSpeed;
@@ -16,23 +16,19 @@ public class TestPlayer : MonoBehaviour
 
     private Camera _camera;
     
-    [SerializeField]
     private Vector3 _minBounds;
-    [SerializeField]
     private Vector3 _maxBounds;
     
-    [SerializeField]
-    private float yScreenHalfSize;
-    [SerializeField]
-    private float xScreenHalfSize;
+    private float _yScreenHalfSize;
+    private float _xScreenHalfSize;
     
     void Start()
     {
         _camera = Camera.main;
         _minBounds = boundBox.bounds.min;
         _maxBounds = boundBox.bounds.max;
-        yScreenHalfSize = _camera.orthographicSize;
-        xScreenHalfSize = yScreenHalfSize * _camera.aspect;
+        _yScreenHalfSize = _camera.orthographicSize;
+        _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
         var playerActions = InputManager.inputControl.PlayerActions;
         playerActions.Enable();
@@ -63,14 +59,13 @@ public class TestPlayer : MonoBehaviour
 
     private void CharacterMove()
     {
-        transform.Translate(input * speed * Time.fixedDeltaTime);
+        transform.Translate(input * playerSpeed * Time.fixedDeltaTime);
     }
 
     void CameraMove()
     {
         var cameraTransform = _camera.transform;
-        var targetTransform = transform;
-        var targetPos = targetTransform.position;
+        var targetPos = transform.position;
         targetPos = new Vector3(targetPos.x, targetPos.y, cameraTransform.position.z);
         
         float clampX = cameraTransform.position.x;
@@ -78,18 +73,17 @@ public class TestPlayer : MonoBehaviour
         
         cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPos, cameraSpeed * Time.deltaTime);
         
-        if (_maxBounds.x - xScreenHalfSize > 0)
+        if (_maxBounds.x - _xScreenHalfSize > 0)
         {
-            clampX = Mathf.Clamp(cameraTransform.position.x, _minBounds.x + xScreenHalfSize,
-                _maxBounds.x - xScreenHalfSize);   
+            clampX = Mathf.Clamp(cameraTransform.position.x, _minBounds.x + _xScreenHalfSize,
+                _maxBounds.x - _xScreenHalfSize);   
         }
-        if (_maxBounds.y - yScreenHalfSize > 0)
+        if (_maxBounds.y - _yScreenHalfSize > 0)
         {
-            clampY = Mathf.Clamp(cameraTransform.position.y, _minBounds.y + yScreenHalfSize,
-                _maxBounds.y - yScreenHalfSize);   
+            clampY = Mathf.Clamp(cameraTransform.position.y, _minBounds.y + _yScreenHalfSize,
+                _maxBounds.y - _yScreenHalfSize);   
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
-
     }
 }
