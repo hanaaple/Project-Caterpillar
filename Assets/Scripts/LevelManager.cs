@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -28,21 +27,5 @@ public class LevelManager : MonoBehaviour
                 SceneLoader.Instance.LoadScene("TestScene");
             });
         }
-    }
-    
-    void LoadScene()
-    {
-        
-    }
-
-    void LoadScene(int idx)
-    {
-        
-    }
-
-    async void Loading()
-    {
-        var asyncOperation = SceneManager.LoadSceneAsync("SampleScene");
-        // asyncOperation.
     }
 }
