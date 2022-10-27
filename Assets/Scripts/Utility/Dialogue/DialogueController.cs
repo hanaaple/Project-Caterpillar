@@ -27,6 +27,11 @@ namespace Dialogue
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
         private DialogueProps dialogueProps;
+        
+        [SerializeField]
+        private DialogueProps _baseDialogueProps;
+        [SerializeField]
+        private DialogueProps _choicedDialogueProps;
 
         [SerializeField] private bool isUnfolding;
 
@@ -43,10 +48,13 @@ namespace Dialogue
         void Start()
         {
             dialogueInputArea.onClick.AddListener(InputConverse);
+            _baseDialogueProps = new DialogueProps();
+            _choicedDialogueProps = new DialogueProps();
         }
 
         private async void InitDialogue(string jsonAsset)
         {
+            dialogueProps = _baseDialogueProps;
             dialogueProps.datas = JsonHelper.GetJsonArray<DialogueItemProps>(jsonAsset);
             dialogueProps.index = 0;
             isUnfolding = false;
@@ -92,7 +100,22 @@ namespace Dialogue
         {
             if (IsDialogueEnd())
             {
-                EndConversation();
+                Debug.Log(_choicedDialogueProps == dialogueProps);
+                Debug.Log(_choicedDialogueProps.Equals(dialogueProps));
+                Debug.Log(_choicedDialogueProps.datas == dialogueProps.datas);
+                Debug.Log(ReferenceEquals(_choicedDialogueProps, dialogueProps));
+                if (_choicedDialogueProps == dialogueProps)
+                {
+                    _choicedDialogueProps.index = 0;
+                    _choicedDialogueProps.datas = null;
+                    dialogueProps = _baseDialogueProps;
+                    Debug.Log(dialogueProps.index);
+                    ProgressConversation();
+                }
+                else
+                {
+                    EndConversation();
+                }
             }
             else
             {
@@ -183,9 +206,7 @@ namespace Dialogue
                         child.GetComponentInChildren<Button>().onClick
                             .AddListener(() =>
                             {
-                                Debug.Log(curIdx);
-                                Debug.Log("선택 개수: " + choiceLen);
-                                Debug.Log("선택 대화 길이: " + choiceDialogueLen);
+                                OnClickChoice(curIdx, choiceLen, choiceDialogueLen);
                             });
                     }
 
@@ -198,6 +219,22 @@ namespace Dialogue
             {
                 blinkingIndicator.SetActive(true);
             }
+        }
+
+        private void OnClickChoice(int curIdx, int choiceLen, int choiceDialogueLen)
+        {
+            Debug.Log(curIdx);
+            Debug.Log("선택 개수: " + choiceLen);
+            Debug.Log("선택 대화 길이: " + choiceDialogueLen);
+
+
+            _choicedDialogueProps.index = 0;
+            _choicedDialogueProps.datas = new DialogueItemProps[curIdx + choiceLen];
+            Array.Copy(_baseDialogueProps.datas, curIdx + choiceLen, _choicedDialogueProps.datas, 0, choiceDialogueLen);
+
+            dialogueProps = _choicedDialogueProps;
+            choicePanel.SetActive(false);
+            ProgressConversation();
         }
 
         private bool IsDialogueEnd()

@@ -1,7 +1,7 @@
 namespace Dialogue
 {
     [System.Serializable]
-    public struct DialogueProps
+    public class DialogueProps
     {
         public int index;
         public DialogueItemProps[] datas;
