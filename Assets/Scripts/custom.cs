@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public enum EXPRESSION
 {
@@ -21,4 +22,13 @@ public class test
   public EXPRESSION expression;
   public string anim_name;
   public string contents;
+}
+
+public enum DialogueType
+{
+  None = 0,
+  Script = 1,
+  Choice = 2,
+  ChoiceContext = 3,
+  ChoiceDialogue = 4,
 }
