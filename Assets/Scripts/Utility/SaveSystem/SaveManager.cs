@@ -12,15 +12,15 @@ namespace Utility.SaveSystem
 
         private static string Savefilename => $"{Application.persistentDataPath}/saveData{_idx}.save";
 
-        private static SaveData _saveData;
+        private static SaveData _curSaveData;
 
-        public static readonly byte[] EncryptKey = Encoding.UTF8.GetBytes("abcdefg_abcdefg_");
-        public static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
+        private static readonly byte[] EncryptKey = Encoding.UTF8.GetBytes("abcdefg_abcdefg_");
+        private static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
         
         
         static SaveManager()
         {
-            _saveData = new SaveData();
+            _curSaveData = new SaveData();
 #if UNITY_IPHONE
         Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 #endif
@@ -28,7 +28,7 @@ namespace Utility.SaveSystem
 
         public static SaveData GetSaveData()
         {
-            return _saveData;
+            return _curSaveData;
         }
 
         public static void Save(int idx)
@@ -44,7 +44,7 @@ namespace Utility.SaveSystem
                 {
                     using (Stream cryptoStream = new CryptoStream(fileStream, encryptor, CryptoStreamMode.Write))
                     {
-                        new BinaryFormatter().Serialize(cryptoStream, _saveData);
+                        new BinaryFormatter().Serialize(cryptoStream, _curSaveData);
                     }
                     fileStream.Close();
                 }
@@ -73,7 +73,7 @@ namespace Utility.SaveSystem
                     }
                     using (Stream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read))
                     {
-                        _saveData = (SaveData)new BinaryFormatter().Deserialize(cryptoStream);
+                        _curSaveData = (SaveData)new BinaryFormatter().Deserialize(cryptoStream);
 
                     }
                     fileStream.Close();
@@ -81,13 +81,45 @@ namespace Utility.SaveSystem
             }
 
             rijn.Clear();
-            // using var file = File.Open(Savefilename, FileMode.Open);
-            // if (file.Length > 0)
-            // {
-            //     _saveData = new BinaryFormatter().Deserialize(file) as SaveData;
-            // }
 
             return true;
+        }
+        
+        public static SaveData GetLoadData(int idx)
+        {
+            SaveData saveData;
+            Debug.Log(idx);
+            _idx = idx;
+            Debug.Log(Savefilename);
+            if (!File.Exists(Savefilename))
+            {
+                return null;
+            }
+            RijndaelManaged rijn = new RijndaelManaged();
+            rijn.Mode = CipherMode.ECB;
+            rijn.Padding = PaddingMode.Zeros;
+            rijn.BlockSize = 256;
+            
+            using (ICryptoTransform decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
+            {
+                using (var fileStream = File.Open(Savefilename, FileMode.Open))
+                {
+                    if (fileStream.Length <= 0)
+                    {
+                        return null;
+                    }
+                    using (Stream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        saveData = (SaveData)new BinaryFormatter().Deserialize(cryptoStream);
+
+                    }
+                    fileStream.Close();
+                }
+            }
+
+            rijn.Clear();
+
+            return saveData;
         }
     }
 }

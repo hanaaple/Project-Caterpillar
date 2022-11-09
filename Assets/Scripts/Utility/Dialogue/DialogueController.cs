@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.JsonLoader;
@@ -17,6 +18,7 @@ namespace Dialogue
 
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
+        [SerializeField] private GameObject savePanel;
 
         [SerializeField] private Text dialogueText;
 
@@ -39,7 +41,21 @@ namespace Dialogue
 
         private Coroutine _printCoroutine;
 
+        private UnityEvent _onLast;
 
+        public UnityEvent onLast
+        {
+            get
+            {
+                if (_onLast == null)
+                {
+                    _onLast = new UnityEvent();
+                }
+                return _onLast;
+            }
+        }
+        
+        
         private void Awake()
         {
             _instance = this;
@@ -74,7 +90,7 @@ namespace Dialogue
             ProgressConversation();
         }
 
-        private void InputConverse()
+        public void InputConverse()
         {
             if (isUnfolding)
             {
@@ -90,7 +106,7 @@ namespace Dialogue
 
         private void InputConverse(InputAction.CallbackContext obj)
         {
-            if (dialoguePanel.activeSelf && !choicePanel.activeSelf)
+            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !savePanel.activeSelf)
             {
                 InputConverse();
             }
@@ -100,16 +116,11 @@ namespace Dialogue
         {
             if (IsDialogueEnd())
             {
-                Debug.Log(_choicedDialogueProps == dialogueProps);
-                Debug.Log(_choicedDialogueProps.Equals(dialogueProps));
-                Debug.Log(_choicedDialogueProps.datas == dialogueProps.datas);
-                Debug.Log(ReferenceEquals(_choicedDialogueProps, dialogueProps));
                 if (_choicedDialogueProps == dialogueProps)
                 {
                     _choicedDialogueProps.index = 0;
                     _choicedDialogueProps.datas = null;
                     dialogueProps = _baseDialogueProps;
-                    Debug.Log(dialogueProps.index);
                     ProgressConversation();
                 }
                 else
@@ -149,24 +160,22 @@ namespace Dialogue
             isUnfolding = false;
             var dialogueItem = dialogueProps.datas[dialogueProps.index];
             dialogueText.text = dialogueItem.contents;
-            
-            
-            for (var i = 0; i < choicePanel.transform.childCount; i++)
-            {
-                choicePanel.transform.GetChild(i).gameObject.SetActive(false);
-                choicePanel.transform.GetChild(i).GetComponentInChildren<TMP_Text>().text =
-                    "";
-                choicePanel.transform.GetChild(i).GetComponentInChildren<Button>().onClick
-                    .RemoveAllListeners();
-            }
 
-            
-            
+
             if (dialogueItem.dialogueType == DialogueType.Choice)
             {
+                for (var i = 0; i < choicePanel.transform.childCount; i++)
+                {
+                    choicePanel.transform.GetChild(i).gameObject.SetActive(false);
+                    choicePanel.transform.GetChild(i).GetComponentInChildren<TMP_Text>().text =
+                        "";
+                    choicePanel.transform.GetChild(i).GetComponentInChildren<Button>().onClick
+                        .RemoveAllListeners();
+                }
+
                 dialogueProps.index++;
                 choicePanel.SetActive(true);
-                var choicedLen = 0; 
+                var choicedLen = 0;
                 while (dialogueProps.index < dialogueProps.datas.Length &&
                        (dialogueProps.datas[dialogueProps.index].dialogueType ==
                            DialogueType.ChoiceContext || dialogueProps.datas[dialogueProps.index].dialogueType ==
@@ -189,7 +198,7 @@ namespace Dialogue
                     {
                         choiceDialogueLen++;
                     }
-                    
+
                     Debug.Log(dialogueProps.index);
                     Debug.Log(choiceLen);
                     Debug.Log(choiceDialogueLen);
@@ -203,11 +212,12 @@ namespace Dialogue
                             dialogueProps.datas[dialogueProps.index + i].contents;
 
                         var curIdx = dialogueProps.index;
-                        child.GetComponentInChildren<Button>().onClick
-                            .AddListener(() =>
-                            {
-                                OnClickChoice(curIdx, choiceLen, choiceDialogueLen);
-                            });
+                        var button = child.GetComponentInChildren<Button>();
+                        button.onClick.RemoveAllListeners();
+                        button.onClick.AddListener(() =>
+                        {
+                            OnClickChoice(curIdx, choiceLen, choiceDialogueLen);
+                        });
                     }
 
                     dialogueProps.index += choiceLen + choiceDialogueLen;
@@ -218,6 +228,11 @@ namespace Dialogue
             else
             {
                 blinkingIndicator.SetActive(true);
+
+                if (dialogueProps.index == dialogueProps.datas.Length - 1 && (_choicedDialogueProps != dialogueProps || _baseDialogueProps.index == _baseDialogueProps.datas.Length))
+                {
+                    _onLast?.Invoke();
+                }
             }
         }
 
@@ -228,11 +243,12 @@ namespace Dialogue
             Debug.Log("선택 대화 길이: " + choiceDialogueLen);
 
 
-            _choicedDialogueProps.index = 0;
-            _choicedDialogueProps.datas = new DialogueItemProps[curIdx + choiceLen];
-            Array.Copy(_baseDialogueProps.datas, curIdx + choiceLen, _choicedDialogueProps.datas, 0, choiceDialogueLen);
-
-            dialogueProps = _choicedDialogueProps;
+            if(choiceDialogueLen != 0){
+                _choicedDialogueProps.index = 0;
+                _choicedDialogueProps.datas = new DialogueItemProps[choiceDialogueLen];
+                Array.Copy(_baseDialogueProps.datas, curIdx + choiceLen, _choicedDialogueProps.datas, 0, choiceDialogueLen);
+                dialogueProps = _choicedDialogueProps;
+            }
             choicePanel.SetActive(false);
             ProgressConversation();
         }

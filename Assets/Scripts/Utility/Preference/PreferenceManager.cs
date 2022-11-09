@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -6,30 +7,26 @@ public class PreferenceManager : MonoBehaviour
 {
     public static PreferenceManager instance { get; private set; }
 
-
     [SerializeField] private InputAction preferenceInputAction;
-    
-    
+
     [SerializeField] private Button preferenceButton;
 
     [SerializeField] private GameObject preferencePanel;
 
     [SerializeField] private Button preferenceExitButton;
 
-    [SerializeField] private Button audioButton;
-
-    [SerializeField] private GameObject audioPanel;
-
-    [SerializeField] private Button displayButton;
-
-    [SerializeField] private GameObject displayPanel;
+    [SerializeField] private GameObject[] pagePanels;
     
-    [SerializeField] private Button controlButton;
-
-    [SerializeField] private GameObject controlPanel;
+    [SerializeField] private Button leftButton;
+    [SerializeField] private Button rightButton;
     
-    [SerializeField] private TMPro.TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Text pageText;
+    
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
 
+    private int _pageIndex;
+    private bool _isAlreadyOpen;
+    
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +35,7 @@ public class PreferenceManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
+        DontDestroyOnLoad(preferencePanel.transform.root);
     }
 
     private void OnEnable()
@@ -50,8 +48,7 @@ public class PreferenceManager : MonoBehaviour
         preferenceInputAction.Disable();
     }
 
-    private bool _isAlreadyOpen;
-    void OpenPreferencePanel()
+    private void OpenPreferencePanel()
     {
         if (_isAlreadyOpen)
         {
@@ -76,18 +73,17 @@ public class PreferenceManager : MonoBehaviour
 
         preferenceExitButton.onClick.AddListener(OpenPreferencePanel);
 
-        audioButton.onClick.AddListener(() =>
+        
+        leftButton.onClick.AddListener(() =>
         {
-            audioPanel.SetActive(true);
-            displayPanel.SetActive(false);
-            controlPanel.SetActive(false);
+            var nextIdx = (_pageIndex - 1) % pagePanels.Length;
+            UpdateUI(nextIdx);
         });
-
-        displayButton.onClick.AddListener(() =>
+        
+        rightButton.onClick.AddListener(() =>
         {
-            displayPanel.SetActive(true);
-            controlPanel.SetActive(false);
-            audioPanel.SetActive(false);
+            var nextIdx = (_pageIndex + 1) % pagePanels.Length;
+            UpdateUI(nextIdx);
         });
         
         resolutionDropdown.onValueChanged.AddListener(idx =>
@@ -99,12 +95,14 @@ public class PreferenceManager : MonoBehaviour
             Screen.SetResolution(x, y, false);
             Debug.Log(resolutionDropdown.options[idx].image);
         });
-        
-        controlButton.onClick.AddListener(() =>
-        {
-            controlPanel.SetActive(true);
-            displayPanel.SetActive(false);
-            audioPanel.SetActive(false);
-        });
+    }
+
+    private void UpdateUI(int nextIdx)
+    {
+        pagePanels[_pageIndex].SetActive(false);
+        pagePanels[nextIdx].SetActive(true);
+
+        _pageIndex = nextIdx;
+        pageText.text = _pageIndex + " / " + pagePanels.Length;
     }
 }

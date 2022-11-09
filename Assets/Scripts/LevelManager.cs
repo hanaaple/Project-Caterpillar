@@ -8,24 +8,21 @@ public class LevelManager : MonoBehaviour
     
     public Button newStartButton;
 
-    public GameObject continuePanel;
-
     void Start()
     {
         continueButton.onClick.AddListener(() =>
         {
-            continuePanel.SetActive(true);
+            SavePanelManager.instance.SetSaveLoadPanelActive(true);
         });
         newStartButton.onClick.AddListener(() =>
         {
             SceneLoader.Instance.LoadScene("TestScene");
         });
-        for (var i = 0; i < continuePanel.transform.childCount; i++)
+        
+        SavePanelManager.instance.InitLoad();
+        SavePanelManager.instance.onLoad.AddListener(() =>
         {
-            continuePanel.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() =>
-            {
-                SceneLoader.Instance.LoadScene("TestScene");
-            });
-        }
+            SceneLoader.Instance.LoadScene("TestScene");
+        });
     }
 }
