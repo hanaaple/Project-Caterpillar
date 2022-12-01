@@ -10,23 +10,26 @@ public class ShadowGameManager : MonoBehaviour
         public ShadowMonster shadowMonster;
     }
     
-    [SerializeField]
-    private Flashlight flashlight;
-    
+    [Header("Camera")]
     [Range(1, 20f)]
     [SerializeField]
     private float cameraSpeed;
-    
     [SerializeField]
     private BoxCollider2D cameraBound;
+    
+    [SerializeField]
+    private Flashlight flashlight;
+    [SerializeField]
+    private GameObject globalLight;
     
     public Animation animation;
     
     [Space(20)]
     [Header("Canvas")]
-    
     [SerializeField]
     private GameObject tutorialPanel;
+    [SerializeField]
+    private Button tutorialButton;
     [SerializeField]
     private GameObject playPanel;
     [SerializeField]
@@ -44,14 +47,14 @@ public class ShadowGameManager : MonoBehaviour
     [SerializeField]
     private int _stage;
     [SerializeField] 
-    private int Mentality;
+    private int mentality;
 
     private int _mentality
     {
-        get => Mentality;
+        get => mentality;
         set
         {
-            Mentality = value;
+            mentality = value;
             UpdateMentality();
         }
     }
@@ -75,29 +78,28 @@ public class ShadowGameManager : MonoBehaviour
         _maxBounds = cameraBound.bounds.max;
         _yScreenHalfSize = _camera.orthographicSize;
         _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
-
-        _isPlaying = false;
-        _mentality = 0;
-        OnGameTutorial();
+        OnGameStart();
+        tutorialButton.onClick.AddListener(() =>
+        {
+            StartCoroutine(GameStart());
+        });
     }
 
     private void OnGameTutorial()
     {
         tutorialPanel.SetActive(true);
-        playPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        flashlight.gameObject.SetActive(false);
-        StartCoroutine(GameStart());
+        globalLight.SetActive(true);
     }
 
-    void OnGameStart()
+    private void OnGameStart()
     {
-        
+        _isPlaying = false;
+        _mentality = 0;
+        OnGameTutorial();
     }
     
     private IEnumerator GameStart()
     {
-        yield return new WaitForSeconds(3);
         var t = 1f;
         var tutorialCanvasGroup = tutorialPanel.GetComponent<CanvasGroup>();
         while (t >= 0)
@@ -223,12 +225,16 @@ public class ShadowGameManager : MonoBehaviour
     {
         for (int idx = 0; idx < _mentality; idx++)
         {
-            heartImages[idx].color = new Color(183 / 255f, 110 / 255f, 110 / 255f);
+            var t = heartImages[idx].color;
+            t.a = 1f;
+            heartImages[idx].color = t;
         }
         
         for (int idx = _mentality; idx < 3; idx++)
         {
-            heartImages[idx].color = new Color(135 / 255f, 135 / 255f, 135 / 255f);
+            var t = heartImages[idx].color;
+            t.a = 110/255f;
+            heartImages[idx].color = t;
         }
     }
 

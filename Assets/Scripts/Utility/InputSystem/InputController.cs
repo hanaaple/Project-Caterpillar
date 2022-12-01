@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,9 +5,6 @@ using UnityEngine.UI;
 
 public class InputController : MonoBehaviour
 {
-    public Vector2 curInput;
-
-
     [SerializeField] private InputActionReference inputActionReference;
 
     [SerializeField] private bool excludeMouse = true;
@@ -20,18 +16,19 @@ public class InputController : MonoBehaviour
     [Header("Binding Info - DO NOT EDIT")] [SerializeField]
     private InputBinding inputBinding;
 
-    [Header("Ui Fields")] [SerializeField] private TMP_Text actionText;
+    [Header("Ui Fields")] [SerializeField] private TMP_Text keyText;
     [SerializeField] private Button rebindButton;
     [SerializeField] private TMP_Text rebindText;
-    [SerializeField] private Button resetButton;
     
     private int _bindingIndex;
     private string _actionName;
 
+
+    public GameObject bindingPanel;
+
     private void OnEnable()
     {
         rebindButton.onClick.AddListener(DoRebind);
-        resetButton.onClick.AddListener(ResetBinding);
 
         if (inputActionReference != null)
         {
@@ -39,15 +36,16 @@ public class InputController : MonoBehaviour
             GetBindingInfo();
             UpdateUi();
         }
-
         InputManager.RebindComplete += UpdateUi;
         InputManager.RebindCanceled += UpdateUi;
+        InputManager.RebindEnd += UpdateUi;
     }
 
     private void OnDisable()
     {
         InputManager.RebindComplete -= UpdateUi;
         InputManager.RebindCanceled -= UpdateUi;
+        InputManager.RebindEnd -= UpdateUi;
     }
 
     private void OnValidate()
@@ -76,12 +74,12 @@ public class InputController : MonoBehaviour
 
     private void UpdateUi()
     {
-        if (actionText != null)
+        if (keyText && inputActionReference.action.bindings.Count > selectedBinding)
         {
-            actionText.text = _actionName;
+            keyText.text = inputActionReference.action.bindings[selectedBinding].name;
         }
 
-        if (rebindText != null)
+        if (rebindText)
         {
             if (Application.isPlaying)
             {
@@ -96,27 +94,27 @@ public class InputController : MonoBehaviour
 
     private void DoRebind()
     {
-        InputManager.StartRebind(_actionName, _bindingIndex, rebindText, excludeMouse);
+        InputManager.StartRebind(_actionName, _bindingIndex, bindingPanel, rebindText, excludeMouse);
     }
 
-    private void ResetBinding()
+    public void ResetBinding()
     {
         InputManager.ResetBinding(_actionName, _bindingIndex);
         UpdateUi();
     }
 
 
-    void Start()
-    {
-        var playerActions = InputManager.inputControl.PlayerActions;
-        playerActions.Move.performed += delegate(InputAction.CallbackContext context)
-        {
-            curInput = context.ReadValue<Vector2>();
-        };
-        
-        playerActions.Move.canceled += delegate(InputAction.CallbackContext context)
-        {
-            curInput = context.ReadValue<Vector2>();
-        };
-    }
+    // void Start()
+    // {
+    //     var playerActions = InputManager.inputControl.PlayerActions;
+    //     playerActions.Move.performed += delegate(InputAction.CallbackContext context)
+    //     {
+    //         curInput = context.ReadValue<Vector2>();
+    //     };
+    //     
+    //     playerActions.Move.canceled += delegate(InputAction.CallbackContext context)
+    //     {
+    //         curInput = context.ReadValue<Vector2>();
+    //     };
+    // }
 }

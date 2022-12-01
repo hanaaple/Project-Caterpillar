@@ -16,13 +16,13 @@ public class LevelManager : MonoBehaviour
         });
         newStartButton.onClick.AddListener(() =>
         {
-            SceneLoader.Instance.LoadScene("TestScene");
+            SceneLoader.Instance.LoadScene("MainScene");
         });
         
         SavePanelManager.instance.InitLoad();
         SavePanelManager.instance.onLoad.AddListener(() =>
         {
-            SceneLoader.Instance.LoadScene("TestScene");
+            SceneLoader.Instance.LoadScene("MainScene");
         });
     }
 }

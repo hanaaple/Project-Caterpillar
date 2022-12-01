@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance { get; private set; }
     
     [Header("슬라이더")]
-    public Slider volumeSlider;
     public Slider bgmSlider;
     public Slider sfxSlider;
 
@@ -31,10 +30,10 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        volumeSlider.onValueChanged.AddListener(value =>
-        {
-            audioMixer.SetFloat("Volume", (value <= volumeSlider.minValue) ? -80f : volumeSlider.value);
-        });
+        // volumeSlider.onValueChanged.AddListener(value =>
+        // {
+        //     audioMixer.SetFloat("Volume", (value <= volumeSlider.minValue) ? -80f : volumeSlider.value);
+        // });
         
         sfxSlider.onValueChanged.AddListener(value =>
         {

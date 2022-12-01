@@ -29,6 +29,7 @@ public enum DialogueType
   None = 0,
   Script = 1,
   Choice = 2,
-  ChoiceContext = 3,
-  ChoiceDialogue = 4,
+  ChoiceEnd = 3,
+  MoveMap = 4,
+  Save = 5,
 }
