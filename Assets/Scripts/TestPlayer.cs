@@ -66,21 +66,21 @@ public class TestPlayer : MonoBehaviour
     {
         var cameraTransform = _camera.transform;
         var targetPos = transform.position;
-        targetPos = new Vector3(targetPos.x, targetPos.y, cameraTransform.position.z);
+        // targetPos = new Vector3(targetPos.x, targetPos.y, cameraTransform.position.z);
         
-        float clampX = cameraTransform.position.x;
-        float clampY = cameraTransform.position.y;
-        
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPos, cameraSpeed * Time.deltaTime);
+        // cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPos, cameraSpeed * Time.fixedDeltaTime);
+
+        float clampX = targetPos.x;
+        float clampY = targetPos.y;
         
         if (_maxBounds.x - _xScreenHalfSize > 0)
         {
-            clampX = Mathf.Clamp(cameraTransform.position.x, _minBounds.x + _xScreenHalfSize,
+            clampX = Mathf.Clamp(targetPos.x, _minBounds.x + _xScreenHalfSize,
                 _maxBounds.x - _xScreenHalfSize);   
         }
         if (_maxBounds.y - _yScreenHalfSize > 0)
         {
-            clampY = Mathf.Clamp(cameraTransform.position.y, _minBounds.y + _yScreenHalfSize,
+            clampY = Mathf.Clamp(targetPos.y, _minBounds.y + _yScreenHalfSize,
                 _maxBounds.y - _yScreenHalfSize);   
         }
 

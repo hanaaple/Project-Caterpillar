@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShadowGameTest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 2f4df542880e3c448b4b52eae0c762ba
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 569c8794070deaa4ea466133934fef58
   m_configObjects: {}

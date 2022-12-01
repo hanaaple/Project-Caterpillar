@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,17 +10,48 @@ public class InputManager : MonoBehaviour
 
     public static event Action RebindComplete;
     public static event Action RebindCanceled;
+    public static event Action RebindEnd;
     public static event Action<InputAction, int> RebindStarted;
+    
+    //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
+    public static List<InputAction> inputActions = new();
+    
+    public static bool IsChanged()
+    {
+        return inputActions.Count > 0;
+    }
+
+    public static void EndChange(bool isSave)
+    {
+        if (isSave)
+        {
+            foreach (var inputAction in inputActions)
+            {
+                SaveBindingOverride(inputAction);
+            }
+        }
+        else
+        {
+            foreach (var inputAction in inputActions)
+            {
+                LoadBindingOverride(inputAction.name);
+            }
+        }
+        
+        RebindEnd?.Invoke();
+        inputActions.Clear();
+    }
 
     private void Awake()
     {
         if (inputControl == null)
         {
+            Debug.Log("Awake");
             inputControl = new InputControl();
         }
     }
 
-    public static void StartRebind(string actionName, int bindingIndex, TMP_Text statusText, bool excludeMouse)
+    public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel, TMP_Text statusText, bool excludeMouse)
     {
         InputAction inputAction = inputControl.asset.FindAction(actionName);
         if (inputAction == null || inputAction.bindings.Count <= bindingIndex)
@@ -33,23 +65,23 @@ public class InputManager : MonoBehaviour
             var firstPartIndex = bindingIndex + 1;
             if (firstPartIndex < inputAction.bindings.Count && inputAction.bindings[firstPartIndex].isComposite)
             {
-                DoRebind(inputAction, bindingIndex, statusText, true, excludeMouse);
+                DoRebind(inputAction, bindingIndex, statusText, bindingPanel, true, excludeMouse);
             }
         }
         else
         {
-            DoRebind(inputAction, bindingIndex, statusText, false, excludeMouse);
+            DoRebind(inputAction, bindingIndex, statusText, bindingPanel, false, excludeMouse);
         }
     }
 
-    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText,
+    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText, GameObject bindingPanel,
         bool allCompositeParts, bool excludeMouse)
     {
         if (actionToRebind == null || bindingIndex < 0)
         {
             return;
         }
-
+        bindingPanel.SetActive(true);
         statusText.text = $"Press a {actionToRebind.expectedControlType}";
 
         actionToRebind.Disable();
@@ -66,23 +98,27 @@ public class InputManager : MonoBehaviour
                     if (nextBindingIndex < actionToRebind.bindings.Count &&
                         actionToRebind.bindings[nextBindingIndex].isComposite)
                     {
-                        DoRebind(actionToRebind, nextBindingIndex, statusText, true, excludeMouse);
+                        DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse);
                     }
                 }
-                SaveBindingOverride(actionToRebind);
+                // SaveBindingOverride(actionToRebind);
                 RebindComplete?.Invoke();
+                bindingPanel.SetActive(false);
             })
             .OnCancel(_ =>
             {
                 actionToRebind.Enable();
                 _.Dispose();
                 RebindCanceled?.Invoke();
+                bindingPanel.SetActive(false);
             });
 
         if (excludeMouse)
         {
             rebind.WithControlsExcluding("Mouse");
         }
+
+        inputActions.Add(actionToRebind);
 
         RebindStarted?.Invoke(actionToRebind, bindingIndex);
         rebind.Start();

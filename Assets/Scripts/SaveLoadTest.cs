@@ -49,7 +49,6 @@ public class SaveLoadTest : MonoBehaviour
             var saveData = SaveManager.GetSaveData(); 
             Debug.Log(saveData.hp);
         }
-        
     }
 
     /// <summary>

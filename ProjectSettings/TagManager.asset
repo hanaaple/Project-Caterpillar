@@ -17,8 +17,8 @@ TagManager:
   - FlashLight
   - Player
   - NPC Interactor
-  - 
-  - 
+  - Always Light
+  - Light
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Not Lighting
     uniqueID: 769042183
+    locked: 0
+  - name: Always Lighting
+    uniqueID: 1360248771
     locked: 0

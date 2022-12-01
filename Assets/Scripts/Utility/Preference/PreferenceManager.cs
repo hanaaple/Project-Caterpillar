@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -6,30 +7,40 @@ public class PreferenceManager : MonoBehaviour
 {
     public static PreferenceManager instance { get; private set; }
 
-
     [SerializeField] private InputAction preferenceInputAction;
-    
-    
+
     [SerializeField] private Button preferenceButton;
 
     [SerializeField] private GameObject preferencePanel;
+    
+    [SerializeField] private Image preferenceFrontPanel;
 
     [SerializeField] private Button preferenceExitButton;
-
-    [SerializeField] private Button audioButton;
-
-    [SerializeField] private GameObject audioPanel;
-
-    [SerializeField] private Button displayButton;
-
-    [SerializeField] private GameObject displayPanel;
     
-    [SerializeField] private Button controlButton;
-
-    [SerializeField] private GameObject controlPanel;
+    [SerializeField] private GameObject checkRebindPanel;
     
-    [SerializeField] private TMPro.TMP_Dropdown resolutionDropdown;
+    [SerializeField] private Button resetButton;
+    
+    [SerializeField] private Button saveButton;
+    
+    [SerializeField] private Button rebindButton;
+    
+    [SerializeField] private Button notRebindButton;
 
+    [SerializeField] private GameObject[] pagePanels;
+    
+    [SerializeField] private Button leftButton;
+    [SerializeField] private Button rightButton;
+    
+    [SerializeField] private TMP_Text pageText;
+    
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+
+    private InputController[] _inputController;
+    
+    private int _pageIndex;
+    private bool _isAlreadyOpen;
+    
     private void Awake()
     {
         if (instance == null)
@@ -38,56 +49,102 @@ public class PreferenceManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
+        DontDestroyOnLoad(preferencePanel.transform.root);
     }
 
     private void OnEnable()
     {
         preferenceInputAction.Enable();
+        InputManager.RebindComplete += EnableSaveButton;
+        InputManager.RebindEnd += DisableSaveButton;
     }
-    
+
     private void OnDisable()
     {
         preferenceInputAction.Disable();
+        InputManager.RebindComplete -= EnableSaveButton;
+        InputManager.RebindEnd -= DisableSaveButton;
     }
 
-    private bool _isAlreadyOpen;
-    void OpenPreferencePanel()
+    private void EnableSaveButton()
     {
-        if (_isAlreadyOpen)
+        saveButton.gameObject.SetActive(true);
+    }
+
+    private void DisableSaveButton()
+    {
+        saveButton.gameObject.SetActive(false);
+    }
+
+    private void OpenPreferencePanel()
+    {
+        if (InputManager.IsChanged())
         {
-            Time.timeScale = 1;
-            preferenceButton.gameObject.SetActive(true);
-            preferencePanel.SetActive(false);
+            checkRebindPanel.SetActive(true);
         }
         else
         {
-            Time.timeScale = 0;
-            preferenceButton.gameObject.SetActive(false);
-            preferencePanel.SetActive(true);    
+            if (_isAlreadyOpen)
+            {
+
+                Time.timeScale = 1;
+                preferenceButton.gameObject.SetActive(true);
+                preferencePanel.SetActive(false);
+            }
+
+            else
+            {
+                Time.timeScale = 0;
+                preferenceButton.gameObject.SetActive(false);
+                preferencePanel.SetActive(true);
+            }
+
+            _isAlreadyOpen = !_isAlreadyOpen;   
         }
-        _isAlreadyOpen = !_isAlreadyOpen;
     }
 
-    void Start()
+    private void Start()
     {
-        preferenceInputAction.performed += _ => OpenPreferencePanel();
+        resetButton.onClick.AddListener(() =>
+        {
+            foreach (var inputController in _inputController)
+            {
+                inputController.ResetBinding();
+            }
+        });
+
+        saveButton.onClick.AddListener(() =>
+        {
+            InputManager.EndChange(true);
+        });
+
+        preferenceFrontPanel.alphaHitTestMinimumThreshold = 0.1f;
+        UpdateUI(0);
+        // preferenceInputAction.performed += _ => OpenPreferencePanel();
         
         preferenceButton.onClick.AddListener(OpenPreferencePanel);
 
         preferenceExitButton.onClick.AddListener(OpenPreferencePanel);
 
-        audioButton.onClick.AddListener(() =>
+        
+        leftButton.onClick.AddListener(() =>
         {
-            audioPanel.SetActive(true);
-            displayPanel.SetActive(false);
-            controlPanel.SetActive(false);
+            var nextIdx = (_pageIndex - 1) % pagePanels.Length;
+            if (nextIdx < 0)
+            {
+                nextIdx = pagePanels.Length - 1;
+            }
+            UpdateUI(nextIdx);
         });
-
-        displayButton.onClick.AddListener(() =>
+        
+        rightButton.onClick.AddListener(() =>
         {
-            displayPanel.SetActive(true);
-            controlPanel.SetActive(false);
-            audioPanel.SetActive(false);
+            var nextIdx = (_pageIndex + 1) % pagePanels.Length;
+            if (nextIdx < 0)
+            {
+                nextIdx = pagePanels.Length - 1;
+            }
+            UpdateUI(nextIdx);
         });
         
         resolutionDropdown.onValueChanged.AddListener(idx =>
@@ -100,11 +157,32 @@ public class PreferenceManager : MonoBehaviour
             Debug.Log(resolutionDropdown.options[idx].image);
         });
         
-        controlButton.onClick.AddListener(() =>
+        rebindButton.onClick.AddListener(() =>
         {
-            controlPanel.SetActive(true);
-            displayPanel.SetActive(false);
-            audioPanel.SetActive(false);
+            InputManager.EndChange(true);
+            checkRebindPanel.SetActive(false);
+            Time.timeScale = 1;
+            preferenceButton.gameObject.SetActive(true);
+            preferencePanel.SetActive(false);
         });
+        
+        notRebindButton.onClick.AddListener(() =>
+        {
+            InputManager.EndChange(false);
+            checkRebindPanel.SetActive(false);
+        });
+    }
+
+    private void UpdateUI(int nextIdx)
+    {
+        Debug.Log("현재" + _pageIndex + "목표" + nextIdx);
+        foreach (var pagePanel in pagePanels)
+        {
+            pagePanel.SetActive(false);
+        }
+        pagePanels[nextIdx].SetActive(true);
+
+        _pageIndex = nextIdx;
+        pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
     }
 }
