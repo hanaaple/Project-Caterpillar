@@ -45,14 +45,11 @@ TagManager:
     uniqueID: 2716536253
     locked: 0
   - name: Monster
-    uniqueID: 3515624433
+    uniqueID: 1856942487
+    locked: 0
+  - name: Object
+    uniqueID: 3043162815
     locked: 0
   - name: Player
     uniqueID: 4082466247
-    locked: 0
-  - name: Not Lighting
-    uniqueID: 769042183
-    locked: 0
-  - name: Always Lighting
-    uniqueID: 1360248771
     locked: 0
