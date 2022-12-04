@@ -11,11 +11,22 @@ public class InputManager : MonoBehaviour
     public static event Action RebindComplete;
     public static event Action RebindCanceled;
     public static event Action RebindEnd;
+    public static event Action RebindLoad;
+    
+    public static event Action RebindReset;
+    
     public static event Action<InputAction, int> RebindStarted;
-    
+
     //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
-    public static List<InputAction> inputActions = new();
-    
+    public static List<InputActions> inputActions = new();
+
+    public class InputActions
+    {
+        public InputAction inputAction;
+        public int bindingIndex;
+        public string originalDisplayName;
+    }
+
     public static bool IsChanged()
     {
         return inputActions.Count > 0;
@@ -27,19 +38,18 @@ public class InputManager : MonoBehaviour
         {
             foreach (var inputAction in inputActions)
             {
-                SaveBindingOverride(inputAction);
+                SaveBindingOverride(inputAction.inputAction);
             }
         }
         else
         {
             foreach (var inputAction in inputActions)
             {
-                LoadBindingOverride(inputAction.name);
+                LoadBindingOverride(inputAction.inputAction.name);
             }
         }
-        
-        RebindEnd?.Invoke();
         inputActions.Clear();
+        RebindEnd?.Invoke();
     }
 
     private void Awake()
@@ -51,7 +61,8 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel, TMP_Text statusText, bool excludeMouse)
+    public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel, TMP_Text statusText,
+        bool excludeMouse)
     {
         InputAction inputAction = inputControl.asset.FindAction(actionName);
         if (inputAction == null || inputAction.bindings.Count <= bindingIndex)
@@ -74,17 +85,21 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText, GameObject bindingPanel,
+    private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText,
+        GameObject bindingPanel,
         bool allCompositeParts, bool excludeMouse)
     {
         if (actionToRebind == null || bindingIndex < 0)
         {
             return;
         }
+
         bindingPanel.SetActive(true);
         statusText.text = $"Press a {actionToRebind.expectedControlType}";
 
         actionToRebind.Disable();
+
+        string originBindingName = GetBindingName(actionToRebind.name, bindingIndex);
 
         var rebind = actionToRebind.PerformInteractiveRebinding(bindingIndex)
             .WithCancelingThrough("<Keyboard>/escape")
@@ -101,7 +116,40 @@ public class InputManager : MonoBehaviour
                         DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse);
                     }
                 }
-                // SaveBindingOverride(actionToRebind);
+
+                string bindingName = GetBindingName(actionToRebind.name, bindingIndex);
+                var bind = inputActions.Find(item => item.inputAction.name == actionToRebind.name &&
+                                                     item.bindingIndex == bindingIndex);
+
+
+                if (bind == null)
+                {
+                    Debug.Log(originBindingName + "  " + bindingName);
+                }
+                else
+                {
+                    Debug.Log(bind.originalDisplayName + "  " + bindingName);   
+                }
+                if (bind == null && originBindingName != bindingName || bind != null && bind.originalDisplayName != bindingName)
+                {
+                    inputActions.Remove(bind);
+                    if (bind != null)
+                    {
+                        originBindingName = bind.originalDisplayName;
+                    }
+                    inputActions.Add(new InputActions
+                    {
+                        inputAction = actionToRebind,
+                        bindingIndex = bindingIndex,
+                        originalDisplayName = originBindingName
+                    });
+                }
+                else
+                {
+                    inputActions.Remove(bind);
+                    Debug.Log("하이  " + inputActions.Count);
+                }
+
                 RebindComplete?.Invoke();
                 bindingPanel.SetActive(false);
             })
@@ -118,8 +166,6 @@ public class InputManager : MonoBehaviour
             rebind.WithControlsExcluding("Mouse");
         }
 
-        inputActions.Add(actionToRebind);
-
         RebindStarted?.Invoke(actionToRebind, bindingIndex);
         rebind.Start();
     }
@@ -135,7 +181,7 @@ public class InputManager : MonoBehaviour
         return action.GetBindingDisplayString(bindingIndex);
     }
 
-    private static void SaveBindingOverride(InputAction action)
+    public static void SaveBindingOverride(InputAction action)
     {
         for (int i = 0; i < action.bindings.Count; i++)
         {
@@ -151,7 +197,7 @@ public class InputManager : MonoBehaviour
         }
 
         InputAction action = inputControl.asset.FindAction(actionName);
-        
+
         for (int i = 0; i < action.bindings.Count; i++)
         {
             string loadActionMap = PlayerPrefs.GetString(action.actionMap + action.name + i);
@@ -161,6 +207,7 @@ public class InputManager : MonoBehaviour
                 Debug.Log("로드");
             }
         }
+        RebindLoad?.Invoke();
     }
 
     public static void ResetBinding(string actionName, int bindingIndex)
@@ -183,6 +230,10 @@ public class InputManager : MonoBehaviour
         {
             action.RemoveBindingOverride(bindingIndex);
         }
+
         SaveBindingOverride(action);
+        inputActions.Clear();
+        
+        RebindReset?.Invoke();
     }
 }
