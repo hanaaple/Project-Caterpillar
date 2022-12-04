@@ -12,35 +12,39 @@ public class PreferenceManager : MonoBehaviour
     [SerializeField] private Button preferenceButton;
 
     [SerializeField] private GameObject preferencePanel;
-    
+
     [SerializeField] private Image preferenceFrontPanel;
 
     [SerializeField] private Button preferenceExitButton;
-    
+
     [SerializeField] private GameObject checkRebindPanel;
+
+    [SerializeField] private GameObject rebindButtonPanel;
     
     [SerializeField] private Button resetButton;
-    
+
     [SerializeField] private Button saveButton;
     
+    [SerializeField] private Button cancleSaveButton;
+
     [SerializeField] private Button rebindButton;
-    
+
     [SerializeField] private Button notRebindButton;
 
     [SerializeField] private GameObject[] pagePanels;
-    
+
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
-    
+
     [SerializeField] private TMP_Text pageText;
-    
+
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
-    private InputController[] _inputController;
-    
+    [SerializeField] private InputController[] inputController;
+
     private int _pageIndex;
     private bool _isAlreadyOpen;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -55,25 +59,31 @@ public class PreferenceManager : MonoBehaviour
     private void OnEnable()
     {
         preferenceInputAction.Enable();
-        InputManager.RebindComplete += EnableSaveButton;
-        InputManager.RebindEnd += DisableSaveButton;
+        InputManager.RebindComplete += SetSaveButton;
+        InputManager.RebindEnd += SetSaveButton;
+        // InputManager.RebindLoad += SetSaveButton;
+        InputManager.RebindReset += SetSaveButton;
     }
 
     private void OnDisable()
     {
         preferenceInputAction.Disable();
-        InputManager.RebindComplete -= EnableSaveButton;
-        InputManager.RebindEnd -= DisableSaveButton;
+        InputManager.RebindComplete -= SetSaveButton;
+        InputManager.RebindEnd -= SetSaveButton;
+        // InputManager.RebindLoad -= SetSaveButton;
+        InputManager.RebindReset -= SetSaveButton;
     }
 
-    private void EnableSaveButton()
+    private void SetSaveButton()
     {
-        saveButton.gameObject.SetActive(true);
-    }
-
-    private void DisableSaveButton()
-    {
-        saveButton.gameObject.SetActive(false);
+        if (InputManager.IsChanged())
+        {
+            rebindButtonPanel.SetActive(true);
+        }
+        else
+        {
+            rebindButtonPanel.SetActive(false);
+        }
     }
 
     private void OpenPreferencePanel()
@@ -99,7 +109,7 @@ public class PreferenceManager : MonoBehaviour
                 preferencePanel.SetActive(true);
             }
 
-            _isAlreadyOpen = !_isAlreadyOpen;   
+            _isAlreadyOpen = !_isAlreadyOpen;
         }
     }
 
@@ -107,26 +117,31 @@ public class PreferenceManager : MonoBehaviour
     {
         resetButton.onClick.AddListener(() =>
         {
-            foreach (var inputController in _inputController)
+            foreach (var t in inputController)
             {
-                inputController.ResetBinding();
+                t.ResetBinding();
             }
         });
 
-        saveButton.onClick.AddListener(() =>
-        {
-            InputManager.EndChange(true);
-        });
+        // cancleSaveButton.onClick.AddListener(() =>
+        // {
+        //     foreach (var t in inputController)
+        //     {
+        //         t.LoadBindingOverride();
+        //     }
+        // });
+        
+        saveButton.onClick.AddListener(() => { InputManager.EndChange(true); });
 
         preferenceFrontPanel.alphaHitTestMinimumThreshold = 0.1f;
         UpdateUI(0);
         // preferenceInputAction.performed += _ => OpenPreferencePanel();
-        
+
         preferenceButton.onClick.AddListener(OpenPreferencePanel);
 
         preferenceExitButton.onClick.AddListener(OpenPreferencePanel);
 
-        
+
         leftButton.onClick.AddListener(() =>
         {
             var nextIdx = (_pageIndex - 1) % pagePanels.Length;
@@ -134,9 +149,10 @@ public class PreferenceManager : MonoBehaviour
             {
                 nextIdx = pagePanels.Length - 1;
             }
+
             UpdateUI(nextIdx);
         });
-        
+
         rightButton.onClick.AddListener(() =>
         {
             var nextIdx = (_pageIndex + 1) % pagePanels.Length;
@@ -144,9 +160,10 @@ public class PreferenceManager : MonoBehaviour
             {
                 nextIdx = pagePanels.Length - 1;
             }
+
             UpdateUI(nextIdx);
         });
-        
+
         resolutionDropdown.onValueChanged.AddListener(idx =>
         {
             Debug.Log(resolutionDropdown.options[idx].text);
@@ -156,7 +173,7 @@ public class PreferenceManager : MonoBehaviour
             Screen.SetResolution(x, y, false);
             Debug.Log(resolutionDropdown.options[idx].image);
         });
-        
+
         rebindButton.onClick.AddListener(() =>
         {
             InputManager.EndChange(true);
@@ -165,7 +182,7 @@ public class PreferenceManager : MonoBehaviour
             preferenceButton.gameObject.SetActive(true);
             preferencePanel.SetActive(false);
         });
-        
+
         notRebindButton.onClick.AddListener(() =>
         {
             InputManager.EndChange(false);
@@ -180,6 +197,7 @@ public class PreferenceManager : MonoBehaviour
         {
             pagePanel.SetActive(false);
         }
+
         pagePanels[nextIdx].SetActive(true);
 
         _pageIndex = nextIdx;
