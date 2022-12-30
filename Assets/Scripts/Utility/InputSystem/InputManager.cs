@@ -48,6 +48,7 @@ public class InputManager : MonoBehaviour
                 LoadBindingOverride(inputAction.inputAction.name);
             }
         }
+        Debug.Log(isSave + ", " + "변경사항 - " + inputActions.Count);
         inputActions.Clear();
         RebindEnd?.Invoke();
     }
@@ -128,7 +129,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(bind.originalDisplayName + "  " + bindingName);   
+                    // Debug.Log(bind.originalDisplayName + "  " + bindingName);   
                 }
                 if (bind == null && originBindingName != bindingName || bind != null && bind.originalDisplayName != bindingName)
                 {
@@ -206,8 +207,75 @@ public class InputManager : MonoBehaviour
                 action.ApplyBindingOverride(i, loadActionMap);
                 Debug.Log("로드");
             }
+            else
+            {
+                if (action.bindings[i].isComposite)
+                {
+                    for (int j = i; j < action.bindings.Count && action.bindings[j].isComposite; j++)
+                    {
+                        action.RemoveBindingOverride(j);
+                    }
+                }
+                else
+                {
+                    action.RemoveBindingOverride(i);
+                }
+            }
         }
         RebindLoad?.Invoke();
+    }
+    
+    public static void TempResetBinding(string actionName, int bindingIndex)
+    {
+        InputAction action = inputControl.asset.FindAction(actionName);
+        if (action == null || action.bindings.Count <= bindingIndex)
+        {
+            Debug.Log("Could not find action or binding");
+            return;
+        }
+        
+        if (action.bindings[bindingIndex].isComposite)
+        {
+            for (int i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
+            {
+                string originBindingName = GetBindingName(actionName, i);
+                action.RemoveBindingOverride(i);
+                
+                if (originBindingName != GetBindingName(actionName, i))
+                {
+                    inputActions.Add(new InputActions
+                    {
+                        inputAction = action,
+                        bindingIndex = bindingIndex,
+                        originalDisplayName = originBindingName
+                    });   
+                }
+            }
+        }
+        else
+        {
+            string originBindingName = GetBindingName(actionName, bindingIndex);
+            action.RemoveBindingOverride(bindingIndex);
+            if (originBindingName != GetBindingName(actionName, bindingIndex))
+            {
+                inputActions.Add(new InputActions
+                {
+                    inputAction = action,
+                    bindingIndex = bindingIndex,
+                    originalDisplayName = originBindingName
+                });   
+            }
+        }
+
+        //isChanged인 경우 == 기존의 것과 리셋 후 바뀐 것이 하나라도 있으면  -> 이걸 체크해서 Add 시켜줘야한다.
+        
+        // 초기화 or 변경 이후 저장 및 취소하기 활성화
+        
+        // 변경시 inputActions에 Add 후, 다시한번 체크하여 추가(Save) 혹은 취소(Load)
+        
+        // 초기화시 변경사항이 있을 경우 Add, 다시한번 체크하여 Save or Load
+        
+        RebindReset?.Invoke();
     }
 
     public static void ResetBinding(string actionName, int bindingIndex)

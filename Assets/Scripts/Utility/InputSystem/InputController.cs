@@ -107,6 +107,12 @@ public class InputController : MonoBehaviour
     {
         InputManager.ResetBinding(_actionName, _bindingIndex);
     }
+    
+    public void TempResetBinding()
+    {
+        InputManager.TempResetBinding(_actionName, _bindingIndex);
+    }
+    
     // public void LoadBindingOverride()
     // {
     //     InputManager.inputActions.Clear();
