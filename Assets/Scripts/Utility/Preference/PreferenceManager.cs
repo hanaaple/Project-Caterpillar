@@ -119,17 +119,15 @@ public class PreferenceManager : MonoBehaviour
         {
             foreach (var t in inputController)
             {
-                t.ResetBinding();
+                t.TempResetBinding();
             }
+            //
         });
 
-        // cancleSaveButton.onClick.AddListener(() =>
-        // {
-        //     foreach (var t in inputController)
-        //     {
-        //         t.LoadBindingOverride();
-        //     }
-        // });
+        cancleSaveButton.onClick.AddListener(() =>
+        {
+            InputManager.EndChange(false);
+        });
         
         saveButton.onClick.AddListener(() => { InputManager.EndChange(true); });
 
