@@ -8,7 +8,8 @@ public class ShadowMonster : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [Header("커튼")] [SerializeField] private SpriteRenderer[] curtain;
-    [SerializeField] private Sprite[] curtainSprites;
+    [SerializeField] private Sprite[] opendCurtainSprites;
+    [SerializeField] private Sprite[] closedCurtainSprites;
     
     
     private float _damagedTime;
@@ -17,7 +18,13 @@ public class ShadowMonster : MonoBehaviour
     private float _judgmentPercantage;
 
     private CircleCollider2D _otherCollider;
-    
+
+    public void Reset()
+    {
+        animator.SetTrigger("Reset");
+        CloseCurtain();
+    }
+
     public void Appear(int stageIndex)
     {
         gameObject.SetActive(true);
@@ -29,10 +36,16 @@ public class ShadowMonster : MonoBehaviour
         animator.SetTrigger("Appear");
     }
 
+    public void CloseCurtain()
+    {
+        curtain[0].sprite = closedCurtainSprites[0];
+        curtain[1].sprite = closedCurtainSprites[1];
+    }
+
     public void OpenCurtain()
     {
-        curtain[0].sprite = curtainSprites[0];
-        curtain[1].sprite = curtainSprites[1];
+        curtain[0].sprite = opendCurtainSprites[0];
+        curtain[1].sprite = opendCurtainSprites[1];
     }
 
     public bool GetIsDefeated()

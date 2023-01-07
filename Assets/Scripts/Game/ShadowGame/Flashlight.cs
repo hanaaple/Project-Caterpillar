@@ -11,8 +11,11 @@ public class Flashlight : MonoBehaviour
 
     private float _originalRadius;
 
-    private void Start()
+    private Vector3 _originPos;
+
+    public void Init()
     {
+        _originPos = mainLight.transform.position;
         var mainLightCollider = mainLight.GetComponent<CircleCollider2D>();
         mainLightCollider.radius = mainLight.pointLightOuterRadius;
         _originalRadius = mainLight.pointLightOuterRadius;
@@ -43,5 +46,31 @@ public class Flashlight : MonoBehaviour
         var mainLightCollider = mainLight.GetComponent<CircleCollider2D>();
         mainLight.pointLightOuterRadius = _originalRadius * percantage;
         mainLightCollider.radius = _originalRadius * percantage;
+    }
+
+    public void Reset()
+    {
+        TeleportFlashLight(_originPos);
+        UpdateLightRadius(1f);
+    }
+    
+    private void TeleportFlashLight(Vector3 followPos)
+    {
+        followPos = Vector3.Lerp(mainLight.transform.position, followPos, 1);
+        mainLight.transform.position = followPos;
+    
+        subLight.transform.up = Vector2.Lerp(subLight.transform.up,
+            (mainLight.transform.position - subLight.transform.position), 1);
+    
+    
+        // 거리 계산
+        subLight.pointLightOuterRadius = Vector2.Distance(mainLight.transform.position, subLight.transform.position);
+        
+        // 각도 계산
+        // 각도 계산 시 mainLight의 scale 포함하여 계산
+        // Debug.Log(2 * Mathf.Atan2(mainLight.pointLightOuterRadius, subLight.pointLightOuterRadius) * Mathf.Rad2Deg);
+        var angle = 2 * Mathf.Atan2(mainLight.pointLightOuterRadius, subLight.pointLightOuterRadius) * Mathf.Rad2Deg;
+        subLight.pointLightInnerAngle = angle;
+        subLight.pointLightOuterAngle = angle;
     }
 }

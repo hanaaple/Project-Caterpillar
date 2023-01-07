@@ -139,7 +139,7 @@ namespace Utility.Dialogue
                 {
                     EndConversation();
                     Debug.Log(dialogue.contents + "로 맵 이동");
-                    SceneLoader.Instance.LoadScene(dialogue.contents);
+                    SceneLoader.SceneLoader.Instance.LoadScene(dialogue.contents);
                 }
                 else if (dialogue.dialogueType == DialogueType.Save)
                 {

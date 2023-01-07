@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 public class ShadowGameManager : MonoBehaviour
 {
@@ -27,8 +28,18 @@ public class ShadowGameManager : MonoBehaviour
     private Button tutorialButton;
     [SerializeField]
     private GameObject playPanel;
+    
+    [Space(10)]
     [SerializeField]
     private GameObject gameOverPanel;
+    [SerializeField]
+    private Button retryButton;
+    [SerializeField]
+    private Button giveUpButton;
+    
+    [Space(10)]
+    [SerializeField]
+    private GameObject gameEndPanel;
     [SerializeField]
     private Image[] heartImages;
     [SerializeField]
@@ -72,6 +83,7 @@ public class ShadowGameManager : MonoBehaviour
 
     void Start()
     {
+        flashlight.Init();
         Debug.Log(animation.clip.length);
         _camera = Camera.main;
         _minBounds = cameraBound.bounds.min;
@@ -81,6 +93,17 @@ public class ShadowGameManager : MonoBehaviour
         OnGameStart();
         tutorialButton.onClick.AddListener(() =>
         {
+            StartCoroutine(GameStart());
+        });
+
+        giveUpButton.onClick.AddListener(() =>
+        {
+            SceneLoader.Instance.LoadScene(SceneName.MainScene);
+        });
+        retryButton.onClick.AddListener(() =>
+        {
+            gameOverPanel.SetActive(false);
+            shadowMonster.Reset();
             StartCoroutine(GameStart());
         });
     }
@@ -94,12 +117,15 @@ public class ShadowGameManager : MonoBehaviour
     private void OnGameStart()
     {
         _isPlaying = false;
-        _mentality = 0;
         OnGameTutorial();
     }
     
     private IEnumerator GameStart()
     {
+        _camera.transform.position = Vector3.back;
+        flashlight.Reset();
+        shadowMonster.gameObject.SetActive(false);
+        
         var t = 1f;
         var tutorialCanvasGroup = tutorialPanel.GetComponent<CanvasGroup>();
         while (t >= 0)
@@ -119,6 +145,7 @@ public class ShadowGameManager : MonoBehaviour
         
         playPanel.SetActive(true);
         _mentality = 3;
+        stageIndex = 0;
         OnStartStage();
     }
 
@@ -209,10 +236,21 @@ public class ShadowGameManager : MonoBehaviour
         {
             GameOver();
         }
+        else if (stageIndex == stageCount)
+        {
+            OnGameEnd();   
+        }
         else if (stageIndex < stageCount)
         {
             OnStartStage();
         }
+    }
+
+    private void OnGameEnd()
+    {
+        _isPlaying = false;
+        playPanel.SetActive(false);
+        gameEndPanel.SetActive(true);
     }
     
     private void GameOver()
