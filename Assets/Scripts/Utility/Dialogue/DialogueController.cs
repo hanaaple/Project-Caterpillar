@@ -21,7 +21,7 @@ namespace Utility.Dialogue
         [SerializeField] private GameObject choicePanel;
         [SerializeField] private GameObject savePanel;
 
-        [SerializeField] private Text dialogueText;
+        [SerializeField] private TMP_Text dialogueText;
 
         [SerializeField] private Button dialogueInputArea;
 
