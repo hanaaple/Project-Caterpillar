@@ -72,7 +72,7 @@ public class ShadowMonster : MonoBehaviour
         unityAction();
     }
 
-    void Update()
+    private void Update()
     {
         if (_otherCollider)
         {
@@ -106,7 +106,7 @@ public class ShadowMonster : MonoBehaviour
             }
 
             // Debug.Log("0 ~ 1에서 퍼센트: " + percantage);
-            Debug.Log(_damagedTime/_judgmentTime);
+            //Debug.Log(_damagedTime/_judgmentTime);
             if (percantage >= _judgmentPercantage)
             {
                 _damagedTime += Time.deltaTime;

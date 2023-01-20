@@ -52,13 +52,19 @@ public class ShadowGameManager : MonoBehaviour
 
     [SerializeField] private int stageCount;
     
+    [SerializeField] private SpriteRenderer messyObject;
+    
+    [SerializeField] private Sprite[] messyObjectSprites;
+    
     
     [Space(20)]
     [Header("디버깅용")]
     [SerializeField]
     private int stageIndex;
-    [SerializeField] 
+    [SerializeField]
     private int mentality;
+    [SerializeField]
+    private int startStageIndex;
 
     private int _mentality
     {
@@ -84,7 +90,6 @@ public class ShadowGameManager : MonoBehaviour
     void Start()
     {
         flashlight.Init();
-        Debug.Log(animation.clip.length);
         _camera = Camera.main;
         _minBounds = cameraBound.bounds.min;
         _maxBounds = cameraBound.bounds.max;
@@ -124,6 +129,7 @@ public class ShadowGameManager : MonoBehaviour
     {
         _camera.transform.position = Vector3.back;
         flashlight.Reset();
+        Reset();
         shadowMonster.gameObject.SetActive(false);
         
         var t = 1f;
@@ -144,8 +150,6 @@ public class ShadowGameManager : MonoBehaviour
         yield return new WaitForSeconds(animation.clip.length);
         
         playPanel.SetActive(true);
-        _mentality = 3;
-        stageIndex = 0;
         OnStartStage();
     }
 
@@ -156,7 +160,6 @@ public class ShadowGameManager : MonoBehaviour
         _stageCoroutine = StartCoroutine(StageUpdate());
         _stageCheckCoroutine = StartCoroutine(CheckDefeat());
      
-        // 4스테이지
         if (stageIndex == 0)
         { 
             batteryImage.sprite = batterySprites[0];
@@ -167,11 +170,15 @@ public class ShadowGameManager : MonoBehaviour
             batteryImage.sprite = batterySprites[1];
             flashlight.UpdateLightRadius(0.7f);
         }
-        // 8스테이지
         else if (stageIndex == 7)
         {
             batteryImage.sprite = batterySprites[2];
             flashlight.UpdateLightRadius(0.4f);
+        }
+
+        if (stageIndex == 4)
+        {
+            messyObject.sprite = messyObjectSprites[1];
         }
     }
     
@@ -339,5 +346,15 @@ public class ShadowGameManager : MonoBehaviour
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
+    }
+
+    private void Reset()
+    {
+        _mentality = 3;
+        stageIndex = startStageIndex;
+
+        messyObject.sprite = messyObjectSprites[0];
+        
+        shadowMonster.Reset();
     }
 }
