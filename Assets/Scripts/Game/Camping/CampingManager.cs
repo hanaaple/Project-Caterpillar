@@ -81,7 +81,7 @@ namespace Game.Camping
                 var idx = i;
                 interactions[idx].onAppear += () => { hints[idx].SetHint(true); };
 
-                interactions[idx].setEnable += (isEnable) =>
+                interactions[idx].setInteractable += (isEnable) =>
                 {
                     foreach (var t in interactions)
                     {

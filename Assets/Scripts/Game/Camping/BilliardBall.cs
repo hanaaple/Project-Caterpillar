@@ -17,6 +17,22 @@ namespace Game.Camping
         [SerializeField]
         private Button left;
         
+        [Space(10)]
+        [SerializeField]
+        private Image billiardBall;
+        [SerializeField]
+        private Sprite defaultSprite;
+        [SerializeField]
+        private Sprite upSprite;
+        [SerializeField]
+        private Sprite downSprite;
+        [SerializeField]
+        private Sprite rightSprite;
+        [SerializeField]
+        private Sprite leftSprite;
+        
+        [Space(5)]
+        
         [SerializeField]
         private GameObject billiardBallCheck;
 
@@ -25,9 +41,9 @@ namespace Game.Camping
         [SerializeField]
         private Button exitButton;
 
-        private void OnMouseDown()
+        private void OnMouseUp()
         {
-            setEnable(false);
+            setInteractable(false);
             gamePanel.SetActive(true);
             UpdateUI(Vector2.zero);
             Appear();
@@ -55,7 +71,7 @@ namespace Game.Camping
             exitButton.onClick.AddListener(() =>
             {
                 gamePanel.SetActive(false);
-                setEnable(true);
+                setInteractable(true);
             });
             
             Reset();
@@ -70,6 +86,23 @@ namespace Game.Camping
             else
             {
                 billiardBallCheck.SetActive(true);
+            }
+
+            if (input == Vector2.up)
+            {
+                billiardBall.sprite = upSprite;
+            }else if (input == Vector2.down)
+            {
+                billiardBall.sprite = downSprite;
+            }else if (input == Vector2.right)
+            {
+                billiardBall.sprite = rightSprite;
+            }else if (input == Vector2.left)
+            {
+                billiardBall.sprite = leftSprite;
+            }else if (input == Vector2.zero)
+            {
+                billiardBall.sprite = defaultSprite;
             }
 
             _previousInput = input;

@@ -23,12 +23,16 @@ namespace Game.Camping
             exitButton.onClick.AddListener(() =>
             {
                 showPanel.SetActive(false);
-                setEnable(true);
+                setInteractable(true);
             });
             diary.onOpen = () =>
             {
-                setEnable(false);
-                showPanel.SetActive(true);
+                //setEnable(false);
+                //showPanel.SetActive(true);
+            };
+            diary.onPickUp = () =>
+            {
+                bag.isOut = true;
             };
             diary.onFire = () =>
             {
@@ -46,7 +50,7 @@ namespace Game.Camping
 
         public override void Reset()
         {
-            tornDiary.setEnable = setEnable;
+            tornDiary.setInteractable = setInteractable;
             diary.Reset();
             bag.Reset();
             tornDiary.gameObject.SetActive(false);

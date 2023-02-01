@@ -16,13 +16,13 @@ namespace Game.Camping
             exitButton.onClick.AddListener(() =>
             {
                 showPanel.SetActive(false);
-                setEnable(true);
+                setInteractable(true);
             });
         }
 
-        private void OnMouseDown()
+        private void OnMouseUp()
         {
-            setEnable(false);
+            setInteractable(false);
             showPanel.SetActive(true);
             Appear();
         }

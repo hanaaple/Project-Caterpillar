@@ -6,9 +6,8 @@ namespace Game.Camping
     {
         public UnityAction onAppear;
         
-        public UnityAction<bool> setEnable;
-
-        // public abstract void Init();
+        public UnityAction<bool> setInteractable;
+        
         public abstract void Appear();
         
         public abstract void Reset();

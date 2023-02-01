@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Game.Camping
@@ -12,7 +13,7 @@ namespace Game.Camping
         private Vector3 _originPos;
         
         private bool _isInit;
-        
+
         private void Awake()
         {
             if (!_isInit)
@@ -31,7 +32,7 @@ namespace Game.Camping
 
         private void OnMouseUp()
         {
-            if (Vector3.Distance(target.transform.position, transform.position) < target.radius)
+            if (target.enabled && Vector3.Distance(target.transform.position, transform.position) < target.radius)
             {
                 onFire?.Invoke();
             }
@@ -49,6 +50,7 @@ namespace Game.Camping
                 transform.position = _originPos;
             }
 
+            GetComponent<Collider2D>().enabled = true;
             gameObject.SetActive(true);
         }
     }
