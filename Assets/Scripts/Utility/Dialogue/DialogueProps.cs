@@ -1,17 +1,24 @@
+using System;
+using Utility.Dialogue;
+
 namespace Dialogue
 {
-    [System.Serializable]
+    [Serializable]
     public class DialogueProps
     {
         public int index;
         public DialogueItemProps[] datas;
     }
-    
-    [System.Serializable]
+
+    [Serializable]
     public struct DialogueItemProps
     {
+        public CharacterType name;
         public string subject;
         public string contents;
         public DialogueType dialogueType;
+        
+        public Expression expression;
+        public string[] option;
     }
 }

@@ -1,16 +1,41 @@
 using System;
 using System.Collections;
+using System.Linq;
 using System.Threading.Tasks;
 using Dialogue;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.UI;
+using Utility.InputSystem;
 using Utility.JsonLoader;
+using Utility.SaveSystem;
 
 namespace Utility.Dialogue
 {
+    [Serializable]
+    public class DialogueSelector : Highlight
+    {
+        private Animator _animator;
+
+        public void Init(Animator animator)
+        {
+            _animator = animator;
+        }
+
+
+        public override void SetDefault()
+        {
+            _animator.SetBool("Selected", false);
+        }
+        
+        public override void SetHighlight()
+        {
+            _animator.SetBool("Selected", true);
+        }
+    }
     public class DialogueController : MonoBehaviour
     {
         private static DialogueController _instance;
@@ -24,9 +49,20 @@ namespace Utility.Dialogue
         [SerializeField] private TMP_Text dialogueText;
 
         [SerializeField] private Button dialogueInputArea;
+        
+        [Header("Choice")]
+        [SerializeField] private DialogueSelector[] dialogueSelectors;
 
         [Header("깜빡이는 애니메이션 들어간 ui")] [SerializeField]
         private GameObject blinkingIndicator;
+        
+        [Header("좌 애니메이터")] [SerializeField]
+        private Animator leftAnimator;
+        
+        [Header("우 애니메이터")] [SerializeField]
+        private Animator rightAnimator;
+        
+        [SerializeField] private float textSpeed;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
         private DialogueProps dialogueProps;
@@ -34,9 +70,7 @@ namespace Utility.Dialogue
         [SerializeField] private DialogueProps baseDialogueProps;
         [SerializeField] private DialogueProps choicedDialogueProps;
 
-        [SerializeField] private bool isUnfolding;
-
-        [SerializeField] private float textSpeed;
+        private bool _isUnfolding;
 
         private Coroutine _printCoroutine;
 
@@ -44,12 +78,45 @@ namespace Utility.Dialogue
 
         private UnityEvent _onLast;
 
-        private bool _isDialogue;
+        [NonSerialized] public bool IsDialogue;
 
+        private int _selectedIdx;
+        private bool _isSkipEnable;
 
+        private Action<InputAction.CallbackContext> _onInput;
+        private Action<InputAction.CallbackContext> _onExecute;
         private void Awake()
         {
             _instance = this;
+            _onInput = _ =>
+            {
+                if (!choicePanel.activeSelf)
+                {
+                    return;
+                }
+                var input = _.ReadValue<Vector2>();
+                var idx = _selectedIdx;
+                if (input == Vector2.up)
+                {
+                    idx = (idx - 1 + dialogueSelectors.Length) % dialogueSelectors.Length;
+                }
+                else if (input == Vector2.down)
+                {
+                    idx = (idx + 1) % dialogueSelectors.Length;
+                }
+
+                HighlightButton(idx);
+            };
+
+            _onExecute = _ =>
+            {
+                if (!choicePanel.activeSelf)
+                {
+                    return;
+                }
+
+                dialogueSelectors[_selectedIdx].button.onClick?.Invoke();
+            };
         }
 
         void Start()
@@ -60,27 +127,35 @@ namespace Utility.Dialogue
 
             _onComplete = new UnityEvent();
             _onLast = new UnityEvent();
+            
+            foreach (var dialogueSelector in dialogueSelectors)
+            {
+                dialogueSelector.Init(dialogueSelector.button.GetComponent<Animator>());
+            }
         }
 
         private async void InitDialogue(string jsonAsset)
         {
-            _isDialogue = true;
+            IsDialogue = true;
             dialogueProps = baseDialogueProps;
             dialogueProps.datas = JsonHelper.GetJsonArray<DialogueItemProps>(jsonAsset);
             dialogueProps.index = 0;
-            isUnfolding = false;
+            _isUnfolding = false;
 
             dialoguePanel.SetActive(true);
 
             await Task.Delay((int) (Time.deltaTime * 1000));
-            var playerActions = InputManager.inputControl.PlayerActions;
-            playerActions.Enable();
-            playerActions.Dialogue.performed += InputConverse;
+            
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Enable();
+            uiActions.Dialogue.performed += InputConverse;
+            uiActions.Select.performed += _onInput;
+            uiActions.Execute.performed += _onExecute;
         }
 
         public void Converse(string jsonAsset)
         {
-            if (_isDialogue)
+            if (IsDialogue)
             {
                 return;
             }
@@ -92,10 +167,13 @@ namespace Utility.Dialogue
 
         public void InputConverse()
         {
-            if (isUnfolding)
+            if (_isUnfolding)
             {
-                StopCoroutine(_printCoroutine);
-                CompleteDialogue();
+                if (_isSkipEnable)
+                {
+                    StopCoroutine(_printCoroutine);
+                    CompleteDialogue();
+                }
             }
             else
             {
@@ -134,6 +212,38 @@ namespace Utility.Dialogue
                 if (dialogue.dialogueType == DialogueType.Script)
                 {
                     _printCoroutine = StartCoroutine(DialoguePrint());
+
+                    
+                    if (dialogue.option != null && dialogue.option.Length >= 1)
+                    {
+                        var side = dialogue.option[0];
+                        // Debug.Log(side);
+                        Animator animator = null;
+                        if (side == "Left")
+                        {
+                            animator = leftAnimator;
+                        }
+                        else if (side == "Right")
+                        {
+                            animator = rightAnimator;
+                        }
+                        
+                        if (dialogue.option.Length == 2)
+                        {
+                            var state = dialogue.option[1].Replace(" ", "");
+                            Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
+                            if (animator != null)
+                            {
+                                animator.SetTrigger(state);
+                            }
+                        }
+                    
+                        if (animator != null)
+                        {
+                            animator.SetInteger("Character", (int)dialogue.name);
+                            animator.SetInteger("Expression", (int)dialogue.expression);
+                        }
+                    }
                 }
                 else if (dialogue.dialogueType == DialogueType.MoveMap)
                 {
@@ -148,18 +258,42 @@ namespace Utility.Dialogue
                         SavePanelManager.instance.InitSave();
                         SavePanelManager.instance.SetSaveLoadPanelActive(true);
                         _onComplete.RemoveAllListeners();
-                        SavePanelManager.instance.onSave.AddListener(() =>
+                        SavePanelManager.instance.OnSave.AddListener(() =>
                         {
                             SavePanelManager.instance.SetSaveLoadPanelActive(false);
                             InputConverse();
-                            SavePanelManager.instance.onSave.RemoveAllListeners();
+                            SavePanelManager.instance.OnSave.RemoveAllListeners();
                         });
                     });
                     _printCoroutine = StartCoroutine(DialoguePrint());
                 }
                 else if (dialogue.dialogueType == DialogueType.ChoiceEnd)
                 {
-                    Debug.LogError("하이");
+                    // Debug.LogError("하이");
+                }
+                else if (dialogue.dialogueType == DialogueType.Character)
+                {
+                    var side = dialogue.option[0];
+                    // Debug.Log(side);
+                    Animator animator = null;
+                    if (side == "Left")
+                    {
+                        animator = leftAnimator;
+                    }
+                    else if (side == "Right")
+                    {
+                        animator = rightAnimator;
+                    }
+
+                    var state = dialogue.option[1].Replace(" ", "");
+                    Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
+                    
+                    if (animator != null)
+                    {
+                        animator.SetTrigger(state);
+                        animator.SetInteger("Character", (int)dialogue.name);
+                        animator.SetInteger("Expression", (int)dialogue.expression);
+                    }
                 }
             }
         }
@@ -167,12 +301,39 @@ namespace Utility.Dialogue
         private IEnumerator DialoguePrint()
         {
             Debug.Log("프린트 시작");
-            isUnfolding = true;
+            _isUnfolding = true;
             blinkingIndicator.SetActive(false);
             dialogueText.text = "";
             var dialogueItem = dialogueProps.datas[dialogueProps.index];
 
-            var waitForSec = new WaitForSeconds(textSpeed);
+            float speed = 1;
+
+            if (dialogueItem.option != null)
+            {
+                _isSkipEnable = true;
+
+                var options = Array.FindAll(dialogueItem.option, item => !item.Contains("(") && item.Any(char.IsDigit));
+                var intOptions = options.Select(item => (int)float.Parse(item));
+                var enumerable = intOptions as int[] ?? intOptions.ToArray();
+                if (enumerable.Length > 0)
+                {
+                    if (enumerable.Contains(0))
+                    {
+                        Debug.Log("스킵 불가능!");
+                        _isSkipEnable = false;
+                    }
+
+                }
+
+                if (dialogueItem.option.Any(item => item.Contains("1(")))
+                {
+                    var speedString = Array.Find(dialogueItem.option, item => item.Contains("1("));
+                    speed = float.Parse(speedString.Split("(")[1].Split(")")[0]);
+                    Debug.Log("속도: " + speed);
+                }
+            }
+            
+            var waitForSec = new WaitForSeconds(textSpeed / speed);
 
             foreach (var t in dialogueItem.contents)
             {
@@ -186,54 +347,47 @@ namespace Utility.Dialogue
         private void CompleteDialogue()
         {
             _printCoroutine = null;
-            isUnfolding = false;
+            _isUnfolding = false;
             var dialogueItem = dialogueProps.datas[dialogueProps.index];
             dialogueText.text = dialogueItem.contents;
 
 
-            if ((dialogueItem.dialogueType == DialogueType.Script || dialogueItem.dialogueType == DialogueType.None) &&
-                dialogueProps.datas.Length > dialogueProps.index + 1 &&
+            if (dialogueProps.datas.Length > dialogueProps.index + 1 &&
                 dialogueProps.datas[dialogueProps.index + 1].dialogueType == DialogueType.Choice)
             {
-                for (var i = 0; i < choicePanel.transform.childCount; i++)
-                {
-                    choicePanel.transform.GetChild(i).gameObject.SetActive(false);
-                    choicePanel.transform.GetChild(i).GetComponentInChildren<TMP_Text>().text =
-                        "";
-                    choicePanel.transform.GetChild(i).GetComponentInChildren<Button>().onClick
-                        .RemoveAllListeners();
-                }
+                choicePanel.SetActive(true);
+                InitChoice();
 
                 dialogueProps.index++;
-                choicePanel.SetActive(true);
-                var choicedLen = 0;
+                
+                var choicedIdx = 0;
                 while (dialogueProps.index < dialogueProps.datas.Length &&
                        dialogueProps.datas[dialogueProps.index].dialogueType !=
                        DialogueType.ChoiceEnd)
                 {
                     Debug.Log(dialogueProps.index);
 
-                    var choiceLen = 0;
+                    var choiceCount = 0;
                     // 2111211에서 2까지 읽기
-                    while (dialogueProps.index + choiceLen < dialogueProps.datas.Length &&
-                           dialogueProps.datas[dialogueProps.index + choiceLen].dialogueType ==
+                    while (dialogueProps.index + choiceCount < dialogueProps.datas.Length &&
+                           dialogueProps.datas[dialogueProps.index + choiceCount].dialogueType ==
                            DialogueType.Choice)
                     {
-                        choiceLen++;
+                        choiceCount++;
                     }
 
                     var choiceContextLen = 0;
                     var choiceEnd = 0;
                     // 2111211에서 2111까지
-                    while (dialogueProps.index + choiceLen + choiceContextLen < dialogueProps.datas.Length)
+                    while (dialogueProps.index + choiceCount + choiceContextLen < dialogueProps.datas.Length)
                     {
-                        if (dialogueProps.datas[dialogueProps.index + choiceLen + choiceContextLen].dialogueType ==
+                        if (dialogueProps.datas[dialogueProps.index + choiceCount + choiceContextLen].dialogueType ==
                             DialogueType.Choice)
                         {
                             break;
                         }
 
-                        if (dialogueProps.datas[dialogueProps.index + choiceLen + choiceContextLen]
+                        if (dialogueProps.datas[dialogueProps.index + choiceCount + choiceContextLen]
                                 .dialogueType ==
                             DialogueType.ChoiceEnd)
                         {
@@ -245,30 +399,33 @@ namespace Utility.Dialogue
                     }
 
                     Debug.Log(dialogueProps.index);
-                    Debug.Log(choiceLen);
+                    Debug.Log(choiceCount);
                     Debug.Log(choiceContextLen);
 
-                    for (var i = 0; i < choiceLen; i++)
+                    for (var i = 0; i < choiceCount; i++)
                     {
-                        var child = choicePanel.transform.GetChild(choicedLen + i);
+                        var idx = choicedIdx + i;
+                        var child = choicePanel.transform.GetChild(idx);
                         Debug.Log(child);
                         child.gameObject.SetActive(true);
                         child.GetComponentInChildren<TMP_Text>().text =
                             dialogueProps.datas[dialogueProps.index + i].contents;
 
                         var curIdx = dialogueProps.index;
-                        var button = child.GetComponentInChildren<Button>();
-                        button.onClick.RemoveAllListeners();
-                        button.onClick.AddListener(() =>
+                        dialogueSelectors[idx].button.onClick.RemoveAllListeners();
+                        dialogueSelectors[idx].button.onClick.AddListener(() =>
                         {
-                            OnClickChoice(curIdx, choiceLen, choiceContextLen + choiceEnd);
+                            OnClickChoice(curIdx, choiceCount, choiceContextLen + choiceEnd);
                         });
+
+                        dialogueSelectors[idx].InitEventTrigger((_) => HighlightButton(idx));
                     }
 
-                    dialogueProps.index += choiceLen + choiceContextLen;
-                    choicedLen += choiceLen;
+                    dialogueProps.index += choiceCount + choiceContextLen;
+                    choicedIdx += choiceCount;
                     Debug.Log(dialogueProps.index);
                 }
+                HighlightButton(0);
             }
             else
             {
@@ -303,6 +460,25 @@ namespace Utility.Dialogue
             ProgressConversation();
         }
 
+        private void InitChoice()
+        {
+            foreach (var dialogueSelector in dialogueSelectors)
+            {
+                dialogueSelector.button.gameObject.SetActive(false);
+                dialogueSelector.button.GetComponentInChildren<TMP_Text>().text =
+                    "";
+                dialogueSelector.button.GetComponentInChildren<Button>().onClick
+                    .RemoveAllListeners();
+            }
+        }
+        private void HighlightButton(int idx)
+        {
+            Debug.Log($"{idx}입니다");
+            dialogueSelectors[_selectedIdx].SetDefault();
+            _selectedIdx = idx;
+            dialogueSelectors[idx].SetHighlight();
+        }
+        
         private bool IsDialogueEnd()
         {
             return dialogueProps.index >= dialogueProps.datas.Length;
@@ -315,11 +491,16 @@ namespace Utility.Dialogue
 
             dialoguePanel.SetActive(false);
 
+            IsDialogue = false;
+            
             _onLast?.RemoveAllListeners();
-
-            var playerActions = InputManager.inputControl.PlayerActions;
-            playerActions.Enable();
-            playerActions.Dialogue.performed -= InputConverse;
+            
+            
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Disable();
+            uiActions.Dialogue.performed -= InputConverse;
+            uiActions.Select.performed -= _onInput;
+            uiActions.Execute.performed -= _onExecute;
         }
     }
 }
