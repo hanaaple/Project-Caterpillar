@@ -1,15 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 public class ShadowGameManager : MonoBehaviour
 {
-    [System.Serializable]
-    class StageProps
-    {
-        public ShadowMonster shadowMonster;
-    }
-    
     [Header("Camera")]
     [Range(1, 20f)]
     [SerializeField]
@@ -22,7 +17,8 @@ public class ShadowGameManager : MonoBehaviour
     [SerializeField]
     private GameObject globalLight;
     
-    public Animation animation;
+    [SerializeField]
+    private Animation animation;
     
     [Space(20)]
     [Header("Canvas")]
@@ -32,22 +28,43 @@ public class ShadowGameManager : MonoBehaviour
     private Button tutorialButton;
     [SerializeField]
     private GameObject playPanel;
+    
+    [Space(10)]
     [SerializeField]
     private GameObject gameOverPanel;
     [SerializeField]
-    private Image[] heartImages;
-    
-    [Space(20)]
-    [Header("스테이지")]
+    private Button retryButton;
     [SerializeField]
-    private StageProps[] stageProps;
+    private Button giveUpButton;
+    
+    [Space(10)]
+    [SerializeField]
+    private GameObject gameEndPanel;
+    [SerializeField]
+    private Image[] heartImages;
+    [SerializeField]
+    private Image batteryImage;
+    [SerializeField]
+    private Sprite[] batterySprites;
+
+    [Space(20)] [Header("스테이지")] [SerializeField]
+    private ShadowMonster shadowMonster;
+
+    [SerializeField] private int stageCount;
+    
+    [SerializeField] private SpriteRenderer messyObject;
+    
+    [SerializeField] private Sprite[] messyObjectSprites;
+    
     
     [Space(20)]
     [Header("디버깅용")]
     [SerializeField]
-    private int _stage;
-    [SerializeField] 
+    private int stageIndex;
+    [SerializeField]
     private int mentality;
+    [SerializeField]
+    private int startStageIndex;
 
     private int _mentality
     {
@@ -72,7 +89,7 @@ public class ShadowGameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(animation.clip.length);
+        flashlight.Init();
         _camera = Camera.main;
         _minBounds = cameraBound.bounds.min;
         _maxBounds = cameraBound.bounds.max;
@@ -81,6 +98,17 @@ public class ShadowGameManager : MonoBehaviour
         OnGameStart();
         tutorialButton.onClick.AddListener(() =>
         {
+            StartCoroutine(GameStart());
+        });
+
+        giveUpButton.onClick.AddListener(() =>
+        {
+            SceneLoader.Instance.LoadScene(SceneName.MainScene);
+        });
+        retryButton.onClick.AddListener(() =>
+        {
+            gameOverPanel.SetActive(false);
+            shadowMonster.Reset();
             StartCoroutine(GameStart());
         });
     }
@@ -94,12 +122,16 @@ public class ShadowGameManager : MonoBehaviour
     private void OnGameStart()
     {
         _isPlaying = false;
-        _mentality = 0;
         OnGameTutorial();
     }
     
     private IEnumerator GameStart()
     {
+        _camera.transform.position = Vector3.back;
+        flashlight.Reset();
+        Reset();
+        shadowMonster.gameObject.SetActive(false);
+        
         var t = 1f;
         var tutorialCanvasGroup = tutorialPanel.GetComponent<CanvasGroup>();
         while (t >= 0)
@@ -118,53 +150,54 @@ public class ShadowGameManager : MonoBehaviour
         yield return new WaitForSeconds(animation.clip.length);
         
         playPanel.SetActive(true);
-        _mentality = 3;
         OnStartStage();
     }
 
     private void OnStartStage()
     {
-        Debug.Log(_stage + " 스테이지 시작");
+        Debug.Log(stageIndex + " 스테이지 시작");
+        _isPlaying = true;
         _stageCoroutine = StartCoroutine(StageUpdate());
         _stageCheckCoroutine = StartCoroutine(CheckDefeat());
-        _isPlaying = true;
      
-        // 4스테이지
-        if (_stage == 0)
-        {
+        if (stageIndex == 0)
+        { 
+            batteryImage.sprite = batterySprites[0];
             flashlight.UpdateLightRadius(1f);
         }
-        else if (_stage == 3)
+        else if (stageIndex == 3)
         {
+            batteryImage.sprite = batterySprites[1];
             flashlight.UpdateLightRadius(0.7f);
         }
-        // 8스테이지
-        else if (_stage == 7)
+        else if (stageIndex == 7)
         {
+            batteryImage.sprite = batterySprites[2];
             flashlight.UpdateLightRadius(0.4f);
+        }
+
+        if (stageIndex == 4)
+        {
+            messyObject.sprite = messyObjectSprites[1];
         }
     }
     
     private IEnumerator CheckDefeat()
     {
         Debug.Log("괴물 처치 체크 중");
-        yield return new WaitUntil(() => stageProps[_stage].shadowMonster.GetIsDefeated());
+        yield return new WaitUntil(() => shadowMonster.GetIsDefeated());
         OnDefeatShadowMonster();
     }
     
     private void OnDefeatShadowMonster()
     {
-        stageProps[_stage].shadowMonster.gameObject.SetActive(false);
-        
         RemoveCoroutine();
-        Debug.Log("괴물 처치");
-        // 괴물 처치
-        OnStageEnd();
+        shadowMonster.Defeat(OnStageEnd);
     }
 
     private IEnumerator StageUpdate()
     {
-        stageProps[_stage].shadowMonster.Init();
+        shadowMonster.Appear(stageIndex);
         // 괴물 등장, 효과음
         
         yield return new WaitForSeconds(2);
@@ -179,10 +212,10 @@ public class ShadowGameManager : MonoBehaviour
         Debug.Log("6초, 실패");
         // 6초 괴물 효과음, 괴물 연출, 정신력 1 감소
         _mentality--;
-        stageProps[_stage].shadowMonster.gameObject.SetActive(false);
-        // 괴물 연출 후 삭제
+        
         RemoveCoroutine();
-        OnStageEnd();
+        
+        shadowMonster.Attack(OnStageEnd);
     }
 
     private void RemoveCoroutine()
@@ -201,22 +234,35 @@ public class ShadowGameManager : MonoBehaviour
 
     private void OnStageEnd()
     {
-        Debug.Log(_stage + "스테이지 종료");
-        _stage++;
-        _isPlaying = false;
-
+        Debug.Log(stageIndex + "스테이지 종료");
+        
+        
+        stageIndex++;
+        
         if (_mentality == 0)
         {
             GameOver();
         }
-        else if (_stage < stageProps.Length)
+        else if (stageIndex == stageCount)
+        {
+            OnGameEnd();   
+        }
+        else if (stageIndex < stageCount)
         {
             OnStartStage();
         }
     }
+
+    private void OnGameEnd()
+    {
+        _isPlaying = false;
+        playPanel.SetActive(false);
+        gameEndPanel.SetActive(true);
+    }
     
     private void GameOver()
     {
+        _isPlaying = false;
         playPanel.SetActive(false);
         gameOverPanel.SetActive(true);
     }
@@ -300,5 +346,15 @@ public class ShadowGameManager : MonoBehaviour
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
+    }
+
+    private void Reset()
+    {
+        _mentality = 3;
+        stageIndex = startStageIndex;
+
+        messyObject.sprite = messyObjectSprites[0];
+        
+        shadowMonster.Reset();
     }
 }

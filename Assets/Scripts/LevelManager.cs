@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 using Utility.SaveSystem;
 
 public class LevelManager : MonoBehaviour
@@ -16,13 +17,13 @@ public class LevelManager : MonoBehaviour
         });
         newStartButton.onClick.AddListener(() =>
         {
-            SceneLoader.Instance.LoadScene("MainScene");
+            SceneLoader.Instance.LoadScene(SceneName.MainScene);
         });
         
         SavePanelManager.instance.InitLoad();
         SavePanelManager.instance.OnLoad.AddListener(() =>
         {
-            SceneLoader.Instance.LoadScene("MainScene");
+            SceneLoader.Instance.LoadScene(SceneName.MainScene);
         });
     }
 }
