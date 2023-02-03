@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.SceneLoader;
+using Utility.SaveSystem;
 
 public class LevelManager : MonoBehaviour
 {
-
     public Button continueButton;
     
     public Button newStartButton;
@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     {
         continueButton.onClick.AddListener(() =>
         {
-            SavePanelManager.instance.SetSaveLoadPanelActive(true);
+            // SavePanelManager.instance.SetSaveLoadPanelActive(true);
         });
         newStartButton.onClick.AddListener(() =>
         {
@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
         });
         
         SavePanelManager.instance.InitLoad();
-        SavePanelManager.instance.onLoad.AddListener(() =>
+        SavePanelManager.instance.OnLoad.AddListener(() =>
         {
             SceneLoader.Instance.LoadScene(SceneName.MainScene);
         });

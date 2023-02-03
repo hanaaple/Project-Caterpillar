@@ -35,10 +35,14 @@ public class InputController : MonoBehaviour
             InputManager.LoadBindingOverride(_actionName);
             GetBindingInfo();
             UpdateUi();
+            InputAction action = InputManager.inputControl.asset.FindAction(_actionName);
+            InputManager.SaveBindingOverride(action);
         }
         InputManager.RebindComplete += UpdateUi;
         InputManager.RebindCanceled += UpdateUi;
         InputManager.RebindEnd += UpdateUi;
+        // InputManager.RebindLoad += LoadUpdateUI;
+        InputManager.RebindReset += UpdateUi;
     }
 
     private void OnDisable()
@@ -46,6 +50,8 @@ public class InputController : MonoBehaviour
         InputManager.RebindComplete -= UpdateUi;
         InputManager.RebindCanceled -= UpdateUi;
         InputManager.RebindEnd -= UpdateUi;
+        // InputManager.RebindLoad -= LoadUpdateUI;
+        InputManager.RebindReset -= UpdateUi;
     }
 
     private void OnValidate()
@@ -100,8 +106,18 @@ public class InputController : MonoBehaviour
     public void ResetBinding()
     {
         InputManager.ResetBinding(_actionName, _bindingIndex);
-        UpdateUi();
     }
+    
+    public void TempResetBinding()
+    {
+        InputManager.TempResetBinding(_actionName, _bindingIndex);
+    }
+    
+    // public void LoadBindingOverride()
+    // {
+    //     InputManager.inputActions.Clear();
+    //     InputManager.LoadBindingOverride(_actionName);
+    // }
 
 
     // void Start()

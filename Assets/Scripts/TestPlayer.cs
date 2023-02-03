@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Dialogue;
 
 public class TestPlayer : MonoBehaviour
 {
@@ -21,35 +22,40 @@ public class TestPlayer : MonoBehaviour
     
     private float _yScreenHalfSize;
     private float _xScreenHalfSize;
-    
-    void Start()
+
+    private void OnEnable()
+    {
+        var playerActions = InputManager.inputControl.PlayerActions;
+        playerActions.Enable();
+        playerActions.Move.performed += Input;
+        playerActions.Move.canceled += Input;
+    }
+
+    private void OnDisable()
+    {
+        var playerActions = InputManager.inputControl.PlayerActions;
+        playerActions.Disable();
+        playerActions.Move.performed -= Input;
+        playerActions.Move.canceled -= Input;
+    }
+
+    private void Start()
     {
         _camera = Camera.main;
         _minBounds = boundBox.bounds.min;
         _maxBounds = boundBox.bounds.max;
         _yScreenHalfSize = _camera.orthographicSize;
         _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
-
-        var playerActions = InputManager.inputControl.PlayerActions;
-        playerActions.Enable();
-        playerActions.Move.performed += delegate(InputAction.CallbackContext context)
-        {
-            input = context.ReadValue<Vector2>();
-        };
-        
-        playerActions.Move.canceled += delegate(InputAction.CallbackContext context)
-        {
-            input = context.ReadValue<Vector2>();
-        };
     }
 
     private void FixedUpdate()
     {
-        if (input != Vector3.zero)
+        if (input == Vector3.zero || DialogueController.instance.IsDialogue)
         {
-            CharacterMove();
-            CameraMove();
+            return;
         }
+        CharacterMove();
+        CameraMove();
     }
 
     private void Update()
@@ -85,5 +91,10 @@ public class TestPlayer : MonoBehaviour
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
+    }
+
+    private void Input(InputAction.CallbackContext _)
+    {
+        input = _.ReadValue<Vector2>();
     }
 }
