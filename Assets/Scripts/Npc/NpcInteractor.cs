@@ -1,5 +1,4 @@
 using System;
-using Dialogue;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Dialogue;
@@ -63,14 +62,12 @@ public class NpcInteractor : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable");
         var playerActions = InputManager.inputControl.PlayerActions;
         playerActions.Interact.performed += _onInteract;
     }
 
     private void OnDisable()
     {
-        Debug.Log("OnDisable");
         var playerActions = InputManager.inputControl.PlayerActions;
         playerActions.Interact.performed -= _onInteract;
     }

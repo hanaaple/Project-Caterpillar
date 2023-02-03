@@ -1,69 +1,82 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.Events;
 
 public class ShadowMonster : MonoBehaviour
 {
-    private CircleCollider2D _circleCollider2D;
+    [SerializeField] private CircleCollider2D circleCollider2D;
+    [SerializeField] private Animator animator;
 
+    [Header("커튼")] [SerializeField] private SpriteRenderer[] curtain;
+    [SerializeField] private Sprite[] opendCurtainSprites;
+    [SerializeField] private Sprite[] closedCurtainSprites;
+    
+    
     private float _damagedTime;
     private float _judgmentTime;
 
     private float _judgmentPercantage;
 
     private CircleCollider2D _otherCollider;
-    private void Start()
+
+    public void Reset()
     {
-        _circleCollider2D = GetComponent<CircleCollider2D>();
+        animator.SetTrigger("Reset");
+        CloseCurtain();
     }
-    
-    public void Init()
+
+    public void Appear(int stageIndex)
     {
+        gameObject.SetActive(true);
+        
         _judgmentTime = 3;
         _damagedTime = 0;
         _judgmentPercantage = 0.5f;
-        gameObject.SetActive(true);
-        StartCoroutine(Appear());
+        animator.SetInteger("Stage", stageIndex);
+        animator.SetTrigger("Appear");
+    }
+
+    public void CloseCurtain()
+    {
+        curtain[0].sprite = closedCurtainSprites[0];
+        curtain[1].sprite = closedCurtainSprites[1];
+    }
+
+    public void OpenCurtain()
+    {
+        curtain[0].sprite = opendCurtainSprites[0];
+        curtain[1].sprite = opendCurtainSprites[1];
     }
 
     public bool GetIsDefeated()
     {
         return _damagedTime >= _judgmentTime;
     }
+
+    public void Attack(UnityAction unityAction)
+    {
+        StartCoroutine(DefeatCoroutine(unityAction));
+    }
     
-    public IEnumerator Defeat()
+    public void Defeat(UnityAction unityAction)
     {
-        var t = 1f;
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        while (t >= 0f)
-        {
-            t -= Time.deltaTime;
-            var color = spriteRenderer.color;
-            color.a = t;
-            spriteRenderer.color = color;
-            yield return null;
-        }
+        StartCoroutine(DefeatCoroutine(unityAction));
     }
 
-    private IEnumerator Appear()
+    private IEnumerator DefeatCoroutine(UnityAction unityAction)
     {
-        var t = 0f;
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        while (t >= 1f)
-        {
-            t += Time.deltaTime;
-            var color = spriteRenderer.color;
-            color.a = t;
-            spriteRenderer.color = color;
-            yield return null;
-        }
+        animator.applyRootMotion = true;
+        animator.SetTrigger("Defeat");
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Default"));
+        animator.applyRootMotion = false;
+        unityAction();
     }
 
-    void Update()
+    private void Update()
     {
         if (_otherCollider)
         {
-            var a = _circleCollider2D.radius; //원1의 반지
+            var a = circleCollider2D.radius; //원1의 반지
             var b = _otherCollider.radius; //원2의 반지름
             var d = Vector2.Distance(_otherCollider.transform.position, transform.position); // 두 원 사이의 거리
 
@@ -93,7 +106,7 @@ public class ShadowMonster : MonoBehaviour
             }
 
             // Debug.Log("0 ~ 1에서 퍼센트: " + percantage);
-            Debug.Log(_damagedTime/_judgmentTime);
+            //Debug.Log(_damagedTime/_judgmentTime);
             if (percantage >= _judgmentPercantage)
             {
                 _damagedTime += Time.deltaTime;
