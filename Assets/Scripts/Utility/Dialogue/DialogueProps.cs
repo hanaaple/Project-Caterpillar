@@ -1,7 +1,6 @@
 using System;
-using Utility.Dialogue;
 
-namespace Dialogue
+namespace Utility.Dialogue
 {
     [Serializable]
     public class DialogueProps
