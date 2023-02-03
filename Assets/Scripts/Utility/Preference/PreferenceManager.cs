@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,9 +9,9 @@ public class PreferenceManager : MonoBehaviour
 {
     public static PreferenceManager instance { get; private set; }
 
-    [SerializeField] private InputAction preferenceInputAction;
+    // [SerializeField] private InputAction preferenceInputAction;
 
-    [SerializeField] private Button preferenceButton;
+    // [SerializeField] private Button preferenceButton;
 
     [SerializeField] private GameObject preferencePanel;
 
@@ -43,35 +45,67 @@ public class PreferenceManager : MonoBehaviour
     [SerializeField] private InputController[] inputController;
 
     private int _pageIndex;
-    private bool _isAlreadyOpen;
+    
+    private Action<InputAction.CallbackContext> _onInput;
+
+    private bool _isPerformed;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+        }else
+        {
+            DestroyImmediate(this);
         }
 
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(preferencePanel.transform.root);
+        
+        _onInput = _ =>
+        {
+            if (preferencePanel.activeSelf && !_isPerformed)
+            {
+                _isPerformed = true;
+                StartCoroutine(WaitPerform());
+                Input(_.ReadValue<Vector2>());
+            }
+        };
+    }
+
+    private IEnumerator WaitPerform()
+    {
+        yield return null;
+        _isPerformed = false;
     }
 
     private void OnEnable()
     {
-        preferenceInputAction.Enable();
+        // preferenceInputAction.Enable();
         InputManager.RebindComplete += SetSaveButton;
         InputManager.RebindEnd += SetSaveButton;
         // InputManager.RebindLoad += SetSaveButton;
         InputManager.RebindReset += SetSaveButton;
+        
+        var uiActions = InputManager.inputControl.Ui;
+        uiActions.Enable();
+        uiActions.Select.performed += _onInput;
+        Debug.Log("+++++++++++");
     }
 
     private void OnDisable()
     {
-        preferenceInputAction.Disable();
+        // preferenceInputAction.Disable();
         InputManager.RebindComplete -= SetSaveButton;
         InputManager.RebindEnd -= SetSaveButton;
         // InputManager.RebindLoad -= SetSaveButton;
         InputManager.RebindReset -= SetSaveButton;
+        
+        var uiActions = InputManager.inputControl.Ui;
+        uiActions.Disable();
+        uiActions.Select.performed -= _onInput;
+        Debug.Log("-----------");
     }
 
     private void SetSaveButton()
@@ -86,7 +120,7 @@ public class PreferenceManager : MonoBehaviour
         }
     }
 
-    private void OpenPreferencePanel()
+    internal void OpenPreferencePanel()
     {
         if (InputManager.IsChanged())
         {
@@ -94,22 +128,19 @@ public class PreferenceManager : MonoBehaviour
         }
         else
         {
-            if (_isAlreadyOpen)
+            if (preferencePanel.activeSelf)
             {
 
                 Time.timeScale = 1;
-                preferenceButton.gameObject.SetActive(true);
+                // preferenceButton.gameObject.SetActive(true);
                 preferencePanel.SetActive(false);
             }
-
             else
             {
                 Time.timeScale = 0;
-                preferenceButton.gameObject.SetActive(false);
+                // preferenceButton.gameObject.SetActive(false);
                 preferencePanel.SetActive(true);
             }
-
-            _isAlreadyOpen = !_isAlreadyOpen;
         }
     }
 
@@ -119,17 +150,14 @@ public class PreferenceManager : MonoBehaviour
         {
             foreach (var t in inputController)
             {
-                t.ResetBinding();
+                t.TempResetBinding();
             }
         });
 
-        // cancleSaveButton.onClick.AddListener(() =>
-        // {
-        //     foreach (var t in inputController)
-        //     {
-        //         t.LoadBindingOverride();
-        //     }
-        // });
+        cancleSaveButton.onClick.AddListener(() =>
+        {
+            InputManager.EndChange(false);
+        });
         
         saveButton.onClick.AddListener(() => { InputManager.EndChange(true); });
 
@@ -137,18 +165,14 @@ public class PreferenceManager : MonoBehaviour
         UpdateUI(0);
         // preferenceInputAction.performed += _ => OpenPreferencePanel();
 
-        preferenceButton.onClick.AddListener(OpenPreferencePanel);
+        // preferenceButton.onClick.AddListener(OpenPreferencePanel);
 
         preferenceExitButton.onClick.AddListener(OpenPreferencePanel);
 
 
         leftButton.onClick.AddListener(() =>
         {
-            var nextIdx = (_pageIndex - 1) % pagePanels.Length;
-            if (nextIdx < 0)
-            {
-                nextIdx = pagePanels.Length - 1;
-            }
+            var nextIdx = (_pageIndex - 1 + pagePanels.Length) % pagePanels.Length;
 
             UpdateUI(nextIdx);
         });
@@ -156,10 +180,6 @@ public class PreferenceManager : MonoBehaviour
         rightButton.onClick.AddListener(() =>
         {
             var nextIdx = (_pageIndex + 1) % pagePanels.Length;
-            if (nextIdx < 0)
-            {
-                nextIdx = pagePanels.Length - 1;
-            }
 
             UpdateUI(nextIdx);
         });
@@ -179,7 +199,7 @@ public class PreferenceManager : MonoBehaviour
             InputManager.EndChange(true);
             checkRebindPanel.SetActive(false);
             Time.timeScale = 1;
-            preferenceButton.gameObject.SetActive(true);
+            // preferenceButton.gameObject.SetActive(true);
             preferencePanel.SetActive(false);
         });
 
@@ -202,5 +222,27 @@ public class PreferenceManager : MonoBehaviour
 
         _pageIndex = nextIdx;
         pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+    }
+    
+    private void Input(Vector2 input)
+    {
+        if (input == Vector2.left)
+        {
+            var nextIdx = (_pageIndex - 1 + pagePanels.Length) % pagePanels.Length;
+            
+            pagePanels[_pageIndex].SetActive(false);
+            _pageIndex = nextIdx;
+            pagePanels[_pageIndex].SetActive(true);
+            pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+        }
+        else if (input == Vector2.right)
+        {
+            var nextIdx = (_pageIndex + 1) % pagePanels.Length;
+            
+            pagePanels[_pageIndex].SetActive(false);
+            _pageIndex = nextIdx;
+            pagePanels[_pageIndex].SetActive(true);
+            pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+        }
     }
 }

@@ -16,12 +16,16 @@ namespace Utility.Dialogue
         public int index;
         public DialogueItemProps[] datas;
     }
-    
-    [System.Serializable]
+
+    [Serializable]
     public struct DialogueItemProps
     {
+        public CharacterType name;
         public string subject;
         public string contents;
         public DialogueType dialogueType;
+        
+        public Expression expression;
+        public string[] option;
     }
 }
