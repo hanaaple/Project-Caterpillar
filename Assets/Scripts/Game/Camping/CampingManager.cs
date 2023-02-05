@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 namespace Game.Camping
 {
     public class CampingManager : MonoBehaviour
     {
+        [SerializeField]
+        private Button[] beachTempButton;
+        
         [Header("필드")]
         [SerializeField]
         private GameObject filedPanel;
@@ -39,6 +43,14 @@ namespace Game.Camping
     
         void Start()
         {
+            foreach (var button in beachTempButton)
+            {
+                button.onClick.AddListener(() =>
+                {
+                    SceneLoader.Instance.LoadScene("BeachGameTest");
+                });
+            }
+            
             exitButton.onClick.AddListener(() =>
             {
                 mapPanel.SetActive(false);

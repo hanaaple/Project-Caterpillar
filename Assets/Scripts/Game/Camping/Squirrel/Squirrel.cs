@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Camping
@@ -35,6 +36,7 @@ namespace Game.Camping
             {
                 apple.onFire = () =>
                 {
+                    Debug.Log("하이");
                     apple.gameObject.SetActive(false);
                     foreach (var dragItem in apples)
                     {

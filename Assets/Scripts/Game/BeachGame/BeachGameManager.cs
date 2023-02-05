@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.SceneLoader;
 
 namespace Game.BeachGame
 {
@@ -29,6 +30,7 @@ namespace Game.BeachGame
             public BeachInteractor[] beachInteractors;
             [NonSerialized] public bool isClear;
         }
+        [SerializeField] private Button mainButton;
         
         [Header("Field")]
         [SerializeField] private GameObject[] backgrounds;
@@ -51,6 +53,10 @@ namespace Game.BeachGame
 
         private void Start()
         {
+            mainButton.onClick.AddListener(() =>
+            {
+                SceneLoader.Instance.LoadScene("StartScene");
+            });
             albumButton.onClick.AddListener(() =>
             {
                 if (albumAnimator.GetBool("Open"))
@@ -185,6 +191,11 @@ namespace Game.BeachGame
 
             StopAllCoroutines();
             
+            Invoke(nameof(GameEndTrigger), 2f);
+        }
+
+        private void GameEndTrigger()
+        {
             albumAnimator.SetTrigger("GameEnd");
         }
 

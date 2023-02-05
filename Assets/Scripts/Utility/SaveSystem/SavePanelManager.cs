@@ -3,24 +3,51 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Utility.SaveSystem
 {
     public class SavePanelManager : MonoBehaviour
     {
         private static SavePanelManager _instance;
+        public static SavePanelManager Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    var obj = FindObjectOfType<SavePanelManager>();
+                    if(obj != null)
+                    {
+                        _instance = obj;
+                    }
+                    else
+                    {
+                        _instance = Instantiate(Resources.Load<SavePanelManager>("SavePanelManager"));
+                    }
+                    DontDestroyOnLoad(_instance);
+                    _instance.onLoad = new UnityEvent();
+                    _instance.onLoadEnd = new UnityEvent();
+                    _instance.onSave = new UnityEvent();
+                }
+                return _instance;
+            }
+        }
 
-        public static SavePanelManager instance => _instance;
-
-        [SerializeField] private GameObject savePanel;
+        public GameObject savePanel;
+        [SerializeField] private Button savePanelExitButton;
 
         [SerializeField] private SaveLoadItemProps[] saveItemPropsArray;
 
         [NonSerialized]
-        public UnityEvent OnSave;
+        public UnityEvent onSave;
     
         [NonSerialized]
-        public UnityEvent OnLoad;
+        public UnityEvent onLoad;
+        
+        [NonSerialized]
+        public UnityEvent onLoadEnd;
 
         [SerializeField] private int selectedIdx;
         
@@ -29,8 +56,6 @@ namespace Utility.SaveSystem
 
         private void Awake()
         {
-            _instance = this;
-            
             _onInput = _ =>
             {
                 if (savePanel.activeSelf)
@@ -44,6 +69,7 @@ namespace Utility.SaveSystem
                 if (savePanel.activeSelf)
                 {
                     saveItemPropsArray[selectedIdx].Execute();
+                    Debug.Log("로드하고 끄기" + savePanel.activeSelf);
                 }
             };
         }
@@ -54,6 +80,10 @@ namespace Utility.SaveSystem
             {
                 saveLoadItemProps.Init();
             }
+            savePanelExitButton.onClick.AddListener(() =>
+            {
+                SetSaveLoadPanelActive(false);
+            });
         }
         
         private void OnEnable()
@@ -61,7 +91,7 @@ namespace Utility.SaveSystem
             var uiActions = InputManager.inputControl.Ui;
             uiActions.Enable();
             uiActions.Select.performed += _onInput;
-            uiActions.Select.performed += _onExecute;
+            uiActions.Execute.performed += _onExecute;
         }
 
         private void OnDisable()
@@ -69,12 +99,16 @@ namespace Utility.SaveSystem
             var uiActions = InputManager.inputControl.Ui;
             uiActions.Disable();
             uiActions.Select.performed -= _onInput;
-            uiActions.Select.performed -= _onExecute;
+            uiActions.Execute.performed -= _onExecute;
         }
 
         public void InitLoad()
         {
-            OnLoad = new UnityEvent();
+            onLoadEnd.RemoveAllListeners();
+            onLoadEnd.AddListener(() =>
+            {
+                SetSaveLoadPanelActive(false);
+            });
             foreach (var saveLoadItemProps in saveItemPropsArray)
             {
                 saveLoadItemProps.button.onClick.RemoveAllListeners();
@@ -92,13 +126,21 @@ namespace Utility.SaveSystem
 
         public void InitSave()
         {
-            OnSave = new UnityEvent();
+            onSave.RemoveAllListeners();
+            onSave.AddListener(() =>
+            {
+                SetSaveLoadPanelActive(false);
+            });
             foreach (var saveLoadItemProps in saveItemPropsArray)
             {
                 saveLoadItemProps.button.onClick.RemoveAllListeners();
                 saveLoadItemProps.button.onClick.AddListener(() =>
                 {
                     SaveButton(saveLoadItemProps.index);
+                });
+                saveLoadItemProps.InitEventTrigger(delegate
+                {
+                    HighlightButton(saveLoadItemProps.index);
                 });
                 saveLoadItemProps.UpdateUI();
             }
@@ -118,7 +160,7 @@ namespace Utility.SaveSystem
         
             SaveManager.Save(idx);
 
-            OnSave?.Invoke();
+            onSave?.Invoke();
         }
     
         /// <summary>
@@ -131,7 +173,12 @@ namespace Utility.SaveSystem
 
             if (SaveManager.Load(idx))
             {
-                OnLoad?.Invoke();
+                SceneLoader.SceneLoader.Instance.onLoadSceneEnd += () =>
+                {
+                    onLoadEnd?.Invoke();
+                };
+                SceneLoader.SceneLoader.Instance.LoadScene("MainScene");
+                onLoad?.Invoke();
             }
             else
             {
