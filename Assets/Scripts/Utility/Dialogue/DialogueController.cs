@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.DualShock;
 using UnityEngine.UI;
 using Utility.InputSystem;
 using Utility.JsonLoader;
@@ -43,7 +42,6 @@ namespace Utility.Dialogue
 
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
-        [SerializeField] private GameObject savePanel;
 
         [SerializeField] private TMP_Text dialogueText;
 
@@ -118,7 +116,7 @@ namespace Utility.Dialogue
             };
         }
 
-        void Start()
+        private void Start()
         {
             dialogueInputArea.onClick.AddListener(InputConverse);
             baseDialogueProps = new DialogueProps();
@@ -164,7 +162,7 @@ namespace Utility.Dialogue
             ProgressConversation();
         }
 
-        public void InputConverse()
+        private void InputConverseImmediatly()
         {
             if (_isUnfolding)
             {
@@ -181,11 +179,19 @@ namespace Utility.Dialogue
             }
         }
 
+        private void InputConverse()
+        {
+            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !SavePanelManager.Instance.savePanel.activeSelf)
+            {
+                InputConverseImmediatly();
+            }
+        }
+        
         private void InputConverse(InputAction.CallbackContext obj)
         {
-            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !savePanel.activeSelf)
+            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !SavePanelManager.Instance.savePanel.activeSelf)
             {
-                InputConverse();
+                InputConverseImmediatly();
             }
         }
 
@@ -198,7 +204,7 @@ namespace Utility.Dialogue
                     choicedDialogueProps.index = 0;
                     choicedDialogueProps.datas = null;
                     dialogueProps = baseDialogueProps;
-                    InputConverse();
+                    InputConverseImmediatly();
                 }
                 else
                 {
@@ -254,15 +260,10 @@ namespace Utility.Dialogue
                 {
                     _onComplete.AddListener(() =>
                     {
-                        SavePanelManager.instance.InitSave();
-                        SavePanelManager.instance.SetSaveLoadPanelActive(true);
+                        SavePanelManager.Instance.InitSave();
+                        SavePanelManager.Instance.SetSaveLoadPanelActive(true);
                         _onComplete.RemoveAllListeners();
-                        SavePanelManager.instance.OnSave.AddListener(() =>
-                        {
-                            SavePanelManager.instance.SetSaveLoadPanelActive(false);
-                            InputConverse();
-                            SavePanelManager.instance.OnSave.RemoveAllListeners();
-                        });
+                        SavePanelManager.Instance.onSave.AddListener(InputConverseImmediatly);
                     });
                     _printCoroutine = StartCoroutine(DialoguePrint());
                 }

@@ -33,9 +33,6 @@ namespace Title
 
     public class TitleUIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject loadPanel;
-        [SerializeField] private Button savePanelExitButton;
-        
         [SerializeField] private GameObject preferencePanel;
         
         [Space(5)]
@@ -49,6 +46,7 @@ namespace Title
 
         private void Awake()
         {
+            var loadPanel = SavePanelManager.Instance.savePanel;
             _onInput = _ =>
             {
                 if (!(loadPanel.activeSelf || preferencePanel.activeSelf))
@@ -59,13 +57,17 @@ namespace Title
 
             _onExecute = _ =>
             {
-                Execute();
+                if (!(loadPanel.activeSelf || preferencePanel.activeSelf))
+                {
+                    
+                    Execute();
+                }
             };
             _onCancle = _ =>
             {
                 if (loadPanel.activeSelf)
                 {
-                    SavePanelManager.instance.SetSaveLoadPanelActive(false);
+                    SavePanelManager.Instance.SetSaveLoadPanelActive(false);
                 }
                 else if (preferencePanel.activeSelf)
                 {
@@ -87,15 +89,10 @@ namespace Title
             var continueButton = Array.Find(highlightButtons, item => item.buttonType == Title.HighlightButton.ButtonType.Continue);
             continueButton.button.onClick.AddListener(() =>
             {
-                SavePanelManager.instance.InitLoad();
-                SavePanelManager.instance.SetSaveLoadPanelActive(true);
+                SavePanelManager.Instance.InitLoad();
+                SavePanelManager.Instance.SetSaveLoadPanelActive(true);
             });
-            
-            savePanelExitButton.onClick.AddListener(() =>
-            {
-                SavePanelManager.instance.SetSaveLoadPanelActive(false);
-            });
-            
+
             var newStartButton = Array.Find(highlightButtons, item => item.buttonType == Title.HighlightButton.ButtonType.NewStart);
             newStartButton.button.onClick.AddListener(() =>
             {
@@ -107,9 +104,12 @@ namespace Title
             {
                 preferencePanel.SetActive(true);
             });
+            
+            var exitButton = Array.Find(highlightButtons, item => item.buttonType == Title.HighlightButton.ButtonType.Exit);
+            exitButton.button.onClick.AddListener(Application.Quit);
         
-            SavePanelManager.instance.InitLoad();
-            SavePanelManager.instance.OnLoad.AddListener(() =>
+            SavePanelManager.Instance.InitLoad();
+            SavePanelManager.Instance.onLoad.AddListener(() =>
             {
                 SceneLoader.Instance.LoadScene("MainScene");
             });

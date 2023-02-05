@@ -32,8 +32,9 @@ namespace Game.Camping
 
         private void OnMouseUp()
         {
-            if (target.enabled && Vector3.Distance(target.transform.position, transform.position) < target.radius)
+            if (target.enabled && Vector2.Distance(target.transform.position, transform.position) < target.radius * 1.2f)
             {
+                Debug.Log("ㅎㅇ");
                 onFire?.Invoke();
             }
         }

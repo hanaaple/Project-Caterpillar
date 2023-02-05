@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +40,8 @@ namespace Utility.SceneLoader
         [SerializeField] private Image progressBar;
 
         private string _loadSceneName;
+
+        public Action onLoadSceneEnd;
 
         private static SceneLoader Create()
         {
@@ -101,6 +104,8 @@ namespace Utility.SceneLoader
             if (scene.name == _loadSceneName)
             {
                 StartCoroutine(Fade(false));
+                onLoadSceneEnd?.Invoke();
+                onLoadSceneEnd = () => { };
                 SceneManager.sceneLoaded -= LoadSceneEnd;
             }
         }
