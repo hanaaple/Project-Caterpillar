@@ -5081,21 +5081,20 @@ MonoBehaviour:
   highlightButtons:
   - button: {fileID: 280180339}
     defaultSprite: {fileID: 21300000, guid: 7e51307a178a640ed8008c1cad1f6723, type: 3}
-    highlightSprite: {fileID: 21300000, guid: 46daec402094b44428e7e9cf4d306e47, type: 3}
+    selectSprite: {fileID: 21300000, guid: 46daec402094b44428e7e9cf4d306e47, type: 3}
     buttonType: 0
   - button: {fileID: 1457833006}
     defaultSprite: {fileID: 21300000, guid: 0c5b2d553867d42139aaeedcf7af05a1, type: 3}
-    highlightSprite: {fileID: 21300000, guid: 29e674c73a4aa4876a0949b65cb51d04, type: 3}
+    selectSprite: {fileID: 21300000, guid: 29e674c73a4aa4876a0949b65cb51d04, type: 3}
     buttonType: 1
   - button: {fileID: 1833467727}
     defaultSprite: {fileID: 21300000, guid: 6cc3bb49d7ba8466fa83b72f95db9cce, type: 3}
-    highlightSprite: {fileID: 21300000, guid: fad93f08b51e04daaa678d098d32ebf6, type: 3}
+    selectSprite: {fileID: 21300000, guid: fad93f08b51e04daaa678d098d32ebf6, type: 3}
     buttonType: 2
   - button: {fileID: 1520776947}
     defaultSprite: {fileID: 21300000, guid: 279259deafdca4f198550e6a671c2104, type: 3}
-    highlightSprite: {fileID: 21300000, guid: 47ea9c7255ac745cb8f5031b6de0284b, type: 3}
+    selectSprite: {fileID: 21300000, guid: 47ea9c7255ac745cb8f5031b6de0284b, type: 3}
     buttonType: 3
-  selectedIdx: 0
 --- !u!4 &1317175564
 Transform:
   m_ObjectHideFlags: 0

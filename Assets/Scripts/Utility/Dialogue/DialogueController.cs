@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Utility.InputSystem;
 using Utility.JsonLoader;
 using Utility.SaveSystem;
+using Utility.UI.Highlight;
 
 namespace Utility.Dialogue
 {
     [Serializable]
-    public class DialogueSelector : Highlight
+    public class DialogueSelector : HighlightItem
     {
         private Animator _animator;
 
@@ -29,9 +30,14 @@ namespace Utility.Dialogue
             _animator.SetBool("Selected", false);
         }
         
-        public override void SetHighlight()
+        public override void EnterHighlight()
         {
             _animator.SetBool("Selected", true);
+        }
+
+        public override void SetSelect()
+        {
+            throw new NotImplementedException();
         }
     }
     public class DialogueController : MonoBehaviour
@@ -418,7 +424,8 @@ namespace Utility.Dialogue
                             OnClickChoice(curIdx, choiceCount, choiceContextLen + choiceEnd);
                         });
 
-                        dialogueSelectors[idx].InitEventTrigger((_) => HighlightButton(idx));
+                        dialogueSelectors[idx].AddEventTrigger(EventTriggerType.PointerEnter,
+                            _ => HighlightButton(idx));
                     }
 
                     dialogueProps.index += choiceCount + choiceContextLen;
@@ -476,7 +483,7 @@ namespace Utility.Dialogue
             Debug.Log($"{idx}입니다");
             dialogueSelectors[_selectedIdx].SetDefault();
             _selectedIdx = idx;
-            dialogueSelectors[idx].SetHighlight();
+            dialogueSelectors[idx].EnterHighlight();
         }
         
         private bool IsDialogueEnd()
