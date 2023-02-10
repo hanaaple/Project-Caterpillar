@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6362312596673612463}
   - component: {fileID: 6362312596673612462}
   m_Layer: 5
-  m_Name: Play Time
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 6362312597232791808}
   - component: {fileID: 6362312597232791809}
   m_Layer: 5
-  m_Name: Play Time
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -705,7 +705,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362312597657422768}
-  - component: {fileID: 6362312597657422780}
   - component: {fileID: 6362312597657422781}
   - component: {fileID: 6362312597657422770}
   - component: {fileID: 6362312597657422771}
@@ -742,21 +741,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 275}
   m_SizeDelta: {x: 1008, y: 163}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6362312597657422780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362312597657422769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1af361d69bca0c47892cd6c22862b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  scenarioText: {fileID: 6362312596673612462}
-  button: {fileID: 6362312597657422771}
 --- !u!222 &6362312597657422781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1144,9 +1128,14 @@ MonoBehaviour:
   savePanel: {fileID: 5575341542416157351}
   savePanelExitButton: {fileID: 6362312596945733627}
   saveItemPropsArray:
-  - {fileID: 6362312597657422780}
-  - {fileID: 6362312598549564998}
-  selectedIdx: 0
+  - button: {fileID: 6362312597657422771}
+    scenarioText: {fileID: 6362312596673612462}
+    animator: {fileID: 6362312597657422783}
+    saveDataIndex: 0
+  - button: {fileID: 6362312598549564997}
+    scenarioText: {fileID: 6362312597232791809}
+    animator: {fileID: 6362312598549565018}
+    saveDataIndex: 1
 --- !u!1 &6362312598435724432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1225,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362312598549565019}
-  - component: {fileID: 6362312598549564998}
   - component: {fileID: 6362312598549564999}
   - component: {fileID: 6362312598549564996}
   - component: {fileID: 6362312598549564997}
@@ -1273,21 +1261,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 46}
   m_SizeDelta: {x: 1008, y: 163}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6362312598549564998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362312598549565016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1af361d69bca0c47892cd6c22862b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 1
-  scenarioText: {fileID: 6362312597232791809}
-  button: {fileID: 6362312598549564997}
 --- !u!222 &6362312598549564999
 CanvasRenderer:
   m_ObjectHideFlags: 0
