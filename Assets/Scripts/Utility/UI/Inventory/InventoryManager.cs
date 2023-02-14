@@ -158,11 +158,6 @@ namespace Utility.UI.Inventory
                     }
                 }
             };
-        }
-
-        private void Start()
-        {
-            inventoryButton.onClick.AddListener(() => SetActive(true));
             
             _menuHighlighter = new Highlighter
             {
@@ -179,6 +174,31 @@ namespace Utility.UI.Inventory
             // Menu UpDown
             _menuHighlighter.onSelect = _onMenuArrow;
             _itemHighlighter.onSelect = _onItemArrow;
+            
+            _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
+            {
+                var exitIndex = Array.FindIndex(inventoryMenuHighLights,
+                    item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Exit);
+                if (_menuHighlighter.selectedIndex == exitIndex)
+                {
+                    inventoryMenuHighLights[exitIndex].button.onClick?.Invoke();
+                }
+                else
+                {
+                    _itemHighlighter.DeSelect();
+                    _menuHighlighter.Select(exitIndex);
+                }
+            });
+            
+            _itemHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
+            {
+                HighlightHelper.Instance.SetLast(_menuHighlighter);
+            });
+        }
+
+        private void Start()
+        {
+            inventoryButton.onClick.AddListener(() => SetActive(true));
             
             // Menu Arrow Select
             foreach (var inventoryMenuHighLight in inventoryMenuHighLights)
@@ -220,26 +240,6 @@ namespace Utility.UI.Inventory
                     _itemHighlighter.Select(inventoryItemHighLight);
                 });
             }
-            
-            _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
-            {
-                var exitIndex = Array.FindIndex(inventoryMenuHighLights,
-                    item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Exit);
-                if (_menuHighlighter.selectedIndex == exitIndex)
-                {
-                    inventoryMenuHighLights[exitIndex].button.onClick?.Invoke();
-                }
-                else
-                {
-                    _itemHighlighter.DeSelect();
-                    _menuHighlighter.Select(exitIndex);
-                }
-            });
-            
-            _itemHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
-            {
-                HighlightHelper.Instance.SetLast(_menuHighlighter);
-            });
 
             var bagIndex = Array.FindIndex(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Bag);
             inventoryMenuHighLights[bagIndex].button.onClick.AddListener(() =>

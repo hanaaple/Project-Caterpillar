@@ -42,7 +42,7 @@ namespace Title
         
         private Highlighter _highlighter;
 
-        private void Start()
+        private void Awake()
         {
             _highlighter = new Highlighter
             {
@@ -50,8 +50,12 @@ namespace Title
             };
 
             _highlighter.Init(Highlighter.ArrowType.Vertical);
-            HighlightHelper.Instance.Push(_highlighter);
             
+            HighlightHelper.Instance.Push(_highlighter);
+        }
+
+        private void Start()
+        {
             var continueButton = Array.Find(highlightButtons, item => item.buttonType == HighlightItemTitleButton.ButtonType.Continue);
             continueButton.button.onClick.AddListener(() =>
             {

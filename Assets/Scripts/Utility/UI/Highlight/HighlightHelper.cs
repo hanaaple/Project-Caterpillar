@@ -80,7 +80,11 @@ namespace Utility.UI.Highlight
             if (isEnable)
             {
                 uiActions.Select.performed += _onArrow;
-                uiActions.Select.performed += onSelect;
+                if (onSelect != null)
+                {
+                    uiActions.Select.performed += onSelect;
+                }
+
                 uiActions.Execute.performed += _onExecute;
                 uiActions.Cancle.performed += _onCancle;
 
@@ -105,7 +109,10 @@ namespace Utility.UI.Highlight
             else
             {
                 uiActions.Select.performed -= _onArrow;
-                uiActions.Select.performed -= onSelect;
+                if (onSelect != null)
+                {
+                    uiActions.Select.performed -= onSelect;
+                }
                 uiActions.Execute.performed -= _onExecute;
                 uiActions.Cancle.performed -= _onCancle;
                 
