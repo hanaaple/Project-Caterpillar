@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.JsonLoader;
 using Utility.SaveSystem;
+using Utility.UI.Dialogue;
 using Utility.UI.Highlight;
 
 namespace Utility.Dialogue
@@ -238,21 +239,25 @@ namespace Utility.Dialogue
                         {
                             animator = rightAnimator;
                         }
-                        
-                        if (dialogue.option.Length == 2)
-                        {
-                            var state = dialogue.option[1].Replace(" ", "");
-                            Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
-                            if (animator != null)
-                            {
-                                animator.SetTrigger(state);
-                            }
-                        }
-                    
+
                         if (animator != null)
                         {
-                            animator.SetInteger("Character", (int)dialogue.name);
-                            animator.SetInteger("Expression", (int)dialogue.expression);
+                            if (dialogue.option.Length >= 2)
+                            {
+                                var state = dialogue.option[1].Replace(" ", "");
+                                Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
+                                animator.SetTrigger(state);
+                            }
+
+                            if (dialogue.name != CharacterType.Keep)
+                            {
+                                animator.SetInteger("Character", (int) dialogue.name);
+                            }
+
+                            if (dialogue.expression != Expression.Keep)
+                            {
+                                animator.SetInteger("Expression", (int) dialogue.expression);
+                            }
                         }
                     }
                 }
@@ -279,6 +284,10 @@ namespace Utility.Dialogue
                 }
                 else if (dialogue.dialogueType == DialogueType.Character)
                 {
+                    if (dialogue.option.Length < 2)
+                    {
+                        Debug.LogError("Dialogue Json 세팅 오류");
+                    }
                     var side = dialogue.option[0];
                     // Debug.Log(side);
                     Animator animator = null;
@@ -293,12 +302,19 @@ namespace Utility.Dialogue
 
                     var state = dialogue.option[1].Replace(" ", "");
                     Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
-                    
+
                     if (animator != null)
                     {
                         animator.SetTrigger(state);
-                        animator.SetInteger("Character", (int)dialogue.name);
-                        animator.SetInteger("Expression", (int)dialogue.expression);
+                        if (dialogue.name != CharacterType.Keep)
+                        {
+                            animator.SetInteger("Character", (int) dialogue.name);
+                        }
+
+                        if (dialogue.expression != Expression.Keep)
+                        {
+                            animator.SetInteger("Expression", (int) dialogue.expression);
+                        }
                     }
                 }
             }

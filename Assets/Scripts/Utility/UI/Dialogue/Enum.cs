@@ -1,14 +1,16 @@
-﻿namespace Utility.Dialogue
+﻿namespace Utility.UI.Dialogue
 {
   public enum CharacterType
   {
-    Dubby = -1, Default = 0,
+    Dubby = -1,
+    Keep = 0,
+    None = 1
   }
 
   public enum Expression
   {
     Default = -1,
-    Action0 = 0,
+    Keep = 0,
     Action1 = 1,
     Action2 = 2,
     Action3 = 3,
