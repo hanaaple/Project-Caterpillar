@@ -7,7 +7,7 @@ namespace Utility.JsonLoader
     {
         public static T[] GetJsonArray<T>(string json)
         {
-            var jsonData = JsonDataDecryptor.AESDecrypt256(json);
+            var jsonData = JsonDataDecryptor.AesDecrypt256(json);
             var t = JsonUtility.FromJson<Wrapper<T>>("{\"wrapper\":" + jsonData + "}").wrapper;
             return t;
         }

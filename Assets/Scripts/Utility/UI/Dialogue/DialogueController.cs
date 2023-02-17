@@ -87,6 +87,9 @@ namespace Utility.UI.Dialogue
 
         private Action<InputAction.CallbackContext> _onInput;
         private Action<InputAction.CallbackContext> _onExecute;
+        private static readonly int CharacterHash = Animator.StringToHash("Character");
+        private static readonly int ExpressionHash = Animator.StringToHash("Expression");
+
         private void Awake()
         {
             _instance = this;
@@ -227,35 +230,44 @@ namespace Utility.UI.Dialogue
 
                     if (dialogue.option != null && dialogue.option.Length >= 1)
                     {
-                        var side = dialogue.option[0];
-                        // Debug.Log(side);
-                        Animator animator = null;
-                        if (side == "Left")
+                        for (var index = 0; index < dialogue.option.Length; index++)
                         {
-                            animator = leftAnimator;
+                            dialogue.option[index] = dialogue.option[index].Replace(" ", "");
                         }
-                        else if (side == "Right")
+
+                        var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
+
+                        Animator animator = null;
+                        if (!String.IsNullOrEmpty(side))
                         {
-                            animator = rightAnimator;
+                            if (side == "Left")
+                            {
+                                animator = leftAnimator;
+                            }
+                            else if (side == "Right")
+                            {
+                                animator = rightAnimator;
+                            }
                         }
 
                         if (animator != null)
                         {
-                            if (dialogue.option.Length >= 2)
+                            var state = Array.Find(dialogue.option,
+                                item => Enum.TryParse(item, out CharacterOption characterOption));
+                            if (!String.IsNullOrEmpty(state))
                             {
-                                var state = dialogue.option[1].Replace(" ", "");
                                 Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
                                 animator.SetTrigger(state);
                             }
 
                             if (dialogue.name != CharacterType.Keep)
                             {
-                                animator.SetInteger("Character", (int) dialogue.name);
+                                animator.SetInteger(CharacterHash, (int) dialogue.name);
                             }
 
                             if (dialogue.expression != Expression.Keep)
                             {
-                                animator.SetInteger("Expression", (int) dialogue.expression);
+                                animator.SetInteger(ExpressionHash, (int) dialogue.expression);
                             }
                         }
                     }
@@ -297,7 +309,6 @@ namespace Utility.UI.Dialogue
                             SavePanelManager.Instance.onSave?.RemoveAllListeners();
                             InputConverseImmediatly();
                         });
-                        
                     });
                     _printCoroutine = StartCoroutine(DialoguePrint());
                 }
@@ -307,36 +318,49 @@ namespace Utility.UI.Dialogue
                 }
                 else if (dialogue.dialogueType == DialogueType.Character)
                 {
-                    if (dialogue.option.Length < 2)
-                    {
-                        Debug.LogError("Dialogue Json 세팅 오류");
-                    }
-                    var side = dialogue.option[0];
-                    // Debug.Log(side);
-                    Animator animator = null;
-                    if (side == "Left")
-                    {
-                        animator = leftAnimator;
-                    }
-                    else if (side == "Right")
-                    {
-                        animator = rightAnimator;
-                    }
+                    _printCoroutine = StartCoroutine(DialoguePrint());
 
-                    var state = dialogue.option[1].Replace(" ", "");
-                    Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
-
-                    if (animator != null)
+                    if (dialogue.option != null && dialogue.option.Length >= 1)
                     {
-                        animator.SetTrigger(state);
-                        if (dialogue.name != CharacterType.Keep)
+                        for (var index = 0; index < dialogue.option.Length; index++)
                         {
-                            animator.SetInteger("Character", (int) dialogue.name);
+                            dialogue.option[index] = dialogue.option[index].Replace(" ", "");
                         }
 
-                        if (dialogue.expression != Expression.Keep)
+                        var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
+
+                        Animator animator = null;
+                        if (!String.IsNullOrEmpty(side))
                         {
-                            animator.SetInteger("Expression", (int) dialogue.expression);
+                            if (side == "Left")
+                            {
+                                animator = leftAnimator;
+                            }
+                            else if (side == "Right")
+                            {
+                                animator = rightAnimator;
+                            }
+                        }
+
+                        if (animator != null)
+                        {
+                            var state = Array.Find(dialogue.option,
+                                item => Enum.TryParse(item, out CharacterOption characterOption));
+                            if (!String.IsNullOrEmpty(state))
+                            {
+                                Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
+                                animator.SetTrigger(state);
+                            }
+
+                            if (dialogue.name != CharacterType.Keep)
+                            {
+                                animator.SetInteger(CharacterHash, (int) dialogue.name);
+                            }
+
+                            if (dialogue.expression != Expression.Keep)
+                            {
+                                animator.SetInteger(ExpressionHash, (int) dialogue.expression);
+                            }
                         }
                     }
                 }

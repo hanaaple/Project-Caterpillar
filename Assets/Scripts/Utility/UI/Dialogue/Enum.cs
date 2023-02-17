@@ -7,6 +7,15 @@
     None = 1
   }
 
+  public enum CharacterOption
+  {
+    None = 0,
+    Appear = 1,
+    Active = 2,
+    Inactive = 3,
+    Disappear = 4
+  }
+
   public enum Expression
   {
     Default = -1,
