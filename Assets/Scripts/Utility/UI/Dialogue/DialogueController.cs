@@ -270,10 +270,33 @@ namespace Utility.UI.Dialogue
                 {
                     _onComplete.AddListener(() =>
                     {
-                        SavePanelManager.Instance.InitSave();
-                        SavePanelManager.Instance.SetSaveLoadPanelActive(true);
+                        var uiActions = InputManager.inputControl.Ui;
+                        uiActions.Disable();
+                        uiActions.Dialogue.performed -= InputConverse;
+                        uiActions.Select.performed -= _onInput;
+                        uiActions.Execute.performed -= _onExecute;
+                        SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Save);
                         _onComplete.RemoveAllListeners();
-                        SavePanelManager.Instance.onSave.AddListener(InputConverseImmediatly);
+                        SavePanelManager.Instance.onSave.AddListener(() =>
+                        {
+                            InputConverseImmediatly();
+                            SavePanelManager.Instance.onSavePanelActiveFalse?.RemoveAllListeners();
+                            SavePanelManager.Instance.SetSaveLoadPanelActive(false,
+                                SavePanelManager.ButtonType.None);
+                            
+                            uiActions.Enable();
+                            
+                            uiActions.Dialogue.performed += InputConverse;
+                            uiActions.Select.performed += _onInput;
+                            uiActions.Execute.performed += _onExecute;
+                        });
+                        
+                        SavePanelManager.Instance.onSavePanelActiveFalse.AddListener(() =>
+                        {
+                            SavePanelManager.Instance.onSave?.RemoveAllListeners();
+                            InputConverseImmediatly();
+                        });
+                        
                     });
                     _printCoroutine = StartCoroutine(DialoguePrint());
                 }
