@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.InputSystem;
 using Utility.JsonLoader;
 using Utility.SaveSystem;
 using Utility.UI.Highlight;
@@ -29,7 +30,7 @@ namespace Utility.UI.Dialogue
         {
             _animator.SetBool("Selected", false);
         }
-        
+
         public override void EnterHighlight()
         {
             _animator.SetBool("Selected", true);
@@ -40,6 +41,7 @@ namespace Utility.UI.Dialogue
             throw new NotImplementedException();
         }
     }
+
     public class DialogueController : MonoBehaviour
     {
         private static DialogueController _instance;
@@ -52,19 +54,16 @@ namespace Utility.UI.Dialogue
         [SerializeField] private TMP_Text dialogueText;
 
         [SerializeField] private Button dialogueInputArea;
-        
-        [Header("Choice")]
-        [SerializeField] private DialogueSelector[] dialogueSelectors;
+
+        [Header("Choice")] [SerializeField] private DialogueSelector[] dialogueSelectors;
 
         [Header("깜빡이는 애니메이션 들어간 ui")] [SerializeField]
         private GameObject blinkingIndicator;
-        
-        [Header("좌 애니메이터")] [SerializeField]
-        private Animator leftAnimator;
-        
-        [Header("우 애니메이터")] [SerializeField]
-        private Animator rightAnimator;
-        
+
+        [Header("좌 애니메이터")] [SerializeField] private Animator leftAnimator;
+
+        [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
+
         [SerializeField] private float textSpeed;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
@@ -97,6 +96,7 @@ namespace Utility.UI.Dialogue
                 {
                     return;
                 }
+
                 var input = _.ReadValue<Vector2>();
                 var idx = _selectedIdx;
                 if (input == Vector2.up)
@@ -130,7 +130,7 @@ namespace Utility.UI.Dialogue
 
             _onComplete = new UnityEvent();
             _onLast = new UnityEvent();
-            
+
             foreach (var dialogueSelector in dialogueSelectors)
             {
                 dialogueSelector.Init(dialogueSelector.button.GetComponent<Animator>());
@@ -148,9 +148,9 @@ namespace Utility.UI.Dialogue
             dialoguePanel.SetActive(true);
 
             await Task.Delay((int) (Time.deltaTime * 1000));
-            
+
             var uiActions = InputManager.inputControl.Ui;
-            uiActions.Enable();
+            InputManager.SetUiAction(true);
             uiActions.Dialogue.performed += InputConverse;
             uiActions.Select.performed += _onInput;
             uiActions.Execute.performed += _onExecute;
@@ -192,7 +192,7 @@ namespace Utility.UI.Dialogue
                 InputConverseImmediatly();
             }
         }
-        
+
         private void InputConverse(InputAction.CallbackContext obj)
         {
             if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !SavePanelManager.Instance.savePanel.activeSelf)
@@ -224,7 +224,7 @@ namespace Utility.UI.Dialogue
                 {
                     _printCoroutine = StartCoroutine(DialoguePrint());
 
-                    
+
                     if (dialogue.option != null && dialogue.option.Length >= 1)
                     {
                         var side = dialogue.option[0];
@@ -270,8 +270,9 @@ namespace Utility.UI.Dialogue
                 {
                     _onComplete.AddListener(() =>
                     {
+                        InputManager.SetUiAction(false);
+
                         var uiActions = InputManager.inputControl.Ui;
-                        uiActions.Disable();
                         uiActions.Dialogue.performed -= InputConverse;
                         uiActions.Select.performed -= _onInput;
                         uiActions.Execute.performed -= _onExecute;
@@ -283,14 +284,14 @@ namespace Utility.UI.Dialogue
                             SavePanelManager.Instance.onSavePanelActiveFalse?.RemoveAllListeners();
                             SavePanelManager.Instance.SetSaveLoadPanelActive(false,
                                 SavePanelManager.ButtonType.None);
-                            
-                            uiActions.Enable();
-                            
+
+                            InputManager.SetUiAction(true);
+
                             uiActions.Dialogue.performed += InputConverse;
                             uiActions.Select.performed += _onInput;
                             uiActions.Execute.performed += _onExecute;
                         });
-                        
+
                         SavePanelManager.Instance.onSavePanelActiveFalse.AddListener(() =>
                         {
                             SavePanelManager.Instance.onSave?.RemoveAllListeners();
@@ -357,7 +358,7 @@ namespace Utility.UI.Dialogue
                 _isSkipEnable = true;
 
                 var options = Array.FindAll(dialogueItem.option, item => !item.Contains("(") && item.Any(char.IsDigit));
-                var intOptions = options.Select(item => (int)float.Parse(item));
+                var intOptions = options.Select(item => (int) float.Parse(item));
                 var enumerable = intOptions as int[] ?? intOptions.ToArray();
                 if (enumerable.Length > 0)
                 {
@@ -376,7 +377,7 @@ namespace Utility.UI.Dialogue
                     Debug.Log("속도: " + speed);
                 }
             }
-            
+
             var waitForSec = new WaitForSeconds(textSpeed / speed);
 
             foreach (var t in dialogueItem.contents)
@@ -403,7 +404,7 @@ namespace Utility.UI.Dialogue
                 InitChoice();
 
                 dialogueProps.index++;
-                
+
                 var choicedIdx = 0;
                 while (dialogueProps.index < dialogueProps.datas.Length &&
                        dialogueProps.datas[dialogueProps.index].dialogueType !=
@@ -470,6 +471,7 @@ namespace Utility.UI.Dialogue
                     choicedIdx += choiceCount;
                     Debug.Log(dialogueProps.index);
                 }
+
                 HighlightButton(0);
             }
             else
@@ -516,6 +518,7 @@ namespace Utility.UI.Dialogue
                     .RemoveAllListeners();
             }
         }
+
         private void HighlightButton(int idx)
         {
             Debug.Log($"{idx}입니다");
@@ -523,7 +526,7 @@ namespace Utility.UI.Dialogue
             _selectedIdx = idx;
             dialogueSelectors[idx].EnterHighlight();
         }
-        
+
         private bool IsDialogueEnd()
         {
             return dialogueProps.index >= dialogueProps.datas.Length;
@@ -537,12 +540,14 @@ namespace Utility.UI.Dialogue
             dialoguePanel.SetActive(false);
 
             IsDialogue = false;
-            
+
             _onLast?.RemoveAllListeners();
-            
-            
+
+
+
+            InputManager.SetUiAction(false);
+
             var uiActions = InputManager.inputControl.Ui;
-            uiActions.Disable();
             uiActions.Dialogue.performed -= InputConverse;
             uiActions.Select.performed -= _onInput;
             uiActions.Execute.performed -= _onExecute;

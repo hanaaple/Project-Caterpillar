@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Utility.InputSystem;
 
 namespace Utility.UI.Highlight
 {
@@ -301,8 +302,7 @@ namespace Utility.UI.Highlight
             }
             else
             {
-                var uiActions = InputManager.inputControl.Ui;
-                uiActions.Enable();
+                InputManager.SetUiAction(true);
             }
 
             _highlighters.Add(highlighter);
@@ -322,8 +322,7 @@ namespace Utility.UI.Highlight
             
             if (_highlighters.Count == 0)
             {
-                var uiActions = InputManager.inputControl.Ui;
-                uiActions.Disable();
+                InputManager.SetUiAction(false);
             }
             else
             {
