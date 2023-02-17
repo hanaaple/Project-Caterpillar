@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Drag_Drop;
 
 public class CampingDragItem : DragItem
 {

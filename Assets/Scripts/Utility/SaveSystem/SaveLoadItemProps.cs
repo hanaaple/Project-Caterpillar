@@ -11,22 +11,31 @@ namespace Utility.SaveSystem
         [SerializeField] private TMP_Text scenarioText;
 
         [SerializeField] private Animator animator;
-        
-        private SaveData _saveData;
+
+        // for debugging
+        [SerializeField] private SaveCoverData saveCoverData;
         
         public int saveDataIndex;
-        
-        public void UpdateUI()
+
+        public async void UpdateUI()
         {
-            _saveData = SaveManager.GetLoadData(saveDataIndex);
-            if (_saveData != null)
+            scenarioText.text = "";
+            await SaveManager.LoadCoverAsync(saveDataIndex);
+            
+            if (!SaveManager.Exists(saveDataIndex))
             {
-                scenarioText.text = _saveData.scenario;
+                scenarioText.text = "비어있음";
+                return;
+            }
+            
+            saveCoverData = SaveManager.GetSaveCoverData(saveDataIndex);
+            if (saveCoverData != null)
+            {
+                scenarioText.text = saveCoverData.describe;
             }
             else
             {
-                scenarioText.text = "";
-                button.onClick.RemoveAllListeners();
+                scenarioText.text = "불러오기 오류";
             }
         }
 

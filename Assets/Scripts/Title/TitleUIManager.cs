@@ -11,18 +11,22 @@ namespace Title
     {
         public enum ButtonType
         {
-            Continue, NewStart, Preferenece, Exit
+            Continue,
+            NewStart,
+            Preferenece,
+            Exit
         }
-        
+
         [SerializeField] private Sprite defaultSprite;
         [SerializeField] private Sprite selectSprite;
-        
+
         public ButtonType buttonType;
-        
+
         public override void SetDefault()
         {
             button.image.sprite = defaultSprite;
         }
+
         public override void EnterHighlight()
         {
         }
@@ -36,10 +40,9 @@ namespace Title
     public class TitleUIManager : MonoBehaviour
     {
         [SerializeField] private GameObject preferencePanel;
-        
-        [Space(5)]
-        [SerializeField] private HighlightItemTitleButton[] highlightButtons;
-        
+
+        [Space(5)] [SerializeField] private HighlightItemTitleButton[] highlightButtons;
+
         private Highlighter _highlighter;
 
         private void Awake()
@@ -50,41 +53,43 @@ namespace Title
             };
 
             _highlighter.Init(Highlighter.ArrowType.Vertical);
-            
+
             HighlightHelper.Instance.Push(_highlighter);
         }
 
         private void Start()
         {
-            var continueButton = Array.Find(highlightButtons, item => item.buttonType == HighlightItemTitleButton.ButtonType.Continue);
+            SceneLoader.Instance.onLoadScene += () =>
+            {
+                HighlightHelper.Instance.Pop(_highlighter, true);
+            };
+            
+            var continueButton = Array.Find(highlightButtons,
+                item => item.buttonType == HighlightItemTitleButton.ButtonType.Continue);
             continueButton.button.onClick.AddListener(() =>
             {
-                SavePanelManager.Instance.InitLoad();
-                SavePanelManager.Instance.SetSaveLoadPanelActive(true);
+                SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Load);
             });
 
-            var newStartButton = Array.Find(highlightButtons, item => item.buttonType == HighlightItemTitleButton.ButtonType.NewStart);
+            var newStartButton = Array.Find(highlightButtons,
+                item => item.buttonType == HighlightItemTitleButton.ButtonType.NewStart);
             newStartButton.button.onClick.AddListener(() =>
             {
                 SceneLoader.Instance.LoadScene("MainScene");
             });
-            
-            var preferenceButton = Array.Find(highlightButtons, item => item.buttonType == HighlightItemTitleButton.ButtonType.Preferenece);
+
+            var preferenceButton = Array.Find(highlightButtons,
+                item => item.buttonType == HighlightItemTitleButton.ButtonType.Preferenece);
             preferenceButton.button.onClick.AddListener(() =>
             {
                 preferencePanel.SetActive(true);
 
                 // PreferenceManager.instance.OpenPreferencePanel();
             });
-            
-            var exitButton = Array.Find(highlightButtons, item => item.buttonType == HighlightItemTitleButton.ButtonType.Exit);
+
+            var exitButton = Array.Find(highlightButtons,
+                item => item.buttonType == HighlightItemTitleButton.ButtonType.Exit);
             exitButton.button.onClick.AddListener(Application.Quit);
-        
-            SavePanelManager.Instance.InitLoad();
-            SavePanelManager.Instance.onLoad.AddListener(() =>
-            {
-                SceneLoader.Instance.LoadScene("MainScene");
-            });
         }
     }
 }

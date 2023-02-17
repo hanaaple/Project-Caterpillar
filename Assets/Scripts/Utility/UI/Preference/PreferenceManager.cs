@@ -9,8 +9,6 @@ namespace Utility.UI.Preference
 {
     public class PreferenceManager : MonoBehaviour
     {
-        public static PreferenceManager instance { get; private set; }
-
         // [SerializeField] private InputAction preferenceInputAction;
 
         // [SerializeField] private Button preferenceButton;
@@ -54,17 +52,6 @@ namespace Utility.UI.Preference
 
         private void Awake()
         {
-            if (instance == null)
-            {
-                instance = this;
-            }else
-            {
-                DestroyImmediate(this);
-            }
-
-            DontDestroyOnLoad(this);
-            DontDestroyOnLoad(preferencePanel.transform.root);
-        
             _onInput = _ =>
             {
                 if (preferencePanel.activeSelf && !_isPerformed)

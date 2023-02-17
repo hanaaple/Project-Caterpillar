@@ -1,17 +1,12 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility.SaveSystem;
 
 namespace Utility.SceneLoader
 {
-    public enum SceneName
-    {
-        StartScene,
-        MainScene,
-    }
-
     public class SceneLoader : MonoBehaviour
     {
         private static SceneLoader _instance;
@@ -30,6 +25,7 @@ namespace Utility.SceneLoader
                     {
                         _instance = Create();
                     }
+                    _instance.gameObject.SetActive(false);
                     DontDestroyOnLoad(_instance);
                 }
                 return _instance;
@@ -41,6 +37,7 @@ namespace Utility.SceneLoader
 
         private string _loadSceneName;
 
+        public Action onLoadScene;
         public Action onLoadSceneEnd;
 
         private static SceneLoader Create()
@@ -51,19 +48,39 @@ namespace Utility.SceneLoader
     
         public void LoadScene(string sceneName)
         {
+            onLoadScene?.Invoke();
+            onLoadScene = () => { };
+            Debug.Log("Load");
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
             _loadSceneName = sceneName;
             StartCoroutine(Load(sceneName));
         }
-        public void LoadScene(SceneName sceneName)
+        
+        public void LoadScene(string sceneName, int index)
         {
+            onLoadScene?.Invoke();
+            onLoadScene = () => { };
+            Debug.Log("Load");
+            if (SaveManager.IsLoaded(index))
+            {
+                SaveManager.GetSaveData(index);
+            }
+            else if (SaveManager.Exists(index))
+            {
+                SaveManager.Load(index);
+            }
+            else
+            {
+                Debug.LogError("오류");
+            }
+            
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
-            _loadSceneName = sceneName.ToString();
-            StartCoroutine(Load(sceneName.ToString()));
+            _loadSceneName = sceneName;
+            StartCoroutine(Load(sceneName, index));
         }
-
+        
         private IEnumerator Load(string sceneName)
         {
             progressBar.fillAmount = 0f;
@@ -91,6 +108,41 @@ namespace Utility.SceneLoader
                     progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
 
                     if (Mathf.Approximately(progressBar.fillAmount, 1.0f))
+                    {
+                        op.allowSceneActivation = true;
+                        yield break;
+                    }
+                }
+            }
+        }
+
+        private IEnumerator Load(string sceneName, int index)
+        {
+            progressBar.fillAmount = 0f;
+            yield return StartCoroutine(Fade(true));
+
+            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+            op.allowSceneActivation = false;
+
+            float timer = 0.0f;
+            while (!op.isDone)
+            {
+                yield return null;
+                timer += Time.unscaledDeltaTime;
+
+                if (op.progress < 0.9f)
+                {
+                    progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, timer);
+                    if (progressBar.fillAmount >= op.progress)
+                    {
+                        timer = 0f;
+                    }
+                }
+                else
+                {
+                    progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
+
+                    if (Mathf.Approximately(progressBar.fillAmount, 1.0f) && SaveManager.IsLoaded(index))
                     {
                         op.allowSceneActivation = true;
                         yield break;

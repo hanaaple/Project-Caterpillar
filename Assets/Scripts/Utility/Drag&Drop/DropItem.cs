@@ -1,40 +1,43 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropItem : MonoBehaviour, IDropHandler
+namespace Utility.Drag_Drop
 {
-    [SerializeField]
-    protected DragItem dragItem;
-
-    protected virtual void Start()
+    public class DropItem : MonoBehaviour, IDropHandler
     {
-        if (dragItem)
+        [SerializeField]
+        protected DragItem dragItem;
+
+        protected virtual void Start()
         {
-            dragItem.onBeginDrag.AddListener(Reset);
-            dragItem.GetComponent<RectTransform>().anchoredPosition =
-                GetComponent<RectTransform>().anchoredPosition;
+            if (dragItem)
+            {
+                dragItem.onBeginDrag.AddListener(Reset);
+                dragItem.GetComponent<RectTransform>().anchoredPosition =
+                    GetComponent<RectTransform>().anchoredPosition;
+            }
         }
-    }
 
-    public virtual void OnDrop(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag && !dragItem)
+        public virtual void OnDrop(PointerEventData eventData)
         {
-            dragItem = eventData.pointerDrag.GetComponent<DragItem>();
-            dragItem.onBeginDrag.AddListener(Reset);
-            dragItem.GetComponent<RectTransform>().anchoredPosition =
-                GetComponent<RectTransform>().anchoredPosition;
+            if (eventData.pointerDrag && !dragItem)
+            {
+                dragItem = eventData.pointerDrag.GetComponent<DragItem>();
+                dragItem.onBeginDrag.AddListener(Reset);
+                dragItem.GetComponent<RectTransform>().anchoredPosition =
+                    GetComponent<RectTransform>().anchoredPosition;
+            }
         }
-    }
 
-    private void Reset()
-    {
-        dragItem.onBeginDrag.RemoveListener(Reset);
-        dragItem = null;
-    }
+        private void Reset()
+        {
+            dragItem.onBeginDrag.RemoveListener(Reset);
+            dragItem = null;
+        }
 
-    public bool HasItem()
-    {
-        return dragItem;
+        public bool HasItem()
+        {
+            return dragItem;
+        }
     }
 }
