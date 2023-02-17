@@ -2,53 +2,56 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+namespace Utility.Drag_Drop
 {
-    [SerializeField]
-    private Canvas canvas;
-    [SerializeField]
-    private bool isInteractable;
+    public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    {
+        [SerializeField]
+        private Canvas canvas;
+        [SerializeField]
+        private bool isInteractable;
     
-    private CanvasGroup _canvasGroup;
-    private RectTransform _rectTransform;
+        private CanvasGroup _canvasGroup;
+        private RectTransform _rectTransform;
 
-    internal UnityEvent onBeginDrag;
+        internal UnityEvent onBeginDrag;
 
-    private void Awake()
-    {
-        onBeginDrag = new UnityEvent();
-    }
+        private void Awake()
+        {
+            onBeginDrag = new UnityEvent();
+        }
 
-    protected virtual void Start()
-    {
-        _canvasGroup = GetComponent<CanvasGroup>();
-        _rectTransform = GetComponent<RectTransform>();
-    }
+        protected virtual void Start()
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _rectTransform = GetComponent<RectTransform>();
+        }
     
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (isInteractable)
+        public void OnBeginDrag(PointerEventData eventData)
         {
-            onBeginDrag?.Invoke();
-            _canvasGroup.alpha = .6f;
-            _canvasGroup.blocksRaycasts = false;
+            if (isInteractable)
+            {
+                onBeginDrag?.Invoke();
+                _canvasGroup.alpha = .6f;
+                _canvasGroup.blocksRaycasts = false;
+            }
         }
-    }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (isInteractable)
+        public void OnEndDrag(PointerEventData eventData)
         {
-            _canvasGroup.alpha = 1f;
-            _canvasGroup.blocksRaycasts = true;
+            if (isInteractable)
+            {
+                _canvasGroup.alpha = 1f;
+                _canvasGroup.blocksRaycasts = true;
+            }
         }
-    }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (isInteractable)
+        public void OnDrag(PointerEventData eventData)
         {
-            _rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            if (isInteractable)
+            {
+                _rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            }
         }
     }
 }

@@ -10,10 +10,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.JsonLoader;
 using Utility.SaveSystem;
-using Utility.UI.Dialogue;
 using Utility.UI.Highlight;
 
-namespace Utility.Dialogue
+namespace Utility.UI.Dialogue
 {
     [Serializable]
     public class DialogueSelector : HighlightItem

@@ -1,30 +1,23 @@
+using Utility.Serialize;
+
 namespace Utility.SaveSystem
 {
     [System.Serializable]
     public class SaveData
     {
-        private string _scenario;
+        public SaveCoverData saveCoverData;
         
-        public string scenario => _scenario;
+        public SerializableVector3 position;
+        public SerializableQuaternion rotation;
+    }
+    
+    [System.Serializable]
+    public class SaveCoverData
+    {
+        public string describe;
         
-        private int _playTime;
+        public string sceneName;
         
-        public int playTime => playTime;
-        
-        private int _hp;
-        public int hp => _hp;
-
-        public void SetScenario(string scenario)
-        {
-            _scenario = scenario;
-        }
-        public void SetPlayTime(int playTime)
-        {
-            _playTime = playTime;
-        }
-        public void SetHp(int hp)
-        {
-            _hp = hp;
-        }
+        public int playTime;
     }
 }

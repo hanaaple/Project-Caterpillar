@@ -108,7 +108,7 @@ namespace Game.ShadowGame
 
             giveUpButton.onClick.AddListener(() =>
             {
-                SceneLoader.Instance.LoadScene(SceneName.MainScene);
+                SceneLoader.Instance.LoadScene("MainScene");
             });
             retryButton.onClick.AddListener(() =>
             {

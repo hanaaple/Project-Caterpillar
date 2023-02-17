@@ -69,7 +69,7 @@ namespace Utility.UI.Highlight
             _onCancle += _ => { onCancle?.Invoke(); };
         }
 
-        public void SetEnable(bool isEnable, bool isDuplicatePossible = false)
+        public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false)
         {
             var uiActions = InputManager.inputControl.Ui;
             if (enabled == isEnable)
@@ -116,7 +116,7 @@ namespace Utility.UI.Highlight
                 uiActions.Execute.performed -= _onExecute;
                 uiActions.Cancle.performed -= _onCancle;
                 
-                if (!isDuplicatePossible)
+                if (!isDuplicatePossible && !isRemove)
                 {
                     highlightedIndex = -1;
                     selectedIndex = -1;
@@ -213,7 +213,11 @@ namespace Utility.UI.Highlight
                         idx = (idx + 1) % highlightItems.Length;
                     }
                 }
-
+                else
+                {
+                    return;
+                }
+                
                 Select(idx);
             }
             else if (arrowType == ArrowType.Horizontal)
@@ -241,7 +245,11 @@ namespace Utility.UI.Highlight
                         idx = (idx + 1) % highlightItems.Length;
                     }
                 }
-
+                else
+                {
+                    return;
+                }
+                
                 Select(idx);
             }
         }
@@ -303,13 +311,13 @@ namespace Utility.UI.Highlight
             highlighter.SetEnable(true);
         }
 
-        public void Pop(Highlighter highlighter)
+        public void Pop(Highlighter highlighter, bool isRemove = false)
         {
             if (!_highlighters.Contains(highlighter))
             {
                 return;
             }
-            highlighter.SetEnable(false);
+            highlighter.SetEnable(false, default, isRemove);
             _highlighters.Remove(highlighter);
             
             if (_highlighters.Count == 0)
@@ -322,7 +330,7 @@ namespace Utility.UI.Highlight
                 _highlighters.Last().SetEnable(true);
             }
         }
-
+        
         public void SetLast(Highlighter highlighter, bool isDuplicatePossible = false)
         {
             if (IsLast(highlighter))
