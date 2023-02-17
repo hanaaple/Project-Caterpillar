@@ -5,39 +5,37 @@ using System.Text;
 
 namespace Utility.JsonLoader
 {
-    public class JsonDataDecryptor
+    public static class JsonDataDecryptor
     {
         private static readonly string SecurityPassword = "A1VtcX729XV6D4aXIM1PMB1";
 
-        //AES_256 복호화
-        public static string AESDecrypt256(string InputText)
+        public static string AesDecrypt256(string inputText)
         {
-            RijndaelManaged RijndaelCipher = new RijndaelManaged();
+            RijndaelManaged rijndaelCipher = new RijndaelManaged();
 
-            byte[] EncryptedData = Convert.FromBase64String(InputText);
-            byte[] Salt = Encoding.ASCII.GetBytes(SecurityPassword.Length.ToString());
+            byte[] encryptedData = Convert.FromBase64String(inputText);
+            byte[] salt = Encoding.ASCII.GetBytes(SecurityPassword.Length.ToString());
 
-            PasswordDeriveBytes SecretKey = new PasswordDeriveBytes(SecurityPassword, Salt);
+            PasswordDeriveBytes secretKey = new PasswordDeriveBytes(SecurityPassword, salt);
 
-            // Decryptor 객체를 만든다.
-            ICryptoTransform Decryptor = RijndaelCipher.CreateDecryptor(SecretKey.GetBytes(32), SecretKey.GetBytes(16));
+            ICryptoTransform decryptor = rijndaelCipher.CreateDecryptor(secretKey.GetBytes(32), secretKey.GetBytes(16));
 
-            MemoryStream memoryStream = new MemoryStream(EncryptedData);
+            MemoryStream memoryStream = new MemoryStream(encryptedData);
 
             // 데이터 읽기 용도의 cryptoStream객체
-            CryptoStream cryptoStream = new CryptoStream(memoryStream, Decryptor, CryptoStreamMode.Read);
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
 
             // 복호화된 데이터를 담을 바이트 배열을 선언한다.
-            byte[] PlainText = new byte[EncryptedData.Length];
+            byte[] plainText = new byte[encryptedData.Length];
 
-            int DecryptedCount = cryptoStream.Read(PlainText, 0, PlainText.Length);
+            int decryptedCount = cryptoStream.Read(plainText, 0, plainText.Length);
 
             memoryStream.Close();
             cryptoStream.Close();
 
-            string DecryptedData = Encoding.Unicode.GetString(PlainText, 0, DecryptedCount);
+            string decryptedData = Encoding.Unicode.GetString(plainText, 0, decryptedCount);
 
-            return DecryptedData;
+            return decryptedData;
         }
     }
 }
