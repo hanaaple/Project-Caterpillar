@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.InputSystem;
 
 namespace Utility.UI.Preference
 {
@@ -77,8 +78,9 @@ namespace Utility.UI.Preference
             // InputManager.RebindLoad += SetSaveButton;
             InputManager.RebindReset += SetSaveButton;
         
+            InputManager.SetUiAction(true);
+            
             var uiActions = InputManager.inputControl.Ui;
-            uiActions.Enable();
             uiActions.Select.performed += _onInput;
             Debug.Log("+++++++++++");
         }
@@ -92,7 +94,7 @@ namespace Utility.UI.Preference
             InputManager.RebindReset -= SetSaveButton;
         
             var uiActions = InputManager.inputControl.Ui;
-            uiActions.Disable();
+            InputManager.SetUiAction(false);
             uiActions.Select.performed -= _onInput;
             Debug.Log("-----------");
         }

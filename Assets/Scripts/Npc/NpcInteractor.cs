@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.InputSystem;
 using Utility.UI.Dialogue;
 #if UNITY_EDITOR
 using Utility.JsonLoader;
@@ -56,18 +57,18 @@ public class NpcInteractor : MonoBehaviour
     private void Start()
     {
         SetUIPos();
-        var playerActions = InputManager.inputControl.PlayerActions;
-        playerActions.Enable();
     }
 
     private void OnEnable()
     {
+        InputManager.SetPlayerAction(true);
         var playerActions = InputManager.inputControl.PlayerActions;
         playerActions.Interact.performed += _onInteract;
     }
 
     private void OnDisable()
     {
+        InputManager.SetPlayerAction(false);
         var playerActions = InputManager.inputControl.PlayerActions;
         playerActions.Interact.performed -= _onInteract;
     }
