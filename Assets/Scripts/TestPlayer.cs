@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utility.UI.Dialogue;
 using Utility.InputSystem;
 
 public class TestPlayer : MonoBehaviour
@@ -22,6 +21,11 @@ public class TestPlayer : MonoBehaviour
     private float _yScreenHalfSize;
     private float _xScreenHalfSize;
 
+    private Animator _animator;
+    private static readonly int IsMove = Animator.StringToHash("isMove");
+    
+    private bool _wasPositive;
+
     private void OnEnable()
     {
         InputManager.SetPlayerAction(true);
@@ -40,26 +44,53 @@ public class TestPlayer : MonoBehaviour
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _camera = Camera.main;
         _minBounds = boundBox.bounds.min;
         _maxBounds = boundBox.bounds.max;
         _yScreenHalfSize = _camera.orthographicSize;
         _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
+
+        if (transform.localScale.x > 0)
+        {
+            _wasPositive = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (input == Vector3.zero || DialogueController.instance.IsDialogue)
+        if (input == Vector3.zero || !GameManager.Instance.IsCharacterControlEnable())
         {
+            if (_animator.GetBool(IsMove))
+            {
+                _animator.SetBool(IsMove, false);
+            }
             return;
+        }
+        
+        if (!_animator.GetBool(IsMove))
+        {
+            _animator.SetBool(IsMove, true);
+        }
+        
+        if (!_wasPositive && input.x > 0)
+        {
+            var scale = transform.localScale;
+            scale.x = scale.x * -1;
+            transform.localScale = scale;
+            
+            _wasPositive = true;
+        }
+        else if (_wasPositive && input.x < 0)
+        {
+            var scale = transform.localScale;
+            scale.x = scale.x * -1;
+            transform.localScale = scale;
+
+            _wasPositive = false;
         }
 
         CharacterMove();
-        CameraMove();
-    }
-
-    private void Update()
-    {
         CameraMove();
     }
 
