@@ -6,9 +6,16 @@ using UnityEngine.InputSystem;
 
 namespace Utility.InputSystem
 {
-    public class InputManager : MonoBehaviour
+    public class InputManager
     {
-        public static InputControl inputControl;
+        private static InputControl _inputControl;
+        public static InputControl InputControl
+        {
+            get
+            {
+                return _inputControl ??= new InputControl();
+            }
+        }
 
         public static event Action RebindComplete;
         public static event Action RebindCanceled;
@@ -39,7 +46,7 @@ namespace Utility.InputSystem
             {
                 if (_uiActionCount == 0)
                 {
-                    var uiActions = inputControl.Ui;
+                    var uiActions = InputControl.Ui;
                     uiActions.Enable();
                     Debug.Log("Enable UIAction");
                 }
@@ -51,7 +58,7 @@ namespace Utility.InputSystem
                 _uiActionCount--;
                 if (_uiActionCount == 0)
                 {
-                    var uiActions = inputControl.Ui;
+                    var uiActions = InputControl.Ui;
                     uiActions.Disable();
                     Debug.Log("Disable UIAction");
                 }
@@ -68,7 +75,7 @@ namespace Utility.InputSystem
             {
                 if (_playerActionCount == 0)
                 {
-                    var playerActions = inputControl.PlayerActions;
+                    var playerActions = InputControl.PlayerActions;
                     playerActions.Enable();
                     Debug.Log("Enable PlayerAction");
                 }
@@ -80,7 +87,7 @@ namespace Utility.InputSystem
                 _playerActionCount--;
                 if (_playerActionCount == 0)
                 {
-                    var playerActions = inputControl.PlayerActions;
+                    var playerActions = InputControl.PlayerActions;
                     playerActions.Disable();
                     Debug.Log("Disable PlayerAction");
                 }
@@ -117,21 +124,12 @@ namespace Utility.InputSystem
             BindInputActions.Clear();
             RebindEnd?.Invoke();
         }
-
-        private void Awake()
-        {
-            if (inputControl == null)
-            {
-                Debug.Log("Awake");
-                inputControl = new InputControl();
-            }
-        }
-
+        
         public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel,
             TMP_Text statusText,
             bool excludeMouse)
         {
-            InputAction inputAction = inputControl.asset.FindAction(actionName);
+            InputAction inputAction = InputControl.asset.FindAction(actionName);
             if (inputAction == null || inputAction.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Couldn't find action or binding");
@@ -242,12 +240,7 @@ namespace Utility.InputSystem
 
         public static string GetBindingName(string actionName, int bindingIndex)
         {
-            if (inputControl == null)
-            {
-                inputControl = new InputControl();
-            }
-
-            InputAction action = inputControl.asset.FindAction(actionName);
+            InputAction action = InputControl.asset.FindAction(actionName);
             return action.GetBindingDisplayString(bindingIndex);
         }
 
@@ -261,12 +254,7 @@ namespace Utility.InputSystem
 
         public static void LoadBindingOverride(string actionName)
         {
-            if (inputControl == null)
-            {
-                inputControl = new InputControl();
-            }
-
-            InputAction action = inputControl.asset.FindAction(actionName);
+            InputAction action = InputControl.asset.FindAction(actionName);
 
             for (int i = 0; i < action.bindings.Count; i++)
             {
@@ -297,7 +285,7 @@ namespace Utility.InputSystem
 
         public static void TempResetBinding(string actionName, int bindingIndex)
         {
-            InputAction action = inputControl.asset.FindAction(actionName);
+            InputAction action = InputControl.asset.FindAction(actionName);
             if (action == null || action.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Could not find action or binding");
@@ -350,7 +338,7 @@ namespace Utility.InputSystem
 
         public static void ResetBinding(string actionName, int bindingIndex)
         {
-            InputAction action = inputControl.asset.FindAction(actionName);
+            InputAction action = InputControl.asset.FindAction(actionName);
             if (action == null || action.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Could not find action or binding");

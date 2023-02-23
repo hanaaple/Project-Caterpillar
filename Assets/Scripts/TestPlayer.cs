@@ -25,7 +25,7 @@ public class TestPlayer : MonoBehaviour
     private void OnEnable()
     {
         InputManager.SetPlayerAction(true);
-        var playerActions = InputManager.inputControl.PlayerActions;
+        var playerActions = InputManager.InputControl.PlayerActions;
         playerActions.Move.performed += Input;
         playerActions.Move.canceled += Input;
     }
@@ -33,7 +33,7 @@ public class TestPlayer : MonoBehaviour
     private void OnDisable()
     {
         InputManager.SetPlayerAction(false);
-        var playerActions = InputManager.inputControl.PlayerActions;
+        var playerActions = InputManager.InputControl.PlayerActions;
         playerActions.Move.performed -= Input;
         playerActions.Move.canceled -= Input;
     }

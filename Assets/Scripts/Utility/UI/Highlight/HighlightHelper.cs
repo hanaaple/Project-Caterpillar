@@ -72,7 +72,7 @@ namespace Utility.UI.Highlight
 
         public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false)
         {
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             if (enabled == isEnable)
             {
                 return;

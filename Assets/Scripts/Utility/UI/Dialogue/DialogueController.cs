@@ -152,7 +152,7 @@ namespace Utility.UI.Dialogue
 
             await Task.Delay((int) (Time.deltaTime * 1000));
 
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             InputManager.SetUiAction(true);
             uiActions.Dialogue.performed += InputConverse;
             uiActions.Select.performed += _onInput;
@@ -284,7 +284,7 @@ namespace Utility.UI.Dialogue
                     {
                         InputManager.SetUiAction(false);
 
-                        var uiActions = InputManager.inputControl.Ui;
+                        var uiActions = InputManager.InputControl.Ui;
                         uiActions.Dialogue.performed -= InputConverse;
                         uiActions.Select.performed -= _onInput;
                         uiActions.Execute.performed -= _onExecute;
@@ -571,7 +571,7 @@ namespace Utility.UI.Dialogue
 
             InputManager.SetUiAction(false);
 
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed -= InputConverse;
             uiActions.Select.performed -= _onInput;
             uiActions.Execute.performed -= _onExecute;
