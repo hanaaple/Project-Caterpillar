@@ -9,6 +9,11 @@ namespace Utility.SaveSystem
         
         public SerializableVector3 position;
         public SerializableQuaternion rotation;
+
+        public string[] items;
+        
+        // Enum이 저장되던가 체크해야됨
+        // public ItemManager.ItemType itemss;
     }
     
     [System.Serializable]

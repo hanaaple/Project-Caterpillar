@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem
@@ -108,9 +109,12 @@ namespace Utility.SaveSystem
                         var saveCoverData = SaveManager.GetSaveCoverData(saveLoadItemProps.saveDataIndex);
                         if (saveCoverData != null)
                         {
-                            SceneLoader.SceneLoader.Instance.onLoadSceneEnd += () => { SetSaveLoadPanelActive(false, ButtonType.None); };
-                            SceneLoader.SceneLoader.Instance.LoadScene(saveCoverData.sceneName,
-                                saveLoadItemProps.saveDataIndex);
+                            SceneLoader.SceneLoader.Instance.onLoadSceneEnd += () =>
+                            {
+                                ItemManager.Instance.Load(saveLoadItemProps.saveDataIndex);
+                                SetSaveLoadPanelActive(false, ButtonType.None);
+                            };
+                            SceneLoader.SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveLoadItemProps.saveDataIndex);
                             onLoad?.Invoke();
                         }
                         else

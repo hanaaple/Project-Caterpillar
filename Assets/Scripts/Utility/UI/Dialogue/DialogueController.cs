@@ -5,57 +5,58 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.InputSystem;
-using Utility.JsonLoader;
 using Utility.SaveSystem;
 using Utility.UI.Highlight;
 
 namespace Utility.UI.Dialogue
 {
     [Serializable]
-    public class DialogueSelector : HighlightItem
+    public class ChoiceSelector : HighlightItem
     {
         private Animator _animator;
+        private static readonly int Selected = Animator.StringToHash("Selected");
 
         public void Init(Animator animator)
         {
             _animator = animator;
         }
 
-
         public override void SetDefault()
         {
-            _animator.SetBool("Selected", false);
+            _animator.SetBool(Selected, false);
         }
 
         public override void EnterHighlight()
         {
-            _animator.SetBool("Selected", true);
         }
 
         public override void SetSelect()
         {
-            throw new NotImplementedException();
+            _animator.SetBool(Selected, true);
         }
     }
 
     public class DialogueController : MonoBehaviour
     {
-        private static DialogueController _instance;
+        public static DialogueController Instance { get; private set; }
 
-        public static DialogueController instance => _instance;
+        [SerializeField] private GameObject dialogueCanvas;
 
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
 
         [SerializeField] private TMP_Text dialogueText;
-
         [SerializeField] private Button dialogueInputArea;
 
-        [Header("Choice")] [SerializeField] private DialogueSelector[] dialogueSelectors;
+        [Header("CutScene")] [SerializeField] private PlayableDirector playableDirector;
+
+        [Header("Choice")] [SerializeField] private ChoiceSelector[] choiceSelectors;
 
         [Header("깜빡이는 애니메이션 들어간 ui")] [SerializeField]
         private GameObject blinkingIndicator;
@@ -67,112 +68,110 @@ namespace Utility.UI.Dialogue
         [SerializeField] private float textSpeed;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
-        private DialogueProps dialogueProps;
+        private DialogueData currentDialogueData;
 
-        [SerializeField] private DialogueProps baseDialogueProps;
-        [SerializeField] private DialogueProps choicedDialogueProps;
+        [SerializeField] private DialogueData baseDialogueData;
+        [SerializeField] private DialogueData choicedDialogueData;
 
+        [NonSerialized] public UnityAction onDialogueEnd;
+        [NonSerialized] public bool isDialogue;
+
+        private bool _isCutSceneSkipEnable;
         private bool _isUnfolding;
-
-        private Coroutine _printCoroutine;
-
-        private UnityEvent _onComplete;
-
-        private UnityEvent _onLast;
-
-        [NonSerialized] public bool IsDialogue;
-
         private int _selectedIdx;
         private bool _isSkipEnable;
+        private Coroutine _printCoroutine;
+        private Coroutine _waitInputCoroutine;
+        private Highlighter _choiceHighlighter;
+        private UnityAction _onComplete;
 
-        private Action<InputAction.CallbackContext> _onInput;
-        private Action<InputAction.CallbackContext> _onExecute;
         private static readonly int CharacterHash = Animator.StringToHash("Character");
         private static readonly int ExpressionHash = Animator.StringToHash("Expression");
+        private static readonly int DisappearHash = Animator.StringToHash("Disappear");
 
         private void Awake()
         {
-            _instance = this;
-            _onInput = _ =>
+            if (Instance)
             {
-                if (!choicePanel.activeSelf)
-                {
-                    return;
-                }
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(dialogueCanvas);
+            }
 
-                var input = _.ReadValue<Vector2>();
-                var idx = _selectedIdx;
-                if (input == Vector2.up)
-                {
-                    idx = (idx - 1 + dialogueSelectors.Length) % dialogueSelectors.Length;
-                }
-                else if (input == Vector2.down)
-                {
-                    idx = (idx + 1) % dialogueSelectors.Length;
-                }
-
-                HighlightButton(idx);
+            _choiceHighlighter = new Highlighter
+            {
+                highlightItems = choiceSelectors,
+                highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
-            _onExecute = _ =>
+            foreach (var choiceSelector in choiceSelectors)
             {
-                if (!choicePanel.activeSelf)
-                {
-                    return;
-                }
+                choiceSelector.Init(choiceSelector.button.GetComponent<Animator>());
+            }
 
-                dialogueSelectors[_selectedIdx].button.onClick?.Invoke();
-            };
+            _choiceHighlighter.Init(Highlighter.ArrowType.Vertical);
         }
 
         private void Start()
         {
-            dialogueInputArea.onClick.AddListener(InputConverse);
-            baseDialogueProps = new DialogueProps();
-            choicedDialogueProps = new DialogueProps();
-
-            _onComplete = new UnityEvent();
-            _onLast = new UnityEvent();
-
-            foreach (var dialogueSelector in dialogueSelectors)
+            dialogueInputArea.onClick.AddListener(() =>
             {
-                dialogueSelector.Init(dialogueSelector.button.GetComponent<Animator>());
-            }
+                OnInputDialogue();
+            });
+            baseDialogueData = new DialogueData();
+            choicedDialogueData = new DialogueData();
         }
 
-        private async void InitDialogue(string jsonAsset)
+        private async void Initialize(string jsonAsset)
         {
-            IsDialogue = true;
-            dialogueProps = baseDialogueProps;
-            dialogueProps.datas = JsonHelper.GetJsonArray<DialogueItemProps>(jsonAsset);
-            dialogueProps.index = 0;
+            isDialogue = true;
+            currentDialogueData = baseDialogueData;
+            baseDialogueData.Load(jsonAsset);
             _isUnfolding = false;
+
+            rightAnimator.SetInteger(CharacterHash, 0);
+            rightAnimator.SetInteger(ExpressionHash, 0);
+
+            leftAnimator.SetInteger(CharacterHash, 0);
+            leftAnimator.SetInteger(ExpressionHash, 0);
 
             dialoguePanel.SetActive(true);
 
-            await Task.Delay((int) (Time.deltaTime * 1000));
+            await Task.Delay((int)(Time.deltaTime * 1000f));
 
-            var uiActions = InputManager.inputControl.Ui;
             InputManager.SetUiAction(true);
-            uiActions.Dialogue.performed += InputConverse;
-            uiActions.Select.performed += _onInput;
-            uiActions.Execute.performed += _onExecute;
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Dialogue.performed += OnInputDialogue;
         }
 
-        public void Converse(string jsonAsset)
+        public void StartDialogue(string jsonAsset)
         {
-            if (IsDialogue)
+            if (isDialogue)
             {
                 return;
             }
 
-            InitDialogue(jsonAsset);
+            Initialize(jsonAsset);
 
-            ProgressConversation();
+            ProgressDialogue();
         }
 
-        private void InputConverseImmediatly()
+        private void OnInputDialogue(InputAction.CallbackContext obj = default)
         {
+            if (_waitInputCoroutine != null)
+            {
+                if (!_isCutSceneSkipEnable)
+                {
+                    return;
+                }
+                StopCoroutine(_waitInputCoroutine);
+                _waitInputCoroutine = null;
+            }
+
             if (_isUnfolding)
             {
                 if (_isSkipEnable)
@@ -183,54 +182,45 @@ namespace Utility.UI.Dialogue
             }
             else
             {
-                dialogueProps.index++;
-                ProgressConversation();
+                currentDialogueData.index++;
+                ProgressDialogue();
             }
         }
 
-        private void InputConverse()
-        {
-            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !SavePanelManager.Instance.savePanel.activeSelf)
-            {
-                InputConverseImmediatly();
-            }
-        }
-
-        private void InputConverse(InputAction.CallbackContext obj)
-        {
-            if (dialoguePanel.activeSelf && !choicePanel.activeSelf && !SavePanelManager.Instance.savePanel.activeSelf)
-            {
-                InputConverseImmediatly();
-            }
-        }
-
-        private void ProgressConversation()
+        private void ProgressDialogue()
         {
             if (IsDialogueEnd())
             {
-                if (choicedDialogueProps == dialogueProps)
+                if (choicedDialogueData == currentDialogueData)
                 {
-                    choicedDialogueProps.index = 0;
-                    choicedDialogueProps.datas = null;
-                    dialogueProps = baseDialogueProps;
-                    InputConverseImmediatly();
+                    choicedDialogueData.Reset();
+                    currentDialogueData = baseDialogueData;
+                    OnInputDialogue();
                 }
                 else
                 {
-                    EndConversation();
+                    EndDialogue();
                 }
             }
             else
             {
-                var dialogue = dialogueProps.datas[dialogueProps.index];
-                if (dialogue.dialogueType == DialogueType.Script)
+                DialogueAction();
+            }
+        }
+
+        private void DialogueAction()
+        {
+            var dialogue = currentDialogueData.dialogueElements[currentDialogueData.index];
+            ItemManager.Instance.SetItem(dialogue.option);
+            switch(dialogue.dialogueType)
+            {
+                case DialogueType.Script:
                 {
-                    _printCoroutine = StartCoroutine(DialoguePrint());
+                    StartDialoguePrint();
 
-
-                    if (dialogue.option != null && dialogue.option.Length >= 1)
+                    if (dialogue.option is { Length: >= 1 })
                     {
-                        for (var index = 0; index < dialogue.option.Length; index++)
+                        for(var index = 0; index < dialogue.option.Length; index++)
                         {
                             dialogue.option[index] = dialogue.option[index].Replace(" ", "");
                         }
@@ -238,7 +228,7 @@ namespace Utility.UI.Dialogue
                         var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
 
                         Animator animator = null;
-                        if (!String.IsNullOrEmpty(side))
+                        if (!string.IsNullOrEmpty(side))
                         {
                             if (side == "Left")
                             {
@@ -254,7 +244,7 @@ namespace Utility.UI.Dialogue
                         {
                             var state = Array.Find(dialogue.option,
                                 item => Enum.TryParse(item, out CharacterOption characterOption));
-                            if (!String.IsNullOrEmpty(state))
+                            if (!string.IsNullOrEmpty(state))
                             {
                                 Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
                                 animator.SetTrigger(state);
@@ -262,127 +252,143 @@ namespace Utility.UI.Dialogue
 
                             if (dialogue.name != CharacterType.Keep)
                             {
-                                animator.SetInteger(CharacterHash, (int) dialogue.name);
+                                animator.SetInteger(CharacterHash, (int)dialogue.name);
                             }
 
                             if (dialogue.expression != Expression.Keep)
                             {
-                                animator.SetInteger(ExpressionHash, (int) dialogue.expression);
+                                animator.SetInteger(ExpressionHash, (int)dialogue.expression);
                             }
                         }
                     }
+                    break;
                 }
-                else if (dialogue.dialogueType == DialogueType.MoveMap)
-                {
-                    EndConversation();
+                case DialogueType.MoveMap:
+                    EndDialogue();
                     Debug.Log(dialogue.contents + "로 맵 이동");
                     SceneLoader.SceneLoader.Instance.LoadScene(dialogue.contents);
-                }
-                else if (dialogue.dialogueType == DialogueType.Save)
-                {
-                    _onComplete.AddListener(() =>
+                    break;
+                case DialogueType.Save:
+                    _onComplete = () =>
                     {
                         InputManager.SetUiAction(false);
-
                         var uiActions = InputManager.inputControl.Ui;
-                        uiActions.Dialogue.performed -= InputConverse;
-                        uiActions.Select.performed -= _onInput;
-                        uiActions.Execute.performed -= _onExecute;
+                        uiActions.Dialogue.performed -= OnInputDialogue;
+
                         SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Save);
-                        _onComplete.RemoveAllListeners();
+                        _onComplete = () => {};
                         SavePanelManager.Instance.onSave.AddListener(() =>
                         {
-                            InputConverseImmediatly();
+                            OnInputDialogue();
                             SavePanelManager.Instance.onSavePanelActiveFalse?.RemoveAllListeners();
                             SavePanelManager.Instance.SetSaveLoadPanelActive(false,
                                 SavePanelManager.ButtonType.None);
 
                             InputManager.SetUiAction(true);
-
-                            uiActions.Dialogue.performed += InputConverse;
-                            uiActions.Select.performed += _onInput;
-                            uiActions.Execute.performed += _onExecute;
+                            uiActions.Dialogue.performed += OnInputDialogue;
                         });
 
                         SavePanelManager.Instance.onSavePanelActiveFalse.AddListener(() =>
                         {
                             SavePanelManager.Instance.onSave?.RemoveAllListeners();
-                            InputConverseImmediatly();
+                            OnInputDialogue();
                         });
-                    });
-                    _printCoroutine = StartCoroutine(DialoguePrint());
-                }
-                else if (dialogue.dialogueType == DialogueType.ChoiceEnd)
-                {
-                    // Debug.LogError("하이");
-                }
-                else if (dialogue.dialogueType == DialogueType.Character)
-                {
-                    _printCoroutine = StartCoroutine(DialoguePrint());
+                    };
+                    StartDialoguePrint();
+                    break;
+                case DialogueType.ChoiceEnd:
+                    break;
+                case DialogueType.CutScene:
+                    var playableAsset = Resources.Load<TimelineAsset>($"Timeline/{dialogue.contents}");
+                    Debug.Log(playableAsset);
+                    playableDirector.playableAsset = playableAsset;
 
-                    if (dialogue.option != null && dialogue.option.Length >= 1)
+                    if (dialogue.option.Contains("Hold", StringComparer.OrdinalIgnoreCase))
                     {
-                        for (var index = 0; index < dialogue.option.Length; index++)
+                        playableDirector.extrapolationMode = DirectorWrapMode.Hold;
+                    }
+                    else if (dialogue.option.Contains("None", StringComparer.OrdinalIgnoreCase))
+                    {
+                        playableDirector.extrapolationMode = DirectorWrapMode.None;
+                    }
+                    // Binding - Animator 한개만? 아마도? 카메라 흔들리는 트랙, 클립 만들고
+                    var timelineAsset = (TimelineAsset)playableDirector.playableAsset;
+                    if (timelineAsset != null)
+                    {
+                        var tracks = timelineAsset.GetOutputTracks();
+                        foreach (var temp in tracks)
                         {
-                            dialogue.option[index] = dialogue.option[index].Replace(" ", "");
-                        }
-
-                        var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
-
-                        Animator animator = null;
-                        if (!String.IsNullOrEmpty(side))
-                        {
-                            if (side == "Left")
+                            if (temp is AnimationTrack && dialogueCanvas.TryGetComponent(out Animator animator))
                             {
-                                animator = leftAnimator;
-                            }
-                            else if (side == "Right")
-                            {
-                                animator = rightAnimator;
-                            }
-                        }
-
-                        if (animator != null)
-                        {
-                            var state = Array.Find(dialogue.option,
-                                item => Enum.TryParse(item, out CharacterOption characterOption));
-                            if (!String.IsNullOrEmpty(state))
-                            {
-                                Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
-                                animator.SetTrigger(state);
-                            }
-
-                            if (dialogue.name != CharacterType.Keep)
-                            {
-                                animator.SetInteger(CharacterHash, (int) dialogue.name);
-                            }
-
-                            if (dialogue.expression != Expression.Keep)
-                            {
-                                animator.SetInteger(ExpressionHash, (int) dialogue.expression);
+                                playableDirector.SetGenericBinding(temp, animator);
                             }
                         }
                     }
+                    else
+                    {
+                        Debug.LogWarning("Task 타임라인 오류");
+                    }
+
+                    playableDirector.Play();
+
+                    var options = Array.FindAll(dialogue.option, item => item.Any(char.IsDigit));
+                    var intOptions = options.Select(item => (int)float.Parse(item));
+                    var enumerable = intOptions as int[] ?? intOptions.ToArray();
+                    if (enumerable.Length == 1)
+                    {
+                        _isCutSceneSkipEnable = true;
+                        if (dialogue.option.Contains("False", StringComparer.OrdinalIgnoreCase))
+                        {
+                            _isCutSceneSkipEnable = false;
+                        }
+                        _waitInputCoroutine = StartCoroutine(WaitInput(enumerable[0]));
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"엑셀 세팅 이상함 - 길이: {enumerable.Length}");
+                        foreach (var option in dialogue.option)
+                        {
+                            Debug.Log("option - " + option);
+                        }
+                    }
+
+                    break;
+                case DialogueType.None:
+                {
+                    Debug.LogWarning("무슨 이유로 이걸 쓰신거죠 세상에 맙소사");
+                    break;
                 }
+                case DialogueType.Choice:
+                {
+                    InitChoice();
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
-        private IEnumerator DialoguePrint()
+        private void StartDialoguePrint()
         {
             Debug.Log("프린트 시작");
             _isUnfolding = true;
             blinkingIndicator.SetActive(false);
             dialogueText.text = "";
-            var dialogueItem = dialogueProps.datas[dialogueProps.index];
+            _printCoroutine = StartCoroutine(DialoguePrint());
+        }
 
-            float speed = 1;
+        private IEnumerator DialoguePrint()
+        {
+            var dialogueItem = currentDialogueData.dialogueElements[currentDialogueData.index];
+
+            var wordSpeed = 1f;
+
+            _isSkipEnable = true;
 
             if (dialogueItem.option != null)
             {
-                _isSkipEnable = true;
-
                 var options = Array.FindAll(dialogueItem.option, item => !item.Contains("(") && item.Any(char.IsDigit));
-                var intOptions = options.Select(item => (int) float.Parse(item));
+                var intOptions = options.Select(item => (int)float.Parse(item));
                 var enumerable = intOptions as int[] ?? intOptions.ToArray();
                 if (enumerable.Length > 0)
                 {
@@ -391,18 +397,17 @@ namespace Utility.UI.Dialogue
                         Debug.Log("스킵 불가능!");
                         _isSkipEnable = false;
                     }
-
                 }
 
                 if (dialogueItem.option.Any(item => item.Contains("1(")))
                 {
                     var speedString = Array.Find(dialogueItem.option, item => item.Contains("1("));
-                    speed = float.Parse(speedString.Split("(")[1].Split(")")[0]);
-                    Debug.Log("속도: " + speed);
+                    wordSpeed = float.Parse(speedString.Split("(")[1].Split(")")[0]);
+                    Debug.Log("속도: " + wordSpeed);
                 }
             }
 
-            var waitForSec = new WaitForSeconds(textSpeed / speed);
+            var waitForSec = new WaitForSeconds(textSpeed / wordSpeed);
 
             foreach (var t in dialogueItem.contents)
             {
@@ -417,98 +422,41 @@ namespace Utility.UI.Dialogue
         {
             _printCoroutine = null;
             _isUnfolding = false;
-            var dialogueItem = dialogueProps.datas[dialogueProps.index];
+            var dialogueItem = currentDialogueData.dialogueElements[currentDialogueData.index];
             dialogueText.text = dialogueItem.contents;
 
 
-            if (dialogueProps.datas.Length > dialogueProps.index + 1 &&
-                dialogueProps.datas[dialogueProps.index + 1].dialogueType == DialogueType.Choice)
+            if (currentDialogueData.dialogueElements.Length > currentDialogueData.index + 1 &&
+                currentDialogueData.dialogueElements[currentDialogueData.index + 1].dialogueType == DialogueType.Choice)
             {
-                choicePanel.SetActive(true);
+                currentDialogueData.index++;
                 InitChoice();
-
-                dialogueProps.index++;
-
-                var choicedIdx = 0;
-                while (dialogueProps.index < dialogueProps.datas.Length &&
-                       dialogueProps.datas[dialogueProps.index].dialogueType !=
-                       DialogueType.ChoiceEnd)
-                {
-                    Debug.Log(dialogueProps.index);
-
-                    var choiceCount = 0;
-                    // 2111211에서 2까지 읽기
-                    while (dialogueProps.index + choiceCount < dialogueProps.datas.Length &&
-                           dialogueProps.datas[dialogueProps.index + choiceCount].dialogueType ==
-                           DialogueType.Choice)
-                    {
-                        choiceCount++;
-                    }
-
-                    var choiceContextLen = 0;
-                    var choiceEnd = 0;
-                    // 2111211에서 2111까지
-                    while (dialogueProps.index + choiceCount + choiceContextLen < dialogueProps.datas.Length)
-                    {
-                        if (dialogueProps.datas[dialogueProps.index + choiceCount + choiceContextLen].dialogueType ==
-                            DialogueType.Choice)
-                        {
-                            break;
-                        }
-
-                        if (dialogueProps.datas[dialogueProps.index + choiceCount + choiceContextLen]
-                                .dialogueType ==
-                            DialogueType.ChoiceEnd)
-                        {
-                            choiceEnd++;
-                            break;
-                        }
-
-                        choiceContextLen++;
-                    }
-
-                    Debug.Log(dialogueProps.index);
-                    Debug.Log(choiceCount);
-                    Debug.Log(choiceContextLen);
-
-                    for (var i = 0; i < choiceCount; i++)
-                    {
-                        var idx = choicedIdx + i;
-                        var child = choicePanel.transform.GetChild(idx);
-                        Debug.Log(child);
-                        child.gameObject.SetActive(true);
-                        child.GetComponentInChildren<TMP_Text>().text =
-                            dialogueProps.datas[dialogueProps.index + i].contents;
-
-                        var curIdx = dialogueProps.index;
-                        dialogueSelectors[idx].button.onClick.RemoveAllListeners();
-                        dialogueSelectors[idx].button.onClick.AddListener(() =>
-                        {
-                            OnClickChoice(curIdx, choiceCount, choiceContextLen + choiceEnd);
-                        });
-
-                        dialogueSelectors[idx].AddEventTrigger(EventTriggerType.PointerEnter,
-                            _ => HighlightButton(idx));
-                    }
-
-                    dialogueProps.index += choiceCount + choiceContextLen;
-                    choicedIdx += choiceCount;
-                    Debug.Log(dialogueProps.index);
-                }
-
-                HighlightButton(0);
             }
             else
             {
                 blinkingIndicator.SetActive(true);
                 _onComplete?.Invoke();
-                if (dialogueProps.index == dialogueProps.datas.Length - 1 && (choicedDialogueProps != dialogueProps ||
-                                                                              baseDialogueProps.index ==
-                                                                              baseDialogueProps.datas.Length))
-                {
-                    _onLast?.Invoke();
-                }
             }
+        }
+
+        private void EndDialogue()
+        {
+            Debug.Log("대화 끝");
+            currentDialogueData = default;
+
+            dialoguePanel.SetActive(false);
+
+            isDialogue = false;
+
+            onDialogueEnd?.Invoke();
+            onDialogueEnd = () => {};
+
+            rightAnimator.SetTrigger(DisappearHash);
+            leftAnimator.SetTrigger(DisappearHash);
+
+            InputManager.SetUiAction(false);
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Dialogue.performed -= OnInputDialogue;
         }
 
         private void OnClickChoice(int curIdx, int choiceLen, int choiceContextLen)
@@ -517,64 +465,112 @@ namespace Utility.UI.Dialogue
             Debug.Log("선택 개수: " + choiceLen);
             Debug.Log("선택 대화 길이: " + choiceContextLen);
 
-
-            if (choiceContextLen != 0)
-            {
-                choicedDialogueProps.index = 0;
-                choicedDialogueProps.datas = new DialogueItemProps[choiceContextLen];
-                Array.Copy(baseDialogueProps.datas, curIdx + choiceLen, choicedDialogueProps.datas, 0,
-                    choiceContextLen);
-                dialogueProps = choicedDialogueProps;
-            }
+            InitChoiceDialogue(curIdx + choiceLen, choiceContextLen);
 
             choicePanel.SetActive(false);
-            ProgressConversation();
+            ProgressDialogue();
         }
 
         private void InitChoice()
         {
-            foreach (var dialogueSelector in dialogueSelectors)
+            foreach (var dialogueSelector in choiceSelectors)
             {
                 dialogueSelector.button.gameObject.SetActive(false);
-                dialogueSelector.button.GetComponentInChildren<TMP_Text>().text =
-                    "";
-                dialogueSelector.button.GetComponentInChildren<Button>().onClick
-                    .RemoveAllListeners();
+                dialogueSelector.button.GetComponentInChildren<TMP_Text>().text = "";
+                dialogueSelector.button.onClick.RemoveAllListeners();
+            }
+
+            choicePanel.SetActive(true);
+
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Dialogue.performed -= OnInputDialogue;
+
+            HighlightHelper.Instance.Push(_choiceHighlighter);
+
+            var choicedCount = 0;
+            while(currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
+                  currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType != DialogueType.ChoiceEnd)
+            {
+                Debug.Log(currentDialogueData.index);
+
+                var choiceCount = 0;
+                var choiceContextLen = 0;
+
+                while(currentDialogueData.index + choiceCount < currentDialogueData.dialogueElements.Length &&
+                      currentDialogueData.dialogueElements[currentDialogueData.index + choiceCount].dialogueType == DialogueType.Choice)
+                {
+                    choiceCount++;
+                }
+                while(currentDialogueData.index + choiceCount + choiceContextLen < currentDialogueData.dialogueElements.Length)
+                {
+                    var dialogueElement = currentDialogueData.dialogueElements[currentDialogueData.index + choiceCount + choiceContextLen];
+                    if (dialogueElement.dialogueType == DialogueType.Choice)
+                    {
+                        break;
+                    }
+
+                    if (dialogueElement.dialogueType == DialogueType.ChoiceEnd)
+                    {
+                        break;
+                    }
+
+                    choiceContextLen++;
+                }
+
+                Debug.Log($"현재 Index: {currentDialogueData.index}\n" +
+                          $"선택 개수: {choiceCount}\n" +
+                          $"선택 Context 길이: {choiceContextLen}");
+
+                for(var i = 0; i < choiceCount; i++)
+                {
+                    var curIdx = currentDialogueData.index;
+                    var choiceButton = choiceSelectors[choicedCount + i].button;
+
+                    choiceButton.gameObject.SetActive(true);
+                    choiceButton.GetComponentInChildren<TMP_Text>().text =
+                        currentDialogueData.dialogueElements[curIdx + i].contents;
+
+                    choiceButton.onClick.AddListener(() =>
+                    {
+                        OnClickChoice(curIdx, choiceCount, choiceContextLen);
+                    });
+                }
+
+                currentDialogueData.index += choiceCount + choiceContextLen;
+                choicedCount += choiceCount;
+
+                Debug.Log($"다음 Index: {currentDialogueData.index}\n" +
+                          $"선택된 개수: {choicedCount}\n");
             }
         }
 
-        private void HighlightButton(int idx)
+        private void InitChoiceDialogue(int nextIndex, int choiceContextLen)
         {
-            Debug.Log($"{idx}입니다");
-            dialogueSelectors[_selectedIdx].SetDefault();
-            _selectedIdx = idx;
-            dialogueSelectors[idx].EnterHighlight();
+            var uiActions = InputManager.inputControl.Ui;
+            uiActions.Dialogue.performed += OnInputDialogue;
+
+            HighlightHelper.Instance.Pop(_choiceHighlighter);
+
+            if (choiceContextLen == 0)
+            {
+                return;
+            }
+            choicedDialogueData.index = 0;
+            choicedDialogueData.dialogueElements = new DialogueElement[choiceContextLen];
+            Array.Copy(baseDialogueData.dialogueElements, nextIndex, choicedDialogueData.dialogueElements, 0, choiceContextLen);
+            currentDialogueData = choicedDialogueData;
+        }
+
+        private IEnumerator WaitInput(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            _isCutSceneSkipEnable = true;
+            OnInputDialogue();
         }
 
         private bool IsDialogueEnd()
         {
-            return dialogueProps.index >= dialogueProps.datas.Length;
-        }
-
-        private void EndConversation()
-        {
-            Debug.Log("대화 끝");
-            dialogueProps = default;
-
-            dialoguePanel.SetActive(false);
-
-            IsDialogue = false;
-
-            _onLast?.RemoveAllListeners();
-
-
-
-            InputManager.SetUiAction(false);
-
-            var uiActions = InputManager.inputControl.Ui;
-            uiActions.Dialogue.performed -= InputConverse;
-            uiActions.Select.performed -= _onInput;
-            uiActions.Execute.performed -= _onExecute;
+            return currentDialogueData.index >= currentDialogueData.dialogueElements.Length;
         }
     }
 }

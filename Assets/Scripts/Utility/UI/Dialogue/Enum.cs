@@ -35,6 +35,6 @@
     ChoiceEnd = 3,
     MoveMap = 4,
     Save = 5,
-    Character = 6,
+    CutScene = 6,
   }
 }

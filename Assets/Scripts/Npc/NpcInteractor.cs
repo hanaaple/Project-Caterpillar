@@ -34,11 +34,11 @@ public class NpcInteractor : MonoBehaviour
     private Action<InputAction.CallbackContext> _onInteract;
 
 #if UNITY_EDITOR
-    [SerializeField] private DialogueProps dialogueProps;
+    [SerializeField] private DialogueData dialogueData;
 
     public void ShowDialogue()
     {
-        dialogueProps.datas = JsonHelper.GetJsonArray<DialogueItemProps>(dialogue.text);
+        dialogueData.dialogueElements = JsonHelper.GetJsonArray<DialogueElement>(dialogue.text);
     }
 #endif
 
@@ -49,7 +49,7 @@ public class NpcInteractor : MonoBehaviour
             if (ui.activeSelf)
             {
                 ui.SetActive(false);
-                DialogueController.instance.Converse(dialogue.text);
+                DialogueController.Instance.StartDialogue(dialogue.text);
             }
         };
     }
