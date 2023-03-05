@@ -1,38 +1,40 @@
 using UnityEngine;
 using Utility.UI.Dialogue;
-
-public class GameManager : MonoBehaviour
+namespace Utility.Core
 {
-    private static GameManager _instance;
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-        get
+        private static GameManager _instance;
+        public static GameManager Instance
         {
-            if(_instance == null)
+            get
             {
-                var obj = FindObjectOfType<GameManager>();
-                if(obj != null)
+                if(_instance == null)
                 {
-                    _instance = obj;
+                    var obj = FindObjectOfType<GameManager>();
+                    if(obj != null)
+                    {
+                        _instance = obj;
+                    }
+                    else
+                    {
+                        _instance = Create();
+                    }
+                    DontDestroyOnLoad(_instance);
                 }
-                else
-                {
-                    _instance = Create();
-                }
-                DontDestroyOnLoad(_instance);
+                return _instance;
             }
-            return _instance;
         }
-    }
     
-    private static GameManager Create()
-    {
-        var sceneLoaderPrefab = Resources.Load<GameManager>("GameManager");
-        return Instantiate(sceneLoaderPrefab);
-    }
+        private static GameManager Create()
+        {
+            var gameManagerPrefab = Resources.Load<GameManager>("GameManager");
+            return Instantiate(gameManagerPrefab);
+        }
     
-    public bool IsCharacterControlEnable()
-    {
-        return !DialogueController.instance.IsDialogue;
+        public bool IsCharacterControlEnable()
+        {
+            return !DialogueController.Instance.isDialogue;
+        }
     }
 }

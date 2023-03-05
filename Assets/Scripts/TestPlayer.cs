@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Core;
 using Utility.InputSystem;
 
 public class TestPlayer : MonoBehaviour
