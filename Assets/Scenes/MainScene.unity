@@ -1574,7 +1574,7 @@ PlayableDirector:
   m_GameObject: {fileID: 680932877}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
+  m_PlayableAsset: {fileID: 11400000, guid: f19d84ac0764bc34aa60c7bbdf83e3ac, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -2946,14 +2946,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.95686275}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f0bacfb9755a45ab8db77a321edae32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41d66e7c1bbb84a8391dea13f60bca41, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

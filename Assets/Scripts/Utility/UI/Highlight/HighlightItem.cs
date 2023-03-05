@@ -30,7 +30,7 @@ namespace Utility.UI.Highlight
             SetDefault();
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             transitionTypes = new List<TransitionType>();
             SetDefault();
@@ -57,11 +57,9 @@ namespace Utility.UI.Highlight
             {
                 Debug.Log(transitionType + "없음");
             }
-
-            Highlight();
         }
 
-        protected void Highlight()
+        public void Highlight()
         {
             if (transitionTypes.Count > 0)
             {
@@ -100,7 +98,6 @@ namespace Utility.UI.Highlight
 
             if (eventTrigger.triggers.Any(item => item.eventID == eventTriggerType))
             {
-                Debug.LogWarning("여러번 추가하고 있음");
                 return;
             }
 

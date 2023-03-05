@@ -88,6 +88,17 @@ namespace Utility.UI.Highlight
             var uiActions = InputManager.inputControl.Ui;
             if (enabled == isEnable)
             {
+                if (!isEnable && !isDuplicatePossible && !isRemove)
+                {
+                    highlightedIndex = -1;
+                    selectedIndex = -1;
+
+                    foreach (var highlightItem in highlightItems)
+                    {
+                        highlightItem.Reset();
+                        highlightItem.ClearEventTrigger();
+                    }
+                }
                 return;
             }
             enabled = isEnable;
@@ -146,12 +157,9 @@ namespace Utility.UI.Highlight
 
         public void Select(HighlightItem highlightItem)
         {
-            var idx = Array.FindIndex(highlightItems, item => item == highlightItem);
-            if (selectedIndex != -1)
-            {
-                highlightItems[selectedIndex].Remove(HighlightItem.TransitionType.Select);
-            }
+            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
 
+            var idx = Array.FindIndex(highlightItems, item => item == highlightItem);
             if (idx == -1)
             {
                 Debug.LogError("에러");
@@ -163,10 +171,7 @@ namespace Utility.UI.Highlight
 
         public void Select(int idx)
         {
-            if (selectedIndex != -1)
-            {
-                highlightItems[selectedIndex].Remove(HighlightItem.TransitionType.Select);
-            }
+            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
             highlightItems[idx].Add(HighlightItem.TransitionType.Select);
@@ -174,35 +179,38 @@ namespace Utility.UI.Highlight
 
         public void DeSelect()
         {
-            if (selectedIndex != -1)
-            {
-                highlightItems[selectedIndex].Remove(HighlightItem.TransitionType.Select);
-                selectedIndex = -1;
-            }
+            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
+            selectedIndex = -1;
         }
 
         public void OnHighlight(HighlightItem highlightItem)
         {
             Debug.Log("On 하이라이트");
+            RemoveItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
+            
             var idx = Array.FindIndex(highlightItems, item => item == highlightItem);
-            if (highlightedIndex != -1)
-            {
-                highlightItems[highlightedIndex].Remove(HighlightItem.TransitionType.Highlight);
-            }
-
             highlightedIndex = idx;
             highlightItems[idx].Add(HighlightItem.TransitionType.Highlight);
         }
 
         public void OnUnHighlight()
         {
-            if (highlightedIndex != -1)
-            {
-                highlightItems[highlightedIndex].Remove(HighlightItem.TransitionType.Highlight);
-                highlightedIndex = -1;
-            }
+            RemoveItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
+            highlightedIndex = -1;
         }
 
+        private void RemoveItem(int index, HighlightItem.TransitionType transitionType)
+        {
+            if (index == -1)
+            {
+                return;
+            }
+            highlightItems[index].Remove(transitionType);
+            foreach (var highlightItem in highlightItems)
+            {
+                highlightItem.Highlight();
+            }
+        }
 
         // Private 유지하세요
         private void OnArrow(Vector2 input, ArrowType arrowType)
@@ -353,11 +361,11 @@ namespace Utility.UI.Highlight
             {
                 return;
             }
-            Debug.Log("Pop");
+            Debug.Log($"Pop, 삭제여부: {isRemove}");
 
             highlighter.SetEnable(false, default, isRemove);
             _highlighters.Remove(highlighter);
-
+            
             if (_highlighters.Count == 0)
             {
                 InputManager.SetUiAction(false);

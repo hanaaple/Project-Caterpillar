@@ -110,6 +110,10 @@ namespace Utility.Core
 
         public void SetItem(string[] options)
         {
+            if (options == null)
+            {
+                return;
+            }
             foreach (var option in options)
             {
                 if (!option.Contains(":"))

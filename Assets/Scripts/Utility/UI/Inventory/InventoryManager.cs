@@ -95,12 +95,14 @@ namespace Utility.UI.Inventory
 
         public override void SetDefault()
         {
+            // Debug.Log($"Set Default {itemType}");
             button.image.sprite = defaultSprite;
             button.image.color = Color.white;
         }
 
         public override void EnterHighlight()
         {
+            // Debug.Log($"Enter Highlight {itemType}");
             if (!transitionTypes.Contains(TransitionType.Select))
             {
                 button.image.sprite = defaultSprite;
@@ -112,6 +114,7 @@ namespace Utility.UI.Inventory
 
         public override void SetSelect()
         {
+            // Debug.Log($"Set Select {itemType}");
             if (!transitionTypes.Contains(TransitionType.Highlight))
             {
                 button.image.color = Color.white;
@@ -119,6 +122,13 @@ namespace Utility.UI.Inventory
 
             button.image.sprite = selectedSprite;
             onPointSelect?.Invoke();
+        }
+
+        public override void Reset()
+        {
+            // Debug.Log("리셋?");
+            base.Reset();
+            onPointDeSelect?.Invoke();
         }
     }
 
