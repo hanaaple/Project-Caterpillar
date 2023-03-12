@@ -1,5 +1,6 @@
 using UnityEngine;
-using Utility.UI.Dialogue;
+using Utility.Dialogue;
+
 namespace Utility.Core
 {
     public class GameManager : MonoBehaviour

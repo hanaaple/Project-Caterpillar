@@ -23,7 +23,7 @@ namespace Utility.InputSystem
         private static readonly List<BindInputAction> BindInputActions = new();
 
         private static int _uiActionCount;
-        
+
         private static int _playerActionCount;
 
         private class BindInputAction
@@ -61,7 +61,7 @@ namespace Utility.InputSystem
                 }
             }
         }
-        
+
         public static void SetPlayerAction(bool isAdd)
         {
             if (isAdd)
