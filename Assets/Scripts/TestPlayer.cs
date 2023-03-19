@@ -100,7 +100,7 @@ public class TestPlayer : MonoBehaviour
         transform.Translate(input * playerSpeed * Time.fixedDeltaTime);
     }
 
-    void CameraMove()
+    private void CameraMove()
     {
         var cameraTransform = _camera.transform;
         var targetPos = transform.position;

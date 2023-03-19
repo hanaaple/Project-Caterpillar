@@ -1,5 +1,6 @@
 using UnityEngine;
-using Utility.UI.Dialogue;
+using Utility.Dialogue;
+
 namespace Utility.Core
 {
     public class GameManager : MonoBehaviour
@@ -34,7 +35,7 @@ namespace Utility.Core
     
         public bool IsCharacterControlEnable()
         {
-            return !DialogueController.Instance.isDialogue;
+            return !DialogueController.Instance.isDialogue && !Mathf.Approximately(Time.timeScale, 0f);
         }
     }
 }
