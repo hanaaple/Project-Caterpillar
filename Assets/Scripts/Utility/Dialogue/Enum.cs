@@ -4,7 +4,14 @@
   {
     Dubby = -1,
     Keep = 0,
-    None = 1
+    None = 1,
+    Protagonist = 2,
+    Naru = 3,
+    Photographer = 4,
+    Doctor = 5,
+    Dog = 6,
+    PhotographerSon = 7,
+    PhotographerWife = 8,
   }
 
   public enum CharacterOption
