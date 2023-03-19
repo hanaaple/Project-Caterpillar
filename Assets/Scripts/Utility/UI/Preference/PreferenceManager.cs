@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.InputSystem;
+using Utility.UI.Highlight;
 
 namespace Utility.UI.Preference
 {
@@ -62,6 +63,17 @@ namespace Utility.UI.Preference
                     Input(_.ReadValue<Vector2>());
                 }
             };
+            
+            // 나가기
+            // _onInput = _ =>
+            // {
+            //     if (preferencePanel.activeSelf && !_isPerformed)
+            //     {
+            //         _isPerformed = true;
+            //         StartCoroutine(WaitPerform());
+            //         Input(_.ReadValue<Vector2>());
+            //     }
+            // };
         }
 
         private IEnumerator WaitPerform()
@@ -111,7 +123,7 @@ namespace Utility.UI.Preference
             }
         }
 
-        internal void OpenPreferencePanel()
+        private void ExitPreferencePanel()
         {
             if (InputManager.IsChanged())
             {
@@ -119,19 +131,8 @@ namespace Utility.UI.Preference
             }
             else
             {
-                if (preferencePanel.activeSelf)
-                {
-
-                    Time.timeScale = 1;
-                    // preferenceButton.gameObject.SetActive(true);
-                    preferencePanel.SetActive(false);
-                }
-                else
-                {
-                    Time.timeScale = 0;
-                    // preferenceButton.gameObject.SetActive(false);
-                    preferencePanel.SetActive(true);
-                }
+                HighlightHelper.Instance.Enable();
+                preferencePanel.SetActive(false);
             }
         }
 
@@ -158,7 +159,7 @@ namespace Utility.UI.Preference
 
             // preferenceButton.onClick.AddListener(OpenPreferencePanel);
 
-            preferenceExitButton.onClick.AddListener(OpenPreferencePanel);
+            preferenceExitButton.onClick.AddListener(ExitPreferencePanel);
 
 
             leftButton.onClick.AddListener(() =>

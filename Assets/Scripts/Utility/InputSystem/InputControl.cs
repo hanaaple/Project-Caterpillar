@@ -186,15 +186,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
             ""id"": ""d1a45884-2480-4674-923a-d355311d18e1"",
             ""actions"": [
                 {
-                    ""name"": ""Click"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""ba2476e0-35d6-4005-9977-b3826b208123"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Select"",
                     ""type"": ""Value"",
                     ""id"": ""60d053b6-8023-4d44-8066-01e5a24bc7ff"",
@@ -232,28 +223,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""010fac88-3e54-48b2-aa0c-41ece4197825"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""053970b0-a052-498d-9e17-aa2bef7e19cb"",
-                    ""path"": ""<Touchscreen>/touch*/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mobile"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""Arrow"",
                     ""id"": ""e0bb25d9-a2e2-4cde-b9b5-84a427f34212"",
@@ -344,23 +313,40 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c5d50df6-6c34-47ee-9078-6e55cab68bc0"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Cancle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d7ea0b15-0cbb-49cb-8d06-a2a74663ab7b"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyBoard"",
                     ""action"": ""Dialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Esc"",
+            ""id"": ""cd795857-1c4d-4980-ab88-0f6baf6ae9a1"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e5d5c19-d12a-4069-b384-ff85268d7e56"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c2681769-fedb-4903-863c-0b4c2fd1f1f1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -420,11 +406,13 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         // Ui
         m_Ui = asset.FindActionMap("Ui", throwIfNotFound: true);
-        m_Ui_Click = m_Ui.FindAction("Click", throwIfNotFound: true);
         m_Ui_Select = m_Ui.FindAction("Select", throwIfNotFound: true);
         m_Ui_Execute = m_Ui.FindAction("Execute", throwIfNotFound: true);
         m_Ui_Cancle = m_Ui.FindAction("Cancle", throwIfNotFound: true);
         m_Ui_Dialogue = m_Ui.FindAction("Dialogue", throwIfNotFound: true);
+        // Esc
+        m_Esc = asset.FindActionMap("Esc", throwIfNotFound: true);
+        m_Esc_Pause = m_Esc.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -525,7 +513,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     // Ui
     private readonly InputActionMap m_Ui;
     private IUiActions m_UiActionsCallbackInterface;
-    private readonly InputAction m_Ui_Click;
     private readonly InputAction m_Ui_Select;
     private readonly InputAction m_Ui_Execute;
     private readonly InputAction m_Ui_Cancle;
@@ -534,7 +521,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     {
         private @InputControl m_Wrapper;
         public UiActions(@InputControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Click => m_Wrapper.m_Ui_Click;
         public InputAction @Select => m_Wrapper.m_Ui_Select;
         public InputAction @Execute => m_Wrapper.m_Ui_Execute;
         public InputAction @Cancle => m_Wrapper.m_Ui_Cancle;
@@ -548,9 +534,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UiActionsCallbackInterface != null)
             {
-                @Click.started -= m_Wrapper.m_UiActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_UiActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_UiActionsCallbackInterface.OnClick;
                 @Select.started -= m_Wrapper.m_UiActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_UiActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_UiActionsCallbackInterface.OnSelect;
@@ -567,9 +550,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
             m_Wrapper.m_UiActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
@@ -586,6 +566,39 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         }
     }
     public UiActions @Ui => new UiActions(this);
+
+    // Esc
+    private readonly InputActionMap m_Esc;
+    private IEscActions m_EscActionsCallbackInterface;
+    private readonly InputAction m_Esc_Pause;
+    public struct EscActions
+    {
+        private @InputControl m_Wrapper;
+        public EscActions(@InputControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Esc_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Esc; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EscActions set) { return set.Get(); }
+        public void SetCallbacks(IEscActions instance)
+        {
+            if (m_Wrapper.m_EscActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_EscActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_EscActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_EscActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_EscActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public EscActions @Esc => new EscActions(this);
     private int m_KeyBoardSchemeIndex = -1;
     public InputControlScheme KeyBoardScheme
     {
@@ -629,10 +642,13 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     }
     public interface IUiActions
     {
-        void OnClick(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnExecute(InputAction.CallbackContext context);
         void OnCancle(InputAction.CallbackContext context);
         void OnDialogue(InputAction.CallbackContext context);
+    }
+    public interface IEscActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

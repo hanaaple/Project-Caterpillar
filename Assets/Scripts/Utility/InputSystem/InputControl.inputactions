@@ -164,15 +164,6 @@
             "id": "d1a45884-2480-4674-923a-d355311d18e1",
             "actions": [
                 {
-                    "name": "Click",
-                    "type": "PassThrough",
-                    "id": "ba2476e0-35d6-4005-9977-b3826b208123",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Select",
                     "type": "Value",
                     "id": "60d053b6-8023-4d44-8066-01e5a24bc7ff",
@@ -210,28 +201,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "010fac88-3e54-48b2-aa0c-41ece4197825",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "053970b0-a052-498d-9e17-aa2bef7e19cb",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "Arrow",
                     "id": "e0bb25d9-a2e2-4cde-b9b5-84a427f34212",
@@ -322,23 +291,40 @@
                 },
                 {
                     "name": "",
-                    "id": "c5d50df6-6c34-47ee-9078-6e55cab68bc0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyBoard",
-                    "action": "Cancle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d7ea0b15-0cbb-49cb-8d06-a2a74663ab7b",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoard",
                     "action": "Dialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Esc",
+            "id": "cd795857-1c4d-4980-ab88-0f6baf6ae9a1",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "9e5d5c19-d12a-4069-b384-ff85268d7e56",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c2681769-fedb-4903-863c-0b4c2fd1f1f1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
