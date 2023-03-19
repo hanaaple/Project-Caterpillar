@@ -59,6 +59,7 @@ namespace Utility.UI.Inventory
         public ItemManager.ItemType itemType;
         [SerializeField] private Sprite defaultSprite;
         [SerializeField] private Sprite selectedSprite;
+        public GameObject itemPanel;
 
         public Action onPointerEnter;
         public Action onPointerExit;
@@ -241,9 +242,9 @@ namespace Utility.UI.Inventory
             }
 
             // Inventory Item Set
-            foreach (var inventoryItemHighLight in inventoryItems)
+            foreach (var inventoryItem in inventoryItems)
             {
-                inventoryItemHighLight.onPointSelect = () =>
+                inventoryItem.onPointSelect = () =>
                 {
                     Debug.Log("OnSelect");
                     HighlightHelper.Instance.SetLast(_itemHighlighter, true);
@@ -251,13 +252,15 @@ namespace Utility.UI.Inventory
                     {
                         var highlight = highlights[index];
                         var animator = highlight.GetComponent<Animator>();
-                        highlight.transform.SetParent(inventoryItemHighLight.button.transform);
+                        highlight.transform.SetParent(inventoryItem.button.transform);
                         highlight.rectTransform.anchoredPosition = Vector2.zero;
                         animator.SetInteger(State, index + 1);
                     }
+                    
+                    inventoryItem.itemPanel.SetActive(true);
                 };
 
-                inventoryItemHighLight.onPointDeSelect = () =>
+                inventoryItem.onPointDeSelect = () =>
                 {
                     Debug.Log("OnDeSelect");
                     foreach (var highlight in highlights)
@@ -265,25 +268,26 @@ namespace Utility.UI.Inventory
                         highlight.GetComponent<Animator>().SetInteger(State, 0);
                         highlight.transform.SetParent(_highlightParent);
                     }
+                    inventoryItem.itemPanel.SetActive(false);
                 };
                 
-                inventoryItemHighLight.onPointerEnter = () =>
+                inventoryItem.onPointerEnter = () =>
                 {
                     Debug.Log("OnPointerEnter");
                     for(var index = 0; index < highlights.Length; index++)
                     {
                         var highlight = highlights[index];
                         var animator = highlight.GetComponent<Animator>();
-                        highlight.transform.SetParent(inventoryItemHighLight.button.transform);
+                        highlight.transform.SetParent(inventoryItem.button.transform);
                         highlight.rectTransform.anchoredPosition = Vector2.zero;
                         animator.SetInteger(State, index + 1);
                     }
                 };
-                inventoryItemHighLight.onPointerExit = () =>
+                inventoryItem.onPointerExit = () =>
                 {
                     Debug.Log("OnPointerExit");
-                    Debug.Log($"버튼: {inventoryItemHighLight.button.gameObject}, 현재: {highlights[0].transform.parent.gameObject}");
-                    if (inventoryItemHighLight.button.transform != highlights[0].transform.parent)
+                    Debug.Log($"버튼: {inventoryItem.button.gameObject}, 현재: {highlights[0].transform.parent.gameObject}");
+                    if (inventoryItem.button.transform != highlights[0].transform.parent)
                     {
                         Debug.Log("하이라이트 빼지마라");
                         return;
@@ -296,10 +300,10 @@ namespace Utility.UI.Inventory
                     }
                 };
 
-                inventoryItemHighLight.button.onClick.AddListener(() =>
+                inventoryItem.button.onClick.AddListener(() =>
                 {
                     HighlightHelper.Instance.SetLast(_itemHighlighter, true);
-                    _itemHighlighter.Select(inventoryItemHighLight);
+                    _itemHighlighter.Select(inventoryItem);
                 });
             }
 
