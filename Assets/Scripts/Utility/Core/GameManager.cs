@@ -35,7 +35,7 @@ namespace Utility.Core
     
         public bool IsCharacterControlEnable()
         {
-            return !DialogueController.Instance.isDialogue;
+            return !DialogueController.Instance.isDialogue && !Mathf.Approximately(Time.timeScale, 0f);
         }
     }
 }

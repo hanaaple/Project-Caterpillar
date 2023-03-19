@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -82,7 +83,7 @@ namespace Utility.UI.Highlight
             _onCancle += _ => { onCancle?.Invoke(); };
         }
 
-        public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false)
+        public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false, bool isReset = true)
         {
             Debug.Log($"SetEnable {name} {isEnable}  {isDuplicatePossible}  {isRemove}");
             var uiActions = InputManager.inputControl.Ui;
@@ -90,12 +91,20 @@ namespace Utility.UI.Highlight
             {
                 if (!isEnable && !isDuplicatePossible && !isRemove)
                 {
-                    highlightedIndex = -1;
-                    selectedIndex = -1;
+                    if (isReset)
+                    {
+                        highlightedIndex = -1;
+                        selectedIndex = -1;
+                        
+                        foreach (var highlightItem in highlightItems)
+                        {
+                            highlightItem.Reset();
+                            highlightItem.ClearEventTrigger();
+                        }
+                    }
 
                     foreach (var highlightItem in highlightItems)
                     {
-                        highlightItem.Reset();
                         highlightItem.ClearEventTrigger();
                     }
                 }
@@ -143,12 +152,19 @@ namespace Utility.UI.Highlight
 
                 if (!isDuplicatePossible && !isRemove)
                 {
-                    highlightedIndex = -1;
-                    selectedIndex = -1;
+                    if (isReset)
+                    {
+                        highlightedIndex = -1;
+                        selectedIndex = -1;
+                        
+                        foreach (var highlightItem in highlightItems)
+                        {
+                            highlightItem.Reset();
+                        }
+                    }
 
                     foreach (var highlightItem in highlightItems)
                     {
-                        highlightItem.Reset();
                         highlightItem.ClearEventTrigger();
                     }
                 }
@@ -326,7 +342,7 @@ namespace Utility.UI.Highlight
             return Instantiate(sceneLoaderPrefab);
         }
 
-        public void Push(Highlighter highlighter, bool isDuplicatePossible = false)
+        public void Push(Highlighter highlighter, bool isDuplicatePossible = false, bool isReset = true)
         {
             if (_highlighters.Contains(highlighter))
             {
@@ -337,7 +353,7 @@ namespace Utility.UI.Highlight
 
             if (_highlighters.Count > 0)
             {
-                _highlighters.Last().SetEnable(false, isDuplicatePossible);
+                _highlighters.Last().SetEnable(false, isDuplicatePossible, default, isReset);
             }
             else
             {
@@ -363,6 +379,12 @@ namespace Utility.UI.Highlight
             }
             Debug.Log($"Pop, 삭제여부: {isRemove}");
 
+            StartCoroutine(PopCoroutine(highlighter, isRemove));
+        }
+
+        private IEnumerator PopCoroutine(Highlighter highlighter, bool isRemove)
+        {
+            yield return null;
             highlighter.SetEnable(false, default, isRemove);
             _highlighters.Remove(highlighter);
             
@@ -374,6 +396,16 @@ namespace Utility.UI.Highlight
             {
                 _highlighters.Last().SetEnable(true);
             }
+        }
+
+        public void Enable()
+        {
+            _highlighters.Last().SetEnable(true);
+        }
+
+        public void Disable(bool isReset)
+        {
+            _highlighters.Last().SetEnable(false, default, default, isReset);
         }
 
         public void SetLast(Highlighter highlighter, bool isDuplicatePossible = false)

@@ -208,6 +208,12 @@ namespace Utility.Dialogue
 
         private void OnInputDialogue(InputAction.CallbackContext obj = default)
         {
+            // 일시정지인 경우 Stop
+            if (Mathf.Approximately(Time.timeScale, 0f))
+            {
+                return;
+            }
+            
             if (_waitInputCoroutine != null)
             {
                 if (!_isCutSceneSkipEnable)
