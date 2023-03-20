@@ -92,7 +92,7 @@ namespace Utility.UI.Preference
         
             InputManager.SetUiAction(true);
             
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Select.performed += _onInput;
             Debug.Log("+++++++++++");
         }
@@ -105,7 +105,7 @@ namespace Utility.UI.Preference
             // InputManager.RebindLoad -= SetSaveButton;
             InputManager.RebindReset -= SetSaveButton;
         
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             InputManager.SetUiAction(false);
             uiActions.Select.performed -= _onInput;
             Debug.Log("-----------");

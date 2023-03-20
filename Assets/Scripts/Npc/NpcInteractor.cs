@@ -98,14 +98,14 @@ public class NpcInteractor : MonoBehaviour
     private void OnEnable()
     {
         InputManager.SetPlayerAction(true);
-        var playerActions = InputManager.inputControl.PlayerActions;
+        var playerActions = InputManager.InputControl.PlayerActions;
         playerActions.Interact.performed += _onInteract;
     }
 
     private void OnDisable()
     {
         InputManager.SetPlayerAction(false);
-        var playerActions = InputManager.inputControl.PlayerActions;
+        var playerActions = InputManager.InputControl.PlayerActions;
         playerActions.Interact.performed -= _onInteract;
     }
 

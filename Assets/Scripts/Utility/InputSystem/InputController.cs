@@ -37,7 +37,7 @@ namespace Utility.InputSystem
                 InputManager.LoadBindingOverride(_actionName);
                 GetBindingInfo();
                 UpdateUi();
-                InputAction action = InputManager.inputControl.asset.FindAction(_actionName);
+                InputAction action = InputManager.InputControl.asset.FindAction(_actionName);
                 InputManager.SaveBindingOverride(action);
             }
             InputManager.RebindComplete += UpdateUi;

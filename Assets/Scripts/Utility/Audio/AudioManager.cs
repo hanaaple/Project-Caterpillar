@@ -6,7 +6,27 @@ namespace Utility.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        private static AudioManager Instance { get; set; }
+        private static AudioManager _instance;
+        public static AudioManager Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    var obj = FindObjectOfType<AudioManager>();
+                    if(obj != null)
+                    {
+                        _instance = obj;
+                    }
+                    else
+                    {
+                        _instance = Create();
+                    }
+                    DontDestroyOnLoad(_instance);
+                }
+                return _instance;
+            }
+        }
     
         [Header("슬라이더")]
         public Slider bgmSlider;
@@ -19,35 +39,27 @@ namespace Utility.Audio
         [Header("오디오 믹서")]
         public AudioMixer audioMixer;
 
-        private bool _isPaused = false;
-    
-        private void Awake()
+        private bool _isPaused;
+
+        private static AudioManager Create()
         {
-            if (Instance == null)
-            {
-                Instance = this;   
-            }
-            DontDestroyOnLoad(this);
+            var sceneLoaderPrefab = Resources.Load<AudioManager>("AudioManager");
+            return Instantiate(sceneLoaderPrefab);
         }
 
-        void Start()
+        private void Start()
         {
-            // volumeSlider.onValueChanged.AddListener(value =>
-            // {
-            //     audioMixer.SetFloat("Volume", (value <= volumeSlider.minValue) ? -80f : volumeSlider.value);
-            // });
-        
-            sfxSlider.onValueChanged.AddListener(value =>
+            sfxSlider?.onValueChanged.AddListener(value =>
             {
-                audioMixer.SetFloat("Sfx", (value <= sfxSlider.minValue) ? -80f : sfxSlider.value);
+                audioMixer.SetFloat("Sfx", value <= sfxSlider.minValue ? -80f : sfxSlider.value);
             });
-        
-            bgmSlider.onValueChanged.AddListener(value =>
+
+            bgmSlider?.onValueChanged.AddListener(value =>
             {
-                audioMixer.SetFloat("Bgm", (value <= bgmSlider.minValue) ? -80f : bgmSlider.value);
+                audioMixer.SetFloat("Bgm", value <= bgmSlider.minValue ? -80f : bgmSlider.value);
             });
         }
-    
+
         public void PlaySfx(AudioClip audioClip)
         {
             sfx.PlayOneShot(audioClip);

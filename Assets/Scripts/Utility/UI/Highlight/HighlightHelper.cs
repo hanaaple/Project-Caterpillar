@@ -85,8 +85,8 @@ namespace Utility.UI.Highlight
 
         public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false, bool isReset = true)
         {
+            var uiActions = InputManager.InputControl.Ui;
             Debug.Log($"SetEnable {name} {isEnable}  {isDuplicatePossible}  {isRemove}");
-            var uiActions = InputManager.inputControl.Ui;
             if (enabled == isEnable)
             {
                 if (!isEnable && !isDuplicatePossible && !isRemove)

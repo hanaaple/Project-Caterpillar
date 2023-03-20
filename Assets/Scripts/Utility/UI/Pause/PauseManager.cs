@@ -211,14 +211,14 @@ namespace Utility.UI.Pause
 
         private void OnEnable()
         {
-            var esc = InputManager.inputControl.Esc;
+            var esc = InputManager.InputControl.Esc;
             esc.Pause.performed += _onPause;
             esc.Enable();
         }
         
         private void OnDisable()
         {
-            var esc = InputManager.inputControl.Esc;
+            var esc = InputManager.InputControl.Esc;
             esc.Pause.performed -= _onPause;
             esc.Disable();
         }
