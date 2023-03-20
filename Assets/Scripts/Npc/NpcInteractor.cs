@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using Utility.Core;
+using Utility.Dialogue;
 using Utility.InputSystem;
-using Utility.UI.Dialogue;
 #if UNITY_EDITOR
 using Utility.JsonLoader;
 using UnityEditor;
 
 [CustomEditor(typeof(NpcInteractor))]
-public class CubeGenerateButton : Editor
+public class NpcInteractorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -28,35 +30,69 @@ public class NpcInteractor : MonoBehaviour
 {
     [SerializeField] private TextAsset dialogue;
 
-    [SerializeField] private GameObject ui;
+    [FormerlySerializedAs("ui")] [SerializeField] private GameObject floatingMark;
     [SerializeField] private Vector2 offset;
 
     private Action<InputAction.CallbackContext> _onInteract;
 
-#if UNITY_EDITOR
-    [SerializeField] private DialogueProps dialogueProps;
+    [SerializeField] private DialogueData dialogueData;
 
+    private bool _isEnable;
+
+#if UNITY_EDITOR
     public void ShowDialogue()
     {
-        dialogueProps.datas = JsonHelper.GetJsonArray<DialogueItemProps>(dialogue.text);
+        dialogueData.dialogueElements = JsonHelper.GetJsonArray<DialogueElement>(dialogue.text);
+        for (var index = 0; index < dialogueData.dialogueElements.Length; index++)
+        {
+            var dialogueDataDialogueElement = dialogueData.dialogueElements[index];
+            if (dialogueDataDialogueElement.dialogueType == DialogueType.Wait)
+            {
+                Debug.Log($"{index}번째 Element Interactor 세팅 하세요.");
+            }
+        }
     }
 #endif
 
     private void Awake()
     {
+        //이거도 저기 부분에 합쳐라
+        dialogueData.onDialogueStart = () => { _isEnable = false; };
+        dialogueData.onDialogueWaitClear = () => { _isEnable = true; };
+        dialogueData.onDialogueEnd = () =>
+        {
+            _isEnable = true;
+            floatingMark.SetActive(true);
+        };
+
         _onInteract = _ =>
         {
-            if (ui.activeSelf)
+            if (!floatingMark.activeSelf || !GameManager.Instance.IsCharacterControlEnable())
             {
-                ui.SetActive(false);
-                DialogueController.instance.Converse(dialogue.text);
+                return;
+            }
+            
+            floatingMark.SetActive(false);
+            if (dialogueData.dialogueElements.Length != 0)
+            {
+                DialogueController.Instance.StartDialogue(dialogueData);
+            }
+            else
+            {
+                DialogueController.Instance.StartDialogue(dialogue.text);
             }
         };
     }
 
     private void Start()
     {
-        SetUIPos();
+        gameObject.layer = LayerMask.NameToLayer("OnlyPlayerCheck");
+        _isEnable = true;
+        
+        if (!floatingMark)
+        {
+            floatingMark.transform.position = transform.position + (Vector3)offset;
+        }
     }
 
     private void OnEnable()
@@ -73,30 +109,16 @@ public class NpcInteractor : MonoBehaviour
         playerActions.Interact.performed -= _onInteract;
     }
 
-    private void SetUIPos()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!ui)
+        if (_isEnable)
         {
-            return;
-        }
-
-        ui.transform.position = transform.position + (Vector3) offset;
-    }
-
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            ui.SetActive(true);
+            floatingMark.SetActive(true);
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            ui.SetActive(false);
-        }
+        floatingMark.SetActive(false);
     }
 }

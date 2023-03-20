@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,21 +13,24 @@ namespace Utility.UI.Highlight
     {
         public enum TransitionType
         {
-            Highlight, Select 
-        } 
-        
+            Highlight, Select
+        }
+
         public Button button;
-        
+
         protected List<TransitionType> transitionTypes;
-        
+
+        public bool isEnable;
+
         public void Init()
         {
+            isEnable = true;
             transitionTypes = new List<TransitionType>();
             ClearEventTrigger();
             SetDefault();
         }
-        
-        public void Reset()
+
+        public virtual void Reset()
         {
             transitionTypes = new List<TransitionType>();
             SetDefault();
@@ -53,24 +57,22 @@ namespace Utility.UI.Highlight
             {
                 Debug.Log(transitionType + "없음");
             }
-
-            Highlight();
         }
 
-        protected void Highlight()
+        public void Highlight()
         {
             if (transitionTypes.Count > 0)
             {
                 foreach (var transitionType in transitionTypes)
                 {
-                    if(transitionType.Equals(TransitionType.Select))
+                    if (transitionType.Equals(TransitionType.Select))
                     {
                         SetSelect();
                     }
-                    else if(transitionType.Equals(TransitionType.Highlight))
+                    else if (transitionType.Equals(TransitionType.Highlight))
                     {
                         EnterHighlight();
-                    }   
+                    }
                 }
             }
             else
@@ -87,12 +89,18 @@ namespace Utility.UI.Highlight
         public abstract void SetDefault();
 
         public abstract void EnterHighlight();
-        
+
         public abstract void SetSelect();
-        
+
         public virtual void AddEventTrigger(EventTriggerType eventTriggerType, UnityAction<BaseEventData> onHighlight)
         {
             EventTrigger eventTrigger = button.GetComponent<EventTrigger>();
+
+            if (eventTrigger.triggers.Any(item => item.eventID == eventTriggerType))
+            {
+                return;
+            }
+
             EventTrigger.Entry entryPointerDown = new EventTrigger.Entry
             {
                 eventID = eventTriggerType
@@ -100,11 +108,11 @@ namespace Utility.UI.Highlight
             entryPointerDown.callback.AddListener(onHighlight);
             eventTrigger.triggers.Add(entryPointerDown);
         }
-        
+
         public virtual void ClearEventTrigger()
         {
             EventTrigger eventTrigger = button.GetComponent<EventTrigger>();
             eventTrigger.triggers.Clear();
         }
     }
-}
+}   

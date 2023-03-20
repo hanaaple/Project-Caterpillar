@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility.SaveSystem;
 using Utility.SceneLoader;
 using Utility.UI.Highlight;
@@ -7,7 +8,7 @@ using Utility.UI.Highlight;
 namespace Title
 {
     [Serializable]
-    public class HighlightItemTitleButton : HighlightItem
+    public class HighlightTitleItem : HighlightItem
     {
         public enum ButtonType
         {
@@ -41,7 +42,7 @@ namespace Title
     {
         [SerializeField] private GameObject preferencePanel;
 
-        [Space(5)] [SerializeField] private HighlightItemTitleButton[] highlightButtons;
+        [FormerlySerializedAs("highlightButtons")] [Space(5)] [SerializeField] private HighlightTitleItem[] highlightItems;
 
         private Highlighter _highlighter;
 
@@ -49,7 +50,8 @@ namespace Title
         {
             _highlighter = new Highlighter
             {
-                highlightItems = highlightButtons, highlightType = Highlighter.HighlightType.HighlightIsSelect
+                highlightItems = highlightItems,
+                highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
             _highlighter.Init(Highlighter.ArrowType.Vertical);
@@ -61,35 +63,45 @@ namespace Title
         {
             SceneLoader.Instance.onLoadScene += () =>
             {
+                // 아마 넘어가면서 삭제시키는 이유로 이런거 같음 :(
                 HighlightHelper.Instance.Pop(_highlighter, true);
             };
             
-            var continueButton = Array.Find(highlightButtons,
-                item => item.buttonType == HighlightItemTitleButton.ButtonType.Continue);
-            continueButton.button.onClick.AddListener(() =>
+            foreach (var highlightItem in highlightItems)
             {
-                SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Load);
-            });
-
-            var newStartButton = Array.Find(highlightButtons,
-                item => item.buttonType == HighlightItemTitleButton.ButtonType.NewStart);
-            newStartButton.button.onClick.AddListener(() =>
-            {
-                SceneLoader.Instance.LoadScene("MainScene");
-            });
-
-            var preferenceButton = Array.Find(highlightButtons,
-                item => item.buttonType == HighlightItemTitleButton.ButtonType.Preferenece);
-            preferenceButton.button.onClick.AddListener(() =>
-            {
-                preferencePanel.SetActive(true);
-
-                // PreferenceManager.instance.OpenPreferencePanel();
-            });
-
-            var exitButton = Array.Find(highlightButtons,
-                item => item.buttonType == HighlightItemTitleButton.ButtonType.Exit);
-            exitButton.button.onClick.AddListener(Application.Quit);
+                switch (highlightItem.buttonType)
+                {
+                    case HighlightTitleItem.ButtonType.Continue:
+                    {
+                        highlightItem.button.onClick.AddListener(() =>
+                        {
+                            SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Load);
+                        });
+                        break;
+                    }
+                    case HighlightTitleItem.ButtonType.NewStart:
+                    {
+                        highlightItem.button.onClick.AddListener(() =>
+                        {
+                            SceneLoader.Instance.LoadScene("MainScene");
+                        });
+                        break;
+                    }
+                    case HighlightTitleItem.ButtonType.Preferenece:
+                    {
+                        highlightItem.button.onClick.AddListener(() =>
+                        {
+                            preferencePanel.SetActive(true);
+                        });
+                        break;
+                    }
+                    case HighlightTitleItem.ButtonType.Exit:
+                    {
+                        highlightItem.button.onClick.AddListener(Application.Quit);
+                        break;
+                    }
+                }
+            }
         }
     }
 }
