@@ -146,7 +146,7 @@ namespace Utility.Dialogue
             // await Task.Delay((int)(Time.deltaTime * 1000f));
 
             InputManager.SetUiAction(true);
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed += OnInputDialogue;
 
             _baseDialogueData.Peek().onDialogueStart?.Invoke();
@@ -176,7 +176,7 @@ namespace Utility.Dialogue
             // await Task.Delay((int)(Time.deltaTime * 1000f));
 
             InputManager.SetUiAction(true);
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed += OnInputDialogue;
 
             dialogueData?.onDialogueStart?.Invoke();
@@ -327,7 +327,7 @@ namespace Utility.Dialogue
                     _onComplete = () =>
                     {
                         InputManager.SetUiAction(false);
-                        var uiActions = InputManager.inputControl.Ui;
+                        var uiActions = InputManager.InputControl.Ui;
                         uiActions.Dialogue.performed -= OnInputDialogue;
 
                         SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Save);
@@ -552,7 +552,7 @@ namespace Utility.Dialogue
             leftAnimator.SetTrigger(DisappearHash);
 
             InputManager.SetUiAction(false);
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed -= OnInputDialogue;
 
             if (isEnd)
@@ -586,7 +586,7 @@ namespace Utility.Dialogue
 
             choicePanel.SetActive(true);
 
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed -= OnInputDialogue;
 
             HighlightHelper.Instance.Push(_choiceHighlighter);
@@ -654,7 +654,7 @@ namespace Utility.Dialogue
 
         private void InitChoiceDialogue(int nextIndex, int choiceContextLen)
         {
-            var uiActions = InputManager.inputControl.Ui;
+            var uiActions = InputManager.InputControl.Ui;
             uiActions.Dialogue.performed += OnInputDialogue;
 
             HighlightHelper.Instance.Pop(_choiceHighlighter);
