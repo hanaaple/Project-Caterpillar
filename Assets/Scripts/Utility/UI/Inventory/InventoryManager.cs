@@ -9,7 +9,7 @@ using Utility.UI.Highlight;
 namespace Utility.UI.Inventory
 {
     [Serializable]
-    public class InventoryMenuHighLight : HighlightItem
+    public class InventoryMenuItem : HighlightItem
     {
         public enum InventoryMenuType
         {
@@ -136,7 +136,7 @@ namespace Utility.UI.Inventory
     public class InventoryManager : MonoBehaviour
     {
         [SerializeField] private Button inventoryButton;
-        [SerializeField] private InventoryMenuHighLight[] inventoryMenuHighLights;
+        [SerializeField] private InventoryMenuItem[] inventoryMenuItems;
         [SerializeField] private InventoryItem[] inventoryItems;
         [SerializeField] private Image[] highlights;
         [SerializeField] private GameObject inventoryPanel;
@@ -180,7 +180,7 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter = new Highlighter
             {
-                highlightItems = inventoryMenuHighLights,
+                highlightItems = inventoryMenuItems,
                 name = "메뉴"
             };
 
@@ -196,11 +196,11 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
             {
-                var exitIndex = Array.FindIndex(inventoryMenuHighLights,
-                    item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Exit);
+                var exitIndex = Array.FindIndex(inventoryMenuItems,
+                    item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 if (_menuHighlighter.selectedIndex == exitIndex)
                 {
-                    inventoryMenuHighLights[exitIndex].button.onClick?.Invoke();
+                    inventoryMenuItems[exitIndex].button.onClick?.Invoke();
                 }
                 else
                 {
@@ -221,21 +221,66 @@ namespace Utility.UI.Inventory
             inventoryButton.onClick.AddListener(() => SetActive(true));
 
             // Menu Arrow Select
-            foreach (var inventoryMenuHighLight in inventoryMenuHighLights)
+            for(var idx = 0; idx < inventoryMenuItems.Length; idx++)
             {
-                inventoryMenuHighLight.onPointSelect = () =>
+                var index = idx;
+                var inventoryMenuItem = inventoryMenuItems[idx];
+                inventoryMenuItem.onPointSelect = () =>
                 {
                     HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                    
-                    switch(inventoryMenuHighLight.inventoryMenuType)
+
+                    switch(inventoryMenuItem.inventoryMenuType)
                     {
-                        case InventoryMenuHighLight.InventoryMenuType.Bag:
+                        case InventoryMenuItem.InventoryMenuType.Bag:
                             bagPanel.SetActive(true);
                             necklacePanel.SetActive(false);
+                            inventoryMenuItem.button.onClick.AddListener(() =>
+                            {
+                                var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                                var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
+
+                                if (!duplicated.Any())
+                                {
+                                    bagPanel.SetActive(true);
+                                    necklacePanel.SetActive(false);
+                                    return;
+                                }
+
+                                if (!HighlightHelper.Instance.Contains(_itemHighlighter))
+                                {
+                                    bagPanel.SetActive(true);
+                                    necklacePanel.SetActive(false);
+                                    HighlightHelper.Instance.Push(_itemHighlighter, true);
+                                    HighlightHelper.Instance.SetLast(_menuHighlighter, true);
+                                    _menuHighlighter.Select(index);
+                                }
+                                else
+                                {
+                                    HighlightHelper.Instance.SetLast(_itemHighlighter, true);
+                                    _itemHighlighter.Select(0);
+                                }
+                            });
                             break;
-                        case InventoryMenuHighLight.InventoryMenuType.Necklace:
+                        case InventoryMenuItem.InventoryMenuType.Necklace:
                             bagPanel.SetActive(false);
                             necklacePanel.SetActive(true);
+                            inventoryMenuItem.button.onClick.AddListener(() =>
+                            {
+                                HighlightHelper.Instance.Pop(_itemHighlighter);
+                                necklacePanel.SetActive(true);
+                                bagPanel.SetActive(false);
+
+                                HighlightHelper.Instance.SetLast(_menuHighlighter, true);
+                                _menuHighlighter.Select(index);
+                            });
+                            break;
+                        case InventoryMenuItem.InventoryMenuType.Exit:
+                            inventoryMenuItem.button.onClick.AddListener(() =>
+                            {
+                                inventoryPanel.SetActive(false);
+                                HighlightHelper.Instance.Pop(_itemHighlighter);
+                                HighlightHelper.Instance.Pop(_menuHighlighter);
+                            });
                             break;
                     }
                 };
@@ -256,7 +301,6 @@ namespace Utility.UI.Inventory
                         highlight.rectTransform.anchoredPosition = Vector2.zero;
                         animator.SetInteger(State, index + 1);
                     }
-                    
                     inventoryItem.itemPanel.SetActive(true);
                 };
 
@@ -270,7 +314,7 @@ namespace Utility.UI.Inventory
                     }
                     inventoryItem.itemPanel.SetActive(false);
                 };
-                
+
                 inventoryItem.onPointerEnter = () =>
                 {
                     Debug.Log("OnPointerEnter");
@@ -292,7 +336,7 @@ namespace Utility.UI.Inventory
                         Debug.Log("하이라이트 빼지마라");
                         return;
                     }
-                    
+
                     foreach (var highlight in highlights)
                     {
                         highlight.GetComponent<Animator>().SetInteger(State, 0);
@@ -306,53 +350,6 @@ namespace Utility.UI.Inventory
                     _itemHighlighter.Select(inventoryItem);
                 });
             }
-
-            var bagIndex = Array.FindIndex(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Bag);
-            inventoryMenuHighLights[bagIndex].button.onClick.AddListener(() =>
-            {
-                var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
-
-                if (!duplicated.Any())
-                {
-                    bagPanel.SetActive(true);
-                    necklacePanel.SetActive(false);
-                    return;
-                }
-                
-                if (!HighlightHelper.Instance.Contains(_itemHighlighter))
-                {
-                    bagPanel.SetActive(true);
-                    necklacePanel.SetActive(false);
-                    HighlightHelper.Instance.Push(_itemHighlighter, true);
-                    HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                    _menuHighlighter.Select(bagIndex);
-                }
-                else
-                {
-                    HighlightHelper.Instance.SetLast(_itemHighlighter, true);
-                    _itemHighlighter.Select(0);
-                }
-            });
-
-            var necklaceIndex = Array.FindIndex(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Necklace);
-            inventoryMenuHighLights[necklaceIndex].button.onClick.AddListener(() =>
-            {
-                HighlightHelper.Instance.Pop(_itemHighlighter);
-                necklacePanel.SetActive(true);
-                bagPanel.SetActive(false);
-
-                HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                _menuHighlighter.Select(necklaceIndex);
-            });
-
-            var exitIndex = Array.FindIndex(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Exit);
-            inventoryMenuHighLights[exitIndex].button.onClick.AddListener(() =>
-            {
-                inventoryPanel.SetActive(false);
-                HighlightHelper.Instance.Pop(_itemHighlighter);
-                HighlightHelper.Instance.Pop(_menuHighlighter);
-            });
         }
 
         private void LoadItemData()
@@ -360,8 +357,8 @@ namespace Utility.UI.Inventory
             // Get From ItemManager
             // ItemManager Have to load At Start Game
             Debug.Log("Inventory Init");
-            
-            
+
+
             var ownItems = ItemManager.Instance.GetItem<ItemManager.ItemType>();
             foreach (var inventoryItemHighLight in inventoryItems)
             {
@@ -382,18 +379,18 @@ namespace Utility.UI.Inventory
             {
                 LoadItemData();
                 HighlightHelper.Instance.Push(_menuHighlighter);
-                
+
                 inventoryPanel.SetActive(true);
                 bagPanel.SetActive(false);
                 necklacePanel.SetActive(false);
                 _menuHighlighter.Select(0);
-                
-                var bagButton = Array.Find(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Bag);
+
+                var bagButton = Array.Find(inventoryMenuItems, item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Bag);
                 bagButton.button.onClick?.Invoke();
             }
             else
             {
-                var exitButton = Array.Find(inventoryMenuHighLights, item => item.inventoryMenuType == InventoryMenuHighLight.InventoryMenuType.Exit);
+                var exitButton = Array.Find(inventoryMenuItems, item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 exitButton.button.onClick?.Invoke();
             }
         }

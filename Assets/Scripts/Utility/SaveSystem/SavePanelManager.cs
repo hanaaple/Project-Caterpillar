@@ -85,15 +85,7 @@ namespace Utility.SaveSystem
                 {
                     if (_buttonType == ButtonType.Save)
                     {
-                        var saveData = new SaveData
-                        {
-                            saveCoverData = new SaveCoverData
-                            {
-                                describe = "테스트입니다." + SceneManager.GetActiveScene().name,
-                                sceneName = SceneManager.GetActiveScene().name,
-                                playTime = 1122
-                            }
-                        };
+                        var saveData = SaveHelper.GetSaveData();
                         
                         SaveManager.Save(saveLoadItemProps.saveDataIndex, saveData);
 
@@ -111,7 +103,7 @@ namespace Utility.SaveSystem
                         {
                             SceneLoader.SceneLoader.Instance.onLoadSceneEnd += () =>
                             {
-                                ItemManager.Instance.Load(saveLoadItemProps.saveDataIndex);
+                                SaveHelper.Load(saveLoadItemProps.saveDataIndex);
                                 SetSaveLoadPanelActive(false, ButtonType.None);
                             };
                             SceneLoader.SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveLoadItemProps.saveDataIndex);

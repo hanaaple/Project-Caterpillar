@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utility.Dialogue;
 
 namespace Utility.Interaction
 {
@@ -11,7 +12,10 @@ namespace Utility.Interaction
         public bool isInteractable;
 
         public bool isContinuable;
-        public bool useNextInteract;
+        public bool interactNextIndex;
+        public bool isLoop;
+
+        public DialogueData dialogueData;
 
         [Header("For Debugging")] public bool isInteracted;
 

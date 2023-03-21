@@ -1,3 +1,4 @@
+using Utility.Core;
 using Utility.Serialize;
 
 namespace Utility.SaveSystem
@@ -14,6 +15,7 @@ namespace Utility.SaveSystem
         
         // Enum이 저장되던가 체크해야됨
         // public ItemManager.ItemType itemss;
+        public TendencyData tendencyData;
     }
     
     [System.Serializable]

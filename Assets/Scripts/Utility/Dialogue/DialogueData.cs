@@ -1,7 +1,6 @@
 using System;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
-using Utility.Interaction;
+using UnityEngine.Playables;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -10,9 +9,10 @@ namespace Utility.Dialogue
     [Serializable]
     public class DialogueData
     {
-        [NonSerialized] public int index;
+        // for Debugging
+        public int index;
         public DialogueElement[] dialogueElements;
-        
+
         [NonSerialized] public UnityAction onDialogueStart;
         [NonSerialized] public UnityAction onDialogueWaitClear;
         [NonSerialized] public UnityAction onDialogueEnd;
@@ -31,18 +31,35 @@ namespace Utility.Dialogue
     }
 
     [Serializable]
+    public class Interactions
+    {
+        public Interaction.Interaction[] interactions;
+    }
+
+    [Serializable]
     public struct DialogueElement
     {
         public CharacterType name;
         public string subject;
         public string contents;
         public DialogueType dialogueType;
-        
+
         public Expression expression;
         public string[] option;
 
+        [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public InteractionWaitType interactionWaitType;
-        [ConditionalHideInInspector("dialogueType", DialogueType.Wait)]
-        public Interaction.Interaction[] interactions;
+        [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
+        public Interactions waitInteraction;
+
+        [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
+        public PlayableAsset playableAsset;
+        [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
+        public DirectorWrapMode extrapolationMode;
+
+        [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
+        public Interaction.Interaction interaction;
+        [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
+        public int interactIndex;
     }
 }

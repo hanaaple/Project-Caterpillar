@@ -24,7 +24,7 @@ namespace Utility.Interaction
 
     public class TriggerInteraction : Interaction
     {
-        protected override void StartInteraction(int index = -1)
+        public override void StartInteraction(int index = -1)
         {
             if (index == -1)
             {
@@ -40,14 +40,14 @@ namespace Utility.Interaction
 
             var interactionData = GetInteractionData(index);
 
-            if (interactionData.jsonAsset)
+            if (interactionData.dialogueData.dialogueElements.Length == 0)
             {
-                DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text,
-                    () => { EndInteraction(index); });
+                DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text, () => { EndInteraction(index); });
             }
             else
             {
-                EndInteraction(index);
+                interactionData.dialogueData.onDialogueEnd = () => { EndInteraction(index); };
+                DialogueController.Instance.StartDialogue(interactionData.dialogueData);
             }
         }
 
@@ -59,11 +59,11 @@ namespace Utility.Interaction
 
             if (IsInteractionClear())
             {
-                isClear = true;
+                IsClear = true;
             }
 
             GetComponent<Collider2D>().enabled = false;
-            OnClear?.Invoke();
+            ONClear?.Invoke();
             interactionData.onInteractionEnd?.Invoke();
         }
 

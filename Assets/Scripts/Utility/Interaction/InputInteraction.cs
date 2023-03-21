@@ -19,6 +19,7 @@ public class InputInteractionEditor : Editor
         if (GUILayout.Button("ShowDialogue"))
         {
             generator.ShowDialogue();
+            EditorUtility.SetDirty(generator);
         }
     }
 }
@@ -41,7 +42,6 @@ namespace Utility.Interaction
                 {
                     return;
                 }
-
                 floatingMark.SetActive(false);
 
                 StartInteraction();
@@ -58,7 +58,7 @@ namespace Utility.Interaction
             }
         }
 
-        protected override void StartInteraction(int index = -1)
+        public override void StartInteraction(int index = -1)
         {
             if (index == -1)
             {
@@ -74,7 +74,15 @@ namespace Utility.Interaction
 
             var interactionData = GetInteractionData(index);
 
-            DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text, () => { EndInteraction(index); });
+            if (interactionData.dialogueData.dialogueElements.Length == 0)
+            {
+                DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text, () => { EndInteraction(index); });
+            }
+            else
+            {
+                interactionData.dialogueData.onDialogueEnd = () => { EndInteraction(index); };
+                DialogueController.Instance.StartDialogue(interactionData.dialogueData);
+            }
         }
 
         protected override void EndInteraction(int index = -1)
@@ -85,16 +93,19 @@ namespace Utility.Interaction
 
             if (IsInteractionClear())
             {
-                isClear = true;
+                IsClear = true;
             }
-
-            GetComponent<Collider2D>().enabled = false;
-            OnClear?.Invoke();
+            
+            ONClear?.Invoke();
             interactionData.onInteractionEnd?.Invoke();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (!IsInteractable())
+            {
+                return;
+            }
             floatingMark.SetActive(true);
         }
 

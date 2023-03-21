@@ -46,7 +46,7 @@ public class NpcInteractor : MonoBehaviour
         for (var index = 0; index < dialogueData.dialogueElements.Length; index++)
         {
             var dialogueDataDialogueElement = dialogueData.dialogueElements[index];
-            if (dialogueDataDialogueElement.dialogueType == DialogueType.Wait)
+            if (dialogueDataDialogueElement.dialogueType == DialogueType.WaitInteract)
             {
                 Debug.Log($"{index}번째 Element Interactor 세팅 하세요.");
             }

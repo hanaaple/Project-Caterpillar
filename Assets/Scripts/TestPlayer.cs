@@ -15,17 +15,14 @@ public class TestPlayer : MonoBehaviour
 
 
     private Camera _camera;
-
     private Vector3 _minBounds;
     private Vector3 _maxBounds;
-
     private float _yScreenHalfSize;
     private float _xScreenHalfSize;
-
     private Animator _animator;
-    private static readonly int IsMove = Animator.StringToHash("isMove");
-    
     private bool _wasPositive;
+    
+    private readonly int _isMove = Animator.StringToHash("isMove");
 
     private void OnEnable()
     {
@@ -62,16 +59,16 @@ public class TestPlayer : MonoBehaviour
     {
         if (input == Vector3.zero || !GameManager.Instance.IsCharacterControlEnable())
         {
-            if (_animator.GetBool(IsMove))
+            if (_animator.GetBool(_isMove))
             {
-                _animator.SetBool(IsMove, false);
+                _animator.SetBool(_isMove, false);
             }
             return;
         }
         
-        if (!_animator.GetBool(IsMove))
+        if (!_animator.GetBool(_isMove))
         {
-            _animator.SetBool(IsMove, true);
+            _animator.SetBool(_isMove, true);
         }
         
         if (!_wasPositive && input.x > 0)

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utility.SaveSystem;
 using Utility.SceneLoader;
 using Utility.UI.Highlight;
@@ -8,7 +7,7 @@ using Utility.UI.Highlight;
 namespace Title
 {
     [Serializable]
-    public class HighlightTitleItem : HighlightItem
+    public class HighlightItemTitleButton : HighlightItem
     {
         public enum ButtonType
         {
@@ -42,7 +41,7 @@ namespace Title
     {
         [SerializeField] private GameObject preferencePanel;
 
-        [FormerlySerializedAs("highlightButtons")] [Space(5)] [SerializeField] private HighlightTitleItem[] highlightItems;
+        [Space(5)] [SerializeField] private HighlightItemTitleButton[] highlightButtons;
 
         private Highlighter _highlighter;
 
@@ -50,8 +49,7 @@ namespace Title
         {
             _highlighter = new Highlighter
             {
-                highlightItems = highlightItems,
-                highlightType = Highlighter.HighlightType.HighlightIsSelect
+                highlightItems = highlightButtons, highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
             _highlighter.Init(Highlighter.ArrowType.Vertical);
@@ -63,43 +61,34 @@ namespace Title
         {
             SceneLoader.Instance.onLoadScene += () =>
             {
-                // 아마 넘어가면서 삭제시키는 이유로 이런거 같음 :(
                 HighlightHelper.Instance.Pop(_highlighter, true);
             };
-            
-            foreach (var highlightItem in highlightItems)
+
+            foreach (var highlightItem in highlightButtons)
             {
-                switch (highlightItem.buttonType)
+                switch(highlightItem.buttonType)
                 {
-                    case HighlightTitleItem.ButtonType.Continue:
-                    {
+                    case HighlightItemTitleButton.ButtonType.Continue:
                         highlightItem.button.onClick.AddListener(() =>
                         {
                             SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Load);
                         });
                         break;
-                    }
-                    case HighlightTitleItem.ButtonType.NewStart:
-                    {
+                    case HighlightItemTitleButton.ButtonType.NewStart:
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            SceneLoader.Instance.LoadScene("MainScene");
+                            SceneLoader.Instance.LoadScene("PrologueScene");
                         });
                         break;
-                    }
-                    case HighlightTitleItem.ButtonType.Preferenece:
-                    {
+                    case HighlightItemTitleButton.ButtonType.Preferenece:
                         highlightItem.button.onClick.AddListener(() =>
                         {
                             preferencePanel.SetActive(true);
                         });
                         break;
-                    }
-                    case HighlightTitleItem.ButtonType.Exit:
-                    {
+                    case HighlightItemTitleButton.ButtonType.Exit:
                         highlightItem.button.onClick.AddListener(Application.Quit);
                         break;
-                    }
                 }
             }
         }

@@ -43,9 +43,13 @@
     MoveMap = 4,
     Save = 5,
     CutScene = 6,
-    Wait = 7,
+    WaitInteract = 7,
+    Interact = 8,
+    Random = 9,
+    RandomEnd = 10,
+    ImmediatelyExecute = 11,
   }
-  
+
   public enum InteractionWaitType
   {
     None,
