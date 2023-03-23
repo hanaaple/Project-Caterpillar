@@ -91,6 +91,7 @@ namespace Title
                     {
                         highlightItem.button.onClick.AddListener(() =>
                         {
+                            HighlightHelper.Instance.Disable(false);
                             preferencePanel.SetActive(true);
                         });
                         break;

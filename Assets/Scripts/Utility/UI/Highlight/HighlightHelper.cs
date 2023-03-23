@@ -382,6 +382,7 @@ namespace Utility.UI.Highlight
             StartCoroutine(PopCoroutine(highlighter, isRemove));
         }
 
+        // 하는 이유 - input 1회에 여러번 실행됨.
         private IEnumerator PopCoroutine(Highlighter highlighter, bool isRemove)
         {
             yield return null;
@@ -395,6 +396,16 @@ namespace Utility.UI.Highlight
             else
             {
                 _highlighters.Last().SetEnable(true);
+            }
+        }
+
+        public void ResetHighlight()
+        {
+            InputManager.SetUiAction(false);
+            while (_highlighters.Count > 0)
+            {
+                _highlighters.Last().SetEnable(false, default, true);
+                _highlighters.RemoveAt(_highlighters.Count - 1);
             }
         }
 

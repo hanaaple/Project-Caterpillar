@@ -38,36 +38,7 @@ namespace Utility.UI.Pause
             button.image.sprite = selectSprite;
         }
     }
-    
-    [Serializable]
-    public class CheckHighlightItem : HighlightItem
-    {
-        public enum ButtonType
-        {
-            Yes,
-            No
-        }
-        
-        public ButtonType buttonType;
-        
-        [SerializeField] private Sprite defaultSprite;
-        [SerializeField] private Sprite selectSprite;
 
-        public override void SetDefault()
-        {
-            button.image.sprite = defaultSprite;
-        }
-
-        public override void EnterHighlight()
-        {
-        }
-
-        public override void SetSelect()
-        {
-            button.image.sprite = selectSprite;
-        }
-    }
-    
     public class PauseManager : MonoBehaviour
     {
         [SerializeField] private GameObject preferencePanel;
@@ -107,7 +78,7 @@ namespace Utility.UI.Pause
 
             _pauseHighlighter.Init(Highlighter.ArrowType.Vertical, () =>
             {
-                SetActive(false);
+                HighlightHelper.Instance.Pop(_checkHighlighter, true);
             });
 
             _checkHighlighter = new Highlighter
@@ -158,7 +129,8 @@ namespace Utility.UI.Pause
                             yesHighlightItem.button.onClick.RemoveAllListeners();
                             yesHighlightItem.button.onClick.AddListener(() =>
                             {
-                                SetActive(false);
+                                Time.timeScale = 1f;
+                                HighlightHelper.Instance.ResetHighlight();
                                 SceneLoader.SceneLoader.Instance.LoadScene("TitleScene");
                             });
                             checkPanel.SetActive(true);
