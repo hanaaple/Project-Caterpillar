@@ -46,7 +46,7 @@ public class NpcInteractor : MonoBehaviour
         for (var index = 0; index < dialogueData.dialogueElements.Length; index++)
         {
             var dialogueDataDialogueElement = dialogueData.dialogueElements[index];
-            if (dialogueDataDialogueElement.dialogueType == DialogueType.Wait)
+            if (dialogueDataDialogueElement.dialogueType == DialogueType.WaitInteract)
             {
                 Debug.Log($"{index}번째 Element Interactor 세팅 하세요.");
             }
@@ -57,9 +57,9 @@ public class NpcInteractor : MonoBehaviour
     private void Awake()
     {
         //이거도 저기 부분에 합쳐라
-        dialogueData.onDialogueStart = () => { _isEnable = false; };
-        dialogueData.onDialogueWaitClear = () => { _isEnable = true; };
-        dialogueData.onDialogueEnd = () =>
+        dialogueData.OnDialogueStart = () => { _isEnable = false; };
+        dialogueData.OnDialogueWaitClear = () => { _isEnable = true; };
+        dialogueData.OnDialogueEnd = () =>
         {
             _isEnable = true;
             floatingMark.SetActive(true);
@@ -67,7 +67,7 @@ public class NpcInteractor : MonoBehaviour
 
         _onInteract = _ =>
         {
-            if (!floatingMark.activeSelf || !GameManager.Instance.IsCharacterControlEnable())
+            if (!floatingMark.activeSelf || !GameManager.IsCharacterControlEnable())
             {
                 return;
             }

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Utility.Core;
-using Utility.Dialogue;
 using Utility.InputSystem;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,6 +18,7 @@ public class InputInteractionEditor : Editor
         if (GUILayout.Button("ShowDialogue"))
         {
             generator.ShowDialogue();
+            EditorUtility.SetDirty(generator);
         }
     }
 }
@@ -33,15 +33,16 @@ namespace Utility.Interaction
 
         private Action<InputAction.CallbackContext> _onInteract;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _onInteract = _ =>
             {
-                if (!floatingMark.activeSelf || !GameManager.Instance.IsCharacterControlEnable())
+                if (!floatingMark.activeSelf || !GameManager.IsCharacterControlEnable())
                 {
                     return;
                 }
-
                 floatingMark.SetActive(false);
 
                 StartInteraction();
@@ -57,44 +58,13 @@ namespace Utility.Interaction
                 floatingMark.transform.position = transform.position + (Vector3)offset;
             }
         }
-
-        protected override void StartInteraction(int index = -1)
+        
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (index == -1)
-            {
-                index = interactionIndex;
-            }
-
-            if (!IsInteractable(index))
+            if (!IsInteractable())
             {
                 return;
             }
-
-            base.StartInteraction(index);
-
-            var interactionData = GetInteractionData(index);
-
-            DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text, () => { EndInteraction(index); });
-        }
-
-        protected override void EndInteraction(int index = -1)
-        {
-            base.EndInteraction(index);
-
-            var interactionData = GetInteractionData(index);
-
-            if (IsInteractionClear())
-            {
-                isClear = true;
-            }
-
-            GetComponent<Collider2D>().enabled = false;
-            OnClear?.Invoke();
-            interactionData.onInteractionEnd?.Invoke();
-        }
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
             floatingMark.SetActive(true);
         }
 

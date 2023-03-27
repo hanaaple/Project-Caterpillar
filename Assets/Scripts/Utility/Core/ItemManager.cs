@@ -17,7 +17,7 @@ public class GenerateButton : Editor
     {
         base.OnInspectorGUI();
         
-        ItemManager generator = (ItemManager)target;
+        var generator = (ItemManager)target;
         if (GUILayout.Button("Add Random Item"))
         {
             if (!Application.isPlaying)
@@ -65,7 +65,7 @@ namespace Utility.Core
             }
         }
 
-        [SerializeField] private List<ItemType> _items;
+        [SerializeField] private List<ItemType> items;
         
         private static ItemManager Create()
         {
@@ -77,12 +77,12 @@ namespace Utility.Core
         {
             Debug.Log("Item Load");
             var saveData = SaveManager.GetSaveData(saveIndex);
-            _items = saveData.items
+            items = saveData.items
                 .Select(item => Enum.TryParse(item, true, out ItemType itemList) ? itemList : ItemType.None)
                 .Where(item => item != ItemType.None)
                 .ToList();
 
-            if (_items.Count != _items.Distinct().Count())
+            if (items.Count != items.Distinct().Count())
             {
                 Debug.LogWarning("중복 데이터 존재합니다.");
             }
@@ -90,20 +90,20 @@ namespace Utility.Core
 
         public void AddItem(ItemType itemType)
         {
-            if (Enum.GetValues(typeof(ItemType)).Length - 1 == _items.Count)
+            if (Enum.GetValues(typeof(ItemType)).Length - 1 == items.Count)
             {
                 return;
             }
 
             while(true)
             {
-                if (itemType == ItemType.None || _items.Contains(itemType))
+                if (itemType == ItemType.None || items.Contains(itemType))
                 {
                     itemType = (ItemType)Random.Range(0, Enum.GetValues(typeof(ItemType)).Length);
                     continue;
                 }
 
-                _items.Add(itemType);
+                items.Add(itemType);
                 break;
             }
         }
@@ -135,12 +135,12 @@ namespace Utility.Core
                 {
                     case "add":
                     {
-                        _items.Add(itemType);
+                        items.Add(itemType);
                         break;
                     }
                     case "remove":
                     {
-                        _items.Remove(itemType);
+                        items.Remove(itemType);
                         break;
                     }
                     default:
@@ -156,12 +156,12 @@ namespace Utility.Core
         {
             if (typeof(T) == typeof(string))
             {
-                return _items.Select(item => item.ToString().ToLower()).ToArray() as T[];    
+                return items.Select(item => item.ToString().ToLower()).ToArray() as T[];    
             }
             
             if (typeof(T) == typeof(ItemType))
             {
-                return _items.ToArray() as T[];
+                return items.ToArray() as T[];
             }
             return null;
         }

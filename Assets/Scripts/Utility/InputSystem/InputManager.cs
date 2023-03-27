@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 
 namespace Utility.InputSystem
 {
-    public class InputManager
+    public static class InputManager
     {
         private static InputControl _inputControl;
+
         public static InputControl InputControl
         {
             get
@@ -35,9 +36,9 @@ namespace Utility.InputSystem
 
         private class BindInputAction
         {
-            public InputAction inputAction;
-            public int bindingIndex;
-            public string originalDisplayName;
+            public InputAction InputAction;
+            public int BindingIndex;
+            public string OriginalDisplayName;
         }
 
         public static void SetUiAction(bool isAdd)
@@ -109,14 +110,14 @@ namespace Utility.InputSystem
             {
                 foreach (var inputAction in BindInputActions)
                 {
-                    SaveBindingOverride(inputAction.inputAction);
+                    SaveBindingOverride(inputAction.InputAction);
                 }
             }
             else
             {
                 foreach (var inputAction in BindInputActions)
                 {
-                    LoadBindingOverride(inputAction.inputAction.name);
+                    LoadBindingOverride(inputAction.InputAction.name);
                 }
             }
 
@@ -124,12 +125,11 @@ namespace Utility.InputSystem
             BindInputActions.Clear();
             RebindEnd?.Invoke();
         }
-        
+
         public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel,
-            TMP_Text statusText,
-            bool excludeMouse)
+            TMP_Text statusText, bool excludeMouse)
         {
-            InputAction inputAction = InputControl.asset.FindAction(actionName);
+            var inputAction = InputControl.asset.FindAction(actionName);
             if (inputAction == null || inputAction.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Couldn't find action or binding");
@@ -151,8 +151,7 @@ namespace Utility.InputSystem
         }
 
         private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText,
-            GameObject bindingPanel,
-            bool allCompositeParts, bool excludeMouse)
+            GameObject bindingPanel, bool allCompositeParts, bool excludeMouse)
         {
             if (actionToRebind == null || bindingIndex < 0)
             {
@@ -164,7 +163,7 @@ namespace Utility.InputSystem
 
             actionToRebind.Disable();
 
-            string originBindingName = GetBindingName(actionToRebind.name, bindingIndex);
+            var originBindingName = GetBindingName(actionToRebind.name, bindingIndex);
 
             var rebind = actionToRebind.PerformInteractiveRebinding(bindingIndex)
                 .WithCancelingThrough("<Keyboard>/escape")
@@ -183,8 +182,8 @@ namespace Utility.InputSystem
                     }
 
                     string bindingName = GetBindingName(actionToRebind.name, bindingIndex);
-                    var bind = BindInputActions.Find(item => item.inputAction.name == actionToRebind.name &&
-                                                             item.bindingIndex == bindingIndex);
+                    var bind = BindInputActions.Find(item => item.InputAction.name == actionToRebind.name &&
+                                                             item.BindingIndex == bindingIndex);
 
 
                     if (bind == null)
@@ -197,19 +196,19 @@ namespace Utility.InputSystem
                     }
 
                     if (bind == null && originBindingName != bindingName ||
-                        bind != null && bind.originalDisplayName != bindingName)
+                        bind != null && bind.OriginalDisplayName != bindingName)
                     {
                         BindInputActions.Remove(bind);
                         if (bind != null)
                         {
-                            originBindingName = bind.originalDisplayName;
+                            originBindingName = bind.OriginalDisplayName;
                         }
 
                         BindInputActions.Add(new BindInputAction
                         {
-                            inputAction = actionToRebind,
-                            bindingIndex = bindingIndex,
-                            originalDisplayName = originBindingName
+                            InputAction = actionToRebind,
+                            BindingIndex = bindingIndex,
+                            OriginalDisplayName = originBindingName
                         });
                     }
                     else
@@ -240,13 +239,13 @@ namespace Utility.InputSystem
 
         public static string GetBindingName(string actionName, int bindingIndex)
         {
-            InputAction action = InputControl.asset.FindAction(actionName);
+            var action = InputControl.asset.FindAction(actionName);
             return action.GetBindingDisplayString(bindingIndex);
         }
 
         public static void SaveBindingOverride(InputAction action)
         {
-            for (int i = 0; i < action.bindings.Count; i++)
+            for (var i = 0; i < action.bindings.Count; i++)
             {
                 PlayerPrefs.SetString(action.actionMap + action.name + i, action.bindings[i].overridePath);
             }
@@ -254,11 +253,11 @@ namespace Utility.InputSystem
 
         public static void LoadBindingOverride(string actionName)
         {
-            InputAction action = InputControl.asset.FindAction(actionName);
+            var action = InputControl.asset.FindAction(actionName);
 
-            for (int i = 0; i < action.bindings.Count; i++)
+            for (var i = 0; i < action.bindings.Count; i++)
             {
-                string loadActionMap = PlayerPrefs.GetString(action.actionMap + action.name + i);
+                var loadActionMap = PlayerPrefs.GetString(action.actionMap + action.name + i);
                 if (!string.IsNullOrEmpty(loadActionMap))
                 {
                     action.ApplyBindingOverride(i, loadActionMap);
@@ -268,7 +267,7 @@ namespace Utility.InputSystem
                 {
                     if (action.bindings[i].isComposite)
                     {
-                        for (int j = i; j < action.bindings.Count && action.bindings[j].isComposite; j++)
+                        for (var j = i; j < action.bindings.Count && action.bindings[j].isComposite; j++)
                         {
                             action.RemoveBindingOverride(j);
                         }
@@ -285,7 +284,7 @@ namespace Utility.InputSystem
 
         public static void TempResetBinding(string actionName, int bindingIndex)
         {
-            InputAction action = InputControl.asset.FindAction(actionName);
+            var action = InputControl.asset.FindAction(actionName);
             if (action == null || action.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Could not find action or binding");
@@ -294,33 +293,33 @@ namespace Utility.InputSystem
 
             if (action.bindings[bindingIndex].isComposite)
             {
-                for (int i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
+                for (var i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
                 {
-                    string originBindingName = GetBindingName(actionName, i);
+                    var originBindingName = GetBindingName(actionName, i);
                     action.RemoveBindingOverride(i);
 
                     if (originBindingName != GetBindingName(actionName, i))
                     {
                         BindInputActions.Add(new BindInputAction
                         {
-                            inputAction = action,
-                            bindingIndex = bindingIndex,
-                            originalDisplayName = originBindingName
+                            InputAction = action,
+                            BindingIndex = bindingIndex,
+                            OriginalDisplayName = originBindingName
                         });
                     }
                 }
             }
             else
             {
-                string originBindingName = GetBindingName(actionName, bindingIndex);
+                var originBindingName = GetBindingName(actionName, bindingIndex);
                 action.RemoveBindingOverride(bindingIndex);
                 if (originBindingName != GetBindingName(actionName, bindingIndex))
                 {
                     BindInputActions.Add(new BindInputAction
                     {
-                        inputAction = action,
-                        bindingIndex = bindingIndex,
-                        originalDisplayName = originBindingName
+                        InputAction = action,
+                        BindingIndex = bindingIndex,
+                        OriginalDisplayName = originBindingName
                     });
                 }
             }
@@ -338,7 +337,7 @@ namespace Utility.InputSystem
 
         public static void ResetBinding(string actionName, int bindingIndex)
         {
-            InputAction action = InputControl.asset.FindAction(actionName);
+            var action = InputControl.asset.FindAction(actionName);
             if (action == null || action.bindings.Count <= bindingIndex)
             {
                 Debug.Log("Could not find action or binding");
@@ -347,7 +346,7 @@ namespace Utility.InputSystem
 
             if (action.bindings[bindingIndex].isComposite)
             {
-                for (int i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
+                for (var i = bindingIndex; i < action.bindings.Count && action.bindings[i].isComposite; i++)
                 {
                     action.RemoveBindingOverride(i);
                 }

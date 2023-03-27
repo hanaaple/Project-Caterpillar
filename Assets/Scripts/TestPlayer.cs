@@ -15,17 +15,14 @@ public class TestPlayer : MonoBehaviour
 
 
     private Camera _camera;
-
     private Vector3 _minBounds;
     private Vector3 _maxBounds;
-
     private float _yScreenHalfSize;
     private float _xScreenHalfSize;
-
     private Animator _animator;
-    private static readonly int IsMove = Animator.StringToHash("isMove");
-    
     private bool _wasPositive;
+    
+    private readonly int _isMove = Animator.StringToHash("isMove");
 
     private void OnEnable()
     {
@@ -56,28 +53,30 @@ public class TestPlayer : MonoBehaviour
         {
             _wasPositive = true;
         }
+        
+        CameraMove();
     }
 
     private void FixedUpdate()
     {
-        if (input == Vector3.zero || !GameManager.Instance.IsCharacterControlEnable())
+        if (input == Vector3.zero || !GameManager.IsCharacterControlEnable())
         {
-            if (_animator.GetBool(IsMove))
+            if (_animator.GetBool(_isMove))
             {
-                _animator.SetBool(IsMove, false);
+                _animator.SetBool(_isMove, false);
             }
             return;
         }
         
-        if (!_animator.GetBool(IsMove))
+        if (!_animator.GetBool(_isMove))
         {
-            _animator.SetBool(IsMove, true);
+            _animator.SetBool(_isMove, true);
         }
         
         if (!_wasPositive && input.x > 0)
         {
             var scale = transform.localScale;
-            scale.x = scale.x * -1;
+            scale.x *= -1;
             transform.localScale = scale;
             
             _wasPositive = true;
@@ -85,7 +84,7 @@ public class TestPlayer : MonoBehaviour
         else if (_wasPositive && input.x < 0)
         {
             var scale = transform.localScale;
-            scale.x = scale.x * -1;
+            scale.x *= -1;
             transform.localScale = scale;
 
             _wasPositive = false;
@@ -116,11 +115,19 @@ public class TestPlayer : MonoBehaviour
             clampX = Mathf.Clamp(targetPos.x, _minBounds.x + _xScreenHalfSize,
                 _maxBounds.x - _xScreenHalfSize);
         }
+        else
+        {
+            clampX = Mathf.Clamp(targetPos.x, 0, 0);
+        }
 
         if (_maxBounds.y - _yScreenHalfSize > 0)
         {
             clampY = Mathf.Clamp(targetPos.y, _minBounds.y + _yScreenHalfSize,
                 _maxBounds.y - _yScreenHalfSize);
+        }
+        else
+        {
+            clampY = Mathf.Clamp(targetPos.y, 0, 0);
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);

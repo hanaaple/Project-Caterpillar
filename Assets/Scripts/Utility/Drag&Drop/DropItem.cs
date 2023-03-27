@@ -12,7 +12,7 @@ namespace Utility.Drag_Drop
         {
             if (dragItem)
             {
-                dragItem.onBeginDrag.AddListener(Reset);
+                dragItem.OnBeginDragAction.AddListener(Reset);
                 dragItem.GetComponent<RectTransform>().anchoredPosition =
                     GetComponent<RectTransform>().anchoredPosition;
             }
@@ -23,7 +23,7 @@ namespace Utility.Drag_Drop
             if (eventData.pointerDrag && !dragItem)
             {
                 dragItem = eventData.pointerDrag.GetComponent<DragItem>();
-                dragItem.onBeginDrag.AddListener(Reset);
+                dragItem.OnBeginDragAction.AddListener(Reset);
                 dragItem.GetComponent<RectTransform>().anchoredPosition =
                     GetComponent<RectTransform>().anchoredPosition;
             }
@@ -31,7 +31,7 @@ namespace Utility.Drag_Drop
 
         private void Reset()
         {
-            dragItem.onBeginDrag.RemoveListener(Reset);
+            dragItem.OnBeginDragAction.RemoveListener(Reset);
             dragItem = null;
         }
 

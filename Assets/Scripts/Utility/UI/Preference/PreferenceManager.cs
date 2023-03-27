@@ -87,7 +87,6 @@ namespace Utility.UI.Preference
             var uiActions = InputManager.InputControl.Ui;
             uiActions.Select.performed += _onInput;
             uiActions.Cancle.performed += _onCancle;
-            Debug.Log("+++++++++++");
         }
 
         private void OnDisable()
@@ -101,7 +100,6 @@ namespace Utility.UI.Preference
             InputManager.SetUiAction(false);
             uiActions.Select.performed -= _onInput;
             uiActions.Cancle.performed -= _onCancle;
-            Debug.Log("-----------");
         }
 
         private void SetSaveButton()
