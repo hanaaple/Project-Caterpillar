@@ -132,7 +132,7 @@ namespace Utility.UI.Preference
         {
             _checkHighlighter = new Highlighter
             {
-                highlightItems = checkHighlightItems,
+                HighlightItems = checkHighlightItems,
                 name = "check 하이라이트"
             };
             

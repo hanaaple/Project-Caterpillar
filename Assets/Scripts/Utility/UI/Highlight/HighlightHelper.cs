@@ -409,17 +409,6 @@ namespace Utility.UI.Highlight
             }
         }
 
-
-        public void ResetHighlight()
-        {
-            InputManager.SetUiAction(false);
-            while (_highlighters.Count > 0)
-            {
-                _highlighters.Last().SetEnable(false, default, true);
-                _highlighters.RemoveAt(_highlighters.Count - 1);
-            }
-        }
-
         public void Enable()
         {
             _highlighters.Last().SetEnable(true);
