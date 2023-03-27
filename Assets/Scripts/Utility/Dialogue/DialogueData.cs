@@ -13,9 +13,9 @@ namespace Utility.Dialogue
         public int index;
         public DialogueElement[] dialogueElements;
 
-        [NonSerialized] public UnityAction onDialogueStart;
-        [NonSerialized] public UnityAction onDialogueWaitClear;
-        [NonSerialized] public UnityAction onDialogueEnd;
+        [NonSerialized] public UnityAction OnDialogueStart;
+        [NonSerialized] public UnityAction OnDialogueWaitClear;
+        [NonSerialized] public UnityAction OnDialogueEnd;
 
         public void Init(string json)
         {

@@ -37,83 +37,40 @@ namespace Utility.SceneLoader
 
         private string _loadSceneName;
 
-        public Action onLoadScene;
-        public Action onLoadSceneEnd;
+        public Action OnLoadScene;
+        public Action OnLoadSceneEnd;
 
         private static SceneLoader Create()
         {
             var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
             return Instantiate(sceneLoaderPrefab);
         }
-    
-        public void LoadScene(string sceneName)
+
+        public void LoadScene(string sceneName, int index = -1)
         {
-            onLoadScene?.Invoke();
-            onLoadScene = () => { };
+            OnLoadScene?.Invoke();
+            OnLoadScene = () => { };
             Debug.Log("Load");
-            gameObject.SetActive(true);
-            SceneManager.sceneLoaded += LoadSceneEnd;
-            _loadSceneName = sceneName;
-            StartCoroutine(Load(sceneName));
-        }
-        
-        public void LoadScene(string sceneName, int index)
-        {
-            onLoadScene?.Invoke();
-            onLoadScene = () => { };
-            Debug.Log("Load");
-            if (SaveManager.IsLoaded(index))
+            if (index != -1)
             {
-                SaveManager.GetSaveData(index);
+                if (SaveManager.IsLoaded(index))
+                {
+                    SaveManager.GetSaveData(index);
+                }
+                else if (SaveManager.Exists(index))
+                {
+                    SaveManager.Load(index);
+                }
+                else
+                {
+                    Debug.LogError("오류");
+                }
             }
-            else if (SaveManager.Exists(index))
-            {
-                SaveManager.Load(index);
-            }
-            else
-            {
-                Debug.LogError("오류");
-            }
-            
+
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
             _loadSceneName = sceneName;
             StartCoroutine(Load(sceneName, index));
-        }
-        
-        private IEnumerator Load(string sceneName)
-        {
-            progressBar.fillAmount = 0f;
-            yield return StartCoroutine(Fade(true));
-
-            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
-            op.allowSceneActivation = false;
-
-            float timer = 0.0f;
-            while (!op.isDone)
-            {
-                yield return null;
-                timer += Time.unscaledDeltaTime;
-
-                if (op.progress < 0.9f)
-                {
-                    progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, timer);
-                    if (progressBar.fillAmount >= op.progress)
-                    {
-                        timer = 0f;
-                    }
-                }
-                else
-                {
-                    progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
-
-                    if (Mathf.Approximately(progressBar.fillAmount, 1.0f))
-                    {
-                        op.allowSceneActivation = true;
-                        yield break;
-                    }
-                }
-            }
         }
 
         private IEnumerator Load(string sceneName, int index)
@@ -121,10 +78,10 @@ namespace Utility.SceneLoader
             progressBar.fillAmount = 0f;
             yield return StartCoroutine(Fade(true));
 
-            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+            var op = SceneManager.LoadSceneAsync(sceneName);
             op.allowSceneActivation = false;
 
-            float timer = 0.0f;
+            var timer = 0.0f;
             while (!op.isDone)
             {
                 yield return null;
@@ -142,7 +99,18 @@ namespace Utility.SceneLoader
                 {
                     progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
 
-                    if (Mathf.Approximately(progressBar.fillAmount, 1.0f) && SaveManager.IsLoaded(index))
+                    if (!Mathf.Approximately(progressBar.fillAmount, 1.0f))
+                    {
+                        continue;
+                    }
+                    
+                    if (index == -1)
+                    {
+                        op.allowSceneActivation = true;
+                        yield break;
+                    } 
+                    
+                    if (SaveManager.IsLoaded(index))
                     {
                         op.allowSceneActivation = true;
                         yield break;
@@ -153,18 +121,21 @@ namespace Utility.SceneLoader
 
         private void LoadSceneEnd(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (scene.name == _loadSceneName)
+            if (scene.name != _loadSceneName)
             {
-                StartCoroutine(Fade(false));
-                onLoadSceneEnd?.Invoke();
-                onLoadSceneEnd = () => { };
-                SceneManager.sceneLoaded -= LoadSceneEnd;
+                return;
             }
+            
+            Debug.Log("OnLoadSceneEnd");
+            StartCoroutine(Fade(false));
+            OnLoadSceneEnd?.Invoke();
+            OnLoadSceneEnd = () => { };
+            SceneManager.sceneLoaded -= LoadSceneEnd;
         }
 
         private IEnumerator Fade(bool isFadeIn)
         {
-            float timer = 0f;
+            var timer = 0f;
 
             while (timer <= 1f)
             {

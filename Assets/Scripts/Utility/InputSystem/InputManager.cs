@@ -36,9 +36,9 @@ namespace Utility.InputSystem
 
         private class BindInputAction
         {
-            public InputAction inputAction;
-            public int bindingIndex;
-            public string originalDisplayName;
+            public InputAction InputAction;
+            public int BindingIndex;
+            public string OriginalDisplayName;
         }
 
         public static void SetUiAction(bool isAdd)
@@ -110,14 +110,14 @@ namespace Utility.InputSystem
             {
                 foreach (var inputAction in BindInputActions)
                 {
-                    SaveBindingOverride(inputAction.inputAction);
+                    SaveBindingOverride(inputAction.InputAction);
                 }
             }
             else
             {
                 foreach (var inputAction in BindInputActions)
                 {
-                    LoadBindingOverride(inputAction.inputAction.name);
+                    LoadBindingOverride(inputAction.InputAction.name);
                 }
             }
 
@@ -182,8 +182,8 @@ namespace Utility.InputSystem
                     }
 
                     string bindingName = GetBindingName(actionToRebind.name, bindingIndex);
-                    var bind = BindInputActions.Find(item => item.inputAction.name == actionToRebind.name &&
-                                                             item.bindingIndex == bindingIndex);
+                    var bind = BindInputActions.Find(item => item.InputAction.name == actionToRebind.name &&
+                                                             item.BindingIndex == bindingIndex);
 
 
                     if (bind == null)
@@ -196,19 +196,19 @@ namespace Utility.InputSystem
                     }
 
                     if (bind == null && originBindingName != bindingName ||
-                        bind != null && bind.originalDisplayName != bindingName)
+                        bind != null && bind.OriginalDisplayName != bindingName)
                     {
                         BindInputActions.Remove(bind);
                         if (bind != null)
                         {
-                            originBindingName = bind.originalDisplayName;
+                            originBindingName = bind.OriginalDisplayName;
                         }
 
                         BindInputActions.Add(new BindInputAction
                         {
-                            inputAction = actionToRebind,
-                            bindingIndex = bindingIndex,
-                            originalDisplayName = originBindingName
+                            InputAction = actionToRebind,
+                            BindingIndex = bindingIndex,
+                            OriginalDisplayName = originBindingName
                         });
                     }
                     else
@@ -302,9 +302,9 @@ namespace Utility.InputSystem
                     {
                         BindInputActions.Add(new BindInputAction
                         {
-                            inputAction = action,
-                            bindingIndex = bindingIndex,
-                            originalDisplayName = originBindingName
+                            InputAction = action,
+                            BindingIndex = bindingIndex,
+                            OriginalDisplayName = originBindingName
                         });
                     }
                 }
@@ -317,9 +317,9 @@ namespace Utility.InputSystem
                 {
                     BindInputActions.Add(new BindInputAction
                     {
-                        inputAction = action,
-                        bindingIndex = bindingIndex,
-                        originalDisplayName = originBindingName
+                        InputAction = action,
+                        BindingIndex = bindingIndex,
+                        OriginalDisplayName = originBindingName
                     });
                 }
             }

@@ -14,11 +14,11 @@ namespace Utility.Drag_Drop
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
 
-        internal UnityEvent onBeginDrag;
+        internal UnityEvent OnBeginDragAction;
 
         private void Awake()
         {
-            onBeginDrag = new UnityEvent();
+            OnBeginDragAction = new UnityEvent();
         }
 
         protected virtual void Start()
@@ -31,7 +31,7 @@ namespace Utility.Drag_Drop
         {
             if (isInteractable)
             {
-                onBeginDrag?.Invoke();
+                OnBeginDragAction?.Invoke();
                 _canvasGroup.alpha = .6f;
                 _canvasGroup.blocksRaycasts = false;
             }

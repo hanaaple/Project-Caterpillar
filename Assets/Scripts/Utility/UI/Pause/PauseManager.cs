@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Core;
 using Utility.InputSystem;
 using Utility.UI.Highlight;
 
@@ -101,18 +102,18 @@ namespace Utility.UI.Pause
         {
             _pauseHighlighter = new Highlighter
             {
-                highlightItems = pauseHighlightItems,
+                HighlightItems = pauseHighlightItems,
                 name = "Pause 하이라이트"
             };
 
             _pauseHighlighter.Init(Highlighter.ArrowType.Vertical, () =>
             {
-                SetActive(false);
+                HighlightHelper.Instance.Pop(_checkHighlighter, true);
             });
 
             _checkHighlighter = new Highlighter
             {
-                highlightItems = checkHighlightItems,
+                HighlightItems = checkHighlightItems,
                 name = "check 하이라이트"
             };
             
@@ -158,7 +159,9 @@ namespace Utility.UI.Pause
                             yesHighlightItem.button.onClick.RemoveAllListeners();
                             yesHighlightItem.button.onClick.AddListener(() =>
                             {
-                                SetActive(false);
+                                Time.timeScale = 1f;
+                                HighlightHelper.Instance.ResetHighlight();
+                                PlayUIManager.Instance.Destroy();
                                 SceneLoader.SceneLoader.Instance.LoadScene("TitleScene");
                             });
                             checkPanel.SetActive(true);

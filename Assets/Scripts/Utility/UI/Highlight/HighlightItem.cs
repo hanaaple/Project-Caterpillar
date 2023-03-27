@@ -18,40 +18,40 @@ namespace Utility.UI.Highlight
 
         public Button button;
 
-        protected List<TransitionType> transitionTypes;
+        protected List<TransitionType> TransitionTypes;
 
         public bool isEnable;
 
         public void Init()
         {
             isEnable = true;
-            transitionTypes = new List<TransitionType>();
+            TransitionTypes = new List<TransitionType>();
             ClearEventTrigger();
             SetDefault();
         }
 
         public virtual void Reset()
         {
-            transitionTypes = new List<TransitionType>();
+            TransitionTypes = new List<TransitionType>();
             SetDefault();
         }
 
         public void Add(TransitionType transitionType)
         {
-            if (transitionTypes.Contains(transitionType))
+            if (TransitionTypes.Contains(transitionType))
             {
                 Debug.Log(transitionType + "이미 있음");
                 return;
             }
-            transitionTypes.Add(transitionType);
+            TransitionTypes.Add(transitionType);
             Highlight();
         }
 
         public virtual void Remove(TransitionType transitionType)
         {
-            if (transitionTypes.Contains(transitionType))
+            if (TransitionTypes.Contains(transitionType))
             {
-                transitionTypes.Remove(transitionType);
+                TransitionTypes.Remove(transitionType);
             }
             else
             {
@@ -61,9 +61,9 @@ namespace Utility.UI.Highlight
 
         public void Highlight()
         {
-            if (transitionTypes.Count > 0)
+            if (TransitionTypes.Count > 0)
             {
-                foreach (var transitionType in transitionTypes)
+                foreach (var transitionType in TransitionTypes)
                 {
                     if (transitionType.Equals(TransitionType.Select))
                     {

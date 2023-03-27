@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Utility.Core;
-using Utility.Dialogue;
 using Utility.InputSystem;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -34,11 +33,13 @@ namespace Utility.Interaction
 
         private Action<InputAction.CallbackContext> _onInteract;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _onInteract = _ =>
             {
-                if (!floatingMark.activeSelf || !GameManager.Instance.IsCharacterControlEnable())
+                if (!floatingMark.activeSelf || !GameManager.IsCharacterControlEnable())
                 {
                     return;
                 }
@@ -57,49 +58,7 @@ namespace Utility.Interaction
                 floatingMark.transform.position = transform.position + (Vector3)offset;
             }
         }
-
-        public override void StartInteraction(int index = -1)
-        {
-            if (index == -1)
-            {
-                index = interactionIndex;
-            }
-
-            if (!IsInteractable(index))
-            {
-                return;
-            }
-
-            base.StartInteraction(index);
-
-            var interactionData = GetInteractionData(index);
-
-            if (interactionData.dialogueData.dialogueElements.Length == 0)
-            {
-                DialogueController.Instance.StartDialogue(interactionData.jsonAsset.text, () => { EndInteraction(index); });
-            }
-            else
-            {
-                interactionData.dialogueData.onDialogueEnd = () => { EndInteraction(index); };
-                DialogueController.Instance.StartDialogue(interactionData.dialogueData);
-            }
-        }
-
-        protected override void EndInteraction(int index = -1)
-        {
-            base.EndInteraction(index);
-
-            var interactionData = GetInteractionData(index);
-
-            if (IsInteractionClear())
-            {
-                IsClear = true;
-            }
-            
-            ONClear?.Invoke();
-            interactionData.onInteractionEnd?.Invoke();
-        }
-
+        
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!IsInteractable())

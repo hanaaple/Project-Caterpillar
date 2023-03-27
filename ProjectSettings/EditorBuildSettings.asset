@@ -13,5 +13,5 @@ EditorBuildSettings:
     guid: 6f2b4f21bc4953e44bd49f23f39351f3
   - enabled: 1
     path: Assets/Scenes/Stage1/SmallRoomScene.unity
-    guid: 33f2ceb3e045f4649bf7a83b9b41a06c
+    guid: b7445af1e1b26344f94185c5de56b0f2
   m_configObjects: {}

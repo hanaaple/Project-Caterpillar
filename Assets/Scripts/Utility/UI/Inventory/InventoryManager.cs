@@ -33,7 +33,7 @@ namespace Utility.UI.Inventory
 
         public override void EnterHighlight()
         {
-            if (!transitionTypes.Contains(TransitionType.Select))
+            if (!TransitionTypes.Contains(TransitionType.Select))
             {
                 button.image.sprite = defaultSprite;
             }
@@ -43,7 +43,7 @@ namespace Utility.UI.Inventory
 
         public override void SetSelect()
         {
-            if (!transitionTypes.Contains(TransitionType.Highlight))
+            if (!TransitionTypes.Contains(TransitionType.Highlight))
             {
                 button.image.color = Color.white;
             }
@@ -74,9 +74,9 @@ namespace Utility.UI.Inventory
 
         public override void Remove(TransitionType transitionType)
         {
-            if (transitionTypes.Contains(transitionType))
+            if (TransitionTypes.Contains(transitionType))
             {
-                transitionTypes.Remove(transitionType);
+                TransitionTypes.Remove(transitionType);
                 if (transitionType == TransitionType.Highlight)
                 {
                     onPointerExit?.Invoke();
@@ -104,7 +104,7 @@ namespace Utility.UI.Inventory
         public override void EnterHighlight()
         {
             // Debug.Log($"Enter Highlight {itemType}");
-            if (!transitionTypes.Contains(TransitionType.Select))
+            if (!TransitionTypes.Contains(TransitionType.Select))
             {
                 button.image.sprite = defaultSprite;
             }
@@ -116,7 +116,7 @@ namespace Utility.UI.Inventory
         public override void SetSelect()
         {
             // Debug.Log($"Set Select {itemType}");
-            if (!transitionTypes.Contains(TransitionType.Highlight))
+            if (!TransitionTypes.Contains(TransitionType.Highlight))
             {
                 button.image.color = Color.white;
             }
@@ -171,7 +171,7 @@ namespace Utility.UI.Inventory
                 if (input == Vector2.up)
                 {
                     HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                    foreach (var highlightItem in _itemHighlighter.highlightItems)
+                    foreach (var highlightItem in _itemHighlighter.HighlightItems)
                     {
                         highlightItem.Reset();
                     }
@@ -180,19 +180,19 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter = new Highlighter
             {
-                highlightItems = inventoryMenuItems,
+                HighlightItems = inventoryMenuItems,
                 name = "메뉴"
             };
 
             _itemHighlighter = new Highlighter
             {
-                highlightItems = inventoryItems,
+                HighlightItems = inventoryItems,
                 name = "아이템"
             };
 
             // Menu UpDown
-            _menuHighlighter.onSelect = _onMenuArrow;
-            _itemHighlighter.onSelect = _onItemArrow;
+            _menuHighlighter.OnSelect = _onMenuArrow;
+            _itemHighlighter.OnSelect = _onItemArrow;
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
             {

@@ -31,9 +31,9 @@ namespace Utility.SaveSystem
                     }
 
                     DontDestroyOnLoad(_instance);
-                    _instance.onLoad = new UnityEvent();
-                    _instance.onSave = new UnityEvent();
-                    _instance.onSavePanelActiveFalse = new UnityEvent();
+                    _instance._onLoad = new UnityEvent();
+                    _instance.OnSave = new UnityEvent();
+                    _instance.OnSavePanelActiveFalse = new UnityEvent();
                 }
 
                 return _instance;
@@ -54,10 +54,10 @@ namespace Utility.SaveSystem
 
         [SerializeField] private SaveLoadItemProps[] saveItemPropsArray;
 
-        [NonSerialized] public UnityEvent onSave;
+        [NonSerialized] public UnityEvent OnSave;
 
-        [NonSerialized] public UnityEvent onLoad;
-        [NonSerialized] public UnityEvent onSavePanelActiveFalse;
+        [NonSerialized] private UnityEvent _onLoad;
+        [NonSerialized] public UnityEvent OnSavePanelActiveFalse;
 
         private Highlighter _highlighter;
 
@@ -67,7 +67,7 @@ namespace Utility.SaveSystem
         {
             _highlighter = new Highlighter
             {
-                highlightItems = saveItemPropsArray,
+                HighlightItems = saveItemPropsArray,
                 highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
             _highlighter.Init(
@@ -91,7 +91,7 @@ namespace Utility.SaveSystem
 
                         StartCoroutine(WaitSave(saveLoadItemProps.saveDataIndex, () =>
                         {
-                            onSave?.Invoke();
+                            OnSave?.Invoke();
 
                             saveLoadItemProps.UpdateUI();
                         }));
@@ -101,13 +101,13 @@ namespace Utility.SaveSystem
                         var saveCoverData = SaveManager.GetSaveCoverData(saveLoadItemProps.saveDataIndex);
                         if (saveCoverData != null)
                         {
-                            SceneLoader.SceneLoader.Instance.onLoadSceneEnd += () =>
+                            SceneLoader.SceneLoader.Instance.OnLoadSceneEnd += () =>
                             {
                                 SaveHelper.Load(saveLoadItemProps.saveDataIndex);
                                 SetSaveLoadPanelActive(false, ButtonType.None);
                             };
                             SceneLoader.SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveLoadItemProps.saveDataIndex);
-                            onLoad?.Invoke();
+                            _onLoad?.Invoke();
                         }
                         else
                         {
@@ -138,8 +138,8 @@ namespace Utility.SaveSystem
             else
             {
                 HighlightHelper.Instance.Pop(_highlighter);
-                onSavePanelActiveFalse?.Invoke();
-                onSavePanelActiveFalse?.RemoveAllListeners();
+                OnSavePanelActiveFalse?.Invoke();
+                OnSavePanelActiveFalse?.RemoveAllListeners();
             }
         }
 

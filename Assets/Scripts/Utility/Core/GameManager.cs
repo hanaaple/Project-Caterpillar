@@ -33,9 +33,9 @@ namespace Utility.Core
             return Instantiate(gameManagerPrefab);
         }
     
-        public bool IsCharacterControlEnable()
+        public static bool IsCharacterControlEnable()
         {
-            return !DialogueController.Instance.isDialogue && !Mathf.Approximately(Time.timeScale, 0f);
+            return !DialogueController.Instance.IsDialogue && !Mathf.Approximately(Time.timeScale, 0f);
         }
     }
 }

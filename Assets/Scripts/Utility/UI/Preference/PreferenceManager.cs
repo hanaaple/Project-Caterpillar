@@ -94,7 +94,6 @@ namespace Utility.UI.Preference
             
             var uiActions = InputManager.InputControl.Ui;
             uiActions.Select.performed += _onInput;
-            Debug.Log("+++++++++++");
         }
 
         private void OnDisable()
@@ -108,7 +107,6 @@ namespace Utility.UI.Preference
             var uiActions = InputManager.InputControl.Ui;
             InputManager.SetUiAction(false);
             uiActions.Select.performed -= _onInput;
-            Debug.Log("-----------");
         }
 
         private void SetSaveButton()
@@ -204,7 +202,6 @@ namespace Utility.UI.Preference
 
         private void UpdateUI(int nextIdx)
         {
-            Debug.Log("현재" + _pageIndex + "목표" + nextIdx);
             foreach (var pagePanel in pagePanels)
             {
                 pagePanel.SetActive(false);
@@ -213,7 +210,7 @@ namespace Utility.UI.Preference
             pagePanels[nextIdx].SetActive(true);
 
             _pageIndex = nextIdx;
-            pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+            pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
         }
     
         private void Input(Vector2 input)
@@ -225,7 +222,7 @@ namespace Utility.UI.Preference
                 pagePanels[_pageIndex].SetActive(false);
                 _pageIndex = nextIdx;
                 pagePanels[_pageIndex].SetActive(true);
-                pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+                pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
             }
             else if (input == Vector2.right)
             {
@@ -234,7 +231,7 @@ namespace Utility.UI.Preference
                 pagePanels[_pageIndex].SetActive(false);
                 _pageIndex = nextIdx;
                 pagePanels[_pageIndex].SetActive(true);
-                pageText.text = (_pageIndex + 1) + " / " + pagePanels.Length;
+                pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
             }
         }
     }

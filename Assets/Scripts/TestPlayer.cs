@@ -53,11 +53,13 @@ public class TestPlayer : MonoBehaviour
         {
             _wasPositive = true;
         }
+        
+        CameraMove();
     }
 
     private void FixedUpdate()
     {
-        if (input == Vector3.zero || !GameManager.Instance.IsCharacterControlEnable())
+        if (input == Vector3.zero || !GameManager.IsCharacterControlEnable())
         {
             if (_animator.GetBool(_isMove))
             {
@@ -74,7 +76,7 @@ public class TestPlayer : MonoBehaviour
         if (!_wasPositive && input.x > 0)
         {
             var scale = transform.localScale;
-            scale.x = scale.x * -1;
+            scale.x *= -1;
             transform.localScale = scale;
             
             _wasPositive = true;
@@ -82,7 +84,7 @@ public class TestPlayer : MonoBehaviour
         else if (_wasPositive && input.x < 0)
         {
             var scale = transform.localScale;
-            scale.x = scale.x * -1;
+            scale.x *= -1;
             transform.localScale = scale;
 
             _wasPositive = false;
@@ -113,11 +115,19 @@ public class TestPlayer : MonoBehaviour
             clampX = Mathf.Clamp(targetPos.x, _minBounds.x + _xScreenHalfSize,
                 _maxBounds.x - _xScreenHalfSize);
         }
+        else
+        {
+            clampX = Mathf.Clamp(targetPos.x, 0, 0);
+        }
 
         if (_maxBounds.y - _yScreenHalfSize > 0)
         {
             clampY = Mathf.Clamp(targetPos.y, _minBounds.y + _yScreenHalfSize,
                 _maxBounds.y - _yScreenHalfSize);
+        }
+        else
+        {
+            clampY = Mathf.Clamp(targetPos.y, 0, 0);
         }
 
         cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
