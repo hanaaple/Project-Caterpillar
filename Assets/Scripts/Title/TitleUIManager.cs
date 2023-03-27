@@ -85,6 +85,7 @@ namespace Title
                     case HighlightTitleItem.ButtonType.Preferenece:
                         highlightItem.button.onClick.AddListener(() =>
                         {
+                            HighlightHelper.Instance.Disable(false);
                             preferencePanel.SetActive(true);
                         });
                         break;

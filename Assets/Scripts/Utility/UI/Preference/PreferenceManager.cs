@@ -11,10 +11,6 @@ namespace Utility.UI.Preference
 {
     public class PreferenceManager : MonoBehaviour
     {
-        // [SerializeField] private InputAction preferenceInputAction;
-
-        // [SerializeField] private Button preferenceButton;
-
         [SerializeField] private GameObject preferencePanel;
 
         [SerializeField] private Image preferenceFrontPanel;
@@ -28,12 +24,8 @@ namespace Utility.UI.Preference
         [SerializeField] private Button resetButton;
 
         [SerializeField] private Button saveButton;
-    
+
         [SerializeField] private Button cancleSaveButton;
-
-        [SerializeField] private Button rebindButton;
-
-        [SerializeField] private Button notRebindButton;
 
         [SerializeField] private GameObject[] pagePanels;
 
@@ -46,34 +38,35 @@ namespace Utility.UI.Preference
 
         [SerializeField] private InputController[] inputController;
 
+        [SerializeField] private CheckHighlightItem[] checkHighlightItems;
+        
+        private Highlighter _checkHighlighter;
         private int _pageIndex;
+        private bool _isPerformed;
     
         private Action<InputAction.CallbackContext> _onInput;
+        private Action<InputAction.CallbackContext> _onCancle;
 
-        private bool _isPerformed;
 
         private void Awake()
         {
             _onInput = _ =>
             {
-                if (preferencePanel.activeSelf && !_isPerformed)
+                if (preferencePanel.activeSelf && !_isPerformed && !checkRebindPanel.activeSelf)
                 {
                     _isPerformed = true;
                     StartCoroutine(WaitPerform());
                     Input(_.ReadValue<Vector2>());
                 }
             };
-            
-            // 나가기
-            // _onInput = _ =>
-            // {
-            //     if (preferencePanel.activeSelf && !_isPerformed)
-            //     {
-            //         _isPerformed = true;
-            //         StartCoroutine(WaitPerform());
-            //         Input(_.ReadValue<Vector2>());
-            //     }
-            // };
+
+            _onCancle = _ =>
+            {
+                if (preferencePanel.activeSelf && !checkRebindPanel.activeSelf)
+                {
+                    ExitPreferencePanel();
+                }
+            };
         }
 
         private IEnumerator WaitPerform()
@@ -84,7 +77,6 @@ namespace Utility.UI.Preference
 
         private void OnEnable()
         {
-            // preferenceInputAction.Enable();
             InputManager.RebindComplete += SetSaveButton;
             InputManager.RebindEnd += SetSaveButton;
             // InputManager.RebindLoad += SetSaveButton;
@@ -94,11 +86,11 @@ namespace Utility.UI.Preference
             
             var uiActions = InputManager.InputControl.Ui;
             uiActions.Select.performed += _onInput;
+            uiActions.Cancle.performed += _onCancle;
         }
 
         private void OnDisable()
         {
-            // preferenceInputAction.Disable();
             InputManager.RebindComplete -= SetSaveButton;
             InputManager.RebindEnd -= SetSaveButton;
             // InputManager.RebindLoad -= SetSaveButton;
@@ -107,6 +99,7 @@ namespace Utility.UI.Preference
             var uiActions = InputManager.InputControl.Ui;
             InputManager.SetUiAction(false);
             uiActions.Select.performed -= _onInput;
+            uiActions.Cancle.performed -= _onCancle;
         }
 
         private void SetSaveButton()
@@ -126,6 +119,7 @@ namespace Utility.UI.Preference
             if (InputManager.IsChanged())
             {
                 checkRebindPanel.SetActive(true);
+                HighlightHelper.Instance.Push(_checkHighlighter, default, false);
             }
             else
             {
@@ -136,6 +130,40 @@ namespace Utility.UI.Preference
 
         private void Start()
         {
+            _checkHighlighter = new Highlighter
+            {
+                highlightItems = checkHighlightItems,
+                name = "check 하이라이트"
+            };
+            
+            var yesHighlightItem = Array.Find(checkHighlightItems,
+                item => item.buttonType == CheckHighlightItem.ButtonType.Yes);
+            
+            var noHighlightItem = Array.Find(checkHighlightItems,
+                item => item.buttonType == CheckHighlightItem.ButtonType.No);
+            
+            yesHighlightItem.button.onClick.AddListener(() =>
+            {
+                InputManager.EndChange(true);
+                checkRebindPanel.SetActive(false);
+                Time.timeScale = 1;
+                // preferenceButton.gameObject.SetActive(true);
+                preferencePanel.SetActive(false);
+                HighlightHelper.Instance.Pop(_checkHighlighter);
+            });
+
+            noHighlightItem.button.onClick.AddListener(() =>
+            {
+                InputManager.EndChange(false);
+                checkRebindPanel.SetActive(false);
+                HighlightHelper.Instance.Pop(_checkHighlighter);
+            });
+            
+            _checkHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
+            {
+                noHighlightItem.button.onClick?.Invoke();
+            });
+            
             resetButton.onClick.AddListener(() =>
             {
                 foreach (var t in inputController)
@@ -153,9 +181,6 @@ namespace Utility.UI.Preference
 
             preferenceFrontPanel.alphaHitTestMinimumThreshold = 0.1f;
             UpdateUI(0);
-            // preferenceInputAction.performed += _ => OpenPreferencePanel();
-
-            // preferenceButton.onClick.AddListener(OpenPreferencePanel);
 
             preferenceExitButton.onClick.AddListener(ExitPreferencePanel);
 
@@ -182,21 +207,6 @@ namespace Utility.UI.Preference
                 var y = int.Parse(resolution.Split("x")[1]);
                 Screen.SetResolution(x, y, false);
                 Debug.Log(resolutionDropdown.options[idx].image);
-            });
-
-            rebindButton.onClick.AddListener(() =>
-            {
-                InputManager.EndChange(true);
-                checkRebindPanel.SetActive(false);
-                Time.timeScale = 1;
-                // preferenceButton.gameObject.SetActive(true);
-                preferencePanel.SetActive(false);
-            });
-
-            notRebindButton.onClick.AddListener(() =>
-            {
-                InputManager.EndChange(false);
-                checkRebindPanel.SetActive(false);
             });
         }
 
