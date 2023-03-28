@@ -41,7 +41,7 @@ namespace Game.ShadowGame
         
         public void PlayOneShot(AudioClip audioClip)
         {
-            AudioManager.Instance.PlaySfx(audioClip);
+            AudioManager.PlaySfx(audioClip);
         }
 
         public void CloseCurtain()

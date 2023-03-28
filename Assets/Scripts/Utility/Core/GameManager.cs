@@ -32,10 +32,10 @@ namespace Utility.Core
             var gameManagerPrefab = Resources.Load<GameManager>("GameManager");
             return Instantiate(gameManagerPrefab);
         }
-    
+
         public static bool IsCharacterControlEnable()
         {
-            return !DialogueController.Instance.IsDialogue && !Mathf.Approximately(Time.timeScale, 0f);
+            return !PlayUIManager.Instance.IsCanvasUse();
         }
     }
 }
