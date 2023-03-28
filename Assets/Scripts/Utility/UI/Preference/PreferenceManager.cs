@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.InputSystem;
 using Utility.UI.Highlight;
 
@@ -67,6 +68,8 @@ namespace Utility.UI.Preference
                     ExitPreferencePanel();
                 }
             };
+            
+            AudioManager.LoadAudio();
         }
 
         private IEnumerator WaitPerform()

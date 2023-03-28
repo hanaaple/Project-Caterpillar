@@ -225,6 +225,60 @@ namespace Utility.UI.Inventory
             {
                 var index = idx;
                 var inventoryMenuItem = inventoryMenuItems[idx];
+                switch (inventoryMenuItem.inventoryMenuType)
+                {
+                    case InventoryMenuItem.InventoryMenuType.Bag:
+                        inventoryMenuItem.button.onClick.AddListener(() =>
+                        {
+                            Debug.Log($"{inventoryMenuItem.inventoryMenuType} 누름");
+                            var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                            var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
+
+                            if (!duplicated.Any())
+                            {
+                                bagPanel.SetActive(true);
+                                necklacePanel.SetActive(false);
+                                return;
+                            }
+
+                            if (!HighlightHelper.Instance.Contains(_itemHighlighter))
+                            {
+                                bagPanel.SetActive(true);
+                                necklacePanel.SetActive(false);
+                                HighlightHelper.Instance.Push(_itemHighlighter, true);
+                                HighlightHelper.Instance.SetLast(_menuHighlighter, true);
+                                _menuHighlighter.Select(index);
+                            }
+                            else
+                            {
+                                HighlightHelper.Instance.SetLast(_itemHighlighter, true);
+                                _itemHighlighter.Select(0);
+                            }
+                        });
+                        break;
+                    case InventoryMenuItem.InventoryMenuType.Necklace:
+                        inventoryMenuItem.button.onClick.AddListener(() =>
+                        {
+                            Debug.Log($"{inventoryMenuItem.inventoryMenuType} 누름");
+                            HighlightHelper.Instance.Pop(_itemHighlighter);
+                            necklacePanel.SetActive(true);
+                            bagPanel.SetActive(false);
+
+                            HighlightHelper.Instance.SetLast(_menuHighlighter, true);
+                            _menuHighlighter.Select(index);
+                        });
+                        break;
+                    case InventoryMenuItem.InventoryMenuType.Exit:
+                        inventoryMenuItem.button.onClick.AddListener(() =>
+                        {
+                            Debug.Log($"{inventoryMenuItem.inventoryMenuType} 누름");
+                            inventoryPanel.SetActive(false);
+                            HighlightHelper.Instance.Pop(_itemHighlighter);
+                            HighlightHelper.Instance.Pop(_menuHighlighter);
+                        });
+                        break;
+                }
+
                 inventoryMenuItem.onPointSelect = () =>
                 {
                     HighlightHelper.Instance.SetLast(_menuHighlighter, true);
@@ -234,53 +288,10 @@ namespace Utility.UI.Inventory
                         case InventoryMenuItem.InventoryMenuType.Bag:
                             bagPanel.SetActive(true);
                             necklacePanel.SetActive(false);
-                            inventoryMenuItem.button.onClick.AddListener(() =>
-                            {
-                                var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                                var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
-
-                                if (!duplicated.Any())
-                                {
-                                    bagPanel.SetActive(true);
-                                    necklacePanel.SetActive(false);
-                                    return;
-                                }
-
-                                if (!HighlightHelper.Instance.Contains(_itemHighlighter))
-                                {
-                                    bagPanel.SetActive(true);
-                                    necklacePanel.SetActive(false);
-                                    HighlightHelper.Instance.Push(_itemHighlighter, true);
-                                    HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                                    _menuHighlighter.Select(index);
-                                }
-                                else
-                                {
-                                    HighlightHelper.Instance.SetLast(_itemHighlighter, true);
-                                    _itemHighlighter.Select(0);
-                                }
-                            });
                             break;
                         case InventoryMenuItem.InventoryMenuType.Necklace:
                             bagPanel.SetActive(false);
                             necklacePanel.SetActive(true);
-                            inventoryMenuItem.button.onClick.AddListener(() =>
-                            {
-                                HighlightHelper.Instance.Pop(_itemHighlighter);
-                                necklacePanel.SetActive(true);
-                                bagPanel.SetActive(false);
-
-                                HighlightHelper.Instance.SetLast(_menuHighlighter, true);
-                                _menuHighlighter.Select(index);
-                            });
-                            break;
-                        case InventoryMenuItem.InventoryMenuType.Exit:
-                            inventoryMenuItem.button.onClick.AddListener(() =>
-                            {
-                                inventoryPanel.SetActive(false);
-                                HighlightHelper.Instance.Pop(_itemHighlighter);
-                                HighlightHelper.Instance.Pop(_menuHighlighter);
-                            });
                             break;
                     }
                 };
@@ -393,6 +404,11 @@ namespace Utility.UI.Inventory
                 var exitButton = Array.Find(inventoryMenuItems, item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 exitButton.button.onClick?.Invoke();
             }
+        }
+
+        public bool GetIsOpen()
+        {
+            return inventoryPanel.activeSelf;
         }
     }
 }

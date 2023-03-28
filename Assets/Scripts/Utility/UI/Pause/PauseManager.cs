@@ -74,6 +74,7 @@ namespace Utility.UI.Pause
             _pauseHighlighter = new Highlighter
             {
                 HighlightItems = pauseHighlightItems,
+                highlightType = Highlighter.HighlightType.HighlightIsSelect,
                 name = "Pause 하이라이트"
             };
 
@@ -85,6 +86,7 @@ namespace Utility.UI.Pause
             _checkHighlighter = new Highlighter
             {
                 HighlightItems = checkHighlightItems,
+                highlightType = Highlighter.HighlightType.HighlightIsSelect,
                 name = "check 하이라이트"
             };
             
@@ -183,6 +185,11 @@ namespace Utility.UI.Pause
             }
         }
 
+        public bool GetIsOpen()
+        {
+            return pausePanel.activeSelf;
+        }
+        
         private void OnEnable()
         {
             var esc = InputManager.InputControl.Esc;
