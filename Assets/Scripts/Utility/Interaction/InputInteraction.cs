@@ -20,6 +20,12 @@ public class InputInteractionEditor : Editor
             generator.ShowDialogue();
             EditorUtility.SetDirty(generator);
         }
+        
+        if (GUILayout.Button("Debug"))
+        {
+            generator.Debugg();
+            EditorUtility.SetDirty(generator);
+        }
     }
 }
 #endif
