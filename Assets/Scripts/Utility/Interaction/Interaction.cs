@@ -168,6 +168,68 @@ namespace Utility.Interaction
         }
 
 #if UNITY_EDITOR
+        public void Debugg()
+        {
+            for (var index = 0; index < interactionData.Length; index++)
+            {
+                var interaction = interactionData[index];
+                for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
+                {
+                    var dialogueElement = interaction.dialogueData.dialogueElements[idx];
+                    if (dialogueElement.dialogueType == DialogueType.CutScene && dialogueElement.option?.Length > 0 &&
+                        dialogueElement.option.Contains("Reset"))
+                    {
+                        interaction.dialogueData.dialogueElements[idx].playableAsset =
+                            Resources.Load<PlayableAsset>("Timeline/Reset");
+                        continue;
+                    }
+
+                    if (dialogueElement.dialogueType is DialogueType.Interact or DialogueType.WaitInteract
+                        or DialogueType.MoveMap)
+                    {
+                        Debug.LogWarning($"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                    }
+
+                    if (dialogueElement.option != null)
+                    {
+                        if (dialogueElement.option.Contains("Hold", StringComparer.OrdinalIgnoreCase))
+                        {
+                            interaction.dialogueData.dialogueElements[idx].extrapolationMode = DirectorWrapMode.Hold;
+                        }
+                        else
+                        {
+                            interaction.dialogueData.dialogueElements[idx].extrapolationMode = DirectorWrapMode.None;
+                        }
+
+                        if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
+                        {
+                            var timelinePath = Array.Find(dialogueElement.option, item => item.Contains("name="))
+                                .Split("=")[1];
+                            var playableAsset = Resources.Load<PlayableAsset>($"Timeline/{timelinePath}");
+                            if (playableAsset)
+                            {
+                                interaction.dialogueData.dialogueElements[idx].playableAsset = playableAsset;
+                            }
+                            else
+                            {
+                                Debug.LogWarning(
+                                    $"interaction: {index}번, {idx}번 대화, timeline - {timelinePath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                            }
+                        }
+                        else if (dialogueElement.dialogueType == DialogueType.CutScene)
+                        {
+                            Debug.LogWarning(
+                                $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                        }
+                    }
+                    else if (dialogueElement.dialogueType is DialogueType.CutScene)
+                    {
+                        Debug.LogWarning($"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                    }
+                }
+            }
+        }
+        
         public void ShowDialogue()
         {
             for (var index = 0; index < interactionData.Length; index++)
