@@ -554,7 +554,6 @@ namespace Utility.Dialogue
                 {
                     while (!t.Equals('>'))
                     {
-                        Debug.Log(t);
                         dialogueText.text += t;
 
                         index++;

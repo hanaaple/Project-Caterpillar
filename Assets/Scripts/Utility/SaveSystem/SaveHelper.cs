@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Linq;
+using UnityEngine.SceneManagement;
 using Utility.Core;
 
 namespace Utility.SaveSystem
@@ -18,6 +19,11 @@ namespace Utility.SaveSystem
                     playTime = 1122
                 }
             };
+            
+            foreach (var interactionData in GameManager.Instance.InteractionObjects.Select(interaction => interaction.GetInteractionSaveData()))
+            {
+                saveData.interactionData.Add(interactionData);
+            }
             
             return saveData;
         }
