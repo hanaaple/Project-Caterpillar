@@ -12,10 +12,12 @@ namespace Utility.Interaction
 {
     public abstract class Interaction : MonoBehaviour
     {
+        [Header("동일한 Scene 내의 Interaction 중 유니크 Value를 넣으세요.")]
         public string id;
-        [SerializeField] protected bool isOnLoadScene;
 
-        [SerializeField] private InteractionData[] interactionData;
+        public InteractionData[] interactionData;
+
+        [SerializeField] protected bool isOnLoadScene;
 
         // for debugging
         [SerializeField] protected int interactionIndex;
@@ -28,7 +30,7 @@ namespace Utility.Interaction
         protected virtual void Awake()
         {
             GameManager.Instance.AddInteraction(this);
-            
+
             if (isOnLoadScene)
             {
                 Debug.LogWarning("Awake Interaction, OnLoadScene");
@@ -182,8 +184,10 @@ namespace Utility.Interaction
                 interactionIndex = interactionIndex,
                 serializedInteractionData = new List<SerializedInteractionData>()
             };
-            foreach (var interaction in interactionData)
+            for (var index = 0; index < interactionData.Length; index++)
             {
+                var interaction = interactionData[index];
+                interaction.serializedInteractionData.id = index;
                 interactionSaveData.serializedInteractionData.Add(interaction.serializedInteractionData);
             }
 
@@ -252,7 +256,7 @@ namespace Utility.Interaction
                 }
             }
         }
-        
+
         public void ShowDialogue()
         {
             for (var index = 0; index < interactionData.Length; index++)

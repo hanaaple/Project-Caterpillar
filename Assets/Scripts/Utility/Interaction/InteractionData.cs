@@ -15,6 +15,7 @@ namespace Utility.Interaction
     [Serializable]
     public class SerializedInteractionData
     {
+        public int id;
         public bool isInteractable;
         public bool isContinuable;
         public bool interactNextIndex;
