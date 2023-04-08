@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utility.Core;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem

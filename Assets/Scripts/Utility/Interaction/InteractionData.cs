@@ -13,6 +13,17 @@ namespace Utility.Interaction
     }
 
     [Serializable]
+    public class SerializedInteractionData
+    {
+        public bool isInteractable;
+        public bool isContinuable;
+        public bool interactNextIndex;
+        public bool isLoop;
+        
+        [Header("For Debugging")] public bool isInteracted;
+    }
+    
+    [Serializable]
     public class InteractionData
     {
         public InteractType interactType;
@@ -26,16 +37,10 @@ namespace Utility.Interaction
         [ConditionalHideInInspector("interactType", InteractType.Dialogue)]
         public TextAsset jsonAsset;
 
-        public bool isInteractable;
-
-        public bool isContinuable;
-        public bool interactNextIndex;
-        public bool isLoop;
-
         [ConditionalHideInInspector("interactType", InteractType.Dialogue)]
         public DialogueData dialogueData;
 
-        [Header("For Debugging")] public bool isInteracted;
+        public SerializedInteractionData serializedInteractionData;
 
         // public Action onInteractionStart;
         // public Action onInteractionEnd;

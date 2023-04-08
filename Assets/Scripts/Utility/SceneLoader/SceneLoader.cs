@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.SaveSystem;
 
 namespace Utility.SceneLoader
@@ -106,12 +107,14 @@ namespace Utility.SceneLoader
                     
                     if (index == -1)
                     {
+                        GameManager.Instance.InteractionObjects.Clear();
                         op.allowSceneActivation = true;
                         yield break;
                     } 
                     
                     if (SaveManager.IsLoaded(index))
                     {
+                        GameManager.Instance.InteractionObjects.Clear();
                         op.allowSceneActivation = true;
                         yield break;
                     }

@@ -1,14 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
+using Utility.Core;
 using Utility.Dialogue;
 using Utility.JsonLoader;
+using Utility.SaveSystem;
 
 namespace Utility.Interaction
 {
     public abstract class Interaction : MonoBehaviour
     {
+        public string id;
         [SerializeField] protected bool isOnLoadScene;
 
         [SerializeField] private InteractionData[] interactionData;
@@ -23,6 +27,8 @@ namespace Utility.Interaction
 
         protected virtual void Awake()
         {
+            GameManager.Instance.AddInteraction(this);
+            
             if (isOnLoadScene)
             {
                 Debug.LogWarning("Awake Interaction, OnLoadScene");
@@ -39,7 +45,7 @@ namespace Utility.Interaction
         {
             foreach (var interaction in interactionData)
             {
-                interaction.isInteracted = false;
+                interaction.serializedInteractionData.isInteracted = false;
             }
 
             IsClear = false;
@@ -59,7 +65,7 @@ namespace Utility.Interaction
                 return;
             }
 
-            Debug.Log($"이름: {gameObject.name}");
+            Debug.Log($"Start Interaction 이름: {gameObject.name}");
 
             var interaction = GetInteractionData(index);
 
@@ -104,25 +110,26 @@ namespace Utility.Interaction
 
             Debug.Log($"{gameObject.name} 인터랙션 종료");
 
-            var interaction = GetInteractionData(index);
+            var interaction = GetInteractionData(index).serializedInteractionData;
             interaction.isInteracted = true;
             // interaction.onInteractionEnd?.Invoke();
 
             var nextIndex = (index + 1) % interactionData.Length;
-            var nextInteraction = GetInteractionData(nextIndex);
+            var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
 
-            GetComponent<Collider2D>().enabled = false;
+            var collider2d = GetComponent<Collider2D>();
+            collider2d.enabled = false;
 
             if (interaction.isContinuable)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
-                GetComponent<Collider2D>().enabled = true;
+                collider2d.enabled = true;
             }
 
             if (interaction.isLoop)
             {
-                GetComponent<Collider2D>().enabled = true;
+                collider2d.enabled = true;
             }
 
             if (interaction.interactNextIndex)
@@ -143,7 +150,7 @@ namespace Utility.Interaction
 
         protected virtual bool IsInteractionClear()
         {
-            return interactionData.All(item => item.isInteracted);
+            return interactionData.All(item => item.serializedInteractionData.isInteracted);
         }
 
         protected virtual bool IsInteractable(int index = -1)
@@ -153,11 +160,11 @@ namespace Utility.Interaction
                 index = interactionIndex;
             }
 
-            var interaction = interactionData[index];
+            var interaction = interactionData[index].serializedInteractionData;
             return (interaction.isLoop || !interaction.isInteracted) && interaction.isInteractable;
         }
 
-        protected InteractionData GetInteractionData(int index = -1)
+        private InteractionData GetInteractionData(int index = -1)
         {
             if (index == -1)
             {
@@ -165,6 +172,22 @@ namespace Utility.Interaction
             }
 
             return interactionData[index];
+        }
+
+        public InteractionSaveData GetInteractionSaveData()
+        {
+            var interactionSaveData = new InteractionSaveData
+            {
+                id = id,
+                interactionIndex = interactionIndex,
+                serializedInteractionData = new List<SerializedInteractionData>()
+            };
+            foreach (var interaction in interactionData)
+            {
+                interactionSaveData.serializedInteractionData.Add(interaction.serializedInteractionData);
+            }
+
+            return interactionSaveData;
         }
 
 #if UNITY_EDITOR

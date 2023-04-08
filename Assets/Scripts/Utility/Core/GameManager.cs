@@ -1,5 +1,6 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Utility.Dialogue;
 
 namespace Utility.Core
 {
@@ -26,6 +27,8 @@ namespace Utility.Core
                 return _instance;
             }
         }
+        
+        [NonSerialized] public List<Interaction.Interaction> InteractionObjects;
     
         private static GameManager Create()
         {
@@ -36,6 +39,16 @@ namespace Utility.Core
         public static bool IsCharacterControlEnable()
         {
             return !PlayUIManager.Instance.IsCanvasUse();
+        }
+
+        private void Awake()
+        {
+            InteractionObjects = new List<Interaction.Interaction>();
+        }
+
+        public void AddInteraction(Interaction.Interaction interaction)
+        {
+            InteractionObjects.Add(interaction);
         }
     }
 }
