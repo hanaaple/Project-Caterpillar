@@ -34,7 +34,9 @@ namespace Utility.Interaction
 {
     public class InputInteraction : Interaction
     {
-        [FormerlySerializedAs("ui")] [SerializeField] private GameObject floatingMark;
+        [FormerlySerializedAs("ui")] [SerializeField]
+        private GameObject floatingMark;
+
         [SerializeField] private Vector2 offset;
 
         private Action<InputAction.CallbackContext> _onInteract;
@@ -42,13 +44,14 @@ namespace Utility.Interaction
         protected override void Awake()
         {
             base.Awake();
-            
+
             _onInteract = _ =>
             {
                 if (!floatingMark.activeSelf || !GameManager.IsCharacterControlEnable())
                 {
                     return;
                 }
+
                 floatingMark.SetActive(false);
 
                 StartInteraction();
@@ -61,16 +64,17 @@ namespace Utility.Interaction
 
             if (floatingMark)
             {
-                floatingMark.transform.position = transform.position + (Vector3)offset;
+                floatingMark.transform.position = transform.position + (Vector3) offset;
             }
         }
-        
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!IsInteractable())
             {
                 return;
             }
+
             floatingMark.SetActive(true);
         }
 

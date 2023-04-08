@@ -49,16 +49,19 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public InteractionWaitType interactionWaitType;
+
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public Interactions waitInteraction;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public PlayableAsset playableAsset;
+
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public DirectorWrapMode extrapolationMode;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         public Interaction.Interaction interaction;
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         public int interactIndex;
     }
