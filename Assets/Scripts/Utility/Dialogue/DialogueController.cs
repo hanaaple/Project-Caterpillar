@@ -67,7 +67,7 @@ namespace Utility.Dialogue
         [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
 
         [SerializeField] private float textSpeed;
-        
+
         [SerializeField] private TMP_Text tendencyText;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
@@ -99,7 +99,7 @@ namespace Utility.Dialogue
             {
                 Instance = this;
             }
-            
+
             dialogueInputArea.onClick.AddListener(() => { OnInputDialogue(); });
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
@@ -130,10 +130,7 @@ namespace Utility.Dialogue
 
             _isUnfolding = false;
 
-            StartCoroutine(InvokeInputEnable(Time.deltaTime, () =>
-            {
-                dialogueData?.OnDialogueStart?.Invoke();
-            }));
+            StartCoroutine(InvokeInputEnable(Time.deltaTime, () => { dialogueData?.OnDialogueStart?.Invoke(); }));
         }
 
         public void StartDialogue(string jsonAsset, UnityAction dialogueEndAction = default)
@@ -165,11 +162,11 @@ namespace Utility.Dialogue
             rightAnimator.ResetTrigger(DisappearHash);
             leftAnimator.SetInteger(CharacterHash, 0);
             leftAnimator.SetInteger(ExpressionHash, 0);
-            
+
             dialoguePanel.SetActive(true);
             subjectText.text = "";
             dialogueText.text = "";
-            
+
             Initialize(dialogueData);
 
             ProgressDialogue();
@@ -197,14 +194,17 @@ namespace Utility.Dialogue
                 //         $"CutSceneSkipEnable : {_isCutSceneSkipEnable}\n");
                 // }
 
-                if (playableDirector.playableAsset && !(Math.Abs(playableDirector.time - playableDirector.duration) <= 
-                                                        1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps ||
-                                                       (playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid())))
+                if (playableDirector.playableAsset && !(Math.Abs(playableDirector.time - playableDirector.duration) <=
+                                                        1 / ((TimelineAsset) playableDirector.playableAsset)
+                                                        .editorSettings.fps ||
+                                                        (playableDirector.state == PlayState.Paused &&
+                                                         !playableDirector.playableGraph.IsValid())))
                 {
                     if (_isCutSceneSkipEnable)
                     {
                         Debug.Log("스킵되어라!");
-                        playableDirector.time = playableDirector.duration;
+                        playableDirector.time = playableDirector.duration -
+                                                2 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps;
                         playableDirector.RebuildGraph();
                         playableDirector.Play();
                     }
@@ -243,7 +243,7 @@ namespace Utility.Dialogue
             var dialogueElement = dialogueData.dialogueElements[dialogueData.index];
             ItemManager.Instance.SetItem(dialogueElement.option);
             // Debug.Log($"{dialogueData.index} 인덱스 실행");
-            switch(dialogueElement.dialogueType)
+            switch (dialogueElement.dialogueType)
             {
                 case DialogueType.Script:
                 {
@@ -302,7 +302,7 @@ namespace Utility.Dialogue
                     // }
 
                     // Binding - Animator 한개만? 아마도? 카메라 흔들리는 트랙, 클립 만들고
-                    var timelineAsset = (TimelineAsset)playableDirector.playableAsset;
+                    var timelineAsset = (TimelineAsset) playableDirector.playableAsset;
                     if (timelineAsset != null)
                     {
                         var tracks = timelineAsset.GetOutputTracks();
@@ -326,8 +326,10 @@ namespace Utility.Dialogue
                     var options = Array.FindAll(dialogueElement.option, item => item.Any(char.IsDigit));
                     var floatOptions = options.Select(float.Parse);
                     var enumerable = floatOptions as float[] ?? floatOptions.ToArray();
-                    
-                    _waitCutsceneEnableCoroutine = StartCoroutine(enumerable.Length == 1 ? WaitInteractable(enumerable[0]) : WaitInteractable(0));
+
+                    _waitCutsceneEnableCoroutine = StartCoroutine(enumerable.Length == 1
+                        ? WaitInteractable(enumerable[0])
+                        : WaitInteractable(0));
 
                     // Auto Next Index
                     // true, false 다음 Index로 Auto 여부 (Default - false)
@@ -380,6 +382,7 @@ namespace Utility.Dialogue
                             {
                                 return;
                             }
+
                             Debug.Log("클리어, 다음 꺼 플레이 가능");
                             Debug.Log(dialogueData.dialogueElements.Length);
 
@@ -402,6 +405,7 @@ namespace Utility.Dialogue
                     {
                         Debug.LogError("세팅 오류, Script -> Interaction 세팅");
                     }
+
                     dialogueElement.interaction.StartInteraction(dialogueElement.interactIndex);
                     break;
                 }
@@ -427,6 +431,7 @@ namespace Utility.Dialogue
                         StopCoroutine(_printCoroutine);
                         CompleteDialogue();
                     }
+
                     _baseDialogueData.Peek().index++;
                     ProgressDialogue();
                     break;
@@ -436,12 +441,12 @@ namespace Utility.Dialogue
             }
 
             var tendencyData = TendencyManager.Instance.GetTendencyData();
-            
+
             tendencyData.increase += 4;
             tendencyData.descent += 3;
             tendencyData.activation += 2;
             tendencyData.inactive += 1;
-            
+
             tendencyText.text = $"activation: {tendencyData.activation}\n" +
                                 $"inactive: {tendencyData.inactive}\n" +
                                 $"increase: {tendencyData.increase}\n" +
@@ -450,18 +455,19 @@ namespace Utility.Dialogue
 
         private void Option(DialogueElement dialogue)
         {
-            if (dialogue.option is { Length: < 1 })
+            if (dialogue.option is {Length: < 1})
             {
                 return;
             }
-            for(var index = 0; index < dialogue.option.Length; index++)
+
+            for (var index = 0; index < dialogue.option.Length; index++)
             {
                 dialogue.option[index] = dialogue.option[index].Replace(" ", "");
             }
-            
+
             // if (option.has tendencyData)
             // Debug.Log("더하기");
-            
+
             var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
 
             Animator animator = null;
@@ -489,12 +495,12 @@ namespace Utility.Dialogue
 
                 if (dialogue.name != CharacterType.Keep)
                 {
-                    animator.SetInteger(CharacterHash, (int)dialogue.name);
+                    animator.SetInteger(CharacterHash, (int) dialogue.name);
                 }
 
                 if (dialogue.expression != Expression.Keep)
                 {
-                    animator.SetInteger(ExpressionHash, (int)dialogue.expression - 1);
+                    animator.SetInteger(ExpressionHash, (int) dialogue.expression - 1);
                 }
             }
         }
@@ -520,7 +526,7 @@ namespace Utility.Dialogue
             if (dialogueItem.option != null)
             {
                 var options = Array.FindAll(dialogueItem.option, item => !item.Contains("(") && item.Any(char.IsDigit));
-                var intOptions = options.Select(item => (int)float.Parse(item));
+                var intOptions = options.Select(item => (int) float.Parse(item));
                 var enumerable = intOptions as int[] ?? intOptions.ToArray();
                 if (enumerable.Length > 0)
                 {
@@ -548,15 +554,23 @@ namespace Utility.Dialogue
                 {
                     while (!t.Equals('>'))
                     {
+                        dialogueText.text += t;
+
                         index++;
                         t = dialogueItem.contents[index];
                     }
 
+                    dialogueText.text += t;
+
                     index++;
                 }
 
-                dialogueText.text += t;
-                yield return waitForSec;
+                dialogueText.text += dialogueItem.contents[index];
+
+                if (!t.Equals(' '))
+                {
+                    yield return waitForSec;
+                }
             }
 
             Debug.Log("프린트 끝");
@@ -628,9 +642,9 @@ namespace Utility.Dialogue
             Debug.Log("선택 대화 길이: " + choiceContextLen);
 
             InitChoiceDialogue(curIdx + choiceLen, choiceContextLen);
-            
+
             StartCoroutine(InvokeInputEnable(Time.deltaTime));
-            
+
             if (choiceContextLen == 0)
             {
                 OnInputDialogue();
@@ -659,21 +673,24 @@ namespace Utility.Dialogue
 
             var choicedCount = 0;
             var currentDialogueData = _baseDialogueData.Peek();
-            while(currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
-                  currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType != DialogueType.ChoiceEnd)
+            while (currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
+                   currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType !=
+                   DialogueType.ChoiceEnd)
             {
                 Debug.Log(currentDialogueData.index);
 
                 var choiceCount = 0;
                 var choiceContextLen = 0;
 
-                while(currentDialogueData.index + choiceCount < currentDialogueData.dialogueElements.Length &&
-                      currentDialogueData.dialogueElements[currentDialogueData.index + choiceCount].dialogueType == DialogueType.Choice)
+                while (currentDialogueData.index + choiceCount < currentDialogueData.dialogueElements.Length &&
+                       currentDialogueData.dialogueElements[currentDialogueData.index + choiceCount].dialogueType ==
+                       DialogueType.Choice)
                 {
                     choiceCount++;
                 }
 
-                while(currentDialogueData.index + choiceCount + choiceContextLen < currentDialogueData.dialogueElements.Length)
+                while (currentDialogueData.index + choiceCount + choiceContextLen <
+                       currentDialogueData.dialogueElements.Length)
                 {
                     var dialogueElement =
                         currentDialogueData.dialogueElements[
@@ -695,7 +712,7 @@ namespace Utility.Dialogue
                           $"선택 개수: {choiceCount}\n" +
                           $"선택 Context 길이: {choiceContextLen}");
 
-                for(var i = 0; i < choiceCount; i++)
+                for (var i = 0; i < choiceCount; i++)
                 {
                     var curIdx = currentDialogueData.index;
                     var choiceButton = choiceSelectors[choicedCount + i].button;
@@ -746,21 +763,24 @@ namespace Utility.Dialogue
             var countedRandomIndex = 0;
             var dictionary = new Dictionary<int, int>();
             var currentDialogueData = _baseDialogueData.Peek();
-            while(currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
-                  currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType != DialogueType.RandomEnd)
+            while (currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
+                   currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType !=
+                   DialogueType.RandomEnd)
             {
                 Debug.Log(currentDialogueData.index);
 
                 var randomCount = 0;
                 var randomContextLen = 0;
 
-                while(currentDialogueData.index + randomCount < currentDialogueData.dialogueElements.Length &&
-                      currentDialogueData.dialogueElements[currentDialogueData.index + randomCount].dialogueType == DialogueType.Random)
+                while (currentDialogueData.index + randomCount < currentDialogueData.dialogueElements.Length &&
+                       currentDialogueData.dialogueElements[currentDialogueData.index + randomCount].dialogueType ==
+                       DialogueType.Random)
                 {
                     randomCount++;
                 }
 
-                while(currentDialogueData.index + randomCount + randomContextLen < currentDialogueData.dialogueElements.Length)
+                while (currentDialogueData.index + randomCount + randomContextLen <
+                       currentDialogueData.dialogueElements.Length)
                 {
                     var dialogueElement =
                         currentDialogueData.dialogueElements[
@@ -828,13 +848,13 @@ namespace Utility.Dialogue
             InputManager.SetUiAction(true);
             endAction?.Invoke();
         }
-        
+
         private IEnumerator WaitInteractable(float sec)
         {
             yield return new WaitForSeconds(sec);
             _isCutSceneSkipEnable = true;
             _waitCutsceneEnableCoroutine = null;
-            
+
             Debug.Log("CutScene Skip 가능해짐");
         }
 
@@ -845,21 +865,23 @@ namespace Utility.Dialogue
                       $"duration: {playableDirector.duration}");
 
             Debug.Log(
-                $"Time: {Math.Abs(playableDirector.time - playableDirector.duration) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps}\n" +
+                $"Time: {Math.Abs(playableDirector.duration - playableDirector.time) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps}\n" +
                 $"Pause: {playableDirector.state == PlayState.Paused}\n" +
                 $"IsValid: {playableDirector.playableGraph.IsValid()}\n" +
-                $"IsCutSceneWorking {Math.Abs(playableDirector.time - playableDirector.duration) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps || playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid()}");
-            
-            
+                $"IsCutSceneWorking {Math.Abs(playableDirector.duration - playableDirector.time) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps || playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid()}");
+
+
             var waitUntil = new WaitUntil(() =>
-                Math.Abs(playableDirector.time - playableDirector.duration) <=
+                Math.Abs(playableDirector.duration - playableDirector.time) <=
                 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.fps ||
                 playableDirector.state == PlayState.Paused &&
                 !playableDirector.playableGraph.IsValid());
 
             yield return waitUntil;
+
+
             Debug.Log("컷씬 끝났다고 판정내림");
-            
+
             action?.Invoke();
         }
 

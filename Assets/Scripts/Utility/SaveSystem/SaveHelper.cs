@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Linq;
+using UnityEngine.SceneManagement;
 using Utility.Core;
 
 namespace Utility.SaveSystem
@@ -18,7 +19,16 @@ namespace Utility.SaveSystem
                     playTime = 1122
                 }
             };
-            
+
+            foreach (var interactionData in GameManager.Instance.InteractionObjects.Select(interaction =>
+                         interaction.GetInteractionSaveData()))
+            {
+                saveData.interactionData.Add(interactionData);
+            }
+
+            saveData.playerTransform.position = GameManager.Instance.Player.transform.position;
+            saveData.playerTransform.rotation = GameManager.Instance.Player.transform.rotation;
+
             return saveData;
         }
 
@@ -26,6 +36,7 @@ namespace Utility.SaveSystem
         {
             ItemManager.Instance.Load(saveDataIndex);
             TendencyManager.Instance.Load(saveDataIndex);
+            GameManager.Instance.Load(saveDataIndex);
         }
     }
 }
