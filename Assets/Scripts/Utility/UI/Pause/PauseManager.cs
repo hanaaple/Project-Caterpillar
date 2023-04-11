@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -73,7 +74,7 @@ namespace Utility.UI.Pause
         {
             _pauseHighlighter = new Highlighter
             {
-                HighlightItems = pauseHighlightItems,
+                HighlightItems = new List<HighlightItem>(pauseHighlightItems),
                 highlightType = Highlighter.HighlightType.HighlightIsSelect,
                 name = "Pause 하이라이트"
             };
@@ -85,7 +86,7 @@ namespace Utility.UI.Pause
 
             _checkHighlighter = new Highlighter
             {
-                HighlightItems = checkHighlightItems,
+                HighlightItems = new List<HighlightItem>(checkHighlightItems),
                 highlightType = Highlighter.HighlightType.HighlightIsSelect,
                 name = "check 하이라이트"
             };

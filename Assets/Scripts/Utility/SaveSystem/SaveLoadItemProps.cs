@@ -1,47 +1,46 @@
-using System;
-using TMPro;
 using UnityEngine;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem
 {
-    [Serializable]
     public class SaveLoadItemProps : HighlightItem
     {
-        [SerializeField] private TMP_Text scenarioText;
+        public readonly SaveLoadItem SaveLoadItem;
+        public int SaveDataIndex;
 
-        [SerializeField] private Animator animator;
-
-        // for debugging
-        [SerializeField] private SaveCoverData saveCoverData;
-        
-        public int saveDataIndex;
+        public SaveLoadItemProps(GameObject saveLoadObject)
+        {
+            if (saveLoadObject.TryGetComponent(out SaveLoadItem saveLoadItem))
+            {
+                SaveLoadItem = saveLoadItem;
+            }
+        }
 
         public async void UpdateUI()
         {
-            scenarioText.text = "";
-            await SaveManager.LoadCoverAsync(saveDataIndex);
-            
-            if (!SaveManager.Exists(saveDataIndex))
+            if (!SaveLoadItem)
             {
-                scenarioText.text = "비어있음";
                 return;
             }
+
+            SaveLoadItem.text.text = "";
             
-            saveCoverData = SaveManager.GetSaveCoverData(saveDataIndex);
+            await SaveManager.LoadCoverAsync(SaveDataIndex);
+            
+            var saveCoverData = SaveManager.GetSaveCoverData(SaveDataIndex);
             if (saveCoverData != null)
             {
-                scenarioText.text = saveCoverData.describe;
+                SaveLoadItem.text.text = saveCoverData.describe;
             }
             else
             {
-                scenarioText.text = "불러오기 오류";
+                SaveLoadItem.text.text = "불러오기 오류";
             }
         }
 
         public override void SetDefault()
         {
-            animator.SetBool("Selected", false);
+            //_saveLoadItem.animator.SetBool("Selected", false);
         }
 
         public override void EnterHighlight()
@@ -50,7 +49,7 @@ namespace Utility.SaveSystem
 
         public override void SetSelect()
         {
-            animator.SetBool("Selected", true);
+            //_saveLoadItem.animator.SetBool("Selected", true);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Utility.UI.Highlight
 
         public HighlightType highlightType;
 
-        public HighlightItem[] HighlightItems;
+        public List<HighlightItem> HighlightItems;
 
         private Action<InputAction.CallbackContext> _onArrow;
         private Action<InputAction.CallbackContext> _onExecute;
@@ -51,6 +51,71 @@ namespace Utility.UI.Highlight
 
         public bool enabled;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="highlightItem"></param>
+        /// <param name="index"> if index == -1, Add to Last </param>
+        /// <param name="isActive"></param>
+        public void AddItem(HighlightItem highlightItem, int index = -1, bool isActive = false)
+        {
+            if (index == -1)
+            {
+                index = HighlightItems.Count;
+            }
+
+            HighlightItems.Insert(index, highlightItem);
+
+            highlightItem.Init();
+
+            if (isActive)
+            {
+                // // 만약 포지션이 바뀐다면 자동으로 되겠지?
+                // // 기존의 selected Index 어떻게 해봐
+                // if (selectedIndex >= index)
+                // {
+                //     DeSelect();
+                //     // Select new Index (Where?)
+                // }
+                //
+                // if (highlightedIndex >= index)
+                // {
+                //     OnUnHighlight();
+                //     // Highlight new Index (Where?)
+                // }
+                
+                // 이거도 매번해주는게 아닌듯?
+                if (!highlightItem.isEnable)
+                {
+                    return;
+                }
+
+                if (highlightType == HighlightType.None)
+                {
+                    highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
+                        delegate { OnHighlight(highlightItem); });
+                    highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { OnUnHighlight(); });
+                }
+                else if (highlightType == HighlightType.HighlightIsSelect)
+                {
+                    highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { Select(highlightItem); });
+                }
+            }
+        }
+
+        public void RemoveItem(HighlightItem highlightItem, bool isActive = false)
+        {
+            HighlightItems.Remove(highlightItem);
+
+            if (isActive)
+            {
+                if (highlightType == HighlightType.None)
+                {
+                    OnUnHighlight();
+                }
+            }
+        }
+        
         public void Init(ArrowType arrowType, Action onCancle = null)
         {
             foreach (var highlightItem in HighlightItems)
@@ -175,7 +240,7 @@ namespace Utility.UI.Highlight
         {
             RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
 
-            var idx = Array.FindIndex(HighlightItems, item => item == highlightItem);
+            var idx = HighlightItems.FindIndex(item => item == highlightItem);
             if (idx == -1)
             {
                 Debug.LogError("에러");
@@ -204,7 +269,7 @@ namespace Utility.UI.Highlight
             Debug.Log("On 하이라이트");
             RemoveItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
             
-            var idx = Array.FindIndex(HighlightItems, item => item == highlightItem);
+            var idx = HighlightItems.FindIndex(item => item == highlightItem);
             highlightedIndex = idx;
             HighlightItems[idx].Add(HighlightItem.TransitionType.Highlight);
         }
@@ -244,7 +309,7 @@ namespace Utility.UI.Highlight
                         }
                         else
                         {
-                            idx = (idx - 1 + HighlightItems.Length) % HighlightItems.Length;
+                            idx = (idx - 1 + HighlightItems.Count) % HighlightItems.Count;
                         }
                     }
                     else if (input == Vector2.down)
@@ -255,7 +320,7 @@ namespace Utility.UI.Highlight
                         }
                         else
                         {
-                            idx = (idx + 1) % HighlightItems.Length;
+                            idx = (idx + 1) % HighlightItems.Count;
                         }
                     }
                     else
@@ -279,7 +344,7 @@ namespace Utility.UI.Highlight
                         }
                         else
                         {
-                            idx = (idx - 1 + HighlightItems.Length) % HighlightItems.Length;
+                            idx = (idx - 1 + HighlightItems.Count) % HighlightItems.Count;
                         }
                     }
                     else if (input == Vector2.right)
@@ -290,7 +355,7 @@ namespace Utility.UI.Highlight
                         }
                         else
                         {
-                            idx = (idx + 1) % HighlightItems.Length;
+                            idx = (idx + 1) % HighlightItems.Count;
                         }
                     }
                     else
