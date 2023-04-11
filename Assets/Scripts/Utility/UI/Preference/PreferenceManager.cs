@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,11 +11,16 @@ using Utility.UI.Highlight;
 
 namespace Utility.UI.Preference
 {
+    [Serializable]
+    public class PageProps
+    {
+        public GameObject panel;
+        public Button button;
+    }
+    
     public class PreferenceManager : MonoBehaviour
     {
         [SerializeField] private GameObject preferencePanel;
-
-        [SerializeField] private Image preferenceFrontPanel;
 
         [SerializeField] private Button preferenceExitButton;
 
@@ -28,12 +34,7 @@ namespace Utility.UI.Preference
 
         [SerializeField] private Button cancleSaveButton;
 
-        [SerializeField] private GameObject[] pagePanels;
-
-        [SerializeField] private Button leftButton;
-        [SerializeField] private Button rightButton;
-
-        [SerializeField] private TMP_Text pageText;
+        [SerializeField] private PageProps[] pageProps;
 
         [SerializeField] private TMP_Dropdown resolutionDropdown;
 
@@ -55,9 +56,8 @@ namespace Utility.UI.Preference
             {
                 if (preferencePanel.activeSelf && !_isPerformed && !checkRebindPanel.activeSelf)
                 {
-                    _isPerformed = true;
-                    StartCoroutine(WaitPerform());
-                    Input(_.ReadValue<Vector2>());
+                    //_isPerformed = true;
+                    //StartCoroutine(WaitPerform());
                 }
             };
 
@@ -135,7 +135,7 @@ namespace Utility.UI.Preference
         {
             _checkHighlighter = new Highlighter
             {
-                HighlightItems = checkHighlightItems,
+                HighlightItems = new List<HighlightItem>(checkHighlightItems),
                 name = "check 하이라이트"
             };
             
@@ -182,25 +182,21 @@ namespace Utility.UI.Preference
         
             saveButton.onClick.AddListener(() => { InputManager.EndChange(true); });
 
-            preferenceFrontPanel.alphaHitTestMinimumThreshold = 0.1f;
-            UpdateUI(0);
-
             preferenceExitButton.onClick.AddListener(ExitPreferencePanel);
 
-
-            leftButton.onClick.AddListener(() =>
+            
+            foreach (var pageProp in pageProps)
             {
-                var nextIdx = (_pageIndex - 1 + pagePanels.Length) % pagePanels.Length;
+                pageProp.button.onClick.AddListener(() =>
+                {
+                    foreach (var t in pageProps)
+                    {
+                        t.panel.SetActive(false);
+                    }
 
-                UpdateUI(nextIdx);
-            });
-
-            rightButton.onClick.AddListener(() =>
-            {
-                var nextIdx = (_pageIndex + 1) % pagePanels.Length;
-
-                UpdateUI(nextIdx);
-            });
+                    pageProp.panel.SetActive(true);
+                });
+            }
 
             resolutionDropdown.onValueChanged.AddListener(idx =>
             {
@@ -211,41 +207,6 @@ namespace Utility.UI.Preference
                 Screen.SetResolution(x, y, false);
                 Debug.Log(resolutionDropdown.options[idx].image);
             });
-        }
-
-        private void UpdateUI(int nextIdx)
-        {
-            foreach (var pagePanel in pagePanels)
-            {
-                pagePanel.SetActive(false);
-            }
-
-            pagePanels[nextIdx].SetActive(true);
-
-            _pageIndex = nextIdx;
-            pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
-        }
-    
-        private void Input(Vector2 input)
-        {
-            if (input == Vector2.left)
-            {
-                var nextIdx = (_pageIndex - 1 + pagePanels.Length) % pagePanels.Length;
-            
-                pagePanels[_pageIndex].SetActive(false);
-                _pageIndex = nextIdx;
-                pagePanels[_pageIndex].SetActive(true);
-                pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
-            }
-            else if (input == Vector2.right)
-            {
-                var nextIdx = (_pageIndex + 1) % pagePanels.Length;
-            
-                pagePanels[_pageIndex].SetActive(false);
-                _pageIndex = nextIdx;
-                pagePanels[_pageIndex].SetActive(true);
-                pageText.text = _pageIndex + 1 + " / " + pagePanels.Length;
-            }
         }
     }
 }

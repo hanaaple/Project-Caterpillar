@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -180,13 +181,13 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter = new Highlighter
             {
-                HighlightItems = inventoryMenuItems,
+                HighlightItems = new List<HighlightItem>(inventoryMenuItems),
                 name = "메뉴"
             };
 
             _itemHighlighter = new Highlighter
             {
-                HighlightItems = inventoryItems,
+                HighlightItems = new List<HighlightItem>(inventoryItems),
                 name = "아이템"
             };
 

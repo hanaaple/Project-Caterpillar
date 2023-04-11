@@ -106,7 +106,7 @@ namespace Utility.Dialogue
 
             _choiceHighlighter = new Highlighter
             {
-                HighlightItems = choiceSelectors,
+                HighlightItems = new List<HighlightItem>(choiceSelectors),
                 highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
@@ -264,14 +264,14 @@ namespace Utility.Dialogue
                         var uiActions = InputManager.InputControl.Ui;
                         uiActions.Dialogue.performed -= OnInputDialogue;
 
-                        SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.ButtonType.Save);
-                        _onComplete = () => { };
+                        SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.SaveLoadType.Save);
+                        _onComplete = () => {};
                         SavePanelManager.Instance.OnSave.AddListener(() =>
                         {
                             OnInputDialogue();
                             SavePanelManager.Instance.OnSavePanelActiveFalse?.RemoveAllListeners();
                             SavePanelManager.Instance.SetSaveLoadPanelActive(false,
-                                SavePanelManager.ButtonType.None);
+                                SavePanelManager.SaveLoadType.None);
 
                             InputManager.SetUiAction(true);
                             uiActions.Dialogue.performed += OnInputDialogue;

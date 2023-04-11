@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,20 +14,22 @@ namespace Utility.SaveSystem
     {
         private static int _idx;
 
-        private static string SaveFilePath => $"{Application.persistentDataPath}/saveData{_idx}.save";
-        private static string SaveCoverFilePath => $"{Application.persistentDataPath}/saveDataCover{_idx}.save";
+        
+        private static readonly string SaveDirectoryPath = $"{Application.persistentDataPath}/saveData";
+        private static string SaveFilePath => $"{Application.persistentDataPath}/saveData/saveData{_idx}.save";
+        private static string SaveCoverFilePath => $"{Application.persistentDataPath}/saveData/saveCoverData{_idx}.save";
 
         private static readonly byte[] EncryptKey = Encoding.UTF8.GetBytes("abcdefg_abcdefg_");
         private static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
 
-        private static readonly Dictionary<int, SaveData> SaveDatas;
-        private static readonly Dictionary<int, SaveCoverData> SaveCoverDatas;
+        private static readonly Dictionary<int, SaveData> SaveData;
+        private static readonly Dictionary<int, SaveCoverData> SaveCoverData;
         
         static SaveManager()
         {
             Debug.Log(SaveFilePath);
-            SaveDatas = new Dictionary<int, SaveData>();
-            SaveCoverDatas = new Dictionary<int, SaveCoverData>();
+            SaveData = new Dictionary<int, SaveData>();
+            SaveCoverData = new Dictionary<int, SaveCoverData>();
 #if UNITY_IPHONE
         Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 #endif
@@ -186,13 +190,66 @@ namespace Utility.SaveSystem
                 rijn.Clear();
             }
         }
+
+        public static int GetSaveIndex(int index)
+        {
+            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories);
+            var saveCoverData = Directory
+                .GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
+                .Select(item => item.Replace("Cover", "")).ToArray();
+
+            var saveDataCount = 0;
+            foreach (var data in saveData)
+            {
+                var coverData = Array.Find(saveCoverData, item => item == data);
+                if (string.IsNullOrEmpty(coverData))
+                {
+                    continue;
+                }
+                
+                if (saveDataCount == index)
+                {
+                    var saveDataIndex = int.Parse(new string(data.Where(char.IsDigit).ToArray()));
+                    return saveDataIndex;
+                }
+
+                saveDataCount++;
+            }
+
+            Debug.LogWarning($"SaveData가 없어요 {index}번째 saveData 없음.");
+            return -1;
+        }
+
+        public static int GetSaveDataLength()
+        {
+            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories);
+            var saveCoverData = Directory.GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
+                .Select(item => item.Replace("Cover", "")).ToArray();
+
+            var origin = _idx;
+            _idx = 0;
+
+            foreach (var data in saveData)
+            {
+                var coverData = Array.Find(saveCoverData, item => item == data);
+                if (!string.IsNullOrEmpty(coverData))
+                {
+                    _idx++;
+                }
+            }
+            
+            var t = _idx;
+            _idx = origin;
+
+            return t;
+        }
         
         public static SaveData GetSaveData(int idx)
         {
             _idx = idx;
             if (IsLoaded(idx))
             {
-                return SaveDatas[idx];
+                return SaveData[idx];
             }
 
             return null;
@@ -201,9 +258,10 @@ namespace Utility.SaveSystem
         public static SaveCoverData GetSaveCoverData(int idx)
         {
             _idx = idx;
+            
             if (IsCoverLoaded(idx))
             {
-                return SaveCoverDatas[idx];
+                return SaveCoverData[idx];
             }
 
             return null;
@@ -214,11 +272,11 @@ namespace Utility.SaveSystem
             Debug.Log($"{idx} index Load");
             if (IsLoaded(idx))
             {
-                SaveDatas[idx] = saveData;
+                SaveData[idx] = saveData;
             }
             else
             {
-                SaveDatas.Add(idx, saveData);
+                SaveData.Add(idx, saveData);
             }
         }
         
@@ -227,20 +285,25 @@ namespace Utility.SaveSystem
             Debug.Log($"{idx} index Cover Load");
             if (IsCoverLoaded(idx))
             {
-                SaveCoverDatas[idx] = saveCoverData;
+                SaveCoverData[idx] = saveCoverData;
             }
             else
             {
-                SaveCoverDatas.Add(idx, saveCoverData);
+                SaveCoverData.Add(idx, saveCoverData);
             }
         }
 
-        private static void Delete(int idx)
+        public static void Delete(int idx)
         {
             _idx = idx;
             if (File.Exists(SaveFilePath))
             {
                 File.Delete(SaveFilePath);
+            }
+            
+            if (File.Exists(SaveCoverFilePath))
+            {
+                File.Delete(SaveCoverFilePath);
             }
 
             Remove(idx);
@@ -250,23 +313,22 @@ namespace Utility.SaveSystem
         {
             if (IsLoaded(idx))
             {
-                SaveDatas.Remove(idx);
+                SaveData.Remove(idx);
             }
             if (IsCoverLoaded(idx))
             {
-                SaveCoverDatas.Remove(idx);
+                SaveCoverData.Remove(idx);
             }
         }
 
-
         public static bool IsLoaded(int idx)
         {
-            return SaveDatas.ContainsKey(idx);
+            return SaveData.ContainsKey(idx);
         }
         
         public static bool IsCoverLoaded(int idx)
         {
-            return SaveCoverDatas.ContainsKey(idx);
+            return SaveCoverData.ContainsKey(idx);
         }
         
         public static bool Exists(int idx)
