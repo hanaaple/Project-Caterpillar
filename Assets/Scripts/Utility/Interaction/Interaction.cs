@@ -214,7 +214,8 @@ namespace Utility.Interaction
                     if (dialogueElement.dialogueType is DialogueType.Interact or DialogueType.WaitInteract
                         or DialogueType.MoveMap)
                     {
-                        Debug.LogWarning($"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                        Debug.LogWarning($"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.\n" +
+                                         $"{dialogueElement.contents}");
                     }
 
                     if (dialogueElement.option != null)

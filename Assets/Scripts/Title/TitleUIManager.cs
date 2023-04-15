@@ -79,7 +79,7 @@ namespace Title
                     case HighlightTitleItem.ButtonType.NewStart:
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            SceneLoader.Instance.LoadScene("PrologueScene");
+                            SceneLoader.Instance.LoadScene("MainScene");
                         });
                         break;
                     case HighlightTitleItem.ButtonType.Preferenece:

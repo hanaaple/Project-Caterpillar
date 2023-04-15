@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 using Utility.Core;
 using Utility.Interaction;
 using Utility.Serialize;
@@ -11,7 +12,7 @@ namespace Utility.SaveSystem
     {
         public SaveCoverData saveCoverData;
 
-        public Transform playerTransform;
+        [FormerlySerializedAs("playerTransform")] public SerializableTransform playerSerializableTransform;
         
         public List<InteractionSaveData> interactionData;
 
@@ -23,7 +24,7 @@ namespace Utility.SaveSystem
     }
 
     [Serializable]
-    public struct Transform
+    public struct SerializableTransform
     {
         public SerializableVector3 position;
         public SerializableQuaternion rotation;

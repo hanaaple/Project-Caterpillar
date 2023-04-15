@@ -26,8 +26,8 @@ namespace Utility.SaveSystem
                 saveData.interactionData.Add(interactionData);
             }
 
-            saveData.playerTransform.position = GameManager.Instance.Player.transform.position;
-            saveData.playerTransform.rotation = GameManager.Instance.Player.transform.rotation;
+            saveData.playerSerializableTransform.position = GameManager.Instance.Player.transform.position;
+            saveData.playerSerializableTransform.rotation = GameManager.Instance.Player.transform.rotation;
 
             return saveData;
         }

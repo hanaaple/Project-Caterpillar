@@ -60,21 +60,27 @@ namespace Utility.Core
         public void Load(int saveDataIndex)
         {
             var saveData = SaveManager.GetSaveData(saveDataIndex);
-            foreach (var interactionSaveData in saveData.interactionData)
+            if (saveData.interactionData != null)
             {
-                var interaction = InteractionObjects.Find(item => item.id == interactionSaveData.id);
-
-                foreach (var interactionData in interaction.interactionData)
+                foreach (var interactionSaveData in saveData.interactionData)
                 {
-                    var loadedSerializedData = interactionSaveData.serializedInteractionData.Find(item =>
-                        item.id == interactionData.serializedInteractionData.id);
+                    var interaction = InteractionObjects.Find(item => item.id == interactionSaveData.id);
 
-                    interactionData.serializedInteractionData = loadedSerializedData;
+                    foreach (var interactionData in interaction.interactionData)
+                    {
+                        var loadedSerializedData = interactionSaveData.serializedInteractionData.Find(item =>
+                            item.id == interactionData.serializedInteractionData.id);
+
+                        interactionData.serializedInteractionData = loadedSerializedData;
+                    }
                 }
             }
 
-            Player.transform.position = saveData.playerTransform.position;
-            Player.transform.rotation = saveData.playerTransform.rotation;
+            if (Player)
+            {
+                Player.transform.position = saveData.playerSerializableTransform.position;
+                Player.transform.rotation = saveData.playerSerializableTransform.rotation;
+            }
         }
     }
 }

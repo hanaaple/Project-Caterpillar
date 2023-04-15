@@ -27,7 +27,7 @@ namespace Utility.SaveSystem
         
         static SaveManager()
         {
-            Debug.Log(SaveFilePath);
+            Debug.Log(SaveDirectoryPath);
             SaveData = new Dictionary<int, SaveData>();
             SaveCoverData = new Dictionary<int, SaveCoverData>();
 #if UNITY_IPHONE
