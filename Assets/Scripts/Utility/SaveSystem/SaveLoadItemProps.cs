@@ -1,24 +1,27 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem
 {
     public class SaveLoadItemProps : HighlightItem
     {
-        public readonly SaveLoadItem SaveLoadItem;
         public int SaveDataIndex;
+        public Action OnSelect;
+        
+        public readonly SaveLoadItem SaveLoadItem;
 
-        public SaveLoadItemProps(GameObject saveLoadObject)
+        public SaveLoadItemProps(SaveLoadItem saveLoadItem)
         {
-            if (saveLoadObject.TryGetComponent(out SaveLoadItem saveLoadItem))
-            {
-                SaveLoadItem = saveLoadItem;
-            }
+            SaveLoadItem = saveLoadItem;
+            button = saveLoadItem.GetComponent<Button>();
+            saveLoadItem.Animator = saveLoadItem.GetComponent<Animator>();
         }
 
         public async void UpdateUI()
         {
-            if (!SaveLoadItem)
+            if (SaveLoadItem.isEmpty)
             {
                 return;
             }
@@ -27,6 +30,10 @@ namespace Utility.SaveSystem
             
             await SaveManager.LoadCoverAsync(SaveDataIndex);
             
+            // for로 동시에 실행시킬 때, 실행 순서를 알 수 없다. index가 다르긴 해도 Dictionary를 동시에 Add가 되어
+            // --> ConcurrentDictionary를 사용하라
+            
+            
             var saveCoverData = SaveManager.GetSaveCoverData(SaveDataIndex);
             if (saveCoverData != null)
             {
@@ -34,13 +41,13 @@ namespace Utility.SaveSystem
             }
             else
             {
-                SaveLoadItem.text.text = "불러오기 오류";
+                SaveLoadItem.text.text = $"{SaveDataIndex} 불러오기 오류";
             }
         }
 
         public override void SetDefault()
         {
-            //_saveLoadItem.animator.SetBool("Selected", false);
+            SaveLoadItem.Animator.SetBool("Selected", false);
         }
 
         public override void EnterHighlight()
@@ -49,7 +56,8 @@ namespace Utility.SaveSystem
 
         public override void SetSelect()
         {
-            //_saveLoadItem.animator.SetBool("Selected", true);
+            OnSelect?.Invoke();
+            SaveLoadItem.Animator.SetBool("Selected", true);
         }
     }
 }

@@ -48,12 +48,16 @@ namespace Utility.SaveSystem
 
         [SerializeField] private GameObject loadingPanel;
         [SerializeField] private Button savePanelExitButton;
+        [SerializeField] private TMP_Text savePanelText;
 
         [SerializeField] private Transform saveItemParent;
         [SerializeField] private GameObject saveItemPrefab;
 
-        [Header("Check")]
-        [SerializeField] private GameObject checkPanel;
+        [SerializeField] private Slider slider;
+        [SerializeField] private RectTransform scrollView;
+        [SerializeField] private RectTransform content;
+
+        [Header("Check")] [SerializeField] private GameObject checkPanel;
         [SerializeField] private TMP_Text checkText;
         [SerializeField] private Button noButton;
         [SerializeField] private Button yesButton;
@@ -73,8 +77,7 @@ namespace Utility.SaveSystem
         {
             _highlighter = new Highlighter
             {
-                HighlightItems = new List<HighlightItem>(),
-                highlightType = Highlighter.HighlightType.HighlightIsSelect
+                HighlightItems = new List<HighlightItem>()
             };
 
             _highlighter.Init(
@@ -83,7 +86,8 @@ namespace Utility.SaveSystem
 
             SetItemData();
             // Add + (추가하기)
-            Add(saveItemParent.GetChild(saveItemParent.childCount - 1).gameObject);
+            var emptyItem = saveItemParent.GetChild(saveItemParent.childCount - 1).gameObject;
+            Add(emptyItem);
 
             // 유니티 Prefab에서 무조건 마지막 Element로는 추가하기 Item으로 세팅 -> 굳이 그런 예외사항까지 체크할 필욘 없어보임.
             for (var i = 0; i < saveItemParent.childCount - 1; i++)
@@ -91,28 +95,34 @@ namespace Utility.SaveSystem
                 var saveLoadItem = saveItemParent.GetChild(i).gameObject;
                 Add(saveLoadItem);
             }
-
-            // Highlighter에서 Index는 List의 Index이다. 추가되거나 삭제될 경우 매우 귀찮아진다. 망했다.
         }
 
         private void Start()
         {
-            noButton.onClick.AddListener(() =>
-            {
-                checkPanel.SetActive(false);
-            });
-            
+            noButton.onClick.AddListener(() => { checkPanel.SetActive(false); });
+
             savePanelExitButton.onClick.AddListener(() => { SetSaveLoadPanelActive(false, SaveLoadType.None); });
         }
 
         public void SetSaveLoadPanelActive(bool isActive, SaveLoadType saveLoadType)
         {
             _saveLoadType = saveLoadType;
+
+            if (saveLoadType == SaveLoadType.Save)
+            {
+                savePanelText.text = "Save";
+            }
+            else if (saveLoadType == SaveLoadType.Load)
+            {
+                savePanelText.text = "Load";
+            }
+
             gameObject.SetActive(isActive);
             if (isActive)
             {
                 SetItemData();
 
+                slider.value = 1f;
                 // Load All Cover File
                 foreach (var saveLoadItemProps in _highlighter.HighlightItems)
                 {
@@ -132,16 +142,15 @@ namespace Utility.SaveSystem
         private void SetItemData()
         {
             var saveDataLength = SaveManager.GetSaveDataLength();
-
+            Debug.Log($"세이브 개수: {saveDataLength}, 있는 SaveItem 개수: {saveItemParent.childCount - 1}");
             if (saveDataLength > saveItemParent.childCount - 1)
             {
                 while (saveDataLength > saveItemParent.childCount - 1)
                 {
                     // Index는 고정이었는데, 더이상 고정이 아니다.
                     var addItem = saveItemParent.GetChild(saveItemParent.childCount - 1);
-                    var saveLoadItem = Instantiate(saveItemPrefab, saveItemParent);
+                    Instantiate(saveItemPrefab, saveItemParent);
                     addItem.SetAsLastSibling();
-                    Add(saveLoadItem, true);
                 }
             }
             else if (saveDataLength < saveItemParent.childCount - 1)
@@ -157,16 +166,55 @@ namespace Utility.SaveSystem
         {
             var saveLoadItem = saveLoadObject.GetComponent<SaveLoadItem>();
 
-            var saveLoadItemProps = new SaveLoadItemProps(saveLoadObject)
+            var saveLoadItemProps = new SaveLoadItemProps(saveLoadItem);
+
+            saveLoadItemProps.OnSelect = () =>
             {
-                button = saveLoadObject.GetComponent<Button>()
+                var itemRectTransform = saveLoadItemProps.button.image.rectTransform;
+
+                //현재 화면 상에 보이는 위치 0 ~ 1 + scrollView * offset
+                var up = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
+                         content.anchoredPosition.y + itemRectTransform.rect.height / 2; // (위 위치)
+                var upT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, up);
+                var upOffset = .1f;
+
+                var down = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
+                    content.anchoredPosition.y - itemRectTransform.rect.height / 2; // (아래 위치)
+                var downT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, down);
+                var downOffset = .1f;
+
+
+                if (upT > 1f - upOffset)
+                {
+                    var upRatio =
+                        -(itemRectTransform.anchoredPosition.y + itemRectTransform.rect.height / 2 +
+                          scrollView.rect.height * upOffset) / (content.rect.height - scrollView.rect.height);
+                    var slideValue = Mathf.Lerp(1f, 0f, upRatio);
+                    Debug.Log(
+                        $"({itemRectTransform.anchoredPosition.y} + {itemRectTransform.rect.height / 2} + {scrollView.rect.height * upOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
+                        $"{slideValue}");
+                    slider.value = slideValue;
+                }
+                else if (downT < 0f + downOffset)
+                {
+                    var downRatio =
+                        -(itemRectTransform.anchoredPosition.y - itemRectTransform.rect.height / 2 +
+                            scrollView.rect.height - scrollView.rect.height * downOffset) /
+                        (content.rect.height - scrollView.rect.height);
+                    var slideValue = Mathf.Lerp(1f, 0f, downRatio);
+                    Debug.Log(
+                        $"({itemRectTransform.anchoredPosition.y} - {itemRectTransform.rect.height / 2} + {scrollView.rect.height} - {scrollView.rect.height * downOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
+                        $"{slideValue}");
+                    slider.value = slideValue;
+                }
             };
 
-            if (saveLoadItem)
+            if (!saveLoadItem.isEmpty)
             {
                 var index = saveLoadObject.transform.GetSiblingIndex();
                 var saveDataIndex = SaveManager.GetSaveIndex(index);
                 saveLoadItemProps.SaveDataIndex = saveDataIndex;
+                Debug.Log($"{index}번째에 {saveDataIndex} 추가");
                 _highlighter.AddItem(saveLoadItemProps, _highlighter.HighlightItems.Count - 1, isActive);
             }
             else
@@ -175,7 +223,7 @@ namespace Utility.SaveSystem
                 _highlighter.AddItem(saveLoadItemProps);
             }
 
-            if (saveLoadItem)
+            if (!saveLoadItem.isEmpty)
             {
                 saveLoadItemProps.button.onClick.AddListener(() =>
                 {
@@ -198,7 +246,7 @@ namespace Utility.SaveSystem
 
                                 saveLoadItemProps.UpdateUI();
                             }));
-                            
+
                             checkPanel.SetActive(false);
                         });
                     }
@@ -256,7 +304,7 @@ namespace Utility.SaveSystem
                     else if (_saveLoadType == SaveLoadType.Load)
                     {
                         checkPanel.SetActive(true);
-                        
+
                         checkText.text = newLoadText;
                         yesButton.onClick.RemoveAllListeners();
                         yesButton.onClick.AddListener(() =>
@@ -268,7 +316,7 @@ namespace Utility.SaveSystem
                                 SetSaveLoadPanelActive(false, SaveLoadType.None);
                             };
                             _onLoad?.Invoke();
-                            
+
                             checkPanel.SetActive(false);
                         });
                     }
@@ -282,7 +330,7 @@ namespace Utility.SaveSystem
         {
             var saveLoadItemProps = _highlighter.HighlightItems.Find(item =>
                 ((SaveLoadItemProps) item).SaveLoadItem == saveLoadItem);
-            _highlighter.RemoveItem(saveLoadItemProps);
+            _highlighter.RemoveItem(saveLoadItemProps, true);
 
             DestroyImmediate(saveLoadItem.gameObject);
         }
