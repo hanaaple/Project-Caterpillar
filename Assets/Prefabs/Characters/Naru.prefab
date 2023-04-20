@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 3630341119223012533}
   - component: {fileID: 3630341119223012530}
   - component: {fileID: 4101185042048939380}
+  - component: {fileID: 8759562747109508579}
   m_Layer: 11
   m_Name: Naru
   m_TagString: Untagged
@@ -153,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901e0f19339a42559e093b794488befe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   interactionData: []
+  isOnLoadScene: 0
   interactionIndex: 0
   floatingMark: {fileID: 3630341118492841997}
   offset: {x: 0.5, y: 1.5}
@@ -198,12 +201,12 @@ SpriteRenderer:
   m_SortingLayerID: -212501049
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 519d80cf0e6ca9549a8d1248e005f1f2, type: 3}
+  m_Sprite: {fileID: 1356454561, guid: 5db0fab9a4e0ed64e93bf202f08db918, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.19, y: 0.34}
+  m_Size: {x: 0.9309091, y: 1.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -241,3 +244,23 @@ CapsuleCollider2D:
   m_Offset: {x: -0.1, y: 0}
   m_Size: {x: 1.1, y: 1.7}
   m_Direction: 0
+--- !u!95 &8759562747109508579
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e74017e2e2e0f44e9a01f749c0b37a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

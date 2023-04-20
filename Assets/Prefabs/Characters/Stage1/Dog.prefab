@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6571140823654784230}
   - component: {fileID: 5889203982835004704}
   m_Layer: 11
-  m_Name: God Cat
+  m_Name: Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6571140823654784228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.36, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,16 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901e0f19339a42559e093b794488befe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnLoadScene: 0
+  id: 
   interactionData:
   - interactType: 1
     animator: {fileID: 0}
     state: 0
     jsonAsset: {fileID: 4900000, guid: 30efe5fa27837ad4aa1a6e90a85d3d72, type: 3}
-    isInteractable: 1
-    isContinuable: 0
-    interactNextIndex: 1
-    isLoop: 0
     dialogueData:
       index: 0
       dialogueElements:
@@ -122,7 +118,14 @@ MonoBehaviour:
         extrapolationMode: 2
         interaction: {fileID: 0}
         interactIndex: 0
-    isInteracted: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 0
+      isContinuable: 0
+      interactNextIndex: 0
+      isLoop: 0
+      isInteracted: 0
+  isOnLoadScene: 0
   interactionIndex: 0
   floatingMark: {fileID: 6571140824519170137}
   offset: {x: 0.5, y: 1.5}
@@ -167,12 +170,12 @@ SpriteRenderer:
   m_SortingLayerID: -212501049
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78a680799ada7704094f9fafcbb9002f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fa3bb3f8d232694c97e604f2899a231, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.19, y: 0.34}
+  m_Size: {x: 3.56, y: 2.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
