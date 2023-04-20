@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5677686837442221941}
   - component: {fileID: 5862836930072206771}
   - component: {fileID: 8666849754352839529}
+  - component: {fileID: 8797120503444089539}
   m_Layer: 5
   m_Name: Save Item
   m_TagString: Untagged
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -143,9 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7446103c54ab188af65029ff87bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 9146423710423633481}
   deleteButton: {fileID: 1604722228218367113}
   text: {fileID: 9172606077962200807}
+  isEmpty: 0
 --- !u!114 &8666849754352839529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!95 &8797120503444089539
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725006992321322132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60be578380ff337499a8b46cee333056, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1873109950588513097
 GameObject:
   m_ObjectHideFlags: 0

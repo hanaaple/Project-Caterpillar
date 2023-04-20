@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,14 +23,14 @@ namespace Utility.SaveSystem
         private static readonly byte[] EncryptKey = Encoding.UTF8.GetBytes("abcdefg_abcdefg_");
         private static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
 
-        private static readonly Dictionary<int, SaveData> SaveData;
-        private static readonly Dictionary<int, SaveCoverData> SaveCoverData;
+        private static readonly ConcurrentDictionary<int, SaveData> SaveData;
+        private static readonly ConcurrentDictionary<int, SaveCoverData> SaveCoverData;
         
         static SaveManager()
         {
             Debug.Log(SaveDirectoryPath);
-            SaveData = new Dictionary<int, SaveData>();
-            SaveCoverData = new Dictionary<int, SaveCoverData>();
+            SaveData = new ConcurrentDictionary<int, SaveData>();
+            SaveCoverData = new ConcurrentDictionary<int, SaveCoverData>();
 #if UNITY_IPHONE
         Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
 #endif
@@ -276,7 +277,7 @@ namespace Utility.SaveSystem
             }
             else
             {
-                SaveData.Add(idx, saveData);
+                SaveData.AddOrUpdate(idx, saveData, (_, _) => saveData);
             }
         }
         
@@ -289,7 +290,7 @@ namespace Utility.SaveSystem
             }
             else
             {
-                SaveCoverData.Add(idx, saveCoverData);
+                SaveCoverData.AddOrUpdate(idx, saveCoverData, (_, _) => saveCoverData);
             }
         }
 
@@ -313,11 +314,11 @@ namespace Utility.SaveSystem
         {
             if (IsLoaded(idx))
             {
-                SaveData.Remove(idx);
+                SaveData.TryRemove(idx, out var saveData);
             }
             if (IsCoverLoaded(idx))
             {
-                SaveCoverData.Remove(idx);
+                SaveCoverData.TryRemove(idx, out var saveCoverData);
             }
         }
 
@@ -328,6 +329,7 @@ namespace Utility.SaveSystem
         
         public static bool IsCoverLoaded(int idx)
         {
+            Debug.Log($"idx: {idx}");
             return SaveCoverData.ContainsKey(idx);
         }
         

@@ -181,8 +181,8 @@ namespace Utility.UI.Pause
                 Time.timeScale = 1f;
                 // Enable All Input
                 pausePanel.SetActive(false);
-                HighlightHelper.Instance.Pop(_checkHighlighter, true);
-                HighlightHelper.Instance.Pop(_pauseHighlighter, true);
+                HighlightHelper.Instance.Pop(_checkHighlighter);
+                HighlightHelper.Instance.Pop(_pauseHighlighter);
             }
         }
 

@@ -65,7 +65,10 @@ namespace Utility.UI.Highlight
             }
 
             HighlightItems.Insert(index, highlightItem);
-
+            foreach (var item in HighlightItems)
+            {
+                Debug.Log(item.button.gameObject);
+            }
             highlightItem.Init();
 
             if (isActive)
@@ -103,11 +106,11 @@ namespace Utility.UI.Highlight
             }
         }
 
-        public void RemoveItem(HighlightItem highlightItem, bool isActive = false)
+        public void RemoveItem(HighlightItem highlightItem, bool isDestroy = false)
         {
             HighlightItems.Remove(highlightItem);
 
-            if (isActive)
+            if (!isDestroy)
             {
                 if (highlightType == HighlightType.None)
                 {
@@ -148,13 +151,13 @@ namespace Utility.UI.Highlight
             _onCancle += _ => { onCancle?.Invoke(); };
         }
 
-        public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isRemove = false, bool isReset = true)
+        public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isDestroy = false, bool isReset = true)
         {
             var uiActions = InputManager.InputControl.Ui;
-            Debug.Log($"SetEnable {name} {isEnable}  {isDuplicatePossible}  {isRemove}");
+            Debug.Log($"SetEnable {name} {isEnable}  {isDuplicatePossible}  {isDestroy}");
             if (enabled == isEnable)
             {
-                if (!isEnable && !isDuplicatePossible && !isRemove)
+                if (!isEnable && !isDuplicatePossible && !isDestroy)
                 {
                     if (isReset)
                     {
@@ -215,23 +218,25 @@ namespace Utility.UI.Highlight
                 uiActions.Execute.performed -= _onExecute;
                 uiActions.Cancle.performed -= _onCancle;
 
-                if (!isDuplicatePossible && !isRemove)
+                if (isDuplicatePossible || isDestroy)
                 {
-                    if (isReset)
-                    {
-                        highlightedIndex = -1;
-                        selectedIndex = -1;
+                    return;
+                }
+                
+                if (isReset)
+                {
+                    highlightedIndex = -1;
+                    selectedIndex = -1;
                         
-                        foreach (var highlightItem in HighlightItems)
-                        {
-                            highlightItem.Reset();
-                        }
-                    }
-
                     foreach (var highlightItem in HighlightItems)
                     {
-                        highlightItem.ClearEventTrigger();
+                        highlightItem.Reset();
                     }
+                }
+
+                foreach (var highlightItem in HighlightItems)
+                {
+                    highlightItem.ClearEventTrigger();
                 }
             }
         }
@@ -435,23 +440,23 @@ namespace Utility.UI.Highlight
         /// 
         /// </summary>
         /// <param name="highlighter"></param>
-        /// <param name="isRemove"> When destroy highlighter (ex - LoadScene)  </param>
-        public void Pop(Highlighter highlighter, bool isRemove = false)
+        /// <param name="isDestroy"> When destroy highlighter (ex - LoadScene)  </param>
+        public void Pop(Highlighter highlighter, bool isDestroy = false)
         {
             if (!_highlighters.Contains(highlighter))
             {
                 return;
             }
-            Debug.Log($"Pop, 삭제여부: {isRemove}");
+            Debug.Log($"Pop, 삭제여부: {isDestroy}");
 
-            StartCoroutine(PopCoroutine(highlighter, isRemove));
+            StartCoroutine(PopCoroutine(highlighter, isDestroy));
         }
 
         // 하는 이유 - input 1회에 여러번 실행됨.
-        private IEnumerator PopCoroutine(Highlighter highlighter, bool isRemove)
+        private IEnumerator PopCoroutine(Highlighter highlighter, bool isDestroy)
         {
             yield return null;
-            highlighter.SetEnable(false, default, isRemove);
+            highlighter.SetEnable(false, default, isDestroy);
             _highlighters.Remove(highlighter);
             
             if (_highlighters.Count == 0)
