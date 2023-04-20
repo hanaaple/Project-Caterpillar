@@ -20,7 +20,6 @@ public class TestPlayer : MonoBehaviour
     private float _yScreenHalfSize;
     private float _xScreenHalfSize;
     private Animator _animator;
-    private bool _wasPositive;
     
     private readonly int _isMove = Animator.StringToHash("isMove");
 
@@ -49,10 +48,6 @@ public class TestPlayer : MonoBehaviour
         _yScreenHalfSize = _camera.orthographicSize;
         _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
-        if (transform.localScale.x > 0)
-        {
-            _wasPositive = true;
-        }
         
         CameraMove();
     }
@@ -73,21 +68,17 @@ public class TestPlayer : MonoBehaviour
             _animator.SetBool(_isMove, true);
         }
         
-        if (!_wasPositive && input.x > 0)
+        if (input.x < 0)
         {
             var scale = transform.localScale;
-            scale.x *= -1;
+            scale.x = 1;
             transform.localScale = scale;
-            
-            _wasPositive = true;
         }
-        else if (_wasPositive && input.x < 0)
+        else if (input.x > 0)
         {
             var scale = transform.localScale;
-            scale.x *= -1;
+            scale.x = -1;
             transform.localScale = scale;
-
-            _wasPositive = false;
         }
 
         CharacterMove();
