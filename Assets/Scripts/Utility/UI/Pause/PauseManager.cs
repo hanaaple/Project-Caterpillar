@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Utility.Core;
-using Utility.InputSystem;
+using Utility.UI.Check;
 using Utility.UI.Highlight;
+using Utility.Util;
 
 namespace Utility.UI.Pause
 {
@@ -15,7 +14,7 @@ namespace Utility.UI.Pause
         public enum ButtonType
         {
             Continue,
-            Preferenece,
+            Preference,
             ExitTitle,
             ExitGame
         }
@@ -43,63 +42,40 @@ namespace Utility.UI.Pause
 
     public class PauseManager : MonoBehaviour
     {
-        [SerializeField] private GameObject preferencePanel;
         [SerializeField] private GameObject pausePanel;
         [SerializeField] private PauseHighlightItem[] pauseHighlightItems;
 
-        [SerializeField] private GameObject checkPanel;
-        [SerializeField] private TMP_Text checkText;
-        [SerializeField] private CheckHighlightItem[] checkHighlightItems;
+        [SerializeField] private CheckUIManager exitCheckUIManager;
         
         private Highlighter _pauseHighlighter;
-        private Highlighter _checkHighlighter;
-        private Action<InputAction.CallbackContext> _onPause;
+        public Action onPause;
 
         private void Awake()
         {
-            _onPause = _ =>
+            onPause = () =>
             {
-                if (!pausePanel.activeSelf)
-                {
-                    SetActive(true);
-                }
-                else if (!preferencePanel.activeSelf && !checkPanel.activeSelf)
-                {
-                    SetActive(false);
-                }
+                SetActive(true);
             };
-        }
-
-        private void Start()
-        {
-            _pauseHighlighter = new Highlighter
+            
+            _pauseHighlighter = new Highlighter("Pause Highlight")
             {
                 HighlightItems = new List<HighlightItem>(pauseHighlightItems),
-                highlightType = Highlighter.HighlightType.HighlightIsSelect,
-                name = "Pause 하이라이트"
+                highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
             _pauseHighlighter.Init(Highlighter.ArrowType.Vertical, () =>
             {
-                HighlightHelper.Instance.Pop(_checkHighlighter, true);
+                SetActive(false);
             });
+        }
 
-            _checkHighlighter = new Highlighter
+        private void Start()
+        {
+            exitCheckUIManager.Initialize();
+            
+            exitCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () =>
             {
-                HighlightItems = new List<HighlightItem>(checkHighlightItems),
-                highlightType = Highlighter.HighlightType.HighlightIsSelect,
-                name = "check 하이라이트"
-            };
-            
-            var yesHighlightItem = Array.Find(checkHighlightItems,
-                item => item.buttonType == CheckHighlightItem.ButtonType.Yes);
-            
-            var noHighlightItem = Array.Find(checkHighlightItems,
-                item => item.buttonType == CheckHighlightItem.ButtonType.No);
-            
-            _checkHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
-            {
-                noHighlightItem.button.onClick?.Invoke();
+                exitCheckUIManager.Pop();
             });
 
             foreach (var highlightItem in pauseHighlightItems)
@@ -114,13 +90,11 @@ namespace Utility.UI.Pause
                         });
                         break;
                     }
-                    case PauseHighlightItem.ButtonType.Preferenece:
+                    case PauseHighlightItem.ButtonType.Preference:
                     {
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            // Set DisAble 
-                            HighlightHelper.Instance.Disable(false);
-                            preferencePanel.SetActive(true);
+                            PlayUIManager.Instance.preferenceManager.SetPreferencePanel(true);
                         });
                         break;
                     }
@@ -129,17 +103,15 @@ namespace Utility.UI.Pause
                         highlightItem.button.onClick.AddListener(() =>
                         {
                             Debug.Log($"현재: {_pauseHighlighter.selectedIndex}");
-                            checkText.text = "저장되지 않은 데이터가 있을 수 있습니다.\n타이틀 화면으로 돌아가시겠습니까?";
-                            yesHighlightItem.button.onClick.RemoveAllListeners();
-                            yesHighlightItem.button.onClick.AddListener(() =>
+                            exitCheckUIManager.SetText("저장되지 않은 데이터가 있을 수 있습니다.\n타이틀 화면으로 돌아가시겠습니까?");
+                            exitCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                             {
-                                Time.timeScale = 1f;
+                                TimeScaleHelper.Pop();
                                 HighlightHelper.Instance.ResetHighlight();
                                 PlayUIManager.Instance.Destroy();
-                                SceneLoader.SceneLoader.Instance.LoadScene("TitleScene");
+                                SceneLoader.Instance.LoadScene("TitleScene");
                             });
-                            checkPanel.SetActive(true);
-                            HighlightHelper.Instance.Push(_checkHighlighter, default, false);
+                            exitCheckUIManager.Push();
                             Debug.Log($"다음: {_pauseHighlighter.selectedIndex}");
                         });
                         break;
@@ -148,61 +120,41 @@ namespace Utility.UI.Pause
                     {
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            checkText.text = "저장되지 않은 데이터가 있을 수 있습니다.\n게임을 종료하시겠습니까?";
-                            yesHighlightItem.button.onClick.RemoveAllListeners();
-                            yesHighlightItem.button.onClick.AddListener(Application.Quit);
-                            checkPanel.SetActive(true);
-                            HighlightHelper.Instance.Push(_checkHighlighter, default, false);
+                            exitCheckUIManager.SetText("저장되지 않은 데이터가 있을 수 있습니다.\n게임을 종료하시겠습니까?");
+                            exitCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, Application.Quit);
+                            
+                            exitCheckUIManager.Push();
                         });
                         break;
                     }
                 }
             }
-            
-            noHighlightItem.button.onClick.AddListener(() =>
-            {
-                HighlightHelper.Instance.Pop(_checkHighlighter);
-                checkPanel.SetActive(false);
-                checkText.text = "";
-            });
         }
 
-        private void SetActive(bool isTrue)
+        /// <summary>
+        /// Set Active Pause UI
+        /// </summary>
+        /// <param name="isActive">isActive</param>
+        private void SetActive(bool isActive)
         {
-            if (isTrue)
+            if (isActive)
             {
-                Time.timeScale = 0f;
+                TimeScaleHelper.Push(0f);
                 pausePanel.SetActive(true);
                 HighlightHelper.Instance.Push(_pauseHighlighter);
                 _pauseHighlighter.Select(0);
             }
             else
             {
-                Time.timeScale = 1f;
-                // Enable All Input
+                TimeScaleHelper.Pop();
                 pausePanel.SetActive(false);
-                HighlightHelper.Instance.Pop(_checkHighlighter);
                 HighlightHelper.Instance.Pop(_pauseHighlighter);
             }
         }
 
-        public bool GetIsOpen()
+        public bool GetIsActive()
         {
             return pausePanel.activeSelf;
-        }
-        
-        private void OnEnable()
-        {
-            var esc = InputManager.InputControl.Esc;
-            esc.Pause.performed += _onPause;
-            esc.Enable();
-        }
-        
-        private void OnDisable()
-        {
-            var esc = InputManager.InputControl.Esc;
-            esc.Pause.performed -= _onPause;
-            esc.Disable();
         }
     }
 }

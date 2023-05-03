@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using Utility.InputSystem;
 
 namespace Utility.UI.Highlight
@@ -20,6 +18,7 @@ namespace Utility.UI.Highlight
         /// for debugging
         /// </summary>
         public string name;
+
         public enum ArrowType
         {
             None,
@@ -30,6 +29,7 @@ namespace Utility.UI.Highlight
         public enum HighlightType
         {
             None,
+
             /// <summary>
             /// hover mouse == select(arrow), don't have to Implement HighlightItem -> EnterHighlight()
             /// </summary>
@@ -40,17 +40,18 @@ namespace Utility.UI.Highlight
 
         public List<HighlightItem> HighlightItems;
 
-        private Action<InputAction.CallbackContext> _onArrow;
-        private Action<InputAction.CallbackContext> _onExecute;
-        private Action<InputAction.CallbackContext> _onCancle;
-
-        public Action<InputAction.CallbackContext> OnSelect;
+        public InputActions InputActions;
 
         public int selectedIndex = -1;
         public int highlightedIndex = -1;
 
         public bool enabled;
 
+        public Highlighter(string name)
+        {
+            this.name = name;
+        }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -65,29 +66,11 @@ namespace Utility.UI.Highlight
             }
 
             HighlightItems.Insert(index, highlightItem);
-            foreach (var item in HighlightItems)
-            {
-                Debug.Log(item.button.gameObject);
-            }
+
             highlightItem.Init();
 
             if (isActive)
             {
-                // // 만약 포지션이 바뀐다면 자동으로 되겠지?
-                // // 기존의 selected Index 어떻게 해봐
-                // if (selectedIndex >= index)
-                // {
-                //     DeSelect();
-                //     // Select new Index (Where?)
-                // }
-                //
-                // if (highlightedIndex >= index)
-                // {
-                //     OnUnHighlight();
-                //     // Highlight new Index (Where?)
-                // }
-                
-                // 이거도 매번해주는게 아닌듯?
                 if (!highlightItem.isEnable)
                 {
                     return;
@@ -118,7 +101,7 @@ namespace Utility.UI.Highlight
                 }
             }
         }
-        
+
         public void Init(ArrowType arrowType, Action onCancle = null)
         {
             foreach (var highlightItem in HighlightItems)
@@ -126,35 +109,38 @@ namespace Utility.UI.Highlight
                 highlightItem.Init();
             }
 
-            _onArrow = _ =>
+            InputActions = new InputActions(name)
             {
-                if (!HighlightItems.Any(item => item.isEnable))
+                OnArrow = _ =>
                 {
-                    return;
-                }
-                var input = _.ReadValue<Vector2>();
-                OnArrow(input, arrowType);
+                    if (!HighlightItems.Any(item => item.isEnable))
+                    {
+                        return;
+                    }
+                    
+                    var input = _.ReadValue<Vector2>();
+                    OnArrow(input, arrowType);
+                },
+                OnExecute = _ =>
+                {
+                    if (selectedIndex != -1)
+                    {
+                        HighlightItems[selectedIndex].Execute();
+                    }
+                    else
+                    {
+                        Select(0);
+                    }
+                },
+                OnCancel = _ => { onCancle?.Invoke(); }
             };
-
-            _onExecute = _ =>
-            {
-                if (selectedIndex != -1)
-                {
-                    HighlightItems[selectedIndex].Execute();
-                }
-                else
-                {
-                    Select(0);
-                }
-            };
-
-            _onCancle += _ => { onCancle?.Invoke(); };
         }
 
         public void SetEnable(bool isEnable, bool isDuplicatePossible = false, bool isDestroy = false, bool isReset = true)
         {
-            var uiActions = InputManager.InputControl.Ui;
-            Debug.Log($"SetEnable {name} {isEnable}  {isDuplicatePossible}  {isDestroy}");
+            Debug.Log($"SetEnable {name}\n" +
+                      $" 이전 상태: {enabled}, 현 상태: {isEnable}\n" +
+                      $"{isDuplicatePossible}  {isDestroy}");
             if (enabled == isEnable)
             {
                 if (!isEnable && !isDuplicatePossible && !isDestroy)
@@ -163,7 +149,7 @@ namespace Utility.UI.Highlight
                     {
                         highlightedIndex = -1;
                         selectedIndex = -1;
-                        
+
                         foreach (var highlightItem in HighlightItems)
                         {
                             highlightItem.Reset();
@@ -176,22 +162,18 @@ namespace Utility.UI.Highlight
                         highlightItem.ClearEventTrigger();
                     }
                 }
+
                 return;
             }
+
             enabled = isEnable;
             if (isEnable)
             {
-                uiActions.Select.performed += _onArrow;
-                if (OnSelect != null)
-                {
-                    uiActions.Select.performed += OnSelect;
-                }
-
-                uiActions.Execute.performed += _onExecute;
-                uiActions.Cancle.performed += _onCancle;
+                InputManager.PushInputAction(InputActions);
 
                 foreach (var highlightItem in HighlightItems)
                 {
+                    Debug.Log(highlightItem.isEnable);
                     if (!highlightItem.isEnable)
                     {
                         return;
@@ -199,35 +181,31 @@ namespace Utility.UI.Highlight
 
                     if (highlightType == HighlightType.None)
                     {
-                        highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { OnHighlight(highlightItem); });
+                        highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
+                            delegate { OnHighlight(highlightItem); });
                         highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { OnUnHighlight(); });
                     }
                     else if (highlightType == HighlightType.HighlightIsSelect)
                     {
-                        highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { Select(highlightItem); });
+                        highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
+                            delegate { Select(highlightItem); });
                     }
                 }
             }
             else
             {
-                uiActions.Select.performed -= _onArrow;
-                if (OnSelect != null)
-                {
-                    uiActions.Select.performed -= OnSelect;
-                }
-                uiActions.Execute.performed -= _onExecute;
-                uiActions.Cancle.performed -= _onCancle;
+                InputManager.PopInputAction(InputActions);
 
                 if (isDuplicatePossible || isDestroy)
                 {
                     return;
                 }
-                
+
                 if (isReset)
                 {
                     highlightedIndex = -1;
                     selectedIndex = -1;
-                        
+
                     foreach (var highlightItem in HighlightItems)
                     {
                         highlightItem.Reset();
@@ -243,7 +221,7 @@ namespace Utility.UI.Highlight
 
         public void Select(HighlightItem highlightItem)
         {
-            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
+            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             var idx = HighlightItems.FindIndex(item => item == highlightItem);
             if (idx == -1)
@@ -252,49 +230,49 @@ namespace Utility.UI.Highlight
             }
 
             selectedIndex = idx;
-            HighlightItems[idx].Add(HighlightItem.TransitionType.Select);
+            HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
         }
 
         public void Select(int idx)
         {
-            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
+            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
-            HighlightItems[idx].Add(HighlightItem.TransitionType.Select);
+            HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
         }
 
         public void DeSelect()
         {
-            RemoveItem(selectedIndex, HighlightItem.TransitionType.Select);
+            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
             selectedIndex = -1;
         }
 
         public void OnHighlight(HighlightItem highlightItem)
         {
-            Debug.Log("On 하이라이트");
-            RemoveItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
-            
+            PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
+
             var idx = HighlightItems.FindIndex(item => item == highlightItem);
             highlightedIndex = idx;
-            HighlightItems[idx].Add(HighlightItem.TransitionType.Highlight);
+            HighlightItems[idx].Push(HighlightItem.TransitionType.Highlight);
         }
 
         public void OnUnHighlight()
         {
-            RemoveItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
+            PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
             highlightedIndex = -1;
         }
 
-        private void RemoveItem(int index, HighlightItem.TransitionType transitionType)
+        private void PopItem(int index, HighlightItem.TransitionType transitionType)
         {
             if (index == -1)
             {
                 return;
             }
-            HighlightItems[index].Remove(transitionType);
+
+            HighlightItems[index].Pop(transitionType);
             foreach (var highlightItem in HighlightItems)
             {
-                highlightItem.Highlight();
+                highlightItem.UpdateDisplay();
             }
         }
 
@@ -302,7 +280,7 @@ namespace Utility.UI.Highlight
         private void OnArrow(Vector2 input, ArrowType arrowType)
         {
             var idx = selectedIndex;
-            while(true)
+            while (true)
             {
                 if (arrowType == ArrowType.Vertical)
                 {
@@ -382,6 +360,7 @@ namespace Utility.UI.Highlight
     public class HighlightHelper : MonoBehaviour
     {
         private static HighlightHelper _instance;
+
         public static HighlightHelper Instance
         {
             get
@@ -397,9 +376,11 @@ namespace Utility.UI.Highlight
                     {
                         _instance = Create();
                     }
+
                     DontDestroyOnLoad(_instance);
                     _instance._highlighters = new List<Highlighter>();
                 }
+
                 return _instance;
             }
         }
@@ -419,15 +400,11 @@ namespace Utility.UI.Highlight
                 return;
             }
 
-            Debug.Log("Push");
+            Debug.Log($"Push {highlighter.name} Highlight");
 
             if (_highlighters.Count > 0)
             {
                 _highlighters.Last().SetEnable(false, isDuplicatePossible, default, isReset);
-            }
-            else
-            {
-                InputManager.SetUiAction(true);
             }
 
             _highlighters.Add(highlighter);
@@ -447,35 +424,28 @@ namespace Utility.UI.Highlight
             {
                 return;
             }
+
             Debug.Log($"Pop, 삭제여부: {isDestroy}");
 
-            StartCoroutine(PopCoroutine(highlighter, isDestroy));
+            Remove(highlighter, isDestroy);
         }
 
-        // 하는 이유 - input 1회에 여러번 실행됨.
-        private IEnumerator PopCoroutine(Highlighter highlighter, bool isDestroy)
+        private void Remove(Highlighter highlighter, bool isDestroy)
         {
-            yield return null;
             highlighter.SetEnable(false, default, isDestroy);
             _highlighters.Remove(highlighter);
-            
-            if (_highlighters.Count == 0)
-            {
-                InputManager.SetUiAction(false);
-            }
-            else
+
+            if (_highlighters.Count > 0)
             {
                 _highlighters.Last().SetEnable(true);
             }
         }
-        
+
         public void ResetHighlight()
         {
-            InputManager.SetUiAction(false);
-            while(_highlighters.Count > 0)
+            while (_highlighters.Count > 0)
             {
-                _highlighters.Last().SetEnable(false, default, true);
-                _highlighters.RemoveAt(_highlighters.Count - 1);
+                Remove(_highlighters.Last(), true);
             }
         }
 
@@ -501,6 +471,7 @@ namespace Utility.UI.Highlight
                 _highlighters.Last().SetEnable(false, isDuplicatePossible);
                 _highlighters.Remove(highlighter);
             }
+
             _highlighters.Add(highlighter);
 
             _highlighters.Last().SetEnable(true, isDuplicatePossible);
@@ -520,6 +491,7 @@ namespace Utility.UI.Highlight
 
             return false;
         }
+
         public bool Contains(Highlighter highlighter)
         {
             return _highlighters.Contains(highlighter);

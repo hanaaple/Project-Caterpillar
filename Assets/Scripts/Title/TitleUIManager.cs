@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Utility.Core;
 using Utility.SaveSystem;
-using Utility.SceneLoader;
 using Utility.UI.Highlight;
+using Utility.UI.Preference;
 
 namespace Title
 {
@@ -15,9 +15,11 @@ namespace Title
         {
             Continue,
             NewStart,
-            Preferenece,
+            Preference,
             Exit
         }
+
+        [SerializeField] private Animator animator;
 
         [SerializeField] private Sprite defaultSprite;
         [SerializeField] private Sprite selectSprite;
@@ -27,6 +29,7 @@ namespace Title
         public override void SetDefault()
         {
             button.image.sprite = defaultSprite;
+            animator.SetBool("Selected", false);
         }
 
         public override void EnterHighlight()
@@ -36,44 +39,43 @@ namespace Title
         public override void SetSelect()
         {
             button.image.sprite = selectSprite;
+            animator.SetBool("Selected", true);
         }
     }
 
     public class TitleUIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject preferencePanel;
+        [SerializeField] private PreferenceManager preferenceManager;
 
-        [FormerlySerializedAs("highlightButtons")] [Space(5)] [SerializeField] private HighlightTitleItem[] highlightItems;
+        [Space(5)] [SerializeField] private HighlightTitleItem[] highlightItems;
 
         private Highlighter _highlighter;
 
         private void Awake()
         {
-            _highlighter = new Highlighter
+            _highlighter = new Highlighter("Title Highlight")
             {
-                HighlightItems = new List<HighlightItem>(highlightItems), highlightType = Highlighter.HighlightType.HighlightIsSelect
+                HighlightItems = new List<HighlightItem>(highlightItems),
+                highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
             _highlighter.Init(Highlighter.ArrowType.Vertical);
-
             HighlightHelper.Instance.Push(_highlighter);
         }
 
         private void Start()
         {
-            SceneLoader.Instance.OnLoadScene += () =>
-            {
-                HighlightHelper.Instance.Pop(_highlighter, true);
-            };
+            SceneLoader.Instance.onLoadScene += () => { HighlightHelper.Instance.Pop(_highlighter, true); };
 
             foreach (var highlightItem in highlightItems)
             {
-                switch(highlightItem.buttonType)
+                switch (highlightItem.buttonType)
                 {
                     case HighlightTitleItem.ButtonType.Continue:
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.SaveLoadType.Load);
+                            SavePanelManager.Instance.SetSaveLoadPanelActive(true,
+                                SavePanelManager.SaveLoadType.Load);
                         });
                         break;
                     case HighlightTitleItem.ButtonType.NewStart:
@@ -82,12 +84,8 @@ namespace Title
                             SceneLoader.Instance.LoadScene("MainScene");
                         });
                         break;
-                    case HighlightTitleItem.ButtonType.Preferenece:
-                        highlightItem.button.onClick.AddListener(() =>
-                        {
-                            HighlightHelper.Instance.Disable(false);
-                            preferencePanel.SetActive(true);
-                        });
+                    case HighlightTitleItem.ButtonType.Preference:
+                        highlightItem.button.onClick.AddListener(() => { preferenceManager.SetPreferencePanel(true); });
                         break;
                     case HighlightTitleItem.ButtonType.Exit:
                         highlightItem.button.onClick.AddListener(Application.Quit);

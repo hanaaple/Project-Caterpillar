@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem
@@ -32,7 +33,7 @@ namespace Utility.SaveSystem
                     DontDestroyOnLoad(_instance);
                     _instance._onLoad = new UnityEvent();
                     _instance.OnSave = new UnityEvent();
-                    _instance.OnSavePanelActiveFalse = new UnityEvent();
+                    _instance.OnSavePanelInActive = new UnityEvent();
                 }
 
                 return _instance;
@@ -63,9 +64,10 @@ namespace Utility.SaveSystem
         [SerializeField] private Button yesButton;
         [TextArea] [SerializeField] private string newLoadText;
         [TextArea] [SerializeField] private string saveCoverText;
+        [TextArea] [SerializeField] private string deleteText;
 
         [NonSerialized] public UnityEvent OnSave;
-        [NonSerialized] public UnityEvent OnSavePanelActiveFalse;
+        [NonSerialized] public UnityEvent OnSavePanelInActive;
 
         private UnityEvent _onLoad;
 
@@ -75,7 +77,7 @@ namespace Utility.SaveSystem
 
         private void Awake()
         {
-            _highlighter = new Highlighter
+            _highlighter = new Highlighter("Save Highlight")
             {
                 HighlightItems = new List<HighlightItem>()
             };
@@ -134,8 +136,8 @@ namespace Utility.SaveSystem
             else
             {
                 HighlightHelper.Instance.Pop(_highlighter);
-                OnSavePanelActiveFalse?.Invoke();
-                OnSavePanelActiveFalse?.RemoveAllListeners();
+                OnSavePanelInActive?.Invoke();
+                OnSavePanelInActive?.RemoveAllListeners();
             }
         }
 
@@ -166,46 +168,48 @@ namespace Utility.SaveSystem
         {
             var saveLoadItem = saveLoadObject.GetComponent<SaveLoadItem>();
 
-            var saveLoadItemProps = new SaveLoadItemProps(saveLoadItem);
-
-            saveLoadItemProps.OnSelect = () =>
+            var saveLoadItemProps = new SaveLoadItemProps(saveLoadItem)
             {
-                var itemRectTransform = saveLoadItemProps.button.image.rectTransform;
-
-                //현재 화면 상에 보이는 위치 0 ~ 1 + scrollView * offset
-                var up = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
-                         content.anchoredPosition.y + itemRectTransform.rect.height / 2; // (위 위치)
-                var upT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, up);
-                var upOffset = .1f;
-
-                var down = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
-                    content.anchoredPosition.y - itemRectTransform.rect.height / 2; // (아래 위치)
-                var downT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, down);
-                var downOffset = .1f;
-
-
-                if (upT > 1f - upOffset)
+                OnSelect = () =>
                 {
-                    var upRatio =
-                        -(itemRectTransform.anchoredPosition.y + itemRectTransform.rect.height / 2 +
-                          scrollView.rect.height * upOffset) / (content.rect.height - scrollView.rect.height);
-                    var slideValue = Mathf.Lerp(1f, 0f, upRatio);
-                    Debug.Log(
-                        $"({itemRectTransform.anchoredPosition.y} + {itemRectTransform.rect.height / 2} + {scrollView.rect.height * upOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
-                        $"{slideValue}");
-                    slider.value = slideValue;
-                }
-                else if (downT < 0f + downOffset)
-                {
-                    var downRatio =
-                        -(itemRectTransform.anchoredPosition.y - itemRectTransform.rect.height / 2 +
-                            scrollView.rect.height - scrollView.rect.height * downOffset) /
-                        (content.rect.height - scrollView.rect.height);
-                    var slideValue = Mathf.Lerp(1f, 0f, downRatio);
-                    Debug.Log(
-                        $"({itemRectTransform.anchoredPosition.y} - {itemRectTransform.rect.height / 2} + {scrollView.rect.height} - {scrollView.rect.height * downOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
-                        $"{slideValue}");
-                    slider.value = slideValue;
+                    var itemRectTransform = (RectTransform) saveLoadItem.transform;
+
+                    //현재 화면 상에 보이는 위치 0 ~ 1 + scrollView * offset
+                    var up = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
+                             content.anchoredPosition.y + itemRectTransform.rect.height / 2; // (위 위치)
+                    var upT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, up);
+                    var upOffset = .1f;
+
+                    var down = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
+                        content.anchoredPosition.y - itemRectTransform.rect.height / 2; // (아래 위치)
+                    var downT = Mathf.InverseLerp(-scrollView.rect.height / 2, scrollView.rect.height / 2, down);
+                    var downOffset = .1f;
+
+                    // Debug.Log($" {saveLoadItemProps.button.transform.parent.gameObject}  Up: {up}, {upT} Down: {down}, {downT}");
+
+                    if (upT > 1f - upOffset)
+                    {
+                        var upRatio =
+                            -(itemRectTransform.anchoredPosition.y + itemRectTransform.rect.height / 2 +
+                              scrollView.rect.height * upOffset) / (content.rect.height - scrollView.rect.height);
+                        var slideValue = Mathf.Lerp(1f, 0f, upRatio);
+                        // Debug.Log(
+                        //     $"({itemRectTransform.anchoredPosition.y} + {itemRectTransform.rect.height / 2} + {scrollView.rect.height * upOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
+                        //     $"{slideValue}");
+                        slider.value = slideValue;
+                    }
+                    else if (downT < 0f + downOffset)
+                    {
+                        var downRatio =
+                            -(itemRectTransform.anchoredPosition.y - itemRectTransform.rect.height / 2 +
+                                scrollView.rect.height - scrollView.rect.height * downOffset) /
+                            (content.rect.height - scrollView.rect.height);
+                        var slideValue = Mathf.Lerp(1f, 0f, downRatio);
+                        // Debug.Log(
+                        //     $"({itemRectTransform.anchoredPosition.y} - {itemRectTransform.rect.height / 2} + {scrollView.rect.height} - {scrollView.rect.height * downOffset}) / ({content.rect.height} - {scrollView.rect.height})" +
+                        //     $"{slideValue}");
+                        slider.value = slideValue;
+                    }
                 }
             };
 
@@ -213,13 +217,12 @@ namespace Utility.SaveSystem
             {
                 var index = saveLoadObject.transform.GetSiblingIndex();
                 var saveDataIndex = SaveManager.GetSaveIndex(index);
+                Debug.Log($"Save Item Index: {index}, Save Data Index: {saveDataIndex}");
                 saveLoadItemProps.SaveDataIndex = saveDataIndex;
-                Debug.Log($"{index}번째에 {saveDataIndex} 추가");
                 _highlighter.AddItem(saveLoadItemProps, _highlighter.HighlightItems.Count - 1, isActive);
             }
             else
             {
-                saveLoadItemProps.SaveDataIndex = -1;
                 _highlighter.AddItem(saveLoadItemProps);
             }
 
@@ -256,12 +259,12 @@ namespace Utility.SaveSystem
                         var saveCoverData = SaveManager.GetSaveCoverData(saveDataIndex);
                         if (saveCoverData != null)
                         {
-                            SceneLoader.SceneLoader.Instance.OnLoadSceneEnd += () =>
+                            SceneLoader.Instance.onLoadSceneEnd += () =>
                             {
                                 SaveHelper.Load(saveDataIndex);
                                 SetSaveLoadPanelActive(false, SaveLoadType.None);
                             };
-                            SceneLoader.SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveDataIndex);
+                            SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveDataIndex);
                             _onLoad?.Invoke();
                         }
                         else
@@ -272,9 +275,17 @@ namespace Utility.SaveSystem
                 });
                 saveLoadItem.deleteButton.onClick.AddListener(() =>
                 {
-                    var saveDataIndex = saveLoadItemProps.SaveDataIndex;
-                    Remove(saveLoadItem);
-                    SaveManager.Delete(saveDataIndex);
+                    checkPanel.SetActive(true);
+
+                    checkText.text = deleteText;
+                    yesButton.onClick.RemoveAllListeners();
+                    yesButton.onClick.AddListener(() =>
+                    {
+                        var saveDataIndex = saveLoadItemProps.SaveDataIndex;
+                        Remove(saveLoadItem);
+                        SaveManager.Delete(saveDataIndex);
+                        checkPanel.SetActive(false);
+                    });
                 });
             }
             else
@@ -283,10 +294,12 @@ namespace Utility.SaveSystem
                 {
                     if (_saveLoadType == SaveLoadType.Save)
                     {
-                        // 새롭게 저장
                         var saveData = SaveHelper.GetSaveData();
-                        var saveDataIndex = saveLoadItemProps.SaveDataIndex;
-                        SaveManager.Save(saveDataIndex, saveData);
+                        var newSaveDataIndex = SaveManager.GetNewSaveIndex();
+                        
+                        Debug.Log($"New Save Data Index: {newSaveDataIndex}");
+                        
+                        SaveManager.Save(newSaveDataIndex, saveData);
 
                         var addItem = saveItemParent.GetChild(saveItemParent.childCount - 1);
                         var item = Instantiate(saveItemPrefab, saveItemParent);
@@ -294,7 +307,7 @@ namespace Utility.SaveSystem
 
                         Add(item, true);
 
-                        StartCoroutine(WaitSave(saveDataIndex, () =>
+                        StartCoroutine(WaitSave(newSaveDataIndex, () =>
                         {
                             OnSave?.Invoke();
 
@@ -309,9 +322,9 @@ namespace Utility.SaveSystem
                         yesButton.onClick.RemoveAllListeners();
                         yesButton.onClick.AddListener(() =>
                         {
-                            SceneLoader.SceneLoader.Instance.LoadScene("MainScene");
+                            SceneLoader.Instance.LoadScene("MainScene");
 
-                            SceneLoader.SceneLoader.Instance.OnLoadSceneEnd += () =>
+                            SceneLoader.Instance.onLoadSceneEnd += () =>
                             {
                                 SetSaveLoadPanelActive(false, SaveLoadType.None);
                             };

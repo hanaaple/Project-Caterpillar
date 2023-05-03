@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -13,12 +12,9 @@ namespace Utility.SaveSystem
 {
     public static class SaveManager
     {
-        private static int _idx;
-
-        
         private static readonly string SaveDirectoryPath = $"{Application.persistentDataPath}/saveData";
-        private static string SaveFilePath => $"{Application.persistentDataPath}/saveData/saveData{_idx}.save";
-        private static string SaveCoverFilePath => $"{Application.persistentDataPath}/saveData/saveCoverData{_idx}.save";
+        private static string SaveFilePath(int index) => $"{Application.persistentDataPath}/saveData/saveData{index}.save";
+        private static string SaveCoverFilePath(int index) => $"{Application.persistentDataPath}/saveData/saveCoverData{index}.save";
 
         private static readonly byte[] EncryptKey = Encoding.UTF8.GetBytes("abcdefg_abcdefg_");
         private static readonly byte[] EncryptIv = Encoding.UTF8.GetBytes("abcdefg_");
@@ -38,7 +34,6 @@ namespace Utility.SaveSystem
 
         public static void Save(int idx, SaveData saveData)
         {
-            _idx = idx;
             RijndaelManaged rijn = new RijndaelManaged();
             rijn.Mode = CipherMode.ECB;
             rijn.Padding = PaddingMode.Zeros;
@@ -48,7 +43,7 @@ namespace Utility.SaveSystem
             
             using (ICryptoTransform encryptor = rijn.CreateEncryptor(EncryptKey, EncryptIv))
             {
-                using (var fileStream = File.Open(SaveCoverFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (var fileStream = File.Open(SaveCoverFilePath(idx), FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
                     try
                     {
@@ -68,7 +63,7 @@ namespace Utility.SaveSystem
                     fileStream.Close();
                 }
                 
-                using (var fileStream = File.Open(SaveFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (var fileStream = File.Open(SaveFilePath(idx), FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
                     try
                     {
@@ -93,22 +88,23 @@ namespace Utility.SaveSystem
 
         public static void Load(int idx)
         {
-            _idx = idx;
-            if (!File.Exists(SaveFilePath) || IsLoaded(idx))
+            if (!File.Exists(SaveFilePath(idx)) || IsLoaded(idx))
             {
                 return;
             }
-            RijndaelManaged rijn = new RijndaelManaged();
+            var rijn = new RijndaelManaged();
             rijn.Mode = CipherMode.ECB;
             rijn.Padding = PaddingMode.Zeros;
             rijn.BlockSize = 256;
             
-            using (ICryptoTransform decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
+            using (var decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
             {
-                using (var fileStream = File.Open(SaveFilePath, FileMode.Open))
+                using (var fileStream = File.Open(SaveFilePath(idx), FileMode.Open))
                 {
                     if (fileStream.Length <= 0)
                     {
+                        Debug.Log("Load 오류 발생");
+                        fileStream.Close();
                         return;
                     }
 
@@ -142,24 +138,26 @@ namespace Utility.SaveSystem
         
         public static async Task LoadCoverAsync(int idx)
         {
-            _idx = idx;
-            if (!File.Exists(SaveCoverFilePath) || IsCoverLoaded(idx))
+            if (!File.Exists(SaveCoverFilePath(idx)) || IsCoverLoaded(idx))
             {
                 return;
             }
 
-            RijndaelManaged rijn = new RijndaelManaged();
+            var rijn = new RijndaelManaged();
             rijn.Mode = CipherMode.ECB;
             rijn.Padding = PaddingMode.Zeros;
             rijn.BlockSize = 256;
+            
+            Debug.Log($"{idx} Load 시도");
 
-            using (ICryptoTransform decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
+            using (var decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
             {
-                await using (var fileStream = File.Open(SaveCoverFilePath, FileMode.Open))
+                await using (var fileStream = File.Open(SaveCoverFilePath(idx), FileMode.Open))
                 {
                     if (fileStream.Length <= 0)
                     {
                         Debug.Log("Load 오류 발생");
+                        fileStream.Close();
                         return;
                     }
 
@@ -220,6 +218,26 @@ namespace Utility.SaveSystem
             Debug.LogWarning($"SaveData가 없어요 {index}번째 saveData 없음.");
             return -1;
         }
+        
+        public static int GetNewSaveIndex()
+        {
+            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories)
+                .Select(item => item.Replace(SaveDirectoryPath, ""))
+                .Select(item => item.Replace("\\", ""));
+            
+            var saveCoverData = Directory
+                .GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
+                .Select(item => item.Replace(SaveDirectoryPath, ""))
+                .Select(item => item.Replace("\\", ""))
+                .Select(item => item.Replace("Cover", "")).ToArray();
+
+            var indexArray = saveData.Join(saveCoverData, data => data, coverData => coverData,
+                (data, coverData) => int.Parse(new string(data.Where(char.IsDigit).ToArray()))).ToArray();
+
+            indexArray = indexArray.OrderBy(item => item).ToArray();
+            
+            return indexArray.Last() + 1;
+        }
 
         public static int GetSaveDataLength()
         {
@@ -227,45 +245,19 @@ namespace Utility.SaveSystem
             var saveCoverData = Directory.GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
                 .Select(item => item.Replace("Cover", "")).ToArray();
 
-            var origin = _idx;
-            _idx = 0;
-
-            foreach (var data in saveData)
-            {
-                var coverData = Array.Find(saveCoverData, item => item == data);
-                if (!string.IsNullOrEmpty(coverData))
-                {
-                    _idx++;
-                }
-            }
-            
-            var t = _idx;
-            _idx = origin;
-
-            return t;
+            var count = saveData.Select(data => Array.Find(saveCoverData, item => item == data))
+                .Count(coverData => !string.IsNullOrEmpty(coverData));
+            return count;
         }
         
         public static SaveData GetSaveData(int idx)
         {
-            _idx = idx;
-            if (IsLoaded(idx))
-            {
-                return SaveData[idx];
-            }
-
-            return null;
+            return IsLoaded(idx) ? SaveData[idx] : null;
         }
         
         public static SaveCoverData GetSaveCoverData(int idx)
         {
-            _idx = idx;
-            
-            if (IsCoverLoaded(idx))
-            {
-                return SaveCoverData[idx];
-            }
-
-            return null;
+            return IsCoverLoaded(idx) ? SaveCoverData[idx] : null;
         }
 
         private static void AddSaveData(int idx, SaveData saveData)
@@ -283,7 +275,7 @@ namespace Utility.SaveSystem
         
         private static void AddSaveCoverData(int idx, SaveCoverData saveCoverData)
         {
-            Debug.Log($"{idx} index Cover Load");
+            // Debug.Log($"{idx} index Cover Load");
             if (IsCoverLoaded(idx))
             {
                 SaveCoverData[idx] = saveCoverData;
@@ -296,15 +288,14 @@ namespace Utility.SaveSystem
 
         public static void Delete(int idx)
         {
-            _idx = idx;
-            if (File.Exists(SaveFilePath))
+            if (File.Exists(SaveFilePath(idx)))
             {
-                File.Delete(SaveFilePath);
+                File.Delete(SaveFilePath(idx));
             }
             
-            if (File.Exists(SaveCoverFilePath))
+            if (File.Exists(SaveCoverFilePath(idx)))
             {
-                File.Delete(SaveCoverFilePath);
+                File.Delete(SaveCoverFilePath(idx));
             }
 
             Remove(idx);
@@ -326,17 +317,16 @@ namespace Utility.SaveSystem
         {
             return SaveData.ContainsKey(idx);
         }
-        
-        public static bool IsCoverLoaded(int idx)
+
+        private static bool IsCoverLoaded(int idx)
         {
-            Debug.Log($"idx: {idx}");
+            // Debug.Log($"idx: {idx}");
             return SaveCoverData.ContainsKey(idx);
         }
         
         public static bool Exists(int idx)
         {
-            _idx = idx;
-            return File.Exists(SaveFilePath) && File.Exists(SaveCoverFilePath);
+            return File.Exists(SaveFilePath(idx)) && File.Exists(SaveCoverFilePath(idx));
         }
     }
 }

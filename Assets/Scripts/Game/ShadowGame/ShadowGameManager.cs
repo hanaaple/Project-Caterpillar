@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.InputSystem;
-using Utility.SceneLoader;
+using Utility.Util;
 
 namespace Game.ShadowGame
 {
@@ -106,7 +107,7 @@ namespace Game.ShadowGame
 
         private void Awake()
         {
-            var playerActions = InputManager.InputControl.PlayerActions;
+            var playerActions = InputManager.InputControl.Input;
             _onItemShowEnd = delegate
             {
                 Time.timeScale = 1f;
@@ -115,7 +116,7 @@ namespace Game.ShadowGame
                 shadowGameItems[_selectedItemIndex].gameObject.SetActive(false);
                 shadowGameItems[_selectedItemIndex].uiPanel.gameObject.SetActive(false);
                 playerActions.Interact.performed -= _onItemShowEnd;
-                InputManager.SetPlayerAction(false);
+                InputManager.SetInputActions(false);
             };
         }
         
@@ -163,8 +164,8 @@ namespace Game.ShadowGame
 
         private IEnumerator ItemTimer()
         {
-            InputManager.SetPlayerAction(true);
-            var playerActions = InputManager.InputControl.PlayerActions;
+            InputManager.SetInputActions(true);
+            var playerActions = InputManager.InputControl.Input;
             playerActions.Interact.performed += _onItemShowEnd;
             yield return new WaitForSecondsRealtime(2f);
             _onItemShowEnd?.Invoke(default);

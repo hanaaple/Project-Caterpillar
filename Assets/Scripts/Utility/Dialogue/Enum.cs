@@ -44,6 +44,7 @@
     Save = 5,
     CutScene = 6,
     WaitInteract = 7,
+    // 캐릭터 Animation State 변경
     Interact = 8,
     Random = 9,
     RandomEnd = 10,

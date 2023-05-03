@@ -13,7 +13,8 @@ namespace Utility.UI.Highlight
     {
         public enum TransitionType
         {
-            Highlight, Select
+            Highlight,
+            Select
         }
 
         public Button button;
@@ -36,18 +37,19 @@ namespace Utility.UI.Highlight
             SetDefault();
         }
 
-        public void Add(TransitionType transitionType)
+        public void Push(TransitionType transitionType)
         {
             if (TransitionTypes.Contains(transitionType))
             {
                 Debug.Log(transitionType + "이미 있음");
                 return;
             }
+
             TransitionTypes.Add(transitionType);
-            Highlight();
+            UpdateDisplay();
         }
 
-        public virtual void Remove(TransitionType transitionType)
+        public virtual void Pop(TransitionType transitionType)
         {
             if (TransitionTypes.Contains(transitionType))
             {
@@ -59,25 +61,25 @@ namespace Utility.UI.Highlight
             }
         }
 
-        public void Highlight()
+        public void UpdateDisplay()
         {
-            if (TransitionTypes.Count > 0)
+            if (!isEnable)
             {
-                foreach (var transitionType in TransitionTypes)
-                {
-                    if (transitionType.Equals(TransitionType.Select))
-                    {
-                        SetSelect();
-                    }
-                    else if (transitionType.Equals(TransitionType.Highlight))
-                    {
-                        EnterHighlight();
-                    }
-                }
+                return;
             }
-            else
+            
+            SetDefault();
+
+            foreach (var transitionType in TransitionTypes)
             {
-                SetDefault();
+                if (transitionType.Equals(TransitionType.Select))
+                {
+                    SetSelect();
+                }
+                else if (transitionType.Equals(TransitionType.Highlight))
+                {
+                    EnterHighlight();
+                }
             }
         }
 
@@ -115,4 +117,4 @@ namespace Utility.UI.Highlight
             eventTrigger.triggers.Clear();
         }
     }
-}   
+}

@@ -71,8 +71,12 @@ MonoBehaviour:
           interactions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 2
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
+        isSkip: 0
+        skipLength: 0
+        skipWaitSec: 0
       - name: 0
         subject: 
         contents: "(\uBA54\uC778 \uD544\uB4DC)> (\uCEF7 \uC52C \uC804\uD658): \uD5C8\uC218
@@ -86,8 +90,12 @@ MonoBehaviour:
           interactions: []
         playableAsset: {fileID: 11400000, guid: 9e4611cfaf7efb247aa4bdc6f0d87253, type: 2}
         extrapolationMode: 0
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
+        isSkip: 0
+        skipLength: 0
+        skipWaitSec: 0
       - name: 0
         subject: ???
         contents: "\uC774\uACF3 <b>\u2018\uD5C8\uC218 \uACF5\uAC04\u2019</b>\uC5D0\uB294
@@ -102,8 +110,12 @@ MonoBehaviour:
           interactions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 2
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
+        isSkip: 0
+        skipLength: 0
+        skipWaitSec: 0
       - name: 0
         subject: ???
         contents: "\uC774\uACF3 <b>\u2018\uD5C8\uC218 \uACF5\uAC04\u2019</b>\uC5D0\uB294
@@ -116,8 +128,12 @@ MonoBehaviour:
           interactions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 2
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
+        isSkip: 0
+        skipLength: 0
+        skipWaitSec: 0
     serializedInteractionData:
       id: 0
       isInteractable: 0
@@ -286,7 +302,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -212501049
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 61b07a4f21e6d444396feeded8115b6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
