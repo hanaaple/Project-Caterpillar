@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
-using Utility.Core;
-using Utility.InputSystem;
+using Utility.Player;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -15,9 +13,9 @@ public class InputInteractionEditor : Editor
         base.OnInspectorGUI();
 
         var generator = (Utility.Interaction.InputInteraction)target;
-        if (GUILayout.Button("ShowDialogue"))
+        if (GUILayout.Button("SetDialogue"))
         {
-            generator.ShowDialogue();
+            generator.SetDialogue();
             EditorUtility.SetDirty(generator);
         }
         
@@ -39,19 +37,15 @@ namespace Utility.Interaction
 
         [SerializeField] private Vector2 offset;
 
-        private Action<InputAction.CallbackContext> _onInteract;
+        private Action _onInteract;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _onInteract = _ =>
+            _onInteract = () =>
             {
-                if (!floatingMark.activeSelf || !GameManager.IsCharacterControlEnable())
-                {
-                    return;
-                }
-
+                Debug.Log("인터랙트");
                 floatingMark.SetActive(false);
 
                 StartInteraction();
@@ -76,25 +70,13 @@ namespace Utility.Interaction
             }
 
             floatingMark.SetActive(true);
+            var player = col.GetComponent<TestPlayer>();
+            player.onInteractAction = _onInteract;
         }
 
         private void OnTriggerExit2D(Collider2D col)
         {
             floatingMark.SetActive(false);
-        }
-
-        private void OnEnable()
-        {
-            InputManager.SetPlayerAction(true);
-            var playerActions = InputManager.InputControl.PlayerActions;
-            playerActions.Interact.performed += _onInteract;
-        }
-
-        private void OnDisable()
-        {
-            InputManager.SetPlayerAction(false);
-            var playerActions = InputManager.InputControl.PlayerActions;
-            playerActions.Interact.performed -= _onInteract;
         }
     }
 }

@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.Audio;
 using Utility.InputSystem;
+using Utility.UI.Check;
 using Utility.UI.Highlight;
 
 namespace Utility.UI.Preference
@@ -17,22 +15,20 @@ namespace Utility.UI.Preference
         public GameObject panel;
         public Button button;
     }
-    
+
     public class PreferenceManager : MonoBehaviour
     {
         [SerializeField] private GameObject preferencePanel;
 
         [SerializeField] private Button preferenceExitButton;
 
-        [SerializeField] private GameObject checkRebindPanel;
-
         [SerializeField] private GameObject rebindButtonPanel;
-    
+
         [SerializeField] private Button resetButton;
 
         [SerializeField] private Button saveButton;
 
-        [SerializeField] private Button cancleSaveButton;
+        [SerializeField] private Button cancelSaveButton;
 
         [SerializeField] private PageProps[] pageProps;
 
@@ -40,133 +36,42 @@ namespace Utility.UI.Preference
 
         [SerializeField] private InputController[] inputController;
 
-        [SerializeField] private CheckHighlightItem[] checkHighlightItems;
-        
-        private Highlighter _checkHighlighter;
-        private int _pageIndex;
-        private bool _isPerformed;
-    
-        private Action<InputAction.CallbackContext> _onInput;
-        private Action<InputAction.CallbackContext> _onCancle;
+        [SerializeField] private CheckUIManager rebindCheckUIManager;
 
+        private InputActions _inputActions;
 
         private void Awake()
         {
-            _onInput = _ =>
+            _inputActions = new InputActions(nameof(PreferenceManager))
             {
-                if (preferencePanel.activeSelf && !_isPerformed && !checkRebindPanel.activeSelf)
+                OnCancel = _ =>
                 {
-                    //_isPerformed = true;
-                    //StartCoroutine(WaitPerform());
+                    if (preferencePanel.activeSelf && !rebindCheckUIManager.gameObject.activeSelf)
+                    {
+                        SetPreferencePanel(false);
+                    }
                 }
             };
 
-            _onCancle = _ =>
-            {
-                if (preferencePanel.activeSelf && !checkRebindPanel.activeSelf)
-                {
-                    ExitPreferencePanel();
-                }
-            };
-            
             AudioManager.LoadAudio();
-        }
-
-        private IEnumerator WaitPerform()
-        {
-            yield return null;
-            _isPerformed = false;
-        }
-
-        private void OnEnable()
-        {
-            InputManager.RebindComplete += SetSaveButton;
-            InputManager.RebindEnd += SetSaveButton;
-            // InputManager.RebindLoad += SetSaveButton;
-            InputManager.RebindReset += SetSaveButton;
-        
-            InputManager.SetUiAction(true);
-            
-            var uiActions = InputManager.InputControl.Ui;
-            uiActions.Select.performed += _onInput;
-            uiActions.Cancle.performed += _onCancle;
-        }
-
-        private void OnDisable()
-        {
-            InputManager.RebindComplete -= SetSaveButton;
-            InputManager.RebindEnd -= SetSaveButton;
-            // InputManager.RebindLoad -= SetSaveButton;
-            InputManager.RebindReset -= SetSaveButton;
-        
-            var uiActions = InputManager.InputControl.Ui;
-            InputManager.SetUiAction(false);
-            uiActions.Select.performed -= _onInput;
-            uiActions.Cancle.performed -= _onCancle;
-        }
-
-        private void SetSaveButton()
-        {
-            if (InputManager.IsChanged())
-            {
-                rebindButtonPanel.SetActive(true);
-            }
-            else
-            {
-                rebindButtonPanel.SetActive(false);
-            }
-        }
-
-        private void ExitPreferencePanel()
-        {
-            if (InputManager.IsChanged())
-            {
-                checkRebindPanel.SetActive(true);
-                HighlightHelper.Instance.Push(_checkHighlighter, default, false);
-            }
-            else
-            {
-                HighlightHelper.Instance.Enable();
-                preferencePanel.SetActive(false);
-            }
         }
 
         private void Start()
         {
-            _checkHighlighter = new Highlighter
+            rebindCheckUIManager.Initialize();
+            rebindCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
             {
-                HighlightItems = new List<HighlightItem>(checkHighlightItems),
-                name = "check 하이라이트"
-            };
-            
-            var yesHighlightItem = Array.Find(checkHighlightItems,
-                item => item.buttonType == CheckHighlightItem.ButtonType.Yes);
-            
-            var noHighlightItem = Array.Find(checkHighlightItems,
-                item => item.buttonType == CheckHighlightItem.ButtonType.No);
-            
-            yesHighlightItem.button.onClick.AddListener(() =>
-            {
-                InputManager.EndChange(true);
-                checkRebindPanel.SetActive(false);
-                Time.timeScale = 1;
-                // preferenceButton.gameObject.SetActive(true);
-                preferencePanel.SetActive(false);
-                HighlightHelper.Instance.Pop(_checkHighlighter);
+                InputManager.SetChange(true);
+                rebindCheckUIManager.Pop();
+                SetPreferencePanel(false);
             });
 
-            noHighlightItem.button.onClick.AddListener(() =>
+            rebindCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () =>
             {
-                InputManager.EndChange(false);
-                checkRebindPanel.SetActive(false);
-                HighlightHelper.Instance.Pop(_checkHighlighter);
+                InputManager.SetChange(false);
+                rebindCheckUIManager.Pop();
             });
-            
-            _checkHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
-            {
-                noHighlightItem.button.onClick?.Invoke();
-            });
-            
+
             resetButton.onClick.AddListener(() =>
             {
                 foreach (var t in inputController)
@@ -175,16 +80,16 @@ namespace Utility.UI.Preference
                 }
             });
 
-            cancleSaveButton.onClick.AddListener(() =>
+            cancelSaveButton.onClick.AddListener(() => { InputManager.SetChange(false); });
+
+            saveButton.onClick.AddListener(() => { InputManager.SetChange(true); });
+
+            preferenceExitButton.onClick.AddListener(() =>
             {
-                InputManager.EndChange(false);
+                SetPreferencePanel(false);
             });
-        
-            saveButton.onClick.AddListener(() => { InputManager.EndChange(true); });
 
-            preferenceExitButton.onClick.AddListener(ExitPreferencePanel);
 
-            
             foreach (var pageProp in pageProps)
             {
                 pageProp.button.onClick.AddListener(() =>
@@ -207,6 +112,51 @@ namespace Utility.UI.Preference
                 Screen.SetResolution(x, y, false);
                 Debug.Log(resolutionDropdown.options[idx].image);
             });
+        }
+
+        private void SetRebindButton()
+        {
+            if (InputManager.IsChanged())
+            {
+                rebindButtonPanel.SetActive(true);
+            }
+            else
+            {
+                rebindButtonPanel.SetActive(false);
+            }
+        }
+
+        public void SetPreferencePanel(bool isActive)
+        {
+            if (isActive)
+            {
+                preferencePanel.SetActive(true);
+                InputManager.RebindComplete += SetRebindButton;
+                InputManager.RebindEnd += SetRebindButton;
+                // InputManager.RebindLoad += SetRebindButton;
+                InputManager.RebindReset += SetRebindButton;
+
+                InputManager.PushInputAction(_inputActions);
+            }
+            else
+            {
+                if (InputManager.IsChanged())
+                {
+                    rebindCheckUIManager.Push();
+                }
+                else
+                {
+                    // HighlightHelper.Instance.Enable();
+                    preferencePanel.SetActive(false);
+                    
+                    InputManager.RebindComplete -= SetRebindButton;
+                    InputManager.RebindEnd -= SetRebindButton;
+                    // InputManager.RebindLoad -= SetRebindButton;
+                    InputManager.RebindReset -= SetRebindButton;
+
+                    InputManager.PopInputAction(_inputActions);
+                }                
+            }
         }
     }
 }

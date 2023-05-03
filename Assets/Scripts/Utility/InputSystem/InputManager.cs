@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,22 +19,26 @@ namespace Utility.InputSystem
                 return _inputControl ??= new InputControl();
             }
         }
+        
+        private static int _inputActionCount;
+        
+        private static readonly object LockObject = new();
 
+        private static readonly List<InputActions> InputActionsList = new();
+        
+        private static readonly Queue<InputActions> PushInputActions = new();
+        
+        private static readonly Queue<InputActions> PopInputActions = new();
+
+        //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
+        private static readonly List<BindInputAction> BindInputActions = new();
+        
         public static event Action RebindComplete;
         public static event Action RebindCanceled;
         public static event Action RebindEnd;
         public static event Action RebindLoad;
-
         public static event Action RebindReset;
-
         public static event Action<InputAction, int> RebindStarted;
-
-        //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
-        private static readonly List<BindInputAction> BindInputActions = new();
-
-        private static int _uiActionCount;
-
-        private static int _playerActionCount;
 
         private class BindInputAction
         {
@@ -40,59 +46,84 @@ namespace Utility.InputSystem
             public int BindingIndex;
             public string OriginalDisplayName;
         }
-
-        public static void SetUiAction(bool isAdd)
+        
+        public static void PushInputAction(InputActions inputActions)
         {
-            if (isAdd)
+            Debug.Log($"Push InputAction {inputActions.Name}");
+            PushInputActions.Enqueue(inputActions);
+            AsyncPushInputAction();
+        }
+
+        private static async void AsyncPushInputAction()
+        {
+            // Time.fixedDeltaTime
+            await Task.Delay(20);
+
+            lock (LockObject)
             {
-                if (_uiActionCount == 0)
+                if (InputActionsList.Count > 0)
                 {
-                    var uiActions = InputControl.Ui;
-                    uiActions.Enable();
-                    Debug.Log("Enable UIAction");
+                    InputActionsList.Last().SetAction(false);
                 }
 
-                _uiActionCount++;
+                var inputActions = PushInputActions.Dequeue(); // 1 -> 0
+                InputActionsList.Add(inputActions);
+                inputActions.SetAction(true);
+                
+                Debug.Log($"{InputActionsList.Count}\n" +
+                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
             }
-            else
+        }
+
+        public static void PopInputAction(InputActions inputActions)
+        {
+            Debug.Log($"Pop InputAction {inputActions.Name}");
+            PopInputActions.Enqueue(inputActions);
+            AsyncPopInputAction();
+        }
+        
+        private static async void AsyncPopInputAction()
+        {
+            // Time.fixedDeltaTime
+            await Task.Delay(20);
+
+            lock (LockObject)
             {
-                _uiActionCount--;
-                if (_uiActionCount == 0)
+                var inputActions = PopInputActions.Dequeue();
+                inputActions.SetAction(false);
+                InputActionsList.Remove(inputActions);
+            
+                Debug.Log($"{InputActionsList.Count}\n" +
+                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+                // 몇초후에 가능하도록 Add
+                if (InputActionsList.Count > 0)
                 {
-                    var uiActions = InputControl.Ui;
-                    uiActions.Disable();
-                    Debug.Log("Disable UIAction");
-                }
-                else if (_uiActionCount < 0)
-                {
-                    Debug.LogError("오류");
+                    InputActionsList.Last().SetAction(true);
                 }
             }
         }
 
-        public static void SetPlayerAction(bool isAdd)
+        public static void SetInputActions(bool isAdd)
         {
             if (isAdd)
             {
-                if (_playerActionCount == 0)
+                if (_inputActionCount == 0)
                 {
-                    var playerActions = InputControl.PlayerActions;
-                    playerActions.Enable();
-                    Debug.Log("Enable PlayerAction");
+                    var inputActions = InputControl.Input;
+                    inputActions.Enable();
                 }
 
-                _playerActionCount++;
+                _inputActionCount++;
             }
             else
             {
-                _playerActionCount--;
-                if (_playerActionCount == 0)
+                _inputActionCount--;
+                if (_inputActionCount == 0)
                 {
-                    var playerActions = InputControl.PlayerActions;
-                    playerActions.Disable();
-                    Debug.Log("Disable PlayerAction");
+                    var inputActions = InputControl.Input;
+                    inputActions.Disable();
                 }
-                else if (_playerActionCount < 0)
+                else if (_inputActionCount < 0)
                 {
                     Debug.LogError("오류");
                 }
@@ -104,7 +135,7 @@ namespace Utility.InputSystem
             return BindInputActions.Count > 0;
         }
 
-        public static void EndChange(bool isSave)
+        public static void SetChange(bool isSave)
         {
             if (isSave)
             {
@@ -159,7 +190,8 @@ namespace Utility.InputSystem
             }
 
             bindingPanel.SetActive(true);
-            statusText.text = $"Press a {actionToRebind.expectedControlType}";
+            //statusText.text = $"Press a {actionToRebind.expectedControlType}";
+            statusText.text = $"";
 
             actionToRebind.Disable();
 

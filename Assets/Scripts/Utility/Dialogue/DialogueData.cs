@@ -45,6 +45,7 @@ namespace Utility.Dialogue
         public DialogueType dialogueType;
 
         public Expression expression;
+
         public string[] option;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
@@ -59,10 +60,21 @@ namespace Utility.Dialogue
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public DirectorWrapMode extrapolationMode;
 
+        [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
+        public float waitSec;
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         public Interaction.Interaction interaction;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         public int interactIndex;
+
+        public bool isSkipEnable;
+
+        [ConditionalHideInInspector("isSkipEnable")] public int skipLength;
+        
+        [ConditionalHideInInspector("isSkipEnable")] public float skipWaitSec;
+
+        [NonSerialized] public Action OnStartAction;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using Utility.SaveSystem;
 
 namespace Utility.Core

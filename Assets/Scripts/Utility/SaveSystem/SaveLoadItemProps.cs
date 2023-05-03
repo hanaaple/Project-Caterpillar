@@ -15,7 +15,7 @@ namespace Utility.SaveSystem
         public SaveLoadItemProps(SaveLoadItem saveLoadItem)
         {
             SaveLoadItem = saveLoadItem;
-            button = saveLoadItem.GetComponent<Button>();
+            button = saveLoadItem.GetComponentInChildren<Button>();
             saveLoadItem.Animator = saveLoadItem.GetComponent<Animator>();
         }
 
@@ -29,10 +29,6 @@ namespace Utility.SaveSystem
             SaveLoadItem.text.text = "";
             
             await SaveManager.LoadCoverAsync(SaveDataIndex);
-            
-            // for로 동시에 실행시킬 때, 실행 순서를 알 수 없다. index가 다르긴 해도 Dictionary를 동시에 Add가 되어
-            // --> ConcurrentDictionary를 사용하라
-            
             
             var saveCoverData = SaveManager.GetSaveCoverData(SaveDataIndex);
             if (saveCoverData != null)

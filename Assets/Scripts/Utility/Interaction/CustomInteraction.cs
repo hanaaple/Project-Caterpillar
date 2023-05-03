@@ -10,9 +10,9 @@ public class CustomInteractionEditor : Editor
         base.OnInspectorGUI();
 
         var generator = (Utility.Interaction.CustomInteraction)target;
-        if (GUILayout.Button("ShowDialogue"))
+        if (GUILayout.Button("SetDialogue"))
         {
-            generator.ShowDialogue();
+            generator.SetDialogue();
             EditorUtility.SetDirty(generator);
         }
     }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using Utility.Dialogue;
 using Utility.UI.Inventory;
 using Utility.UI.Pause;
 using Utility.UI.Preference;
@@ -30,8 +29,9 @@ namespace Utility.Core
             }
         }
         
-        [SerializeField] private PauseManager pauseManager;
-        [SerializeField] private PreferenceManager preferenceManager;
+        public PauseManager pauseManager;
+        
+        public PreferenceManager preferenceManager;
         [SerializeField] private InventoryManager inventoryManager;
         
         [SerializeField] private Canvas canvas;
@@ -58,11 +58,6 @@ namespace Utility.Core
         public void Destroy()
         {
             Destroy(gameObject);
-        }
-
-        public bool IsCanvasUse()
-        {
-            return DialogueController.Instance.IsDialogue || inventoryManager.GetIsOpen() || pauseManager.GetIsOpen();
         }
     }
 }

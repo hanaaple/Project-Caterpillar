@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Player;
 using Utility.SaveSystem;
 
 namespace Utility.Core
@@ -40,11 +41,6 @@ namespace Utility.Core
         {
             var gameManagerPrefab = Resources.Load<GameManager>("GameManager");
             return Instantiate(gameManagerPrefab);
-        }
-
-        public static bool IsCharacterControlEnable()
-        {
-            return !PlayUIManager.Instance.IsCanvasUse();
         }
 
         private void Awake()

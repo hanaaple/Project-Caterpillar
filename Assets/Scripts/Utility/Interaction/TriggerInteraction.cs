@@ -13,9 +13,9 @@ namespace Utility.Interaction
             base.OnInspectorGUI();
 
             var generator = (TriggerInteraction)target;
-            if (GUILayout.Button("ShowDialogue"))
+            if (GUILayout.Button("SetDialogue"))
             {
-                generator.ShowDialogue();
+                generator.SetDialogue();
             }
         }
     }

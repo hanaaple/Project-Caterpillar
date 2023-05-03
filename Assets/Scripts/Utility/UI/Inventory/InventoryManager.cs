@@ -73,7 +73,7 @@ namespace Utility.UI.Inventory
             button.gameObject.SetActive(isActive);
         }
 
-        public override void Remove(TransitionType transitionType)
+        public override void Pop(TransitionType transitionType)
         {
             if (TransitionTypes.Contains(transitionType))
             {
@@ -92,7 +92,7 @@ namespace Utility.UI.Inventory
                 Debug.Log(transitionType + "없음");
             }
 
-            Highlight();
+            UpdateDisplay();
         }
 
         public override void SetDefault()
@@ -179,21 +179,17 @@ namespace Utility.UI.Inventory
                 }
             };
 
-            _menuHighlighter = new Highlighter
+            _menuHighlighter = new Highlighter("Inventory Menu Highlight")
             {
                 HighlightItems = new List<HighlightItem>(inventoryMenuItems),
                 name = "메뉴"
             };
 
-            _itemHighlighter = new Highlighter
+            _itemHighlighter = new Highlighter("Inventory Item Highlight")
             {
                 HighlightItems = new List<HighlightItem>(inventoryItems),
                 name = "아이템"
             };
-
-            // Menu UpDown
-            _menuHighlighter.OnSelect = _onMenuArrow;
-            _itemHighlighter.OnSelect = _onItemArrow;
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
             {
@@ -214,6 +210,11 @@ namespace Utility.UI.Inventory
             {
                 HighlightHelper.Instance.SetLast(_menuHighlighter);
             });
+            
+            
+            // Menu UpDown
+            _menuHighlighter.InputActions.OnArrow += _onMenuArrow;
+            _itemHighlighter.InputActions.OnArrow += _onItemArrow;
         }
 
         private void Start()
