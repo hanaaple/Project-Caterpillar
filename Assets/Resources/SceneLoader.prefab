@@ -167,7 +167,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 40bda00a0aea05549bf484574471d8ce, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -389,7 +389,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &6748277135058975145
 MonoBehaviour:
@@ -457,3 +457,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLoaderCanvasGroup: {fileID: 6748277135058975147}
   progressBar: {fileID: 6213089203911390681}
+  fadeSec: 0.5

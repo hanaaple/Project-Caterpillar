@@ -80,6 +80,24 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""c11f3372-3b31-4353-9b35-05b5183a42cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2453e94-092d-45d5-a1da-d08e712a6173"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,6 +331,28 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38d8598b-1358-443e-8ca6-34bbbf9e11c9"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96b8916d-f191-4c1f-9360-1e7cdd4a52bc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse"",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -372,6 +412,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Input_Pause = m_Input.FindAction("Pause", throwIfNotFound: true);
         m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
+        m_Input_AnyKey = m_Input.FindAction("AnyKey", throwIfNotFound: true);
+        m_Input_LeftClick = m_Input.FindAction("LeftClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -437,6 +479,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Pause;
     private readonly InputAction m_Input_Move;
     private readonly InputAction m_Input_Interact;
+    private readonly InputAction m_Input_AnyKey;
+    private readonly InputAction m_Input_LeftClick;
     public struct InputActions
     {
         private @InputControl m_Wrapper;
@@ -447,6 +491,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Input_Pause;
         public InputAction @Move => m_Wrapper.m_Input_Move;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
+        public InputAction @AnyKey => m_Wrapper.m_Input_AnyKey;
+        public InputAction @LeftClick => m_Wrapper.m_Input_LeftClick;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -474,6 +520,12 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
+                @AnyKey.started -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
+                @LeftClick.started -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
+                @LeftClick.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
+                @LeftClick.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
             }
             m_Wrapper.m_InputActionsCallbackInterface = instance;
             if (instance != null)
@@ -496,6 +548,12 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
+                @LeftClick.started += instance.OnLeftClick;
+                @LeftClick.performed += instance.OnLeftClick;
+                @LeftClick.canceled += instance.OnLeftClick;
             }
         }
     }
@@ -544,5 +602,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
     }
 }

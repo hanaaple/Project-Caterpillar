@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Scene;
 using Utility.UI.Inventory;
 using Utility.UI.Pause;
 using Utility.UI.Preference;
@@ -6,7 +7,7 @@ using Utility.UI.Preference;
 namespace Utility.Core
 {
     public class PlayUIManager : MonoBehaviour
-    {    
+    {
         private static PlayUIManager _instance;
         public static PlayUIManager Instance
         {
@@ -55,9 +56,20 @@ namespace Utility.Core
             }
         }
 
-        public void Destroy()
+        public void SetPlayType(PlayType playType)
         {
-            Destroy(gameObject);
+            if (playType == PlayType.None)
+            {
+                inventoryManager.SetEnable(false);
+            }
+            else if (playType == PlayType.Field)
+            {
+                inventoryManager.SetEnable(true);
+            }
+            else if (playType == PlayType.MiniGame)
+            {
+                inventoryManager.SetEnable(false);
+            }
         }
     }
 }

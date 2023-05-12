@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
+using Utility.Scene;
 using Utility.UI.Check;
 using Utility.UI.Highlight;
 using Utility.Util;
@@ -188,6 +189,7 @@ namespace Utility.Dialogue
         {
             if (_isDialogue)
             {
+                Debug.Log("이미 진행 중임 왜?");
                 return;
             }
 
@@ -299,9 +301,13 @@ namespace Utility.Dialogue
                     break;
                 }
                 case DialogueType.MoveMap:
-                    OnInputDialogue();
+                    EndDialogue(false);
+                    baseDialogueData.Clear();
+                    _baseDialogueData.Clear();
+                    
                     Debug.Log(dialogueElement.contents + "로 맵 이동");
                     SceneLoader.Instance.LoadScene(dialogueElement.contents);
+                    
                     break;
                 case DialogueType.Save:
                     SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.SaveLoadType.Save);
@@ -736,6 +742,7 @@ namespace Utility.Dialogue
             if (_printCoroutine != null)
             {
                 StopCoroutine(_printCoroutine);
+                _printCoroutine = null;
             }
 
             _isUnfolding = false;
@@ -764,7 +771,7 @@ namespace Utility.Dialogue
             dialoguePanel.SetActive(false);
 
             _isDialogue = false;
-
+            
             // rightAnimator.SetTrigger(DisappearHash);
             // leftAnimator.SetTrigger(DisappearHash);
 
@@ -791,7 +798,7 @@ namespace Utility.Dialogue
             }
             // Debug.Log(_baseDialogueData.Count);
         }
-
+        
         private void OnClickChoice(int curIdx, int choiceLen, int choiceContextLen)
         {
             Debug.Log($"Dialogue Index: {curIdx}\n" +
@@ -1031,11 +1038,6 @@ namespace Utility.Dialogue
         {
             var currentDialogueData = _baseDialogueData.Peek();
             return currentDialogueData.index >= currentDialogueData.dialogueElements.Length;
-        }
-
-        private void OnDestroy()
-        {
-            Instance = null;
         }
 
         private static IEnumerator WaitSecAfterAction(float sec, Action afterAction)

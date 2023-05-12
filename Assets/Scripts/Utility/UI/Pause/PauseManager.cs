@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility.Core;
+using Utility.Scene;
 using Utility.UI.Check;
 using Utility.UI.Highlight;
 using Utility.Util;
@@ -106,9 +107,9 @@ namespace Utility.UI.Pause
                             exitCheckUIManager.SetText("저장되지 않은 데이터가 있을 수 있습니다.\n타이틀 화면으로 돌아가시겠습니까?");
                             exitCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                             {
-                                TimeScaleHelper.Pop();
+                                exitCheckUIManager.Pop();
+                                SetActive(false);
                                 HighlightHelper.Instance.ResetHighlight();
-                                PlayUIManager.Instance.Destroy();
                                 SceneLoader.Instance.LoadScene("TitleScene");
                             });
                             exitCheckUIManager.Push();
