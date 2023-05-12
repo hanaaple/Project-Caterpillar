@@ -408,9 +408,9 @@ namespace Utility.UI.Inventory
             }
         }
 
-        public bool GetIsOpen()
+        public void SetEnable(bool isEnable)
         {
-            return inventoryPanel.activeSelf;
+            inventoryButton.gameObject.SetActive(isEnable);
         }
     }
 }

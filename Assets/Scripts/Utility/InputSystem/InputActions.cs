@@ -31,6 +31,9 @@ namespace Utility.InputSystem
         public Action<InputAction.CallbackContext> OnMovePerformed;
         public Action<InputAction.CallbackContext> OnMoveCanceled;
 
+        public Action<InputAction.CallbackContext> OnAnyKey;
+        public Action<InputAction.CallbackContext> OnLeftClick;
+
         public InputActions(string name)
         {
             Name = name;
@@ -69,6 +72,12 @@ namespace Utility.InputSystem
 
                 if (OnInteract != null)
                     inputActions.Interact.performed += OnInteract;
+
+                if (OnAnyKey != null)
+                    inputActions.AnyKey.performed += OnAnyKey;
+
+                if (OnLeftClick != null)
+                    inputActions.LeftClick.performed += OnLeftClick;
             }
             else
             {
@@ -96,6 +105,12 @@ namespace Utility.InputSystem
 
                 if (OnInteract != null)
                     inputActions.Interact.performed -= OnInteract;
+
+                if (OnAnyKey != null)
+                    inputActions.AnyKey.performed -= OnAnyKey;
+                
+                if (OnLeftClick != null)
+                    inputActions.LeftClick.performed -= OnLeftClick;
             }
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Core;
 using Utility.InputSystem;
+using Utility.Scene;
 
 namespace Utility.Player
 {
@@ -44,6 +45,11 @@ namespace Utility.Player
             {
                 OnInteract = _ =>
                 {
+                    if (SceneLoader.Instance.IsLoading)
+                    {
+                        return;
+                    }
+                    
                     onInteractAction?.Invoke();
                 },
                 OnMovePerformed = Input,

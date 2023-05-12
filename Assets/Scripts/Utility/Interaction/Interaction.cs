@@ -7,6 +7,7 @@ using Utility.Core;
 using Utility.Dialogue;
 using Utility.JsonLoader;
 using Utility.SaveSystem;
+using Utility.Scene;
 
 namespace Utility.Interaction
 {
