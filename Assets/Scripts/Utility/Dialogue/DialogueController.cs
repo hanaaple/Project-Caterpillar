@@ -48,8 +48,6 @@ namespace Utility.Dialogue
 
     public class DialogueController : MonoBehaviour
     {
-        public static DialogueController Instance { get; private set; }
-
         [SerializeField] private Animator cutSceneAnimator;
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
@@ -88,7 +86,7 @@ namespace Utility.Dialogue
         private Highlighter _choiceHighlighter;
         private UnityAction _onComplete;
         private UnityAction _onSkip;
-        private InputActions _inputActions;
+        private InputActions _dialogueInputActions;
 
         private static readonly int CharacterHash = Animator.StringToHash("Character");
         private static readonly int ExpressionHash = Animator.StringToHash("Expression");
@@ -98,15 +96,6 @@ namespace Utility.Dialogue
 
         private void Awake()
         {
-            if (Instance)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
-            }
-
             dialogueInputArea.onClick.AddListener(() => { OnInputDialogue(); });
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
@@ -147,7 +136,7 @@ namespace Utility.Dialogue
                 skipCheckUIManager.Pop();
             });
 
-            _inputActions = new InputActions(nameof(DialogueController))
+            _dialogueInputActions = new InputActions(nameof(DialogueController))
             {
                 // It Works When Before Save
                 OnExecute = OnInputDialogue,
@@ -205,7 +194,7 @@ namespace Utility.Dialogue
             subjectText.text = "";
             dialogueText.text = "";
 
-            InputManager.PushInputAction(_inputActions);
+            InputManager.PushInputAction(_dialogueInputActions);
 
             Initialize(dialogueData);
 
@@ -353,7 +342,11 @@ namespace Utility.Dialogue
 
                     _isCutSceneSkipEnable = false;
 
-                    if (dialogueElement.waitSec > 0f)
+                    if (Mathf.Approximately(dialogueElement.waitSec, 0f))
+                    {
+                        _isCutSceneSkipEnable = true;
+                    }
+                    else if (dialogueElement.waitSec > 0f)
                     {
                         _waitCutsceneEnableCoroutine = StartCoroutine(WaitSecAfterAction(dialogueElement.waitSec, () =>
                         {
@@ -361,10 +354,6 @@ namespace Utility.Dialogue
 
                             Debug.Log("CutScene Skip 가능해짐");
                         }));
-                    }
-                    else if (Mathf.Approximately(dialogueElement.waitSec, 0f))
-                    {
-                        _isCutSceneSkipEnable = true;
                     }
 
                     // Auto Next Index
@@ -775,7 +764,7 @@ namespace Utility.Dialogue
             // rightAnimator.SetTrigger(DisappearHash);
             // leftAnimator.SetTrigger(DisappearHash);
 
-            InputManager.PopInputAction(_inputActions);
+            InputManager.PopInputAction(_dialogueInputActions);
 
             skipButton.gameObject.SetActive(false);
 

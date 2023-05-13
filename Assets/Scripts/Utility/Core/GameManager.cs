@@ -33,6 +33,8 @@ namespace Utility.Core
             }
         }
         
+        [NonSerialized] public bool IsTitleCutSceneWorked;
+        
         [NonSerialized] public TestPlayer Player;
 
         [NonSerialized] public List<Interaction.Interaction> InteractionObjects;
