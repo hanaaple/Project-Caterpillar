@@ -1508,6 +1508,78 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_PlayableAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 67688ae2237b8264eb3e43a13aaff93b, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 96d6649cdecfa8d4387c6ba99ac55bce, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 61aea766aa6dd264089808ed1e65022c, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 9e4611cfaf7efb247aa4bdc6f0d87253, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 8349e5f4ffd6bb64ea4254580943449c, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[7].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 291358c94f5399f46996c91f36692cb8, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 43125bde43ea7a94592aadc4ceb9aaee, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[9].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 67688ae2237b8264eb3e43a13aaff93b, type: 2}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[7].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].value
+      value: 
+      objectReference: {fileID: 771075557}
+    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SceneBindings.Array.data[9].value
+      value: 
+      objectReference: {fileID: 771075557}
     - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1604,6 +1676,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1059953817743086646, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1059953817977804366, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1630,15 +1706,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1059953818672667840, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 903
       objectReference: {fileID: 0}
     - target: {fileID: 1059953818672667840, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 643
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953818672667840, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1059953818672667840, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -140.5
       objectReference: {fileID: 0}
     - target: {fileID: 1059953818672667841, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_IsActive
@@ -1647,7 +1727,7 @@ PrefabInstance:
     - target: {fileID: 1059953818672667847, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: b242df0d8a54a9f4c86a1a93e766ce99, type: 3}
     - target: {fileID: 1059953818672667847, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -1674,7 +1754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773180329531707794, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3929189932781423114, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_Color.a
@@ -1692,6 +1772,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4365493894388607744, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365493894388607744, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441542229743868159, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1934693219, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
     - target: {fileID: 4716725139392818039, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
       propertyPath: m_PlayableAsset
       value: 
@@ -1828,6 +1920,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[17].value
       value: 
       objectReference: {fileID: 771075557}
+    - target: {fileID: 5685837420189435803, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
 --- !u!1 &504864158 stripped
