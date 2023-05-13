@@ -58,8 +58,8 @@ namespace Utility.UI.Inventory
     public class InventoryItem : HighlightItem
     {
         public ItemManager.ItemType itemType;
-        [SerializeField] private Sprite defaultSprite;
-        [SerializeField] private Sprite selectedSprite;
+        // [SerializeField] private Sprite defaultSprite;
+        // [SerializeField] private Sprite selectedSprite;
         public GameObject itemPanel;
 
         public Action onPointerEnter;
@@ -98,7 +98,7 @@ namespace Utility.UI.Inventory
         public override void SetDefault()
         {
             // Debug.Log($"Set Default {itemType}");
-            button.image.sprite = defaultSprite;
+            // button.image.sprite = defaultSprite;
             button.image.color = Color.white;
         }
 
@@ -107,7 +107,7 @@ namespace Utility.UI.Inventory
             // Debug.Log($"Enter Highlight {itemType}");
             if (!TransitionTypes.Contains(TransitionType.Select))
             {
-                button.image.sprite = defaultSprite;
+                // button.image.sprite = defaultSprite;
             }
 
             button.image.color = Color.blue;
@@ -122,7 +122,7 @@ namespace Utility.UI.Inventory
                 button.image.color = Color.white;
             }
 
-            button.image.sprite = selectedSprite;
+            // button.image.sprite = selectedSprite;
             onPointSelect?.Invoke();
         }
 
@@ -373,15 +373,15 @@ namespace Utility.UI.Inventory
 
 
             var ownItems = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-            foreach (var inventoryItemHighLight in inventoryItems)
+            foreach (var inventoryItem in inventoryItems)
             {
-                if (ownItems.Contains(inventoryItemHighLight.itemType))
+                if (ownItems.Contains(inventoryItem.itemType))
                 {
-                    inventoryItemHighLight.SetActive(true);
+                    inventoryItem.SetActive(true);
                 }
                 else
                 {
-                    inventoryItemHighLight.SetActive(false);
+                    inventoryItem.SetActive(false);
                 }
             }
         }

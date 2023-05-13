@@ -38,8 +38,9 @@ namespace Utility.Core
         public enum ItemType
         {
             None,
-            Bag,
-            Stone
+            NaruDoll,
+            Ring,
+            Camera
         }
 
         private static ItemManager _instance;
