@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility.Core;
 using Utility.Scene;
 using Utility.UI.Check;
@@ -55,7 +56,10 @@ namespace Utility.UI.Pause
         {
             onPause = () =>
             {
-                SetActive(true);
+                if (!SceneManager.GetActiveScene().name.Equals("TitleScene"))
+                {
+                    SetActive(true);
+                }
             };
             
             _pauseHighlighter = new Highlighter("Pause Highlight")

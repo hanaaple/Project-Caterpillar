@@ -47,6 +47,8 @@ namespace Utility.UI.Highlight
 
         public bool enabled;
 
+        public Action onPush;
+
         public Highlighter(string name)
         {
             this.name = name;
@@ -411,6 +413,8 @@ namespace Utility.UI.Highlight
             highlighter.selectedIndex = -1;
             highlighter.highlightedIndex = -1;
             highlighter.SetEnable(true);
+            
+            highlighter.onPush?.Invoke();
         }
 
         /// <summary>
