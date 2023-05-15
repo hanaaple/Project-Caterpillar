@@ -5,8 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Utility.Core;
 using Utility.Scene;
+using Utility.UI.Check;
 using Utility.UI.Highlight;
 
 namespace Utility.SaveSystem
@@ -59,10 +59,8 @@ namespace Utility.SaveSystem
         [SerializeField] private RectTransform scrollView;
         [SerializeField] private RectTransform content;
 
-        [Header("Check")] [SerializeField] private GameObject checkPanel;
-        [SerializeField] private TMP_Text checkText;
-        [SerializeField] private Button noButton;
-        [SerializeField] private Button yesButton;
+        [Header("Check")]
+        [SerializeField] private CheckUIManager checkUIManager;
         [TextArea] [SerializeField] private string newLoadText;
         [TextArea] [SerializeField] private string saveCoverText;
         [TextArea] [SerializeField] private string deleteText;
@@ -102,7 +100,8 @@ namespace Utility.SaveSystem
 
         private void Start()
         {
-            noButton.onClick.AddListener(() => { checkPanel.SetActive(false); });
+            checkUIManager.Initialize();
+            checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () => { checkUIManager.Pop(); });
 
             savePanelExitButton.onClick.AddListener(() => { SetSaveLoadPanelActive(false, SaveLoadType.None); });
         }
@@ -233,11 +232,10 @@ namespace Utility.SaveSystem
                 {
                     if (_saveLoadType == SaveLoadType.Save)
                     {
-                        checkPanel.SetActive(true);
-
-                        checkText.text = saveCoverText;
-                        yesButton.onClick.RemoveAllListeners();
-                        yesButton.onClick.AddListener(() =>
+                        checkUIManager.Push();
+                        
+                        checkUIManager.SetText(saveCoverText);
+                        checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
                             var saveData = SaveHelper.GetSaveData();
 
@@ -250,8 +248,8 @@ namespace Utility.SaveSystem
 
                                 saveLoadItemProps.UpdateUI();
                             }));
-
-                            checkPanel.SetActive(false);
+                            
+                            checkUIManager.Pop(); 
                         });
                     }
                     else if (_saveLoadType == SaveLoadType.Load)
@@ -276,16 +274,14 @@ namespace Utility.SaveSystem
                 });
                 saveLoadItem.deleteButton.onClick.AddListener(() =>
                 {
-                    checkPanel.SetActive(true);
-
-                    checkText.text = deleteText;
-                    yesButton.onClick.RemoveAllListeners();
-                    yesButton.onClick.AddListener(() =>
+                    checkUIManager.Push();
+                    checkUIManager.SetText(deleteText);
+                    checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                     {
                         var saveDataIndex = saveLoadItemProps.SaveDataIndex;
                         Remove(saveLoadItem);
                         SaveManager.Delete(saveDataIndex);
-                        checkPanel.SetActive(false);
+                        checkUIManager.Pop();
                     });
                 });
             }
@@ -317,11 +313,9 @@ namespace Utility.SaveSystem
                     }
                     else if (_saveLoadType == SaveLoadType.Load)
                     {
-                        checkPanel.SetActive(true);
-
-                        checkText.text = newLoadText;
-                        yesButton.onClick.RemoveAllListeners();
-                        yesButton.onClick.AddListener(() =>
+                        checkUIManager.Push();
+                        checkUIManager.SetText(newLoadText);
+                        checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
                             SceneLoader.Instance.LoadScene("MainScene");
 
@@ -331,7 +325,7 @@ namespace Utility.SaveSystem
                             };
                             _onLoad?.Invoke();
 
-                            checkPanel.SetActive(false);
+                            checkUIManager.Pop();
                         });
                     }
                 });

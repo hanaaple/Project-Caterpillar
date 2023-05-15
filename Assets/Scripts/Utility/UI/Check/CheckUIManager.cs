@@ -7,6 +7,9 @@ using Utility.UI.Highlight;
 
 namespace Utility.UI.Check
 {
+    /// <summary>
+    /// Before Use, Have to Initialize()
+    /// </summary>
     public class CheckUIManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text checkText;
