@@ -18,11 +18,10 @@ namespace Utility.SaveSystem
                     describe = "테스트입니다." + SceneManager.GetActiveScene().name,
                     sceneName = SceneManager.GetActiveScene().name == "TitleScene" ? "MainScene" : SceneManager.GetActiveScene().name,
                     playTime = 1122
-                }
+                },
+                interactionData = new List<InteractionSaveData>()
             };
-            
-            saveData.interactionData = new List<InteractionSaveData>();
-            
+
             foreach (var interactionData in GameManager.Instance.InteractionObjects.Select(interaction =>
                          interaction.GetInteractionSaveData()))
             {
