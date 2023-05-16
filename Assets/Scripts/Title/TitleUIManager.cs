@@ -70,6 +70,22 @@ namespace Title
         {
             SceneLoader.Instance.onLoadScene += () => { HighlightHelper.Instance.Pop(_highlighter, true); };
 
+            // 게임 첫 시작시에만
+            if (!GameManager.Instance.IsTitleCutSceneWorked)
+            {
+                GameManager.Instance.IsTitleCutSceneWorked = true;
+                dialogueData.OnDialogueEnd = Init;
+
+                PlayUIManager.Instance.dialogueController.StartDialogue(dialogueData);
+            }
+            else
+            {
+                Init();
+            }
+        }
+
+        private void Init()
+        {
             foreach (var highlightItem in highlightItems)
             {
                 switch (highlightItem.buttonType)
@@ -99,19 +115,7 @@ namespace Title
                 }
             }
 
-            // 게임 첫 시작시에만
-
-            if (!GameManager.Instance.IsTitleCutSceneWorked)
-            {
-                GameManager.Instance.IsTitleCutSceneWorked = true;
-                dialogueData.OnDialogueEnd = () => { HighlightHelper.Instance.Push(_highlighter); };
-
-                PlayUIManager.Instance.dialogueController.StartDialogue(dialogueData);
-            }
-            else
-            {
-                HighlightHelper.Instance.Push(_highlighter);
-            }
+            HighlightHelper.Instance.Push(_highlighter);
         }
     }
 }
