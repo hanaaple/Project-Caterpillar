@@ -29,8 +29,6 @@ namespace Game.Stage1.ShadowGame.Default
 
         [Space(10)] [Header("Light")] [SerializeField]
         protected Flashlight flashlight;
-        // [SerializeField] private Light2D globalLight;
-        // [SerializeField] private float globalLightIntensity;
 
         [Space(20)] [Header("Canvas")] [SerializeField]
         private Button tutorialExitButton;
@@ -107,6 +105,7 @@ namespace Game.Stage1.ShadowGame.Default
         private static readonly int SecHash = Animator.StringToHash("Sec");
         private static readonly int IndexHash = Animator.StringToHash("Index");
         private static readonly int DisAppearHash = Animator.StringToHash("DisAppear");
+        private static readonly int ClearHash = Animator.StringToHash("Clear");
 
         private void Awake()
         {
@@ -151,7 +150,6 @@ namespace Game.Stage1.ShadowGame.Default
         {
             _toastQueue = new Queue<string>();
 
-            // globalLight.intensity = globalLightIntensity;
             flashlight.Init();
             _camera = Camera.main;
             _minBounds = cameraBound.bounds.min;
@@ -192,7 +190,6 @@ namespace Game.Stage1.ShadowGame.Default
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;
-            shadowMonster.Reset();
         }
 
         public void Play()
@@ -283,12 +280,18 @@ namespace Game.Stage1.ShadowGame.Default
                 }
 
                 _toastCoroutine ??= StartCoroutine(StartToast());
-            }, OnStageEnd(true));
+            }, () => { StartCoroutine(OnStageEnd(true)); });
         }
 
         private IEnumerator StageUpdate()
         {
             shadowMonster.Appear(stageIndex);
+            
+            yield return new WaitUntil(() => shadowMonster.monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
+            // Set Attack Enable
+            shadowMonster.SetActive(true);
+            
+            
             // 괴물 등장, 효과음
 
             var sec = 0f;
@@ -352,12 +355,14 @@ namespace Game.Stage1.ShadowGame.Default
             }
             else if (stageIndex < stageCount)
             {
+                // Recovery 이후에 다음 Stage 진행
                 StartStage(isClear);
             }
         }
 
         private void ClearGame()
         {
+            gameAnimator.SetTrigger(ClearHash);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);

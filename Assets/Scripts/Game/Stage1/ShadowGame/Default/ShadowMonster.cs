@@ -7,7 +7,8 @@ namespace Game.Stage1.ShadowGame.Default
 {
     public class ShadowMonster : MonoBehaviour
     {
-        [SerializeField] private Animator monsterAnimator;
+        public Animator monsterAnimator;
+        
         [SerializeField] private CircleCollider2D monsterCollider;
         [SerializeField] private CircleCollider2D flashLightCollider;
         
@@ -15,56 +16,53 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private float judgmentPercentage;  // 0.5
 
         private float _attackedTime;
+        private bool _isEnable;
         
-        private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int StageHash = Animator.StringToHash("Stage");
         private static readonly int AppearHash = Animator.StringToHash("Appear");
         private static readonly int AttackedSecHash = Animator.StringToHash("AttackedSec");
-        private static readonly int AttackHash = Animator.StringToHash("Attack");
-        private static readonly int DefeatHash = Animator.StringToHash("Defeat");
-
-        public virtual void Reset()
-        {
-            gameObject.SetActive(false);
-            monsterAnimator.SetTrigger(ResetHash);
-        }
+        private static readonly int DisappearHash = Animator.StringToHash("Disappear");
 
         public void Appear(int stageIndex)
         {
             gameObject.SetActive(true);
-            
+            monsterAnimator.SetFloat(AttackedSecHash, 0);
             _attackedTime = 0;
             monsterAnimator.SetInteger(StageHash, stageIndex);
             monsterAnimator.SetTrigger(AppearHash);
         }
-
-        // Attack Animation 타이밍 조정 필요 -> 미사용?
+        
         public void Attack()
         {
-            monsterAnimator.SetTrigger(AttackHash);
+            SetActive(false);
+
+            StartCoroutine(DisappearCoroutine());
         }
 
         // Defeat Animation 타이밍 조정 필요 -> 미사용?
-        public void Defeat(Action onDefeatStart, IEnumerator onDefeatEnd)
+        public void Defeat(Action onDefeatStart, Action onDisappearEnd)
         {
+            SetActive(false);
             onDefeatStart?.Invoke();
-            StartCoroutine(DefeatCoroutine(onDefeatEnd));
+            StartCoroutine(DisappearCoroutine(onDisappearEnd));
         }
 
-        private IEnumerator DefeatCoroutine(IEnumerator onDefeatEnd)
+        private IEnumerator DisappearCoroutine(Action onDisappearEnd = null)
         {
-            // 이거 대신에 WriteDefault를 꺼도 될듯
-            monsterAnimator.applyRootMotion = true;
-            monsterAnimator.SetTrigger(DefeatHash);
+            monsterAnimator.SetTrigger(DisappearHash);
             yield return null;
             yield return new WaitUntil(() => monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"));
             
-            monsterAnimator.applyRootMotion = false;
-            StartCoroutine(onDefeatEnd);
+            onDisappearEnd?.Invoke();
         }
 
         private void Update()
         {
+            if (!_isEnable)
+            {
+                return;
+            }
+
             var a = monsterCollider.radius; // 몬스터 원의 반지름
             var b = flashLightCollider.radius; // 손전등 원의 반지름
             var d = Vector2.Distance(flashLightCollider.transform.position, transform.position); // 두 원 사이의 거리
@@ -109,6 +107,12 @@ namespace Game.Stage1.ShadowGame.Default
         public void PlayOneShot(AudioClip audioClip)
         {
             AudioManager.PlaySfx(audioClip);
+        }
+
+        public void SetActive(bool isActive)
+        {
+            // Defeat 
+            _isEnable = isActive;
         }
         
         public bool GetIsDefeated()
