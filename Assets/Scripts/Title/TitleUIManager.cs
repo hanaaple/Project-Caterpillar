@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility.Core;
+using Utility.Dialogue;
 using Utility.SaveSystem;
 using Utility.Scene;
 using Utility.UI.Highlight;
-using Utility.UI.Preference;
 
 namespace Title
 {
@@ -26,11 +26,12 @@ namespace Title
         [SerializeField] private Sprite selectSprite;
 
         public ButtonType buttonType;
+        private static readonly int SelectedHash = Animator.StringToHash("Selected");
 
         public override void SetDefault()
         {
             button.image.sprite = defaultSprite;
-            animator.SetBool("Selected", false);
+            animator.SetBool(SelectedHash, false);
         }
 
         public override void EnterHighlight()
@@ -40,15 +41,15 @@ namespace Title
         public override void SetSelect()
         {
             button.image.sprite = selectSprite;
-            animator.SetBool("Selected", true);
+            animator.SetBool(SelectedHash, true);
         }
     }
 
     public class TitleUIManager : MonoBehaviour
     {
-        [SerializeField] private PreferenceManager preferenceManager;
-
         [Space(5)] [SerializeField] private HighlightTitleItem[] highlightItems;
+
+        [SerializeField] private DialogueData dialogueData;
 
         private Highlighter _highlighter;
 
@@ -60,14 +61,31 @@ namespace Title
                 highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
+            _highlighter.onPush = () => { _highlighter.Select(0); };
+
             _highlighter.Init(Highlighter.ArrowType.Vertical);
-            HighlightHelper.Instance.Push(_highlighter);
         }
 
         private void Start()
         {
             SceneLoader.Instance.onLoadScene += () => { HighlightHelper.Instance.Pop(_highlighter, true); };
 
+            // 게임 첫 시작시에만
+            if (!GameManager.Instance.IsTitleCutSceneWorked)
+            {
+                GameManager.Instance.IsTitleCutSceneWorked = true;
+                dialogueData.OnDialogueEnd = Init;
+
+                PlayUIManager.Instance.dialogueController.StartDialogue(dialogueData);
+            }
+            else
+            {
+                Init();
+            }
+        }
+
+        private void Init()
+        {
             foreach (var highlightItem in highlightItems)
             {
                 switch (highlightItem.buttonType)
@@ -86,13 +104,18 @@ namespace Title
                         });
                         break;
                     case HighlightTitleItem.ButtonType.Preference:
-                        highlightItem.button.onClick.AddListener(() => { preferenceManager.SetPreferencePanel(true); });
+                        highlightItem.button.onClick.AddListener(() =>
+                        {
+                            PlayUIManager.Instance.preferenceManager.SetPreferencePanel(true);
+                        });
                         break;
                     case HighlightTitleItem.ButtonType.Exit:
                         highlightItem.button.onClick.AddListener(Application.Quit);
                         break;
                 }
             }
+
+            HighlightHelper.Instance.Push(_highlighter);
         }
     }
 }

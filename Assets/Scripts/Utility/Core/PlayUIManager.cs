@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Dialogue;
 using Utility.Scene;
 using Utility.UI.Inventory;
 using Utility.UI.Pause;
@@ -31,8 +32,9 @@ namespace Utility.Core
         }
         
         public PauseManager pauseManager;
-        
         public PreferenceManager preferenceManager;
+        public DialogueController dialogueController;
+        
         [SerializeField] private InventoryManager inventoryManager;
         
         [SerializeField] private Canvas canvas;
@@ -45,15 +47,8 @@ namespace Utility.Core
 
         private void Awake()
         {
-            if (_instance && _instance.gameObject != gameObject)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                _instance = this;
-                DontDestroyOnLoad(this);
-            }
+            var sceneHelper = FindObjectOfType<SceneHelper>();
+            sceneHelper.Play();
         }
 
         public void SetPlayType(PlayType playType)

@@ -76,14 +76,14 @@ namespace Utility.Interaction
                 case InteractType.Dialogue:
                     if (interaction.dialogueData.dialogueElements.Length == 0)
                     {
-                        DialogueController.Instance.StartDialogue(interaction.jsonAsset.text,
+                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
                             () => { EndInteraction(index); });
                         Debug.LogWarning("CutScene, Wait 세팅 안되어있을수도 주의");
                     }
                     else
                     {
                         interaction.dialogueData.OnDialogueEnd = () => { EndInteraction(index); };
-                        DialogueController.Instance.StartDialogue(interaction.dialogueData);
+                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
                     }
 
                     break;
