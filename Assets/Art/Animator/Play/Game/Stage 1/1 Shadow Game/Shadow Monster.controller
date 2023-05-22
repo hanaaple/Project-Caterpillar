@@ -845,25 +845,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Appear
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AttackedSec
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Disappear
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1348,6 +1348,9 @@ AnimatorStateTransition:
     m_EventTreshold: 3
   - m_ConditionMode: 7
     m_ConditionEvent: Stage
+    m_EventTreshold: 4
+  - m_ConditionMode: 7
+    m_ConditionEvent: Stage
     m_EventTreshold: 5
   - m_ConditionMode: 7
     m_ConditionEvent: Stage
@@ -1830,6 +1833,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 7
     m_ConditionEvent: Stage
     m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: Stage
+    m_EventTreshold: 4
   - m_ConditionMode: 7
     m_ConditionEvent: Stage
     m_EventTreshold: 6
