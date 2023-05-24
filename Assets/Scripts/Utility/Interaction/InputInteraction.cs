@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Utility.Player;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -21,7 +20,7 @@ public class InputInteractionEditor : Editor
         
         if (GUILayout.Button("Debug"))
         {
-            generator.Debugg();
+            generator.DebugInteractionData();
             EditorUtility.SetDirty(generator);
         }
     }
@@ -45,9 +44,16 @@ namespace Utility.Interaction
 
             _onInteract = () =>
             {
-                Debug.Log("인터랙트");
+                Debug.Log($"인터랙트 - {gameObject}");
                 floatingMark.SetActive(false);
 
+                OnEndInteraction += () =>
+                {
+                    if (IsInteractable())
+                    {
+                        floatingMark.SetActive(true);
+                    }
+                };
                 StartInteraction();
             };
         }
@@ -56,27 +62,31 @@ namespace Utility.Interaction
         {
             base.Start();
 
-            if (floatingMark)
-            {
-                floatingMark.transform.position = transform.position + (Vector3) offset;
-            }
+            floatingMark.transform.position = transform.position + (Vector3) offset;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (!IsInteractable())
+            if (!IsInteractable() || !col.isTrigger || !col.TryGetComponent(out Player.Player player))
             {
                 return;
             }
 
+            // Debug.Log($"들어옴! {col} {col.gameObject}");
             floatingMark.SetActive(true);
-            var player = col.GetComponent<TestPlayer>();
-            player.onInteractAction = _onInteract;
+            player.OnInteractAction = _onInteract;
         }
 
         private void OnTriggerExit2D(Collider2D col)
         {
+            if (!col.isTrigger || !col.TryGetComponent(out Player.Player player))
+            {
+                return;
+            }
+            
+            // Debug.Log($"나감! {col} {col.gameObject}");
             floatingMark.SetActive(false);
+            player.OnInteractAction = null;
         }
     }
 }

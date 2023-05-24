@@ -1,11 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.JsonLoader;
+using Utility.Player;
 using Utility.SaveSystem;
 using Utility.Scene;
 
@@ -20,19 +23,36 @@ namespace Utility.Interaction
 
         [SerializeField] protected bool isOnLoadScene;
 
+        [SerializeField] protected bool isOnAwake;
+
         // for debugging
-        [SerializeField] protected int interactionIndex;
+        [SerializeField] public int interactionIndex;
 
-        [NonSerialized] public bool IsClear;
-
-        private Action _onEndInteraction;
+        protected Action OnEndInteraction;
         private static readonly int State = Animator.StringToHash("State");
+
+
+        private void OnValidate()
+        {
+            foreach (var data in interactionData.Where(item => item.interactType != InteractType.Dialogue))
+            {
+                data.dialogueData = null;
+                data.jsonAsset = null;
+                data.animator = null;
+                data.state = 0;
+                data.miniGame = null;
+            }
+        }
 
         protected virtual void Awake()
         {
             GameManager.Instance.AddInteraction(this);
 
-            if (isOnLoadScene)
+            if (isOnAwake)
+            {
+                StartInteraction();
+            }
+            else if (isOnLoadScene)
             {
                 SceneLoader.Instance.onLoadSceneEnd += () => { StartInteraction(); };
             }
@@ -43,16 +63,25 @@ namespace Utility.Interaction
             gameObject.layer = LayerMask.NameToLayer("OnlyPlayerCheck");
         }
 
-        public void InitializeWait(Action onClearAction)
+        public void InitializeWait(WaitInteraction waitInteraction, Action onClearAction)
         {
-            foreach (var interaction in interactionData)
-            {
-                interaction.serializedInteractionData.isInteracted = false;
-            }
+            interactionIndex = waitInteraction.startIndex;
+            var startData = GetInteractionData();
+            startData.serializedInteractionData.isInteractable = true;
+            startData.serializedInteractionData.isInteracted = false;
 
-            IsClear = false;
-            _onEndInteraction = onClearAction;
-            GetComponent<Collider2D>().enabled = true;
+            //index
+            var data = GetInteractionData(waitInteraction.targetIndex);
+
+            data.serializedInteractionData.isInteractable = true;
+            data.serializedInteractionData.isInteracted = false;
+            data.serializedInteractionData.isWaitClear = false;
+
+            OnEndInteraction += onClearAction;
+
+            Debug.Log(
+                $"인터랙션 대기 초기화, Object: {gameObject} Start Index: {waitInteraction.startIndex}, Target Index: {waitInteraction.targetIndex}");
+            // GetComponent<Collider2D>().enabled = true;
         }
 
         public virtual void StartInteraction(int index = -1)
@@ -70,6 +99,118 @@ namespace Utility.Interaction
             Debug.Log($"Start Interaction 이름: {gameObject.name}");
 
             var interaction = GetInteractionData(index);
+
+            if (interaction.isMove)
+            {
+                StartCoroutine(MoveTo(index));
+            }
+            else
+            {
+                switch (interaction.interactType)
+                {
+                    case InteractType.Dialogue:
+                        if (interaction.dialogueData.dialogueElements.Length == 0)
+                        {
+                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
+                                () => { EndInteraction(index); });
+                            Debug.LogWarning("CutScene, Wait 세팅 안되어있을수도 주의");
+                        }
+                        else
+                        {
+                            interaction.dialogueData.OnDialogueEnd = () => { EndInteraction(index); };
+                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
+                        }
+
+                        break;
+
+                    case InteractType.Animator:
+                        if (!interaction.animator)
+                        {
+                            Debug.LogWarning("Animator가 없음");
+                        }
+                        else
+                        {
+                            interaction.animator.SetInteger(State, interaction.state);
+                            EndInteraction();
+                        }
+
+                        break;
+                    case InteractType.OneOff:
+                        EndInteraction(index);
+                        break;
+                }
+            }
+        }
+
+        protected virtual void EndInteraction(int index = -1)
+        {
+            if (index == -1)
+            {
+                index = interactionIndex;
+            }
+
+            Debug.Log($"{gameObject.name} 인터랙션 종료");
+
+            var interaction = GetInteractionData(index).serializedInteractionData;
+            interaction.isInteracted = true;
+            // interaction.onInteractionEnd?.Invoke();
+
+            var nextIndex = (index + 1) % interactionData.Length;
+            var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
+
+            // var collider2d = GetComponent<Collider2D>();
+            //collider2d.enabled = false;
+
+            if (interaction.isNextInteractable)
+            {
+                nextInteraction.isInteractable = true;
+                interactionIndex = nextIndex;
+                // collider2d.enabled = true;
+            }
+
+            if (interaction.isLoop)
+            {
+                // collider2d.enabled = true;
+            }
+
+            if (interaction.interactNextIndex)
+            {
+                nextInteraction.isInteractable = true;
+                interactionIndex = nextIndex;
+
+                StartInteraction(nextIndex);
+            }
+
+            OnEndInteraction?.Invoke();
+            OnEndInteraction = () => { };
+        }
+
+        private IEnumerator MoveTo(int index)
+        {
+            var interaction = GetInteractionData(index);
+            var player = PlayerManager.Instance.Player;
+            var startPos = player.transform.position;
+            var targetPos = interaction.targetTransform.position;
+
+            var origin = player.IsCharacterControllable;
+            player.IsCharacterControllable = false;
+            var t = 0f;
+
+            player.SetCharacterAnimator(true);
+            while (t < 1)
+            {
+                player.RotateCharacter(targetPos.x - player.transform.position.x > 0 ? Vector2.right : Vector2.left);
+                player.transform.position = Vector3.Lerp(startPos, targetPos, t);
+                t += Time.deltaTime * interaction.moveSpeed;
+                yield return null;
+            }
+
+            player.transform.position = targetPos;
+            player.IsCharacterControllable = origin;
+
+            player.SetCharacterAnimator(false);
+            player.SetScale(interaction.targetTransform.localScale);
+
 
             switch (interaction.interactType)
             {
@@ -100,59 +241,10 @@ namespace Utility.Interaction
                     }
 
                     break;
+                case InteractType.OneOff:
+                    EndInteraction(index);
+                    break;
             }
-        }
-
-        protected virtual void EndInteraction(int index = -1)
-        {
-            if (index == -1)
-            {
-                index = interactionIndex;
-            }
-
-            Debug.Log($"{gameObject.name} 인터랙션 종료");
-
-            var interaction = GetInteractionData(index).serializedInteractionData;
-            interaction.isInteracted = true;
-            // interaction.onInteractionEnd?.Invoke();
-
-            var nextIndex = (index + 1) % interactionData.Length;
-            var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
-
-            var collider2d = GetComponent<Collider2D>();
-            collider2d.enabled = false;
-
-            if (interaction.isContinuable)
-            {
-                nextInteraction.isInteractable = true;
-                interactionIndex = nextIndex;
-                collider2d.enabled = true;
-            }
-
-            if (interaction.isLoop)
-            {
-                collider2d.enabled = true;
-            }
-
-            if (interaction.interactNextIndex)
-            {
-                nextInteraction.isInteractable = true;
-                interactionIndex = nextIndex;
-
-                StartInteraction(nextIndex);
-            }
-
-            if (IsInteractionClear())
-            {
-                IsClear = true;
-            }
-
-            _onEndInteraction?.Invoke();
-        }
-
-        protected virtual bool IsInteractionClear()
-        {
-            return interactionData.All(item => item.serializedInteractionData.isInteracted);
         }
 
         protected virtual bool IsInteractable(int index = -1)
@@ -166,7 +258,7 @@ namespace Utility.Interaction
             return (interaction.isLoop || !interaction.isInteracted) && interaction.isInteractable;
         }
 
-        private InteractionData GetInteractionData(int index = -1)
+        public InteractionData GetInteractionData(int index = -1)
         {
             if (index == -1)
             {
@@ -195,7 +287,7 @@ namespace Utility.Interaction
         }
 
 #if UNITY_EDITOR
-        public void Debugg()
+        public void DebugInteractionData()
         {
             for (var index = 0; index < interactionData.Length; index++)
             {
@@ -216,6 +308,17 @@ namespace Utility.Interaction
 
                         case DialogueType.CutScene:
                         {
+                            var timelineAsset = (TimelineAsset) dialogueElement.playableAsset;
+
+                            if (timelineAsset != null)
+                            {
+                                var tracks = timelineAsset.GetOutputTracks();
+                                foreach (var temp in tracks.Where(item => item is AnimationTrack))
+                                {
+                                    // Debug.Log(temp.name);
+                                }
+                            }
+
                             if (dialogueElement.option is {Length: > 0})
                             {
                                 if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
@@ -254,12 +357,53 @@ namespace Utility.Interaction
             for (var index = 0; index < interactionData.Length; index++)
             {
                 var interaction = interactionData[index];
+
+                if (interaction.interactType != InteractType.Dialogue)
+                {
+                    continue;
+                }
+
                 interaction.dialogueData.dialogueElements =
                     JsonHelper.GetJsonArray<DialogueElement>(interaction.jsonAsset.text);
+
+                // Wait Interaction이 있는 경우, 나누기
 
                 for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
                 {
                     var dialogueElement = interaction.dialogueData.dialogueElements[idx];
+
+                    // if (dialogueElement.dialogueType == DialogueType.WaitInteract && idx != interaction.dialogueData.dialogueElements.Length - 1)
+                    // {
+                    //     var newArray = new InteractionData[interactionData.Length + 1];
+                    //     // 0 ~ index - 1
+                    //     // index
+                    //     // index ~ interactionData.Length - 1   ->    index + 1 ~ newArray.Length - 1
+                    //
+                    //     
+                    //     // 0 ~ index까지 앞에 저장
+                    //     // index + 1 ~ interactionData.Length 까지 앞에 저장
+                    //     
+                    //     var interactionDataIndex = index + 1;
+                    //     
+                    //     Array.Copy(interactionData, 0, newArray, 0, interactionDataIndex);
+                    //     Array.Copy(interactionData, interactionDataIndex, newArray, interactionDataIndex + 1, interactionData.Length - interactionDataIndex);
+                    //     
+                    //     // newArray[index].dialogueData.dialogueElements =
+                    //     
+                    //     newArray[index].
+                    //     
+                    //     newArray[index + 1] = newArray[index].DeepCopy();
+                    //     newArray[index + 1].jsonAsset = null;
+                    //     
+                    //     newArray[index + 1].dialogueData
+                    //     
+                    //     newArray[index].dialogueData.
+                    //     
+                    //     Debug.Log(newArray.Select(item => $"{item.interactType}, {item.dialogueData.dialogueElements.Length}"));
+                    //     // dialogueElement[idx + 1] ~ dialogueElement[interaction.dialogueData.dialogueElement.Length - 1]
+                    //         
+                    //     index++;
+                    // }
 
                     switch (dialogueElement.dialogueType)
                     {
@@ -278,9 +422,11 @@ namespace Utility.Interaction
                                 {
                                     interaction.dialogueData.dialogueElements[idx].playableAsset =
                                         Resources.Load<PlayableAsset>("Timeline/Reset");
+
+                                    interaction.dialogueData.dialogueElements[idx].waitSec = -1;
                                     continue;
                                 }
-                                
+
                                 if (dialogueElement.option.Contains("Hold", StringComparer.OrdinalIgnoreCase))
                                 {
                                     interaction.dialogueData.dialogueElements[idx].extrapolationMode =
