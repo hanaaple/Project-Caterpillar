@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/MainScene.unity
     guid: 6f2b4f21bc4953e44bd49f23f39351f3
   - enabled: 1
-    path: Assets/Scenes/Stage1/1 SmallRoom/SmallRoomScene.unity
-    guid: b7445af1e1b26344f94185c5de56b0f2
-  - enabled: 1
     path: Assets/Scenes/Stage 1/ShadowGameTest.unity
     guid: ec9bbad437e0c954fa6e66105a0afc36
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/1 SmallRoom/SmallRoomScene.unity
+    guid: 488ad8326abd31d4dbeee3e73f881d18
   m_configObjects: {}
