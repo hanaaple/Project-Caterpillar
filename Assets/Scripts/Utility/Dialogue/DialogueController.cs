@@ -155,8 +155,6 @@ namespace Utility.Dialogue
             }
 
             _isUnfolding = false;
-
-            dialogueData?.OnDialogueStart?.Invoke();
         }
 
         public void StartDialogue(string jsonAsset, UnityAction dialogueEndAction = default)
@@ -190,7 +188,6 @@ namespace Utility.Dialogue
             leftAnimator.SetInteger(CharacterHash, 0);
             leftAnimator.SetInteger(ExpressionHash, 0);
 
-            dialoguePanel.SetActive(true);
             subjectText.text = "";
             dialogueText.text = "";
 
@@ -255,7 +252,16 @@ namespace Utility.Dialogue
             {
                 if (_baseDialogueData.Count >= 2)
                 {
-                    _baseDialogueData.Pop();
+                    var dialogueData = _baseDialogueData.Pop();
+                    var waitDialogueData = _baseDialogueData.Peek();
+                    var waitDialogueElement = waitDialogueData.dialogueElements[waitDialogueData.index];
+                    if (waitDialogueElement.dialogueType == DialogueType.WaitInteract &&
+                        !waitDialogueElement.waitInteraction.IsWaitClear())
+                    {
+                        EndDialogue(true, dialogueData);
+                        return;
+                    }
+
                     OnInputDialogue();
                 }
                 else
@@ -284,6 +290,7 @@ namespace Utility.Dialogue
             {
                 case DialogueType.Script:
                 {
+                    dialoguePanel.SetActive(true);
                     StartDialoguePrint();
 
                     ScriptOption(dialogueElement);
@@ -293,10 +300,10 @@ namespace Utility.Dialogue
                     EndDialogue(false);
                     baseDialogueData.Clear();
                     _baseDialogueData.Clear();
-                    
+
                     Debug.Log(dialogueElement.contents + "로 맵 이동");
                     SceneLoader.Instance.LoadScene(dialogueElement.contents);
-                    
+
                     break;
                 case DialogueType.Save:
                     SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.SaveLoadType.Save);
@@ -324,13 +331,26 @@ namespace Utility.Dialogue
                     var timelineAsset = (TimelineAsset) playableDirector.playableAsset;
                     if (timelineAsset != null)
                     {
-                        var tracks = timelineAsset.GetOutputTracks();
+                        var tracks = timelineAsset.GetOutputTracks()
+                            .Where(item => item is AnimationTrack or ActivationTrack);
                         foreach (var temp in tracks)
                         {
-                            if (temp is AnimationTrack && cutSceneAnimator)
+                            UnityEngine.Object bindObject = temp switch
+                            {
+                                AnimationTrack => SceneHelper.Instance.GetBindObject<Animator>(temp.name),
+                                ActivationTrack => SceneHelper.Instance.GetBindObject<GameObject>(temp.name),
+                                _ => null
+                            };
+
+                            if (bindObject)
+                            {
+                                playableDirector.SetGenericBinding(temp, bindObject);
+                            }
+                            else if (cutSceneAnimator)
                             {
                                 playableDirector.SetGenericBinding(temp, cutSceneAnimator);
                             }
+                            //Debug.Log($"Track 명: {temp.name}, Track Type: {temp.GetType()}, 바인드 오브젝트 {bindObject?.name}");
                         }
                     }
                     else
@@ -386,7 +406,7 @@ namespace Utility.Dialogue
                 }
                 case DialogueType.WaitInteract:
                 {
-                    var waitInteractions = dialogueElement.waitInteraction.interactions;
+                    var waitInteractions = dialogueElement.waitInteraction.waitInteractions;
                     if (waitInteractions.Length == 0)
                     {
                         Debug.LogWarning($"세팅 오류, Interaction 개수: {waitInteractions.Length}개");
@@ -394,31 +414,37 @@ namespace Utility.Dialogue
                         break;
                     }
 
-                    dialogueData.index++;
                     EndDialogue(false);
-                    foreach (var interaction in waitInteractions)
+
+                    Debug.Log($"클리어 대기, {waitInteractions.Length}개");
+
+                    foreach (var waitInteraction in waitInteractions)
                     {
-                        interaction.InitializeWait(() =>
+                        var interaction = waitInteraction.interaction;
+                        interaction.InitializeWait(waitInteraction, () =>
                         {
-                            Debug.Log($"클리어 남은 개수: {waitInteractions.Count(item => !item.IsClear)}");
-                            if (waitInteractions.Any(item => !item.IsClear))
+                            if (interaction.interactionIndex != waitInteraction.targetIndex)
                             {
                                 return;
                             }
 
+                            interaction.GetInteractionData().serializedInteractionData.isWaitClear = true;
+                            Debug.Log($"클리어 남은 개수: {dialogueElement.waitInteraction.GetWaitCount()}");
+                            if (!dialogueElement.waitInteraction.IsWaitClear())
+                            {
+                                return;
+                            }
+
+                            dialogueData.index++;
                             Debug.Log("클리어, 다음 꺼 플레이 가능");
                             Debug.Log(dialogueData.dialogueElements.Length);
 
-                            dialogueData.OnDialogueWaitClear?.Invoke();
-
-                            if (dialogueElement.interactionWaitType == InteractionWaitType.Immediately)
+                            if (dialogueElement.interactionWaitType == InteractionWaitType.ImmediatelyInteract)
                             {
                                 StartDialogue(dialogueData);
                             }
                         });
                     }
-
-                    Debug.Log($"클리어 대기, {waitInteractions.Length}개");
 
                     break;
                 }
@@ -710,14 +736,14 @@ namespace Utility.Dialogue
             }
         }
 
-        private void EndDialogue(bool isEnd = true)
+        private void EndDialogue(bool isEnd = true, DialogueData dialogueData = null)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
 
             dialoguePanel.SetActive(false);
 
             _isDialogue = false;
-            
+
             // rightAnimator.SetTrigger(DisappearHash);
             // leftAnimator.SetTrigger(DisappearHash);
 
@@ -738,13 +764,17 @@ namespace Utility.Dialogue
             // }
             if (isEnd)
             {
-                var dialogueData = _baseDialogueData.Pop();
+                if (dialogueData == null)
+                {
+                    dialogueData = _baseDialogueData.Pop();
+                }
+
                 baseDialogueData.Remove(dialogueData);
                 dialogueData.OnDialogueEnd?.Invoke();
             }
             // Debug.Log(_baseDialogueData.Count);
         }
-        
+
         private void OnClickChoice(int curIdx, int choiceLen, int choiceContextLen)
         {
             Debug.Log($"Dialogue Index: {curIdx}\n" +

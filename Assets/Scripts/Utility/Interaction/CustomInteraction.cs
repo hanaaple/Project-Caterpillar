@@ -15,6 +15,12 @@ public class CustomInteractionEditor : Editor
             generator.SetDialogue();
             EditorUtility.SetDirty(generator);
         }
+        
+        if (GUILayout.Button("Debug"))
+        {
+            generator.DebugInteractionData();
+            EditorUtility.SetDirty(generator);
+        }
     }
 }
 #endif

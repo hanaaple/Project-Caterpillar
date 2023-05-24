@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -13,9 +15,16 @@ namespace Utility.Dialogue
         public int index;
         public DialogueElement[] dialogueElements;
 
-        [NonSerialized] public UnityAction OnDialogueStart;
-        [NonSerialized] public UnityAction OnDialogueWaitClear;
         [NonSerialized] public UnityAction OnDialogueEnd;
+
+        public DialogueData()
+        {
+        }
+
+        public DialogueData(DialogueData dialogueData)
+        {
+            dialogueElements = dialogueData.dialogueElements;
+        }
 
         public void Init(string json)
         {
@@ -33,7 +42,27 @@ namespace Utility.Dialogue
     [Serializable]
     public class Interactions
     {
-        public Interaction.Interaction[] interactions;
+        public WaitInteraction[] waitInteractions;
+
+        public bool IsWaitClear()
+        {
+            return waitInteractions.All(item =>
+                item.interaction.GetInteractionData(item.targetIndex).serializedInteractionData.isWaitClear);
+        }
+        
+        public int GetWaitCount()
+        {
+            return waitInteractions.Count(item =>
+                !item.interaction.GetInteractionData(item.targetIndex).serializedInteractionData.isWaitClear);
+        }
+    }
+
+    [Serializable]
+    public class WaitInteraction
+    {
+        public Interaction.Interaction interaction;
+        public int startIndex;
+        [FormerlySerializedAs("index")] public int targetIndex;
     }
 
     [Serializable]
@@ -54,6 +83,8 @@ namespace Utility.Dialogue
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public Interactions waitInteraction;
 
+        // Enable Set Interactable or Set Interactable In Timeline 
+
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public PlayableAsset playableAsset;
 
@@ -71,9 +102,11 @@ namespace Utility.Dialogue
 
         public bool isSkipEnable;
 
-        [ConditionalHideInInspector("isSkipEnable")] public int skipLength;
-        
-        [ConditionalHideInInspector("isSkipEnable")] public float skipWaitSec;
+        [ConditionalHideInInspector("isSkipEnable")]
+        public int skipLength;
+
+        [ConditionalHideInInspector("isSkipEnable")]
+        public float skipWaitSec;
 
         [NonSerialized] public Action OnStartAction;
     }
