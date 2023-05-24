@@ -4,12 +4,6 @@ namespace Game.Stage1.ShadowGame.SnowMountain
 {
     public class SnowMountainShadowMonster : ShadowMonster
     {
-        public override void Reset()
-        {
-            base.Reset();
-            // 초기화
-        }
-        
         // public void AnimatorEvent(int index)
         // {
         //     switch (index)

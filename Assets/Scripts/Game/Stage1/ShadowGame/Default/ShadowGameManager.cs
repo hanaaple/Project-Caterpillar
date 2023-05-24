@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Game.Default;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Core;
@@ -23,29 +21,30 @@ namespace Game.Stage1.ShadowGame.Default
     {
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
+
         [SerializeField] private BoxCollider2D cameraBound;
 
 
         [Space(10)] [Header("Light")] [SerializeField]
         protected Flashlight flashlight;
-        // [SerializeField] private Light2D globalLight;
-        // [SerializeField] private float globalLightIntensity;
 
-        [Space(20)] [Header("Canvas")]
-        [SerializeField] private Button tutorialExitButton;
-        
+        [Space(20)] [Header("Canvas")] [SerializeField]
+        private Button tutorialExitButton;
+
         [SerializeField] private Button retryButton;
         [SerializeField] private Button giveUpButton;
 
-        [Space(20)] [Header("Play UI")] [SerializeField] private Animator heartAnimator;
+        [Space(20)] [Header("Play UI")] [SerializeField]
+        private Animator heartAnimator;
+
         [SerializeField] private SpeechBubble[] damagedTexts;
         [SerializeField] private SpeechBubble[] defeatedTexts;
         [SerializeField] private Animator batteryAnimator;
-        [SerializeField] private Transform toastMessageParent;
-        [SerializeField] private float textSec;
         [SerializeField] private float itemPopupSec;
 
-
+        [Space(20)] [Header("Toast")] [SerializeField]
+        private ToastManager toastManager;
+        
         [Space(20)] [Header("스테이지")] [SerializeField]
         protected Animator gameAnimator;
 
@@ -58,7 +57,7 @@ namespace Game.Stage1.ShadowGame.Default
         [Space(20)] [Header("디버깅용")] [SerializeField]
         protected int stageIndex;
 
-        
+
         private int _mentality;
 
         private int Mentality
@@ -79,19 +78,15 @@ namespace Game.Stage1.ShadowGame.Default
 
         private bool _isPlaying;
         private int _selectedItemIndex;
-        private Queue<string> _toastQueue;
-        private Animator _toastMessageParentAnimator;
-        
+
         private InputActions _inputActions;
         private InputActions _tutorialInputActions;
         private InputActions _popupInputActions;
-        
+
         private Coroutine _stageUpdateCoroutine;
         private Coroutine _stageMonsterDefeatCoroutine;
         private Coroutine _itemTimer;
-        private Coroutine _toastCoroutine;
-        private Coroutine _toastDisappearCoroutine;
-        
+
         private Action _onItemShowEnd;
 
         private static readonly int MentalityHash = Animator.StringToHash("Mentality");
@@ -100,11 +95,9 @@ namespace Game.Stage1.ShadowGame.Default
         private static readonly int PlayHash = Animator.StringToHash("Play");
         private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int AttackHash = Animator.StringToHash("Attack");
-        private static readonly int GameOverHash = Animator.StringToHash("GameOver");
+        private static readonly int LastAttackHash = Animator.StringToHash("LastAttack");
         private static readonly int SecHash = Animator.StringToHash("Sec");
-        private static readonly int IndexHash = Animator.StringToHash("Index");
-        private static readonly int DisAppearHash = Animator.StringToHash("DisAppear");
-        private static readonly int RecoveryHash = Animator.StringToHash("Recovery");
+        private static readonly int ClearHash = Animator.StringToHash("Clear");
 
         private void Awake()
         {
@@ -112,10 +105,8 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
                 {
-                    _toastQueue.Enqueue(toastContent);
+                    toastManager.EnQueue(toastContent);
                 }
-
-                _toastCoroutine ??= StartCoroutine(StartToast());
 
                 TimeScaleHelper.Pop();
                 InputManager.PopInputAction(_popupInputActions);
@@ -124,6 +115,7 @@ namespace Game.Stage1.ShadowGame.Default
                     StopCoroutine(_itemTimer);
                     _itemTimer = null;
                 }
+
                 shadowGameItems[_selectedItemIndex].uiPanel.gameObject.SetActive(false);
             };
 
@@ -146,9 +138,6 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void Start()
         {
-            _toastQueue = new Queue<string>();
-            
-            // globalLight.intensity = globalLightIntensity;
             flashlight.Init();
             _camera = Camera.main;
             _minBounds = cameraBound.bounds.min;
@@ -156,15 +145,13 @@ namespace Game.Stage1.ShadowGame.Default
             _yScreenHalfSize = _camera.orthographicSize;
             _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
-            _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
-            
             tutorialExitButton.onClick.AddListener(() =>
             {
                 InputManager.PopInputAction(_tutorialInputActions);
                 StartCoroutine(StartGame());
             });
             giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("MainScene"); });
-            retryButton.onClick.AddListener(ReStartGame);
+            retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
             {
@@ -189,7 +176,9 @@ namespace Game.Stage1.ShadowGame.Default
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;
-            shadowMonster.Reset();
+            
+            stageAnimator.SetTrigger(ResetHash);
+            stageAnimator.SetInteger(StageIndexHash, stageIndex);
         }
 
         public void Play()
@@ -217,14 +206,14 @@ namespace Game.Stage1.ShadowGame.Default
             yield return new WaitForSeconds(1f);
 
             gameAnimator.SetTrigger(PlayHash);
-            
+
             StartStage();
         }
 
         protected virtual void StartStage(bool isClear = true)
         {
             Debug.Log(stageIndex + " 스테이지 시작");
-            
+
             // 아이템
             if (isClear)
             {
@@ -236,6 +225,7 @@ namespace Game.Stage1.ShadowGame.Default
                     }
                 }
             }
+
             gameAnimator.SetFloat(SecHash, 0f);
             _isPlaying = true;
             _stageUpdateCoroutine = StartCoroutine(StageUpdate());
@@ -267,24 +257,28 @@ namespace Game.Stage1.ShadowGame.Default
                 StopCoroutine(_stageUpdateCoroutine);
                 _stageUpdateCoroutine = null;
             }
-            
+
             shadowMonster.Defeat(() =>
             {
                 foreach (var speechBubble in defeatedTexts)
                 {
                     if (stageIndex == speechBubble.index)
                     {
-                        _toastQueue.Enqueue(speechBubble.text);
+                        toastManager.EnQueue(speechBubble.text);
                     }
                 }
-
-                _toastCoroutine ??= StartCoroutine(StartToast());
-            }, OnStageEnd(true));
+            }, () => { StartCoroutine(OnStageEnd(true)); });
         }
 
         private IEnumerator StageUpdate()
         {
             shadowMonster.Appear(stageIndex);
+            
+            yield return new WaitUntil(() => shadowMonster.monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
+            // Set Attack Enable
+            shadowMonster.SetActive(true);
+            
+            
             // 괴물 등장, 효과음
 
             var sec = 0f;
@@ -294,39 +288,38 @@ namespace Game.Stage1.ShadowGame.Default
                 sec += Time.deltaTime;
                 yield return null;
             }
+
             _isPlaying = false;
-            gameAnimator.SetTrigger(AttackHash);
-            shadowMonster.Attack();
-            
             Mentality--;
+
+            gameAnimator.SetTrigger(Mentality > 0 ? AttackHash : LastAttackHash);
+
+            shadowMonster.Attack();
 
             if (_stageMonsterDefeatCoroutine != null)
             {
                 StopCoroutine(_stageMonsterDefeatCoroutine);
                 _stageMonsterDefeatCoroutine = null;
             }
-            
+
             Debug.Log("제한시간 종료");
 
-            yield return null;
-            
-            if (Mentality != 0)
+            if (Mentality > 0)
             {
-                // Recovery 후 진행
-                gameAnimator.SetFloat(SecHash, 0);
-                gameAnimator.SetTrigger(RecoveryHash);
-            }
-            
-            
-            yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlayDefault"));
-            _isPlaying = true;
-            
-            // 회복 후 Sec가 0이 아니라 어두워졌다 밝아짐
-            // PlayDefault -> Attack(Trigger) -> Recovery -> PlayDefault(대기)
-            // 그른데 이게 게임이 끝난 경우에는 Recovery 없이 끝나야 되고
-            // 게임이 이어지는 경우에는 Recovery 후 진행해야됨
+                yield return null;
 
-            StartCoroutine(OnStageEnd(false));
+                gameAnimator.SetFloat(SecHash, 0);
+
+                yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlayDefault"));
+
+                _isPlaying = true;
+
+                StartCoroutine(OnStageEnd(false));
+            }
+            else
+            {
+                GameOver();
+            }
         }
 
         protected virtual IEnumerator OnStageEnd(bool isClear)
@@ -343,28 +336,24 @@ namespace Game.Stage1.ShadowGame.Default
 
             stageIndex++;
 
-            if (Mentality == 0)
-            {
-                GameOver();
-            }
-            else if (stageIndex == stageCount)
+            if (stageIndex == stageCount)
             {
                 ClearGame();
             }
             else if (stageIndex < stageCount)
             {
+                // Recovery 이후에 다음 Stage 진행
                 StartStage(isClear);
             }
         }
 
         private void ClearGame()
         {
+            gameAnimator.SetTrigger(ClearHash);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
             }
-
-            //gameAnimator.SetBool(PlayHash, false);
         }
 
         private void GameOver()
@@ -372,111 +361,6 @@ namespace Game.Stage1.ShadowGame.Default
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
-            }
-
-            gameAnimator.SetTrigger(GameOverHash);
-        }
-
-        private GameObject GetToastMessage()
-        {
-            for (var i = 0; i < toastMessageParent.childCount; i++)
-            {
-                if (!toastMessageParent.GetChild(i).gameObject.activeSelf)
-                {
-                    return toastMessageParent.GetChild(i).gameObject;
-                }
-            }
-
-            var toastMessage = Instantiate(toastMessageParent.GetChild(0).gameObject, toastMessageParent);
-
-            return toastMessage;
-        }
-        
-        private IEnumerable<Animator> GetActiveToastMessages()
-        {
-            var toastMessages = new List<Animator>();
-            for (var i = 0; i < toastMessageParent.childCount; i++)
-            {
-                if (toastMessageParent.GetChild(i).gameObject.activeSelf)
-                {
-                    toastMessages.Add(toastMessageParent.GetChild(i).GetComponent<Animator>());
-                }
-            }
-
-            return toastMessages.ToArray();
-        }
-        
-        private IEnumerator StartToast()
-        {
-            Debug.Log("StartToast");
-            if(!toastMessageParent.gameObject.activeSelf)
-            {
-                toastMessageParent.gameObject.SetActive(true);
-            }
-            
-            while (_toastQueue.Count > 0)
-            {
-                var toasts = GetActiveToastMessages();
-                foreach (var t in toasts)
-                {
-                    var animator = t.GetComponent<Animator>();
-                    var index = animator.GetInteger(IndexHash);
-                    animator.SetInteger(IndexHash, index + 1);
-
-                    if (index > 2)
-                    {
-                        t.gameObject.SetActive(false);
-                    }
-                }
-                
-                var toastMessage = GetToastMessage();
-                var toastAnimator = toastMessage.GetComponent<Animator>();
-                var toastText = toastMessage.GetComponentInChildren<TMP_Text>(true);
-                toastText.text = "";
-               
-                toastMessage.transform.SetAsLastSibling();
-                toastMessage.gameObject.SetActive(true);
-                toastAnimator.SetInteger(IndexHash, 0);
-                
-                _toastMessageParentAnimator.SetTrigger(ResetHash);
-
-                yield return new WaitUntil(() => toastAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
-                
-                
-                // 전부 늘어날때까지 대기
-                
-                // 전부 보이면 Text Print
-                var toastContent = _toastQueue.Dequeue();
-                var waitTextSec = new WaitForSeconds(textSec);
-                foreach (var t in toastContent)
-                {
-                    toastText.text += t;
-                    yield return waitTextSec;
-                }
-                
-                // 타이핑 완료 후??
-                // Reset and Start Disappear
-                
-                _toastMessageParentAnimator.SetTrigger(DisAppearHash);
-
-                _toastDisappearCoroutine ??= StartCoroutine(ToastDisappear());
-            }
-
-            _toastCoroutine = null;
-        }
-
-        private IEnumerator ToastDisappear()
-        {
-            yield return new WaitUntil(() => _toastMessageParentAnimator.GetCurrentAnimatorStateInfo(0).IsName("End"));
-            // 전부 사라지게 만들기.
-            _toastDisappearCoroutine = null;
-            toastMessageParent.gameObject.SetActive(false);
-
-            Debug.Log("Toast 종료");
-            
-            for (var idx = 0; idx < toastMessageParent.childCount; idx++)
-            {
-                toastMessageParent.GetChild(idx).gameObject.SetActive(false);
             }
         }
 
@@ -493,17 +377,16 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 return;
             }
-            
+
             heartAnimator.SetInteger(MentalityHash, Mentality);
-            
+
             Debug.Log($"Update Mental {Mentality} {heartAnimator.GetInteger(MentalityHash)}");
 
             foreach (var speechBubble in damagedTexts)
             {
                 if (Mentality == speechBubble.index)
                 {
-                    _toastQueue.Enqueue(speechBubble.text);
-                    _toastCoroutine ??= StartCoroutine(StartToast());
+                    toastManager.EnQueue(speechBubble.text);
                 }
             }
         }
@@ -567,9 +450,9 @@ namespace Game.Stage1.ShadowGame.Default
             var clampY = cameraTransform.position.y;
 
             //Debug.Log($"old: {cameraTransform.position.x}, {cameraTransform.position.y} ");
-            
+
             cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPos, cameraSpeed * Time.deltaTime);
-            
+
             // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
 
             if (_maxBounds.x - _xScreenHalfSize > 0)
@@ -583,17 +466,21 @@ namespace Game.Stage1.ShadowGame.Default
                 clampY = Mathf.Clamp(cameraTransform.position.y, _minBounds.y + _yScreenHalfSize,
                     _maxBounds.y - _yScreenHalfSize);
             }
-            
+
             //Debug.Log($"t: {cameraSpeed * Time.deltaTime}, maxBound: {_maxBounds.x} {_maxBounds.y}  screenSize half: {_xScreenHalfSize}, {_yScreenHalfSize}");
             cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
-            
+
             // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
         }
 
-        protected virtual void ReStartGame()
+        protected virtual IEnumerator ReStartGame()
         {
             ResetSetting();
             gameAnimator.SetTrigger(ResetHash);
+            gameAnimator.SetFloat(SecHash, 0);
+            yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
+
+            // Wait Reset And Start Play
             // StartGame
             StartCoroutine(StartGame());
         }

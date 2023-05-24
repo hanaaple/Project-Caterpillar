@@ -534,54 +534,6 @@ namespace Utility.Dialogue
 
         private void ScriptOption(DialogueElement dialogue)
         {
-            if (dialogue.option is {Length: < 1})
-            {
-                var leftCharacter = leftAnimator.GetInteger(CharacterHash);
-                if (leftCharacter == (int) dialogue.name)
-                {
-                    // if character is left
-                    // set left to Active, Right to InActive
-                    var leftActivate = leftAnimator.GetBool(ActiveHash);
-                    var rightInActivate = rightAnimator.GetBool(InActiveHash);
-
-                    Debug.Log($"Left Active: {leftActivate}, Right Inactive: {rightInActivate}");
-
-                    if (!leftActivate && leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != ActiveHash)
-                    {
-                        leftAnimator.SetTrigger(ActiveHash);
-                    }
-
-                    if (!rightInActivate && rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != InActiveHash)
-                    {
-                        rightAnimator.SetTrigger(InActiveHash);
-                    }
-                }
-
-                var rightCharacter = rightAnimator.GetInteger(CharacterHash);
-                if (rightCharacter == (int) dialogue.name)
-                {
-                    var leftInActivate = leftAnimator.GetBool(InActiveHash);
-                    var rightActivate = rightAnimator.GetBool(ActiveHash);
-
-                    Debug.Log($"Left InActive: {leftInActivate}, Right Active: {rightActivate}");
-                    // if character is right
-                    // set right to Active, left to InActive
-                    if (!leftInActivate && leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != InActiveHash)
-                    {
-                        leftAnimator.SetTrigger(InActiveHash);
-                    }
-
-                    if (!rightActivate && rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != ActiveHash)
-                    {
-                        rightAnimator.SetTrigger(ActiveHash);
-                    }
-                }
-
-                Debug.Log($"Left: {leftCharacter}, Right: {rightCharacter}, Dialogue: {(int) dialogue.name}");
-
-                return;
-            }
-
             for (var index = 0; index < dialogue.option.Length; index++)
             {
                 dialogue.option[index] = dialogue.option[index].Replace(" ", "");
@@ -635,6 +587,11 @@ namespace Utility.Dialogue
             }
             else
             {
+                if (dialogue.name is CharacterType.Keep or CharacterType.None)
+                {
+                    return;
+                }
+                
                 var leftCharacter = leftAnimator.GetInteger(CharacterHash);
                 if (leftCharacter == (int) dialogue.name)
                 {
