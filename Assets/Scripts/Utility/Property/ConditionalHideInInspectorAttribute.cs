@@ -19,9 +19,10 @@ namespace Utility.Property
             IsNegative = isNegative;
         }
     
-        public ConditionalHideInInspectorAttribute(string booleanProperty)
+        public ConditionalHideInInspectorAttribute(string booleanProperty, bool isNegative = false)
         {
             ComparedProperty = booleanProperty;
+            IsNegative = isNegative;
         }
     }
 

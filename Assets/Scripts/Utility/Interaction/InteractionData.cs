@@ -13,7 +13,8 @@ namespace Utility.Interaction
         Dialogue,
         Animator,
         OneOff,
-        MiniGame
+        MiniGame,
+        Portal,
     }
 
     [Serializable]
@@ -29,7 +30,7 @@ namespace Utility.Interaction
         public bool isLoop;
 
         [Header("For Debugging")] public bool isInteracted;
-        public bool isWaitClear;
+        // public bool isWaitClear;
 
         public object Clone()
         {
@@ -56,7 +57,7 @@ namespace Utility.Interaction
 
         [ConditionalHideInInspector("interactType", InteractType.MiniGame)]
         public MiniGame miniGame;
-
+        
         public bool isMove;
 
         [ConditionalHideInInspector("isMove")] public Transform targetTransform;
@@ -66,6 +67,8 @@ namespace Utility.Interaction
 
         public SerializedInteractionData serializedInteractionData;
 
+        public Action onEndAction;
+        
         //public InteractionEvent onInteractionEndEvent;
 
         public InteractionData DeepCopy()

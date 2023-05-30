@@ -65,23 +65,45 @@ namespace Utility.Interaction
 
         public void InitializeWait(WaitInteraction waitInteraction, Action onClearAction)
         {
-            interactionIndex = waitInteraction.startIndex;
-            var startData = GetInteractionData();
-            startData.serializedInteractionData.isInteractable = true;
-            startData.serializedInteractionData.isInteracted = false;
+            waitInteraction.isWaitClear = false;
+            
+            if (waitInteraction.isInteraction)
+            {
+                interactionIndex = waitInteraction.startIndex;
+                
+                var data = GetInteractionData();
+                data.serializedInteractionData.isInteractable = true;
+                data.serializedInteractionData.isInteracted = false;
+                
+                var targetData = GetInteractionData(waitInteraction.targetIndex);
+                targetData.serializedInteractionData.isInteracted = false;
+                
+                targetData.onEndAction += () =>
+                {
+                    waitInteraction.Clear();
+                    
+                    onClearAction?.Invoke();
+                };
+            }
+            else if (waitInteraction.isPortal)
+            {
+                var portal = waitInteraction.interaction as Portal.Portal;
+                portal.onEndTeleport += () =>
+                {
+                    if (waitInteraction.targetMapIndex != portal.MapIndex)
+                    {
+                        return;
+                    }
 
-            //index
-            var data = GetInteractionData(waitInteraction.targetIndex);
+                    waitInteraction.Clear();
 
-            data.serializedInteractionData.isInteractable = true;
-            data.serializedInteractionData.isInteracted = false;
-            data.serializedInteractionData.isWaitClear = false;
-
-            OnEndInteraction += onClearAction;
+                    onClearAction?.Invoke();
+                    onClearAction = () => { };
+                };
+            }
 
             Debug.Log(
                 $"인터랙션 대기 초기화, Object: {gameObject} Start Index: {waitInteraction.startIndex}, Target Index: {waitInteraction.targetIndex}");
-            // GetComponent<Collider2D>().enabled = true;
         }
 
         public virtual void StartInteraction(int index = -1)
@@ -151,8 +173,9 @@ namespace Utility.Interaction
 
             Debug.Log($"{gameObject.name} 인터랙션 종료");
 
-            var interaction = GetInteractionData(index).serializedInteractionData;
-            interaction.isInteracted = true;
+            var interaction = GetInteractionData(index);
+            var data = GetInteractionData(index).serializedInteractionData;
+            data.isInteracted = true;
             // interaction.onInteractionEnd?.Invoke();
 
             var nextIndex = (index + 1) % interactionData.Length;
@@ -161,26 +184,28 @@ namespace Utility.Interaction
             // var collider2d = GetComponent<Collider2D>();
             //collider2d.enabled = false;
 
-            if (interaction.isNextInteractable)
+            if (data.isNextInteractable)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
                 // collider2d.enabled = true;
             }
 
-            if (interaction.isLoop)
+            if (data.isLoop)
             {
                 // collider2d.enabled = true;
             }
 
-            if (interaction.interactNextIndex)
+            if (data.interactNextIndex)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
 
                 StartInteraction(nextIndex);
             }
-
+            
+            interaction.onEndAction?.Invoke();
+            interaction.onEndAction = () => { };
             OnEndInteraction?.Invoke();
             OnEndInteraction = () => { };
         }

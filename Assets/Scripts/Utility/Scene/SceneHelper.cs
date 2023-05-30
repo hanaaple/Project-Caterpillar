@@ -8,7 +8,8 @@ namespace Utility.Scene
     public enum PlayType
     {
         None,
-        Field,
+        MainField,
+        StageField,
         MiniGame
     }
 
@@ -26,14 +27,11 @@ namespace Utility.Scene
         
         [SerializeField] private PlayType playType;
 
-        [ConditionalHideInInspector("playType", PlayType.Field)]
         public BoxCollider2D boundBox; 
-
-        [ConditionalHideInInspector("playType", PlayType.Field)]
-        public PlayerMoveType playerMoveType;
         
-        [ConditionalHideInInspector("playType", PlayType.Field)]
         public bool isCameraMove;
+        
+        public PlayerMoveType playerMoveType;
 
         [SerializeField] private Animator[] bindAnimators;
         
@@ -46,12 +44,14 @@ namespace Utility.Scene
 
         private void OnValidate()
         {
-            if (playType != PlayType.Field)
+            if (playType is PlayType.StageField or PlayType.MainField)
             {
-                boundBox = null;
-                playerMoveType = default;
-                isCameraMove = false;
+                return;
             }
+
+            boundBox = null;
+            isCameraMove = false;
+            playerMoveType = default;
         }
 
         public void Play()
