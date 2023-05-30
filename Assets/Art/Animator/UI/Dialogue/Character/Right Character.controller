@@ -823,7 +823,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: InActive
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Inactive
@@ -1615,7 +1615,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: Active
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Active
@@ -2208,27 +2208,27 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 2392189712813140432}
-    second:
-    - {fileID: 4919571334775977293}
-  - first: {fileID: -512691186015151008}
-    second:
-    - {fileID: -6683111869032376547}
-  - first: {fileID: -2391648089711742483}
-    second:
-    - {fileID: -6129108249232124204}
-  - first: {fileID: -6102652615611984322}
-    second:
-    - {fileID: 2803056467239551647}
-  - first: {fileID: 2115782653093997619}
-    second:
-    - {fileID: 3683051884950833391}
-  - first: {fileID: 958371591194833135}
-    second:
-    - {fileID: 6803855736465780514}
   - first: {fileID: 6955881515944184012}
     second:
     - {fileID: 9078267490638064909}
+  - first: {fileID: 958371591194833135}
+    second:
+    - {fileID: 6803855736465780514}
+  - first: {fileID: 2115782653093997619}
+    second:
+    - {fileID: 3683051884950833391}
+  - first: {fileID: -6102652615611984322}
+    second:
+    - {fileID: 2803056467239551647}
+  - first: {fileID: -2391648089711742483}
+    second:
+    - {fileID: -6129108249232124204}
+  - first: {fileID: -512691186015151008}
+    second:
+    - {fileID: -6683111869032376547}
+  - first: {fileID: 2392189712813140432}
+    second:
+    - {fileID: 4919571334775977293}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -2442,6 +2442,18 @@ AnimatorController:
   m_Name: Right Character
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: Character
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Expression
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: Appear
     m_Type: 9
     m_DefaultFloat: 0
@@ -2466,18 +2478,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Character
-    m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: Expression
-    m_Type: 3
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -2497,7 +2497,7 @@ AnimatorController:
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0

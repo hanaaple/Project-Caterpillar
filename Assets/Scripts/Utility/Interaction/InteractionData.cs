@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility.Dialogue;
+using Utility.Game;
 using Utility.Property;
 
 namespace Utility.Interaction
@@ -10,20 +12,32 @@ namespace Utility.Interaction
         Default,
         Dialogue,
         Animator,
+        OneOff,
+        MiniGame,
+        Portal,
     }
 
     [Serializable]
-    public class SerializedInteractionData
+    public class SerializedInteractionData : ICloneable
     {
         public int id;
         public bool isInteractable;
-        public bool isContinuable;
+
+        [FormerlySerializedAs("isContinuable")]
+        public bool isNextInteractable;
+
         public bool interactNextIndex;
         public bool isLoop;
-        
+
         [Header("For Debugging")] public bool isInteracted;
+        // public bool isWaitClear;
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
-    
+
     [Serializable]
     public class InteractionData
     {
@@ -31,7 +45,7 @@ namespace Utility.Interaction
 
         [ConditionalHideInInspector("interactType", InteractType.Animator)]
         public Animator animator;
-        
+
         [ConditionalHideInInspector("interactType", InteractType.Animator)]
         public int state;
 
@@ -41,9 +55,30 @@ namespace Utility.Interaction
         [ConditionalHideInInspector("interactType", InteractType.Dialogue)]
         public DialogueData dialogueData;
 
+        [ConditionalHideInInspector("interactType", InteractType.MiniGame)]
+        public MiniGame miniGame;
+        
+        public bool isMove;
+
+        [ConditionalHideInInspector("isMove")] public Transform targetTransform;
+
+        [ConditionalHideInInspector("isMove")] [Range(0, 5)]
+        public float moveSpeed;
+
         public SerializedInteractionData serializedInteractionData;
 
-        // public Action onInteractionStart;
-        // public Action onInteractionEnd;
+        public Action onEndAction;
+        
+        //public InteractionEvent onInteractionEndEvent;
+
+        public InteractionData DeepCopy()
+        {
+            var interactionData = (InteractionData) MemberwiseClone();
+            interactionData.dialogueData = new DialogueData(interactionData.dialogueData);
+            interactionData.serializedInteractionData =
+                (SerializedInteractionData) interactionData.serializedInteractionData.Clone();
+
+            return interactionData;
+        }
     }
 }

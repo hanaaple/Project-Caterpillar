@@ -267,7 +267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,7 +415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &440255580
 GameObject:
@@ -1130,15 +1130,15 @@ MonoBehaviour:
       expression: 0
       option: []
       interactionWaitType: 0
-      waitInteraction:
-        interactions: []
+      waitInteractions:
+        waitInteractions: []
       playableAsset: {fileID: 11400000, guid: 342da95e8db3b724cb4e354842daac59, type: 2}
       extrapolationMode: 0
       waitSec: 2
       interaction: {fileID: 0}
       interactIndex: 0
       isSkipEnable: 1
-      skipLength: 3
+      skipLength: 9
       skipWaitSec: 2
     - name: 0
       subject: 
@@ -1147,9 +1147,9 @@ MonoBehaviour:
       expression: 0
       option: []
       interactionWaitType: 0
-      waitInteraction:
-        interactions: []
-      playableAsset: {fileID: 11400000, guid: 575593d317f2f984aa378371f34ca9a5, type: 2}
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 13ff6e7e76166da4da03f5836de674a3, type: 2}
       extrapolationMode: 0
       waitSec: 1.5
       interaction: {fileID: 0}
@@ -1164,9 +1164,9 @@ MonoBehaviour:
       expression: 0
       option: []
       interactionWaitType: 0
-      waitInteraction:
-        interactions: []
-      playableAsset: {fileID: 11400000, guid: 7b7ee3b0d16cd5e49b9da170377b468c, type: 2}
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
       extrapolationMode: 0
       waitSec: 1.5
       interaction: {fileID: 0}
@@ -1181,8 +1181,110 @@ MonoBehaviour:
       expression: 0
       option: []
       interactionWaitType: 0
-      waitInteraction:
-        interactions: []
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 04e1e91cd35888145a5cda9012c17f0f, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 71857b0db20b11945936564452656bc2, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 4e116d177304a244893659670d8bde07, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 16fd42ca64c4a3a4580bfe8183ff15e4, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
+      playableAsset: {fileID: 11400000, guid: 5179360a75779114496b2da79fb9b0f4, type: 2}
+      extrapolationMode: 0
+      waitSec: 1.5
+      interaction: {fileID: 0}
+      interactIndex: 0
+      isSkipEnable: 0
+      skipLength: 0
+      skipWaitSec: 0
+    - name: 0
+      subject: 
+      contents: 
+      dialogueType: 6
+      expression: 0
+      option: []
+      interactionWaitType: 0
+      waitInteractions:
+        waitInteractions: []
       playableAsset: {fileID: 11400000, guid: 77427036cd968344c9a11c09d66e4519, type: 2}
       extrapolationMode: 0
       waitSec: -1
@@ -1818,7 +1920,7 @@ RectTransform:
   m_Children:
   - {fileID: 2135616025}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -54,6 +54,6 @@
   public enum InteractionWaitType
   {
     None,
-    Immediately,
+    ImmediatelyInteract,
   }
 }

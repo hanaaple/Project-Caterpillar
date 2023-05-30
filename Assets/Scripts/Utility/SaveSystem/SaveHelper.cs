@@ -16,7 +16,9 @@ namespace Utility.SaveSystem
                 saveCoverData = new SaveCoverData
                 {
                     describe = "테스트입니다." + SceneManager.GetActiveScene().name,
-                    sceneName = SceneManager.GetActiveScene().name == "TitleScene" ? "MainScene" : SceneManager.GetActiveScene().name,
+                    sceneName = SceneManager.GetActiveScene().name == "TitleScene"
+                        ? "MainScene"
+                        : SceneManager.GetActiveScene().name,
                     playTime = 1122
                 },
                 interactionData = new List<InteractionSaveData>()
