@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Game.Default
             _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
         }
         
-        public void EnQueue(string toastContent)
+        public void Enqueue(string toastContent)
         {
             _toastQueue.Enqueue(toastContent);
             

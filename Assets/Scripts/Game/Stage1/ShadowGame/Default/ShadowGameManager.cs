@@ -105,7 +105,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
                 {
-                    toastManager.EnQueue(toastContent);
+                    toastManager.Enqueue(toastContent);
                 }
 
                 TimeScaleHelper.Pop();
@@ -264,7 +264,7 @@ namespace Game.Stage1.ShadowGame.Default
                 {
                     if (stageIndex == speechBubble.index)
                     {
-                        toastManager.EnQueue(speechBubble.text);
+                        toastManager.Enqueue(speechBubble.text);
                     }
                 }
             }, () => { StartCoroutine(OnStageEnd(true)); });
@@ -386,7 +386,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 if (Mentality == speechBubble.index)
                 {
-                    toastManager.EnQueue(speechBubble.text);
+                    toastManager.Enqueue(speechBubble.text);
                 }
             }
         }

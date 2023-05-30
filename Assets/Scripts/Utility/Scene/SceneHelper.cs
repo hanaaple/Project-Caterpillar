@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Game.Default;
+using UnityEngine;
 using Utility.Core;
+using Utility.Property;
 
 namespace Utility.Scene
 {
@@ -12,7 +14,12 @@ namespace Utility.Scene
 
     public class SceneHelper : MonoBehaviour
     {
+        public static SceneHelper Instance;
+        
         [SerializeField] private PlayType playType;
+
+        [ConditionalHideInInspector("playType", PlayType.MiniGame)]
+        public ToastManager toastManager;
 
         public void Play()
         {
