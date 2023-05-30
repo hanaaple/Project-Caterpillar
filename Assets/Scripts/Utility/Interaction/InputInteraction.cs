@@ -45,13 +45,19 @@ namespace Utility.Interaction
             _onInteract = () =>
             {
                 Debug.Log($"인터랙트 - {gameObject}");
-                floatingMark.SetActive(false);
+                if (floatingMark)
+                {
+                    floatingMark.SetActive(false);
+                }
 
                 OnEndInteraction += () =>
                 {
                     if (IsInteractable())
                     {
-                        floatingMark.SetActive(true);
+                        if (floatingMark)
+                        {
+                            floatingMark.SetActive(true);
+                        }
                     }
                 };
                 StartInteraction();
@@ -62,7 +68,10 @@ namespace Utility.Interaction
         {
             base.Start();
 
-            floatingMark.transform.position = transform.position + (Vector3) offset;
+            if (floatingMark)
+            {
+                floatingMark.transform.position = transform.position + (Vector3) offset;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -73,7 +82,11 @@ namespace Utility.Interaction
             }
 
             // Debug.Log($"들어옴! {col} {col.gameObject}");
-            floatingMark.SetActive(true);
+            if (floatingMark)
+            {
+                floatingMark.SetActive(true);
+            }
+
             player.OnInteractAction = _onInteract;
         }
 
@@ -85,7 +98,11 @@ namespace Utility.Interaction
             }
             
             // Debug.Log($"나감! {col} {col.gameObject}");
-            floatingMark.SetActive(false);
+            if (floatingMark)
+            {
+                floatingMark.SetActive(false);
+            }
+
             player.OnInteractAction = null;
         }
     }

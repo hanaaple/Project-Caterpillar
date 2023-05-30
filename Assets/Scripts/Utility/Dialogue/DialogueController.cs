@@ -93,6 +93,7 @@ namespace Utility.Dialogue
         private static readonly int DisappearHash = Animator.StringToHash("Disappear");
         private static readonly int ActiveHash = Animator.StringToHash("Active");
         private static readonly int InActiveHash = Animator.StringToHash("Inactive");
+        private static readonly int DefaultHash = Animator.StringToHash("Default");
 
         private void Awake()
         {
@@ -180,13 +181,9 @@ namespace Utility.Dialogue
                 return;
             }
 
-            leftAnimator.ResetTrigger(DisappearHash);
-            rightAnimator.SetInteger(CharacterHash, 0);
-            rightAnimator.SetInteger(ExpressionHash, 0);
+            //leftAnimator.ResetTrigger(DisappearHash);
 
-            rightAnimator.ResetTrigger(DisappearHash);
-            leftAnimator.SetInteger(CharacterHash, 0);
-            leftAnimator.SetInteger(ExpressionHash, 0);
+            //rightAnimator.ResetTrigger(DisappearHash);
 
             subjectText.text = "";
             dialogueText.text = "";
@@ -256,7 +253,7 @@ namespace Utility.Dialogue
                     var waitDialogueData = _baseDialogueData.Peek();
                     var waitDialogueElement = waitDialogueData.dialogueElements[waitDialogueData.index];
                     if (waitDialogueElement.dialogueType == DialogueType.WaitInteract &&
-                        !waitDialogueElement.waitInteraction.IsWaitClear())
+                        !waitDialogueElement.waitInteractions.IsWaitClear())
                     {
                         EndDialogue(true, dialogueData);
                         return;
@@ -406,45 +403,38 @@ namespace Utility.Dialogue
                 }
                 case DialogueType.WaitInteract:
                 {
-                    var waitInteractions = dialogueElement.waitInteraction.waitInteractions;
-                    if (waitInteractions.Length == 0)
+                    var waitInteractions = dialogueElement.waitInteractions;
+                    if (waitInteractions.waitInteractions.Length == 0)
                     {
-                        Debug.LogWarning($"세팅 오류, Interaction 개수: {waitInteractions.Length}개");
+                        Debug.LogWarning($"세팅 오류, Interaction 개수: {waitInteractions.waitInteractions.Length}개");
                         OnInputDialogue();
                         break;
                     }
 
                     EndDialogue(false);
 
-                    Debug.Log($"클리어 대기, {waitInteractions.Length}개");
+                    Debug.Log($"클리어 대기, {waitInteractions.waitInteractions.Length}개");
 
-                    foreach (var waitInteraction in waitInteractions)
+                    waitInteractions.Initialize(() =>
                     {
-                        var interaction = waitInteraction.interaction;
-                        interaction.InitializeWait(waitInteraction, () =>
+                        Debug.Log($"클리어 남은 개수: {waitInteractions.GetWaitCount()}");
+                        if (!waitInteractions.IsWaitClear())
                         {
-                            if (interaction.interactionIndex != waitInteraction.targetIndex)
-                            {
-                                return;
-                            }
+                            return;
+                        }
 
-                            interaction.GetInteractionData().serializedInteractionData.isWaitClear = true;
-                            Debug.Log($"클리어 남은 개수: {dialogueElement.waitInteraction.GetWaitCount()}");
-                            if (!dialogueElement.waitInteraction.IsWaitClear())
-                            {
-                                return;
-                            }
+                        dialogueData.index++;
+                        Debug.Log("클리어, 다음 꺼 플레이 가능");
 
-                            dialogueData.index++;
-                            Debug.Log("클리어, 다음 꺼 플레이 가능");
-                            Debug.Log(dialogueData.dialogueElements.Length);
-
-                            if (dialogueElement.interactionWaitType == InteractionWaitType.ImmediatelyInteract)
-                            {
-                                StartDialogue(dialogueData);
-                            }
-                        });
-                    }
+                        if (dialogueElement.interactionWaitType == InteractionWaitType.ImmediatelyInteract)
+                        {
+                            StartDialogue(dialogueData);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("멈춘 거 어떻게 실행시키려고 ㅁㅁㅁ");
+                        }
+                    });
 
                     break;
                 }
@@ -542,6 +532,28 @@ namespace Utility.Dialogue
             // if (option.has tendencyData)
             // Debug.Log("더하기");
 
+            var reset = Array.Find(dialogue.option, item => item.Equals("Reset"));
+            if (!string.IsNullOrEmpty(reset))
+            {
+                Debug.LogWarning("ResetReset!!");
+                var rightDisappear = rightAnimator.GetBool(DisappearHash);
+                var leftDisappear = leftAnimator.GetBool(DisappearHash);
+
+                if (!rightDisappear && rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != DisappearHash &&
+                    rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != DefaultHash)
+                {
+                    rightAnimator.SetTrigger(DisappearHash);
+                }
+
+                if (!leftDisappear && leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != DisappearHash &&
+                    leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != DefaultHash)
+                {
+                    leftAnimator.SetTrigger(DisappearHash);
+                }
+
+                return;
+            }
+
             var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
 
             Animator animator = null;
@@ -559,15 +571,13 @@ namespace Utility.Dialogue
 
             if (animator != null)
             {
-                var state = Array.Find(dialogue.option,
-                    item => Enum.TryParse(item, out CharacterOption _));
+                var state = Array.Find(dialogue.option, item => Enum.TryParse(item, out CharacterOption _));
                 if (!string.IsNullOrEmpty(state))
                 {
                     Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
                     if (Enum.TryParse(state, out CharacterOption _))
                     {
-                        var isAlreadyTriggered = animator.GetBool(state);
-                        if (!isAlreadyTriggered && animator.GetCurrentAnimatorStateInfo(0).shortNameHash !=
+                        if (!animator.GetBool(state) && animator.GetCurrentAnimatorStateInfo(0).shortNameHash !=
                             Animator.StringToHash(state))
                         {
                             animator.SetTrigger(state);
@@ -584,6 +594,8 @@ namespace Utility.Dialogue
                 {
                     animator.SetInteger(ExpressionHash, (int) dialogue.expression - 1);
                 }
+
+                SetDialogueCharacter(animator, false);
             }
             else
             {
@@ -591,49 +603,75 @@ namespace Utility.Dialogue
                 {
                     return;
                 }
-                
-                var leftCharacter = leftAnimator.GetInteger(CharacterHash);
-                if (leftCharacter == (int) dialogue.name)
-                {
-                    var leftActivate = leftAnimator.GetBool(ActiveHash);
-                    var rightInActivate = rightAnimator.GetBool(InActiveHash);
 
-                    Debug.Log($"Left Active: {leftActivate}, Right Inactive: {rightInActivate}");
-
-                    // if character is left
-                    // set left to Active, Right to InActive
-                    if (!leftActivate && leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != ActiveHash)
-                    {
-                        leftAnimator.SetTrigger(ActiveHash);
-                    }
-
-                    if (!rightInActivate && rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash != InActiveHash)
-                    {
-                        rightAnimator.SetTrigger(InActiveHash);
-                    }
-                }
 
                 var rightCharacter = rightAnimator.GetInteger(CharacterHash);
                 if (rightCharacter == (int) dialogue.name)
                 {
-                    var leftInActivate = leftAnimator.GetBool(InActiveHash);
-                    var rightActivate = rightAnimator.GetBool(ActiveHash);
+                    SetDialogueCharacter(rightAnimator);
+                }
 
-                    Debug.Log($"Left InActive: {leftInActivate}, Right Active: {rightActivate}");
-                    // if character is right
-                    // set right to Active, left to InActive
-                    if (!leftInActivate)
-                    {
-                        leftAnimator.SetTrigger(InActiveHash);
-                    }
-
-                    if (!rightActivate)
-                    {
-                        rightAnimator.SetTrigger(ActiveHash);
-                    }
+                var leftCharacter = leftAnimator.GetInteger(CharacterHash);
+                if (leftCharacter == (int) dialogue.name)
+                {
+                    SetDialogueCharacter(leftAnimator);
                 }
 
                 Debug.Log($"Left: {leftCharacter}, Right: {rightCharacter}, Dialogue: {(int) dialogue.name}");
+            }
+        }
+
+        private void SetDialogueCharacter(Animator animator, bool isActive = true)
+        {
+            var leftHash = leftAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            var isLeftInTransition = leftAnimator.IsInTransition(0);
+            var leftTransitionHash = leftAnimator.GetAnimatorTransitionInfo(0).nameHash;
+
+            var rightHash = rightAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+            var isRightInTransition = rightAnimator.IsInTransition(0);
+            var rightTransitionHash = rightAnimator.GetAnimatorTransitionInfo(0).nameHash;
+
+            if (animator == rightAnimator)
+            {
+                var leftInActivate = leftAnimator.GetBool(InActiveHash);
+                var rightActivate = rightAnimator.GetBool(ActiveHash);
+
+                Debug.Log($"Left InActive: {leftInActivate}, Right Active: {rightActivate}");
+                // if character is right
+                // set right to Active, left to InActive
+                if (!leftInActivate && ((isLeftInTransition && leftTransitionHash != InActiveHash) ||
+                                        (leftHash != InActiveHash && leftHash != DefaultHash)))
+                {
+                    leftAnimator.SetTrigger(InActiveHash);
+                }
+
+                if (isActive && !rightActivate && ((isRightInTransition && rightTransitionHash != ActiveHash) ||
+                                                   rightHash != ActiveHash))
+                {
+                    rightAnimator.SetTrigger(ActiveHash);
+                }
+            }
+            else if (animator == leftAnimator)
+            {
+                var leftActivate = leftAnimator.GetBool(ActiveHash);
+                var rightInActivate = rightAnimator.GetBool(InActiveHash);
+
+                Debug.Log($"Left Active: {leftActivate}, Right Inactive: {rightInActivate}");
+
+                // if character is left
+                // set left to Active, Right to InActive
+
+                if (isActive && !leftActivate &&
+                    ((isLeftInTransition && leftTransitionHash != ActiveHash) || leftHash != ActiveHash))
+                {
+                    leftAnimator.SetTrigger(ActiveHash);
+                }
+
+                if (!rightInActivate && ((isRightInTransition && rightTransitionHash != InActiveHash) ||
+                                         (rightHash != InActiveHash && rightHash != DefaultHash)))
+                {
+                    rightAnimator.SetTrigger(InActiveHash);
+                }
             }
         }
 
@@ -743,9 +781,6 @@ namespace Utility.Dialogue
             dialoguePanel.SetActive(false);
 
             _isDialogue = false;
-
-            // rightAnimator.SetTrigger(DisappearHash);
-            // leftAnimator.SetTrigger(DisappearHash);
 
             InputManager.PopInputAction(_dialogueInputActions);
 

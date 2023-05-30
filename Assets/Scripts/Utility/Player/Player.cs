@@ -103,7 +103,7 @@ namespace Utility.Player
                 return;
             }
             
-            Debug.Log($"이동: {input}");
+            // Debug.Log($"이동: {input}");
 
             if (input.x < 0)
             {
@@ -123,7 +123,7 @@ namespace Utility.Player
         {
             transform.localScale = scale;
         }
-        
+
         public void SetCharacterAnimator(bool isInput)
         {
             if (!isInput)
@@ -132,11 +132,8 @@ namespace Utility.Player
                 {
                     _animator.SetBool(_isMove, false);
                 }
-
-                return;
             }
-            
-            if (!_animator.GetBool(_isMove))
+            else if (!_animator.GetBool(_isMove))
             {
                 _animator.SetBool(_isMove, true);
             }

@@ -251,7 +251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,6 +306,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1829902791}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: playType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: isCameraMove
       value: 1
       objectReference: {fileID: 0}
@@ -353,6 +357,10 @@ PrefabInstance:
       propertyPath: bindGameObjects.Array.data[0]
       value: 
       objectReference: {fileID: 2055848284}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindGameObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 480936422}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
 --- !u!1001 &282479004
@@ -753,6 +761,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad70e91f9c2c9374aafa525fa51b2006, type: 3}
+--- !u!1 &480936422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2240617060481132488, guid: ad70e91f9c2c9374aafa525fa51b2006, type: 3}
+  m_PrefabInstance: {fileID: 480936421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520794197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
@@ -768,87 +781,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
   m_PrefabInstance: {fileID: 1041311181}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &666739238
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690740, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690742, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: m_Name
-      value: ItemManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: items.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: _items.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: items.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: items.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: _items.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6834122603837690743, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
-      propertyPath: _items.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 152bebd4d5f1e8e49b13f2ede45c35ef, type: 3}
 --- !u!1 &871529270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +986,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010687972 stripped
 GameObject:
@@ -1137,9 +1069,11 @@ MonoBehaviour:
           \uC5C6\uB294 \uCC45\uB4E4\uB85C \uAC00\uB4DD\uD558\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1156,7 +1090,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1173,13 +1107,14 @@ MonoBehaviour:
           \uC788\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - 3.000000
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: b46d6880a1cfa3346bd1e54a832f9b53, type: 2}
-        extrapolationMode: 0
-        waitSec: 0
+        extrapolationMode: 2
+        waitSec: 3
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -1194,85 +1129,9 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 4289f0102582b6f4bad26fd6c55a4852, type: 2}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uD398\uC774\uC9C0
-          \uB118\uAE30\uB294 \uC18C\uB9AC + \uB2E4\uC74C \uD398\uC774\uC9C0. \uAC00\uC871
-          \uADF8\uB9BC\uC5D0 \uC544\uBE60\uAC00 \uC5C6\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 54a286b39bfe4564387fa9b0c071bdf0, type: 2}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uD398\uC774\uC9C0
-          \uB118\uAE30\uB294 \uC18C\uB9AC + \uB2E4\uC74C \uD398\uC774\uC9C0. \uAC00\uC871
-          \uADF8\uB9BC\uC5D0 \uC544\uBE60\uAC00 \uC5C6\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 4d76855d9ce3cbe498cfa646a01ab340, type: 2}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uD398\uC774\uC9C0
-          \uB118\uAE30\uB294 \uC18C\uB9AC + \uB2E4\uC74C \uD398\uC774\uC9C0. \uAC00\uC871
-          \uADF8\uB9BC\uC5D0 \uC544\uBE60\uAC00 \uC788\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: f261bdc8b27108a4bbee81eb709a4a5e, type: 2}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uCEF7 \uC52C)> (\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC)"
-        dialogueType: 6
-        expression: 0
-        option:
-        - Reset
-        - ' -1'
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -1287,7 +1146,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1308,7 +1185,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 1
     animator: {fileID: 0}
     state: 0
@@ -1322,9 +1198,29 @@ MonoBehaviour:
           \uC5C6\uB294 \uCC45\uB4E4\uB85C \uAC00\uB4DD\uD558\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1345,7 +1241,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 3
     animator: {fileID: 0}
     state: 0
@@ -1364,7 +1259,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
@@ -1646,9 +1540,29 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7\uC2EC\uC2EC\uD558\uB2E4. TV\uB098 \uBCFC\uAE4C\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1666,11 +1580,15 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 1
-        waitInteraction:
+        waitInteractions:
           waitInteractions:
           - interaction: {fileID: 4362748723284574219}
+            isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isPortal: 0
+            targetMapIndex: 0
+            isWaitClear: 0
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
@@ -1689,7 +1607,7 @@ MonoBehaviour:
         - Hold
         - ' 3'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 7ef72938d4439264e8c176c1f650bdb9, type: 2}
         extrapolationMode: 0
@@ -1710,7 +1628,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1727,7 +1645,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1744,7 +1662,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1761,7 +1679,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1778,7 +1696,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1795,7 +1713,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1813,7 +1731,26 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 7
+        subject: "\uC544\uB4E4"
+        contents: "\uB274\uC2A4\uB294 \uC7AC\uBBF8\uC5C6\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1824,13 +1761,14 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
-        contents: "\uB274\uC2A4\uB294 \uC7AC\uBBF8\uC5C6\uC5B4."
-        dialogueType: 1
+        subject: 
+        contents: 
+        dialogueType: 11
         expression: 0
-        option: []
+        option:
+        - Reset
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1851,7 +1789,7 @@ MonoBehaviour:
         - Hold
         - ' 1.5'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 796692fda99ac324d94abfe6a7f87f39, type: 2}
         extrapolationMode: 0
@@ -1871,7 +1809,7 @@ MonoBehaviour:
         - Hold
         - ' 1.5'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 7fb76ef42b4cdd74590c678be7acb5e0, type: 2}
         extrapolationMode: 0
@@ -1891,7 +1829,7 @@ MonoBehaviour:
         - Hold
         - ' 1.5'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: aa56b6b53a4123a48af01dce9006887d, type: 2}
         extrapolationMode: 0
@@ -1908,8 +1846,9 @@ MonoBehaviour:
         expression: 0
         option:
         - Reset
+        - ' -1'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
@@ -1919,14 +1858,16 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 7
         subject: "\uC544\uB4E4"
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - Appear
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1943,7 +1884,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1960,7 +1901,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1979,11 +1938,90 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 1
-        waitInteraction:
+        waitInteractions:
           waitInteractions:
           - interaction: {fileID: 1911391315}
+            isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isPortal: 0
+            targetMapIndex: 0
+            isWaitClear: 0
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uC2A4\uCF00\uCE58\uBD81\uC774 \uB72C\uB2E4"
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 9a9c67563dc0f084dbcbc323d822aa7b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uC2A4\uCF00\uCE58\uBD81\uC774 \uC0AC\uB77C\uC9C4\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: bd9c1ae34c23a93448475ca4f7ed71b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 7
+        subject: "\uC544\uB4E4"
+        contents: "\u2026\uC88B\uC544. \uB098\uC911\uC5D0 \uBD80\uBAA8\uB2D8\uAED8
+          \uBCF4\uC5EC\uB4DC\uB824\uC57C\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "\uC544\uB4E4! \uC900\uBE44\uB294 \uB2E4 \uB418\uC5C8\uB2C8?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
@@ -1994,47 +2032,12 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "\uC544\uB4E4"
-        contents: "\u2026\uC88B\uC544. \uB098\uC911\uC5D0 \uBD80\uBAA8\uB2D8\uAED8
-          \uBCF4\uC5EC\uB4DC\uB824\uC57C\uC9C0."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "\uC544\uB4E4! \uC900\uBE44\uB294 \uB2E4 \uB418\uC5C8\uB2C8?"
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 7
-        subject: "\uC544\uB4E4"
         contents: "\uB124!"
         dialogueType: 1
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2052,7 +2055,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2071,11 +2092,15 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 1
-        waitInteraction:
+        waitInteractions:
           waitInteractions:
           - interaction: {fileID: 1857522418}
+            isInteraction: 1
             startIndex: 1
             targetIndex: 1
+            isPortal: 0
+            targetMapIndex: 0
+            isWaitClear: 0
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
@@ -2093,7 +2118,7 @@ MonoBehaviour:
         - Hold
         - ' -1'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 0a0d0b96794a7c545966361759e605fc, type: 2}
         extrapolationMode: 0
@@ -2103,14 +2128,16 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 7
         subject: "\uC544\uB4E4"
         contents: "\xB7\xB7\xB7\uC5B4\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2129,7 +2156,7 @@ MonoBehaviour:
         option:
         - -1.000000
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 78009e73b3f8f36478d92536b024b6bc, type: 2}
         extrapolationMode: 2
@@ -2146,7 +2173,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2165,7 +2192,7 @@ MonoBehaviour:
         option:
         - -1.000000
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: e3c9f2126c52df241a62897725f9fa80, type: 2}
         extrapolationMode: 2
@@ -2182,7 +2209,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2200,7 +2227,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2215,9 +2242,11 @@ MonoBehaviour:
         contents: "(\uC544\uB4E4 \uC774\uB984)?! \uC624, \uC774\uB7F0\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Right
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2234,7 +2263,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2251,7 +2280,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2268,7 +2297,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2285,7 +2314,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2302,7 +2331,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2319,7 +2348,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2339,7 +2386,7 @@ MonoBehaviour:
         option:
         - -1.000000
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
         extrapolationMode: 2
@@ -2349,14 +2396,34 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 4
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "(\uC544\uB4E4 \uC774\uB984)! \uAD1C\uCC2E\uB2C8?"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2376,7 +2443,7 @@ MonoBehaviour:
         - Hold
         - ' 3'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
         extrapolationMode: 0
@@ -2394,7 +2461,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2413,7 +2480,47 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC)"
+        dialogueType: 6
+        expression: 0
+        option:
+        - Reset
+        - ' -1'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+        extrapolationMode: 0
+        waitSec: -1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 4
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "(\xB7\xB7\xB7\uC77C\uB2E8 \uC190\uC804\uB4F1\uC744 \uCC3E\uC790.
+          \uBD84\uBA85 \uAD6C\uBE44\uD574\uB454 \uBE44\uC0C1 \uB79C\uD134\uC774 \uCC45\uC7A5
+          \uCABD\uC5D0\xB7\xB7\xB7)"
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2426,31 +2533,12 @@ MonoBehaviour:
       - name: 0
         subject: 
         contents: 
-        dialogueType: 6
+        dialogueType: 11
         expression: 0
         option:
         - Reset
         interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
-        extrapolationMode: 0
-        waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "(\xB7\xB7\xB7\uC77C\uB2E8 \uC190\uC804\uB4F1\uC744 \uCC3E\uC790.
-          \uBD84\uBA85 \uAD6C\uBE44\uD574\uB454 \uBE44\uC0C1 \uB79C\uD134\uC774 \uCC45\uC7A5
-          \uCABD\uC5D0\xB7\xB7\xB7)"
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2468,11 +2556,142 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 1
-        waitInteraction:
+        waitInteractions:
           waitInteractions:
           - interaction: {fileID: 1020257669}
+            isInteraction: 1
             startIndex: 2
             targetIndex: 2
+            isPortal: 0
+            targetMapIndex: 0
+            isWaitClear: 0
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uCC45 \uB5A8\uC5B4\uC9C0\uB294
+          \uC18C\uB9AC\uAC00 \uB4E4\uB824\uC628\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 0e78982866dfd2f4a9713ce65dd2c2ff, type: 2}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 4
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "\uC73D\u2026! \uBB50\uAC00 \uB5A8\uC5B4\uC9C4\uAC70\uC9C0?"
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC)> (\uCEF7 \uC52C): \uADF8\uB9BC\uC77C\uAE30\uC7A5\uC73C\uB85C
+          \uBCF4\uC774\uB294 \uCC45\uC5D0 \uAC00\uC871 \uADF8\uB9BC\uC774 \uADF8\uB824\uC838
+          \uC788\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 6d497447526b75f418cc798ddc9badc2, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C) > (\uC2A4\uD14C\uC774\uC9C0): \uD398\uC774\uC9C0
+          \uB118\uAE30\uB294 \uC18C\uB9AC + \uB2E4\uC74C \uD398\uC774\uC9C0. 12\uC6D4
+          9\uC77C \uB0A0\uC9DC\uB9CC \uC874\uC7AC\uD55C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 10f18c898ad77dc40b7d0095785fc918, type: 2}
+        extrapolationMode: 0
+        waitSec: -1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 4
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "\u2026\uC65C \uC774\uB807\uAC8C?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "\uC9C0\uAE08 \uC774\uB7F0 \uAC78 \uC2E0\uACBD \uC4F8 \uB54C\uAC00
+          \uC544\uB2C8\uC9C0\u2026."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC0AC\uC9C4\uC0AC"
+        contents: "\uC190\uC804\uB4F1\uC774 \uBD84\uBA85\u2026."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
@@ -2489,11 +2708,11 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 9a9c67563dc0f084dbcbc323d822aa7b, type: 2}
+        playableAsset: {fileID: 11400000, guid: e1183ce2dd62ee84c993a83aed95476c, type: 2}
         extrapolationMode: 0
-        waitSec: 0
+        waitSec: 0.1
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -2507,11 +2726,11 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: bd9c1ae34c23a93448475ca4f7ed71b7, type: 2}
+        playableAsset: {fileID: 11400000, guid: 01a3868c99dbd59439cd938a6e1ddff0, type: 2}
         extrapolationMode: 0
-        waitSec: 0
+        waitSec: 0.1
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -2524,7 +2743,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2539,9 +2758,11 @@ MonoBehaviour:
         contents: "\uC73C\uC544\uC544\xB7\xB7\xB7\uC544\uC545!!"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Right
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2558,7 +2779,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2576,11 +2815,15 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 1
-        waitInteraction:
+        waitInteractions:
           waitInteractions:
           - interaction: {fileID: 1911391315}
+            isInteraction: 1
             startIndex: 2
             targetIndex: 2
+            isPortal: 0
+            targetMapIndex: 0
+            isWaitClear: 0
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
@@ -2589,15 +2832,17 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 4
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "(\uC544\uB4E4 \uC774\uB984)! \uC9C4\uC815\uD574! \uBB34\uC2A8
           \uC77C\uC774\uC57C?!"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2612,9 +2857,29 @@ MonoBehaviour:
         contents: "\uC800\xB7\xB7\xB7, \uC800\uAE30 \uBC29 \uAD6C\uC11D\uC5D0\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Right
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2630,9 +2895,11 @@ MonoBehaviour:
           \uAD6C\uC11D\uC5D0 \uC758\uBB38\uBAA8\uB97C \uAC83\uC774 \uAFC8\uD2C0\uAC70\uB9B0\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' 3'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 2900af063405ffd4983d630f66b9705c, type: 2}
         extrapolationMode: 0
@@ -2647,9 +2914,11 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2667,7 +2936,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2684,7 +2953,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2700,10 +2969,9 @@ MonoBehaviour:
         dialogueType: 11
         expression: 0
         option:
-        - Left
-        - Disappear
+        - Reset
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2715,34 +2983,16 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 
-        dialogueType: 11
-        expression: 0
-        option:
-        - Right
-        - Disappear
-        interactionWaitType: 0
-        waitInteraction:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 
+        contents: "(\uCEF7 \uC52C)> (\uD398\uC774\uB4DC \uC544\uC6C3)"
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - -1.000000
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: f60f98ffd1cdaf84994cf8bf4af5f4a3, type: 2}
-        extrapolationMode: 0
+        extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
         interactIndex: 0
@@ -2751,12 +3001,12 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: ShadowGameTest
+        contents: ShadowGame
         dialogueType: 4
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2777,7 +3027,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 1
   interactionIndex: 0
@@ -2868,9 +3117,29 @@ MonoBehaviour:
           \uAC19\uC740 \uC804\uACBD\uC744 \uB2F4\uACE0 \uC788\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2891,7 +3160,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 1
     animator: {fileID: 0}
     state: 0
@@ -2906,9 +3174,11 @@ MonoBehaviour:
           \uAC19\uC740 \uC804\uACBD\uC744 \uB2F4\uACE0 \uC788\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2925,7 +3195,7 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2943,7 +3213,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2964,7 +3252,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
@@ -3372,9 +3659,29 @@ MonoBehaviour:
           \uB9CC\uD55C \uC637\uC740 \uBCF4\uC774\uC9C0 \uC54A\uB294\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3395,7 +3702,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 3
     animator: {fileID: 0}
     state: 0
@@ -3414,7 +3720,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 1
     animator: {fileID: 0}
     state: 0
@@ -3428,9 +3733,11 @@ MonoBehaviour:
           \uC637 \uAC71\uC815\uC740 \uC5C6\uC5B4 \uBCF4\uC778\uB2E4.)"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3448,7 +3755,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3469,7 +3794,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
@@ -3528,7 +3852,7 @@ Transform:
   - {fileID: 1135873640}
   - {fileID: 1783804326}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1896088520
 Animator:
@@ -3626,7 +3950,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 1
     animator: {fileID: 0}
     state: 0
@@ -3639,9 +3962,11 @@ MonoBehaviour:
         contents: "\uC73C\uC73C\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Right
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3656,9 +3981,29 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7\uC11C\uB450\uB974\uC790."
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3679,7 +4024,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 3
     animator: {fileID: 0}
     state: 0
@@ -3698,7 +4042,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
@@ -3729,312 +4072,6 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7363627661125783308, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
   m_PrefabInstance: {fileID: 96999163}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2011621864
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_PlayableAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2900af063405ffd4983d630f66b9705c, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.size
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 7ef72938d4439264e8c176c1f650bdb9, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[3].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 796692fda99ac324d94abfe6a7f87f39, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[4].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 7fb76ef42b4cdd74590c678be7acb5e0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[5].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: aa56b6b53a4123a48af01dce9006887d, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[6].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 0a0d0b96794a7c545966361759e605fc, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[7].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[8].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: f60f98ffd1cdaf84994cf8bf4af5f4a3, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[9].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 2900af063405ffd4983d630f66b9705c, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[10].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 9a9c67563dc0f084dbcbc323d822aa7b, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[11].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: bd9c1ae34c23a93448475ca4f7ed71b7, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[12].key
-      value: 
-      objectReference: {fileID: 6735520827863898909, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[13].key
-      value: 
-      objectReference: {fileID: -5107937893276498339, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[14].key
-      value: 
-      objectReference: {fileID: 2605469046497843973, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[15].key
-      value: 
-      objectReference: {fileID: 6515349319526992569, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[16].key
-      value: 
-      objectReference: {fileID: -8616892306198732854, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[17].key
-      value: 
-      objectReference: {fileID: 2013190220954643073, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[18].key
-      value: 
-      objectReference: {fileID: -1169563666403939598, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[19].key
-      value: 
-      objectReference: {fileID: -8248483863663407338, guid: 1903bc000e8a4474ba8b38c38ef03ce0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[20].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 4d76855d9ce3cbe498cfa646a01ab340, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[21].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: 54a286b39bfe4564387fa9b0c071bdf0, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[22].key
-      value: 
-      objectReference: {fileID: -7305145070311664491, guid: f261bdc8b27108a4bbee81eb709a4a5e, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[23].key
-      value: 
-      objectReference: {fileID: -5658254942224199233, guid: dcba2284882eeaf47ada0a1b5f021271, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[3].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[4].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[5].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[6].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[7].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[8].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[9].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[10].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[11].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[12].value
-      value: 
-      objectReference: {fileID: 1041311182}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[13].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[14].value
-      value: 
-      objectReference: {fileID: 2055848284}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[15].value
-      value: 
-      objectReference: {fileID: 1646856824}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[16].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[17].value
-      value: 
-      objectReference: {fileID: 1041311182}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[18].value
-      value: 
-      objectReference: {fileID: 2055848284}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[19].value
-      value: 
-      objectReference: {fileID: 1646856824}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[20].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[21].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[22].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[23].value
-      value: 
-      objectReference: {fileID: 2011621865}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376327, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Name
-      value: Play UI Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376327, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459656, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6b1032de4a9cbc843b1bc244032d910f, type: 3}
-    - target: {fileID: 1059953817648459656, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459656, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459656, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459656, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459657, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817648459658, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953818882617268, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092429750983175469, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
---- !u!95 &2011621865 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1059953817376014073, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-  m_PrefabInstance: {fileID: 2011621864}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2038915553 stripped
 GameObject:
@@ -4259,7 +4296,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-      isWaitClear: 0
   - interactType: 1
     animator: {fileID: 0}
     state: 0
@@ -4273,9 +4309,11 @@ MonoBehaviour:
           \uC798 \uBCF4\uC9C0\uB294 \uC54A\uB294 \uB4EF \uD558\uB2E4.)\_"
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4293,7 +4331,25 @@ MonoBehaviour:
         expression: 0
         option: []
         interactionWaitType: 0
-        waitInteraction:
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4314,7 +4370,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-      isWaitClear: 0
   isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
