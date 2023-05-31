@@ -12,7 +12,6 @@ namespace Game.Stage1.BeachGame
 
         public void Init()
         {
-            onInteract = () => { };
             Interactable = true;
             IsStop = false;
             gameObject.SetActive(true);

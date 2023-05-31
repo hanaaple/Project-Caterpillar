@@ -30,9 +30,7 @@ namespace Game.Stage1.BeachGame
 
         public void Init()
         {
-            SetPanel(PictureState.Default);
-
-            textImage.SetActive(false);
+            Reeset();
             
             PanelButton = GetComponentInChildren<Button>(true);
             PanelButton.onClick.AddListener(() => { picturePanel.SetActive(true); });
@@ -72,6 +70,13 @@ namespace Game.Stage1.BeachGame
         public virtual void SetPanel(int idx)
         {
 
+        }
+
+        public void Reeset()
+        {
+            SetPanel(PictureState.Default);
+
+            textImage.SetActive(false);
         }
     }
 }

@@ -242,7 +242,7 @@ namespace Game.Stage1.BeachGame
             transform.up = targetVector;
         }
 
-        public void Init()
+        public void Reseet()
         {
             Interactable = true;
             SetRotation(_angles[defaultIndex]);

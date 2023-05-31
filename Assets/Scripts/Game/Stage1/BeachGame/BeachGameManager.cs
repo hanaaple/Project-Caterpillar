@@ -46,6 +46,14 @@ namespace Game.Stage1.BeachGame
 
         private void Start()
         {
+            Initialize();
+
+            GameStart();
+        }
+
+
+        private void Initialize()
+        {
             albumButton.onClick.AddListener(() =>
             {
                 if (albumAnimator.GetBool(OpenHash))
@@ -60,6 +68,10 @@ namespace Game.Stage1.BeachGame
                 }
             });
 
+            foreach (var albumPicture in albumPictures)
+            {
+                albumPicture.Init();
+            }
 
             for (var i = 0; i < watchDragger.actions.Length; i++)
             {
@@ -76,9 +88,7 @@ namespace Game.Stage1.BeachGame
                     StartCoroutine(ChangeBackground());
                 };
             }
-
-            GameStart();
-
+            
             foreach (var interactions in beachInteractions)
             {
                 for (var index = 0; index < interactions.interactions.Length; index++)
@@ -94,7 +104,7 @@ namespace Game.Stage1.BeachGame
                         case BeachInteractType.Shovel:
                         case BeachInteractType.Flag:
                         {
-                            interaction.onInteract += () =>
+                            interaction.onInteract = () =>
                             {
                                 Debug.Log("유리 외 인터랙션");
                                 interactions.IsClear = true;
@@ -123,7 +133,7 @@ namespace Game.Stage1.BeachGame
                         case BeachInteractType.Fragment:
                         {
                             var idx = index;
-                            interaction.onInteract += () =>
+                            interaction.onInteract = () =>
                             {
                                 Debug.Log("유리 인터랙션");
                                 var albumPicture = Array.Find(albumPictures,
@@ -163,10 +173,10 @@ namespace Game.Stage1.BeachGame
 
         private void GameStart()
         {
-            watchDragger.Init();
+            watchDragger.Reseet();
             foreach (var albumPicture in albumPictures)
             {
-                albumPicture.Init();
+                albumPicture.Reeset();
             }
 
             StartCoroutine(HintTimer());
@@ -178,23 +188,12 @@ namespace Game.Stage1.BeachGame
 
             StopAllCoroutines();
 
-            Invoke(nameof(GameEndTrigger), 2f);
-        }
-
-        private void GameEndTrigger()
-        {
             albumAnimator.SetTrigger("GameEnd");
         }
 
         private IEnumerator HintTimer()
         {
-            var t = 0f;
-
-            while (t <= 10f)
-            {
-                t += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(10f);
 
             foreach (var albumPicture in albumPictures)
             {
@@ -209,7 +208,7 @@ namespace Game.Stage1.BeachGame
             var stackList = new List<int>(watchDragger.PastIndex);
             stackList.Reverse();
 
-            Debug.Log("시작, 현재 Stack : " + String.Join("",
+            Debug.Log("시작, 현재 Stack : " + string.Join("",
                 stackList.ConvertAll(stackIdx => stackIdx.ToString()).ToArray()));
 
             for (var index = 0; index < stackList.Count - 1; index++)
@@ -224,7 +223,7 @@ namespace Game.Stage1.BeachGame
                 backgrounds[nextIdx].SetActive(true);
 
                 var t = 0f;
-                var timer = .5f;
+                const float timer = .5f;
                 while (t <= timer)
                 {
                     t += Time.deltaTime / timer;

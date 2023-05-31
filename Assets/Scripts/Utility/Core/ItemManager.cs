@@ -109,6 +109,7 @@ namespace Utility.Core
             }
         }
 
+        
         public void SetItem(string[] options)
         {
             if (options == null)
@@ -121,6 +122,8 @@ namespace Utility.Core
                 {
                     continue;
                 }
+                
+                // ItemName:Add
                 var t = option.Replace(" ", "").ToLower();
                 var item = t.Split(":");
                 var itemName = item[0];
