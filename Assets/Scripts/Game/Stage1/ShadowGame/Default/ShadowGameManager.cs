@@ -354,6 +354,8 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 shadowGameItem.gameObject.SetActive(false);
             }
+            
+            SceneLoader.Instance.LoadScene("CampingScene");
         }
 
         private void GameOver()

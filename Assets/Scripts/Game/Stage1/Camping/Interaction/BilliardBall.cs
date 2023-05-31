@@ -1,5 +1,6 @@
 using System;
 using Game.Default;
+using Game.Stage1.Camping.Interaction.Show;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Scene;
@@ -18,49 +19,25 @@ namespace Game.Stage1.Camping.Interaction
 
         public ToastType toastType;
     }
-    
+
     [Serializable]
     public class BilliardBallIcon
     {
-        /// <summary>
-        /// Use for Reset check or Set Animator Trigger
-        /// </summary>
-        public enum BilliardBallType
+        public enum IconType
         {
-            Camping,
+            Mountain,
             Tree,
             Rock,
-            Reset
+            Lake
         }
 
-        public BilliardBallType billiardBallType;
-        [Header("Up, Down, Left, Right")]
-        public Vector4 clearVector;
-        
-        public bool Check(Vector4 input)
-        {
-            if (billiardBallType == BilliardBallType.Reset)
-            {
-                if (input == Vector4.zero || (input.x >= clearVector.x && input.y >= clearVector.y && input.z >= clearVector.z && input.w >= clearVector.w))
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                if (input == clearVector)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        public IconType iconType;
+        public Vector2 iconPos;
     }
 
     public class BilliardBall : CampingInteraction
     {
-        [SerializeField] private GameObject uiPanel;
-        [SerializeField] private Button exitButton;
+        [SerializeField] private ShowPanel showPanel;
         [SerializeField] private Animator billiardBallAnimator;
 
         [Header("당구공")] [SerializeField] private Button up;
@@ -70,10 +47,16 @@ namespace Game.Stage1.Camping.Interaction
         [SerializeField] private Button center;
 
         [SerializeField] private BilliardBallIcon[] billiardBallIcons;
-        
+
         [SerializeField] private BilliardBallToastData[] toastData;
+
+        private Vector2 _pos;
         
-        private Vector4 _inputVector;
+        private static readonly int DownHash = Animator.StringToHash("Down");
+        private static readonly int UpHash = Animator.StringToHash("Up");
+        private static readonly int LeftHash = Animator.StringToHash("Left");
+        private static readonly int RightHash = Animator.StringToHash("Right");
+        private static readonly int ResetHash = Animator.StringToHash("Reset");
 
         private void OnMouseUp()
         {
@@ -88,20 +71,40 @@ namespace Game.Stage1.Camping.Interaction
                     SceneHelper.Instance.toastManager.Enqueue(toastContent);
                 }
             }
+
             setInteractable(false);
-            uiPanel.SetActive(true);
-            ResetInteraction();
+            
+            _pos = Vector2.one;
+            UpdateUI();
+            showPanel.Show();
             Appear();
         }
 
         private void Start()
         {
-            up.onClick.AddListener(() => { PushInput(new Vector4(1, 0, 0, 0)); });
-            down.onClick.AddListener(() => { PushInput(new Vector4(0, 1, 0, 0)); });
-            left.onClick.AddListener(() => { PushInput(new Vector4(0, 0, 1, 0)); });
-            right.onClick.AddListener(() => { PushInput(new Vector4(0, 0, 0, 1)); });
+            up.onClick.AddListener(() =>
+            {
+                billiardBallAnimator.SetTrigger(UpHash);
+                PushInput(Vector2.up);
+            });
+            down.onClick.AddListener(() =>
+            {
+                billiardBallAnimator.SetTrigger(DownHash);
+                PushInput(Vector2.down);
+            });
+            left.onClick.AddListener(() =>
+            {
+                billiardBallAnimator.SetTrigger(LeftHash);
+                PushInput(Vector2.left);
+            });
+            right.onClick.AddListener(() =>
+            {
+                billiardBallAnimator.SetTrigger(RightHash);
+                PushInput(Vector2.right);
+            });
             center.onClick.AddListener(() =>
             {
+                billiardBallAnimator.SetTrigger(ResetHash);
                 var resetToastData =
                     Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Reset);
                 if (!resetToastData.isToasted)
@@ -114,65 +117,57 @@ namespace Game.Stage1.Camping.Interaction
                     }
                 }
 
-                _inputVector = Vector4.zero;
+                _pos = Vector2.one;
                 UpdateUI();
             });
-            
-            exitButton.onClick.AddListener(() =>
+
+            showPanel.exitButton.onClick.AddListener(() =>
             {
-                uiPanel.SetActive(false);
+                showPanel.Hide();
                 setInteractable(true);
             });
-
-            ResetInteraction();
         }
 
-        private void PushInput(Vector4 input)
+        private void PushInput(Vector2 input)
         {
-            _inputVector += input;
+            _pos += input;
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            var billiardBallIcon = Array.Find(billiardBallIcons, item => item.Check(_inputVector));
+            if (IsReset())
+            {
+                billiardBallAnimator.SetTrigger(ResetHash);
+                _pos = Vector2.one;
+            }
+
+            var billiardBallIcon = Array.Find(billiardBallIcons,
+                item => Mathf.Approximately(Vector2.Distance(item.iconPos, _pos), 0f));
             if (billiardBallIcon == null)
             {
                 return;
             }
 
-            if (billiardBallIcon.billiardBallType == BilliardBallIcon.BilliardBallType.Reset)
+            billiardBallAnimator.SetTrigger(billiardBallIcon.iconType.ToString());
+
+            var iconToastData = Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Icon);
+            if (iconToastData.isToasted)
             {
-                billiardBallAnimator.SetTrigger("Reset");
-                _inputVector = Vector4.zero;
+                return;
             }
-            else
+
+            iconToastData.isToasted = true;
+
+            foreach (var toastContent in iconToastData.toastContents)
             {
-                billiardBallAnimator.SetTrigger(billiardBallIcon.billiardBallType.ToString());
-
-                var iconToastData = Array.Find(toastData,
-                    item => item.toastType == BilliardBallToastData.ToastType.Icon);
-                if (iconToastData.isToasted)
-                {
-                    return;
-                }
-                iconToastData.isToasted = true;
-
-                foreach (var toastContent in iconToastData.toastContents)
-                {
-                    SceneHelper.Instance.toastManager.Enqueue(toastContent);
-                }
+                SceneHelper.Instance.toastManager.Enqueue(toastContent);
             }
         }
 
-        public override void Appear()
+        private bool IsReset()
         {
-            onAppear?.Invoke();
-        }
-
-        public override void ResetInteraction()
-        {
-            
+            return (int)_pos.x < 0 || (int)_pos.x > 4 || (int)_pos.y < 0 || (int)_pos.y > 4;
         }
     }
 }

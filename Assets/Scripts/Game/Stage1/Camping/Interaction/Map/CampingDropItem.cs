@@ -22,9 +22,10 @@ namespace Game.Stage1.Camping.Interaction.Map
 
         public override void OnDrop(PointerEventData eventData)
         {
-            base.OnDrop(eventData);
-            if (dragItem && dragItem.TryGetComponent(out CampingDragItem campingDragItem))
+            if (!dragItem && eventData.pointerDrag &&
+                eventData.pointerDrag.TryGetComponent(out CampingDragItem campingDragItem))
             {
+                base.OnDrop(eventData);
                 campingDragItem.x = x;
                 campingDragItem.y = y;
             }

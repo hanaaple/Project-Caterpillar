@@ -9,12 +9,12 @@ namespace Game.Stage1.Camping.Interaction.Diary
         [SerializeField] private GameObject diary;
         [SerializeField] private GameObject diaryMask;
 
-        [NonSerialized] public bool isOut;
+        [NonSerialized] public bool IsOut;
 
         private Animator _bagAnimator;
         private static readonly int IsOpenHash = Animator.StringToHash("IsOpen");
 
-        private void Start()
+        public void Init()
         {
             _bagAnimator = GetComponent<Animator>();
         }
@@ -24,7 +24,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
             var isOpened = diaryMask.activeSelf;
             _bagAnimator.SetBool(IsOpenHash, !isOpened);
             
-            if (!isOut)
+            if (!IsOut)
             {
                 diary.SetActive(!isOpened);
             }
@@ -33,7 +33,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
         public void Reset()
         {
             _bagAnimator.SetBool(IsOpenHash, false);
-            isOut = false;
+            IsOut = false;
         }
     }
 }

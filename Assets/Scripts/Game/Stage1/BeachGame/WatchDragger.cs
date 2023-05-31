@@ -5,18 +5,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Game.BeachGame
+namespace Game.Stage1.BeachGame
 {
     public class WatchDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [Range(0, 9)] [SerializeField] private int defaultIndex;
-        [Space(5)]
-        
-        [Range(1, 10)] [SerializeField] private int divCount;
+
+        [Space(5)] [Range(1, 10)] [SerializeField]
+        private int divCount;
+
         [Range(0, 360)] [SerializeField] private int startRot;
 
         [Range(1, 5)] [SerializeField] private float rotSpeed;
-        
+
         [Range(1, 5)] [SerializeField] private float angleWeight;
 
         private float[] _angles;
@@ -26,14 +27,13 @@ namespace Game.BeachGame
 
         public Action[] actions;
 
-        [NonSerialized] public int index;
-        [NonSerialized] public Stack<int> pastIdxs;
-        
-        [NonSerialized] public bool interactable;
+        [NonSerialized] public int Index;
+        [NonSerialized] public Stack<int> PastIndex;
+        [NonSerialized] public bool Interactable;
 
         private void Start()
         {
-            pastIdxs = new Stack<int>();
+            PastIndex = new Stack<int>();
         }
 
         private void OnEnable()
@@ -65,36 +65,37 @@ namespace Game.BeachGame
                 defaultIndex = divCount - 1;
             }
 
-            index = defaultIndex;
+            Index = defaultIndex;
             SetRotation(_angles[defaultIndex]);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (!interactable)
+            if (!Interactable)
             {
                 return;
             }
 
             _beforeVec = eventData.position - (Vector2) transform.position;
             StopAllCoroutines();
-            pastIdxs.Clear();
-            pastIdxs.Push(index);
+            PastIndex.Clear();
+            PastIndex.Push(Index);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!interactable)
+            if (!Interactable)
             {
                 return;
             }
+
             var beforeAngle = transform.eulerAngles.z;
 
-            Vector2 point = eventData.position - (Vector2) transform.position;
+            var point = eventData.position - (Vector2) transform.position;
 
             var signedAngle = Vector2.SignedAngle(_beforeVec, point);
             var afterAngle = beforeAngle + signedAngle / angleWeight;
-            afterAngle = afterAngle % 360;
+            afterAngle %= 360;
             transform.eulerAngles = new Vector3(0, 0, afterAngle);
 
             _beforeVec = point;
@@ -106,70 +107,79 @@ namespace Game.BeachGame
                 .Last();
             var closeIdx = Array.FindIndex(_angles, angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(close));
 
-            if (pastIdxs.Count == divCount)
+            if (PastIndex.Count == divCount)
             {
-                pastIdxs.Clear();
-                pastIdxs.Push(index);
+                PastIndex.Clear();
+                PastIndex.Push(Index);
                 Debug.Log("현재 Stack : " +
-                          String.Join("", new List<int>(pastIdxs).ConvertAll(i => i.ToString()).ToArray()) +
+                          String.Join("", new List<int>(PastIndex).ConvertAll(i => i.ToString()).ToArray()) +
                           ", 추가 : " + closeIdx);
-            }else if (pastIdxs.Count == 0)
-            {
-                pastIdxs.Push(index);
             }
-            
-
-            if (pastIdxs.Peek() != closeIdx)
+            else if (PastIndex.Count == 0)
             {
-                if (pastIdxs.Contains(closeIdx))
+                PastIndex.Push(Index);
+            }
+
+
+            if (PastIndex.Peek() != closeIdx)
+            {
+                if (PastIndex.Contains(closeIdx))
                 {
-                    while (pastIdxs.Peek() != closeIdx)
+                    while (PastIndex.Peek() != closeIdx)
                     {
-                        pastIdxs.Pop();
+                        PastIndex.Pop();
                     }
                 }
-                else if (signedAngle < 0 && pastIdxs.Contains((pastIdxs.Peek() - 1 + divCount) % divCount))
-                {
-                    Debug.Log("11");
-                    pastIdxs.Clear();
-                    pastIdxs.Push(index);
-                    while (pastIdxs.Peek() != closeIdx)
-                    {
-                        pastIdxs.Push((pastIdxs.Peek() - 1 + divCount) % divCount);
-                    }
-                }
-                else if (signedAngle > 0 && pastIdxs.Contains((pastIdxs.Peek() + 1 + divCount) % divCount))
-                {
-                    Debug.Log("22");
-                    pastIdxs.Clear();
-                    pastIdxs.Push(index);
-                    while (pastIdxs.Peek() != closeIdx)
-                    {
-                        pastIdxs.Push((pastIdxs.Peek() + 1) % divCount);
-                    }
-                }
-                // 801 쌓고 바로 반대편으로 돌려서 3으로 가면 포함하지 않아서 예외사항 있음
                 else
-                {
-                    if (signedAngle < 0)
+                    switch (signedAngle)
                     {
-                        // 오른쪽
-                        // 6 -> 4 값이 작아짐   76 -> 5
-                        while (pastIdxs.Peek() != closeIdx)
+                        case < 0 when PastIndex.Contains((PastIndex.Peek() - 1 + divCount) % divCount):
                         {
-                            pastIdxs.Push((pastIdxs.Peek() - 1 + divCount) % divCount);
+                            Debug.Log("11");
+                            PastIndex.Clear();
+                            PastIndex.Push(Index);
+                            while (PastIndex.Peek() != closeIdx)
+                            {
+                                PastIndex.Push((PastIndex.Peek() - 1 + divCount) % divCount);
+                            }
+
+                            break;
+                        }
+                        case > 0 when PastIndex.Contains((PastIndex.Peek() + 1 + divCount) % divCount):
+                        {
+                            Debug.Log("22");
+                            PastIndex.Clear();
+                            PastIndex.Push(Index);
+                            while (PastIndex.Peek() != closeIdx)
+                            {
+                                PastIndex.Push((PastIndex.Peek() + 1) % divCount);
+                            }
+
+                            break;
+                        }
+                        case < 0:
+                        {
+                            // 오른쪽
+                            // 6 -> 4 값이 작아짐   76 -> 5
+                            while (PastIndex.Peek() != closeIdx)
+                            {
+                                PastIndex.Push((PastIndex.Peek() - 1 + divCount) % divCount);
+                            }
+
+                            break;
+                        }
+                        case > 0:
+                        {
+                            //왼쪽
+                            // 4 -> 6 값이 커짐     67 -> 8
+                            while (PastIndex.Peek() != closeIdx)
+                            {
+                                PastIndex.Push((PastIndex.Peek() + 1) % divCount);
+                            }
+
+                            break;
                         }
                     }
-                    else if (signedAngle > 0)
-                    {
-                        //왼쪽
-                        // 4 -> 6 값이 커짐     67 -> 8
-                        while (pastIdxs.Peek() != closeIdx)
-                        {
-                            pastIdxs.Push((pastIdxs.Peek() + 1) % divCount);
-                        }
-                    }
-                }
                 // Debug.Log("현재 Stack : " +
                 //           String.Join("", new List<int>(pastIdxs).ConvertAll(i => i.ToString()).ToArray()) +
                 //           ", 추가 : " + closeIdx);
@@ -178,16 +188,17 @@ namespace Game.BeachGame
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (!interactable)
+            if (!Interactable)
             {
                 return;
             }
+
             var beforeAngle = transform.eulerAngles.z;
 
-            Vector2 point = eventData.position - (Vector2) transform.position;
+            var point = eventData.position - (Vector2) transform.position;
 
             var afterAngle = beforeAngle + Vector2.SignedAngle(_beforeVec, point) / angleWeight;
-            afterAngle = afterAngle % 360;
+            afterAngle %= 360;
             transform.eulerAngles = new Vector3(0, 0, afterAngle);
 
             var close = _angles.OrderBy(angle =>
@@ -195,19 +206,20 @@ namespace Game.BeachGame
                         new Vector2(Mathf.Cos((angle - 90) * Mathf.Deg2Rad), Mathf.Sin((angle - 90) * Mathf.Deg2Rad)),
                         transform.up)))
                 .Last();
-            
-            float weight = Mathf.Lerp(.2f, .8f, Mathf.Abs(_size - Mathf.Abs(close - afterAngle)) / _size * 2);
+
+            var weight = Mathf.Lerp(.2f, .8f, Mathf.Abs(_size - Mathf.Abs(close - afterAngle)) / _size * 2);
 
             StartCoroutine(SetRotation(close, weight));
         }
 
         private IEnumerator SetRotation(float targetAngle, float weight)
         {
-            interactable = false;
-            var targetVector = new Vector2(Mathf.Cos((targetAngle + 90) * Mathf.Deg2Rad), Mathf.Sin((targetAngle + 90) * Mathf.Deg2Rad));
-            
+            Interactable = false;
+            var targetVector = new Vector2(Mathf.Cos((targetAngle + 90) * Mathf.Deg2Rad),
+                Mathf.Sin((targetAngle + 90) * Mathf.Deg2Rad));
+
             var waitForFixedUpdate = new WaitForFixedUpdate();
-            float t = 0f;
+            var t = 0f;
             Vector2 startVector = transform.up;
             while (t <= 1f)
             {
@@ -216,10 +228,10 @@ namespace Game.BeachGame
                 t += Time.fixedDeltaTime * weight * rotSpeed;
                 yield return waitForFixedUpdate;
             }
-            
+
             var idx = Array.FindIndex(_angles, angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(targetAngle));
-            
-            interactable = true;
+
+            Interactable = true;
             actions[idx]?.Invoke();
         }
 
@@ -232,9 +244,10 @@ namespace Game.BeachGame
 
         public void Init()
         {
-            interactable = true;
+            Interactable = true;
             SetRotation(_angles[defaultIndex]);
-            index = Array.FindIndex(_angles, angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(_angles[defaultIndex]));
+            Index = Array.FindIndex(_angles,
+                angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(_angles[defaultIndex]));
         }
     }
 }

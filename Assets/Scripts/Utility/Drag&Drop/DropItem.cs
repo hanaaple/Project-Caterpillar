@@ -5,8 +5,7 @@ namespace Utility.Drag_Drop
 {
     public class DropItem : MonoBehaviour, IDropHandler
     {
-        [SerializeField]
-        protected DragItem dragItem;
+        [SerializeField] protected DragItem dragItem;
 
         protected virtual void Start()
         {

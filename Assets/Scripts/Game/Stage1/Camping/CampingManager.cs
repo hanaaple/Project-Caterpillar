@@ -1,7 +1,9 @@
+using System.Linq;
 using Game.Stage1.Camping.Interaction;
 using Game.Stage1.Camping.Interaction.Map;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Scene;
 
 namespace Game.Stage1.Camping
 {
@@ -16,17 +18,14 @@ namespace Game.Stage1.Camping
 
         [Space(10)] [Header("지도")] [SerializeField]
         private GameObject mapPanel;
+
         [SerializeField] private Button mapExitButton;
         [SerializeField] private Button campingButton;
-        
-        [Header("지도 - 클리어 조건")] [SerializeField] private CampingDropItem[] clearDropItems;
-        
-        [Header("지도 - 힌트")]
-        [SerializeField] private CampingHint[] hints;
 
-        [Header("결과")]
-        [SerializeField] private GameObject clearPanel;
-        [SerializeField] private GameObject failPanel;
+        [Header("지도 - 클리어 조건")] [SerializeField]
+        private CampingDropItem[] clearDropItems;
+
+        [Header("결과")] [SerializeField] private GameObject failPanel;
 
         private void Start()
         {
@@ -54,7 +53,7 @@ namespace Game.Stage1.Camping
             {
                 if (IsClear())
                 {
-                    clearPanel.SetActive(true);
+                    SceneLoader.Instance.LoadScene("BeachScene");
                 }
                 else
                 {
@@ -62,23 +61,9 @@ namespace Game.Stage1.Camping
                 }
             });
 
-            foreach (var campingHint in hints)
+            foreach (var interaction in interactions)
             {
-                campingHint.SetHint(false);
-            }
-
-            for (var i = 0; i < interactions.Length; i++)
-            {
-                var idx = i;
-                if (interactions[idx].isHint)
-                {
-                    interactions[idx].onAppear += () =>
-                    {
-                        hints[idx].SetHint(true);
-                    };
-                }
-
-                interactions[idx].setInteractable += isEnable =>
+                interaction.setInteractable = isEnable =>
                 {
                     foreach (var t in interactions)
                     {
@@ -89,21 +74,13 @@ namespace Game.Stage1.Camping
                         }
                     }
                 };
-                interactions[idx].ResetInteraction();
+                interaction.ResetInteraction();
             }
         }
 
         private bool IsClear()
         {
-            foreach (var campingDropItem in clearDropItems)
-            {
-                if (!campingDropItem.HasItem())
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return clearDropItems.All(campingDropItem => campingDropItem.HasItem());
         }
 
         // private void OnDrawGizmos()

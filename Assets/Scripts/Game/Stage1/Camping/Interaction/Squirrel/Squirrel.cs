@@ -4,7 +4,7 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
 {
     public class Squirrel : CampingInteraction
     {
-        [SerializeField] private Animator snakeAnimator;
+        // [SerializeField] private Animator snakeAnimator;
         [SerializeField] private Animator birdAnimator;
         [SerializeField] private Animator noteAnimator;
         [SerializeField] private Animator squirrelAnimator;
@@ -16,22 +16,22 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
 
         private void Start()
         {
-            egg.onFire = () =>
+            egg.OnFire = () =>
             {
                 egg.gameObject.SetActive(false);
                 // snakeAnimator.Set
-                // birdAnimator.SetBool(ClearHash, true);
-                // noteAnimator.SetBool(ClearHash, true);
+                birdAnimator.SetBool(ClearHash, true);
+                noteAnimator.SetBool(ClearHash, true);
             };
             
             foreach (var apple in apples)
             {
-                apple.onFire = () =>
+                apple.OnFire = () =>
                 {
                     apple.gameObject.SetActive(false);
-                    foreach (var dragItem in apples)
+                    foreach (var t in apples)
                     {
-                        dragItem.GetComponent<Collider2D>().enabled = false;
+                        t.Collider2D.enabled = false;
                     }
 
                     squirrelAnimator.SetBool(ClearHash, true);
@@ -40,14 +40,10 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
             }
         }
 
-        public override void Appear()
-        {
-            onAppear?.Invoke();
-        }
-
         public override void ResetInteraction()
         {
-            noteAnimator.enabled = true;
+            base.ResetInteraction();
+            
             egg.Reset();
             foreach (var apple in apples)
             {

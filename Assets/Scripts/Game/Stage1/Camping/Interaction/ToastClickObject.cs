@@ -31,15 +31,25 @@ namespace Game.Stage1.Camping.Interaction
 
         private void OnMouseDown()
         {
-            if (!toastData.isToasted)
+            Toast();
+        }
+
+        private void Toast()
+        {
+            if (toastData.isToasted)
             {
-                toastData.isToasted = true;
+                return;
+            }
 
-                foreach (var toastContent in toastData.toastContents)
-                {
-                    SceneHelper.Instance.toastManager.Enqueue(toastContent);
-                }
+            toastData.isToasted = true;
 
+            foreach (var toastContent in toastData.toastContents)
+            {
+                SceneHelper.Instance.toastManager.Enqueue(toastContent);
+            }
+
+            if (isShareCount)
+            {
                 foreach (var toastClickObject in toastClickObjects.toastClickObjects)
                 {
                     toastClickObject.toastData.isToasted = true;

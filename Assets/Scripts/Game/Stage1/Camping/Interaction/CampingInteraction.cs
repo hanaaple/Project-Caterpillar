@@ -1,18 +1,32 @@
+using System;
+using Game.Stage1.Camping.Interaction.Map;
 using UnityEngine;
-using UnityEngine.Events;
+using Utility.Property;
 
 namespace Game.Stage1.Camping.Interaction
 {
     public abstract class CampingInteraction : MonoBehaviour
     {
         public bool isHint;
+        [ConditionalHideInInspector("isHint")]
+        public CampingHint hint;
         
-        public UnityAction onAppear;
+        public Action<bool> setInteractable;
 
-        public UnityAction<bool> setInteractable;
+        public virtual void ResetInteraction()
+        {
+            if (isHint)
+            {
+                hint.SetHint(false);
+            }
+        }
 
-        public abstract void Appear();
-        
-        public abstract void ResetInteraction();
+        protected virtual void Appear()
+        {
+            if (isHint)
+            {
+                hint.SetHint(true);
+            }
+        }
     }
 }

@@ -1,6 +1,5 @@
-using Game.Camping;
+using Game.Stage1.Camping.Interaction.Show;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.Stage1.Camping.Interaction.Diary
 {
@@ -12,14 +11,19 @@ namespace Game.Stage1.Camping.Interaction.Diary
         [SerializeField] private Diary diary;
         [SerializeField] private ShowInteraction tornDiary;
 
+        private void Awake()
+        {
+            bag.Init();
+        }
+
         private void Start()
         {
-            diary.onOpen = () =>
-            {
+            // diary.onOpen = () =>
+            // {
                 //setInteractable(false);
                 //showPanel.SetActive(true);
-            };
-            diary.onPickUp = () => { bag.isOut = true; };
+            // };
+            diary.onPickUp = () => { bag.IsOut = true; };
             diary.onFire = () =>
             {
                 diary.gameObject.SetActive(false);
@@ -27,12 +31,9 @@ namespace Game.Stage1.Camping.Interaction.Diary
             };
         }
 
-        public override void Appear()
-        {
-        }
-
         public override void ResetInteraction()
         {
+            base.ResetInteraction();
             diary.Reset();
             bag.Reset();
             tornDiary.gameObject.SetActive(false);

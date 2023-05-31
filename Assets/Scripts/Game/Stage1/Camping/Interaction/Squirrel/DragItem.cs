@@ -7,8 +7,9 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
     {
         [SerializeField] private CircleCollider2D target;
 
-        public Action onFire;
-
+        [NonSerialized] public Action OnFire;
+        [NonSerialized] public Collider2D Collider2D;
+        
         private Vector3 _originPos;
         private bool _isInit;
 
@@ -16,14 +17,20 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         {
             if (!_isInit)
             {
-                _originPos = transform.position;
-                _isInit = true;
+                Init();
             }
+        }
+
+        private void Init()
+        {
+            _originPos = transform.position;
+            _isInit = true;
+            Collider2D = GetComponent<Collider2D>();
         }
 
         private void OnMouseDrag()
         {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos = new Vector3(pos.x, pos.y, 0);
 
             transform.position = pos;
@@ -31,11 +38,10 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
 
         private void OnMouseUp()
         {
-            if (target.enabled &&
-                Vector2.Distance(target.transform.position, transform.position) < target.radius * 1.2f)
+            if (target.enabled && Vector2.Distance(target.transform.position, transform.position) < target.radius * 1.2f)
             {
-                Debug.Log("ㅎㅇ");
-                onFire?.Invoke();
+                Debug.Log("Drag Fire!");
+                OnFire?.Invoke();
             }
         }
 
@@ -43,15 +49,14 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         {
             if (!_isInit)
             {
-                _originPos = transform.position;
-                _isInit = true;
+                Init();
             }
             else
             {
                 transform.position = _originPos;
             }
 
-            GetComponent<Collider2D>().enabled = true;
+            Collider2D.enabled = true;
             gameObject.SetActive(true);
         }
     }
