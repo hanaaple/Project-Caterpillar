@@ -30,11 +30,11 @@ namespace Game.Stage1.BeachGame
 
         public void Init()
         {
-            Reeset();
-            
             PanelButton = GetComponentInChildren<Button>(true);
             PanelButton.onClick.AddListener(() => { picturePanel.SetActive(true); });
             panelExitButton.onClick.AddListener(() => { picturePanel.SetActive(false); });
+            
+            Reeset();
         }
 
         public void SetPanel(PictureState state)

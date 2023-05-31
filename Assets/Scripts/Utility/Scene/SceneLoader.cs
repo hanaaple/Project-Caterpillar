@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility.Core;
+using Utility.InputSystem;
+using Utility.Player;
 using Utility.SaveSystem;
 using Utility.Util;
 
@@ -84,6 +86,7 @@ namespace Utility.Scene
 
         private IEnumerator Load(string sceneName, int index)
         {
+            InputManager.ResetInputAction();
             progressBar.fillAmount = 0f;
             yield return StartCoroutine(Fade(true));
 
@@ -145,6 +148,9 @@ namespace Utility.Scene
             onLoadSceneEnd?.Invoke();
             onLoadSceneEnd = () => { };
 
+            PlayUIManager.Instance.dialogueController.cutSceneImage.SetActive(false);
+            PlayerManager.Instance.UpdateCamera();
+            
             var sceneHelper = FindObjectOfType<SceneHelper>();
             if (sceneHelper)
             {

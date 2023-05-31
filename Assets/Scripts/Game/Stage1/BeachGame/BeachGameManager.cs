@@ -5,6 +5,7 @@ using System.Linq;
 using Game.Default;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Scene;
 
 namespace Game.Stage1.BeachGame
 {
@@ -30,8 +31,6 @@ namespace Game.Stage1.BeachGame
             public BeachInteraction[] interactions;
             [NonSerialized] public bool IsClear;
         }
-
-        [SerializeField] private ToastManager toastManager;
         
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
         [SerializeField] private BeachInteractions[] beachInteractions;
@@ -118,7 +117,7 @@ namespace Game.Stage1.BeachGame
                                     item => item.beachInteractType == interactions.beachInteractType);
                                 albumPicture.SetPanel(PictureState.Clear);
 
-                                toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
+                                SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
 
                                 var isGameClear = beachInteractions.All(item => item.IsClear);
                                 var isClearCount = beachInteractions.Count(item => item.IsClear);
@@ -148,7 +147,7 @@ namespace Game.Stage1.BeachGame
                                 {
                                     interactions.IsClear = true;
 
-                                    toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
+                                    SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
 
                                     var isGameClear = beachInteractions.All(item => item.IsClear);
                                     var isClearCount = beachInteractions.Count(item => item.IsClear);
@@ -200,7 +199,7 @@ namespace Game.Stage1.BeachGame
                 albumPicture.SetPanel(PictureState.Active);
             }
 
-            toastManager.Enqueue("앨범 활성화");
+            SceneHelper.Instance.toastManager.Enqueue("앨범 활성화");
         }
 
         private IEnumerator ChangeBackground()

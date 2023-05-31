@@ -349,6 +349,7 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void ClearGame()
         {
+            InputManager.PopInputAction(_inputActions);
             gameAnimator.SetTrigger(ClearHash);
             foreach (var shadowGameItem in shadowGameItems)
             {
@@ -360,6 +361,7 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void GameOver()
         {
+            InputManager.PopInputAction(_inputActions);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
