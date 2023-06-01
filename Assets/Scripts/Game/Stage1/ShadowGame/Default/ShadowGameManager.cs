@@ -105,7 +105,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
                 {
-                    toastManager.EnQueue(toastContent);
+                    toastManager.Enqueue(toastContent);
                 }
 
                 TimeScaleHelper.Pop();
@@ -264,7 +264,7 @@ namespace Game.Stage1.ShadowGame.Default
                 {
                     if (stageIndex == speechBubble.index)
                     {
-                        toastManager.EnQueue(speechBubble.text);
+                        toastManager.Enqueue(speechBubble.text);
                     }
                 }
             }, () => { StartCoroutine(OnStageEnd(true)); });
@@ -349,15 +349,19 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void ClearGame()
         {
+            InputManager.PopInputAction(_inputActions);
             gameAnimator.SetTrigger(ClearHash);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
             }
+            
+            SceneLoader.Instance.LoadScene("CampingScene");
         }
 
         private void GameOver()
         {
+            InputManager.PopInputAction(_inputActions);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
@@ -386,7 +390,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 if (Mentality == speechBubble.index)
                 {
-                    toastManager.EnQueue(speechBubble.text);
+                    toastManager.Enqueue(speechBubble.text);
                 }
             }
         }

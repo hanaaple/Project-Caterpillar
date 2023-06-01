@@ -1,0 +1,25 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace Game.Stage1.Camping.Interaction.Show
+{
+    public class ShowPanel : MonoBehaviour
+    {
+        public Button exitButton;
+
+        public virtual void Initialize()
+        {
+            
+        }
+
+        public virtual void Show()
+        {
+            gameObject.SetActive(true);
+        }
+        
+        public virtual void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+    }
+}

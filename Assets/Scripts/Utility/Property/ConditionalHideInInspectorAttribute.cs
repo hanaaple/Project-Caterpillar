@@ -7,18 +7,19 @@ namespace Utility.Property
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
     public class ConditionalHideInInspectorAttribute : PropertyAttribute
     {
-   
+
         public string ComparedProperty { get; private set; }
         public object ComparedPropertyValue { get; private set; }
         public bool IsNegative { get; private set; }
 
-        public ConditionalHideInInspectorAttribute(string comparedProperty, object comparedPropertyValue, bool isNegative = false)
+        public ConditionalHideInInspectorAttribute(string comparedProperty, object comparedPropertyValue,
+            bool isNegative = false)
         {
             ComparedProperty = comparedProperty;
             ComparedPropertyValue = comparedPropertyValue;
             IsNegative = isNegative;
         }
-    
+
         public ConditionalHideInInspectorAttribute(string booleanProperty, bool isNegative = false)
         {
             ComparedProperty = booleanProperty;

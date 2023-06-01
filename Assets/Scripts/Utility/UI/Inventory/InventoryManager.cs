@@ -233,15 +233,15 @@ namespace Utility.UI.Inventory
                         inventoryMenuItem.button.onClick.AddListener(() =>
                         {
                             Debug.Log($"{inventoryMenuItem.inventoryMenuType} 누름");
-                            var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                            var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
+                            // var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                            // var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
 
-                            if (!duplicated.Any())
-                            {
-                                bagPanel.SetActive(true);
-                                necklacePanel.SetActive(false);
-                                return;
-                            }
+                            // if (!duplicated.Any())
+                            // {
+                            //     bagPanel.SetActive(true);
+                            //     necklacePanel.SetActive(false);
+                            //     return;
+                            // }
 
                             if (!HighlightHelper.Instance.Contains(_itemHighlighter))
                             {
@@ -371,17 +371,19 @@ namespace Utility.UI.Inventory
             // ItemManager Have to load At Start Game
             Debug.Log("Inventory Init");
 
-
             var ownItems = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-            foreach (var inventoryItem in inventoryItems)
+            // var items = inventoryItems.Join(ownItems, inventoryItem => inventoryItem.itemType, ownItem => ownItem, (_, __) => _).ToArray();
+            
+            foreach (var item in inventoryItems)
             {
-                if (ownItems.Contains(inventoryItem.itemType))
+                Debug.Log($"{item.itemType} - Active? {ownItems.Contains(item.itemType)}");
+                if (ownItems.Contains(item.itemType))
                 {
-                    inventoryItem.SetActive(true);
+                    item.SetActive(true);
                 }
                 else
                 {
-                    inventoryItem.SetActive(false);
+                    item.SetActive(false);
                 }
             }
         }

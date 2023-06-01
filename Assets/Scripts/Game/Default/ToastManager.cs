@@ -31,7 +31,7 @@ namespace Game.Default
             _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
         }
         
-        public void EnQueue(string toastContent)
+        public void Enqueue(string toastContent)
         {
             _toastQueue.Enqueue(toastContent);
             

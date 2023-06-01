@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Game.Default;
 using UnityEngine;
 using Utility.Core;
 using Utility.Property;
@@ -27,6 +28,9 @@ namespace Utility.Scene
         
         [SerializeField] private PlayType playType;
 
+        [ConditionalHideInInspector("playType", PlayType.MiniGame)]
+        public ToastManager toastManager;
+        
         public BoxCollider2D boundBox; 
         
         public bool isCameraMove;

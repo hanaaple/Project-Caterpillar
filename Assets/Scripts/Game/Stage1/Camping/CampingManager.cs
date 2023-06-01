@@ -1,101 +1,69 @@
+using System.Linq;
+using Game.Stage1.Camping.Interaction;
+using Game.Stage1.Camping.Interaction.Map;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility.Core;
 using Utility.Scene;
-using Utility.Util;
 
-namespace Game.Camping
+namespace Game.Stage1.Camping
 {
     public class CampingManager : MonoBehaviour
     {
-        [SerializeField]
-        private Button[] beachTempButton;
-        
-        [Header("필드")]
-        [SerializeField]
-        private GameObject filedPanel;
-        [SerializeField]
-        private Button openButton;
-        [SerializeField]
-        private Button retryButton;
+        [Header("필드")] [SerializeField] private GameObject filedPanel;
+        [SerializeField] private Button openMapButton;
+        [SerializeField] private Button resetButton;
 
-        [SerializeField]
-        private CampingInteraction[] interactions;
-    
-    
-        [Space(10)]
-        [Header("맵")]
-        [SerializeField]
+        [SerializeField] private CampingInteraction[] interactions;
+
+
+        [Space(10)] [Header("지도")] [SerializeField]
         private GameObject mapPanel;
-        [SerializeField]
-        private Button exitButton;
-    
-        [SerializeField]
-        private Button campingButton;
-        [SerializeField]
+
+        [SerializeField] private Button mapExitButton;
+        [SerializeField] private Button campingButton;
+
+        [Header("지도 - 클리어 조건")] [SerializeField]
         private CampingDropItem[] clearDropItems;
-    
-        [SerializeField]
-        private CampingHint[] hints;
-    
-        [SerializeField]
-        private GameObject clearPanel;
-        [SerializeField]
-        private GameObject failPanel;
-    
-        void Start()
+
+        [Header("결과")] [SerializeField] private GameObject failPanel;
+
+        private void Start()
         {
-            foreach (var button in beachTempButton)
-            {
-                button.onClick.AddListener(() =>
-                {
-                    SceneLoader.Instance.LoadScene("BeachGameTest");
-                });
-            }
-            
-            exitButton.onClick.AddListener(() =>
+            mapExitButton.onClick.AddListener(() =>
             {
                 mapPanel.SetActive(false);
                 filedPanel.SetActive(true);
             });
-        
-            openButton.onClick.AddListener(() =>
+
+            openMapButton.onClick.AddListener(() =>
             {
                 mapPanel.SetActive(true);
                 filedPanel.SetActive(false);
             });
-        
-            retryButton.onClick.AddListener(() =>
+
+            resetButton.onClick.AddListener(() =>
             {
                 foreach (var t in interactions)
                 {
-                    t.Reset();
+                    t.ResetInteraction();
                 }
             });
-        
+
             campingButton.onClick.AddListener(() =>
             {
                 if (IsClear())
                 {
-                    clearPanel.SetActive(true);
+                    SceneLoader.Instance.LoadScene("BeachScene");
                 }
                 else
                 {
                     failPanel.SetActive(true);
                 }
             });
-        
-            foreach (var campingHint in hints)
-            {
-                campingHint.SetHint(false);
-            }
 
-            for (var i = 0; i < interactions.Length; i++)
+            foreach (var interaction in interactions)
             {
-                var idx = i;
-                interactions[idx].onAppear += () => { hints[idx].SetHint(true); };
-
-                interactions[idx].setInteractable += (isEnable) =>
+                interaction.setInteractable = isEnable =>
                 {
                     foreach (var t in interactions)
                     {
@@ -106,21 +74,13 @@ namespace Game.Camping
                         }
                     }
                 };
-                interactions[idx].Reset();
+                interaction.ResetInteraction();
             }
         }
 
         private bool IsClear()
         {
-            foreach (var campingDropItem in clearDropItems)
-            {
-                if (!campingDropItem.HasItem())
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return clearDropItems.All(campingDropItem => campingDropItem.HasItem());
         }
 
         // private void OnDrawGizmos()

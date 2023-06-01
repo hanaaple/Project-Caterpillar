@@ -40,15 +40,15 @@ namespace Utility.Player
         private readonly int _isMove = Animator.StringToHash("isMove");
 
         // This function not work on animation
-        private void OnValidate()
-        {
-            if (!Application.isPlaying || !gameObject.activeSelf)
-            {
-                return;
-            }
-
-            UpdateControl();
-        }
+        // private void OnValidate()
+        // {
+        //     if (!Application.isPlaying || !gameObject.activeSelf)
+        //     {
+        //         return;
+        //     }
+        //
+        //     UpdateControl();
+        // }
 
         private void UpdateControl(bool isEnable = true)
         {

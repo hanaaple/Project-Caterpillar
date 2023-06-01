@@ -46,7 +46,18 @@ namespace Utility.InputSystem
             public int BindingIndex;
             public string OriginalDisplayName;
         }
-        
+
+        public static void ResetInputAction()
+        {
+            lock (LockObject)
+            {
+                foreach (var inputActions in InputActionsList)
+                {
+                    PopInputAction(inputActions);
+                }
+            }
+        }
+
         public static void PushInputAction(InputActions inputActions)
         {
             Debug.Log($"Push InputAction {inputActions.Name}");
@@ -78,8 +89,14 @@ namespace Utility.InputSystem
         public static void PopInputAction(InputActions inputActions)
         {
             Debug.Log($"Pop InputAction {inputActions.Name}");
-            PopInputActions.Enqueue(inputActions);
-            AsyncPopInputAction();
+            lock (LockObject)
+            {
+                if (InputActionsList.Contains(inputActions))
+                {
+                    PopInputActions.Enqueue(inputActions);
+                    AsyncPopInputAction();
+                }
+            }
         }
         
         private static async void AsyncPopInputAction()

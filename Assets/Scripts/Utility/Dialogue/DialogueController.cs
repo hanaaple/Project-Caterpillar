@@ -48,6 +48,8 @@ namespace Utility.Dialogue
 
     public class DialogueController : MonoBehaviour
     {
+        public GameObject cutSceneImage;
+        
         [SerializeField] private Animator cutSceneAnimator;
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;

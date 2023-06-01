@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility.Dialogue;
 using Utility.Scene;
 using Utility.UI.Inventory;
@@ -35,7 +36,7 @@ namespace Utility.Core
                 return _instance;
             }
         }
-
+        
         public PauseManager pauseManager;
         public PreferenceManager preferenceManager;
         public DialogueController dialogueController;
@@ -93,6 +94,7 @@ namespace Utility.Core
         private IEnumerator Fade(bool isFadeIn, Action onEndAction)
         {
             fadeImage.gameObject.SetActive(true);
+            fadeImage.GetComponent<Image>().color = Color.black;
             var t = 0f;
             while (t < 1f)
             {

@@ -86,6 +86,16 @@ namespace Utility.Player
 
         private void Start()
         {
+            UpdateCamera();
+        }
+
+        public void UpdateCamera()
+        {
+            if (SceneHelper.Instance.playerMoveType == PlayerMoveType.None)
+            {
+                return;
+            }
+
             _camera = Camera.main;
             var bounds = SceneHelper.Instance.boundBox.bounds;
             _minBounds = bounds.min;

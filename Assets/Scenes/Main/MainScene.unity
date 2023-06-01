@@ -10702,6 +10702,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[16].extrapolationMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[16].option.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -15780,7 +15784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[65].option.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[71].option.Array.size
@@ -16225,6 +16229,10 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[65].option.Array.data[1]
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[65].option.Array.data[2]
+      value: NaruDoll:Add
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[71].option.Array.data[0]
