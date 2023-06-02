@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ShadowMonster
+  - FlashLight
+  - Player
+  - NPC Interactor
+  - Always Light
+  - Light
+  - OnlyPlayerCheck
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2716536253
+    locked: 0
+  - name: Monster
+    uniqueID: 1856942487
+    locked: 0
+  - name: Object
+    uniqueID: 3043162815
+    locked: 0
+  - name: Player
+    uniqueID: 4082466247
+    locked: 0
+  - name: Object2
+    uniqueID: 1645720195
     locked: 0
