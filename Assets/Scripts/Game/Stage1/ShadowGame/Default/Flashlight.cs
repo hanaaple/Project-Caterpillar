@@ -22,10 +22,13 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void OnValidate()
         {
-            UpdateLight();
-            SetFlashLightPos(mainLight.transform.position);
+            if (!Application.isPlaying)
+            {
+                UpdateLight(1f);
+                SetFlashLightPos(mainLight.transform.position);
+            }
         }
-        
+
         private void Update()
         {
             UpdateLight();
@@ -73,11 +76,12 @@ namespace Game.Stage1.ShadowGame.Default
             SetLightRadiusPercentage(1f);
         }
         
-        private void UpdateLight()
+        private void UpdateLight(float t = 0.02f)
         {
             var mainLightCollider = mainLight.GetComponent<CircleCollider2D>();
-            mainLight.pointLightOuterRadius = originalRadius * lightRadiusPercentage;
-            mainLightCollider.radius = originalRadius * lightRadiusPercentage;
+            var radius = Mathf.Lerp(mainLight.pointLightOuterRadius, originalRadius * lightRadiusPercentage, t);
+            mainLight.pointLightOuterRadius = radius;
+            mainLightCollider.radius = radius;
 
             mainLight.intensity = intensity - globalLight.intensity;
             subLight.intensity = (intensity - globalLight.intensity) * 0.6f;

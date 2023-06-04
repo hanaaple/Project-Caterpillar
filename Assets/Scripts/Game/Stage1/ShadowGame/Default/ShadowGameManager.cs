@@ -210,7 +210,7 @@ namespace Game.Stage1.ShadowGame.Default
             StartStage();
         }
 
-        protected virtual void StartStage(bool isClear = true)
+        private void StartStage(bool isClear = true)
         {
             Debug.Log(stageIndex + " 스테이지 시작");
 
@@ -322,12 +322,9 @@ namespace Game.Stage1.ShadowGame.Default
             }
         }
 
-        protected virtual IEnumerator OnStageEnd(bool isClear)
+        private IEnumerator OnStageEnd(bool isClear)
         {
-            // 배경 연출 이후 아이템 실행
-
-            // 배경 연출
-            Debug.Log(stageIndex + "스테이지 종료, 배경 연출 시작");
+            // 배경 연출 대기
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
             stageAnimator.SetTrigger(PlayHash);
             yield return new WaitUntil(() => stageAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
@@ -477,7 +474,7 @@ namespace Game.Stage1.ShadowGame.Default
             // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
         }
 
-        protected virtual IEnumerator ReStartGame()
+        private IEnumerator ReStartGame()
         {
             ResetSetting();
             gameAnimator.SetTrigger(ResetHash);
