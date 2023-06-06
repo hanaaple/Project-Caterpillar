@@ -36,12 +36,12 @@ namespace Game.Stage1.Camping.Interaction
 
         private void Toast()
         {
-            if (toastData.isToasted)
+            if (toastData.IsToasted)
             {
                 return;
             }
 
-            toastData.isToasted = true;
+            toastData.IsToasted = true;
 
             foreach (var toastContent in toastData.toastContents)
             {
@@ -52,7 +52,7 @@ namespace Game.Stage1.Camping.Interaction
             {
                 foreach (var toastClickObject in toastClickObjects.toastClickObjects)
                 {
-                    toastClickObject.toastData.isToasted = true;
+                    toastClickObject.toastData.IsToasted = true;
                 }
             }
         }

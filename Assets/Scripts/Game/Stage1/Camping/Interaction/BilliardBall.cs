@@ -62,9 +62,9 @@ namespace Game.Stage1.Camping.Interaction
         {
             var appearToastData =
                 Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Appear);
-            if (!appearToastData.isToasted)
+            if (!appearToastData.IsToasted)
             {
-                appearToastData.isToasted = true;
+                appearToastData.IsToasted = true;
 
                 foreach (var toastContent in appearToastData.toastContents)
                 {
@@ -107,9 +107,9 @@ namespace Game.Stage1.Camping.Interaction
                 billiardBallAnimator.SetTrigger(ResetHash);
                 var resetToastData =
                     Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Reset);
-                if (!resetToastData.isToasted)
+                if (!resetToastData.IsToasted)
                 {
-                    resetToastData.isToasted = true;
+                    resetToastData.IsToasted = true;
 
                     foreach (var toastContent in resetToastData.toastContents)
                     {
@@ -152,12 +152,12 @@ namespace Game.Stage1.Camping.Interaction
             billiardBallAnimator.SetTrigger(billiardBallIcon.iconType.ToString());
 
             var iconToastData = Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Icon);
-            if (iconToastData.isToasted)
+            if (iconToastData.IsToasted)
             {
                 return;
             }
 
-            iconToastData.isToasted = true;
+            iconToastData.IsToasted = true;
 
             foreach (var toastContent in iconToastData.toastContents)
             {

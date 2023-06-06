@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
-using Utility.Core;
-
-namespace Game.Default
+﻿namespace Game.Default
 {
     public interface IGamePlayable
     {
