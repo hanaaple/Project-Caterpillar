@@ -14,25 +14,20 @@ namespace Utility.InputSystem
 
         public static InputControl InputControl
         {
-            get
-            {
-                return _inputControl ??= new InputControl();
-            }
+            get { return _inputControl ??= new InputControl(); }
         }
-        
+
         private static int _inputActionCount;
-        
+
         private static readonly object LockObject = new();
 
         private static readonly List<InputActions> InputActionsList = new();
-        
-        private static readonly Queue<InputActions> PushInputActions = new();
-        
-        private static readonly Queue<InputActions> PopInputActions = new();
+
+        private static readonly Queue<KeyValuePair<InputActions, bool>> QueueInputActions = new();
 
         //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
         private static readonly List<BindInputAction> BindInputActions = new();
-        
+
         public static event Action RebindComplete;
         public static event Action RebindCanceled;
         public static event Action RebindEnd;
@@ -61,64 +56,58 @@ namespace Utility.InputSystem
         public static void PushInputAction(InputActions inputActions)
         {
             Debug.Log($"Push InputAction {inputActions.Name}");
-            PushInputActions.Enqueue(inputActions);
-            AsyncPushInputAction();
-        }
-
-        private static async void AsyncPushInputAction()
-        {
-            // Time.fixedDeltaTime
-            await Task.Delay(20);
-
-            lock (LockObject)
-            {
-                if (InputActionsList.Count > 0)
-                {
-                    InputActionsList.Last().SetAction(false);
-                }
-
-                var inputActions = PushInputActions.Dequeue(); // 1 -> 0
-                InputActionsList.Add(inputActions);
-                inputActions.SetAction(true);
-                
-                Debug.Log($"{InputActionsList.Count}\n" +
-                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
-            }
+            QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, true));
+            AsyncQueueInputAction();
         }
 
         public static void PopInputAction(InputActions inputActions)
         {
             Debug.Log($"Pop InputAction {inputActions.Name}");
+            QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, false));
+            AsyncQueueInputAction();
+        }
+
+        private static async void AsyncQueueInputAction()
+        {
+            await Task.Delay(10);
+
             lock (LockObject)
             {
-                if (InputActionsList.Contains(inputActions))
+                var inputActions = QueueInputActions.Dequeue();
+                if (inputActions.Value)
                 {
-                    PopInputActions.Enqueue(inputActions);
-                    AsyncPopInputAction();
+                    if (InputActionsList.Count > 0)
+                    {
+                        InputActionsList.Last().SetAction(false);
+                    }
+                    InputActionsList.Add(inputActions.Key);
+                    inputActions.Key.SetAction(true);
+                    
+                    Debug.Log($"Push {InputActionsList.Count}   {inputActions.Key.Name}\n" +
+                              $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+                }
+                else
+                {
+                    if (!InputActionsList.Contains(inputActions.Key))
+                    {
+                        return;
+                    }
+
+                    inputActions.Key.SetAction(false);
+                    InputActionsList.Remove(inputActions.Key);
+            
+                    Debug.Log($"Pop {InputActionsList.Count}   {inputActions.Key.Name}\n" +
+                              $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+
+                    // 몇초후에 가능하도록 Add
+                    if (InputActionsList.Count > 0)
+                    {
+                        InputActionsList.Last().SetAction(true);
+                    }
                 }
             }
         }
         
-        private static async void AsyncPopInputAction()
-        {
-            // Time.fixedDeltaTime
-            await Task.Delay(20);
-
-            lock (LockObject)
-            {
-                var inputActions = PopInputActions.Dequeue();
-                inputActions.SetAction(false);
-                InputActionsList.Remove(inputActions);
-            
-                Debug.Log($"{InputActionsList.Count}\n" +
-                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
-                // 몇초후에 가능하도록 Add
-                if (InputActionsList.Count > 0)
-                {
-                    InputActionsList.Last().SetAction(true);
-                }
-            }
-        }
 
         public static void SetInputActions(bool isAdd)
         {

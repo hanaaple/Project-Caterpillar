@@ -236,6 +236,11 @@ namespace Utility.Dialogue
                 }
                 else
                 {
+                    if (PlayUIManager.Instance.IsFade())
+                    {
+                        return;
+                    }
+
                     _baseDialogueData.Peek().index++;
                     ProgressDialogue();
                 }
@@ -465,15 +470,47 @@ namespace Utility.Dialogue
                     //Execute
                     // 옵션 실행
                     Debug.Log("즉시(옵션) 실행");
-                    ScriptOption(dialogueElement);
-
-                    if (_isUnfolding)
+                    
+                    // if (option.has tendencyData)
+                    // Debug.Log("더하기");
+                    
+                    
+                    for (var index = 0; index < dialogueElement.option.Length; index++)
                     {
-                        CompleteDialogue();
+                        dialogueElement.option[index] = dialogueElement.option[index].Replace(" ", "");
                     }
 
-                    _baseDialogueData.Peek().index++;
-                    ProgressDialogue();
+                    var fadeOut = Array.Find(dialogueElement.option, item => item.Equals("FadeOut", StringComparison.OrdinalIgnoreCase));
+                    var fadeIn = Array.Find(dialogueElement.option, item => item.Equals("FadeIn", StringComparison.OrdinalIgnoreCase));
+                    if (!string.IsNullOrEmpty(fadeOut))
+                    {
+                        dialoguePanel.SetActive(false);
+                        PlayUIManager.Instance.FadeOut(() =>
+                        {
+                            _baseDialogueData.Peek().index++;
+                            ProgressDialogue();
+                        });
+                    }
+                    else if (!string.IsNullOrEmpty(fadeIn))
+                    {
+                        PlayUIManager.Instance.FadeIn(() =>
+                        {
+                            _baseDialogueData.Peek().index++;
+                            ProgressDialogue();
+                        });
+                    }
+                    else
+                    {
+                        ScriptOption(dialogueElement);
+
+                        _baseDialogueData.Peek().index++;
+                        ProgressDialogue();
+                    }
+
+                    // if (_isUnfolding)
+                    // {
+                    //     CompleteDialogue();
+                    // }
                     break;
                 }
                 default:
@@ -534,7 +571,7 @@ namespace Utility.Dialogue
             // if (option.has tendencyData)
             // Debug.Log("더하기");
 
-            var reset = Array.Find(dialogue.option, item => item.Equals("Reset"));
+            var reset = Array.Find(dialogue.option, item => item.Equals("Reset", StringComparison.OrdinalIgnoreCase));
             if (!string.IsNullOrEmpty(reset))
             {
                 Debug.LogWarning("ResetReset!!");
@@ -556,16 +593,18 @@ namespace Utility.Dialogue
                 return;
             }
 
-            var side = Array.Find(dialogue.option, item => item is "Left" or "Right");
+            var side = Array.Find(dialogue.option,
+                item => item.Equals("Left", StringComparison.OrdinalIgnoreCase) ||
+                        item.Equals("Right", StringComparison.OrdinalIgnoreCase));
 
             Animator animator = null;
             if (!string.IsNullOrEmpty(side))
             {
-                if (side == "Left")
+                if (side.Equals("Left", StringComparison.OrdinalIgnoreCase))
                 {
                     animator = leftAnimator;
                 }
-                else if (side == "Right")
+                else if (side.Equals("Right", StringComparison.OrdinalIgnoreCase))
                 {
                     animator = rightAnimator;
                 }
@@ -1040,7 +1079,6 @@ namespace Utility.Dialogue
                 !playableDirector.playableGraph.IsValid());
 
             yield return waitUntil;
-
 
             Debug.Log("컷씬 끝났다고 판정내림");
 

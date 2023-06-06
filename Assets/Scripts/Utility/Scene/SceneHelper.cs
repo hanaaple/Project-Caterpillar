@@ -2,6 +2,7 @@ using System;
 using Game.Default;
 using UnityEngine;
 using Utility.Core;
+using Utility.Player;
 using Utility.Property;
 
 namespace Utility.Scene
@@ -44,6 +45,7 @@ namespace Utility.Scene
         private void Awake()
         {
             Instance = this;
+            Play();
         }
 
         private void OnValidate()
@@ -58,9 +60,10 @@ namespace Utility.Scene
             playerMoveType = default;
         }
 
-        public void Play()
+        private void Play()
         {
-            PlayUIManager.Instance.SetPlayType(playType);
+            PlayUIManager.Instance.Init(playType);
+            PlayerManager.Instance.Init(playType);
         }
 
         public T GetBindObject<T>(string bindObjectName) where T : UnityEngine.Object

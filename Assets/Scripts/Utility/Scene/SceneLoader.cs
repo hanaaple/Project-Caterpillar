@@ -141,26 +141,15 @@ namespace Utility.Scene
                 return;
             }
             
+            Debug.Log("OnLoadSceneEnd");
+            
             IsLoading = false;
             
-            Debug.Log("OnLoadSceneEnd");
+            TimeScaleHelper.Pop();
+            
             StartCoroutine(Fade(false));
             onLoadSceneEnd?.Invoke();
             onLoadSceneEnd = () => { };
-
-            PlayUIManager.Instance.dialogueController.cutSceneImage.SetActive(false);
-            PlayerManager.Instance.UpdateCamera();
-            
-            var sceneHelper = FindObjectOfType<SceneHelper>();
-            if (sceneHelper)
-            {
-                sceneHelper.Play();
-            }
-            else
-            {
-                Debug.LogWarning($"In Scene - {SceneManager.GetActiveScene().name}, There is no SceneHelper");
-            }
-            TimeScaleHelper.Pop();
             SceneManager.sceneLoaded -= LoadSceneEnd;
         }
 

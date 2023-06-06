@@ -50,16 +50,6 @@ namespace Utility.Player
             return Instantiate(playerManagerPrefab);
         }
 
-        private void OnEnable()
-        {
-            InputManager.PushInputAction(_inputActions);
-        }
-
-        private void OnDisable()
-        {
-            InputManager.PopInputAction(_inputActions);
-        }
-
         private void Awake()
         {
             _inputActions = new InputActions(nameof(Utility.Player.Player))
@@ -84,12 +74,13 @@ namespace Utility.Player
             };
         }
 
-        private void Start()
+        public void Init(PlayType playType)
         {
+            Push(playType);
             UpdateCamera();
         }
 
-        public void UpdateCamera()
+        private void UpdateCamera()
         {
             if (SceneHelper.Instance.playerMoveType == PlayerMoveType.None)
             {
@@ -105,6 +96,19 @@ namespace Utility.Player
                 _yScreenHalfSize = _camera.orthographicSize;
                 _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
             }
+        }
+        
+        public void Push(PlayType playType)
+        {
+            if (playType is PlayType.MainField or PlayType.StageField)
+            {
+                InputManager.PushInputAction(_inputActions);
+            }
+        }
+
+        public void Pop()
+        {
+            InputManager.PopInputAction(_inputActions);
         }
 
         public void SetPlayer(Player mPlayer = null)

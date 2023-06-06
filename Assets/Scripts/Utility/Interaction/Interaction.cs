@@ -452,26 +452,20 @@ namespace Utility.Interaction
                                     continue;
                                 }
 
-                                if (dialogueElement.option.Contains("Hold", StringComparer.OrdinalIgnoreCase))
-                                {
-                                    interaction.dialogueData.dialogueElements[idx].extrapolationMode =
-                                        DirectorWrapMode.Hold;
-                                }
-                                else
-                                {
-                                    interaction.dialogueData.dialogueElements[idx].extrapolationMode =
-                                        DirectorWrapMode.None;
-                                }
+                                interaction.dialogueData.dialogueElements[idx].extrapolationMode =
+                                    dialogueElement.option.Contains("Hold", StringComparer.OrdinalIgnoreCase)
+                                        ? DirectorWrapMode.Hold
+                                        : DirectorWrapMode.None;
 
-                                var digitOptions = Array.FindAll(dialogueElement.option,
-                                    item => item.Any(char.IsDigit));
-                                var floatOptions = digitOptions.Select(float.Parse);
-                                var floats = floatOptions as float[] ?? floatOptions.ToArray();
-
+                                
+                                //  var digitOptions = Array.FindAll(dialogueElement.option,
+                                //      item => item.Any(char.IsDigit));
+                                // var floats = digitOptions.Select(float.Parse).ToArray();
+                                var floats = dialogueElement.option.Where(item => float.TryParse(item, out _)).Select(float.Parse).ToArray();
                                 interaction.dialogueData.dialogueElements[idx].waitSec =
                                     floats.Length == 1 ? floats[0] : 0f;
 
-                                if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
+                                if (dialogueElement.option.Any(item => item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
                                 {
                                     var timelinePath = Array
                                         .Find(dialogueElement.option, item => item.Contains("name="))

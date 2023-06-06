@@ -1941,7 +1941,7 @@ MonoBehaviour:
   - interactType: 1
     animator: {fileID: 0}
     state: 0
-    jsonAsset: {fileID: 4900000, guid: 40a3e34f4610a154d91202026561c4cd, type: 3}
+    jsonAsset: {fileID: 4900000, guid: 1775635469b24b040b6ca14a5f17001f, type: 3}
     dialogueData:
       index: 0
       dialogueElements:
@@ -2161,14 +2161,14 @@ MonoBehaviour:
         interactionWaitType: 1
         waitInteractions:
           waitInteractions:
-          - interaction: {fileID: 136625574}
+          - interaction: {fileID: 1854005710}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
-          - interaction: {fileID: 1854005710}
+          - interaction: {fileID: 136625574}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
@@ -2248,6 +2248,24 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
+    miniGame: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 1
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: 7ac7ab1bcbed88e4686d28d6854058b0, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
       - name: 0
         subject: 
         contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC0AC\uC9C4\uC0AC\uAC00
@@ -2258,10 +2276,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' -1'
+        - ' name=Stage 1/3 Beach/Standing to Camera'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: ce1ee2e1bc42e904a824f810f1c66bf5, type: 2}
+        playableAsset: {fileID: 11400000, guid: 5c8d3b4891e909645bb6841e0c192506, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -2296,11 +2315,12 @@ MonoBehaviour:
         dialogueType: 6
         expression: 0
         option:
-        - -1.000000
+        - ' -1'
+        - " name=Stage 1/\uCE74\uBA54\uB77C \uC154\uD130"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: ac5b5c2e555bbf9429aa3e7fc09ee5e5, type: 2}
+        playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
@@ -2334,11 +2354,12 @@ MonoBehaviour:
         dialogueType: 6
         expression: 0
         option:
-        - -1.000000
+        - ' -1'
+        - " name=Stage 1/\uCE74\uBA54\uB77C \uC154\uD130"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: ac5b5c2e555bbf9429aa3e7fc09ee5e5, type: 2}
+        playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
@@ -2356,9 +2377,9 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: ac5b5c2e555bbf9429aa3e7fc09ee5e5, type: 2}
-        extrapolationMode: 2
-        waitSec: -1
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -2373,10 +2394,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' 3'
+        - " name=Stage 1/3 Beach/#1 \uC0C8 \uBD80\uB463\uAC00 \uB4F1\uB300"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7dbd0dd968ae0dc42a2e38683bad9cad, type: 2}
+        playableAsset: {fileID: 11400000, guid: 03caf705fb5747044ac7ac299554bfdd, type: 2}
         extrapolationMode: 0
         waitSec: 3
         interaction: {fileID: 0}
@@ -2384,33 +2406,12 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 4
+      - name: 0
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "\xB7\xB7\xB7\uC88B\uC544. \uC774 \uC0AC\uC9C4\uC740 \uAF2D\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Left
-        - ' Appear'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 6
-        subject: "\uAC15\uC544\uC9C0"
-        contents: "\uCEF9!"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Right
-        - ' Appear'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2423,18 +2424,17 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: 
-        contents: 
-        dialogueType: 11
+        subject: "\uAC15\uC544\uC9C0"
+        contents: "\uCEF9!"
+        dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 69e5bff2576ca5b43b7a3a4b5e0208bb, type: 2}
+        playableAsset: {fileID: 0}
         extrapolationMode: 0
-        waitSec: 1.5
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -2450,10 +2450,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' 1.5'
+        - " name=Stage 1/3 Beach/#2 \uCE74\uBA54\uB77C \uC9C4\uB3D9"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 69e5bff2576ca5b43b7a3a4b5e0208bb, type: 2}
+        playableAsset: {fileID: 11400000, guid: 2ac6b0fec1c57c044b62d4f43c00a318, type: 2}
         extrapolationMode: 0
         waitSec: 1.5
         interaction: {fileID: 0}
@@ -2461,38 +2462,18 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 4
+      - name: 0
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "\xB7\xB7\xB7\uC548\uB3FC! \uCE74\uBA54\uB77C\uAC00!"
         dialogueType: 1
         expression: 0
-        option:
-        - Left
-        - Appear
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 
-        dialogueType: 11
-        expression: 0
-        option:
-        - Reset
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 2ef21ba1a177e034d9de8e2d36986808, type: 2}
-        extrapolationMode: 0
-        waitSec: -1
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -2507,10 +2488,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' -1'
+        - ' name=Stage 1/3 Beach/Standing to Default'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 2ef21ba1a177e034d9de8e2d36986808, type: 2}
+        playableAsset: {fileID: 11400000, guid: b9a6be65a7744dc468075cea4a156709, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -2525,7 +2507,6 @@ MonoBehaviour:
         expression: 0
         option:
         - Reset
-        - ' -1'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2544,7 +2525,7 @@ MonoBehaviour:
         expression: 0
         option:
         - Right
-        - Appear
+        - ' Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2563,7 +2544,7 @@ MonoBehaviour:
         expression: 0
         option:
         - Left
-        - Appear
+        - ' Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2768,7 +2749,7 @@ MonoBehaviour:
       - name: 0
         subject: 
         contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC0AC\uC9C4\uC0AC\uAC00
-          \uBC14\uB2E4\uB85C \uC774\uB3D9\uD55C\uB2E4."
+          \uD574\uBCC0\uC73C\uB85C \uC774\uB3D9\uD55C\uB2E4."
         dialogueType: 7
         expression: 0
         option: []
@@ -2784,7 +2765,25 @@ MonoBehaviour:
             isWaitClear: 0
         playableAsset: {fileID: 0}
         extrapolationMode: 0
-        waitSec: -1
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: FadeOut
+        dialogueType: 11
+        expression: 0
+        option:
+        - FadeOut
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0

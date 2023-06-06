@@ -10,12 +10,6 @@ namespace Utility.InputSystem
     /// </summary>
     public class InputActions
     {
-        public enum ActionType
-        {
-            UiAction,
-            PlayerAction
-        }
-
         public readonly string Name;
 
         public Action<bool> OnActive;
