@@ -8,6 +8,6 @@ namespace Game.Default
     {
         [TextArea] public string[] toastContents;
 
-        [NonSerialized] public bool isToasted;
+        [NonSerialized] public bool IsToasted;
     }
 }
