@@ -53,29 +53,28 @@ namespace Utility.Core
             return Instantiate(playUIManagerPrefab);
         }
 
-        private void Awake()
+        public void Init(PlayType playType)
         {
-            var sceneHelper = FindObjectOfType<SceneHelper>();
-            sceneHelper.Play();
+            SetPlayType(playType);
+            dialogueController.cutSceneImage.SetActive(false);
+            fadeImage.gameObject.SetActive(false);
         }
 
-        public void SetPlayType(PlayType playType)
+        private void SetPlayType(PlayType playType)
         {
-            if (playType == PlayType.None)
+            switch (playType)
             {
-                inventoryManager.SetEnable(false);
-            }
-            else if (playType == PlayType.MainField)
-            {
-                inventoryManager.SetEnable(true);
-            }
-            else if (playType == PlayType.StageField)
-            {
-                inventoryManager.SetEnable(false);
-            }
-            else if (playType == PlayType.MiniGame)
-            {
-                inventoryManager.SetEnable(false);
+                case PlayType.None:
+                case PlayType.StageField:
+                case PlayType.MiniGame:
+                    inventoryManager.SetEnable(false);
+                    inventoryManager.SetEnable(false);
+                    break;
+                case PlayType.MainField:
+                    inventoryManager.SetEnable(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(playType), playType, null);
             }
         }
 

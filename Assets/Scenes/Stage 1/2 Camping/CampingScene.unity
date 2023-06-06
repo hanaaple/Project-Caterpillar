@@ -1811,7 +1811,7 @@ MonoBehaviour:
   - interactType: 1
     animator: {fileID: 0}
     state: 0
-    jsonAsset: {fileID: 4900000, guid: fd984d5b3084f8b4880fe3b15e021433, type: 3}
+    jsonAsset: {fileID: 4900000, guid: 8bacdc5079022914699e46047d83aac2, type: 3}
     dialogueData:
       index: 0
       dialogueElements:
@@ -1825,10 +1825,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' 2'
+        - " name=Stage 1/2 Camping/#0 \uC232 \uC18D \uBC24\uD558\uB298"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 51b2210aaeaa1c547a4bd41e2a0973cc, type: 2}
+        playableAsset: {fileID: 11400000, guid: 802564c2cc37bdb4fb486161c6729d64, type: 2}
         extrapolationMode: 0
         waitSec: 2
         interaction: {fileID: 0}
@@ -2100,6 +2101,24 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
+    miniGame: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 1
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: 69f7c164587917e43b418e0336e4c885, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
       - name: 0
         subject: 
         contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC0AC\uC9C4\uC0AC\uAC00
@@ -2110,10 +2129,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' -1'
+        - ' name=Stage 1/2 Camping/Standing to Camera'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7cda7b0649968624595b30425be67f86, type: 2}
+        playableAsset: {fileID: 11400000, guid: 2d37f74e2774c9345b9adc6ce0f487e2, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -2148,11 +2168,12 @@ MonoBehaviour:
         dialogueType: 6
         expression: 0
         option:
-        - -1.000000
+        - ' -1'
+        - " name=Stage 1/\uCE74\uBA54\uB77C \uC154\uD130"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: f1a655c653c64cc4b8864564ae9c01ba, type: 2}
+        playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
@@ -2185,11 +2206,12 @@ MonoBehaviour:
         dialogueType: 6
         expression: 0
         option:
-        - -1.000000
+        - ' -1'
+        - " name=Stage 1/\uCE74\uBA54\uB77C \uC154\uD130"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: f1a655c653c64cc4b8864564ae9c01ba, type: 2}
+        playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
@@ -2203,6 +2225,60 @@ MonoBehaviour:
         dialogueType: 1
         expression: 0
         option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: FadeOut
+        dialogueType: 11
+        expression: 0
+        option:
+        - FadeOut
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: FadeIn
+        dialogueType: 11
+        expression: 0
+        option:
+        - FadeIn
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2231,12 +2307,14 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 4
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "\xB7\xB7\xB7\uC18C\uB780\uC2A4\uB7FD\uB124."
         dialogueType: 1
         expression: 0
-        option: []
+        option:
+        - Left
+        - ' Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2256,11 +2334,12 @@ MonoBehaviour:
         dialogueType: 6
         expression: 0
         option:
-        - -1.000000
+        - ' -1'
+        - " name=Stage 1/\uCE74\uBA54\uB77C \uC154\uD130"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: f1a655c653c64cc4b8864564ae9c01ba, type: 2}
+        playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         waitSec: -1
         interaction: {fileID: 0}
@@ -2487,10 +2566,11 @@ MonoBehaviour:
         option:
         - Hold
         - ' -1'
+        - ' name=Stage 1/2 Camping/Standing to Default'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 4a29bc8e990fedc4e9325f03e12e88ad, type: 2}
+        playableAsset: {fileID: 11400000, guid: ab5575033fbe71b4797a095e5715fe2b, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -2532,10 +2612,12 @@ MonoBehaviour:
         option:
         - Hold
         - ' 3'
+        - " name=Stage 1/2 Camping/#2 \uC232 \uC18D \uCEA0\uD551 \uCE74 \uBAA8\uAE30
+          \uACF5\uACA9"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: fb35c79b665acd645bc8d6e6755a86cf, type: 2}
+        playableAsset: {fileID: 11400000, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
         extrapolationMode: 0
         waitSec: 3
         interaction: {fileID: 0}
@@ -2543,15 +2625,13 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 4
+      - name: 0
         subject: "\uC0AC\uC9C4\uC0AC"
         contents: "\uC774\uAC8C\xB7\xB7\xB7 \uB300\uCCB4 \uC5B4\uB5BB\uAC8C \uB41C
           \uC77C\uC774\uC9C0?"
         dialogueType: 1
         expression: 0
-        option:
-        - Left
-        - ' Appear'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2601,31 +2681,11 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "(\uCEF7 \uC52C)> (\uC218\uB85D \uAC8C\uC7842): \u2018\uC232\uC18D\uC5D0\uC11C\u2019
-          (\uD37C\uC990 \uAC8C\uC784)"
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: ca977039884d5aa4ca3acb7f5860258e, type: 2}
-        extrapolationMode: 0
-        waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 
+        contents: FadeOut
         dialogueType: 11
         expression: 0
         option:
-        - Reset
+        - FadeOut
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
