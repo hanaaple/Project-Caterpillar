@@ -8,7 +8,7 @@ namespace Utility.Drag_Drop
     {
         [SerializeField] private Canvas canvas;
         [SerializeField] private bool isInteractable;
-
+        
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
 

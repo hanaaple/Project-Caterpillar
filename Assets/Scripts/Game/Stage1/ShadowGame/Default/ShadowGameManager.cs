@@ -150,7 +150,7 @@ namespace Game.Stage1.ShadowGame.Default
                 InputManager.PopInputAction(_tutorialInputActions);
                 StartCoroutine(StartGame());
             });
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("MainScene"); });
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
             retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
@@ -176,6 +176,8 @@ namespace Game.Stage1.ShadowGame.Default
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;
+            
+            flashlight.SetFlashLightPos(Vector3.zero);
             
             stageAnimator.SetTrigger(ResetHash);
             stageAnimator.SetInteger(StageIndexHash, stageIndex);

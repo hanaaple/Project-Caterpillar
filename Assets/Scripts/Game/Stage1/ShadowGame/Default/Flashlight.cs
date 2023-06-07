@@ -87,7 +87,7 @@ namespace Game.Stage1.ShadowGame.Default
             subLight.intensity = (intensity - globalLight.intensity) * 0.6f;
         }
     
-        private void SetFlashLightPos(Vector3 followPos)
+        public void SetFlashLightPos(Vector3 followPos)
         {
             followPos = Vector3.Lerp(mainLight.transform.position, followPos, 1);
             mainLight.transform.position = followPos;
