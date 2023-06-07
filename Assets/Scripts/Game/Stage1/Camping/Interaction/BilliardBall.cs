@@ -57,6 +57,7 @@ namespace Game.Stage1.Camping.Interaction
         private static readonly int LeftHash = Animator.StringToHash("Left");
         private static readonly int RightHash = Animator.StringToHash("Right");
         private static readonly int ResetHash = Animator.StringToHash("Reset");
+        private static readonly int DefaultHash = Animator.StringToHash("Default");
 
         private void OnMouseUp()
         {
@@ -85,12 +86,12 @@ namespace Game.Stage1.Camping.Interaction
             up.onClick.AddListener(() =>
             {
                 billiardBallAnimator.SetTrigger(UpHash);
-                PushInput(Vector2.up);
+                PushInput(Vector2.down);
             });
             down.onClick.AddListener(() =>
             {
                 billiardBallAnimator.SetTrigger(DownHash);
-                PushInput(Vector2.down);
+                PushInput(Vector2.up);
             });
             left.onClick.AddListener(() =>
             {
@@ -141,11 +142,13 @@ namespace Game.Stage1.Camping.Interaction
                 billiardBallAnimator.SetTrigger(ResetHash);
                 _pos = Vector2.one;
             }
+            Debug.Log($"위치: {_pos}");
 
             var billiardBallIcon = Array.Find(billiardBallIcons,
                 item => Mathf.Approximately(Vector2.Distance(item.iconPos, _pos), 0f));
             if (billiardBallIcon == null)
             {
+                billiardBallAnimator.SetTrigger(DefaultHash);
                 return;
             }
 

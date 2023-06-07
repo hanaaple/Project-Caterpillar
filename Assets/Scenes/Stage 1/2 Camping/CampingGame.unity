@@ -648,7 +648,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1836, y: 1030}
+  m_SizeDelta: {x: 1833, y: 1033}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &68558443
 MonoBehaviour:
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02cfb75ab8ec54ae9bf786e6bea7bcf5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b1ac545b8476b4745b87051a65a8a5cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5754,11 +5754,11 @@ MonoBehaviour:
   - iconType: 0
     iconPos: {x: 0, y: 3}
   - iconType: 1
-    iconPos: {x: 3, y: 1}
+    iconPos: {x: 4, y: 2}
   - iconType: 2
     iconPos: {x: 2, y: 4}
   - iconType: 3
-    iconPos: {x: 4, y: 2}
+    iconPos: {x: 3, y: 1}
   toastData:
   - toastContents:
     - "\xB7\xB7\xB7\uB2F9\uAD6C\uACF5\uC778\uC904 \uC54C\uC558\uB294\uB370. \uC774\uAC70\xB7\xB7\xB7

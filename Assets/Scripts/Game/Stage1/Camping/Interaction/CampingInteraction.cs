@@ -13,9 +13,9 @@ namespace Game.Stage1.Camping.Interaction
         
         public Action<bool> setInteractable;
 
-        public virtual void ResetInteraction()
+        public virtual void ResetInteraction(bool isGameReset = false)
         {
-            if (isHint)
+            if (isGameReset && isHint)
             {
                 hint.SetHint(false);
             }

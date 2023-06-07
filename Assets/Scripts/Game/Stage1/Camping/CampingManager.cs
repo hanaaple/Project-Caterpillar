@@ -92,8 +92,9 @@ namespace Game.Stage1.Camping
                         }
                     }
                 };
-                interaction.ResetInteraction();
             }
+
+            ResetGame();
 
             Play();
         }
@@ -138,7 +139,7 @@ namespace Game.Stage1.Camping
         {
             foreach (var t in interactions)
             {
-                t.ResetInteraction();
+                t.ResetInteraction(true);
             }
         }
     }

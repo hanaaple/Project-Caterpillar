@@ -31,9 +31,9 @@ namespace Game.Stage1.Camping.Interaction.Diary
             };
         }
 
-        public override void ResetInteraction()
+        public override void ResetInteraction(bool isGameReset = false)
         {
-            base.ResetInteraction();
+            base.ResetInteraction(isGameReset);
             diary.Reset();
             bag.Reset();
             tornDiary.gameObject.SetActive(false);
