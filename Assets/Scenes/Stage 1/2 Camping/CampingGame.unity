@@ -6386,6 +6386,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
     m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
+    m_ActionName: Input/Inventory[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Input
@@ -6419,7 +6423,7 @@ GameObject:
   - component: {fileID: 1034909031}
   - component: {fileID: 1034909030}
   m_Layer: 0
-  m_Name: Animal Dictionary (Interact)
+  m_Name: Animal Dictionary (Interact) (Toast)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6533,7 +6537,8 @@ MonoBehaviour:
   isHint: 1
   hint: {fileID: 77624797}
   showPanel: {fileID: 753625484}
-  toastContents: []
+  toastContents:
+  - "\uD398\uC774\uC9C0 \uD45C\uC2DC\uAC00\xB7\xB7\xB7. \uCD9C\uD310 \uC624\uB958\uC778\uAC00?"
 --- !u!1 &1039155668
 GameObject:
   m_ObjectHideFlags: 0
