@@ -23,6 +23,7 @@ namespace Utility.InputSystem
 
         // Player
         public Action<InputAction.CallbackContext> OnInteract;
+        public Action<InputAction.CallbackContext> OnInventory;
         public Action<InputAction.CallbackContext> OnMovePerformed;
         public Action<InputAction.CallbackContext> OnMoveCanceled;
 
@@ -68,6 +69,9 @@ namespace Utility.InputSystem
                 if (OnInteract != null)
                     inputActions.Interact.performed += OnInteract;
 
+                if (OnInventory != null)
+                    inputActions.Interact.performed += OnInventory;
+
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed += OnAnyKey;
 
@@ -101,6 +105,9 @@ namespace Utility.InputSystem
                 if (OnInteract != null)
                     inputActions.Interact.performed -= OnInteract;
 
+                if (OnInventory != null)
+                    inputActions.Interact.performed -= OnInventory;
+                
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed -= OnAnyKey;
                 

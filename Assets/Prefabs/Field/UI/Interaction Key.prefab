@@ -206,16 +206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a71588ab6f6cd4f8781bc72dbf2489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 908093582893162563, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
-  selectedBinding: 1
+  inputActionReference: {fileID: -2649987638226354437, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  selectedBinding: 0
   inputBinding:
     m_Name: 
-    m_Id: b628fb78-7650-434d-baa0-a277a0269567
+    m_Id: c1b23c73-480a-4f7b-a413-ddc94ef48804
     m_Path: <Keyboard>/z
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Execute
+    m_Action: Interact
     m_Flags: 0
   bindText: {fileID: 7025289807206387242}
 --- !u!1 &6629138260842145205
