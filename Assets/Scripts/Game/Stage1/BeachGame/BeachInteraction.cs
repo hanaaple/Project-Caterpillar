@@ -1,10 +1,14 @@
 using System;
+using Game.Default;
 using UnityEngine;
+using Utility.Scene;
 
 namespace Game.Stage1.BeachGame
 {
     public class BeachInteraction : MonoBehaviour
     {
+        [SerializeField] private ToastData toastData;
+        
         [NonSerialized] public bool Interactable;
         [NonSerialized] public bool IsStop;
 
@@ -26,6 +30,16 @@ namespace Game.Stage1.BeachGame
 
             Debug.Log("Interact");
 
+            if (!toastData.IsToasted)
+            {
+                foreach (var content in toastData.toastContents)
+                {
+                    SceneHelper.Instance.toastManager.Enqueue(content);
+                }
+
+                toastData.IsToasted = true;
+            }
+            
             onInteract?.Invoke();
         }
     }

@@ -432,6 +432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &50928912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1499,6 +1501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!212 &196935027
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2277,6 +2281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &324229688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2375,6 +2381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!212 &331391140
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4105,6 +4113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &543306444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5922,6 +5932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &825573860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7261,6 +7273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &951992076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7359,6 +7373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!212 &956470861
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9074,6 +9090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &1291371846
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9508,6 +9526,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents:
+    - "\uC774\uB7F0, \uD30C\uD3B8\uC774\xB7\xB7\xB7! \uD06C\uAC8C \uB2E4\uCE58\uAE30
+      \uC804\uC5D0 \uCE58\uC6CC\uC57C\uACA0\uC5B4."
+    - "\xB7\xB7\xB7\uC794\uC740 \uC870\uAC01\uC744 \uB9DE\uCDB0\uBCF8\uB2E4\uACE0
+      \uD574\uB3C4 \uB354 \uC774\uC0C1 \uCC98\uC74C \uAC19\uC9C0\uB294 \uC54A\uACA0\uC9C0."
 --- !u!61 &1326800358
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11388,6 +11412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &1712760421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12420,6 +12446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &1799926740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12680,6 +12708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!61 &1844516352
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12804,6 +12834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents:
+    - "\uD070 \uD30C\uD3B8\uB4E4\uC740 \uB2E4 \uC8FC\uC6B4 \uAC83 \uAC19\uC9C0\uB9CC\xB7\xB7\xB7"
+    - "\uD639\uC2DC \uBAA8\uB974\uB2C8 \uC774\uACF3\uC740 \uB2E4\uC2DC \uC9C0\uB0A0
+      \uC77C\uC774 \uC5C6\uB3C4\uB85D \uD574\uC57C\uC9C0."
 --- !u!61 &1862489701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14128,11 +14163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5652557014501901562, guid: d680fda88eb594a488f14f0d788570c0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 700
+      value: 580
       objectReference: {fileID: 0}
     - target: {fileID: 5652557014501901562, guid: d680fda88eb594a488f14f0d788570c0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 490
       objectReference: {fileID: 0}
     - target: {fileID: 5652557014501901562, guid: d680fda88eb594a488f14f0d788570c0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14234,18 +14269,30 @@ MonoBehaviour:
   - {fileID: 518477195}
   beachInteractions:
   - beachInteractType: 2
-    krName: "\uBE44\uCE58\uBCFC"
+    toastData:
+      toastContents:
+      - "\uC791\uC740 \uC790\uADF9\uC5D0\uB3C4 \uD130\uC838\uBC84\uB9B4 \uC904\uC740
+        \uBAB0\uB790\uB294\uB370\xB7\xB7\xB7."
+      - "\uB354 \uC18C\uC911\uD788 \uB2E4\uB8E8\uC5C8\uC5B4\uC57C \uD588\uC5B4."
     interactions:
     - {fileID: 543306443}
     - {fileID: 1799926739}
     - {fileID: 951992075}
     - {fileID: 1712760420}
   - beachInteractType: 1
-    krName: "\uCE75\uD14C\uC77C"
+    toastData:
+      toastContents:
+      - "\uB9C8\uC57C\uC640 \uC885\uC885 \uAC19\uC774 \uC990\uAE30\uB358 \uCE75\uD14C\uC77C\uC774\uC57C."
+      - "\xB7\xB7\xB7\uD5A5\uC774 \uC88B\uC558\uB358 \uAC83\uC73C\uB85C \uAE30\uC5B5\uD558\uB294\uB370,
+        \uC775\uC219\uD574\uC84C\uB294\uC9C0 \uC798 \uB290\uAEF4\uC9C0\uC9C0\uAC00
+        \uC54A\uB124."
     interactions:
     - {fileID: 1844516351}
   - beachInteractType: 0
-    krName: "\uC18C\uB77C\uACE0\uB3D9"
+    toastData:
+      toastContents:
+      - "\uC774 \uC21C\uAC04\uC774 \uC601\uC6D0\uD558\uBA74 \uC88B\uACA0\uC5B4."
+      - "\xB7\xB7\xB7\uAC00\uB2A5\uD558\uC9C0\uB294 \uC54A\uACA0\uC9C0\uB9CC."
     interactions:
     - {fileID: 1291371845}
     - {fileID: 956470860}
@@ -14253,16 +14300,25 @@ MonoBehaviour:
     - {fileID: 331391139}
     - {fileID: 196935026}
   - beachInteractType: 3
-    krName: "\uC0BD"
+    toastData:
+      toastContents:
+      - "\uD1A0\uBBF8\uAC00 \uBD80\uD0C1\uD588\uB358\xB7\xB7\xB7, \uC5B4\uB5A4 \uAC83\uC774
+        \uB098\uC744\uAE4C \uACE0\uBBFC\uD558\uB2E4\uAC00"
+      - "\u2018\uC774\uBBF8 \uB108\uBB34 \uB2A6\uC5B4\uBC84\uB838\uC5B4\uC694!\u2019
+        \xB7\xB7\xB7\uB77C\uB294 \uC18C\uB9AC\uB9CC \uB4E4\uC5C8\uC9C0."
     interactions:
     - {fileID: 50928911}
   - beachInteractType: 4
-    krName: "\uAE43\uBC1C"
+    toastData:
+      toastContents:
+      - "(\uC544\uB4E4\uC774\uB984)\uC774 \uC88B\uC544\uD558\uB358 \uBAA8\uB798\uC131\uC774\uC5C8\uB294\uB370\xB7\xB7\xB7."
+      - "\uB0B4\uC2E4\uC758 \uBB38\uC81C\uC600\uC744\uAE4C?"
     interactions:
     - {fileID: 825573859}
     - {fileID: 324229687}
   - beachInteractType: 5
-    krName: "\uC720\uB9AC \uD30C\uD3B8"
+    toastData:
+      toastContents: []
     interactions:
     - {fileID: 1862489700}
     - {fileID: 1326800357}
@@ -14276,6 +14332,11 @@ MonoBehaviour:
   - {fileID: 2084389}
   - {fileID: 101867169}
   - {fileID: 335738038}
+  endToastData:
+    toastContents:
+    - "\xB7\xB7\xB7\uC774\uC81C\uB294 \uB3CC\uC544\uAC00\uC57C\uACA0\uC9C0."
+    - "\uB9C8\uC9C0\uB9C9\uC73C\uB85C <b>\uAE30\uC5B5\uC758 \uD55C \uCF20</b>\uC5D0
+      \uB2F4\uC544\uB454 \uC21C\uAC04\uB4E4\uC744 \uB418\uC0C8\uACA8\uBCF4\uC790."
 --- !u!4 &2064822078
 Transform:
   m_ObjectHideFlags: 0
@@ -14363,6 +14424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdcb61dd2c0bd46b0e2be5f597824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastData:
+    toastContents: []
 --- !u!212 &2066295573
 SpriteRenderer:
   m_ObjectHideFlags: 0

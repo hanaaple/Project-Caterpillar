@@ -26,7 +26,7 @@ namespace Game.Stage1.BeachGame
         private class BeachInteractions
         {
             public BeachInteractType beachInteractType;
-            public string krName;
+            public ToastData toastData;
 
             public BeachInteraction[] interactions;
             [NonSerialized] public bool IsClear;
@@ -40,6 +40,8 @@ namespace Game.Stage1.BeachGame
         [Header("Album UI")] [SerializeField] private Button albumButton;
         [SerializeField] private Animator albumAnimator;
         [SerializeField] private AlbumPicture[] albumPictures;
+
+        [SerializeField] private ToastData endToastData;
         
         private static readonly int OpenHash = Animator.StringToHash("Open");
 
@@ -117,7 +119,16 @@ namespace Game.Stage1.BeachGame
                                     item => item.beachInteractType == interactions.beachInteractType);
                                 albumPicture.SetPanel(PictureState.Clear);
 
-                                SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
+                                if (!interactions.toastData.IsToasted)
+                                {
+                                    foreach (var content in interactions.toastData.toastContents)
+                                    {
+                                        SceneHelper.Instance.toastManager.Enqueue(content);
+                                    }
+
+                                    interactions.toastData.IsToasted = true;
+                                }
+                                // SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
 
                                 var isGameClear = beachInteractions.All(item => item.IsClear);
                                 var isClearCount = beachInteractions.Count(item => item.IsClear);
@@ -147,7 +158,15 @@ namespace Game.Stage1.BeachGame
                                 {
                                     interactions.IsClear = true;
 
-                                    SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
+                                    if (!interactions.toastData.IsToasted)
+                                    {
+                                        foreach (var content in interactions.toastData.toastContents)
+                                        {
+                                            SceneHelper.Instance.toastManager.Enqueue(content);
+                                        }
+
+                                        interactions.toastData.IsToasted = true;
+                                    }
 
                                     var isGameClear = beachInteractions.All(item => item.IsClear);
                                     var isClearCount = beachInteractions.Count(item => item.IsClear);
@@ -172,6 +191,7 @@ namespace Game.Stage1.BeachGame
 
         private void GameStart()
         {
+            albumButton.gameObject.SetActive(true);
             watchDragger.Reseet();
             foreach (var albumPicture in albumPictures)
             {
@@ -187,7 +207,21 @@ namespace Game.Stage1.BeachGame
 
             StopAllCoroutines();
 
-            albumAnimator.SetTrigger("GameEnd");
+            if (!endToastData.IsToasted)
+            {
+                foreach (var content in endToastData.toastContents)
+                {
+                    SceneHelper.Instance.toastManager.Enqueue(content);
+                }
+
+                endToastData.IsToasted = true;
+            }
+
+            SceneHelper.Instance.toastManager.onToastEnd = () =>
+            {
+                albumButton.gameObject.SetActive(false);
+                albumAnimator.SetTrigger("GameEnd");
+            };
         }
 
         private IEnumerator HintTimer()
@@ -199,7 +233,7 @@ namespace Game.Stage1.BeachGame
                 albumPicture.SetPanel(PictureState.Active);
             }
 
-            SceneHelper.Instance.toastManager.Enqueue("앨범 활성화");
+            SceneHelper.Instance.toastManager.Enqueue("···? 앨범이 변화한 거 같아.");
         }
 
         private IEnumerator ChangeBackground()
