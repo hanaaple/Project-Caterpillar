@@ -1085,7 +1085,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "(\uCC45\uC73C\uB85C \uAC00\uB4DD\uD55C \uCC45\uC7A5. \uD765\uBBF8
           \uC5C6\uB294 \uCC45\uB4E4\uB85C \uAC00\uB4DD\uD558\uB2E4.)"
         dialogueType: 1
@@ -1105,7 +1105,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7? \uC774\uB7F0 \uAC83\uC774 \uC788\uC5C8\uB098?"
         dialogueType: 1
         expression: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -1215,7 +1215,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "(\uCC45\uC73C\uB85C \uAC00\uB4DD\uD55C \uCC45\uC7A5. \uD765\uBBF8
           \uC5C6\uB294 \uCC45\uB4E4\uB85C \uAC00\uB4DD\uD558\uB2E4.)"
         dialogueType: 1
@@ -1549,7 +1549,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7\uC2EC\uC2EC\uD558\uB2E4. TV\uB098 \uBCFC\uAE4C\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
@@ -1756,7 +1756,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uB274\uC2A4\uB294 \uC7AC\uBBF8\uC5C6\uC5B4."
         dialogueType: 1
         expression: 0
@@ -1856,7 +1856,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -1875,7 +1875,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uB274\uC2A4\uB294 \uC7AC\uBBF8\uC5C6\uC5B4."
         dialogueType: 1
         expression: 0
@@ -1892,7 +1892,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uADF8\uB9BC\uC774\uB098 \uADF8\uB9B4\uAE4C\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
@@ -1993,7 +1993,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\u2026\uC88B\uC544. \uB098\uC911\uC5D0 \uBD80\uBAA8\uB2D8\uAED8
           \uBCF4\uC5EC\uB4DC\uB824\uC57C\uC9C0."
         dialogueType: 1
@@ -2013,7 +2013,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC544\uB4E4! \uC900\uBE44\uB294 \uB2E4 \uB418\uC5C8\uB2C8?"
         dialogueType: 1
         expression: 0
@@ -2030,7 +2030,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uB124!"
         dialogueType: 1
         expression: 0
@@ -2047,7 +2047,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7\uD070\uC77C\uC774\uB2E4. \uBE68\uB9AC \uC900\uBE44\uD574\uC57C
           \uD574."
         dialogueType: 1
@@ -2129,7 +2129,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7\uC5B4\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
@@ -2168,7 +2168,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\xB7\xB7\xB7\uC815\uC804? \uC5B4\uB450\uC6CC\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -2205,7 +2205,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uC73C\xB7\xB7\xB7 \uC73C\uC73C\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -2222,7 +2222,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uC544\uBE60?! \uC544\uBE60! \uBD88 \uC880 \uCF1C\uC8FC\uC138\uC694!
           \uBB34\uC11C\uC6CC\uC694!"
         dialogueType: 1
@@ -2240,8 +2240,8 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "(\uC544\uB4E4 \uC774\uB984)?! \uC624, \uC774\uB7F0\xB7\xB7\xB7."
+        subject: "\uC544\uC774\uC791"
+        contents: "\uD1A0\uBBF8?! \uC624, \uC774\uB7F0\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
         option:
@@ -2259,7 +2259,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC820\uC7A5\xB7\xB7\xB7. \uC791\uC5C5\uBB3C\uB4E4\uC774\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
@@ -2400,8 +2400,8 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "(\uC544\uB4E4 \uC774\uB984)! \uAD1C\uCC2E\uB2C8?"
+        subject: "\uC544\uC774\uC791"
+        contents: "\uD1A0\uBBF8! \uAD1C\uCC2E\uB2C8?"
         dialogueType: 1
         expression: 0
         option:
@@ -2458,7 +2458,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uAD1C\uCC2E\uC544. \uBBF8\uC548\uD558\uAD6C\uB098.
           \uB0B4\uAC00 \uB2A6\uC5C8\uC5B4."
         dialogueType: 1
@@ -2476,7 +2476,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC5B4\uB460 \uC18D\uC5D0\uB294 \uC544\uBB34\uAC83\uB3C4 \uC5C6\uC5B4\xB7\xB7\xB7.
           \uB110 \uACF5\uACA9\uD560 \uAC83\uB3C4, \uB124\uAC00 \uBB34\uC11C\uC6CC\uD560
           \uC774\uC720\uB3C4\xB7\xB7\xB7."
@@ -2531,7 +2531,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\xB7\xB7\xB7\uC77C\uB2E8 \uC190\uC804\uB4F1\uC744 \uCC3E\uC790.
           \uBD84\uBA85 \uAD6C\uBE44\uD574\uB454 \uBE44\uC0C1 \uB79C\uD134\uC774 \uCC45\uC7A5
           \uCABD\uC5D0\xB7\xB7\xB7)"
@@ -2614,7 +2614,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC73D\u2026! \uBB50\uAC00 \uB5A8\uC5B4\uC9C4\uAC70\uC9C0?"
         dialogueType: 1
         expression: 0
@@ -2678,7 +2678,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\u2026\uC65C \uC774\uB807\uAC8C?"
         dialogueType: 1
         expression: 0
@@ -2695,7 +2695,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC9C0\uAE08 \uC774\uB7F0 \uAC78 \uC2E0\uACBD \uC4F8 \uB54C\uAC00
           \uC544\uB2C8\uC9C0\u2026."
         dialogueType: 1
@@ -2713,7 +2713,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC190\uC804\uB4F1\uC774 \uBD84\uBA85\u2026."
         dialogueType: 1
         expression: 0
@@ -2771,7 +2771,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\uC88B\uC544. \uC774\uAC70\uB77C\uBA74\xB7\xB7\xB7.)"
         dialogueType: 1
         expression: 0
@@ -2788,7 +2788,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uC73C\uC544\uC544\xB7\xB7\xB7\uC544\uC545!!"
         dialogueType: 1
         expression: 0
@@ -2807,8 +2807,8 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "(\uC544\uB4E4 \uC774\uB984)?!"
+        subject: "\uC544\uC774\uC791"
+        contents: "\uD1A0\uBBF8?!"
         dialogueType: 1
         expression: 0
         option: []
@@ -2867,9 +2867,8 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
-        contents: "(\uC544\uB4E4 \uC774\uB984)! \uC9C4\uC815\uD574! \uBB34\uC2A8
-          \uC77C\uC774\uC57C?!"
+        subject: "\uC544\uC774\uC791"
+        contents: "\uD1A0\uBBF8! \uC9C4\uC815\uD574! \uBB34\uC2A8 \uC77C\uC774\uC57C?!"
         dialogueType: 1
         expression: 0
         option:
@@ -2887,7 +2886,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uC800\xB7\xB7\xB7, \uC800\uAE30 \uBC29 \uAD6C\uC11D\uC5D0\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
@@ -2945,7 +2944,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
@@ -2962,7 +2961,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\uC26C\xB7\xB7\xB7 \uAD1C\uCC2E\uC544. \uC544\uBB34\uAC83\uB3C4
           \uC5C6\uC5B4."
         dialogueType: 1
@@ -2980,7 +2979,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC544\uBB34\uAC83\uB3C4."
         dialogueType: 1
         expression: 0
@@ -3330,7 +3329,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "(\uBA38\uB9AC\uB9E1\uC5D0 \uC0AC\uC9C4\uC774 \uAC00\uB4DD\uD55C
           \uCE68\uB300. \uCD5C\uADFC \uC0AC\uC9C4\uC77C\uC218\uB85D \uADF8\uB9BC\uACFC
           \uAC19\uC740 \uC804\uACBD\uC744 \uB2F4\uACE0 \uC788\uB2E4.)"
@@ -3387,7 +3386,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\uBA38\uB9AC\uB9E1\uC5D0 \uC0AC\uC9C4\uC774 \uAC00\uB4DD\uD55C
           \uCE68\uB300. \uCD5C\uADFC \uC0AC\uC9C4\uC77C\uC218\uB85D \uADF8\uB9BC\uACFC
           \uAC19\uC740 \uC804\uACBD\uC744 \uB2F4\uACE0 \uC788\uB2E4.)"
@@ -3408,7 +3407,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\uB098\uC758 \uC791\uD488\uB4E4\xB7\xB7\xB7.)"
         dialogueType: 1
         expression: 0
@@ -3425,7 +3424,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC774\uB7F4 \uB54C\uAC00 \uC544\uB2C8\uC57C. \uBE44\uC0C1
           \uB79C\uD134\uC774 \uCC45\uC7A5 \uCABD\uC5D0\xB7\xB7\xB7"
         dialogueType: 1
@@ -4027,7 +4026,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "(\uC637\uC73C\uB85C \uAC00\uB4DD\uD55C \uC637\uC7A5. \uC785\uC744
           \uB9CC\uD55C \uC637\uC740 \uBCF4\uC774\uC9C0 \uC54A\uB294\uB2E4.)"
         dialogueType: 1
@@ -4101,7 +4100,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\uC637\uC73C\uB85C \uAC00\uB4DD\uD55C \uC637\uC7A5. \uD55C\uB3D9\uC548
           \uC637 \uAC71\uC815\uC740 \uC5C6\uC5B4 \uBCF4\uC778\uB2E4.)"
         dialogueType: 1
@@ -4121,7 +4120,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC774\uB7F4 \uB54C\uAC00 \uC544\uB2C8\uC57C. \uBE44\uC0C1
           \uB79C\uD134\uC774 \uCC45\uC7A5 \uCABD\uC5D0\xB7\xB7\xB7"
         dialogueType: 1
@@ -4332,7 +4331,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 7
-        subject: "\uC544\uB4E4"
+        subject: "\uD1A0\uBBF8"
         contents: "\uC73C\uC73C\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -4351,7 +4350,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC11C\uB450\uB974\uC790."
         dialogueType: 1
         expression: 0
@@ -4663,7 +4662,7 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 4
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "(\uBA3C\uC9C0 \uC313\uC778 \uD154\uB808\uBE44\uC804. \uC5B4\uCA50\uC9C0
           \uC798 \uBCF4\uC9C0\uB294 \uC54A\uB294 \uB4EF \uD558\uB2E4.)\_"
         dialogueType: 1
@@ -4683,7 +4682,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: "\uC0AC\uC9C4\uC0AC"
+        subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC774\uB7F4 \uB54C\uAC00 \uC544\uB2C8\uC57C. \uBE44\uC0C1
           \uB79C\uD134\uC774 \uCC45\uC7A5 \uCABD\uC5D0\xB7\xB7\xB7"
         dialogueType: 1
