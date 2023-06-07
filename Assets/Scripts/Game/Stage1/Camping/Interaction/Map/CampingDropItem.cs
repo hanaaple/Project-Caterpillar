@@ -9,6 +9,9 @@ namespace Game.Stage1.Camping.Interaction.Map
         [SerializeField] private int x;
         [SerializeField] private int y;
 
+        private bool _isInit;
+        private DragItem _originDragItem;
+        
         protected override void Start()
         {
             base.Start();
@@ -17,6 +20,12 @@ namespace Game.Stage1.Camping.Interaction.Map
             {
                 campingDragItem.x = x;
                 campingDragItem.y = y;
+            }
+
+            if (!_isInit)
+            {
+                _originDragItem = dragItem;
+                _isInit = true;
             }
         }
 
@@ -29,6 +38,13 @@ namespace Game.Stage1.Camping.Interaction.Map
                 campingDragItem.x = x;
                 campingDragItem.y = y;
             }
+        }
+
+        public void ResetItem()
+        {
+            dragItem = _originDragItem;
+            
+            Start();
         }
     }
 }

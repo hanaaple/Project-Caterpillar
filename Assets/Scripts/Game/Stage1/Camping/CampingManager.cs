@@ -6,8 +6,10 @@ using Game.Stage1.Camping.Interaction;
 using Game.Stage1.Camping.Interaction.Map;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utility.Scene;
+using Random = UnityEngine.Random;
 
 namespace Game.Stage1.Camping
 {
@@ -23,8 +25,9 @@ namespace Game.Stage1.Camping
         [Header("필드")] [SerializeField] private GameObject filedPanel;
         [SerializeField] private Button openMapButton;
         [SerializeField] private Button resetButton;
-
         [SerializeField] private CampingInteraction[] interactions;
+
+        [SerializeField] private ToastData wrongToastData;
 
         [Space(10)] [Header("Timer")] [SerializeField]
         private TMP_Text timerText;
@@ -41,7 +44,11 @@ namespace Game.Stage1.Camping
         [Header("지도 - 클리어 조건")] [SerializeField]
         private CampingDropItem[] clearDropItems;
 
+        [SerializeField] private CampingDropItem[] dropItems;
+
         [Header("결과")] [SerializeField] private GameObject failPanel;
+        [SerializeField] private Button retryButton;
+        [SerializeField] private Button giveUpButton;
 
         private void Start()
         {
@@ -74,10 +81,15 @@ namespace Game.Stage1.Camping
                 }
                 else
                 {
-                    StopAllCoroutines();
-                    failPanel.SetActive(true);
+                    var index = Random.Range(0, wrongToastData.toastContents.Length);
+                    SceneHelper.Instance.toastManager.Enqueue(wrongToastData.toastContents[index]);
                 }
             });
+
+            retryButton.onClick.AddListener(ResetGame);
+
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
+
 
             foreach (var interaction in interactions)
             {
@@ -92,9 +104,8 @@ namespace Game.Stage1.Camping
                         }
                     }
                 };
+                interaction.ResetInteraction(true);
             }
-
-            ResetGame();
 
             Play();
         }
@@ -127,7 +138,15 @@ namespace Game.Stage1.Camping
                 }
             }
 
+            GameOver();
+        }
+
+        private void GameOver()
+        {
+            StopAllCoroutines();
             failPanel.SetActive(true);
+            mapPanel.SetActive(false);
+            filedPanel.SetActive(true);
         }
 
         private bool IsClear()
@@ -137,10 +156,18 @@ namespace Game.Stage1.Camping
 
         private void ResetGame()
         {
+            foreach (var dragItem in dropItems)
+            {
+                dragItem.ResetItem();
+            }
+
+            failPanel.SetActive(false);
             foreach (var t in interactions)
             {
                 t.ResetInteraction(true);
             }
+
+            Play();
         }
     }
 }
