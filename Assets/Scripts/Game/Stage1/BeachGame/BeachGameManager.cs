@@ -5,6 +5,8 @@ using System.Linq;
 using Game.Default;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Core;
+using Utility.InputSystem;
 using Utility.Scene;
 
 namespace Game.Stage1.BeachGame
@@ -43,6 +45,8 @@ namespace Game.Stage1.BeachGame
 
         [SerializeField] private ToastData endToastData;
         
+        private InputActions _inputActions;
+        
         private static readonly int OpenHash = Animator.StringToHash("Open");
 
         private void Start()
@@ -51,7 +55,6 @@ namespace Game.Stage1.BeachGame
 
             GameStart();
         }
-
 
         private void Initialize()
         {
@@ -89,6 +92,11 @@ namespace Game.Stage1.BeachGame
                     StartCoroutine(ChangeBackground());
                 };
             }
+            
+            _inputActions = new InputActions("BeachGameManager")
+            {
+                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+            };
             
             foreach (var interactions in beachInteractions)
             {
@@ -191,6 +199,7 @@ namespace Game.Stage1.BeachGame
 
         private void GameStart()
         {
+            InputManager.PushInputAction(_inputActions);
             albumButton.gameObject.SetActive(true);
             watchDragger.Reseet();
             foreach (var albumPicture in albumPictures)
@@ -203,6 +212,7 @@ namespace Game.Stage1.BeachGame
 
         private void GameEnd()
         {
+            InputManager.PopInputAction(_inputActions);
             SetInteractable(false);
 
             StopAllCoroutines();

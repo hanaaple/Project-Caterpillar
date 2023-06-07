@@ -116,7 +116,15 @@ namespace Utility.Dialogue
 
             _choiceHighlighter.Init(Highlighter.ArrowType.Vertical);
 
-            _choiceHighlighter.InputActions.OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); };
+            _choiceHighlighter.InputActions.OnPause = _ =>
+            {
+                PlayUIManager.Instance.pauseManager.onPause?.Invoke();
+                PlayUIManager.Instance.pauseManager.onExit = () =>
+                {
+                    EndDialogue();
+                    PlayUIManager.Instance.pauseManager.onExit = () => { };
+                };
+            };
 
             skipButton.onClick.AddListener(() =>
             {
@@ -143,7 +151,15 @@ namespace Utility.Dialogue
             {
                 // It Works When Before Save
                 OnExecute = OnInputDialogue,
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); }
+                OnPause = _ =>
+                {
+                    PlayUIManager.Instance.pauseManager.onPause?.Invoke();
+                    PlayUIManager.Instance.pauseManager.onExit = () =>
+                    {
+                        EndDialogue();
+                        PlayUIManager.Instance.pauseManager.onExit = () => { };
+                    };
+                }
             };
         }
 
@@ -815,10 +831,10 @@ namespace Utility.Dialogue
             }
         }
 
-        private void EndDialogue(bool isEnd = true, DialogueData dialogueData = null)
+        private void EndDialogue(bool isEnd = true, DialogueData dialogueData = null, bool isDestroy = false)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
-
+            
             dialoguePanel.SetActive(false);
 
             _isDialogue = false;
@@ -826,6 +842,7 @@ namespace Utility.Dialogue
             InputManager.PopInputAction(_dialogueInputActions);
 
             skipButton.gameObject.SetActive(false);
+            
 
             // Debug.Log(_baseDialogueData.Count);
             // foreach (var dialogueData in _baseDialogueData)
