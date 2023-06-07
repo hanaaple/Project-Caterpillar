@@ -17,6 +17,7 @@ namespace Game.Stage1.Camping
         public class TimerToastData : ToastData
         {
             public int time;
+            public Color color;
         }
 
         [Header("필드")] [SerializeField] private GameObject filedPanel;
@@ -91,8 +92,9 @@ namespace Game.Stage1.Camping
                         }
                     }
                 };
-                interaction.ResetInteraction();
             }
+
+            ResetGame();
 
             Play();
         }
@@ -117,6 +119,7 @@ namespace Game.Stage1.Camping
                 foreach (var data in toastData)
                 {
                     data.IsToasted = true;
+                    timerText.color = data.color;
                     foreach (var content in data.toastContents)
                     {
                         SceneHelper.Instance.toastManager.Enqueue(content);
@@ -127,7 +130,6 @@ namespace Game.Stage1.Camping
             failPanel.SetActive(true);
         }
 
-
         private bool IsClear()
         {
             return clearDropItems.All(campingDropItem => campingDropItem.HasItem());
@@ -137,7 +139,7 @@ namespace Game.Stage1.Camping
         {
             foreach (var t in interactions)
             {
-                t.ResetInteraction();
+                t.ResetInteraction(true);
             }
         }
     }

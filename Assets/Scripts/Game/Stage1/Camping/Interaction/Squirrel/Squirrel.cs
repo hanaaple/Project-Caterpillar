@@ -40,9 +40,9 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
             }
         }
 
-        public override void ResetInteraction()
+        public override void ResetInteraction(bool isGameReset = false)
         {
-            base.ResetInteraction();
+            base.ResetInteraction(isGameReset);
             
             egg.Reset();
             foreach (var apple in apples)
