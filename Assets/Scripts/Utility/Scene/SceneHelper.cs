@@ -27,7 +27,7 @@ namespace Utility.Scene
     {
         public static SceneHelper Instance;
         
-        [SerializeField] private PlayType playType;
+        public PlayType playType;
 
         [ConditionalHideInInspector("playType", PlayType.MiniGame)]
         public ToastManager toastManager;

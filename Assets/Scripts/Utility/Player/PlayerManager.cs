@@ -70,6 +70,13 @@ namespace Utility.Player
                     {
                         _input = Vector3.zero;
                     }
+                },
+                OnInventory = _ =>
+                {
+                    if (SceneHelper.Instance.playType == PlayType.MainField)
+                    {
+                        PlayUIManager.Instance.inventoryManager.SetInventory(true);
+                    }
                 }
             };
         }

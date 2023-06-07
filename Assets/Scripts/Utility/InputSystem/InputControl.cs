@@ -82,6 +82,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1458855-33a7-434f-9e93-b3af2449b947"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""AnyKey"",
                     ""type"": ""Button"",
                     ""id"": ""c11f3372-3b31-4353-9b35-05b5183a42cc"",
@@ -267,61 +276,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""1a55cadb-e671-4102-9a77-772d31368baf"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""ad5656d5-6f4d-4425-95e4-5a1a1b7fd2ce"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""2c6f4437-f913-4378-8e25-9c1d96e9ef09"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d4791fc3-8590-4a24-8ac7-6776afa7bd1c"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""c1d68eb7-1a60-47fa-b9c6-8ec17a054aa1"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""c1b23c73-480a-4f7b-a413-ddc94ef48804"",
                     ""path"": ""<Keyboard>/z"",
@@ -351,6 +305,17 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse"",
                     ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a09f9f7-dc1b-4974-ac10-9dd4976811cc"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -412,6 +377,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Input_Pause = m_Input.FindAction("Pause", throwIfNotFound: true);
         m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
+        m_Input_Inventory = m_Input.FindAction("Inventory", throwIfNotFound: true);
         m_Input_AnyKey = m_Input.FindAction("AnyKey", throwIfNotFound: true);
         m_Input_LeftClick = m_Input.FindAction("LeftClick", throwIfNotFound: true);
     }
@@ -479,6 +445,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Pause;
     private readonly InputAction m_Input_Move;
     private readonly InputAction m_Input_Interact;
+    private readonly InputAction m_Input_Inventory;
     private readonly InputAction m_Input_AnyKey;
     private readonly InputAction m_Input_LeftClick;
     public struct InputActions
@@ -491,6 +458,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Input_Pause;
         public InputAction @Move => m_Wrapper.m_Input_Move;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
+        public InputAction @Inventory => m_Wrapper.m_Input_Inventory;
         public InputAction @AnyKey => m_Wrapper.m_Input_AnyKey;
         public InputAction @LeftClick => m_Wrapper.m_Input_LeftClick;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
@@ -520,6 +488,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnInteract;
+                @Inventory.started -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
                 @AnyKey.started -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
                 @AnyKey.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
                 @AnyKey.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
@@ -548,6 +519,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
                 @AnyKey.started += instance.OnAnyKey;
                 @AnyKey.performed += instance.OnAnyKey;
                 @AnyKey.canceled += instance.OnAnyKey;
@@ -602,6 +576,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
     }

@@ -197,7 +197,7 @@ namespace Utility.UI.Inventory
                     item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 if (_menuHighlighter.selectedIndex == exitIndex)
                 {
-                    inventoryMenuItems[exitIndex].button.onClick?.Invoke();
+                    SetInventory(false);
                 }
                 else
                 {
@@ -220,7 +220,7 @@ namespace Utility.UI.Inventory
         private void Start()
         {
             _highlightParent = highlights[0].transform.parent;
-            inventoryButton.onClick.AddListener(() => SetActive(true));
+            inventoryButton.onClick.AddListener(() => SetInventory(true));
 
             // Menu Arrow Select
             for(var idx = 0; idx < inventoryMenuItems.Length; idx++)
@@ -388,7 +388,7 @@ namespace Utility.UI.Inventory
             }
         }
 
-        private void SetActive(bool isActive)
+        public void SetInventory(bool isActive)
         {
             if (isActive)
             {

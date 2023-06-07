@@ -40,7 +40,7 @@ namespace Utility.Core
         public PauseManager pauseManager;
         public PreferenceManager preferenceManager;
         public DialogueController dialogueController;
-        [SerializeField] private InventoryManager inventoryManager;
+        public InventoryManager inventoryManager;
 
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
