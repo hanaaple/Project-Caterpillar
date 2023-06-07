@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Utility.Scene;
 
@@ -9,7 +8,7 @@ namespace Game.Stage1.Camping.Interaction.Show
         [SerializeField] private ShowPanel showPanel;
 
         [TextArea] public string[] toastContents;
-        
+
         private bool _isToasted;
 
         private void Start()
@@ -26,7 +25,7 @@ namespace Game.Stage1.Camping.Interaction.Show
         {
             Show();
         }
-        
+
         /// <summary>
         /// Use in Animation
         /// </summary>
