@@ -42,7 +42,7 @@ namespace Utility.Core
         public DialogueController dialogueController;
         [SerializeField] private InventoryManager inventoryManager;
 
-        [SerializeField] private Canvas canvas;
+        public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
 
         private bool _isFade;
