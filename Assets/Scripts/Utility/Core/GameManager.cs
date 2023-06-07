@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility.Player;
 using Utility.SaveSystem;
 
 namespace Utility.Core
@@ -58,27 +57,27 @@ namespace Utility.Core
         public void Load(int saveDataIndex)
         {
             var saveData = SaveManager.GetSaveData(saveDataIndex);
-            if (saveData.interactionData != null)
-            {
-                foreach (var interactionSaveData in saveData.interactionData)
-                {
-                    var interaction = InteractionObjects.Find(item => item.id == interactionSaveData.id);
+            // if (saveData.interactionData != null)
+            // {
+            //     foreach (var interactionSaveData in saveData.interactionData)
+            //     {
+            //         var interaction = InteractionObjects.Find(item => item.id == interactionSaveData.id);
+            //
+            //         foreach (var interactionData in interaction.interactionData)
+            //         {
+            //             var loadedSerializedData = interactionSaveData.serializedInteractionData.Find(item =>
+            //                 item.id == interactionData.serializedInteractionData.id);
+            //
+            //             interactionData.serializedInteractionData = loadedSerializedData;
+            //         }
+            //     }
+            // }
 
-                    foreach (var interactionData in interaction.interactionData)
-                    {
-                        var loadedSerializedData = interactionSaveData.serializedInteractionData.Find(item =>
-                            item.id == interactionData.serializedInteractionData.id);
-
-                        interactionData.serializedInteractionData = loadedSerializedData;
-                    }
-                }
-            }
-
-            if (Player)
-            {
-                Player.transform.position = saveData.playerSerializableTransform.position;
-                Player.transform.rotation = saveData.playerSerializableTransform.rotation;
-            }
+            // if (Player)
+            // {
+            //     Player.transform.position = saveData.playerSerializableTransform.position;
+            //     Player.transform.rotation = saveData.playerSerializableTransform.rotation;
+            // }
         }
     }
 }

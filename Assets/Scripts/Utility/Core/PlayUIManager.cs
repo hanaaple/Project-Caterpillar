@@ -113,5 +113,11 @@ namespace Utility.Core
         {
             return _isFade;
         }
+
+        public void Destroy()
+        {
+            _instance = null;
+            Destroy(gameObject);
+        }
     }
 }

@@ -78,7 +78,7 @@ namespace Utility.Interaction
 
         private void Update()
         {
-            if (defaultFloatingMark && Camera.main)
+            if (defaultFloatingMark && defaultFloatingMark.activeSelf && Camera.main)
             {
                 defaultFloatingMark.transform.position = Camera.main.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
             }

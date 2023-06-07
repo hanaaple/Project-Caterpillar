@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 namespace Utility.InputSystem
@@ -70,7 +69,7 @@ namespace Utility.InputSystem
                     inputActions.Interact.performed += OnInteract;
 
                 if (OnInventory != null)
-                    inputActions.Interact.performed += OnInventory;
+                    inputActions.Inventory.performed += OnInventory;
 
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed += OnAnyKey;
@@ -106,7 +105,7 @@ namespace Utility.InputSystem
                     inputActions.Interact.performed -= OnInteract;
 
                 if (OnInventory != null)
-                    inputActions.Interact.performed -= OnInventory;
+                    inputActions.Inventory.performed -= OnInventory;
                 
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed -= OnAnyKey;

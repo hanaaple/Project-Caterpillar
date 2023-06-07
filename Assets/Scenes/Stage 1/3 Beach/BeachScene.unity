@@ -2889,6 +2889,23 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
+        contents: 
+        dialogueType: 5
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
         contents: BeachGame
         dialogueType: 4
         expression: 0

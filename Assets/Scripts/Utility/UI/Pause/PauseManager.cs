@@ -51,6 +51,7 @@ namespace Utility.UI.Pause
         
         private Highlighter _pauseHighlighter;
         public Action onPause;
+        public Action onExit;
 
         private void Awake()
         {
@@ -113,7 +114,9 @@ namespace Utility.UI.Pause
                             {
                                 exitCheckUIManager.Pop();
                                 SetActive(false);
+                                onExit?.Invoke();
                                 HighlightHelper.Instance.ResetHighlight();
+                                PlayUIManager.Instance.Destroy();
                                 SceneLoader.Instance.LoadScene("TitleScene");
                             });
                             exitCheckUIManager.Push();

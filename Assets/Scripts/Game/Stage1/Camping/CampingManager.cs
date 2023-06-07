@@ -6,8 +6,9 @@ using Game.Stage1.Camping.Interaction;
 using Game.Stage1.Camping.Interaction.Map;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utility.Core;
+using Utility.InputSystem;
 using Utility.Scene;
 using Random = UnityEngine.Random;
 
@@ -50,6 +51,8 @@ namespace Game.Stage1.Camping
         [SerializeField] private Button retryButton;
         [SerializeField] private Button giveUpButton;
 
+        private InputActions _inputActions;
+        
         private void Start()
         {
             mapExitButton.onClick.AddListener(() =>
@@ -76,6 +79,7 @@ namespace Game.Stage1.Camping
             {
                 if (IsClear())
                 {
+                    InputManager.PopInputAction(_inputActions);
                     StopAllCoroutines();
                     SceneLoader.Instance.LoadScene("BeachScene");
                 }
@@ -106,12 +110,18 @@ namespace Game.Stage1.Camping
                 };
                 interaction.ResetInteraction(true);
             }
+            
+            _inputActions = new InputActions("ShadowGameManager")
+            {
+                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+            };
 
             Play();
         }
 
         public void Play()
         {
+            InputManager.PushInputAction(_inputActions);
             StartCoroutine(StartTimer());
         }
 
@@ -143,6 +153,7 @@ namespace Game.Stage1.Camping
 
         private void GameOver()
         {
+            InputManager.PopInputAction(_inputActions);
             StopAllCoroutines();
             failPanel.SetActive(true);
             mapPanel.SetActive(false);
