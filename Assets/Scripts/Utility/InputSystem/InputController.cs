@@ -96,7 +96,7 @@ namespace Utility.InputSystem
                 else
                 {
                     rebindText.text = inputActionReference.action.GetBindingDisplayString(_bindingIndex);
-                } 
+                }
             }
         }
 

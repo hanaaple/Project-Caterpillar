@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utility.Core;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -31,10 +32,21 @@ namespace Utility.Interaction
 {
     public class InputInteraction : Interaction
     {
-        [FormerlySerializedAs("ui")] [SerializeField]
-        private GameObject floatingMark;
+        [Serializable]
+        public class FloatingMark
+        {
+            public GameObject floatingMark;
+            public int index;
+            public Vector2 offset;
+        }
+        
+        [Header("Floating Mark")]
+        [FormerlySerializedAs("floatingMark")] [FormerlySerializedAs("ui")] [SerializeField]
+        private GameObject defaultFloatingMark;
 
-        [SerializeField] private Vector2 offset;
+        [SerializeField] private FloatingMark[] floatingMarks;
+
+        [FormerlySerializedAs("offset")] [SerializeField] private Vector2 defaultOffset;
 
         private Action _onInteract;
 
@@ -45,18 +57,18 @@ namespace Utility.Interaction
             _onInteract = () =>
             {
                 Debug.Log($"인터랙트 - {gameObject}");
-                if (floatingMark)
+                if (defaultFloatingMark)
                 {
-                    floatingMark.SetActive(false);
+                    defaultFloatingMark.SetActive(false);
                 }
 
                 OnEndInteraction += () =>
                 {
                     if (IsInteractable())
                     {
-                        if (floatingMark)
+                        if (defaultFloatingMark)
                         {
-                            floatingMark.SetActive(true);
+                            defaultFloatingMark.SetActive(true);
                         }
                     }
                 };
@@ -64,13 +76,11 @@ namespace Utility.Interaction
             };
         }
 
-        protected override void Start()
+        private void Update()
         {
-            base.Start();
-
-            if (floatingMark)
+            if (defaultFloatingMark && Camera.main)
             {
-                floatingMark.transform.position = transform.position + (Vector3) offset;
+                defaultFloatingMark.transform.position = Camera.main.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
             }
         }
 
@@ -81,10 +91,21 @@ namespace Utility.Interaction
                 return;
             }
 
-            // Debug.Log($"들어옴! {col} {col.gameObject}");
-            if (floatingMark)
+            if (floatingMarks?.Length > 0)
             {
-                floatingMark.SetActive(true);
+                var floatingMark = Array.Find(floatingMarks, item => item.index == interactionIndex);
+                if (floatingMark != null)
+                {
+                    defaultFloatingMark = floatingMark.floatingMark;
+                    defaultOffset = floatingMark.offset;
+                }
+            }
+
+            // Debug.Log($"들어옴! {col} {col.gameObject}");
+        if (defaultFloatingMark)
+            {
+                defaultFloatingMark.transform.SetParent(PlayUIManager.Instance.floatingMarkParent.transform);
+                defaultFloatingMark.SetActive(true);
             }
 
             player.OnInteractAction = _onInteract;
@@ -98,12 +119,17 @@ namespace Utility.Interaction
             }
             
             // Debug.Log($"나감! {col} {col.gameObject}");
-            if (floatingMark)
+            if (defaultFloatingMark)
             {
-                floatingMark.SetActive(false);
+                defaultFloatingMark.SetActive(false);
             }
 
             player.OnInteractAction = null;
+        }
+
+        private void OnDestroy()
+        {
+            Destroy(defaultFloatingMark);
         }
     }
 }
