@@ -34,6 +34,7 @@ namespace Utility.InputSystem
 
             if (inputActionReference != null)
             {
+                GetBindingInfo();
                 InputManager.LoadBindingOverride(_actionName);
                 GetBindingInfo();
                 UpdateUi();

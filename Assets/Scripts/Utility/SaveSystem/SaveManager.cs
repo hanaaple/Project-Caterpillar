@@ -25,6 +25,10 @@ namespace Utility.SaveSystem
         static SaveManager()
         {
             Debug.Log(SaveDirectoryPath);
+            if (!Directory.Exists(SaveDirectoryPath))
+            {
+                Directory.CreateDirectory(SaveDirectoryPath);
+            }
             SaveData = new ConcurrentDictionary<int, SaveData>();
             SaveCoverData = new ConcurrentDictionary<int, SaveCoverData>();
 #if UNITY_IPHONE
@@ -218,13 +222,13 @@ namespace Utility.SaveSystem
             Debug.LogWarning($"SaveData가 없어요 {index}번째 saveData 없음.");
             return -1;
         }
-        
+
         public static int GetNewSaveIndex()
         {
             var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories)
                 .Select(item => item.Replace(SaveDirectoryPath, ""))
                 .Select(item => item.Replace("\\", ""));
-            
+
             var saveCoverData = Directory
                 .GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
                 .Select(item => item.Replace(SaveDirectoryPath, ""))
@@ -235,8 +239,13 @@ namespace Utility.SaveSystem
                 (data, coverData) => int.Parse(new string(data.Where(char.IsDigit).ToArray()))).ToArray();
 
             indexArray = indexArray.OrderBy(item => item).ToArray();
-            
-            return indexArray.Last() + 1;
+
+            if (indexArray.Length > 0)
+            {
+                return indexArray.Last() + 1;
+            }
+
+            return 0;
         }
 
         public static int GetSaveDataLength()

@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 401d542b4f54ca141b2b8edaeb4c9c69
   - enabled: 1
     path: Assets/Scenes/Main/MainScene.unity
-    guid: 6f2b4f21bc4953e44bd49f23f39351f3
+    guid: 87053280e15a3d64d871645172c7ee1e
   - enabled: 1
     path: Assets/Scenes/Stage 1/1 SmallRoom/SmallRoomScene.unity
     guid: 488ad8326abd31d4dbeee3e73f881d18

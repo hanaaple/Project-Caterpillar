@@ -23,6 +23,7 @@ namespace Utility.Interaction
         {
             if (inputActionReference != null)
             {
+                GetBindingInfo();
                 InputManager.LoadBindingOverride(_actionName);
                 GetBindingInfo();
                 UpdateUi();
