@@ -57,12 +57,14 @@ namespace Game.Stage1.Camping
         {
             mapExitButton.onClick.AddListener(() =>
             {
+                SetInteractable(true);
                 mapPanel.SetActive(false);
                 filedPanel.SetActive(true);
             });
 
             openMapButton.onClick.AddListener(() =>
             {
+                SetInteractable(false);
                 mapPanel.SetActive(true);
                 filedPanel.SetActive(false);
             });
@@ -97,17 +99,7 @@ namespace Game.Stage1.Camping
 
             foreach (var interaction in interactions)
             {
-                interaction.setInteractable = isEnable =>
-                {
-                    foreach (var t in interactions)
-                    {
-                        var collider2ds = t.GetComponentsInChildren<Collider2D>(true);
-                        foreach (var collider2d in collider2ds)
-                        {
-                            collider2d.enabled = isEnable;
-                        }
-                    }
-                };
+                interaction.setInteractable = SetInteractable;
                 interaction.ResetInteraction(true);
             }
             
@@ -149,6 +141,18 @@ namespace Game.Stage1.Camping
             }
 
             GameOver();
+        }
+
+        private void SetInteractable(bool isInteractable)
+        {
+            foreach (var t in interactions)
+            {
+                var collider2ds = t.GetComponentsInChildren<Collider2D>(true);
+                foreach (var collider2d in collider2ds)
+                {
+                    collider2d.enabled = isInteractable;
+                }
+            }
         }
 
         private void GameOver()

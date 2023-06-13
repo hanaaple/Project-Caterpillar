@@ -28,7 +28,8 @@ namespace Game.Stage1.Camping.Interaction
             Mountain,
             Tree,
             Rock,
-            Lake
+            Lake,
+            MosquitoRepellent
         }
 
         public IconType iconType;
