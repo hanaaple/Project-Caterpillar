@@ -22,6 +22,11 @@ namespace Utility.Portal
 
         private int _index;
 
+        // Map의 종류 None, Loop
+        // Loop인데 맵 내 Object는 바꿔줘야됨.
+        // 어떻게 하는게 좋으려나
+        // 흠흠
+
         private void Start()
         {
             leftPortal.onPortal = () =>
