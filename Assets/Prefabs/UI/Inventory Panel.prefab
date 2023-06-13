@@ -2543,6 +2543,35 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1149198977204317152}
   bagPanel: {fileID: 1149198979015493432}
   necklacePanel: {fileID: 1149198977733598249}
+  necklace: {fileID: 1149198977894001788}
+  necklaceTypes:
+  - sprite: {fileID: 21300000, guid: 1176b6ca969465f4698b569fbb6cec14, type: 3}
+    ascentState: 1
+    activeState: 2
+  - sprite: {fileID: 21300000, guid: bc688e5a7d5d7f6429b3f7ddc7ad64c4, type: 3}
+    ascentState: 0
+    activeState: 2
+  - sprite: {fileID: 21300000, guid: a055b5f0d20194443aec7a337b9957dd, type: 3}
+    ascentState: 2
+    activeState: 2
+  - sprite: {fileID: 21300000, guid: ad8b657ae57d43a40ac1d80cc870dda2, type: 3}
+    ascentState: 1
+    activeState: 0
+  - sprite: {fileID: 21300000, guid: 9df0c5955d8ba67408685ead7fc6881f, type: 3}
+    ascentState: 0
+    activeState: 0
+  - sprite: {fileID: 21300000, guid: dcf163ab8baf1ab409f01edb261afd2f, type: 3}
+    ascentState: 2
+    activeState: 0
+  - sprite: {fileID: 21300000, guid: f2d4674dd279e6a4dbb3b33a2713c816, type: 3}
+    ascentState: 1
+    activeState: 1
+  - sprite: {fileID: 21300000, guid: c8bc307490cbbb840be7a7fe710adec7, type: 3}
+    ascentState: 0
+    activeState: 1
+  - sprite: {fileID: 21300000, guid: e71d33989724c044caf7943db976cfec, type: 3}
+    ascentState: 2
+    activeState: 1
 --- !u!1 &5450571751799628491
 GameObject:
   m_ObjectHideFlags: 0

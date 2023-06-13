@@ -488,7 +488,7 @@ namespace Utility.Dialogue
                     Debug.Log("즉시(옵션) 실행");
                     
                     // if (option.has tendencyData)
-                    // Debug.Log("더하기");
+                    // // Debug.Log("더하기");
                     
                     
                     for (var index = 0; index < dialogueElement.option.Length; index++)
@@ -877,6 +877,16 @@ namespace Utility.Dialogue
             HighlightHelper.Instance.Pop(_choiceHighlighter);
             choicePanel.SetActive(false);
 
+            var dialogueData = _baseDialogueData.Peek();
+            var tendencyValue = dialogueData.dialogueElements[curIdx].option.Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
+            if (tendencyValue.Length != 4)
+            {
+                Debug.LogError("Excel 성향 세팅 이상함");
+            }
+            Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
+            
+            TendencyManager.Instance.UpdateTendencyData(tendencyValue);
+            
             InitChoiceDialogue(curIdx + choiceLen, choiceContextLen);
 
             if (choiceContextLen == 0)
