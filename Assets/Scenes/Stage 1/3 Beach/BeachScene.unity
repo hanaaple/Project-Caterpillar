@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -373,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106356081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1857,7 +1857,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100620626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: -1.2, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2293,14 +2293,14 @@ MonoBehaviour:
         interactionWaitType: 1
         waitInteractions:
           waitInteractions:
-          - interaction: {fileID: 0}
+          - interaction: {fileID: 872114340}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
-          - interaction: {fileID: 0}
+          - interaction: {fileID: 24746746}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
@@ -2775,7 +2775,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "<\uC2DC\uC2A4\uD15C>"
-        contents: ' '
+        contents: "\uC5F4\uC1E0 <b><\uADF9\uB2E8></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
         option: []
@@ -2966,8 +2966,8 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnLoadScene: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -3458,14 +3458,14 @@ MonoBehaviour:
   - mapIndex: 0
     waitInteractions:
       waitInteractions:
-      - interaction: {fileID: 0}
+      - interaction: {fileID: 24746746}
         isInteraction: 1
         startIndex: 0
         targetIndex: 0
         isPortal: 0
         targetMapIndex: 0
         isWaitClear: 0
-      - interaction: {fileID: 0}
+      - interaction: {fileID: 872114340}
         isInteraction: 1
         startIndex: 0
         targetIndex: 0

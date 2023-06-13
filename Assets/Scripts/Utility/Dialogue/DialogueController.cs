@@ -883,10 +883,13 @@ namespace Utility.Dialogue
             {
                 Debug.LogError("Excel 성향 세팅 이상함");
             }
-            Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
-            
-            TendencyManager.Instance.UpdateTendencyData(tendencyValue);
-            
+            else
+            {
+                Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
+
+                TendencyManager.Instance.UpdateTendencyData(tendencyValue);
+            }
+
             InitChoiceDialogue(curIdx + choiceLen, choiceContextLen);
 
             if (choiceContextLen == 0)
