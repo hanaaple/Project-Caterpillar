@@ -12,7 +12,7 @@ namespace Utility.SaveSystem
             var saveData = new SaveData
             {
                 items = ItemManager.Instance.GetItem<string>(),
-                tendencyData = TendencyManager.Instance.GetTendencyData(),
+                tendencyData = TendencyManager.Instance.GetSaveTendencyData(),
                 saveCoverData = new SaveCoverData
                 {
                     sceneName = SceneManager.GetActiveScene().name == "TitleScene"

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
-using Utility.Player;
 using Utility.SaveSystem;
 using Utility.Util;
 
@@ -53,6 +52,7 @@ namespace Utility.Scene
             return Instantiate(sceneLoaderPrefab);
         }
 
+        // 게임에서 MainScene으로 가는 경우 Load했던 SaveData로 초기화시켜야됨
         public void LoadScene(string sceneName, int index = -1)
         {
             IsLoading = true;
@@ -77,6 +77,7 @@ namespace Utility.Scene
                 }
             }
             
+            TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
