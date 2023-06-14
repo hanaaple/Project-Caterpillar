@@ -587,7 +587,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shadow Game Animator - Real Snow
+  m_Name: SnowMountain Shadow Game Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Reset
