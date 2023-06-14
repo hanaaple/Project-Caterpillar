@@ -6,11 +6,9 @@ namespace Utility.Drag_Drop
 {
     public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        [SerializeField]
-        private Canvas canvas;
-        [SerializeField]
-        private bool isInteractable;
-    
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private bool isInteractable;
+        
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
 
@@ -26,7 +24,7 @@ namespace Utility.Drag_Drop
             _canvasGroup = GetComponent<CanvasGroup>();
             _rectTransform = GetComponent<RectTransform>();
         }
-    
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (isInteractable)

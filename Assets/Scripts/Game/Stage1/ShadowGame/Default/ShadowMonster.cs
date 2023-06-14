@@ -40,20 +40,22 @@ namespace Game.Stage1.ShadowGame.Default
         }
 
         // Defeat Animation 타이밍 조정 필요 -> 미사용?
-        public void Defeat(Action onDefeatStart, Action onDisappearEnd)
+        public void Defeat(Action onDefeatStart, Action onDisappear)
         {
             SetActive(false);
             onDefeatStart?.Invoke();
-            StartCoroutine(DisappearCoroutine(onDisappearEnd));
+            StartCoroutine(DisappearCoroutine(onDisappear));
         }
 
-        private IEnumerator DisappearCoroutine(Action onDisappearEnd = null)
+        private IEnumerator DisappearCoroutine(Action onDisappear = null)
         {
+            monsterAnimator.SetFloat(AttackedSecHash, 0);
             monsterAnimator.SetTrigger(DisappearHash);
+            
+            onDisappear?.Invoke();
+            
             yield return null;
             yield return new WaitUntil(() => monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"));
-            
-            onDisappearEnd?.Invoke();
         }
 
         private void Update()

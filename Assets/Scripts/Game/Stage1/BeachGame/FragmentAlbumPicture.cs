@@ -1,21 +1,28 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class FragmentAlbumPicture : AlbumPicture
+namespace Game.Stage1.BeachGame
 {
-    [SerializeField] private Sprite[] clearSprites;
-
-    public override void SetPanel(int idx)
+    public class FragmentAlbumPicture : AlbumPicture
     {
-        if (clearSprites.Contains(panelButton.image.sprite))
+        [SerializeField] private Image defaultImage;
+        [SerializeField] private Image activeImage;
+        [SerializeField] private Sprite[] clearSprites;
+
+        public override void SetPanel(int idx)
         {
-            Debug.Log("아직 1개 남음");
-            SetPanel(PictureState.Clear);
-        }
-        else
-        {
-            Debug.Log("끝");
-            panelButton.image.sprite = clearSprites[idx];
+            if (clearSprites.Contains(PanelButton.image.sprite))
+            {
+                SetPanel(PictureState.Clear);
+            }
+            else
+            {
+                Debug.Log("끝");
+                PanelButton.image.sprite = clearSprites[idx];
+                defaultImage.sprite = clearSprites[idx];
+                activeImage.sprite = clearSprites[idx];
+            }
         }
     }
 }

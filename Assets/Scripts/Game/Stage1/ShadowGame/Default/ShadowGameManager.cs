@@ -105,7 +105,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
                 {
-                    toastManager.EnQueue(toastContent);
+                    toastManager.Enqueue(toastContent);
                 }
 
                 TimeScaleHelper.Pop();
@@ -150,7 +150,7 @@ namespace Game.Stage1.ShadowGame.Default
                 InputManager.PopInputAction(_tutorialInputActions);
                 StartCoroutine(StartGame());
             });
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("MainScene"); });
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
             retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
@@ -176,6 +176,11 @@ namespace Game.Stage1.ShadowGame.Default
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;
+            
+            flashlight.SetFlashLightPos(Vector3.zero);
+            
+            stageAnimator.SetTrigger(ResetHash);
+            stageAnimator.SetInteger(StageIndexHash, stageIndex);
         }
 
         public void Play()
@@ -207,7 +212,7 @@ namespace Game.Stage1.ShadowGame.Default
             StartStage();
         }
 
-        protected virtual void StartStage(bool isClear = true)
+        private void StartStage(bool isClear = true)
         {
             Debug.Log(stageIndex + " 스테이지 시작");
 
@@ -261,7 +266,7 @@ namespace Game.Stage1.ShadowGame.Default
                 {
                     if (stageIndex == speechBubble.index)
                     {
-                        toastManager.EnQueue(speechBubble.text);
+                        toastManager.Enqueue(speechBubble.text);
                     }
                 }
             }, () => { StartCoroutine(OnStageEnd(true)); });
@@ -319,12 +324,9 @@ namespace Game.Stage1.ShadowGame.Default
             }
         }
 
-        protected virtual IEnumerator OnStageEnd(bool isClear)
+        private IEnumerator OnStageEnd(bool isClear)
         {
-            // 배경 연출 이후 아이템 실행
-
-            // 배경 연출
-            Debug.Log(stageIndex + "스테이지 종료, 배경 연출 시작");
+            // 배경 연출 대기
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
             stageAnimator.SetTrigger(PlayHash);
             yield return new WaitUntil(() => stageAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
@@ -346,15 +348,19 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void ClearGame()
         {
+            InputManager.PopInputAction(_inputActions);
             gameAnimator.SetTrigger(ClearHash);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
             }
+            
+            SceneLoader.Instance.LoadScene("CampingScene");
         }
 
         private void GameOver()
         {
+            InputManager.PopInputAction(_inputActions);
             foreach (var shadowGameItem in shadowGameItems)
             {
                 shadowGameItem.gameObject.SetActive(false);
@@ -383,7 +389,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 if (Mentality == speechBubble.index)
                 {
-                    toastManager.EnQueue(speechBubble.text);
+                    toastManager.Enqueue(speechBubble.text);
                 }
             }
         }
@@ -470,7 +476,7 @@ namespace Game.Stage1.ShadowGame.Default
             // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
         }
 
-        protected virtual IEnumerator ReStartGame()
+        private IEnumerator ReStartGame()
         {
             ResetSetting();
             gameAnimator.SetTrigger(ResetHash);

@@ -1,142 +1,188 @@
+using System;
+using System.Collections;
+using System.Linq;
+using Game.Default;
+using Game.Stage1.Camping.Interaction;
+using Game.Stage1.Camping.Interaction.Map;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Core;
+using Utility.InputSystem;
 using Utility.Scene;
-using Utility.Util;
+using Random = UnityEngine.Random;
 
-namespace Game.Camping
+namespace Game.Stage1.Camping
 {
-    public class CampingManager : MonoBehaviour
+    public class CampingManager : MonoBehaviour, IGamePlayable
     {
-        [SerializeField]
-        private Button[] beachTempButton;
-        
-        [Header("필드")]
-        [SerializeField]
-        private GameObject filedPanel;
-        [SerializeField]
-        private Button openButton;
-        [SerializeField]
-        private Button retryButton;
-
-        [SerializeField]
-        private CampingInteraction[] interactions;
-    
-    
-        [Space(10)]
-        [Header("맵")]
-        [SerializeField]
-        private GameObject mapPanel;
-        [SerializeField]
-        private Button exitButton;
-    
-        [SerializeField]
-        private Button campingButton;
-        [SerializeField]
-        private CampingDropItem[] clearDropItems;
-    
-        [SerializeField]
-        private CampingHint[] hints;
-    
-        [SerializeField]
-        private GameObject clearPanel;
-        [SerializeField]
-        private GameObject failPanel;
-    
-        void Start()
+        [Serializable]
+        public class TimerToastData : ToastData
         {
-            foreach (var button in beachTempButton)
+            public int time;
+            public Color color;
+        }
+
+        [Header("필드")] [SerializeField] private GameObject filedPanel;
+        [SerializeField] private Button openMapButton;
+        [SerializeField] private Button resetButton;
+        [SerializeField] private CampingInteraction[] interactions;
+
+        [SerializeField] private ToastData wrongToastData;
+
+        [Space(10)] [Header("Timer")] [SerializeField]
+        private TMP_Text timerText;
+
+        [SerializeField] private float timerSec;
+        [SerializeField] private TimerToastData[] timerToastData;
+
+        [Space(10)] [Header("지도")] [SerializeField]
+        private GameObject mapPanel;
+
+        [SerializeField] private Button mapExitButton;
+        [SerializeField] private Button campingButton;
+
+        [Header("지도 - 클리어 조건")] [SerializeField]
+        private CampingDropItem[] clearDropItems;
+
+        [SerializeField] private CampingDropItem[] dropItems;
+
+        [Header("결과")] [SerializeField] private GameObject failPanel;
+        [SerializeField] private Button retryButton;
+        [SerializeField] private Button giveUpButton;
+
+        private InputActions _inputActions;
+        
+        private void Start()
+        {
+            mapExitButton.onClick.AddListener(() =>
             {
-                button.onClick.AddListener(() =>
-                {
-                    SceneLoader.Instance.LoadScene("BeachGameTest");
-                });
-            }
-            
-            exitButton.onClick.AddListener(() =>
-            {
+                SetInteractable(true);
                 mapPanel.SetActive(false);
                 filedPanel.SetActive(true);
             });
-        
-            openButton.onClick.AddListener(() =>
+
+            openMapButton.onClick.AddListener(() =>
             {
+                SetInteractable(false);
                 mapPanel.SetActive(true);
                 filedPanel.SetActive(false);
             });
-        
-            retryButton.onClick.AddListener(() =>
+
+            resetButton.onClick.AddListener(() =>
             {
                 foreach (var t in interactions)
                 {
-                    t.Reset();
+                    t.ResetInteraction();
                 }
             });
-        
+
             campingButton.onClick.AddListener(() =>
             {
                 if (IsClear())
                 {
-                    clearPanel.SetActive(true);
+                    InputManager.PopInputAction(_inputActions);
+                    StopAllCoroutines();
+                    SceneLoader.Instance.LoadScene("BeachScene");
                 }
                 else
                 {
-                    failPanel.SetActive(true);
+                    var index = Random.Range(0, wrongToastData.toastContents.Length);
+                    SceneHelper.Instance.toastManager.Enqueue(wrongToastData.toastContents[index]);
                 }
             });
-        
-            foreach (var campingHint in hints)
+
+            retryButton.onClick.AddListener(ResetGame);
+
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
+
+
+            foreach (var interaction in interactions)
             {
-                campingHint.SetHint(false);
+                interaction.setInteractable = SetInteractable;
+                interaction.ResetInteraction(true);
             }
-
-            for (var i = 0; i < interactions.Length; i++)
+            
+            _inputActions = new InputActions("ShadowGameManager")
             {
-                var idx = i;
-                interactions[idx].onAppear += () => { hints[idx].SetHint(true); };
+                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+            };
 
-                interactions[idx].setInteractable += (isEnable) =>
+            Play();
+        }
+
+        public void Play()
+        {
+            InputManager.PushInputAction(_inputActions);
+            StartCoroutine(StartTimer());
+        }
+
+        private IEnumerator StartTimer()
+        {
+            timerText.text = $"{timerSec / 60: #0}:{timerSec % 60:00}";
+            var t = timerSec;
+            while (t > 0)
+            {
+                timerText.text = $"{Mathf.Floor(t / 60): #0}:{Mathf.Floor(t % 60):00}";
+                yield return null;
+                t -= Time.deltaTime;
+
+                var t1 = t;
+                var toastData = timerToastData.Where(item => !item.IsToasted && item.time > t1).ToArray();
+                foreach (var data in toastData)
                 {
-                    foreach (var t in interactions)
+                    data.IsToasted = true;
+                    timerText.color = data.color;
+                    foreach (var content in data.toastContents)
                     {
-                        var collider2ds = t.GetComponentsInChildren<Collider2D>(true);
-                        foreach (var collider2d in collider2ds)
-                        {
-                            collider2d.enabled = isEnable;
-                        }
+                        SceneHelper.Instance.toastManager.Enqueue(content);
                     }
-                };
-                interactions[idx].Reset();
+                }
             }
+
+            GameOver();
+        }
+
+        private void SetInteractable(bool isInteractable)
+        {
+            foreach (var t in interactions)
+            {
+                var collider2ds = t.GetComponentsInChildren<Collider2D>(true);
+                foreach (var collider2d in collider2ds)
+                {
+                    collider2d.enabled = isInteractable;
+                }
+            }
+        }
+
+        private void GameOver()
+        {
+            InputManager.PopInputAction(_inputActions);
+            StopAllCoroutines();
+            failPanel.SetActive(true);
+            mapPanel.SetActive(false);
+            filedPanel.SetActive(true);
         }
 
         private bool IsClear()
         {
-            foreach (var campingDropItem in clearDropItems)
-            {
-                if (!campingDropItem.HasItem())
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return clearDropItems.All(campingDropItem => campingDropItem.HasItem());
         }
 
-        // private void OnDrawGizmos()
-        // {
-        //     if (Application.isEditor)
-        //     {
-        //         foreach (var campingDropItem in clearDropItems)
-        //         {
-        //             Gizmos.color = Color.red;
-        //             RectTransform rectTr = canvas.transform as RectTransform;
-        //             Matrix4x4 canvasMatrix = rectTr.localToWorldMatrix;
-        //             // canvasMatrix *= Matrix4x4.Translate(-rectTr.sizeDelta / 2);
-        //             Gizmos.matrix = canvasMatrix;
-        //             Gizmos.DrawSphere(campingDropItem.GetComponent<RectTransform>().anchoredPosition, 50);
-        //         }
-        //     }
-        // }
+        private void ResetGame()
+        {
+            foreach (var dragItem in dropItems)
+            {
+                dragItem.ResetItem();
+            }
+
+            failPanel.SetActive(false);
+            foreach (var t in interactions)
+            {
+                t.ResetInteraction(true);
+            }
+
+            Play();
+        }
     }
 }

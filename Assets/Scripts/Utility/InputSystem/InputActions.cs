@@ -1,33 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 namespace Utility.InputSystem
 {
+    /// <summary>
+    /// 직접 Action에 접근하는 경우, Push 이전에 실행해야됨.
+    /// Highlighter에서 직접 접근해서 더해주는 경우, highlighter.Init 이후 해줘야됨.
+    /// </summary>
     public class InputActions
     {
-        public enum ActionType
-        {
-            UiAction,
-            PlayerAction
-        }
-
         public readonly string Name;
 
         public Action<bool> OnActive;
-
+        
         // UI
         public Action<InputAction.CallbackContext> OnArrow;
         public Action<InputAction.CallbackContext> OnExecute;
         public Action<InputAction.CallbackContext> OnCancel;
 
-        /// <summary>
-        /// Highlighter에서 직접 접근해서 더해주는 경우, highlighter.Init 이후 해줘야됨. 
-        /// </summary>
         public Action<InputAction.CallbackContext> OnPause;
 
         // Player
         public Action<InputAction.CallbackContext> OnInteract;
+        public Action<InputAction.CallbackContext> OnInventory;
         public Action<InputAction.CallbackContext> OnMovePerformed;
         public Action<InputAction.CallbackContext> OnMoveCanceled;
 
@@ -73,6 +68,9 @@ namespace Utility.InputSystem
                 if (OnInteract != null)
                     inputActions.Interact.performed += OnInteract;
 
+                if (OnInventory != null)
+                    inputActions.Inventory.performed += OnInventory;
+
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed += OnAnyKey;
 
@@ -106,6 +104,9 @@ namespace Utility.InputSystem
                 if (OnInteract != null)
                     inputActions.Interact.performed -= OnInteract;
 
+                if (OnInventory != null)
+                    inputActions.Inventory.performed -= OnInventory;
+                
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed -= OnAnyKey;
                 

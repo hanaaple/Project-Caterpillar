@@ -136,13 +136,31 @@ namespace Utility.UI.Inventory
 
     public class InventoryManager : MonoBehaviour
     {
+        [Serializable]
+        public class NecklaceType
+        {
+            public Sprite sprite;
+            public NecklaceState ascentState;
+            public NecklaceState activeState;
+        }
+
+        public enum NecklaceState
+        {
+            Equivalent,
+            Positive,
+            Negative
+        }
+        
         [SerializeField] private Button inventoryButton;
         [SerializeField] private InventoryMenuItem[] inventoryMenuItems;
         [SerializeField] private InventoryItem[] inventoryItems;
         [SerializeField] private Image[] highlights;
         [SerializeField] private GameObject inventoryPanel;
         [SerializeField] private GameObject bagPanel;
-        [SerializeField] private GameObject necklacePanel;
+
+        [Header("Necklace")] [SerializeField] private GameObject necklacePanel;
+        [SerializeField] private Image necklace;
+        [SerializeField] private NecklaceType[] necklaceTypes;
 
         private Transform _highlightParent;
         private Highlighter _menuHighlighter;
@@ -197,7 +215,7 @@ namespace Utility.UI.Inventory
                     item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 if (_menuHighlighter.selectedIndex == exitIndex)
                 {
-                    inventoryMenuItems[exitIndex].button.onClick?.Invoke();
+                    SetInventory(false);
                 }
                 else
                 {
@@ -220,7 +238,7 @@ namespace Utility.UI.Inventory
         private void Start()
         {
             _highlightParent = highlights[0].transform.parent;
-            inventoryButton.onClick.AddListener(() => SetActive(true));
+            inventoryButton.onClick.AddListener(() => SetInventory(true));
 
             // Menu Arrow Select
             for(var idx = 0; idx < inventoryMenuItems.Length; idx++)
@@ -233,15 +251,15 @@ namespace Utility.UI.Inventory
                         inventoryMenuItem.button.onClick.AddListener(() =>
                         {
                             Debug.Log($"{inventoryMenuItem.inventoryMenuType} 누름");
-                            var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                            var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
+                            // var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                            // var duplicated = items.Intersect(inventoryItems.Select(item => item.itemType));
 
-                            if (!duplicated.Any())
-                            {
-                                bagPanel.SetActive(true);
-                                necklacePanel.SetActive(false);
-                                return;
-                            }
+                            // if (!duplicated.Any())
+                            // {
+                            //     bagPanel.SetActive(true);
+                            //     necklacePanel.SetActive(false);
+                            //     return;
+                            // }
 
                             if (!HighlightHelper.Instance.Contains(_itemHighlighter))
                             {
@@ -365,32 +383,72 @@ namespace Utility.UI.Inventory
             }
         }
 
-        private void LoadItemData()
+        private void LoadData()
         {
             // Get From ItemManager
             // ItemManager Have to load At Start Game
             Debug.Log("Inventory Init");
 
-
             var ownItems = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-            foreach (var inventoryItem in inventoryItems)
+            // var items = inventoryItems.Join(ownItems, inventoryItem => inventoryItem.itemType, ownItem => ownItem, (_, __) => _).ToArray();
+
+            foreach (var item in inventoryItems)
             {
-                if (ownItems.Contains(inventoryItem.itemType))
+                Debug.Log($"{item.itemType} - Active? {ownItems.Contains(item.itemType)}");
+                if (ownItems.Contains(item.itemType))
                 {
-                    inventoryItem.SetActive(true);
+                    item.SetActive(true);
                 }
                 else
                 {
-                    inventoryItem.SetActive(false);
+                    item.SetActive(false);
                 }
             }
+
+            const int equivalentRange = 5;
+
+            var tendencyData = TendencyManager.Instance.GetTendencyData();
+
+            NecklaceState ascentState;
+            NecklaceState activeState;
+
+            var active = Mathf.Abs(tendencyData.activation - tendencyData.inactive);
+            if (active >= equivalentRange)
+            {
+                activeState = NecklaceState.Equivalent;
+            }
+            else if (tendencyData.activation > tendencyData.inactive)
+            {
+                activeState = NecklaceState.Positive;
+            }
+            else
+            {
+                activeState = NecklaceState.Negative;
+            }
+            
+            var ascent = Mathf.Abs(tendencyData.ascent - tendencyData.descent);
+            if (ascent >= equivalentRange)
+            {
+                ascentState = NecklaceState.Equivalent;
+            }
+            else if (tendencyData.ascent > tendencyData.descent)
+            {
+                ascentState = NecklaceState.Positive;
+            }
+            else
+            {
+                ascentState = NecklaceState.Negative;
+            }
+
+            necklace.sprite = Array.Find(necklaceTypes,
+                item => item.activeState == activeState && item.ascentState == ascentState).sprite;
         }
 
-        private void SetActive(bool isActive)
+        public void SetInventory(bool isActive)
         {
             if (isActive)
             {
-                LoadItemData();
+                LoadData();
                 HighlightHelper.Instance.Push(_menuHighlighter);
 
                 inventoryPanel.SetActive(true);

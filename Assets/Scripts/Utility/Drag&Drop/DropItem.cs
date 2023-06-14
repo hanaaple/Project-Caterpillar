@@ -5,14 +5,14 @@ namespace Utility.Drag_Drop
 {
     public class DropItem : MonoBehaviour, IDropHandler
     {
-        [SerializeField]
-        protected DragItem dragItem;
+        [SerializeField] protected DragItem dragItem;
 
         protected virtual void Start()
         {
             if (dragItem)
             {
-                dragItem.OnBeginDragAction.AddListener(Reset);
+                dragItem.OnBeginDragAction.RemoveAllListeners();
+                dragItem.OnBeginDragAction.AddListener(ResetDropItem);
                 dragItem.GetComponent<RectTransform>().anchoredPosition =
                     GetComponent<RectTransform>().anchoredPosition;
             }
@@ -23,15 +23,15 @@ namespace Utility.Drag_Drop
             if (eventData.pointerDrag && !dragItem)
             {
                 dragItem = eventData.pointerDrag.GetComponent<DragItem>();
-                dragItem.OnBeginDragAction.AddListener(Reset);
+                dragItem.OnBeginDragAction.AddListener(ResetDropItem);
                 dragItem.GetComponent<RectTransform>().anchoredPosition =
                     GetComponent<RectTransform>().anchoredPosition;
             }
         }
 
-        private void Reset()
+        private void ResetDropItem()
         {
-            dragItem.OnBeginDragAction.RemoveListener(Reset);
+            dragItem.OnBeginDragAction.RemoveListener(ResetDropItem);
             dragItem = null;
         }
 

@@ -2,77 +2,80 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
+using Game.Default;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Core;
+using Utility.InputSystem;
 using Utility.Scene;
-using Utility.Util;
 
-namespace Game.BeachGame
+namespace Game.Stage1.BeachGame
 {
     [Serializable]
     public enum BeachInteractType
     {
-        ConchMeat, Cocktail, BeachBall, Shovel, Flag, Fragment
+        ConchMeat,
+        Cocktail,
+        BeachBall,
+        Shovel,
+        Flag,
+        Fragment
     }
+
     public class BeachGameManager : MonoBehaviour
     {
         [Serializable]
-        private class BeachInteraction
-        {
-            public BeachInteractors[] beachInteractors;
-        }
-        [Serializable]
-        private class BeachInteractors
+        private class BeachInteractions
         {
             public BeachInteractType beachInteractType;
-            public string krName;
-            
-            public BeachInteractor[] beachInteractors;
-            [NonSerialized] public bool isClear;
+            public ToastData toastData;
+
+            public BeachInteraction[] interactions;
+            [NonSerialized] public bool IsClear;
         }
-        [SerializeField] private Button mainButton;
         
-        [Header("Field")]
-        [SerializeField] private GameObject[] backgrounds;
+        [Header("Field")] [SerializeField] private GameObject[] backgrounds;
+        [SerializeField] private BeachInteractions[] beachInteractions;
 
-        [SerializeField] private BeachInteraction beachInteraction;
-        
-        [Header("Field UI")]
-        [SerializeField] private WatchDragger watchDragger;
-        [SerializeField] private Animator timerAnimator;
-        [SerializeField] private Animator toastAnimator;
-        [SerializeField] private TMP_Text toastText;
-        
-        
-        [Header("Album UI")]
-        [SerializeField] private Button albumButton;
+        [Header("Field UI")] [SerializeField] private WatchDragger watchDragger;
 
+        [Header("Album UI")] [SerializeField] private Button albumButton;
         [SerializeField] private Animator albumAnimator;
         [SerializeField] private AlbumPicture[] albumPictures;
 
+        [SerializeField] private ToastData endToastData;
+        
+        private InputActions _inputActions;
+        
+        private static readonly int OpenHash = Animator.StringToHash("Open");
 
         private void Start()
         {
-            mainButton.onClick.AddListener(() =>
-            {
-                SceneLoader.Instance.LoadScene("StartScene");
-            });
+            Initialize();
+
+            GameStart();
+        }
+
+        private void Initialize()
+        {
             albumButton.onClick.AddListener(() =>
             {
-                if (albumAnimator.GetBool("Open"))
+                if (albumAnimator.GetBool(OpenHash))
                 {
-                    albumAnimator.SetBool("Open", false);
+                    albumAnimator.SetBool(OpenHash, false);
                     SetInteractable(true);
                 }
                 else
                 {
-                    albumAnimator.SetBool("Open", true);
+                    albumAnimator.SetBool(OpenHash, true);
                     SetInteractable(false);
                 }
             });
 
+            foreach (var albumPicture in albumPictures)
+            {
+                albumPicture.Init();
+            }
 
             for (var i = 0; i < watchDragger.actions.Length; i++)
             {
@@ -81,7 +84,7 @@ namespace Game.BeachGame
                 {
                     //Debug.Log("이전 Index: " + watchDragger.index + ", 새 Index: " + idx);
 
-                    watchDragger.index = idx;
+                    watchDragger.Index = idx;
 
                     //Debug.Log("현재 Stack : " + String.Join("",
                     //new List<int>(watchDragger.pastIdxs).ConvertAll(stackIdx => stackIdx.ToString()).ToArray()));
@@ -89,17 +92,20 @@ namespace Game.BeachGame
                     StartCoroutine(ChangeBackground());
                 };
             }
-
-            GameStart();
-
-            foreach (var beachInteractors in beachInteraction.beachInteractors)
+            
+            _inputActions = new InputActions("BeachGameManager")
             {
-                for (var index = 0; index < beachInteractors.beachInteractors.Length; index++)
+                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+            };
+            
+            foreach (var interactions in beachInteractions)
+            {
+                for (var index = 0; index < interactions.interactions.Length; index++)
                 {
-                    var interactor = beachInteractors.beachInteractors[index];
-                    interactor.Init();
+                    var interaction = interactions.interactions[index];
+                    interaction.Init();
 
-                    switch (beachInteractors.beachInteractType)
+                    switch (interactions.beachInteractType)
                     {
                         case BeachInteractType.ConchMeat:
                         case BeachInteractType.Cocktail:
@@ -107,26 +113,34 @@ namespace Game.BeachGame
                         case BeachInteractType.Shovel:
                         case BeachInteractType.Flag:
                         {
-                            interactor.onInteract += () =>
+                            interaction.onInteract = () =>
                             {
                                 Debug.Log("유리 외 인터랙션");
-                                beachInteractors.isClear = true;
-                                interactor.gameObject.SetActive(false);
-                                foreach (var t in beachInteractors.beachInteractors)
+                                interactions.IsClear = true;
+                                interaction.gameObject.SetActive(false);
+                                foreach (var t in interactions.interactions)
                                 {
-                                    t.interactable = false;
+                                    t.Interactable = false;
                                 }
 
                                 var albumPicture = Array.Find(albumPictures,
-                                    item => item.beachInteractType == beachInteractors.beachInteractType);
-                                albumPicture.SetPanel(AlbumPicture.PictureState.Clear);
+                                    item => item.beachInteractType == interactions.beachInteractType);
+                                albumPicture.SetPanel(PictureState.Clear);
 
-                                toastText.text = $"[{beachInteractors.krName}]를 획득했습니다.";
-                                toastAnimator.SetTrigger("Active");
-                                
-                                var isGameClear = beachInteraction.beachInteractors.All(item => item.isClear);
-                                var isClearCount = beachInteraction.beachInteractors.Count(item => item.isClear);
-                                Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteraction.beachInteractors.Length);
+                                if (!interactions.toastData.IsToasted)
+                                {
+                                    foreach (var content in interactions.toastData.toastContents)
+                                    {
+                                        SceneHelper.Instance.toastManager.Enqueue(content);
+                                    }
+
+                                    interactions.toastData.IsToasted = true;
+                                }
+                                // SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
+
+                                var isGameClear = beachInteractions.All(item => item.IsClear);
+                                var isClearCount = beachInteractions.Count(item => item.IsClear);
+                                Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractions.Length);
                                 if (isGameClear)
                                 {
                                     GameEnd();
@@ -137,27 +151,34 @@ namespace Game.BeachGame
                         case BeachInteractType.Fragment:
                         {
                             var idx = index;
-                            interactor.onInteract += () =>
+                            interaction.onInteract = () =>
                             {
                                 Debug.Log("유리 인터랙션");
                                 var albumPicture = Array.Find(albumPictures,
-                                    item => item.beachInteractType == beachInteractors.beachInteractType);
+                                    item => item.beachInteractType == interactions.beachInteractType);
                                 albumPicture.SetPanel(idx);
 
-                                interactor.gameObject.SetActive(false);
-                                interactor.interactable = false;
+                                interaction.gameObject.SetActive(false);
+                                interaction.Interactable = false;
 
-                                var isClear = beachInteractors.beachInteractors.All(item => !item.interactable);
+                                var isClear = interactions.interactions.All(item => !item.Interactable);
                                 if (isClear)
                                 {
-                                    beachInteractors.isClear = true;
-                                    
-                                    toastText.text = $"[{beachInteractors.krName}]를 획득했습니다.";
-                                    toastAnimator.SetTrigger("Active");
-                                    
-                                    var isGameClear = beachInteraction.beachInteractors.All(item => item.isClear);
-                                    var isClearCount = beachInteraction.beachInteractors.Count(item => item.isClear);
-                                    Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteraction.beachInteractors.Length);
+                                    interactions.IsClear = true;
+
+                                    if (!interactions.toastData.IsToasted)
+                                    {
+                                        foreach (var content in interactions.toastData.toastContents)
+                                        {
+                                            SceneHelper.Instance.toastManager.Enqueue(content);
+                                        }
+
+                                        interactions.toastData.IsToasted = true;
+                                    }
+
+                                    var isGameClear = beachInteractions.All(item => item.IsClear);
+                                    var isClearCount = beachInteractions.Count(item => item.IsClear);
+                                    Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractions.Length);
                                     if (isGameClear)
                                     {
                                         GameEnd();
@@ -178,54 +199,61 @@ namespace Game.BeachGame
 
         private void GameStart()
         {
-            watchDragger.Init();
+            InputManager.PushInputAction(_inputActions);
+            albumButton.gameObject.SetActive(true);
+            watchDragger.Reseet();
             foreach (var albumPicture in albumPictures)
             {
-                albumPicture.Init();
+                albumPicture.Reeset();
             }
 
             StartCoroutine(HintTimer());
         }
-        
+
         private void GameEnd()
         {
+            InputManager.PopInputAction(_inputActions);
             SetInteractable(false);
 
             StopAllCoroutines();
-            
-            Invoke(nameof(GameEndTrigger), 2f);
-        }
 
-        private void GameEndTrigger()
-        {
-            albumAnimator.SetTrigger("GameEnd");
+            if (!endToastData.IsToasted)
+            {
+                foreach (var content in endToastData.toastContents)
+                {
+                    SceneHelper.Instance.toastManager.Enqueue(content);
+                }
+
+                endToastData.IsToasted = true;
+            }
+
+            SceneHelper.Instance.toastManager.onToastEnd = () =>
+            {
+                albumButton.gameObject.SetActive(false);
+                albumAnimator.SetTrigger("GameEnd");
+            };
         }
 
         private IEnumerator HintTimer()
         {
-            var t = 0f;
+            yield return new WaitForSeconds(10f);
 
-            while (t <= 10f)
-            {
-                t += Time.deltaTime;
-                yield return null;
-            }
             foreach (var albumPicture in albumPictures)
             {
-                albumPicture.SetPanel(AlbumPicture.PictureState.Active);
+                albumPicture.SetPanel(PictureState.Active);
             }
 
-            timerAnimator.SetTrigger("Active");
+            SceneHelper.Instance.toastManager.Enqueue("···? 앨범이 변화한 거 같아.");
         }
 
         private IEnumerator ChangeBackground()
         {
-            var stackList = new List<int>(watchDragger.pastIdxs);
+            var stackList = new List<int>(watchDragger.PastIndex);
             stackList.Reverse();
 
-            Debug.Log("시작, 현재 Stack : " + String.Join("",
+            Debug.Log("시작, 현재 Stack : " + string.Join("",
                 stackList.ConvertAll(stackIdx => stackIdx.ToString()).ToArray()));
-            
+
             for (var index = 0; index < stackList.Count - 1; index++)
             {
                 var curIdx = stackList[index];
@@ -234,11 +262,11 @@ namespace Game.BeachGame
                 var curSpriteRenderer = backgrounds[curIdx].GetComponent<SpriteRenderer>();
                 var nextSpriteRenderer = backgrounds[nextIdx].GetComponent<SpriteRenderer>();
                 nextSpriteRenderer.sortingOrder = 3;
-                
+
                 backgrounds[nextIdx].SetActive(true);
-                
+
                 var t = 0f;
-                var timer = .5f;
+                const float timer = .5f;
                 while (t <= timer)
                 {
                     t += Time.deltaTime / timer;
@@ -247,29 +275,31 @@ namespace Game.BeachGame
 
                     yield return null;
                 }
+
                 nextSpriteRenderer.sortingOrder = 2;
                 backgrounds[curIdx].SetActive(false);
             }
-            watchDragger.pastIdxs.Clear();
+
+            watchDragger.PastIndex.Clear();
             Debug.Log("끝, 현재 Stack : " + String.Join("",
                 stackList.ConvertAll(stackIdx => stackIdx.ToString()).ToArray()));
-            
+
             SetInteractable(true);
         }
 
         private void SetInteractable(bool isInteractable)
         {
-            watchDragger.interactable = isInteractable;
-            foreach (var beachInteractionBeachInteractor in beachInteraction.beachInteractors)
+            watchDragger.Interactable = isInteractable;
+            foreach (var interactions in beachInteractions)
             {
-                foreach (var beachInteractor in beachInteractionBeachInteractor.beachInteractors)
+                foreach (var beachInteraction in interactions.interactions)
                 {
-                    beachInteractor.isStop = !isInteractable;
+                    beachInteraction.IsStop = !isInteractable;
                 }
             }
         }
 
-        private Color GetColorAlpha(Color color, float alpha)
+        private static Color GetColorAlpha(Color color, float alpha)
         {
             color.a = alpha;
             return color;

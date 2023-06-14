@@ -36,7 +36,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Eat
+    m_ConditionEvent: Clear
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6384317983263176714}
@@ -61,7 +61,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Eat
+    m_ConditionEvent: Clear
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2718868347523765909}
@@ -86,7 +86,7 @@ AnimatorController:
   m_Name: Squirrel
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Eat
+  - m_Name: Clear
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -143,7 +143,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6384317983263176714}
-    m_Position: {x: 267.96536, y: 72.38095, z: 0}
+    m_Position: {x: 270, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2718868347523765909}
     m_Position: {x: 270, y: 160, z: 0}

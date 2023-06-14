@@ -16,11 +16,21 @@ namespace Utility.Util
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.isTrigger)
+            {
+                return;
+            }
+
             _renderer.sortingLayerName = targetLayerName;
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D col)
         {
+            if (col.isTrigger)
+            {
+                return;
+            }
+
             _renderer.sortingLayerName = defaultLayerName;
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility.Core;
+using Utility.InputSystem;
 using Utility.SaveSystem;
 using Utility.Util;
 
@@ -51,6 +52,7 @@ namespace Utility.Scene
             return Instantiate(sceneLoaderPrefab);
         }
 
+        // 게임에서 MainScene으로 가는 경우 Load했던 SaveData로 초기화시켜야됨
         public void LoadScene(string sceneName, int index = -1)
         {
             IsLoading = true;
@@ -75,6 +77,7 @@ namespace Utility.Scene
                 }
             }
             
+            TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
@@ -84,6 +87,7 @@ namespace Utility.Scene
 
         private IEnumerator Load(string sceneName, int index)
         {
+            InputManager.ResetInputAction();
             progressBar.fillAmount = 0f;
             yield return StartCoroutine(Fade(true));
 
@@ -138,23 +142,15 @@ namespace Utility.Scene
                 return;
             }
             
+            Debug.Log("OnLoadSceneEnd");
+            
             IsLoading = false;
             
-            Debug.Log("OnLoadSceneEnd");
+            TimeScaleHelper.Pop();
+            
             StartCoroutine(Fade(false));
             onLoadSceneEnd?.Invoke();
             onLoadSceneEnd = () => { };
-
-            var sceneHelper = FindObjectOfType<SceneHelper>();
-            if (sceneHelper)
-            {
-                sceneHelper.Play();
-            }
-            else
-            {
-                Debug.LogWarning($"In Scene - {SceneManager.GetActiveScene().name}, There is no SceneHelper");
-            }
-            TimeScaleHelper.Pop();
             SceneManager.sceneLoaded -= LoadSceneEnd;
         }
 

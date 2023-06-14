@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,10 +10,12 @@ namespace Game.Default
     {
         [SerializeField] private Transform toastMessageParent;
         [SerializeField] private float textSec;
-        
+
+        public Action onToastEnd;
+
         private Queue<string> _toastQueue;
         private Animator _toastMessageParentAnimator;
-        
+
         private Coroutine _toastCoroutine;
         private Coroutine _toastDisappearCoroutine;
 
@@ -30,15 +33,15 @@ namespace Game.Default
             _toastQueue = new Queue<string>();
             _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
         }
-        
-        public void EnQueue(string toastContent)
+
+        public void Enqueue(string toastContent)
         {
             _toastQueue.Enqueue(toastContent);
-            
-            
+
+
             _toastCoroutine ??= StartCoroutine(StartToast());
         }
-        
+
         private GameObject GetToastMessage()
         {
             for (var i = 0; i < toastMessageParent.childCount; i++)
@@ -110,14 +113,32 @@ namespace Game.Default
                 // 전부 보이면 Text Print
                 var toastContent = _toastQueue.Dequeue();
                 var waitTextSec = new WaitForSeconds(textSec);
-                foreach (var t in toastContent)
-                {
-                    toastText.text += t;
-                    yield return waitTextSec;
-                }
 
-                // 타이핑 완료 후??
-                // Reset and Start Disappear
+                for (var index = 0; index < toastContent.Length; index++)
+                {
+                    var t = toastContent[index];
+                    if (t.Equals('<'))
+                    {
+                        while (!t.Equals('>'))
+                        {
+                            toastText.text += t;
+
+                            index++;
+                            t = toastContent[index];
+                        }
+
+                        toastText.text += t;
+
+                        index++;
+                    }
+
+                    toastText.text += toastContent[index];
+
+                    if (!t.Equals(' '))
+                    {
+                        yield return waitTextSec;
+                    }
+                }
 
                 _toastMessageParentAnimator.SetTrigger(DisAppearHash);
 
@@ -125,6 +146,7 @@ namespace Game.Default
             }
 
             _toastCoroutine = null;
+            onToastEnd?.Invoke();
         }
 
         private IEnumerator ToastDisappear()

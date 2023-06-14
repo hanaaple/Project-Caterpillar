@@ -59,8 +59,7 @@ namespace Utility.SaveSystem
         [SerializeField] private RectTransform scrollView;
         [SerializeField] private RectTransform content;
 
-        [Header("Check")]
-        [SerializeField] private CheckUIManager checkUIManager;
+        [Header("Check")] [SerializeField] private CheckUIManager checkUIManager;
         [TextArea] [SerializeField] private string newLoadText;
         [TextArea] [SerializeField] private string saveCoverText;
         [TextArea] [SerializeField] private string deleteText;
@@ -233,7 +232,7 @@ namespace Utility.SaveSystem
                     if (_saveLoadType == SaveLoadType.Save)
                     {
                         checkUIManager.Push();
-                        
+
                         checkUIManager.SetText(saveCoverText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
@@ -248,8 +247,8 @@ namespace Utility.SaveSystem
 
                                 saveLoadItemProps.UpdateUI();
                             }));
-                            
-                            checkUIManager.Pop(); 
+
+                            checkUIManager.Pop();
                         });
                     }
                     else if (_saveLoadType == SaveLoadType.Load)
@@ -293,9 +292,9 @@ namespace Utility.SaveSystem
                     {
                         var saveData = SaveHelper.GetSaveData();
                         var newSaveDataIndex = SaveManager.GetNewSaveIndex();
-                        
+
                         Debug.Log($"New Save Data Index: {newSaveDataIndex}");
-                        
+
                         SaveManager.Save(newSaveDataIndex, saveData);
 
                         var addItem = saveItemParent.GetChild(saveItemParent.childCount - 1);

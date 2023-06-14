@@ -34,6 +34,7 @@ namespace Utility.InputSystem
 
             if (inputActionReference != null)
             {
+                GetBindingInfo();
                 InputManager.LoadBindingOverride(_actionName);
                 GetBindingInfo();
                 UpdateUi();
@@ -96,7 +97,7 @@ namespace Utility.InputSystem
                 else
                 {
                     rebindText.text = inputActionReference.action.GetBindingDisplayString(_bindingIndex);
-                } 
+                }
             }
         }
 

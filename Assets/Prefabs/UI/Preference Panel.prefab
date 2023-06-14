@@ -215,7 +215,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7aefa0789f232b84cabcaa8c8a79e494, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -748,18 +748,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 2
   displayStringOptions: 0
   inputBinding:
     m_Name: down
-    m_Id: 90a5a242-8013-4037-99bf-9adc503489d3
+    m_Id: 1ff8873e-7afd-4409-b705-0cc190405d93
     m_Path: <Keyboard>/downArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Move
+    m_Action: Arrow
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 3286513454394594720}
@@ -1331,7 +1331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 309}
+  m_AnchoredPosition: {x: 5, y: -88}
   m_SizeDelta: {x: 155, y: 81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5163554350804674201
@@ -1837,10 +1837,10 @@ RectTransform:
   m_Father: {fileID: 7706834413374968508}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 197}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2579463198615758968
 GameObject:
@@ -2416,18 +2416,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 3
   displayStringOptions: 0
   inputBinding:
     m_Name: left
-    m_Id: 5391aba2-9869-45f1-bb8f-55304ae703f7
+    m_Id: 71c014b3-af0d-43e7-a084-60f693038ae5
     m_Path: <Keyboard>/leftArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Move
+    m_Action: Arrow
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 6515463258077585678}
@@ -4087,7 +4087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 99, y: 397}
+  m_AnchoredPosition: {x: 99, y: 0}
   m_SizeDelta: {x: 155, y: 81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4213998485158666159
@@ -5654,7 +5654,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7aefa0789f232b84cabcaa8c8a79e494, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -5933,7 +5933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6338,7 +6338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6810,18 +6810,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 1
   displayStringOptions: 0
   inputBinding:
     m_Name: up
-    m_Id: e914240d-98d4-4365-9d4a-87cc7cf90a9d
+    m_Id: e022fa43-971c-4301-aed8-01a93d705092
     m_Path: <Keyboard>/upArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Move
+    m_Action: Arrow
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 6058971629193867977}
@@ -7866,18 +7866,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: -5975700408244109779, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 4
   displayStringOptions: 0
   inputBinding:
     m_Name: right
-    m_Id: bf590ad9-11f9-431f-b87b-e5ddb594dca5
+    m_Id: bec122fa-a1e8-4023-b8a3-cf5698295f30
     m_Path: <Keyboard>/rightArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Move
+    m_Action: Arrow
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 7600762453944152841}

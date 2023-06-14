@@ -1,8 +1,7 @@
-using Game.BeachGame;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AlbumPicture : MonoBehaviour
+namespace Game.Stage1.BeachGame
 {
     public enum PictureState
     {
@@ -10,72 +9,74 @@ public class AlbumPicture : MonoBehaviour
         Active,
         Clear
     }
-
-    public BeachInteractType beachInteractType;
     
-    [SerializeField] protected Button panelButton;
-    [SerializeField] private GameObject textImage;
-    [SerializeField] private Sprite defaultSprite;
-    [SerializeField] private Sprite clearSprite;
-    
-    [Space(5)]
-    [Header("사진 패널")]
-    [SerializeField] private GameObject picturePanel;
-    [SerializeField] private Button panelExitButton;
-    [SerializeField] private GameObject defaultPanel;
-    [SerializeField] private GameObject activePanel;
-    [SerializeField] private GameObject clearPanel;
-    
-    private void Start()
+    public class AlbumPicture : MonoBehaviour
     {
-        panelButton.onClick.AddListener(() =>
-        {
-            picturePanel.SetActive(true);
-        });
-        panelExitButton.onClick.AddListener(() =>
-        {
-            picturePanel.SetActive(false);
-        });
-    }
+        public BeachInteractType beachInteractType;
 
-    public void SetPanel(PictureState state)
-    {
-        Debug.Log("상태: " + state);
-        if (state == PictureState.Default)
+        [SerializeField] private GameObject textImage;
+        [SerializeField] private Sprite inActiveSprite;
+        [SerializeField] private Sprite activeSprite;
+
+        [Space(5)] [Header("사진 패널")] [SerializeField]
+        private GameObject picturePanel;
+
+        [SerializeField] private Button panelExitButton;
+        [SerializeField] private GameObject defaultPanel;
+        [SerializeField] private GameObject activePanel;
+        [SerializeField] private GameObject clearPanel;
+
+        protected Button PanelButton;
+
+        public void Init()
         {
-            panelButton.image.sprite = defaultSprite;
-            defaultPanel.SetActive(true);
-            activePanel.SetActive(false);
-            clearPanel.SetActive(false);
+            PanelButton = GetComponentInChildren<Button>(true);
+            PanelButton.onClick.AddListener(() => { picturePanel.SetActive(true); });
+            panelExitButton.onClick.AddListener(() => { picturePanel.SetActive(false); });
+            
+            Reeset();
         }
-        else if (state == PictureState.Active)
+
+        public void SetPanel(PictureState state)
         {
-            if (!clearPanel.activeSelf)
+            Debug.Log("상태: " + state);
+            if (state == PictureState.Default)
             {
-                defaultPanel.SetActive(false);
-                activePanel.SetActive(true);
+                PanelButton.image.sprite = inActiveSprite;
+                defaultPanel.SetActive(true);
+                activePanel.SetActive(false);
                 clearPanel.SetActive(false);
             }
-            textImage.SetActive(true);
+            else if (state == PictureState.Active)
+            {
+                if (!clearPanel.activeSelf)
+                {
+                    defaultPanel.SetActive(false);
+                    activePanel.SetActive(true);
+                    clearPanel.SetActive(false);
+                }
+
+                textImage.SetActive(true);
+            }
+            else if (state == PictureState.Clear)
+            {
+                PanelButton.image.sprite = activeSprite;
+                defaultPanel.SetActive(false);
+                activePanel.SetActive(false);
+                clearPanel.SetActive(true);
+            }
         }
-        else if (state == PictureState.Clear)
+
+        public virtual void SetPanel(int idx)
         {
-            panelButton.image.sprite = clearSprite;
-            defaultPanel.SetActive(false);
-            activePanel.SetActive(false);
-            clearPanel.SetActive(true);
+
         }
-    }
 
-    public virtual void SetPanel(int idx)
-    {
-        
-    }
+        public void Reeset()
+        {
+            SetPanel(PictureState.Default);
 
-    public void Init()
-    {
-        SetPanel(PictureState.Default);
-        
-        textImage.SetActive(false);
+            textImage.SetActive(false);
+        }
     }
 }

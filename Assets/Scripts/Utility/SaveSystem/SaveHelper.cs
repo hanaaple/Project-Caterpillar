@@ -12,15 +12,37 @@ namespace Utility.SaveSystem
             var saveData = new SaveData
             {
                 items = ItemManager.Instance.GetItem<string>(),
-                tendencyData = TendencyManager.Instance.GetTendencyData(),
+                tendencyData = TendencyManager.Instance.GetSaveTendencyData(),
                 saveCoverData = new SaveCoverData
                 {
-                    describe = "테스트입니다." + SceneManager.GetActiveScene().name,
-                    sceneName = SceneManager.GetActiveScene().name == "TitleScene" ? "MainScene" : SceneManager.GetActiveScene().name,
+                    sceneName = SceneManager.GetActiveScene().name == "TitleScene"
+                        ? "MainScene"
+                        : SceneManager.GetActiveScene().name,
                     playTime = 1122
                 },
                 interactionData = new List<InteractionSaveData>()
             };
+
+            if (SceneManager.GetActiveScene().name == "TitleScene")
+            {
+                saveData.saveCoverData.describe = "이상한 숲";
+            }
+            else if (SceneManager.GetActiveScene().name == "MainScene")
+            {
+                saveData.saveCoverData.describe = "이상한 숲";
+            }
+            else if (SceneManager.GetActiveScene().name == "SmallRoomScene")
+            {
+                saveData.saveCoverData.describe = "작은 방";
+            }
+            else if (SceneManager.GetActiveScene().name == "CampingScene")
+            {
+                saveData.saveCoverData.describe = "한적한 캠핑장";
+            }
+            else if (SceneManager.GetActiveScene().name == "BeachScene")
+            {
+                saveData.saveCoverData.describe = "해변가";
+            }
 
             foreach (var interactionData in GameManager.Instance.InteractionObjects.Select(interaction =>
                          interaction.GetInteractionSaveData()))
