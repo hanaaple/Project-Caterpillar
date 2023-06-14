@@ -26,7 +26,7 @@ namespace Game.Stage1.ShadowGame.Default
 
 
         [Space(10)] [Header("Light")] [SerializeField]
-        protected Flashlight flashlight;
+        private Flashlight flashlight;
 
         [Space(20)] [Header("Canvas")] [SerializeField]
         private Button tutorialExitButton;
@@ -41,15 +41,12 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private SpeechBubble[] defeatedTexts;
         [SerializeField] private Animator batteryAnimator;
         [SerializeField] private float itemPopupSec;
-
-        [Space(20)] [Header("Toast")] [SerializeField]
-        private ToastManager toastManager;
         
         [Space(20)] [Header("스테이지")] [SerializeField]
         protected Animator gameAnimator;
 
         [SerializeField] private Animator stageAnimator;
-        [SerializeField] private ShadowMonster shadowMonster;
+        [SerializeField] protected ShadowMonster shadowMonster;
         [SerializeField] private ShadowGameItem[] shadowGameItems;
         [SerializeField] private int stageCount;
         [SerializeField] private float stageSec;
@@ -99,13 +96,15 @@ namespace Game.Stage1.ShadowGame.Default
         private static readonly int SecHash = Animator.StringToHash("Sec");
         private static readonly int ClearHash = Animator.StringToHash("Clear");
 
+        protected string NextScene;
+        
         private void Awake()
         {
             _onItemShowEnd = () =>
             {
                 foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
                 {
-                    toastManager.Enqueue(toastContent);
+                    SceneHelper.Instance.toastManager.Enqueue(toastContent);
                 }
 
                 TimeScaleHelper.Pop();
@@ -136,8 +135,10 @@ namespace Game.Stage1.ShadowGame.Default
             };
         }
 
-        private void Start()
+        protected virtual void Start()
         {
+            NextScene = "CampingScene";
+            
             flashlight.Init();
             _camera = Camera.main;
             _minBounds = cameraBound.bounds.min;
@@ -266,7 +267,7 @@ namespace Game.Stage1.ShadowGame.Default
                 {
                     if (stageIndex == speechBubble.index)
                     {
-                        toastManager.Enqueue(speechBubble.text);
+                        SceneHelper.Instance.toastManager.Enqueue(speechBubble.text);
                     }
                 }
             }, () => { StartCoroutine(OnStageEnd(true)); });
@@ -324,7 +325,7 @@ namespace Game.Stage1.ShadowGame.Default
             }
         }
 
-        private IEnumerator OnStageEnd(bool isClear)
+        protected virtual IEnumerator OnStageEnd(bool isClear)
         {
             // 배경 연출 대기
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
@@ -355,7 +356,7 @@ namespace Game.Stage1.ShadowGame.Default
                 shadowGameItem.gameObject.SetActive(false);
             }
             
-            SceneLoader.Instance.LoadScene("CampingScene");
+            SceneLoader.Instance.LoadScene(NextScene);
         }
 
         private void GameOver()
@@ -389,7 +390,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 if (Mentality == speechBubble.index)
                 {
-                    toastManager.Enqueue(speechBubble.text);
+                    SceneHelper.Instance.toastManager.Enqueue(speechBubble.text);
                 }
             }
         }

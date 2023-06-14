@@ -164,9 +164,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.875
+  m_ExitTime: 1.01
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -183,6 +183,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: StageIndex
     m_EventTreshold: 1
+  - m_ConditionMode: 1
+    m_ConditionEvent: Play
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4500335214886906299}
   m_Solo: 0
@@ -203,7 +206,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shadow Game Map
+  m_Name: SnowMountain Shadow Game Map
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: StageIndex
@@ -248,6 +251,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: StageIndex
     m_EventTreshold: 6
+  - m_ConditionMode: 1
+    m_ConditionEvent: Play
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2534120351532419755}
   m_Solo: 0
@@ -367,7 +373,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1d83d65dbd62ad34d873bb7270a3d0e9, type: 2}
+  m_Motion: {fileID: 7400000, guid: f01ad65b5970e3f4da912f3e123764c3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -394,7 +400,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 681f5c3b429fcf3469db378829c3e208, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4c7cb7594d4467e43b4f3bdc102a02ac, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -435,6 +441,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: StageIndex
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Play
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7090297519735053750}
