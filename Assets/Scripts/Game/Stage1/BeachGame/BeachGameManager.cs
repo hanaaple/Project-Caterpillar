@@ -34,6 +34,9 @@ namespace Game.Stage1.BeachGame
             [NonSerialized] public bool IsClear;
         }
         
+        [SerializeField] private Button retryButton;
+        [SerializeField] private Button giveUpButton;
+        
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
         [SerializeField] private BeachInteractions[] beachInteractions;
 
@@ -58,6 +61,9 @@ namespace Game.Stage1.BeachGame
 
         private void Initialize()
         {
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
+            retryButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("BeachGame"); });
+            
             albumButton.onClick.AddListener(() =>
             {
                 if (albumAnimator.GetBool(OpenHash))
@@ -231,7 +237,14 @@ namespace Game.Stage1.BeachGame
             {
                 albumButton.gameObject.SetActive(false);
                 albumAnimator.SetTrigger("GameEnd");
+                StartCoroutine(GameEndCoroutine());
             };
+        }
+
+        private IEnumerator GameEndCoroutine()
+        {
+            yield return new WaitUntil(() => albumAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
+            SceneLoader.Instance.LoadScene("SnowMountainScene");
         }
 
         private IEnumerator HintTimer()
