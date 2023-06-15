@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 using Utility.Core;
 using Utility.Dialogue;
@@ -172,6 +173,24 @@ namespace Utility.Interaction
                     case InteractType.OneOff:
                         EndInteraction(index);
                         break;
+                    case InteractType.Item:
+                        var join = interaction.itemInteractionTypes.Join(ItemManager.Instance.GetItem<ItemManager.ItemType>(),
+                            inner => inner.itemType,
+                            item => item, (inner, item) => inner.itemType).ToArray();
+                        if (join.Length == 1)
+                        {
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == join[0]);
+                            StartInteraction(targetItemInteraction.targetIndex);
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"아이템 조심\n"+
+                                             $"{ItemManager.Instance.GetItem<string>().Select(item => $"{item}, ")}\n" +
+                                             $"{interaction.itemInteractionTypes.Select(item => $"{item}, ")}");
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == ItemManager.ItemType.None);
+                            StartInteraction(targetItemInteraction.targetIndex);
+                        }
+                        break;
                 }
             }
         }
@@ -280,6 +299,8 @@ namespace Utility.Interaction
                     break;
                 case InteractType.OneOff:
                     EndInteraction(index);
+                    break;
+                case InteractType.Item:
                     break;
             }
         }
@@ -395,7 +416,7 @@ namespace Utility.Interaction
             {
                 var interaction = interactionData[index];
 
-                if (interaction.interactType != InteractType.Dialogue)
+                if (interaction.interactType != InteractType.Dialogue || !interaction.jsonAsset)
                 {
                     continue;
                 }
