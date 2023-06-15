@@ -48,8 +48,11 @@ namespace Utility.Dialogue
         public void Initialize(Action onClearAction = null)
         {
             foreach (var waitInteraction in waitInteractions)
-            { 
-                waitInteraction.interaction.InitializeWait(waitInteraction, onClearAction);
+            {
+                if (waitInteraction.interaction)
+                {
+                    waitInteraction.interaction.InitializeWait(waitInteraction, onClearAction);
+                }
             }
         }
         
@@ -78,6 +81,8 @@ namespace Utility.Dialogue
         [ConditionalHideInInspector("isInteraction")] [FormerlySerializedAs("index")]
         public int targetIndex;
 
+        [ConditionalHideInInspector("isInteraction")]
+        public bool isCustom;
         
         [ConditionalHideInInspector("isInteraction", true)]
         public bool isPortal;
