@@ -39,49 +39,43 @@ namespace Utility.Interaction
             public int index;
             public Vector2 offset;
         }
-        
-        [Header("Floating Mark")]
-        [FormerlySerializedAs("floatingMark")] [FormerlySerializedAs("ui")] [SerializeField]
+
+        [Header("Floating Mark")] [FormerlySerializedAs("floatingMark")] [FormerlySerializedAs("ui")] [SerializeField]
         private GameObject defaultFloatingMark;
 
         [SerializeField] private FloatingMark[] floatingMarks;
 
-        [FormerlySerializedAs("offset")] [SerializeField] private Vector2 defaultOffset;
-
-        private Action _onInteract;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            _onInteract = () =>
-            {
-                Debug.Log($"인터랙트 - {gameObject}");
-                if (defaultFloatingMark)
-                {
-                    defaultFloatingMark.SetActive(false);
-                }
-
-                OnEndInteraction += () =>
-                {
-                    if (IsInteractable())
-                    {
-                        if (defaultFloatingMark)
-                        {
-                            defaultFloatingMark.SetActive(true);
-                        }
-                    }
-                };
-                StartInteraction();
-            };
-        }
+        [FormerlySerializedAs("offset")] [SerializeField]
+        private Vector2 defaultOffset;
 
         private void Update()
         {
             if (defaultFloatingMark && defaultFloatingMark.activeSelf && Camera.main)
             {
-                defaultFloatingMark.transform.position = Camera.main.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
+                defaultFloatingMark.transform.position =
+                    Camera.main.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
             }
+        }
+
+        public void Interact()
+        {
+            Debug.Log($"인터랙트 - {gameObject}");
+            if (defaultFloatingMark)
+            {
+                defaultFloatingMark.SetActive(false);
+            }
+
+            OnEndInteraction += () =>
+            {
+                if (IsInteractable())
+                {
+                    if (defaultFloatingMark)
+                    {
+                        defaultFloatingMark.SetActive(true);
+                    }
+                }
+            };
+            StartInteraction();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -102,13 +96,13 @@ namespace Utility.Interaction
             }
 
             // Debug.Log($"들어옴! {col} {col.gameObject}");
-        if (defaultFloatingMark)
+            if (defaultFloatingMark)
             {
                 defaultFloatingMark.transform.SetParent(PlayUIManager.Instance.floatingMarkParent.transform);
                 defaultFloatingMark.SetActive(true);
             }
 
-            player.OnInteractAction = _onInteract;
+            player.OnInteractAction = Interact;
         }
 
         private void OnTriggerExit2D(Collider2D col)
@@ -117,7 +111,7 @@ namespace Utility.Interaction
             {
                 return;
             }
-            
+
             // Debug.Log($"나감! {col} {col.gameObject}");
             if (defaultFloatingMark)
             {

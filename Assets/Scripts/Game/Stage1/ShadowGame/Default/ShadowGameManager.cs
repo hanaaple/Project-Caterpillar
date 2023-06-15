@@ -151,7 +151,7 @@ namespace Game.Stage1.ShadowGame.Default
                 InputManager.PopInputAction(_tutorialInputActions);
                 StartCoroutine(StartGame());
             });
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("Photographer Give Up"); });
             retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)

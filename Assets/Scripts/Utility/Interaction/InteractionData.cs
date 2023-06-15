@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utility.Core;
 using Utility.Dialogue;
 using Utility.Game;
 using Utility.Property;
@@ -15,6 +16,14 @@ namespace Utility.Interaction
         OneOff,
         MiniGame,
         Portal,
+        Item,
+    }
+    
+    [Serializable]
+    public class ItemInteractionType
+    {
+        public ItemManager.ItemType itemType;
+        public int targetIndex;
     }
 
     [Serializable]
@@ -57,6 +66,9 @@ namespace Utility.Interaction
 
         [ConditionalHideInInspector("interactType", InteractType.MiniGame)]
         public MiniGame miniGame;
+        
+        [ConditionalHideInInspector("interactType", InteractType.Item)]
+        public ItemInteractionType[] itemInteractionTypes;
         
         public bool isMove;
 

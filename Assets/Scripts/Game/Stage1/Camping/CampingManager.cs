@@ -94,7 +94,7 @@ namespace Game.Stage1.Camping
 
             retryButton.onClick.AddListener(ResetGame);
 
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
+            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("Photographer Give Up"); });
 
 
             foreach (var interaction in interactions)
