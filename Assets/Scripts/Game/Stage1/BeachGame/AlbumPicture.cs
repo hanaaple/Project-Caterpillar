@@ -31,6 +31,7 @@ namespace Game.Stage1.BeachGame
         public void Init()
         {
             PanelButton = GetComponentInChildren<Button>(true);
+            PanelButton.image.alphaHitTestMinimumThreshold = 0.1f;
             PanelButton.onClick.AddListener(() => { picturePanel.SetActive(true); });
             panelExitButton.onClick.AddListener(() => { picturePanel.SetActive(false); });
             
