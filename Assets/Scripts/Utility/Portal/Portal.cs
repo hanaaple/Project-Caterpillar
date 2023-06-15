@@ -9,11 +9,15 @@ namespace Utility.Portal
         [Serializable]
         public class PortalWaitInteraction
         {
+            public bool isDefaultPortal;
             public int mapIndex;
             public WaitInteractions waitInteractions;
         }
 
         [Space(10)] [SerializeField] private PortalWaitInteraction[] portalWaitInteractions;
+        
+        
+        public int portalIndex;
 
         [NonSerialized] public int MapIndex;
 
@@ -32,22 +36,21 @@ namespace Utility.Portal
             }
         }
 
-        public override void StartInteraction(int index = -1)
-        {
-            var portalWaitInteraction = Array.Find(portalWaitInteractions, item => item.mapIndex == MapIndex);
-            if (portalWaitInteraction?.waitInteractions?.IsWaitClear() ?? true)
-            {
-                onPortal?.Invoke();
-            }
-            else
-            {
-                base.StartInteraction(index);
-            }
-        }
-
         protected void OnTriggerEnter2D(Collider2D col)
         {
-            StartInteraction();
+            onPortal?.Invoke();
+        }
+
+        public bool IsWaitClear()
+        {
+            var portal = Array.Find(portalWaitInteractions, item => item.isDefaultPortal);
+            if (portal != null)
+            {
+                return portal.waitInteractions.IsWaitClear();
+            }
+            
+            var portalWaitInteraction = Array.Find(portalWaitInteractions, item => item.mapIndex == MapIndex);
+            return portalWaitInteraction?.waitInteractions?.IsWaitClear() ?? true;
         }
     }
 }

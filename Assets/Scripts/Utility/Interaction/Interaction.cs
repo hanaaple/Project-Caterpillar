@@ -70,10 +70,15 @@ namespace Utility.Interaction
             if (waitInteraction.isInteraction)
             {
                 interactionIndex = waitInteraction.startIndex;
+
                 
                 var data = GetInteractionData();
-                data.serializedInteractionData.isInteractable = true;
                 data.serializedInteractionData.isInteracted = false;
+                
+                if (!waitInteraction.isCustom)
+                {
+                    data.serializedInteractionData.isInteractable = true;   
+                }
                 
                 var targetData = GetInteractionData(waitInteraction.targetIndex);
                 targetData.serializedInteractionData.isInteracted = false;
@@ -88,8 +93,15 @@ namespace Utility.Interaction
             else if (waitInteraction.isPortal)
             {
                 var portal = waitInteraction.interaction as Portal.Portal;
+                if (!portal)
+                {
+                    Debug.LogError("Wait Interactions - Portal 오류");
+                }
                 portal.onEndTeleport += () =>
                 {
+                    // 나중에 코드 수정해야됨
+                    // 이거 말고
+                    // waitInteraction의 포탈의 TargetIndex가 portal이 이동한 결과인지
                     if (waitInteraction.targetMapIndex != portal.MapIndex)
                     {
                         return;
