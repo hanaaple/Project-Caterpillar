@@ -19,7 +19,9 @@ namespace Game.Stage1.BeachGame
         BeachBall,
         Shovel,
         Flag,
-        Fragment
+        Fragment,
+        Pearl,
+        Dolphin
     }
 
     public class BeachGameManager : MonoBehaviour
@@ -28,14 +30,10 @@ namespace Game.Stage1.BeachGame
         private class BeachInteractions
         {
             public BeachInteractType beachInteractType;
-            public ToastData toastData;
 
             public BeachInteraction[] interactions;
             [NonSerialized] public bool IsClear;
         }
-        
-        [SerializeField] private Button retryButton;
-        [SerializeField] private Button giveUpButton;
         
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
         [SerializeField] private BeachInteractions[] beachInteractions;
@@ -61,9 +59,6 @@ namespace Game.Stage1.BeachGame
 
         private void Initialize()
         {
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("TitleScene"); });
-            retryButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("BeachGame"); });
-            
             albumButton.onClick.AddListener(() =>
             {
                 if (albumAnimator.GetBool(OpenHash))
@@ -118,6 +113,8 @@ namespace Game.Stage1.BeachGame
                         case BeachInteractType.BeachBall:
                         case BeachInteractType.Shovel:
                         case BeachInteractType.Flag:
+                        case BeachInteractType.Pearl:
+                        case BeachInteractType.Dolphin:
                         {
                             interaction.onInteract = () =>
                             {
@@ -133,15 +130,6 @@ namespace Game.Stage1.BeachGame
                                     item => item.beachInteractType == interactions.beachInteractType);
                                 albumPicture.SetPanel(PictureState.Clear);
 
-                                if (!interactions.toastData.IsToasted)
-                                {
-                                    foreach (var content in interactions.toastData.toastContents)
-                                    {
-                                        SceneHelper.Instance.toastManager.Enqueue(content);
-                                    }
-
-                                    interactions.toastData.IsToasted = true;
-                                }
                                 // SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
 
                                 var isGameClear = beachInteractions.All(item => item.IsClear);
@@ -171,16 +159,6 @@ namespace Game.Stage1.BeachGame
                                 if (isClear)
                                 {
                                     interactions.IsClear = true;
-
-                                    if (!interactions.toastData.IsToasted)
-                                    {
-                                        foreach (var content in interactions.toastData.toastContents)
-                                        {
-                                            SceneHelper.Instance.toastManager.Enqueue(content);
-                                        }
-
-                                        interactions.toastData.IsToasted = true;
-                                    }
 
                                     var isGameClear = beachInteractions.All(item => item.IsClear);
                                     var isClearCount = beachInteractions.Count(item => item.IsClear);
@@ -232,10 +210,11 @@ namespace Game.Stage1.BeachGame
 
                 endToastData.IsToasted = true;
             }
+            
+            albumButton.gameObject.SetActive(false);
 
             SceneHelper.Instance.toastManager.onToastEnd = () =>
             {
-                albumButton.gameObject.SetActive(false);
                 albumAnimator.SetTrigger("GameEnd");
                 StartCoroutine(GameEndCoroutine());
             };
@@ -280,7 +259,7 @@ namespace Game.Stage1.BeachGame
 
                 var t = 0f;
                 const float timer = .5f;
-                while (t <= timer)
+                while (t <= 1f)
                 {
                     t += Time.deltaTime / timer;
                     curSpriteRenderer.color = GetColorAlpha(curSpriteRenderer.color, 1 - t);
@@ -294,7 +273,7 @@ namespace Game.Stage1.BeachGame
             }
 
             watchDragger.PastIndex.Clear();
-            Debug.Log("끝, 현재 Stack : " + String.Join("",
+            Debug.Log("끝, 현재 Stack : " + string.Join("",
                 stackList.ConvertAll(stackIdx => stackIdx.ToString()).ToArray()));
 
             SetInteractable(true);
