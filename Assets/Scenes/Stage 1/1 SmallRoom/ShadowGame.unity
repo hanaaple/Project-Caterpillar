@@ -222,7 +222,6 @@ MonoBehaviour:
     text: "\uB410\uB2E4\xB7\xB7\xB7! \uACE7 \uC0AC\uB77C\uC9C8 \uAC83 \uAC19\uC544!"
   batteryAnimator: {fileID: 1669934885}
   itemPopupSec: 5
-  toastManager: {fileID: 4469645114076527433}
   gameAnimator: {fileID: 47323011}
   stageAnimator: {fileID: 302307887}
   shadowMonster: {fileID: 1335202990}
@@ -8123,8 +8122,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: playType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: toastManager
+      value: 
+      objectReference: {fileID: 4469645114076527433}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
 --- !u!1001 &4469645114076527432

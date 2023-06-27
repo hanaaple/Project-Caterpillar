@@ -12,7 +12,7 @@ namespace Game.Stage1.ShadowGame.SnowMountain
         protected override void Start()
         {
             base.Start();
-            NextScene = "MainScene";   
+            NextScene = "Photographer End";
         }
         
         protected override IEnumerator OnStageEnd(bool isClear)

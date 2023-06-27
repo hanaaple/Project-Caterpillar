@@ -382,6 +382,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -573,6 +574,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -682,97 +684,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106356081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -0.74, z: 0}
+  m_LocalPosition: {x: -6, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 908892888}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &109104553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 109104554}
-  - component: {fileID: 109104555}
-  m_Layer: 0
-  m_Name: Front
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &109104554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109104553}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1032521275}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &109104555
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109104553}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1645720195
-  m_SortingLayer: 5
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a379c72d4ed4c394e9abdaf5de226b6e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &144764415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1086,7 @@ MonoBehaviour:
   - interactType: 1
     animator: {fileID: 0}
     state: 0
-    jsonAsset: {fileID: 4900000, guid: a23f6d299a9c9214a98c83d22a128f84, type: 3}
+    jsonAsset: {fileID: 4900000, guid: c26aa715c838a7e43b7b86d9aa09babe, type: 3}
     dialogueData:
       index: 0
       dialogueElements:
@@ -1247,6 +1165,27 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uB098\uBB47\uAC00\uC9C0\uAC00
+          \uB048\uC774 \uB2EC\uB9B0 \uB098\uBB47\uAC00\uC9C0 \uC774\uBBF8\uC9C0\uB85C
+          \uBCC0\uD658\uB41C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: af5c730295b716f40a460e4ccad1c4cc, type: 2}
+        extrapolationMode: 0
+        waitSec: -1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
         contents: 
         dialogueType: 11
         expression: 0
@@ -1264,6 +1203,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1283,66 +1223,12 @@ MonoBehaviour:
       dialogueElements:
       - name: 4
         subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uC88B\uC544. \uC774 \uB098\uBB47\uAC00\uC9C0\uC5D0\uB3C4
-          \uB048\uC744 \uBB36\uC5B4 \uB193\uC790."
+        contents: "\xB7\xB7\xB7\uBB36\uC5B4 \uB1A8\uC73C\uB2C8 \uC548\uC2EC\uC774\uC57C."
         dialogueType: 1
         expression: 0
         option:
         - Left
         - ' Appear'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uADF8\uB7F0\uB370\xB7\xB7\xB7 \uC774 \uB098\uBB47\uAC00\uC9C0
-          \uC5B4\uB518\uAC00 \uC774\uC9C8\uC801\uC778 \uAE30\uBD84\uC778\uB370\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uB9C8\uCE58 \uC800\uBC88\uC5D0 \uBB36\uC5B4 \uB193\uC740 \uAC83\uACFC
-          \uBE44\uC2B7\uD55C \uAC83 \uAC19\uC740\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uCC29\uAC01\uC774\uACA0\uC9C0."
-        dialogueType: 1
-        expression: 0
-        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1373,6 +1259,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1700,90 +1587,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &366485280
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 366485281}
-  - component: {fileID: 366485282}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &366485281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366485280}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1032521275}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &366485282
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366485280}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1578431043
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 371df2d7da64b224eaea496f1897c091, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &403536628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,105 +2076,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: branchghhhhh
   interactionData:
-  - interactType: 1
+  - interactType: 3
     animator: {fileID: 0}
     state: 0
-    jsonAsset: {fileID: 4900000, guid: c26aa715c838a7e43b7b86d9aa09babe, type: 3}
+    jsonAsset: {fileID: 0}
     dialogueData:
       index: 0
-      dialogueElements:
-      - name: 4
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uC88B\uC544. \uC774 \uB098\uBB47\uAC00\uC9C0\uC5D0\uB3C4
-          \uB048\uC744 \uBB36\uC5B4 \uB193\uC790."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Left
-        - ' Appear'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uADF8\uB7F0\uB370\xB7\xB7\xB7 \uC774 \uB098\uBB47\uAC00\uC9C0
-          \uC5B4\uB518\uAC00 \uC774\uC9C8\uC801\uC778 \uAE30\uBD84\uC778\uB370\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uB9C8\uCE58 \uC800\uBC88\uC5D0 \uBB36\uC5B4 \uB193\uC740 \uAC83\uACFC
-          \uBE44\uC2B7\uD55C \uAC83 \uAC19\uC740\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uCC29\uAC01\uC774\uACA0\uC9C0."
-        dialogueType: 1
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 
-        dialogueType: 11
-        expression: 0
-        option:
-        - Reset
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
+      dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2380,7 +2093,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -2532,6 +2245,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3014,6 +2728,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3451,123 +3166,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 750177960}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &760181526
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_PlayableAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b0350a3abcd338e4880c69d47b6d1184, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].key
-      value: 
-      objectReference: {fileID: -5504348224564400008, guid: 369af1b69cc86cb4396b431fa772d577, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[3].key
-      value: 
-      objectReference: {fileID: 6648527184139908334, guid: 6213b7920a8b58447b20ad158d732647, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[4].key
-      value: 
-      objectReference: {fileID: -11301585759261451, guid: 9876071b2bf4cdb40a4a81fe586e4241, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[5].key
-      value: 
-      objectReference: {fileID: 385974409982691166, guid: 73c432f454a6a7d468959df818b4c414, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[6].key
-      value: 
-      objectReference: {fileID: -4646714905533393491, guid: dc7e028a7805c3249a56f98ca670126e, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[7].key
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[8].key
-      value: 
-      objectReference: {fileID: 2565434565544380067, guid: b0350a3abcd338e4880c69d47b6d1184, type: 2}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[3].value
-      value: 
-      objectReference: {fileID: 1160972775}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[4].value
-      value: 
-      objectReference: {fileID: 1160972775}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[5].value
-      value: 
-      objectReference: {fileID: 1160972775}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[6].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 507755165790791909, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_SceneBindings.Array.data[8].value
-      value: 
-      objectReference: {fileID: 1896088520}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059953817382376327, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-      propertyPath: m_Name
-      value: Play UI Manager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
 --- !u!1 &795138009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,6 +3600,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4138,6 +3737,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "(\uC5B4\uCA4C\uC9C0 \uC9C0\uAE08\uC774\uB77C\uB3C4 \uB3CC\uC544\uAC00\uC57C
           \uD558\uB098\xB7\xB7\xB7?)"
@@ -4209,6 +3848,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4217,7 +3857,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -4521,6 +4161,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4594,6 +4235,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4872,12 +4514,11 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "<\uC2DC\uC2A4\uD15C>"
-        contents: "\u2018\uC9DD\uC744 \uC783\uC740 \uACB0\uD63C \uBC18\uC9C0\u2019\uB97C
+        contents: "<b>\u2018\uC9DD\uC744 \uC783\uC740 \uACB0\uD63C \uBC18\uC9C0\u2019</b>\uB97C
           \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
-        option:
-        - Ring:Add
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -4891,16 +4532,19 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 
+        contents: "\uACB0\uD63C\uBC18\uC9C0\uD568\uC774 \uC0AC\uB77C\uC9C4\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Ring/Disappear Ring Box'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: dc7e028a7805c3249a56f98ca670126e, type: 2}
         extrapolationMode: 0
-        waitSec: -1
+        waitSec: 0.5
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -4925,6 +4569,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5079,6 +4724,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5274,6 +4920,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5544,6 +5191,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6010,39 +5658,6 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1032521274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1032521275}
-  m_Layer: 0
-  m_Name: Map 19 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1032521275
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032521274}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 366485281}
-  - {fileID: 109104554}
-  m_Father: {fileID: 1896088519}
-  m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069745554
 GameObject:
   m_ObjectHideFlags: 0
@@ -6319,7 +5934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100620626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: -0.74, z: 0}
+  m_LocalPosition: {x: 6, y: -0.19, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6408,6 +6023,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6577,6 +6193,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6632,6 +6249,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6835,6 +6453,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6862,11 +6481,6 @@ MonoBehaviour:
         targetMapIndex: 0
         isWaitClear: 0
   portalIndex: 9
---- !u!95 &1160972775 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1059953817376014073, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
-  m_PrefabInstance: {fileID: 760181526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1161439129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7189,7 +6803,7 @@ MonoBehaviour:
         interactionWaitType: 1
         waitInteractions:
           waitInteractions:
-          - interaction: {fileID: 24746746}
+          - interaction: {fileID: 872114340}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
@@ -7197,7 +6811,7 @@ MonoBehaviour:
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
-          - interaction: {fileID: 872114340}
+          - interaction: {fileID: 24746746}
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
@@ -7487,6 +7101,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -7621,7 +7236,10 @@ MonoBehaviour:
         contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uD3ED\uC124\uC774 \uC2DC\uC791\uB41C\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#2 \uD3ED\uC124 \uC2DC\uC791"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -7673,7 +7291,7 @@ MonoBehaviour:
       - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\uAE09\uD55C\uB300\uB85C \uADFC\uCC98 \uB098\uBB47\uAC00\uC9C0\uC5D0
-          \uC637\uC790\uB77D\uC774\uB77C\uB3C4 \uCC22\uC5B4\uC11C\u2026."
+          \uC637\uC790\uB77D\uC774\uB77C\uB3C4 \uCC22\uC5B4\uC11C\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
         option: []
@@ -7708,7 +7326,8 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "\uB098\uBB34\uAC00\uC9C0"
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC774
+          \uB098\uBB47\uAC00\uC9C0\uC640 \uC0C1\uD638\uC791\uC6A9\uD55C\uB2E4."
         dialogueType: 7
         expression: 0
         option: []
@@ -7731,7 +7350,7 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
+      - name: 4
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC88B\uC544, \uC774\uAC78\uB85C. \uB9C8\uC57C, \uC7A0\uC2DC.
           \uC774\uAC78\uB85C \uC751\uAE09\uCC98\uCE58\uAC00 \uB420 \uAC70\uC57C."
@@ -7739,7 +7358,7 @@ MonoBehaviour:
         expression: 0
         option:
         - Left
-        - Appear
+        - ' Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -7753,12 +7372,12 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 8
         subject: "\uB9C8\uC57C"
-        contents: "\xB7\xB7\xB7\uC54C\uACA0\uC5B4, \uC544\uC774\uC791.\r\n"
+        contents: "\xB7\xB7\xB7\uC54C\uACA0\uC5B4, \uC544\uC774\uC791."
         dialogueType: 1
         expression: 0
         option:
         - Right
-        - Appear
+        - ' Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -7772,7 +7391,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 4
         subject: "\uC544\uC774\uC791"
-        contents: "\uB2E4\uC2DC \uC774\uB3D9\uD574\uBCF4\uC790\xB7\xB7\xB7.\r"
+        contents: "\uB2E4\uC2DC \uC774\uB3D9\uD574\uBCF4\uC790\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
         option: []
@@ -8087,25 +7706,6 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uB098\uBB47\uAC00\uC9C0\uAC00
-          \uB048\uC774 \uB2EC\uB9B0 \uB098\uBB47\uAC00\uC9C0 \uC774\uBBF8\uC9C0\uB85C
-          \uBCC0\uD658\uB41C\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option: []
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: b0350a3abcd338e4880c69d47b6d1184, type: 2}
-        extrapolationMode: 0
-        waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
       - name: 4
         subject: "\uC544\uC774\uC791"
         contents: "\uC88B\uC544. \uB2E4\uC2DC \uC774\uB3D9\uD558\uC790."
@@ -8234,6 +7834,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -8257,7 +7858,10 @@ MonoBehaviour:
           \uB418\uC5B4 \uAC70\uC138\uC9C0\uAE30 \uC2DC\uC791\uD55C\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#4 \uB208\uBCF4\uB77C"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -8295,7 +7899,10 @@ MonoBehaviour:
           \uC544\uB0B4\uB294 \uBCF4\uC774\uC9C0 \uC54A\uB294\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#5 \uC544\uB0B4 \uC0AC\uB77C\uC9D0"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -8348,7 +7955,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "<\uC2DC\uC2A4\uD15C>"
-        contents: "\uC5F4\uC1E0 <\uACB0\uC758>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
+        contents: "\uC5F4\uC1E0 <b><\uACB0\uC758></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
         option: []
@@ -8386,7 +7993,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "<\uC2DC\uC2A4\uD15C>"
-        contents: "\uC5F4\uC1E0 <\uC560\uC815>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
+        contents: "\uC5F4\uC1E0 <b><\uC560\uC815></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
         option: []
@@ -8504,8 +8111,8 @@ MonoBehaviour:
         subject: "\uC544\uC774\uC791"
         contents: "\uC544\xB7\xB7\xB7. \uC544, \uC544\xB7\xB7\xB7! \uB098 \uB54C\uBB38\uC774\uC57C!
           \uB0B4\uAC00 \uAC19\uC774 \uAC00\uC790\uACE0\uB9CC \uC548 \uD588\uC5B4\uB3C4\xB7\xB7\xB7
-          \uB3CC\uC544\uAC00\uC790\uB294 \uC774\uC57C\uAE30\uC5D0 \uC81C\uB54C \uB3CC\uC544\uAC00\uAE30\uB9CC
-          \uD588\uC5B4\uB3C4\xB7\xB7\xB7!"
+          \n\uB3CC\uC544\uAC00\uC790\uB294 \uC774\uC57C\uAE30\uC5D0 \uC81C\uB54C
+          \uB3CC\uC544\uAC00\uAE30\uB9CC \uD588\uC5B4\uB3C4\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
         option: []
@@ -8562,7 +8169,7 @@ MonoBehaviour:
         subject: "\uC544\uC774\uC791"
         contents: "\uD1A0\uBBF8\xB7\xB7\xB7. \uADF8\uB798\xB7\xB7\xB7, \uC774\uB7F4
           \uB54C\uAC00 \uC544\uB2C8\uC9C0. \xB7\xB7\xB7\uB108\uD76C\uB97C \uC9C0\uCF1C\uC57C\xB7\xB7\xB7.
-          \uADF8\uB9AC\uACE0 \uBE68\uB9AC \uAE38\uC744 \uCC3E\uC544\uC11C \uB9C8\uC57C\uC758
+          \n\uADF8\uB9AC\uACE0 \uBE68\uB9AC \uAE38\uC744 \uCC3E\uC544\uC11C \uB9C8\uC57C\uC758
           \uAD6C\uC870\uB3C4\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
@@ -8653,11 +8260,14 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "\uD3EC\uD0C8 Index \uBCC0\uACBD\r"
+        contents: "\uD3EC\uD0C8 Index \uBCC0\uACBD"
         dialogueType: 6
         expression: 0
-        option: []
-        interactionWaitType: 1
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#5-1 \uD3EC\uD0C8 Index \uBCC0\uACBD"
+        interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 369af1b69cc86cb4396b431fa772d577, type: 2}
@@ -8847,7 +8457,10 @@ MonoBehaviour:
           \uAC15\uC544\uC9C0\uB294 \uBCF4\uC774\uC9C0 \uC54A\uB294\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#6 \uAC1C \uC0AC\uB77C\uC9D0"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -8969,7 +8582,11 @@ MonoBehaviour:
           \uC0AC\uC9C4\uC0AC\uAC00 \uC544\uB4E4\uC758 \uC190\uC744 \uC7A1\uB294\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' 3'
+        - " name=Stage 1/4 SnowMountain/#7 \uC0AC\uC9C4\uC0AC \uC544\uB4E4 \uC190
+          \uC7A1\uAE30"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -8986,9 +8603,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Right
-        - ' Appear'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -9006,9 +8621,7 @@ MonoBehaviour:
           \uB0B4\uAC00\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Left
-        - ' Appear'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -9020,19 +8633,18 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
-        subject: 
+      - name: 7
+        subject: "\uD1A0\uBBF8"
         contents: 
-        dialogueType: 11
+        dialogueType: 6
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 0}
+        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
-        waitSec: 0
+        waitSec: -1
         interaction: {fileID: 0}
         interactIndex: 0
         isSkipEnable: 0
@@ -9059,7 +8671,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : 3 > 2 \uC0AC\uC9C4\uC0AC\uAC00
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : 3 > 1 \uC0AC\uC9C4\uC0AC\uAC00
           \uB208 \uB0B4\uB9B0 \uC0B0 \uC624\uB978\uCABD\uC73C\uB85C \uC774\uB3D9\uD55C\uB2E4."
         dialogueType: 7
         expression: 0
@@ -9067,13 +8679,13 @@ MonoBehaviour:
         interactionWaitType: 1
         waitInteractions:
           waitInteractions:
-          - interaction: {fileID: 1702651884}
+          - interaction: {fileID: 1900520520}
             isInteraction: 0
             startIndex: 0
             targetIndex: 0
             isCustom: 0
             isPortal: 1
-            targetMapIndex: 19
+            targetMapIndex: 18
             isWaitClear: 0
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -9089,7 +8701,10 @@ MonoBehaviour:
           \uAC70\uC138 \uC9C4\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/4 SnowMountain/#8 \uB208\uBCF4\uB77C \uAC70\uC138\uC9D0"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -9196,7 +8811,8 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: 
+        subject: "(\uCEF7 \uC52C)> (\uC218\uB85D \uAC8C\uC7844): \u2018\uB208 \uC313\uC778
+          \uC124\uC0B0\u2019 (\uB514\uD39C\uC2A4 \uAC8C\uC784)"
         contents: SnowMountainShadowGame
         dialogueType: 4
         expression: 0
@@ -9213,6 +8829,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9223,8 +8840,8 @@ MonoBehaviour:
       interactNextIndex: 1
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
-  isOnAwake: 1
+  isOnLoadScene: 1
+  isOnAwake: 0
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -9239,7 +8856,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1896088519}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1192787829
 GameObject:
@@ -9468,7 +9085,7 @@ MonoBehaviour:
   - interactType: 1
     animator: {fileID: 0}
     state: 0
-    jsonAsset: {fileID: 4900000, guid: a23f6d299a9c9214a98c83d22a128f84, type: 3}
+    jsonAsset: {fileID: 4900000, guid: c26aa715c838a7e43b7b86d9aa09babe, type: 3}
     dialogueData:
       index: 0
       dialogueElements:
@@ -9547,6 +9164,27 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uB098\uBB47\uAC00\uC9C0\uAC00
+          \uB048\uC774 \uB2EC\uB9B0 \uB098\uBB47\uAC00\uC9C0 \uC774\uBBF8\uC9C0\uB85C
+          \uBCC0\uD658\uB41C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: b0350a3abcd338e4880c69d47b6d1184, type: 2}
+        extrapolationMode: 0
+        waitSec: -1
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
         contents: 
         dialogueType: 11
         expression: 0
@@ -9564,6 +9202,63 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 1
+      interactNextIndex: 0
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: a23f6d299a9c9214a98c83d22a128f84, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
+      - name: 4
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7\uBB36\uC5B4 \uB1A8\uC73C\uB2C8 \uC548\uC2EC\uC774\uC57C."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+    miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9724,6 +9419,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9870,6 +9566,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\uAE38\uC740 \uC774\uCABD\uC778\uAC00\xB7\xB7\xB7."
         dialogueType: 1
@@ -9905,6 +9641,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9913,7 +9650,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -10093,6 +9830,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\uC774 \uAE38\uC740\xB7\xB7\xB7."
         dialogueType: 1
@@ -10116,11 +9893,14 @@ MonoBehaviour:
           \uD31D\uC5C5 \uC774\uBBF8\uC9C0\uAC00 \uB5A0\uC624\uB978\uB2E4.\_"
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Broken Sign Appear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 73c432f454a6a7d468959df818b4c414, type: 2}
+        playableAsset: {fileID: 11400000, guid: bd03930d3db593f4e843320d75373d03, type: 2}
         extrapolationMode: 0
         waitSec: 0.5
         interaction: {fileID: 0}
@@ -10135,11 +9915,14 @@ MonoBehaviour:
           \uC0AC\uB77C\uC9C4\uB2E4."
         dialogueType: 6
         expression: 0
-        option: []
+        option:
+        - Hold
+        - ' -1'
+        - ' name=Stage 1/4 SnowMountain/Broken Sign Disappear'
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: bd03930d3db593f4e843320d75373d03, type: 2}
+        playableAsset: {fileID: 11400000, guid: 73c432f454a6a7d468959df818b4c414, type: 2}
         extrapolationMode: 0
         waitSec: -1
         interaction: {fileID: 0}
@@ -10202,6 +9985,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -10210,7 +9994,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -10391,6 +10175,46 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
         contents: "(\uC624\uB978\uCABD)"
         dialogueType: 2
         expression: 0
@@ -10476,6 +10300,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -10484,7 +10309,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -10694,6 +10519,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -11283,6 +11109,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
@@ -11318,6 +11184,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -11326,7 +11193,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -12675,7 +12542,7 @@ Transform:
   m_Children:
   - {fileID: 2240617060515791367}
   m_Father: {fileID: 1896088519}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796432500
 GameObject:
@@ -12951,6 +12818,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -13411,7 +13279,6 @@ Transform:
   - {fileID: 1723382551}
   - {fileID: 1575740479}
   - {fileID: 1850670439}
-  - {fileID: 1032521275}
   - {fileID: 1169877396}
   - {fileID: 1783804326}
   m_Father: {fileID: 0}
@@ -13563,6 +13430,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -13794,6 +13662,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
@@ -13829,6 +13737,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -13837,7 +13746,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -14659,7 +14568,6 @@ MonoBehaviour:
   - {fileID: 1723382550}
   - {fileID: 1575740478}
   - {fileID: 1850670438}
-  - {fileID: 1032521274}
 --- !u!1 &2029778359
 GameObject:
   m_ObjectHideFlags: 0
@@ -14751,6 +14659,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -14975,7 +14884,7 @@ SpriteRenderer:
   m_SortingLayerID: -1578431043
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f31e888db43ec064da752bf61de20cfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 371df2d7da64b224eaea496f1897c091, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15106,6 +15015,46 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Get Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 349bb1e0d11f53f4181994933c58c57b, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.5'
+        - ' name=Stage 1/4 SnowMountain/Remove Sign'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c886c1dcc7348f044907991d1b2d94b7, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.5
+        interaction: {fileID: 0}
+        interactIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC11C\uB450\uB974\uC790."
         dialogueType: 1
@@ -15141,6 +15090,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -15149,7 +15099,7 @@ MonoBehaviour:
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
-      isLoop: 1
+      isLoop: 0
       isInteracted: 0
   isOnLoadScene: 0
   isOnAwake: 0
@@ -15384,6 +15334,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -15611,7 +15562,7 @@ Animator:
   m_GameObject: {fileID: 2240617060515791365}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f1116188e0b64ff991a9cd973587b4d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 041a196b19598cd4da720b5d4b5556e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15684,7 +15635,7 @@ SpriteRenderer:
   m_SortingLayerID: -212501049
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 47508397, guid: 321d0d925193f394da4ec6050469edff, type: 3}
+  m_Sprite: {fileID: -1797582961, guid: 36c0f71047ee21d46b41c6e7bdd6967c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15703,7 +15654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240617060515791365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.78, y: -0.74, z: 0}
+  m_LocalPosition: {x: -7.78, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15727,7 +15678,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.282917, y: 10.03}
+    oldSize: {x: 5.7725, y: 10.39}
     newSize: {x: 5.5475, y: 8.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

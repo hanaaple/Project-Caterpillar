@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1103,6 +1103,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1159,6 +1160,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1177,6 +1179,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1569,6 +1572,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -1627,7 +1631,11 @@ MonoBehaviour:
         contents: "(\uCC44\uB110\uC744 \uBCC0\uACBD\uD55C\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 2
+        - 0
+        - 2
+        - 0
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1661,7 +1669,11 @@ MonoBehaviour:
         contents: "(\uCC44\uB110\uC744 \uBCC0\uACBD\uD558\uC9C0 \uC54A\uB294\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 1
+        - 0
+        - 0
+        - 3
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1911,6 +1923,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2067,6 +2080,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 1
             targetIndex: 1
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2250,7 +2264,11 @@ MonoBehaviour:
         contents: "(\uC544\uB4E4 \uBC29\uC73C\uB85C \uAC04\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 0
+        - 1
+        - 0
+        - 2
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2284,7 +2302,11 @@ MonoBehaviour:
         contents: "(\uBE44\uC0C1 \uC804\uC6D0\uBD80\uD130 \uD655\uC778\uD55C\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 2
+        - 0
+        - 0
+        - 1
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2483,6 +2505,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2553,6 +2576,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 2
             targetIndex: 2
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2825,6 +2849,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 2
             targetIndex: 2
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -3018,6 +3043,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3355,6 +3381,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3447,6 +3474,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4045,6 +4073,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4063,6 +4092,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 1
     targetTransform: {fileID: 1135873640}
     moveSpeed: 0.33
@@ -4137,6 +4167,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4295,6 +4326,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4369,6 +4401,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4387,6 +4420,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4871,6 +4905,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4945,6 +4980,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0

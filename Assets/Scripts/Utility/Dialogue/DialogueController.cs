@@ -879,11 +879,7 @@ namespace Utility.Dialogue
 
             var dialogueData = _baseDialogueData.Peek();
             var tendencyValue = dialogueData.dialogueElements[curIdx].option.Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
-            if (tendencyValue.Length != 4)
-            {
-                Debug.LogError("Excel 성향 세팅 이상함");
-            }
-            else
+            if (tendencyValue.Length == 4)
             {
                 Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
 

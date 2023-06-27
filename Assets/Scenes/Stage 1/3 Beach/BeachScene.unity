@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -275,6 +275,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -373,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106356081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -1.2, z: 0}
+  m_LocalPosition: {x: -6, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1088,6 +1089,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1431,6 +1433,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1857,7 +1860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100620626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: -1.2, z: 0}
+  m_LocalPosition: {x: 6, y: -0.72, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1946,6 +1949,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2039,6 +2043,7 @@ MonoBehaviour:
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions: []
+  portalIndex: 0
 --- !u!1 &1169877394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2124,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 8
         subject: "\uB9C8\uC57C"
-        contents: "\xB7\xB7\xB7 \uC544\uC774\uC791. \uC774\uB9CC \uB3CC\uC544\uAC00\uB294
+        contents: "\xB7\xB7\xB7\uC544\uC774\uC791. \uC774\uB9CC \uB3CC\uC544\uAC00\uB294
           \uD3B8\uC774 \uC88B\uC744\uC9C0\uB3C4 \uBAA8\uB974\uACA0\uC5B4. \uB290\uB08C\uC774
           \uC774\uC0C1\uD574."
         dialogueType: 1
@@ -2193,9 +2198,9 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "\uC544\uC774\uC791"
-        contents: "\uC870\uAE08\uB9CC\u2026. \uC870\uAE08\uB9CC \uB354 \uAE30\uB2E4\uB824\uC918.
-          \u2026\uC544\uC9C1 \uC77C\uC774 \uB0A8\uC544 \uC788\uC5B4. \uC774\uAC83\uB3C4
-          \uAC00\uC871\uC744 \uC704\uD55C \uC77C\uC774\uB2C8\u2026."
+        contents: "\uC870\uAE08\uB9CC\xB7\xB7\xB7. \uC870\uAE08\uB9CC \uB354 \uAE30\uB2E4\uB824\uC918.
+          \xB7\xB7\xB7\uC544\uC9C1 \uC77C\uC774 \uB0A8\uC544 \uC788\uC5B4. \uC774\uAC83\uB3C4
+          \uAC00\uC871\uC744 \uC704\uD55C \uC77C\uC774\uB2C8\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
         option: []
@@ -2297,6 +2302,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2304,6 +2310,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2369,6 +2376,7 @@ MonoBehaviour:
             isInteraction: 1
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 0
             targetMapIndex: 0
             isWaitClear: 0
@@ -2381,6 +2389,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2462,8 +2471,8 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: "\uC544\uC774\uC791"
-        contents: "\u2026\uC544\uB2C8\uC57C. \uC88B\uC740 \uB0A0\uC774\uB2C8 \uB098\uC058\uAC8C
-          \uC0DD\uAC01\uD558\uC9C0 \uB9D0\uC790."
+        contents: "\xB7\xB7\xB7\uC544\uB2C8\uC57C. \uC88B\uC740 \uB0A0\uC774\uB2C8
+          \uB098\uC058\uAC8C \uC0DD\uAC01\uD558\uC9C0 \uB9D0\uC790."
         dialogueType: 1
         expression: 0
         option: []
@@ -2727,7 +2736,11 @@ MonoBehaviour:
         contents: "(\uBA38\uB9AC\uB97C \uC4F0\uB2E4\uB4EC\uB294\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 2
+        - 0
+        - 1
+        - 0
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2761,7 +2774,11 @@ MonoBehaviour:
         contents: "(\uBC1C\uB85C \uCC2C\uB2E4.)"
         dialogueType: 2
         expression: 0
-        option: []
+        option:
+        - 2
+        - 0
+        - 2
+        - 0
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2892,6 +2909,7 @@ MonoBehaviour:
             isInteraction: 0
             startIndex: 0
             targetIndex: 0
+            isCustom: 0
             isPortal: 1
             targetMapIndex: 0
             isWaitClear: 0
@@ -2956,6 +2974,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2966,8 +2985,8 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
-  isOnAwake: 1
+  isOnLoadScene: 1
+  isOnAwake: 0
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -3441,6 +3460,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3455,13 +3475,15 @@ MonoBehaviour:
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
-  - mapIndex: 0
+  - isDefaultPortal: 0
+    mapIndex: 0
     waitInteractions:
       waitInteractions:
       - interaction: {fileID: 24746746}
         isInteraction: 1
         startIndex: 0
         targetIndex: 0
+        isCustom: 0
         isPortal: 0
         targetMapIndex: 0
         isWaitClear: 0
@@ -3469,9 +3491,11 @@ MonoBehaviour:
         isInteraction: 1
         startIndex: 0
         targetIndex: 0
+        isCustom: 0
         isPortal: 0
         targetMapIndex: 0
         isWaitClear: 0
+  portalIndex: 0
 --- !u!1 &1783804325
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,6 +4075,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4404,6 +4429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftPortal: {fileID: 1151717804}
   rightPortal: {fileID: 1702651884}
+  leftPortals: []
+  rightPortals: []
   leftTarget: {fileID: 106356082}
   rightTarget: {fileID: 1100620627}
   maps:
@@ -4646,7 +4673,7 @@ SpriteRenderer:
   m_SortingLayerID: -212501049
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -954918995, guid: d095bfa7679cd194e90034d9b9e457f0, type: 3}
+  m_Sprite: {fileID: -559867337, guid: 78187859e56c68a4694a26afa4e3e694, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4665,7 +4692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240617060515791365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.78, y: -1.2, z: 0}
+  m_LocalPosition: {x: -8.12, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4785,6 +4812,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     miniGame: {fileID: 0}
+    itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4844,7 +4872,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.5475, y: 8.86}
+    oldSize: {x: 5.0595837, y: 9.11}
     newSize: {x: 5.5475, y: 8.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -148,6 +148,7 @@ namespace Game.Stage1.ShadowGame.Default
 
             tutorialExitButton.onClick.AddListener(() =>
             {
+                tutorialExitButton.image.raycastTarget = false;
                 InputManager.PopInputAction(_tutorialInputActions);
                 StartCoroutine(StartGame());
             });
@@ -174,6 +175,7 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void ResetSetting()
         {
+            tutorialExitButton.image.raycastTarget = true;
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;

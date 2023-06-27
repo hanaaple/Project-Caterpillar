@@ -197,7 +197,7 @@ AnimationClip:
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 543514263, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+      value: {fileID: -1011198398, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
     attribute: m_Sprite
     path: Dialogue Panel/Panel/Front Panel/Image/Image
     classID: 114
@@ -281,7 +281,7 @@ AnimationClip:
       isPPtrCurve: 0
     pptrCurveMapping:
     - {fileID: 21300000, guid: b242df0d8a54a9f4c86a1a93e766ce99, type: 3}
-    - {fileID: 543514263, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+    - {fileID: -1011198398, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
