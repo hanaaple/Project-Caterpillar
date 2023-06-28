@@ -11,7 +11,7 @@ namespace Utility.Property
         public string ComparedProperty { get; private set; }
         public object ComparedPropertyValue { get; private set; }
         public bool IsNegative { get; private set; }
-
+        
         public ConditionalHideInInspectorAttribute(string comparedProperty, object comparedPropertyValue,
             bool isNegative = false)
         {
@@ -83,16 +83,18 @@ namespace Utility.Property
                 {
                     // Debug.Log(ComparedField.intValue);
                     // Debug.Log((int)Attribute.comparedPropertyValue);
-                    if (conditionalAttribute.IsNegative ? !ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue) : ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue))
+                    // conditionalAttribute.ComparedPropertyValue
+                    // conditionalAttribute.ComparedPropertyValue
+                    // ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue)
+                    // Debug.Log($"enumFlag: {ComparedField.intValue}, 받은 값: {(int)conditionalAttribute.ComparedPropertyValue}, {ComparedField.intValue & (int)conditionalAttribute.ComparedPropertyValue}");
+
+
+                    if (conditionalAttribute.IsNegative)
                     {
-                        return true;
+                        return (ComparedField.intValue & (int) conditionalAttribute.ComparedPropertyValue) == 0;
                     }
-                    //if((ComparedField.intValue & (int)Attribute.ComparedValue) != 0)
-                    //{
-                    //    Debug.Log(ComparedField.intValue + "   " + (int)Attribute.ComparedValue);
-                    //}
-                    //return (ComparedField.intValue & (int)Attribute.ComparedValue) != 0;
-                    return false;
+
+                    return (ComparedField.intValue & (int) conditionalAttribute.ComparedPropertyValue) != 0;
                 }
             }
 
