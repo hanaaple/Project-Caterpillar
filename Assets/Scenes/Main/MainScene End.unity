@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -548,17 +548,29 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: boundBox
       value: 
-      objectReference: {fileID: 1829902791}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: playType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: isCameraMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: playerMoveType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.boundBox
+      value: 
+      objectReference: {fileID: 1829902791}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.isCameraMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.playerMoveType
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
