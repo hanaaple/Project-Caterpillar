@@ -191,6 +191,106 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2610855488458301389, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 932568358}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &107488900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107488901}
+  - component: {fileID: 107488904}
+  - component: {fileID: 107488903}
+  - component: {fileID: 107488902}
+  m_Layer: 5
+  m_Name: Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &107488901
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107488900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1657600857}
+  - {fileID: 1651292095}
+  - {fileID: 1358490313}
+  - {fileID: 558407941}
+  - {fileID: 300034140}
+  m_Father: {fileID: 854884382}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -960}
+  m_SizeDelta: {x: 1691, y: 1048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &107488902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107488900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d903bdba125f0d408d7cda1e1aebb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventTriggers:
+  - {fileID: 1657600858}
+  - {fileID: 1651292096}
+  - {fileID: 1358490314}
+  - {fileID: 558407942}
+  flashLight: {fileID: 300034141}
+--- !u!114 &107488903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107488900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &107488904
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107488900}
+  m_CullTransparentMesh: 1
 --- !u!1 &180341454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
@@ -334,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 2240617060000523821}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindAnimators.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: fieldProperty.bindAnimators.Array.size
@@ -356,6 +456,10 @@ PrefabInstance:
       propertyPath: bindProperty.bindAnimators.Array.data[2]
       value: 
       objectReference: {fileID: 1896088520}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.data[3]
+      value: 
+      objectReference: {fileID: 854884378}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: fieldProperty.bindGameObjects.Array.size
       value: 1
@@ -382,6 +486,96 @@ PrefabInstance:
       objectReference: {fileID: 2055848284}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+--- !u!1 &300034139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300034140}
+  - component: {fileID: 300034143}
+  - component: {fileID: 300034142}
+  - component: {fileID: 300034141}
+  m_Layer: 5
+  m_Name: FlashLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &300034140
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300034139}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107488901}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 48, y: -269}
+  m_SizeDelta: {x: 628, y: 628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &300034141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300034139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &300034142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300034139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1324395026, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &300034143
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300034139}
+  m_CullTransparentMesh: 1
 --- !u!1 &302307883
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +763,96 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &558407940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558407941}
+  - component: {fileID: 558407944}
+  - component: {fileID: 558407943}
+  - component: {fileID: 558407942}
+  m_Layer: 5
+  m_Name: Item (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &558407941
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558407940}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107488901}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -111, y: -143}
+  m_SizeDelta: {x: 628, y: 628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &558407942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558407940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &558407943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558407940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1994441707, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &558407944
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558407940}
+  m_CullTransparentMesh: 1
 --- !u!4 &582990271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
@@ -584,6 +868,131 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
   m_PrefabInstance: {fileID: 923186795}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &854884377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854884382}
+  - component: {fileID: 854884381}
+  - component: {fileID: 854884380}
+  - component: {fileID: 854884379}
+  - component: {fileID: 854884378}
+  m_Layer: 5
+  m_Name: MiniGame Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &854884378
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854884377}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &854884379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854884377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &854884380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854884377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &854884381
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854884377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &854884382
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854884377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1914996817}
+  - {fileID: 1487657312}
+  - {fileID: 1832257823}
+  - {fileID: 107488901}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &871529270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,8 +1474,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1082,8 +1490,24 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1101,10 +1525,25 @@ MonoBehaviour:
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 0c359ef4c0409e549a41b94f8362ed58, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 8
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 50f196f75b6dccf44ab91ddc8351819b, type: 2}
         extrapolationMode: 2
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 1487657314}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1120,10 +1559,9 @@ MonoBehaviour:
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 50f196f75b6dccf44ab91ddc8351819b, type: 2}
-        extrapolationMode: 2
+        extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1139,8 +1577,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1157,12 +1594,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -1196,8 +1631,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1214,12 +1648,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -1238,7 +1670,6 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -1595,8 +2026,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1613,8 +2043,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1639,8 +2068,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1660,8 +2088,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: cbd488eb0e6f9474083704f1dc27fd36, type: 2}
         extrapolationMode: 0
         waitSec: 3
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1681,8 +2108,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1702,8 +2128,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1719,8 +2144,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1740,8 +2164,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1757,8 +2180,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1774,8 +2196,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1792,8 +2213,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1809,8 +2229,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1831,8 +2250,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 77667a1304e25964397d31f6e926a991, type: 2}
         extrapolationMode: 0
         waitSec: 1.5
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1852,8 +2270,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 588d5631d7468444e8618a6cb2bd4293, type: 2}
         extrapolationMode: 0
         waitSec: 1.5
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1873,8 +2290,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 4d611e56c64b0bc44a8516288e744ff6, type: 2}
         extrapolationMode: 0
         waitSec: 1.5
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1892,8 +2308,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1911,8 +2326,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1928,8 +2342,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1945,8 +2358,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1963,8 +2375,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1990,8 +2401,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2010,8 +2420,23 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
         extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 8
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: e06889845d4b9fe499ff457c1140074f, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        miniGame: {fileID: 1914996820}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2030,8 +2455,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: e06889845d4b9fe499ff457c1140074f, type: 2}
         extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2050,8 +2474,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2067,8 +2490,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2084,8 +2506,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2102,8 +2523,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2120,8 +2540,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2147,8 +2566,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2167,8 +2585,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 0a1447f996e40054285947d5d1b812c3, type: 2}
         extrapolationMode: 0
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2186,8 +2603,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2206,8 +2622,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 7cd80163c07524e44b3432b615a0bad9, type: 2}
         extrapolationMode: 2
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2223,8 +2638,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2243,8 +2657,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 2113061c2623fcb44bb9573ab3556b7e, type: 2}
         extrapolationMode: 2
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2260,8 +2673,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2278,8 +2690,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2297,8 +2708,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2314,8 +2724,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2335,8 +2744,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2352,8 +2760,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2373,8 +2780,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2390,8 +2796,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2407,8 +2812,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2425,8 +2829,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2446,8 +2849,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
         extrapolationMode: 2
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2465,8 +2867,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2483,8 +2884,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2504,8 +2904,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: d1c4c57db1e6233418ad773429b7ea15, type: 2}
         extrapolationMode: 0
         waitSec: 3
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2522,8 +2921,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2541,8 +2939,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2559,12 +2956,10 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -2599,8 +2994,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2617,8 +3011,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2643,8 +3036,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2662,8 +3054,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: e7dc05ad32c9e6444b2dcfc4ce02dda7, type: 2}
         extrapolationMode: 2
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2681,8 +3072,24 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2703,8 +3110,23 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 664570ca1e999974da135cb207dd16b9, type: 2}
         extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 8
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 664570ca1e999974da135cb207dd16b9, type: 2}
+        extrapolationMode: 0
+        waitSec: 0.1
+        miniGame: {fileID: 1832257825}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2726,8 +3148,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: f191e058fafaec349b8317022e4a1455, type: 2}
         extrapolationMode: 0
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2743,8 +3164,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2761,8 +3181,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2778,8 +3197,24 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        waitSec: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2799,8 +3234,23 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
         extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uBBF8\uB2C8\uAC8C\uC784"
+        dialogueType: 8
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 870f5d4eb78fb5348ad42dad70236c13, type: 2}
+        extrapolationMode: 2
+        waitSec: 0.1
+        miniGame: {fileID: 107488902}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2817,10 +3267,9 @@ MonoBehaviour:
         waitInteractions:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: 870f5d4eb78fb5348ad42dad70236c13, type: 2}
-        extrapolationMode: 2
+        extrapolationMode: 0
         waitSec: 0.1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2836,8 +3285,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2855,8 +3303,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2872,8 +3319,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2890,8 +3336,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2916,8 +3361,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2935,8 +3379,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2954,8 +3397,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2972,8 +3414,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2993,8 +3434,7 @@ MonoBehaviour:
         playableAsset: {fileID: 11400000, guid: d5073a27dd075194e80fb60f011d00d4, type: 2}
         extrapolationMode: 0
         waitSec: 3
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3010,8 +3450,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3028,8 +3467,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3045,8 +3483,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3063,8 +3500,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3080,8 +3516,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3097,12 +3532,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3114,8 +3547,8 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnLoadScene: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -3417,8 +3850,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3435,12 +3867,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3475,8 +3905,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3492,8 +3921,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3510,8 +3938,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3528,12 +3955,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3635,6 +4060,96 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2610855488458301389, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 1530061901}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1358490312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1358490313}
+  - component: {fileID: 1358490316}
+  - component: {fileID: 1358490315}
+  - component: {fileID: 1358490314}
+  m_Layer: 5
+  m_Name: Item (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1358490313
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358490312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107488901}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 412, y: -127}
+  m_SizeDelta: {x: 628, y: 628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1358490314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358490312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &1358490315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358490312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1446856459, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1358490316
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358490312}
+  m_CullTransparentMesh: 1
 --- !u!1 &1382195766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
@@ -3645,6 +4160,145 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2610855488458301389, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 1821109118}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1487657311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1487657312}
+  - component: {fileID: 1487657316}
+  - component: {fileID: 1487657315}
+  - component: {fileID: 1487657314}
+  - component: {fileID: 1487657313}
+  m_Layer: 5
+  m_Name: Diary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1487657312
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487657311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 854884382}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -960}
+  m_SizeDelta: {x: 1691, y: 1048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1487657313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487657311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1487657315}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1487657314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487657311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4c11e359774c42ac7fc5f73d7b4937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1487657313}
+  sprites:
+  - {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+  - {fileID: 21300000, guid: 2a61451a7e02efb449e4539db85a59f5, type: 3}
+  - {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+--- !u!114 &1487657315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487657311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1487657316
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487657311}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1530061901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3783,6 +4437,186 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1651292094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651292095}
+  - component: {fileID: 1651292098}
+  - component: {fileID: 1651292097}
+  - component: {fileID: 1651292096}
+  m_Layer: 5
+  m_Name: Item (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1651292095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651292094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107488901}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 174, y: 198}
+  m_SizeDelta: {x: 628, y: 628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1651292096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651292094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &1651292097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651292094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1934693219, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1651292098
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651292094}
+  m_CullTransparentMesh: 1
+--- !u!1 &1657600856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657600857}
+  - component: {fileID: 1657600860}
+  - component: {fileID: 1657600859}
+  - component: {fileID: 1657600858}
+  m_Layer: 5
+  m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1657600857
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657600856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107488901}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -190, y: -8}
+  m_SizeDelta: {x: 628, y: 628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1657600858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657600856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &1657600859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657600856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 543514263, guid: 14440b768d0a76b449f98c55e71db46b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1657600860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657600856}
+  m_CullTransparentMesh: 1
 --- !u!1 &1783804325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,6 +4805,145 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1832257822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1832257823}
+  - component: {fileID: 1832257827}
+  - component: {fileID: 1832257826}
+  - component: {fileID: 1832257825}
+  - component: {fileID: 1832257824}
+  m_Layer: 5
+  m_Name: "Diary \uB0A0\uC9DC"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1832257823
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832257822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 854884382}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -960}
+  m_SizeDelta: {x: 1691, y: 1048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1832257824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832257822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1832257826}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1832257825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832257822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4c11e359774c42ac7fc5f73d7b4937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1832257824}
+  sprites:
+  - {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+  - {fileID: 21300000, guid: 2a61451a7e02efb449e4539db85a59f5, type: 3}
+  - {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+--- !u!114 &1832257826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832257822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d0f8ada46fa899340acd77d4dc48bf62, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1832257827
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832257822}
+  m_CullTransparentMesh: 1
 --- !u!1 &1853435351
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,8 +5082,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4127,12 +5099,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4151,7 +5121,6 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 1
     targetTransform: {fileID: 1135873640}
@@ -4185,8 +5154,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4203,8 +5171,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4221,12 +5188,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4385,7 +5350,6 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4418,8 +5382,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4437,8 +5400,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4455,12 +5417,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4479,7 +5439,6 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4517,6 +5476,123 @@ Transform:
   m_Father: {fileID: 1574620784}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1914996816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 854884382}
+    m_Modifications:
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -960
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685150, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_Name
+      value: Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978418685150, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+--- !u!224 &1914996817 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2070939978418685149, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+  m_PrefabInstance: {fileID: 1914996816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1914996820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4783652670009005841, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+  m_PrefabInstance: {fileID: 1914996816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1746f2f0b95d420fa00d2c698948da6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1994679908
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,7 +6040,6 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4998,8 +6073,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5016,8 +6090,7 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5034,12 +6107,10 @@ MonoBehaviour:
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}

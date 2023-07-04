@@ -257,10 +257,15 @@ namespace Utility.Dialogue
                         return;
                     }
 
-                    _baseDialogueData.Peek().index++;
-                    ProgressDialogue();
+                    InteractContinue();
                 }
             }
+        }
+
+        private void InteractContinue()
+        {
+            _baseDialogueData.Peek().index++;
+            ProgressDialogue();
         }
 
         /// <summary>
@@ -461,14 +466,15 @@ namespace Utility.Dialogue
 
                     break;
                 }
-                case DialogueType.Interact:
+                case DialogueType.MiniGame:
                 {
-                    if (!dialogueElement.interaction)
+                    if (!dialogueElement.miniGame)
                     {
                         Debug.LogError("세팅 오류, Script -> Interaction 세팅");
                     }
 
-                    dialogueElement.interaction.StartInteraction(dialogueElement.interactIndex);
+                    // 멈춰
+                    dialogueElement.miniGame.Play(InteractContinue);
                     break;
                 }
                 case DialogueType.Random:
@@ -501,26 +507,17 @@ namespace Utility.Dialogue
                     if (!string.IsNullOrEmpty(fadeOut))
                     {
                         dialoguePanel.SetActive(false);
-                        PlayUIManager.Instance.FadeOut(() =>
-                        {
-                            _baseDialogueData.Peek().index++;
-                            ProgressDialogue();
-                        });
+                        PlayUIManager.Instance.FadeOut(InteractContinue);
                     }
                     else if (!string.IsNullOrEmpty(fadeIn))
                     {
-                        PlayUIManager.Instance.FadeIn(() =>
-                        {
-                            _baseDialogueData.Peek().index++;
-                            ProgressDialogue();
-                        });
+                        PlayUIManager.Instance.FadeIn(InteractContinue);
                     }
                     else
                     {
                         ScriptOption(dialogueElement);
 
-                        _baseDialogueData.Peek().index++;
-                        ProgressDialogue();
+                        InteractContinue();
                     }
 
                     // if (_isUnfolding)
@@ -831,7 +828,7 @@ namespace Utility.Dialogue
             }
         }
 
-        private void EndDialogue(bool isEnd = true, DialogueData dialogueData = null, bool isDestroy = false)
+        public void EndDialogue(bool isEnd = true, DialogueData dialogueData = null, bool isDestroy = false)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
             
@@ -1105,6 +1102,7 @@ namespace Utility.Dialogue
                 !playableDirector.playableGraph.IsValid());
 
             yield return waitUntil;
+            yield return null;
 
             Debug.Log("컷씬 끝났다고 판정내림");
 

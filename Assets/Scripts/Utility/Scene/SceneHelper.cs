@@ -44,13 +44,13 @@ namespace Utility.Scene
         
         public PlayType playType;
 
-        [ConditionalHideInInspector("playType", PlayType.MiniGame)]
+        [ConditionalHideInInspector("playType", PlayType.MiniGame, default, true)]
         public ToastManager toastManager;
 
-        [ConditionalHideInInspector("playType", PlayType.MainField | PlayType.StageField)]
+        [ConditionalHideInInspector("playType", PlayType.MainField | PlayType.StageField, default, true)]
         public FieldProperty fieldProperty;
 
-        [ConditionalHideInInspector("playType", PlayType.StageField)]
+        [ConditionalHideInInspector("playType", PlayType.StageField, default, true)]
         public BindProperty bindProperty;
 
         private void Awake()
