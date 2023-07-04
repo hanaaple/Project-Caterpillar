@@ -772,6 +772,10 @@ PrefabInstance:
       propertyPath: cutSceneAnimator
       value: 
       objectReference: {fileID: 1059953817376014073}
+    - target: {fileID: 7962570152491762872, guid: 3d8dc35b81c788845b238d565129d56c, type: 3}
+      propertyPath: playableDirectorPrefab
+      value: 
+      objectReference: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d8dc35b81c788845b238d565129d56c, type: 3}
 --- !u!224 &1059953817825897759 stripped
