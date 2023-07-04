@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 using Utility.Core;
 using Utility.Dialogue;
@@ -174,23 +173,22 @@ namespace Utility.Interaction
                         EndInteraction(index);
                         break;
                     case InteractType.Item:
-                        for (var i = 0; i < interaction.itemInteractionTypes.Length; i++)
+                        var join = interaction.itemInteractionTypes.Join(ItemManager.Instance.GetItem<ItemManager.ItemType>(),
+                            inner => inner.itemType,
+                            item => item, (inner, item) => inner.itemType).ToArray();
+                        if (join.Length == 1)
                         {
-                            var item = interaction.itemInteractionTypes[i];
-                            var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                            if (items.Contains(item.itemType))
-                            {
-                                StartInteraction(item.targetIndex);
-                                break;
-                            }
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == join[0]);
+                            StartInteraction(targetItemInteraction.targetIndex);
                         }
-
-                        Debug.LogWarning($"아이템 조심\n" +
-                                         $"{string.Join(", ", ItemManager.Instance.GetItem<string>())}\n" +
-                                         $"{string.Join(", ", interaction.itemInteractionTypes.Select(item => item.itemType.ToString()))}");
-                        var targetItemInteraction = Array.Find(interaction.itemInteractionTypes,
-                            item => item.itemType == ItemManager.ItemType.None);
-                        StartInteraction(targetItemInteraction.targetIndex);
+                        else
+                        {
+                            Debug.LogWarning($"아이템 조심\n"+
+                                             $"{ItemManager.Instance.GetItem<string>().Select(item => $"{item}, ")}\n" +
+                                             $"{interaction.itemInteractionTypes.Select(item => $"{item}, ")}");
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == ItemManager.ItemType.None);
+                            StartInteraction(targetItemInteraction.targetIndex);
+                        }
                         break;
                 }
             }
@@ -352,7 +350,7 @@ namespace Utility.Interaction
             {
                 var interaction = interactionData[index];
 
-                for (var idx = 0; idx < interaction.dialogueData?.dialogueElements?.Length; idx++)
+                for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
                 {
                     var dialogueElement = interaction.dialogueData.dialogueElements[idx];
 
@@ -477,7 +475,7 @@ namespace Utility.Interaction
                         {
                             if (dialogueElement.option is {Length: > 0})
                             {
-                                if (dialogueElement.option.Select(item => item.Replace(" ", "")).Contains("Reset"))
+                                if (dialogueElement.option.Contains("Reset"))
                                 {
                                     interaction.dialogueData.dialogueElements[idx].playableAsset =
                                         Resources.Load<PlayableAsset>("Timeline/Reset");

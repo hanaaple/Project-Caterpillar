@@ -63,6 +63,8 @@ namespace Utility.SaveSystem
         {
             ItemManager.Instance.Load(saveDataIndex);
             TendencyManager.Instance.Load(saveDataIndex);
+            
+            // it have to load all on Load (continuous)Scene
             GameManager.Instance.Load(saveDataIndex);
         }
     }

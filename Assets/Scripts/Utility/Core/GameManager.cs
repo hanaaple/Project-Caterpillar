@@ -38,6 +38,8 @@ namespace Utility.Core
 
         [NonSerialized] public List<Interaction.Interaction> InteractionObjects;
 
+        // [NonSerialized] public int loadedIndex;
+
         private static GameManager Create()
         {
             var gameManagerPrefab = Resources.Load<GameManager>("GameManager");

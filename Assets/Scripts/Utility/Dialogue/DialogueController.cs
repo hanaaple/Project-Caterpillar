@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 using Utility.Core;
@@ -48,19 +49,22 @@ namespace Utility.Dialogue
 
     public class DialogueController : MonoBehaviour
     {
-        public GameObject cutSceneImage;
-        
-        [SerializeField] private Animator cutSceneAnimator;
+        [Header("Panel")]
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
 
+        [Header("Dialogue")]
         [SerializeField] private TMP_Text subjectText;
         [SerializeField] private TMP_Text dialogueText;
         [SerializeField] private Button dialogueInputArea;
         [SerializeField] private Button skipButton;
         [SerializeField] private CheckUIManager skipCheckUIManager;
+        [Header("텍스트 속도")] [SerializeField] private float textSpeed;
 
-        [Header("CutScene")] [SerializeField] private PlayableDirector playableDirector;
+        [Space(10)] [Header("CutScene")] [SerializeField]
+        private PlayableDirector playableDirector;
+        public GameObject cutSceneImage;
+        [FormerlySerializedAs("cutSceneAnimator")] [SerializeField] private Animator defaultCutSceneAnimator;
 
         [Header("Choice")] [SerializeField] private ChoiceSelector[] choiceSelectors;
 
@@ -70,8 +74,6 @@ namespace Utility.Dialogue
         [Header("좌 애니메이터")] [SerializeField] private Animator leftAnimator;
 
         [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
-
-        [SerializeField] private float textSpeed;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
         private List<DialogueData> baseDialogueData;
@@ -99,6 +101,7 @@ namespace Utility.Dialogue
 
         private void Awake()
         {
+            // 막아야 됨.
             dialogueInputArea.onClick.AddListener(() => { OnInputDialogue(); });
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
@@ -165,6 +168,9 @@ namespace Utility.Dialogue
 
         private void Initialize(DialogueData dialogueData)
         {
+            subjectText.text = "";
+            dialogueText.text = "";
+            
             _isDialogue = true;
             if (!_baseDialogueData.Contains(dialogueData))
             {
@@ -180,6 +186,7 @@ namespace Utility.Dialogue
         {
             if (_isDialogue)
             {
+                Debug.Log("이미 진행 중임 왜?");
                 return;
             }
 
@@ -187,6 +194,7 @@ namespace Utility.Dialogue
             {
                 OnDialogueEnd = dialogueEndAction
             };
+            
             dialogueData.Init(jsonAsset);
             StartDialogue(dialogueData);
         }
@@ -198,13 +206,6 @@ namespace Utility.Dialogue
                 Debug.Log("이미 진행 중임 왜?");
                 return;
             }
-
-            //leftAnimator.ResetTrigger(DisappearHash);
-
-            //rightAnimator.ResetTrigger(DisappearHash);
-
-            subjectText.text = "";
-            dialogueText.text = "";
 
             InputManager.PushInputAction(_dialogueInputActions);
 
@@ -300,7 +301,6 @@ namespace Utility.Dialogue
             var dialogueData = _baseDialogueData.Peek();
             var dialogueElement = dialogueData.dialogueElements[dialogueData.index];
             ItemManager.Instance.SetItem(dialogueElement.option);
-            // Debug.Log($"{dialogueData.index} 인덱스 실행");
 
             dialogueElement.OnStartAction?.Invoke();
 
@@ -310,7 +310,6 @@ namespace Utility.Dialogue
             {
                 case DialogueType.Script:
                 {
-                    dialoguePanel.SetActive(true);
                     StartDialoguePrint();
 
                     ScriptOption(dialogueElement);
@@ -366,9 +365,9 @@ namespace Utility.Dialogue
                             {
                                 playableDirector.SetGenericBinding(temp, bindObject);
                             }
-                            else if (cutSceneAnimator)
+                            else if (defaultCutSceneAnimator)
                             {
-                                playableDirector.SetGenericBinding(temp, cutSceneAnimator);
+                                playableDirector.SetGenericBinding(temp, defaultCutSceneAnimator);
                             }
                             //Debug.Log($"Track 명: {temp.name}, Track Type: {temp.GetType()}, 바인드 오브젝트 {bindObject?.name}");
                         }
@@ -734,16 +733,16 @@ namespace Utility.Dialogue
 
         private void StartDialoguePrint()
         {
+            dialoguePanel.SetActive(true);
             _isUnfolding = true;
             blinkingIndicator.SetActive(false);
             subjectText.text = "";
             dialogueText.text = "";
-            _printCoroutine = StartCoroutine(DialoguePrint());
+            _printCoroutine = StartCoroutine(DialoguePrintCoroutine());
         }
 
-        private IEnumerator DialoguePrint()
+        private IEnumerator DialoguePrintCoroutine()
         {
-            Debug.Log("프린트 시작");
             var dialogueItem = _baseDialogueData.Peek().dialogueElements[_baseDialogueData.Peek().index];
 
             subjectText.text = dialogueItem.subject;
@@ -752,22 +751,20 @@ namespace Utility.Dialogue
             var wordSpeed = 1f;
             if (dialogueItem.option != null)
             {
-                var options = Array.FindAll(dialogueItem.option, item => !item.Contains("(") && item.Any(char.IsDigit));
-                var intOptions = options.Select(item => (int) float.Parse(item));
-                var enumerable = intOptions as int[] ?? intOptions.ToArray();
-                if (enumerable.Length > 0)
+                var options = dialogueItem.option.Where(item => item.All(char.IsDigit)).Select(item => (int) float.Parse(item)).ToArray();
+                if (options.Length > 0)
                 {
-                    if (enumerable.Contains(0))
+                    if (options.Contains(0))
                     {
-                        Debug.Log("스킵 불가능!");
+                        Debug.Log($"대화 프린트 스킵 불가능!   {string.Join(", ", options)}");
                         _isSkipEnable = false;
                     }
                 }
 
-                if (dialogueItem.option.Any(item => item.Contains("1(")))
+                if (dialogueItem.option.Any(item => item.Contains("(") && item.Contains(")")))
                 {
-                    var speedString = Array.Find(dialogueItem.option, item => item.Contains("1("));
-                    wordSpeed = float.Parse(speedString.Split("(")[1].Split(")")[0]);
+                    var speedString = Array.Find(dialogueItem.option, item => item.Contains("("));
+                    wordSpeed = float.Parse(speedString.Replace("(", "").Replace(")", ""));
                     Debug.Log("속도: " + wordSpeed);
                 }
             }
@@ -799,8 +796,7 @@ namespace Utility.Dialogue
                     yield return waitForSec;
                 }
             }
-
-            Debug.Log("프린트 끝");
+            
             CompleteDialogue();
         }
 
@@ -879,7 +875,11 @@ namespace Utility.Dialogue
 
             var dialogueData = _baseDialogueData.Peek();
             var tendencyValue = dialogueData.dialogueElements[curIdx].option.Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
-            if (tendencyValue.Length == 4)
+            if (tendencyValue.Length != 4)
+            {
+                Debug.LogError("Excel 성향 세팅 이상함");
+            }
+            else
             {
                 Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
 

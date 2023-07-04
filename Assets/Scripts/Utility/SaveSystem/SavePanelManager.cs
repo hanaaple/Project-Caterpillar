@@ -127,7 +127,7 @@ namespace Utility.SaveSystem
                 // Load All Cover File
                 foreach (var saveLoadItemProps in _highlighter.HighlightItems)
                 {
-                    ((SaveLoadItemProps) saveLoadItemProps).UpdateUI();
+                    ((SaveLoadItemProps)saveLoadItemProps).UpdateUI();
                 }
 
                 HighlightHelper.Instance.Push(_highlighter);
@@ -171,7 +171,7 @@ namespace Utility.SaveSystem
             {
                 OnSelect = () =>
                 {
-                    var itemRectTransform = (RectTransform) saveLoadItem.transform;
+                    var itemRectTransform = (RectTransform)saveLoadItem.transform;
 
                     //현재 화면 상에 보이는 위치 0 ~ 1 + scrollView * offset
                     var up = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
@@ -336,7 +336,7 @@ namespace Utility.SaveSystem
         private void Remove(SaveLoadItem saveLoadItem)
         {
             var saveLoadItemProps = _highlighter.HighlightItems.Find(item =>
-                ((SaveLoadItemProps) item).SaveLoadItem == saveLoadItem);
+                ((SaveLoadItemProps)item).SaveLoadItem == saveLoadItem);
             _highlighter.RemoveItem(saveLoadItemProps, true);
 
             DestroyImmediate(saveLoadItem.gameObject);
