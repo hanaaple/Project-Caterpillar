@@ -8934,8 +8934,8 @@ MonoBehaviour:
       interactNextIndex: 1
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
-  isOnAwake: 1
+  isOnLoadScene: 1
+  isOnAwake: 0
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:

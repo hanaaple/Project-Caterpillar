@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1149,6 +1149,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -1194,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[3].interactType
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[4].interactType
@@ -9366,9 +9370,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: ae2d782f446f24a4585d22ea6e5c8270, type: 2}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9384,9 +9388,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9401,9 +9405,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9420,9 +9424,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9437,9 +9441,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9454,9 +9458,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9472,9 +9476,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9489,9 +9493,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9507,9 +9511,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9525,9 +9529,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9542,9 +9546,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9559,9 +9563,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9579,9 +9583,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9597,9 +9601,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9616,9 +9620,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9633,9 +9637,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9651,9 +9655,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9670,9 +9674,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9688,9 +9692,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9705,9 +9709,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9722,9 +9726,9 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 11400000, guid: ead4cca5434488b4a9cd5d4cabd4fda7, type: 2}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: -1
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -9739,13 +9743,12 @@ MonoBehaviour:
           waitInteractions: []
         playableAsset: {fileID: 0}
         extrapolationMode: 0
+        playableDirectorName: 
         waitSec: 0
-        interaction: {fileID: 0}
-        interactIndex: 0
+        miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    miniGame: {fileID: 0}
     itemInteractionTypes: []
     isMove: 0
     targetTransform: {fileID: 0}

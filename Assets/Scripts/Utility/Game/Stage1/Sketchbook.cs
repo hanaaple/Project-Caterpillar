@@ -46,7 +46,7 @@ namespace Utility.Game.Stage1
                 // {
                 //     
                 // }
-                if (angle <= 0)
+                if (angle < 0)
                 {
                     return;
                 }

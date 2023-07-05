@@ -622,7 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7226,6 +7226,18 @@ PrefabInstance:
     - target: {fileID: 2070939978418685150, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978922721120, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 76.923706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070939978922721120, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 189.47485
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783652670009005841, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
+      propertyPath: angle
+      value: 21.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a39a31104f67843a4da082658a8b1f, type: 3}
