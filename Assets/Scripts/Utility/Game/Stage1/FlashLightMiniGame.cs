@@ -19,7 +19,7 @@ namespace Utility.Game.Stage1
             EventTrigger.Entry pointerEvent;
             foreach (var eventTrigger in eventTriggers)
             {
-                eventTrigger.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
+                eventTrigger.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
                 
                 var pointerDown = new EventTrigger.Entry
                 {
@@ -40,6 +40,7 @@ namespace Utility.Game.Stage1
                 pointerEvent.callback.AddListener(_ =>
                 {
                     var pointerEventData = _ as PointerEventData;
+                    Debug.Log($"{pointerEventData.pointerCurrentRaycast.screenPosition}, {pointerEventData.position}, {pointerEventData.pointerCurrentRaycast.worldPosition}");
                     ((RectTransform) eventTrigger.transform).position = pointerEventData.pointerCurrentRaycast.screenPosition - _offset;
                 });
 
@@ -48,7 +49,7 @@ namespace Utility.Game.Stage1
                 eventTrigger.triggers.Add(pointerEvent);
             }
 
-            flashLight.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.9f;
+            flashLight.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
             pointerEvent = new EventTrigger.Entry
             {
                 eventID = EventTriggerType.PointerDown

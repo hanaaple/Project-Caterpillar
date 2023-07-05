@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Utility.Game.Stage1
@@ -9,28 +9,39 @@ namespace Utility.Game.Stage1
     {
         [SerializeField] private EventTrigger button;
         [SerializeField] private Image fill;
+
+        [SerializeField] private float degreeOffset;
         
-        [SerializeField] private float maxFill;
+        [SerializeField] private float minDegree;
+        [SerializeField] private float maxDegree;
 
         [SerializeField] private float radiusOffset;
+
+        [Range(0f, 360f)] [SerializeField] private float angle;
+
+        // private void OnValidate()
+        // {
+        //     UpdateDisplay();
+        // }
 
         protected override void Init()
         {
             base.Init();
+
+            angle = 0;
+            
             var onPointerDrag = new EventTrigger.Entry
             {
                 eventID = EventTriggerType.Drag
             };
-            
+
             onPointerDrag.callback.AddListener(_ =>
             {
                 var pointerEventData = _ as PointerEventData;
 
                 var orientation = ((Vector3)pointerEventData.position - fill.rectTransform.position).normalized;
-                var radius = fill.rectTransform.rect.width / 2 - radiusOffset;
 
-                var angle = Vector3.SignedAngle(orientation, -fill.rectTransform.up, Vector3.back) + 180;
-                Debug.Log(angle);
+                angle = Vector3.SignedAngle(orientation, -fill.rectTransform.up, Vector3.back) + 180;
                 // if (fill.fillAmount * 360 < angle && )
                 // {
                 //     
@@ -39,20 +50,19 @@ namespace Utility.Game.Stage1
                 {
                     return;
                 }
-                
+
                 // 오른쪽으로 돌리면서 커진 경우 스탑
-                
-                if (angle >= maxFill)
+
+                if (angle >= maxDegree)
                 {
-                    angle = maxFill;
+                    angle = maxDegree;
                     End();
                 }
-                
-                fill.fillAmount = angle / 360;
-                
-                button.transform.position = radius * orientation + fill.rectTransform.position;
+
+
+                UpdateDisplay();
             });
-            
+
             button.triggers.Add(onPointerDrag);
         }
 
@@ -60,6 +70,17 @@ namespace Utility.Game.Stage1
         {
             button.triggers.Clear();
             base.End();
+        }
+
+        private void UpdateDisplay()
+        {
+            angle = Mathf.Clamp(angle, minDegree, maxDegree);
+            var radius = fill.rectTransform.rect.width / 2 - radiusOffset;
+            var orientation = new Vector3(Mathf.Cos(Mathf.Deg2Rad * (angle + 90 + degreeOffset)),
+                Mathf.Sin(Mathf.Deg2Rad * (angle + 90 + degreeOffset))).normalized;
+            fill.fillAmount = angle / 360;
+
+            button.transform.position = radius * orientation + fill.rectTransform.position;
         }
     }
 }

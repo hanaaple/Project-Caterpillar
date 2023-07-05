@@ -17,6 +17,7 @@ namespace Utility.Game.Stage1
                 _index++;
                 if (sprites.Length == _index)
                 {
+                    button.image.raycastTarget = false;
                     End();
                 }
                 else
@@ -29,6 +30,7 @@ namespace Utility.Game.Stage1
         public override void Play(Action onEndAction)
         {
             _index = 0;
+            button.image.raycastTarget = true;
             base.Play(onEndAction);
         }
     }
