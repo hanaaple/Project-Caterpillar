@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.Pool;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 using Utility.Core;
@@ -49,7 +50,7 @@ namespace Utility.Dialogue
     public class DialogueController : MonoBehaviour
     {
         public GameObject cutSceneImage;
-        
+
         [SerializeField] private Animator cutSceneAnimator;
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private GameObject choicePanel;
@@ -60,7 +61,7 @@ namespace Utility.Dialogue
         [SerializeField] private Button skipButton;
         [SerializeField] private CheckUIManager skipCheckUIManager;
 
-        [Header("CutScene")] [SerializeField] private PlayableDirector playableDirector;
+        [Header("Timeline")] [SerializeField] private PlayableDirector playableDirectorPrefab;
 
         [Header("Choice")] [SerializeField] private ChoiceSelector[] choiceSelectors;
 
@@ -76,6 +77,9 @@ namespace Utility.Dialogue
         [Space(10)] [Header("디버깅용")] [SerializeField]
         private List<DialogueData> baseDialogueData;
 
+        private PlayableDirector _playableDirector;
+        private IObjectPool<PlayableDirector> _playableDirectors;
+        private List<PlayableDirector> _activePlayableDirectors;
         private bool _isDialogue;
         private Stack<DialogueData> _baseDialogueData;
         private bool _isCutSceneSkipEnable;
@@ -99,6 +103,28 @@ namespace Utility.Dialogue
 
         private void Awake()
         {
+            _playableDirectors = new ObjectPool<PlayableDirector>(
+                () =>
+                {
+                    var playableDirector = Instantiate(playableDirectorPrefab);
+                    playableDirector.playOnAwake = false;
+                    return playableDirector;
+                },
+                item => { item.gameObject.SetActive(true); },
+                item =>
+                {
+                    item.gameObject.SetActive(false);
+                    item.playableAsset = null;
+                    item.extrapolationMode = DirectorWrapMode.None;
+                    item.time = 0;
+                    item.Stop();
+                },
+                item => { Destroy(item.gameObject); });
+
+            _activePlayableDirectors = new List<PlayableDirector>();
+            _playableDirector = _playableDirectors.Get();
+            _playableDirector.transform.SetParent(transform);
+
             dialogueInputArea.onClick.AddListener(() => { OnInputDialogue(); });
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
@@ -234,20 +260,21 @@ namespace Utility.Dialogue
                 //         $"CutSceneSkipEnable : {_isCutSceneSkipEnable}\n");
                 // }
 
-                if (playableDirector.playableAsset && !(Math.Abs(playableDirector.time - playableDirector.duration) <=
-                                                        1 / ((TimelineAsset) playableDirector.playableAsset)
-                                                        .editorSettings.frameRate ||
-                                                        (playableDirector.state == PlayState.Paused &&
-                                                         !playableDirector.playableGraph.IsValid())))
+                if (_playableDirector.playableAsset &&
+                    !(Math.Abs(_playableDirector.time - _playableDirector.duration) <=
+                      1 / ((TimelineAsset) _playableDirector.playableAsset)
+                      .editorSettings.frameRate ||
+                      (_playableDirector.state == PlayState.Paused &&
+                       !_playableDirector.playableGraph.IsValid())))
                 {
                     if (_isCutSceneSkipEnable)
                     {
                         Debug.Log("스킵되어라!");
-                        playableDirector.time = playableDirector.duration -
-                                                2 / ((TimelineAsset) playableDirector.playableAsset).editorSettings
-                                                .frameRate;
-                        playableDirector.RebuildGraph();
-                        playableDirector.Play();
+                        _playableDirector.time = _playableDirector.duration -
+                                                 2 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings
+                                                 .frameRate;
+                        _playableDirector.RebuildGraph();
+                        _playableDirector.Play();
                     }
                 }
                 else
@@ -349,6 +376,27 @@ namespace Utility.Dialogue
                 case DialogueType.ChoiceEnd:
                     break;
                 case DialogueType.CutScene:
+                    PlayableDirector playableDirector;
+                    if (!string.IsNullOrEmpty(dialogueElement.playableDirectorName))
+                    {
+                        if (_activePlayableDirectors.Exists(item =>
+                                item.gameObject.name.Equals(dialogueElement.playableDirectorName)))
+                        {
+                            playableDirector = _activePlayableDirectors.Find(item =>
+                                item.gameObject.name.Equals(dialogueElement.playableDirectorName));
+                        }
+                        else
+                        {
+                            playableDirector = _playableDirectors.Get();
+                            playableDirector.name = dialogueElement.playableDirectorName;
+                            _activePlayableDirectors.Add(playableDirector);
+                        }
+                    }
+                    else
+                    {
+                        playableDirector = _playableDirector;
+                    }
+
                     playableDirector.playableAsset = dialogueElement.playableAsset;
                     playableDirector.extrapolationMode = dialogueElement.extrapolationMode;
                     playableDirector.time = 0;
@@ -383,40 +431,51 @@ namespace Utility.Dialogue
                         Debug.LogWarning($"{dialogueData.index} Task 타임라인 오류");
                     }
 
+                    playableDirector.RebuildGraph();
                     playableDirector.Play();
 
-                    _isCutSceneSkipEnable = false;
-
-                    if (Mathf.Approximately(dialogueElement.waitSec, 0f))
+                    if (!string.IsNullOrEmpty(dialogueElement.playableDirectorName))
                     {
-                        _isCutSceneSkipEnable = true;
+                        _baseDialogueData.Peek().index++;
+                        ProgressDialogue();
                     }
-                    else if (dialogueElement.waitSec > 0f)
+                    else
                     {
-                        _waitCutsceneEnableCoroutine = StartCoroutine(WaitSecAfterAction(dialogueElement.waitSec, () =>
+                        _isCutSceneSkipEnable = false;
+
+                        if (Mathf.Approximately(dialogueElement.waitSec, 0f))
                         {
                             _isCutSceneSkipEnable = true;
+                        }
+                        else if (dialogueElement.waitSec > 0f)
+                        {
+                            _waitCutsceneEnableCoroutine = StartCoroutine(WaitSecAfterAction(dialogueElement.waitSec,
+                                () =>
+                                {
+                                    _isCutSceneSkipEnable = true;
 
-                            Debug.Log("CutScene Skip 가능해짐");
+                                    Debug.Log("CutScene Skip 가능해짐");
+                                }));
+                        }
+
+                        // Auto Next Index
+                        // true, false 다음 Index로 Auto 여부 (Default - false)
+
+                        _waitCutsceneEndCoroutine = StartCoroutine(WaitCutSceneEnd(() =>
+                        {
+                            playableDirector.playableAsset = null;
+                            if (!dialogueElement.option.Contains("False", StringComparer.OrdinalIgnoreCase))
+                            {
+                                if (_waitCutsceneEnableCoroutine != null)
+                                {
+                                    StopCoroutine(_waitCutsceneEnableCoroutine);
+                                }
+
+                                _baseDialogueData.Peek().index++;
+                                ProgressDialogue();
+                            }
                         }));
                     }
-
-                    // Auto Next Index
-                    // true, false 다음 Index로 Auto 여부 (Default - false)
-
-                    _waitCutsceneEndCoroutine = StartCoroutine(WaitCutSceneEnd(() =>
-                    {
-                        playableDirector.playableAsset = null;
-                        if (!dialogueElement.option.Contains("False", StringComparer.OrdinalIgnoreCase))
-                        {
-                            if (_waitCutsceneEnableCoroutine != null)
-                            {
-                                StopCoroutine(_waitCutsceneEnableCoroutine);
-                            }
-
-                            OnInputDialogue();
-                        }
-                    }));
 
                     break;
                 case DialogueType.None:
@@ -492,18 +551,20 @@ namespace Utility.Dialogue
                     //Execute
                     // 옵션 실행
                     Debug.Log("즉시(옵션) 실행");
-                    
+
                     // if (option.has tendencyData)
                     // // Debug.Log("더하기");
-                    
-                    
+
+
                     for (var index = 0; index < dialogueElement.option.Length; index++)
                     {
                         dialogueElement.option[index] = dialogueElement.option[index].Replace(" ", "");
                     }
 
-                    var fadeOut = Array.Find(dialogueElement.option, item => item.Equals("FadeOut", StringComparison.OrdinalIgnoreCase));
-                    var fadeIn = Array.Find(dialogueElement.option, item => item.Equals("FadeIn", StringComparison.OrdinalIgnoreCase));
+                    var fadeOut = Array.Find(dialogueElement.option,
+                        item => item.Equals("FadeOut", StringComparison.OrdinalIgnoreCase));
+                    var fadeIn = Array.Find(dialogueElement.option,
+                        item => item.Equals("FadeIn", StringComparison.OrdinalIgnoreCase));
                     if (!string.IsNullOrEmpty(fadeOut))
                     {
                         dialoguePanel.SetActive(false);
@@ -831,7 +892,7 @@ namespace Utility.Dialogue
         public void EndDialogue(bool isEnd = true, DialogueData dialogueData = null, bool isDestroy = false)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
-            
+
             dialoguePanel.SetActive(false);
 
             _isDialogue = false;
@@ -839,7 +900,7 @@ namespace Utility.Dialogue
             InputManager.PopInputAction(_dialogueInputActions);
 
             skipButton.gameObject.SetActive(false);
-            
+
 
             // Debug.Log(_baseDialogueData.Count);
             // foreach (var dialogueData in _baseDialogueData)
@@ -875,7 +936,8 @@ namespace Utility.Dialogue
             choicePanel.SetActive(false);
 
             var dialogueData = _baseDialogueData.Peek();
-            var tendencyValue = dialogueData.dialogueElements[curIdx].option.Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
+            var tendencyValue = dialogueData.dialogueElements[curIdx].option
+                .Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
             if (tendencyValue.Length == 4)
             {
                 Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
@@ -1084,22 +1146,22 @@ namespace Utility.Dialogue
 
         private IEnumerator WaitCutSceneEnd(Action action)
         {
-            Debug.Log($"{playableDirector.time}\n" +
-                      $"name: {playableDirector.playableAsset.name}\n" +
-                      $"duration: {playableDirector.duration}");
+            Debug.Log($"{_playableDirector.time}\n" +
+                      $"name: {_playableDirector.playableAsset.name}\n" +
+                      $"duration: {_playableDirector.duration}");
 
             Debug.Log(
-                $"Time: {Math.Abs(playableDirector.duration - playableDirector.time) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.frameRate}\n" +
-                $"Pause: {playableDirector.state == PlayState.Paused}\n" +
-                $"IsValid: {playableDirector.playableGraph.IsValid()}\n" +
-                $"IsCutSceneWorking {Math.Abs(playableDirector.duration - playableDirector.time) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.frameRate || playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid()}");
+                $"Time: {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate}\n" +
+                $"Pause: {_playableDirector.state == PlayState.Paused}\n" +
+                $"IsValid: {_playableDirector.playableGraph.IsValid()}\n" +
+                $"IsCutSceneWorking {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate || _playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid()}");
 
 
             var waitUntil = new WaitUntil(() =>
-                Math.Abs(playableDirector.duration - playableDirector.time) <=
-                1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.frameRate ||
-                playableDirector.state == PlayState.Paused &&
-                !playableDirector.playableGraph.IsValid());
+                Math.Abs(_playableDirector.duration - _playableDirector.time) <=
+                1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate ||
+                _playableDirector.state == PlayState.Paused &&
+                !_playableDirector.playableGraph.IsValid());
 
             yield return waitUntil;
             yield return null;

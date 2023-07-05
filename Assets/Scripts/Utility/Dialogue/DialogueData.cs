@@ -131,8 +131,12 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public DirectorWrapMode extrapolationMode;
+        
+        [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop)]
+        public string playableDirectorName;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
+        [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop, true)]
         public float waitSec;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.MiniGame)]
