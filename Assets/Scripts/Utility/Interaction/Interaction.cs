@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 using Utility.Core;
 using Utility.Dialogue;
@@ -35,13 +34,18 @@ namespace Utility.Interaction
 
         private void OnValidate()
         {
-            foreach (var data in interactionData.Where(item => item.interactType != InteractType.Dialogue))
+            if (interactionData == null)
+            {
+                return;
+            }
+            
+            var dataArray = interactionData.Where(item => item.interactType != InteractType.Dialogue).ToArray();
+            foreach (var data in dataArray)
             {
                 data.dialogueData = null;
                 data.jsonAsset = null;
                 data.animator = null;
                 data.state = 0;
-                data.miniGame = null;
             }
         }
 
@@ -358,7 +362,7 @@ namespace Utility.Interaction
 
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.Interact or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
                         {
                             Debug.LogWarning(
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
@@ -466,7 +470,7 @@ namespace Utility.Interaction
 
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.Interact or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
                         {
                             Debug.LogWarning(
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
