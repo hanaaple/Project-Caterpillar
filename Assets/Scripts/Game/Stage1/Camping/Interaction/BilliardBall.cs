@@ -30,6 +30,7 @@ namespace Game.Stage1.Camping.Interaction
             Rock,
             Lake,
             MosquitoRepellent
+            ,BilliardBall
         }
 
         public IconType iconType;
@@ -77,8 +78,8 @@ namespace Game.Stage1.Camping.Interaction
             setInteractable(false);
             
             _pos = Vector2.one;
-            UpdateUI();
             showPanel.Show();
+            UpdateUI();
             Appear();
         }
 

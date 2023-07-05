@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6217,6 +6217,8 @@ MonoBehaviour:
     iconPos: {x: 2, y: 3}
   - iconType: 4
     iconPos: {x: 1, y: 4}
+  - iconType: 5
+    iconPos: {x: 1, y: 1}
   toastData:
   - toastContents:
     - "\xB7\xB7\xB7\uB2F9\uAD6C\uACF5\uC778\uC904 \uC54C\uC558\uB294\uB370. \uC774\uAC70\xB7\xB7\xB7

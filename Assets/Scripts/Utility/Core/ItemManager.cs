@@ -24,7 +24,7 @@ public class GenerateButton : Editor
             {
                 return;
             }
-            generator.AddItem((ItemManager.ItemType)Random.Range(0, Enum.GetValues(typeof(ItemManager.ItemType)).Length));
+            generator.AddRandomItem((ItemManager.ItemType)Random.Range(0, Enum.GetValues(typeof(ItemManager.ItemType)).Length));
         }
     }
 }
@@ -89,7 +89,7 @@ namespace Utility.Core
             }
         }
 
-        public void AddItem(ItemType itemType)
+        public void AddRandomItem(ItemType itemType)
         {
             if (Enum.GetValues(typeof(ItemType)).Length - 1 == items.Count)
             {
@@ -134,6 +134,8 @@ namespace Utility.Core
                     Debug.LogWarning($"{itemName} 아이템이 없다는딥쇼 쓰앵님");
                     return;
                 }
+                
+                Debug.LogWarning($"아이템 Set: {itemName}, {addRemove}");
                 
                 switch(addRemove)
                 {

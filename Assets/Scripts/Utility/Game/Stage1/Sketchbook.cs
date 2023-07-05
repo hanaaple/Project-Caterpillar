@@ -19,10 +19,10 @@ namespace Utility.Game.Stage1
 
         [Range(0f, 360f)] [SerializeField] private float angle;
 
-        // private void OnValidate()
-        // {
-        //     UpdateDisplay();
-        // }
+        private void OnValidate()
+        {
+            UpdateDisplay();
+        }
 
         protected override void Init()
         {

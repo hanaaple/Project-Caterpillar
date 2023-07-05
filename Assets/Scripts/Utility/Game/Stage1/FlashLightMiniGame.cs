@@ -29,7 +29,7 @@ namespace Utility.Game.Stage1
                 pointerDown.callback.AddListener(_ =>
                 {
                     var pointerEventData = _ as PointerEventData;
-                    _offset = pointerEventData.pointerCurrentRaycast.screenPosition - (Vector2)((RectTransform) eventTrigger.transform).position;
+                    _offset = pointerEventData.position - (Vector2)((RectTransform) eventTrigger.transform).position;
                 });
                 
                 pointerEvent = new EventTrigger.Entry
@@ -40,8 +40,8 @@ namespace Utility.Game.Stage1
                 pointerEvent.callback.AddListener(_ =>
                 {
                     var pointerEventData = _ as PointerEventData;
-                    Debug.Log($"{pointerEventData.pointerCurrentRaycast.screenPosition}, {pointerEventData.position}, {pointerEventData.pointerCurrentRaycast.worldPosition}");
-                    ((RectTransform) eventTrigger.transform).position = pointerEventData.pointerCurrentRaycast.screenPosition - _offset;
+                    Debug.Log($"{pointerEventData.position}");
+                    ((RectTransform) eventTrigger.transform).position = pointerEventData.position - _offset;
                 });
 
 

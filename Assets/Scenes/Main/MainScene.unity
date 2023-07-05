@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10409,6 +10409,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[2].dialogueData.dialogueElements.Array.data[5].option.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[2].dialogueData.dialogueElements.Array.data[6].extrapolationMode
       value: 0
       objectReference: {fileID: 0}
@@ -11183,6 +11187,10 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[2].dialogueData.dialogueElements.Array.data[4].option.Array.data[2]
       value: ' name=Main/Prologue/#2-1 Get Naru Doll'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[2].dialogueData.dialogueElements.Array.data[5].option.Array.data[0]
+      value: NaruDoll:Add
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[2].dialogueData.dialogueElements.Array.data[6].option.Array.data[0]

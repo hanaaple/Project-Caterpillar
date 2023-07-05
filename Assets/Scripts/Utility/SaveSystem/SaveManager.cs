@@ -24,7 +24,7 @@ namespace Utility.SaveSystem
         
         static SaveManager()
         {
-            Debug.Log(SaveDirectoryPath);
+            Debug.Log($"{SaveDirectoryPath}, {Directory.Exists(SaveDirectoryPath)}");
             if (!Directory.Exists(SaveDirectoryPath))
             {
                 Directory.CreateDirectory(SaveDirectoryPath);
