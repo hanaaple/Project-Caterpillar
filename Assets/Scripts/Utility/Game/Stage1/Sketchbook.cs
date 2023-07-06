@@ -21,7 +21,7 @@ namespace Utility.Game.Stage1
 
         private void OnValidate()
         {
-            UpdateDisplay();
+            // UpdateDisplay();
         }
 
         protected override void Init()
