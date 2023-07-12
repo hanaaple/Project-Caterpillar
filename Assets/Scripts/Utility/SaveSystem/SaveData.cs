@@ -12,14 +12,14 @@ namespace Utility.SaveSystem
     {
         public SaveCoverData saveCoverData;
 
-        [FormerlySerializedAs("playerTransform")] public SerializableTransform playerSerializableTransform;
+        public SerializableTransform playerSerializableTransform;
         
         public List<InteractionSaveData> interactionData;
 
         public string[] items;
         
         // Enum이 저장되던가 체크해야됨 그래서 string으로 저장해둠
-        // public ItemManager.ItemType itemss;
+        // public ItemManager.ItemType items;
         public TendencyData tendencyData;
     }
 

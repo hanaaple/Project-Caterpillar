@@ -20,7 +20,9 @@
     Appear = 1,
     Active = 2,
     Inactive = 3,
-    Disappear = 4
+    Disappear = 4,
+    DisappearActive = 5,
+    DisappearInactive = 6
   }
 
   public enum Expression

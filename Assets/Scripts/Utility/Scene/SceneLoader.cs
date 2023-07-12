@@ -13,14 +13,15 @@ namespace Utility.Scene
     public class SceneLoader : MonoBehaviour
     {
         private static SceneLoader _instance;
+
         public static SceneLoader Instance
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     var obj = FindObjectOfType<SceneLoader>();
-                    if(obj != null)
+                    if (obj != null)
                     {
                         _instance = obj;
                     }
@@ -28,19 +29,21 @@ namespace Utility.Scene
                     {
                         _instance = Create();
                     }
+
                     _instance.gameObject.SetActive(false);
                     DontDestroyOnLoad(_instance);
                 }
+
                 return _instance;
             }
         }
-    
+
         [SerializeField] private CanvasGroup sceneLoaderCanvasGroup;
         [SerializeField] private Image progressBar;
         [SerializeField] private float fadeSec;
 
         [NonSerialized] public bool IsLoading;
-        
+
         private string _loadSceneName;
 
         public Action onLoadScene;
@@ -51,16 +54,39 @@ namespace Utility.Scene
             var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
             return Instantiate(sceneLoaderPrefab);
         }
-
+        
         // 게임에서 MainScene으로 가는 경우 Load했던 SaveData로 초기화시켜야됨
+        // + 게임 엔딩에서 MainScene으로 가는 경우 안됨
+        // 으아악
+
+        // Scene 별로 상태를 저장할 필요가 있어보임.
+        
+        // Title -> Load (Just Load Data)
+        // Interaction MoveMap (Do Not Load Data, But have to Save Scene State)
+        // Game Over - Go to MainScene (Reset MainScene ~ GameScene)
+        // Game Ending - MainScene
+
+        
+        // if stage field moves continuous, have to save them!!!
+        // i think it have to like this!!
+        // so In SceneHelper, Add Property of Is Save
+
+
+        // if Load -> Main Scene, GameManager.Instance.Load(saveDataIndex);
         public void LoadScene(string sceneName, int index = -1)
         {
+            // Scene 상태 저장
+            // 정확히는 MainScene만 저장하면 됨.
+            // 현재로써는?
+            // Player, interaction
+            // field인 경우 저장한다면 scene을 제외한 data를 load하면 안됨.
+            
             IsLoading = true;
             // 모든 입력 금지
             onLoadScene?.Invoke();
             onLoadScene = () => { };
             Debug.Log("Load");
-            
+
             if (index != -1)
             {
                 if (SaveManager.IsLoaded(index))
@@ -76,7 +102,7 @@ namespace Utility.Scene
                     Debug.LogError("오류");
                 }
             }
-            
+
             TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);
@@ -117,14 +143,14 @@ namespace Utility.Scene
                     {
                         continue;
                     }
-                    
+
                     if (index == -1)
                     {
                         GameManager.Instance.InteractionObjects.Clear();
                         op.allowSceneActivation = true;
                         yield break;
-                    } 
-                    
+                    }
+
                     if (SaveManager.IsLoaded(index))
                     {
                         GameManager.Instance.InteractionObjects.Clear();
@@ -141,13 +167,13 @@ namespace Utility.Scene
             {
                 return;
             }
-            
+
             Debug.Log("OnLoadSceneEnd");
-            
+
             IsLoading = false;
-            
+
             TimeScaleHelper.Pop();
-            
+
             StartCoroutine(Fade(false));
             onLoadSceneEnd?.Invoke();
             onLoadSceneEnd = () => { };

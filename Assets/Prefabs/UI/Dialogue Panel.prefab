@@ -1497,7 +1497,7 @@ Animator:
   m_GameObject: {fileID: 1369472624895790773}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4988e4a954fec485b81a3d4e4f386533, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9360bc532ee5e4228b2c52c4476824ee, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
@@ -2930,8 +2930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0f91c685e440538fed2176fb59327d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutSceneImage: {fileID: 1369472625288388294}
-  cutSceneAnimator: {fileID: 0}
   dialoguePanel: {fileID: 1369472624760971000}
   choicePanel: {fileID: 1369472624323039752}
   subjectText: {fileID: 1369472624247124944}
@@ -2939,6 +2937,10 @@ MonoBehaviour:
   dialogueInputArea: {fileID: 1369472624235229174}
   skipButton: {fileID: 756501485802887602}
   skipCheckUIManager: {fileID: 6206763606101311261}
+  textSpeed: 0.1
+  playableDirector: {fileID: 0}
+  cutSceneImage: {fileID: 1369472625288388294}
+  defaultCutSceneAnimator: {fileID: 0}
   playableDirectorPrefab: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
   choiceSelectors:
   - button: {fileID: 1369472625972243193}
@@ -2950,7 +2952,6 @@ MonoBehaviour:
   blinkingIndicator: {fileID: 1369472625999095554}
   leftAnimator: {fileID: 1369472624895790771}
   rightAnimator: {fileID: 1369472624025135188}
-  textSpeed: 0.1
   baseDialogueData: []
 --- !u!1 &6603327692329853913
 GameObject:
