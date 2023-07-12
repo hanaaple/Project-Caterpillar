@@ -6217,6 +6217,8 @@ MonoBehaviour:
     iconPos: {x: 2, y: 3}
   - iconType: 4
     iconPos: {x: 1, y: 4}
+  - iconType: 5
+    iconPos: {x: 1, y: 1}
   toastData:
   - toastContents:
     - "\xB7\xB7\xB7\uB2F9\uAD6C\uACF5\uC778\uC904 \uC54C\uC558\uB294\uB370. \uC774\uAC70\xB7\xB7\xB7
@@ -10143,7 +10145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: playType
-      value: 3
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: toastManager

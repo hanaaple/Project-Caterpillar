@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 1829902791}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: playType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: isCameraMove
@@ -557,6 +557,10 @@ PrefabInstance:
       propertyPath: bindObjects.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.boundBox
+      value: 
+      objectReference: {fileID: 1829902791}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindAnimators.Array.size
       value: 2
@@ -578,6 +582,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.isCameraMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindAnimators.Array.data[0]
       value: 
       objectReference: {fileID: 2240617060515791363}
@@ -590,7 +598,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1896088520}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: fieldProperty.playerMoveType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 2240617060515791365}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindGameObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.data[0]
+      value: 
+      objectReference: {fileID: 2240617060515791363}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.data[1]
+      value: 
+      objectReference: {fileID: 1896088520}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindGameObjects.Array.data[0]
       value: 
       objectReference: {fileID: 2240617060515791365}
     m_RemovedComponents: []

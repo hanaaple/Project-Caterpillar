@@ -89,13 +89,13 @@ namespace Utility.Player
 
         private void UpdateCamera()
         {
-            if (SceneHelper.Instance.playerMoveType == PlayerMoveType.None)
+            if (SceneHelper.Instance.fieldProperty.playerMoveType == PlayerMoveType.None)
             {
                 return;
             }
 
             _camera = Camera.main;
-            var bounds = SceneHelper.Instance.boundBox.bounds;
+            var bounds = SceneHelper.Instance.fieldProperty.boundBox.bounds;
             _minBounds = bounds.min;
             _maxBounds = bounds.max;
             if (_camera != null)
@@ -142,7 +142,7 @@ namespace Utility.Player
             }
 
             Vector2 input = _input;
-            switch (SceneHelper.Instance.playerMoveType)
+            switch (SceneHelper.Instance.fieldProperty.playerMoveType)
             {
                 case PlayerMoveType.Vertical:
                     input.x = 0;
@@ -161,7 +161,7 @@ namespace Utility.Player
 
         private void CameraMove()
         {
-            if (!Player || !SceneHelper.Instance.isCameraMove)
+            if (!Player || !SceneHelper.Instance.fieldProperty.isCameraMove)
             {
                 return;
             }

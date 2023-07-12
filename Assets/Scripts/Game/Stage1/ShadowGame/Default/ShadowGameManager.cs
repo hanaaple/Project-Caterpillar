@@ -427,26 +427,28 @@ namespace Game.Stage1.ShadowGame.Default
         {
             var cameraMoveVec = Vector3.zero;
             // 우측 이동
-            if (Screen.currentResolution.width * 0.9f < input.x)
+            if (Screen.width * 0.9f < input.x)
             {
                 cameraMoveVec.x = 1;
             }
             // 좌측 이동
-            else if (Screen.currentResolution.width * 0.1f > input.x)
+            else if (Screen.width * 0.1f > input.x)
             {
                 cameraMoveVec.x = -1;
             }
 
             // 상단 이동
-            if (Screen.currentResolution.height * 0.9f < input.y)
+            if (Screen.height * 0.9f < input.y)
             {
                 cameraMoveVec.y = 1;
             }
             // 하단 이동
-            else if (Screen.currentResolution.height * 0.1f > input.y)
+            else if (Screen.height * 0.1f > input.y)
             {
                 cameraMoveVec.y = -1;
             }
+            
+            Debug.Log($"{Screen.width}x{Screen.height}, {Screen.currentResolution.width * 0.9f}x{Screen.currentResolution.height * 0.9f}, {input}");
 
             var cameraTransform = _camera.transform;
 

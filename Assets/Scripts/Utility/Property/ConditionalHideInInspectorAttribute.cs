@@ -12,12 +12,15 @@ namespace Utility.Property
         public object ComparedPropertyValue { get; private set; }
         public bool IsNegative { get; private set; }
 
+        public bool IsBit { get; private set; }
+
         public ConditionalHideInInspectorAttribute(string comparedProperty, object comparedPropertyValue,
-            bool isNegative = false)
+            bool isNegative = false, bool isBit = false)
         {
             ComparedProperty = comparedProperty;
             ComparedPropertyValue = comparedPropertyValue;
             IsNegative = isNegative;
+            IsBit = isBit;
         }
 
         public ConditionalHideInInspectorAttribute(string booleanProperty, bool isNegative = false)
@@ -39,20 +42,24 @@ namespace Utility.Property
                 EditorGUI.PropertyField(position, property, label, true);
             }
         }
+
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return CanDraw(property) ? EditorGUI.GetPropertyHeight(property, label, true) : 0.0f;
         }
+
         private bool CanDraw(SerializedProperty property)
         {
-            var conditionalAttribute = (ConditionalHideInInspectorAttribute)attribute;
+            var conditionalAttribute = (ConditionalHideInInspectorAttribute) attribute;
 
 
             // Debug.Log(property.propertyPath);
             // Debug.Log(Attribute.comparedProperty);
             // Debug.Log(Attribute.comparedPropertyValue);
             // Debug.Log(property.propertyPath.Contains("."));
-            string path = property.propertyPath.Contains(".") ? global::System.IO.Path.ChangeExtension(property.propertyPath, conditionalAttribute.ComparedProperty) : conditionalAttribute.ComparedProperty;
+            string path = property.propertyPath.Contains(".")
+                ? global::System.IO.Path.ChangeExtension(property.propertyPath, conditionalAttribute.ComparedProperty)
+                : conditionalAttribute.ComparedProperty;
 
             var ComparedField = property.serializedObject.FindProperty(path);
             // Debug.Log(ComparedField);
@@ -65,7 +72,8 @@ namespace Utility.Property
                     return true;
                 }
 
-                path = global::System.IO.Path.ChangeExtension(property.propertyPath.Substring(0, LastIndex), conditionalAttribute.ComparedProperty);
+                path = global::System.IO.Path.ChangeExtension(property.propertyPath.Substring(0, LastIndex),
+                    conditionalAttribute.ComparedProperty);
 
                 ComparedField = property.serializedObject.FindProperty(path);
                 // Debug.Log(ComparedField);
@@ -83,16 +91,30 @@ namespace Utility.Property
                 {
                     // Debug.Log(ComparedField.intValue);
                     // Debug.Log((int)Attribute.comparedPropertyValue);
-                    if (conditionalAttribute.IsNegative ? !ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue) : ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue))
+                    // conditionalAttribute.ComparedPropertyValue
+                    // conditionalAttribute.ComparedPropertyValue
+                    // ComparedField.intValue.Equals((int)conditionalAttribute.ComparedPropertyValue)
+                    // Debug.Log($"enumFlag: {ComparedField.intValue}, 받은 값: {(int)conditionalAttribute.ComparedPropertyValue}, {ComparedField.intValue & (int)conditionalAttribute.ComparedPropertyValue}");
+
+
+                    if (conditionalAttribute.IsBit)
                     {
-                        return true;
+                        if (conditionalAttribute.IsNegative)
+                        {
+                            return (ComparedField.intValue & (int) conditionalAttribute.ComparedPropertyValue) == 0;
+                        }
+
+                        return (ComparedField.intValue & (int) conditionalAttribute.ComparedPropertyValue) != 0;
                     }
-                    //if((ComparedField.intValue & (int)Attribute.ComparedValue) != 0)
-                    //{
-                    //    Debug.Log(ComparedField.intValue + "   " + (int)Attribute.ComparedValue);
-                    //}
-                    //return (ComparedField.intValue & (int)Attribute.ComparedValue) != 0;
-                    return false;
+
+
+                    if (conditionalAttribute.IsNegative)
+                    {
+                        return !ComparedField.intValue.Equals((int) conditionalAttribute.ComparedPropertyValue);
+                    }
+
+                    return ComparedField.intValue.Equals((int) conditionalAttribute.ComparedPropertyValue);
+
                 }
             }
 

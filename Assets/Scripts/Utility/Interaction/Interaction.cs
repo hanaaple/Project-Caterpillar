@@ -34,13 +34,18 @@ namespace Utility.Interaction
 
         private void OnValidate()
         {
-            foreach (var data in interactionData.Where(item => item.interactType != InteractType.Dialogue))
+            if (interactionData == null)
+            {
+                return;
+            }
+            
+            var dataArray = interactionData.Where(item => item.interactType != InteractType.Dialogue).ToArray();
+            foreach (var data in dataArray)
             {
                 data.dialogueData = null;
                 data.jsonAsset = null;
                 data.animator = null;
                 data.state = 0;
-                data.miniGame = null;
             }
         }
 
@@ -66,27 +71,27 @@ namespace Utility.Interaction
         public void InitializeWait(WaitInteraction waitInteraction, Action onClearAction)
         {
             waitInteraction.isWaitClear = false;
-            
+
             if (waitInteraction.isInteraction)
             {
                 interactionIndex = waitInteraction.startIndex;
 
-                
+
                 var data = GetInteractionData();
                 data.serializedInteractionData.isInteracted = false;
-                
+
                 if (!waitInteraction.isCustom)
                 {
-                    data.serializedInteractionData.isInteractable = true;   
+                    data.serializedInteractionData.isInteractable = true;
                 }
-                
+
                 var targetData = GetInteractionData(waitInteraction.targetIndex);
                 targetData.serializedInteractionData.isInteracted = false;
-                
+
                 targetData.onEndAction += () =>
                 {
                     waitInteraction.Clear();
-                    
+
                     onClearAction?.Invoke();
                 };
             }
@@ -97,6 +102,7 @@ namespace Utility.Interaction
                 {
                     Debug.LogError("Wait Interactions - Portal 오류");
                 }
+
                 portal.onEndTeleport += () =>
                 {
                     // 나중에 코드 수정해야됨
@@ -233,7 +239,7 @@ namespace Utility.Interaction
 
                 StartInteraction(nextIndex);
             }
-            
+
             interaction.onEndAction?.Invoke();
             interaction.onEndAction = () => { };
             OnEndInteraction?.Invoke();
@@ -356,10 +362,10 @@ namespace Utility.Interaction
 
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.Interact or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
                         {
                             Debug.LogWarning(
-                                $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                                $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                             break;
                         }
 
@@ -393,13 +399,13 @@ namespace Utility.Interaction
                                 else
                                 {
                                     Debug.LogWarning(
-                                        $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                                        $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                                 }
                             }
                             else
                             {
                                 Debug.LogWarning(
-                                    $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                                    $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                             }
 
                             break;
@@ -464,7 +470,7 @@ namespace Utility.Interaction
 
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.Interact or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
                         {
                             Debug.LogWarning(
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
@@ -489,19 +495,30 @@ namespace Utility.Interaction
                                         ? DirectorWrapMode.Hold
                                         : DirectorWrapMode.None;
 
-                                
+
                                 //  var digitOptions = Array.FindAll(dialogueElement.option,
                                 //      item => item.Any(char.IsDigit));
                                 // var floats = digitOptions.Select(float.Parse).ToArray();
-                                var floats = dialogueElement.option.Where(item => float.TryParse(item, out _)).Select(float.Parse).ToArray();
+                                var floats = dialogueElement.option.Where(item => float.TryParse(item, out _))
+                                    .Select(float.Parse).ToArray();
                                 interaction.dialogueData.dialogueElements[idx].waitSec =
                                     floats.Length == 1 ? floats[0] : 0f;
 
-                                if (dialogueElement.option.Any(item => item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
+                                if (dialogueElement.option.Any(item =>
+                                        item.Contains("director=", StringComparison.OrdinalIgnoreCase)))
                                 {
-                                    var timelinePath = Array
-                                        .Find(dialogueElement.option, item => item.Contains("name="))
-                                        .Split("=")[1];
+                                    var directorName =
+                                        Array.Find(dialogueElement.option, item => item.Contains("director="))
+                                            .Split("=")[1];
+                                    interaction.dialogueData.dialogueElements[idx].playableDirectorName = directorName;
+                                }
+
+                                if (dialogueElement.option.Any(item =>
+                                        item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    var timelinePath =
+                                        Array.Find(dialogueElement.option, item => item.Contains("name="))
+                                            .Split("=")[1];
                                     var playableAsset = Resources.Load<PlayableAsset>($"Timeline/{timelinePath}");
                                     if (playableAsset)
                                     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
+using Utility.Game;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -130,15 +131,19 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public DirectorWrapMode extrapolationMode;
+        
+        [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop)]
+        public string playableDirectorName;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
+        [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop, true)]
         public float waitSec;
 
-        [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
-        public Interaction.Interaction interaction;
+        [ConditionalHideInInspector("dialogueType", DialogueType.MiniGame)]
+        public MiniGame miniGame;
 
-        [ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
-        public int interactIndex;
+        //[ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
+        //public int interactIndex;
 
         public bool isSkipEnable;
 

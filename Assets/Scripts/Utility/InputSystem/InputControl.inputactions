@@ -167,6 +167,17 @@
                 },
                 {
                     "name": "",
+                    "id": "bbb0d5a3-22ff-4d98-84e8-a30116931ed8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Execute",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0ba3c252-1334-4243-ad90-32e833e80883",
                     "path": "<Keyboard>/x",
                     "interactions": "",

@@ -9,10 +9,10 @@ namespace Utility.Scene
 {
     public enum PlayType
     {
-        None,
-        MainField,
-        StageField,
-        MiniGame
+        None = 1,
+        MainField = 2,
+        StageField = 4,
+        MiniGame = 16,
     }
 
     public enum PlayerMoveType
@@ -22,25 +22,36 @@ namespace Utility.Scene
         Horizontal,
         Both
     }
-
+    
     public class SceneHelper : MonoBehaviour
     {
+        [Serializable]
+        public class FieldProperty
+        {
+            public BoxCollider2D boundBox;
+            public bool isCameraMove;
+            public PlayerMoveType playerMoveType;
+        }
+        
+        [Serializable]
+        public class BindProperty
+        {
+            public Animator[] bindAnimators;
+            public GameObject[] bindGameObjects;
+        }
+
         public static SceneHelper Instance;
         
         public PlayType playType;
 
-        [ConditionalHideInInspector("playType", PlayType.MiniGame)]
+        [ConditionalHideInInspector("playType", PlayType.MiniGame, default, true)]
         public ToastManager toastManager;
-        
-        public BoxCollider2D boundBox; 
-        
-        public bool isCameraMove;
-        
-        public PlayerMoveType playerMoveType;
 
-        [SerializeField] private Animator[] bindAnimators;
-        
-        [SerializeField] private GameObject[] bindGameObjects;
+        [ConditionalHideInInspector("playType", PlayType.MainField | PlayType.StageField, default, true)]
+        public FieldProperty fieldProperty;
+
+        [ConditionalHideInInspector("playType", PlayType.StageField, default, true)]
+        public BindProperty bindProperty;
 
         private void Awake()
         {
@@ -50,14 +61,16 @@ namespace Utility.Scene
 
         private void OnValidate()
         {
-            if (playType is PlayType.StageField or PlayType.MainField)
+            if (playType is not (PlayType.StageField or PlayType.MainField))
             {
-                return;
+                fieldProperty.boundBox = null;
+                fieldProperty.isCameraMove = false;
+                fieldProperty.playerMoveType = default;
             }
-
-            boundBox = null;
-            isCameraMove = false;
-            playerMoveType = default;
+            else if (playType != PlayType.MiniGame)
+            {
+                toastManager = null;
+            }
         }
 
         private void Play()
@@ -72,11 +85,11 @@ namespace Utility.Scene
 
             if (typeof(T) == typeof(Animator))
             {
-                returnValue = Array.Find(bindAnimators, item => item.name == bindObjectName) as T;
+                returnValue = Array.Find(bindProperty.bindAnimators, item => item.name == bindObjectName) as T;
             }
             else if(typeof(T) == typeof(GameObject))
             {
-                returnValue = Array.Find(bindGameObjects, item => item.name == bindObjectName) as T;
+                returnValue = Array.Find(bindProperty.bindGameObjects, item => item.name == bindObjectName) as T;
             }
 
             return returnValue;

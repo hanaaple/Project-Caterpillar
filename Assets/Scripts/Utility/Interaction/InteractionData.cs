@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utility.Core;
 using Utility.Dialogue;
-using Utility.Game;
 using Utility.Property;
 
 namespace Utility.Interaction
@@ -14,8 +13,6 @@ namespace Utility.Interaction
         Dialogue,
         Animator,
         OneOff,
-        MiniGame,
-        Portal,
         Item,
     }
     
@@ -63,9 +60,6 @@ namespace Utility.Interaction
 
         [ConditionalHideInInspector("interactType", InteractType.Dialogue)]
         public DialogueData dialogueData;
-
-        [ConditionalHideInInspector("interactType", InteractType.MiniGame)]
-        public MiniGame miniGame;
         
         [ConditionalHideInInspector("interactType", InteractType.Item)]
         public ItemInteractionType[] itemInteractionTypes;
