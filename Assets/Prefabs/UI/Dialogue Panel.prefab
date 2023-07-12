@@ -2759,7 +2759,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5604796700402157227}
-  - {fileID: 3287676361853576494}
   m_Father: {fileID: 1369472625851112531}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2939,9 +2938,10 @@ MonoBehaviour:
   skipButton: {fileID: 756501485802887602}
   skipCheckUIManager: {fileID: 6206763606101311261}
   textSpeed: 0.1
-  playableDirector: {fileID: 1927266704371128745}
+  playableDirector: {fileID: 0}
   cutSceneImage: {fileID: 1369472625288388294}
   defaultCutSceneAnimator: {fileID: 0}
+  playableDirectorPrefab: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
   choiceSelectors:
   - button: {fileID: 1369472625972243193}
     isEnable: 1
@@ -3029,59 +3029,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &8436208731824004643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3287676361853576494}
-  - component: {fileID: 1927266704371128745}
-  m_Layer: 0
-  m_Name: Playable Graph
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3287676361853576494
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436208731824004643}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4567776876492309184}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &1927266704371128745
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436208731824004643}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 0}
-    value: {fileID: 0}
-  - key: {fileID: 0}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1001 &6399684100804099206
 PrefabInstance:
   m_ObjectHideFlags: 0
