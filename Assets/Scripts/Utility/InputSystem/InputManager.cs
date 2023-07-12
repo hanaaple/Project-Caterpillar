@@ -16,15 +16,12 @@ namespace Utility.InputSystem
         {
             get { return _inputControl ??= new InputControl(); }
         }
-
+        
         private static int _inputActionCount;
-
+        
+        internal static readonly List<InputActions> InputActionsList = new();
         private static readonly object LockObject = new();
-
-        private static readonly List<InputActions> InputActionsList = new();
-
         private static readonly Queue<KeyValuePair<InputActions, bool>> QueueInputActions = new();
-
         //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
         private static readonly List<BindInputAction> BindInputActions = new();
 
@@ -44,12 +41,9 @@ namespace Utility.InputSystem
 
         public static void ResetInputAction()
         {
-            lock (LockObject)
+            foreach (var inputActions in InputActionsList)
             {
-                foreach (var inputActions in InputActionsList)
-                {
-                    PopInputAction(inputActions);
-                }
+                PopInputAction(inputActions);
             }
         }
 
@@ -57,14 +51,14 @@ namespace Utility.InputSystem
         {
             Debug.Log($"Push InputAction {inputActions.Name}");
             QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, true));
-            AsyncQueueInputAction();
+            EnqueueInputAction();
         }
 
         public static void PopInputAction(InputActions inputActions)
         {
             Debug.Log($"Pop InputAction {inputActions.Name}");
             QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, false));
-            AsyncQueueInputAction();
+            EnqueueInputAction();
         }
 
         private static async void AsyncQueueInputAction()
@@ -107,7 +101,43 @@ namespace Utility.InputSystem
                 }
             }
         }
-        
+
+        private static void EnqueueInputAction()
+        {
+            var inputActions = QueueInputActions.Dequeue();
+            if (inputActions.Value)
+            {
+                if (InputActionsList.Count > 0)
+                {
+                    InputActionsList.Last().SetAction(false);
+                }
+
+                InputActionsList.Add(inputActions.Key);
+                inputActions.Key.SetAction(true);
+
+                Debug.Log($"Push {InputActionsList.Count}   {inputActions.Key.Name}\n" +
+                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+            }
+            else
+            {
+                if (!InputActionsList.Contains(inputActions.Key))
+                {
+                    return;
+                }
+
+                inputActions.Key.SetAction(false);
+                InputActionsList.Remove(inputActions.Key);
+
+                Debug.Log($"Pop {InputActionsList.Count}   {inputActions.Key.Name}\n" +
+                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+
+                // 몇초후에 가능하도록 Add
+                if (InputActionsList.Count > 0)
+                {
+                    InputActionsList.Last().SetAction(true);
+                }
+            }
+        }
 
         public static void SetInputActions(bool isAdd)
         {

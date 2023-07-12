@@ -104,7 +104,7 @@ namespace Utility.UI.Highlight
             }
         }
 
-        public void Init(ArrowType arrowType, Action onCancle = null)
+        public void Init(ArrowType arrowType, Action onCancel = null)
         {
             foreach (var highlightItem in HighlightItems)
             {
@@ -134,7 +134,7 @@ namespace Utility.UI.Highlight
                         Select(0);
                     }
                 },
-                OnCancel = _ => { onCancle?.Invoke(); }
+                OnCancel = _ => { onCancel?.Invoke(); }
             };
         }
 
@@ -178,8 +178,10 @@ namespace Utility.UI.Highlight
                     Debug.Log(highlightItem.isEnable);
                     if (!highlightItem.isEnable)
                     {
-                        return;
+                        continue;
                     }
+                    
+                    Debug.Log($"Set {name}, {highlightItem.button.gameObject}, {highlightType}");
 
                     if (highlightType == HighlightType.None)
                     {
@@ -395,6 +397,12 @@ namespace Utility.UI.Highlight
             return Instantiate(sceneLoaderPrefab);
         }
 
+        /// <summary>
+        /// Have to Set HighlightItem.isEnable Before Push
+        /// </summary>
+        /// <param name="highlighter"></param>
+        /// <param name="isDuplicatePossible"></param>
+        /// <param name="isReset"></param>
         public void Push(Highlighter highlighter, bool isDuplicatePossible = false, bool isReset = true)
         {
             if (_highlighters.Contains(highlighter))

@@ -73,6 +73,11 @@ namespace Utility.UI.Pause
             {
                 SetActive(false);
             });
+            
+            _pauseHighlighter.InputActions.OnPause = _ =>
+            {
+                SetActive(false);
+            };
         }
 
         private void Start()
