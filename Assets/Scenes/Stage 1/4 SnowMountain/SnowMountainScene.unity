@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -377,6 +377,23 @@ MonoBehaviour:
         extrapolationMode: 0
         playableDirectorName: 
         waitSec: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c3703dbf4255b65458434df2623978da, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
         miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
@@ -3704,6 +3721,23 @@ MonoBehaviour:
         extrapolationMode: 0
         playableDirectorName: 
         waitSec: 0
+        miniGame: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 87786122494864f48b2723bb6a85f0b0, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
         miniGame: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
