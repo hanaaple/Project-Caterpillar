@@ -206,6 +206,7 @@ namespace Utility.Dialogue
             _isDialogue = true;
             if (!_baseDialogueData.Contains(dialogueData))
             {
+                Debug.LogWarning("Add DialogueData");
                 dialogueData.index = 0;
                 _baseDialogueData.Push(dialogueData);
                 baseDialogueData.Add(dialogueData);
@@ -319,6 +320,7 @@ namespace Utility.Dialogue
                 if (_baseDialogueData.Count >= 2)
                 {
                     var dialogueData = _baseDialogueData.Pop();
+                    baseDialogueData.RemoveAt(baseDialogueData.Count - 1);
                     var waitDialogueData = _baseDialogueData.Peek();
                     var waitDialogueElement = waitDialogueData.dialogueElements[waitDialogueData.index];
                     if (waitDialogueElement.dialogueType == DialogueType.WaitInteract &&
@@ -448,8 +450,7 @@ namespace Utility.Dialogue
 
                     if (!string.IsNullOrEmpty(dialogueElement.playableDirectorName))
                     {
-                        _baseDialogueData.Peek().index++;
-                        ProgressDialogue();
+                        InteractContinue();
                     }
                     else
                     {
@@ -483,8 +484,7 @@ namespace Utility.Dialogue
                                     StopCoroutine(_waitCutsceneEnableCoroutine);
                                 }
 
-                                _baseDialogueData.Peek().index++;
-                                ProgressDialogue();
+                                InteractContinue();
                             }
                         }));
                     }
@@ -648,83 +648,70 @@ namespace Utility.Dialogue
 
         private void ScriptOption(DialogueElement dialogue)
         {
+            // Debug.Log($"Option!   {string.Join(", ", dialogue.option)}");
             for (var index = 0; index < dialogue.option.Length; index++)
             {
                 dialogue.option[index] = dialogue.option[index].Replace(" ", "");
             }
 
             var reset = Array.Find(dialogue.option, item => item.Equals("Reset", StringComparison.OrdinalIgnoreCase));
+            // Debug.LogWarning(reset);
             if (!string.IsNullOrEmpty(reset))
             {
-                if (_rightAnimatorState == CharacterOption.Active)
-                {
-                    rightAnimator.SetTrigger(CharacterOption.DisappearActive.ToString());
-                }
-                else if (_rightAnimatorState == CharacterOption.Inactive)
-                {
-                    rightAnimator.SetTrigger(CharacterOption.DisappearInactive.ToString());
-                }
-
-                if (_leftAnimatorState == CharacterOption.Active)
-                {
-                    leftAnimator.SetTrigger(CharacterOption.DisappearActive.ToString());
-                }
-                else if (_leftAnimatorState == CharacterOption.Inactive)
-                {
-                    leftAnimator.SetTrigger(CharacterOption.DisappearInactive.ToString());
-                }
-
-                return;
-            }
-
-            var side = Array.Find(dialogue.option,
-                item => item.Equals("Left", StringComparison.OrdinalIgnoreCase) ||
-                        item.Equals("Right", StringComparison.OrdinalIgnoreCase));
-
-            Animator animator = null;
-            if (!string.IsNullOrEmpty(side))
-            {
-                if (side.Equals("Left", StringComparison.OrdinalIgnoreCase))
-                {
-                    animator = leftAnimator;
-                }
-                else if (side.Equals("Right", StringComparison.OrdinalIgnoreCase))
-                {
-                    animator = rightAnimator;
-                }
+                SetDialogueCharacter(leftAnimator, CharacterOption.Disappear.ToString());
+                SetDialogueCharacter(rightAnimator, CharacterOption.Disappear.ToString());
             }
             else
             {
-                var rightCharacter = rightAnimator.GetInteger(CharacterHash);
-                var leftCharacter = leftAnimator.GetInteger(CharacterHash);
-                if (rightCharacter == (int)dialogue.name)
+                var side = Array.Find(dialogue.option,
+                    item => item.Equals("Left", StringComparison.OrdinalIgnoreCase) ||
+                            item.Equals("Right", StringComparison.OrdinalIgnoreCase));
+
+                Animator animator = null;
+                if (!string.IsNullOrEmpty(side))
                 {
-                    animator = rightAnimator;
+                    if (side.Equals("Left", StringComparison.OrdinalIgnoreCase))
+                    {
+                        animator = leftAnimator;
+                    }
+                    else if (side.Equals("Right", StringComparison.OrdinalIgnoreCase))
+                    {
+                        animator = rightAnimator;
+                    }
                 }
-                else if (leftCharacter == (int)dialogue.name)
+                else if (dialogue.name != CharacterType.None && dialogue.name != CharacterType.Keep)
                 {
-                    animator = leftAnimator;
+                    var rightCharacter = rightAnimator.GetInteger(CharacterHash);
+                    var leftCharacter = leftAnimator.GetInteger(CharacterHash);
+                    if (rightCharacter == (int) dialogue.name)
+                    {
+                        animator = rightAnimator;
+                    }
+                    else if (leftCharacter == (int) dialogue.name)
+                    {
+                        animator = leftAnimator;
+                    }
                 }
-            }
 
-            // 만약 Animator가 지정되어 있는 경우
-            if (animator != null)
-            {
-                if (dialogue.name != CharacterType.Keep)
+                // 만약 Animator가 지정되어 있는 경우
+                if (animator != null)
                 {
-                    animator.SetInteger(CharacterHash, (int)dialogue.name);
+                    if (dialogue.name != CharacterType.Keep)
+                    {
+                        animator.SetInteger(CharacterHash, (int) dialogue.name);
+                    }
+
+                    if (dialogue.expression != Expression.Keep)
+                    {
+                        animator.SetInteger(ExpressionHash, (int) dialogue.expression - 1);
+                    }
+
+                    var state = Array.Find(dialogue.option, item => Enum.TryParse(item, out CharacterOption _));
+
+                    Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
+
+                    SetDialogueCharacter(animator, state);
                 }
-
-                if (dialogue.expression != Expression.Keep)
-                {
-                    animator.SetInteger(ExpressionHash, (int)dialogue.expression - 1);
-                }
-
-                var state = Array.Find(dialogue.option, item => Enum.TryParse(item, out CharacterOption _));
-
-                Debug.Log(state + "  " + dialogue.name + " " + dialogue.expression);
-
-                SetDialogueCharacter(animator, state);
             }
         }
 
@@ -740,6 +727,7 @@ namespace Utility.Dialogue
                 return;
             }
 
+            // Character Name이 반대편인 경우 rightAnimatorState도 설정
             CharacterOption originState = default;
             if (animator == leftAnimator)
             {
@@ -751,31 +739,18 @@ namespace Utility.Dialogue
                 originState = _rightAnimatorState;
                 _rightAnimatorState = state;
             }
+            
+            // Debug.Log($"{state}, {originState}");
+
+            if (state == originState)
+            {
+                return;
+            }
 
             // 전부다 초기화
             switch (state)
             {
                 case CharacterOption.Appear:
-                {
-                    if (animator == leftAnimator)
-                    {
-                        if (_rightAnimatorState.Equals(CharacterOption.Appear) ||
-                            _rightAnimatorState.Equals(CharacterOption.Active))
-                        {
-                            rightAnimator.SetTrigger(InActiveHash);
-                        }
-                    }
-                    else if (animator == rightAnimator)
-                    {
-                        if (_leftAnimatorState.Equals(CharacterOption.Appear) ||
-                            _leftAnimatorState.Equals(CharacterOption.Active))
-                        {
-                            leftAnimator.SetTrigger(InActiveHash);
-                        }
-                    }
-
-                    break;
-                }
                 case CharacterOption.Active:
                 {
                     if (animator == leftAnimator)
@@ -784,6 +759,7 @@ namespace Utility.Dialogue
                             _rightAnimatorState.Equals(CharacterOption.Active))
                         {
                             rightAnimator.SetTrigger(InActiveHash);
+                            _rightAnimatorState = CharacterOption.Inactive;
                         }
                     }
                     else if (animator == rightAnimator)
@@ -792,6 +768,7 @@ namespace Utility.Dialogue
                             _leftAnimatorState.Equals(CharacterOption.Active))
                         {
                             leftAnimator.SetTrigger(InActiveHash);
+                            _leftAnimatorState = CharacterOption.Inactive;
                         }
                     }
 
@@ -810,6 +787,14 @@ namespace Utility.Dialogue
                     else if (originState == CharacterOption.Inactive)
                     {
                         state = CharacterOption.DisappearInactive;
+                    }
+                    else if (originState == CharacterOption.Appear)
+                    {
+                        state = CharacterOption.DisappearActive;
+                    }
+                    else
+                    {
+                        return;
                     }
 
                     break;
@@ -937,9 +922,9 @@ namespace Utility.Dialogue
             }
         }
 
-        private void OnClickChoice(int curIdx, int choiceLen, int choiceContextLen)
+        private void OnClickChoice(int choiceIndex, int choiceLen, int choiceContextLen)
         {
-            Debug.Log($"Dialogue Index: {curIdx}\n" +
+            Debug.Log($"Dialogue Index: {choiceIndex}\n" +
                       $"선택 개수: {choiceLen}\n" +
                       $"대화 길이: {choiceContextLen}");
 
@@ -947,7 +932,7 @@ namespace Utility.Dialogue
             choicePanel.SetActive(false);
 
             var dialogueData = _baseDialogueData.Peek();
-            var tendencyValue = dialogueData.dialogueElements[curIdx].option
+            var tendencyValue = dialogueData.dialogueElements[choiceIndex].option
                 .Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
             if (tendencyValue.Length == 4)
             {
@@ -956,7 +941,7 @@ namespace Utility.Dialogue
                 TendencyManager.Instance.UpdateTendencyData(tendencyValue);
             }
 
-            if (choiceContextLen == 0)
+            if (choiceContextLen != 0)
             {
                 var choiceDialogueData = new DialogueData
                 {
@@ -964,17 +949,16 @@ namespace Utility.Dialogue
                     dialogueElements = new DialogueElement[choiceContextLen]
                 };
 
-                Array.Copy(_baseDialogueData.Peek().dialogueElements, curIdx + choiceLen,
+                Array.Copy(_baseDialogueData.Peek().dialogueElements, choiceIndex + choiceLen,
                     choiceDialogueData.dialogueElements, 0, choiceContextLen);
 
                 Initialize(choiceDialogueData);
 
-                _baseDialogueData.Peek().index++;
                 ProgressDialogue();
             }
             else
             {
-                ProgressDialogue();
+                InteractContinue();
             }
         }
 
@@ -998,8 +982,6 @@ namespace Utility.Dialogue
                    currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType !=
                    DialogueType.ChoiceEnd)
             {
-                Debug.Log(currentDialogueData.index);
-
                 var choiceCount = 0;
                 var choiceContextLen = 0;
 
@@ -1035,7 +1017,7 @@ namespace Utility.Dialogue
 
                 for (var i = 0; i < choiceCount; i++)
                 {
-                    var curIdx = currentDialogueData.index;
+                    var choiceIndex = currentDialogueData.index;
                     var choiceButton = choiceSelectors[choicedCount + i].button;
 
                     var highlightItem = _choiceHighlighter.HighlightItems.Find(item => item.button == choiceButton);
@@ -1043,10 +1025,10 @@ namespace Utility.Dialogue
 
                     choiceButton.gameObject.SetActive(true);
                     choiceButton.GetComponentInChildren<TMP_Text>().text =
-                        currentDialogueData.dialogueElements[curIdx + i].contents;
+                        currentDialogueData.dialogueElements[choiceIndex + i].contents;
 
                     choiceButton.onClick.RemoveAllListeners();
-                    choiceButton.onClick.AddListener(() => { OnClickChoice(curIdx, choiceCount, choiceContextLen); });
+                    choiceButton.onClick.AddListener(() => { OnClickChoice(choiceIndex, choiceCount, choiceContextLen); });
                 }
 
                 currentDialogueData.index += choiceCount + choiceContextLen;
