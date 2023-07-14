@@ -175,13 +175,13 @@ namespace Utility.UI.Highlight
 
                 foreach (var highlightItem in HighlightItems)
                 {
-                    Debug.Log(highlightItem.isEnable);
+                    // Debug.Log(highlightItem.isEnable);
                     if (!highlightItem.isEnable)
                     {
                         continue;
                     }
                     
-                    Debug.Log($"Set {name}, {highlightItem.button.gameObject}, {highlightType}");
+                    // Debug.Log($"Set {name}, {highlightItem.button.gameObject}, {highlightType}");
 
                     if (highlightType == HighlightType.None)
                     {

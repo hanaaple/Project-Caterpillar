@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1154,7 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.size
-      value: 31
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].serializedInteractionData.isInteractable
@@ -1174,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].name
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].name
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[0].subject
@@ -1290,19 +1290,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].subject
-      value: "\uC0AC\uC9C4\uC0AC"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].waitSec
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].subject
-      value: ???
+      value: "\uC0AC\uC9C4\uC0AC"
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].subject
-      value: 
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].waitSec
@@ -1310,19 +1310,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].waitSec
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].waitSec
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].waitSec
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[28].subject
-      value: "\uC0AC\uC9C4\uC0AC"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[29].subject
-      value: 
+      value: "\uC0AC\uC9C4\uC0AC"
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[2].contents
@@ -1404,39 +1404,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].contents
-      value: "\xB7\xB7\xB7\uC0AC, \xB7\xB7\xB7\uC9C0\xB7\xB7\xB7 \uB9D0\uB77C\uACE0\xB7\xB7\xB7!!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].contents
-      value: "\uADF8, \xB7\xB7\xB7\uC801 \uC5C6\u3147\xB7\xB7\xB7!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].contents
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].contents
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].contents
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].contents
+      value: "\xB7\xB7\xB7\uC0AC, \xB7\xB7\xB7\uC9C0\xB7\xB7\xB7 \uB9D0\uB77C\uACE0\xB7\xB7\xB7!!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].contents
+      value: "\uADF8, \xB7\xB7\xB7\uC801 \uC5C6\u3147\xB7\xB7\xB7!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].contents
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].contents
+      value: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uCE74\uBA54\uB77C(\uD654\uBA74)\uC774
+        \uC554\uC804 \uB41C\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[26].contents
-      value: SmallRoomScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[27].contents
-      value: "\uC544\uB2C8\uC694."
+      value: SmallRoomScene
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[28].contents
-      value: "\uB098\uB294 \uCD5C\uC120\uC744 \uB2E4 \uD588\uC5B4\xB7\xB7\xB7."
+      value: "\uC544\uB2C8\uC694."
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[29].contents
-      value: 
+      value: "\uB098\uB294 \uCD5C\uC120\uC744 \uB2E4 \uD588\uC5B4\xB7\xB7\xB7."
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[1].dialogueType
@@ -1520,7 +1521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].dialogueType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].dialogueType
@@ -1528,35 +1529,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].dialogueType
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].dialogueType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].dialogueType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[26].dialogueType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[27].dialogueType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[28].dialogueType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].dialogueType
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].dialogueType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[26].dialogueType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[27].dialogueType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[28].dialogueType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[29].dialogueType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[30].dialogueType
-      value: 11
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[31].dialogueType
@@ -1633,7 +1634,7 @@ PrefabInstance:
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].playableAsset
       value: 
@@ -1641,11 +1642,11 @@ PrefabInstance:
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: e59ec0b636a425940881e7abbb7f1c09, type: 2}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[0].extrapolationMode
       value: 0
@@ -1740,27 +1741,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].option.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].option.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].option.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].option.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].option.Array.size
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[22].option.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[23].option.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
-      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[30].option.Array.size
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].option.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[25].option.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
+      propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[30].option.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[31].option.Array.size
@@ -1984,11 +1985,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].option.Array.data[0]
-      value: Left
+      value: Hold
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].option.Array.data[1]
-      value: Appear
+      value: ' 1.5'
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[21].option.Array.data[2]
@@ -2016,7 +2017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].option.Array.data[0]
-      value: Hold
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 5618444936597883017, guid: fb82e87660a893549ad1ea7e63c66726, type: 3}
       propertyPath: interactionData.Array.data[0].dialogueData.dialogueElements.Array.data[24].option.Array.data[1]
@@ -6619,7 +6620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.size
-      value: 56
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].serializedInteractionData.isInteractable
@@ -6695,11 +6696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[1].name
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[2].name
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[5].name
@@ -6855,7 +6856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].name
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].name
@@ -6867,7 +6868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[18].name
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[19].name
@@ -6931,11 +6932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].name
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].name
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].name
@@ -6951,35 +6952,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[45].name
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[46].name
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[47].name
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[48].name
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].name
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].name
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].name
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].name
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].name
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].name
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].name
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].name
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[53].name
@@ -6995,7 +6996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[56].name
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[57].name
@@ -7575,7 +7576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].waitSec
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].subject
@@ -7587,15 +7588,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].subject
-      value: ???
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].waitSec
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].subject
-      value: 
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[16].subject
@@ -7607,7 +7608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[18].subject
-      value: ???
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[19].subject
@@ -7635,23 +7636,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].subject
-      value: 
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].waitSec
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].subject
-      value: "\uC544\uC778"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].waitSec
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].subject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].waitSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].subject
-      value: ???
+      value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].waitSec
@@ -7659,19 +7660,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[26].subject
-      value: "\uC544\uC778"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[27].subject
-      value: ???
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[28].subject
       value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[29].subject
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[28].subject
       value: ???
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[29].subject
+      value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[2].contents
@@ -7680,47 +7681,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[30].subject
-      value: "<\uC2DC\uC2A4\uD15C>"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[31].subject
-      value: ???
+      value: "<\uC2DC\uC2A4\uD15C>"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[32].subject
-      value: "\uC544\uC778"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[33].subject
-      value: ???
+      value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[34].subject
-      value: "\uC544\uC778"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[35].subject
-      value: ???
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[36].subject
       value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].subject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].waitSec
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].subject
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[36].subject
       value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].waitSec
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].subject
+      value: "\uC544\uC778"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].waitSec
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].subject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].waitSec
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].subject
@@ -7740,7 +7741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].subject
-      value: "<\uC2DC\uC2A4\uD15C>"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].waitSec
@@ -7748,39 +7749,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[41].subject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[42].subject
-      value: ???
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[43].subject
       value: "<\uC2DC\uC2A4\uD15C>"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[44].subject
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[42].subject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[43].subject
       value: ???
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[44].subject
+      value: "<\uC2DC\uC2A4\uD15C>"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[45].subject
-      value: "\uC544\uC778"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[46].subject
-      value: ???
+      value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[47].subject
-      value: "\uC544\uC778"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[48].subject
       value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].subject
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[48].subject
       value: "\uC544\uC778"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].subject
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[4].contents
@@ -7790,19 +7791,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].subject
-      value: 
+      value: "\uC544\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].waitSec
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].subject
-      value: ???
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].waitSec
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].subject
@@ -7822,7 +7823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[54].subject
-      value: "<\uC2DC\uC2A4\uD15C>"
+      value: ???
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[54].waitSec
@@ -7830,7 +7831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[55].subject
-      value: 
+      value: "<\uC2DC\uC2A4\uD15C>"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[55].waitSec
@@ -7838,7 +7839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[56].subject
-      value: ???
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[57].subject
@@ -8474,237 +8475,235 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].contents
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].contents
       value: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uC8FC\uC778\uACF5\uC740
         \uB098\uB8E8\uC640 \uC190\uC744 \uC7A1\uACE0 \uC8FC\uC778\uACF5\uC758 \uBAA9\uAC78\uC774\uC5D0\uC11C\uB294
         \uAE30\uBB18\uD55C \uBE5B\uC774 \uB09C\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].contents
       value: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uAC00\uC815\uC9D1\uC73C\uB85C
         \uBCF4\uC774\uB294 \uACF5\uAC04."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].contents
       value: "\uC5B4\uB54C? \uBB34\uC5C7\uC774 \uBCF4\uC5EC?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[16].contents
       value: "\uB2E4\uB978 \uACF5\uAC04\uC774\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[16].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[17].contents
       value: "\uBB3C\uAC74\uB4E4\uC774 \uB9CC\uC838\uC9C0\uC9C0 \uC54A\uC544."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[17].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[18].contents
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[18].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[19].contents
       value: "\uB124\uAC00 \uBCF4\uB294 \uAC83\uC740 \u2018\uAE30\uC5B5\u2019\uC758
         \uC77C\uBD80\uC57C. \uC9C1\uC811\uC801\uC778 \uC601\uD5A5\uC740 \uC904 \uC218
         \uC5C6\uC9C0.\n\uADF8\uAC83\uB4E4\uC740 \uC774\uBBF8 \uACFC\uAC70\uC5D0 \uC77C\uC5B4\uB09C
         \uD655\uC815\uB41C \uC774\uC57C\uAE30\uB4E4\uC774\uAC70\uB4E0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[19].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[20].contents
       value: "\xB7\xB7\xB7\uB108\uB294 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
         \uC9C4\uD589\uB418\uB294 \uB3D9\uC548 \uC774\uC57C\uAE30\uC758 \uC911\uC694\uD55C
         \uAE30\uB85C\uC18D\uC5D0\uC11C \uBA87 \uAC00\uC9C0 \uC120\uD0DD\uC744 \uD558\uAC8C 
         \uB420 \uAC70\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[20].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[21].contents
       value: "\uC120\uD0DD\uC73C\uB85C \uC774\uBBF8 \uD655\uC815\uB41C \uC774\uC57C\uAE30\uAC00
         \uC88C\uC9C0\uC6B0\uC9C0\uB418\uB294 \uC77C\uB3C4 \uC5C6\uC73C\uB2C8 \uBD80\uB2F4
         \uAC00\uC9C8 \uD544\uC694\uB3C4 \n\uC5C6\uACA0\uC9C0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[21].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[22].contents
       value: "\uBB3C\uB860 \uADF8\uB807\uB2E4\uACE0 \uD574\uC11C \uC774 \uC77C\uB828\uC758
         \uD589\uC704\uAC00 \uC804\uD600 \uC758\uBBF8\uAC00 \uC5C6\uC9C0\uB294 \uC54A\uC544.\n\uB298
         \uC0C1 \uADF8\uB7AC\uB4EF\uC774 \uB124 \uC120\uD0DD\uC740 \uACE7 \uB124 \uC77C\uBD80\uAC00
         \uB420 \uD14C\uB2C8\uAE4C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[22].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].contents
       value: "\uB9D0\uC774 \uAE38\uC5B4\uC84C\uB124. \uC9C1\uC811 \uBCF4\uC5EC \uC904\uAC8C.
         \uADF8\uB798. \uB124 \uC55E\uC5D0 \uAC15\uC544\uC9C0, \uBCF4\uC774\uC9C0?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].contents
       value: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uAC00\uC815\uC9D1 \uBC30\uACBD
         \uC18D \uAC15\uC544\uC9C0\uC640 \uADF8 \uC55E\uC758 \uBC25\uADF8\uB987\uC774
         \uBCF4\uC778\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].contents
       value: "\uBCF4\uC5EC."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[26].contents
       value: "\uB9CC\uC77C \uB124\uAC00 \uAC15\uC544\uC9C0\uC758 \uC785\uC7A5\uC774\uC5C8\uB2E4\uBA74
         \uC55E\uC5D0 \uB193\uC778 \uADFC\uC0AC\uD55C \uBC25\uC0C1\uC744 \uBA39\uC744
         \uAC70\uC57C?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[26].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[27].contents
       value: "\xB7\xB7\xB7."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[27].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[28].contents
       value: "\xB7\xB7\xB7\uB108\uBB34 \uADF8\uB807\uAC8C \uBCF4\uC9C0 \uB9C8. \uC774\uAC74
         \uC5B4\uB514\uAE4C\uC9C0\uB098 \uC608\uC2DC\uB77C\uACE0! \n\uAC00\uB828\uD55C
         \uAC15\uC544\uC9C0\uC5D0\uAC8C\uB294 \uC774 \uD55C\uB07C\uAC00 \uC778\uC0DD\uC758
         \uC911\uC694\uD55C \uAE30\uB85C\uC77C \uC218 \uC788\uC9C0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[28].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[29].contents
       value: "\uBA39\uC744\uAC8C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[29].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[30].contents
       value: "\uC88B\uC544. \uADF8\uAC8C \uB124 \uC120\uD0DD\uC774\uAD6C\uB098. \uB124
         \uC120\uD0DD\uACFC\uB294 \uBCC4\uAC1C\uB85C \uC774\uC57C\uAE30 \uC18D \uAC15\uC544\uC9C0\uB294
         \uBC25\uC744 \uBA39\uC5C8\uC5B4. \n\uADF8\uB9AC\uACE0 \uADF8 \uACFC\uC815\uC18D\uC5D0\uC11C
         \uB124\uAC00 \uC5BB\uAC8C \uB420 \uAC83\uC740, \uC774\uAC83\uC774\uC9C0."
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[30].contents
-      value: "\uC5F4\uC1E0 <b><\uB9CC\uC871></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[31].contents
-      value: "\uC18C\uAC10\uC740?"
+      value: "\uC5F4\uC1E0 <b><\uB9CC\uC871></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[32].contents
-      value: "\xB7\xB7\xB7?"
+      value: "\uC18C\uAC10\uC740?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[33].contents
+      value: "\xB7\xB7\xB7?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[34].contents
       value: "\xB7\xB7\xB7\uC774\uBD10, \uC774\uB807\uAC8C \uAC10\uD765 \uC5C6\uC774
         \uAD74 \uAC70\uC57C? \uADF8\uAC83\uB4E4\uC774 \uB124\uAC00 \uCC3E\uACE0 \uC788\uB358
         \uAC83\uC774\uB77C\uACE0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[34].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[35].contents
       value: "\xB7\xB7\xB7\uB0B4\uAC00 \uC774\uAC78 \uC65C \uCC3E\uC544\uC57C \uD558\uB294\uC9C0
         \uBAA8\uB974\uACA0\uC5B4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[35].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[36].contents
       value: "\uAC74\uC870\uD558\uAE30\uB294! \uBA87 \uBC88\uC774\uB098 \uB9D0\uD588\uB4EF
         \uB124\uAC00 \uC815 \uC758\uBBF8\uB97C \uCC3E\uC9C0 \uBABB\uD558\uACA0\uB2E4\uBA74
         \uB3CC\uC544\uAC00\uB3C4 \uC88B\uC544. \n\uC2DC\uAC04\uC740 \uC5B8\uC81C\uB098
         \uC18C\uC911\uD558\uACE0, \uC120\uD0DD\uC740 \uC5B8\uC81C\uB098 \uB124 \uBAAB\uC774\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[36].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].contents
       value: "\xB7\xB7\xB7."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].contents
       value: "(\uCEF7 \uC52C)> (\uBA54\uC778 \uD544\uB4DC)"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].contents
       value: "\uC544\uBB34\uD2BC. \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
         \uB05D\uC774 \uB098\uBA74, \uB108\uB294 \uB2E4\uC2DC \uD5C8\uC218\uACF5\uAC04\uC5D0
         \uB3C4\uCC29\uD558\uAC8C \uB420 \uAC70\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].contents
       value: "\uADF8 \uC774\uD6C4\uC758 \uC77C\uC740 \uB3D9\uC77C\uD558\uC9C0. \uC6D0\uD558\uB2E4\uBA74
         \uB2E4\uB978 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uB97C
         \uB354 \uB4E4\uC744 \uC218\uB3C4 \uC788\uACE0, \n\uB3CC\uC544\uAC08 \uC218\uB3C4
         \uC788\uC5B4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[41].contents
       value: "\uC5F4\uC1E0 <b><\uB9CC\uC871></b>\uC744 \uD68C\uC218\uB2F9\uD588\uB2E4!"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[41].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[42].contents
       value: "\uBA39\uC9C0 \uC54A\uC744\uB798."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[42].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[43].contents
       value: "\uC88B\uC544. \uADF8\uAC8C \uB124 \uC120\uD0DD\uC774\uAD6C\uB098. \uB124
         \uC120\uD0DD\uACFC\uB294 \uBCC4\uAC1C\uB85C \uC774\uC57C\uAE30 \uC18D \uAC15\uC544\uC9C0\uB294
         \uBC25\uC744 \uBA39\uC5C8\uC5B4. \n\uADF8\uB9AC\uACE0 \uADF8 \uACFC\uC815\uC18D\uC5D0\uC11C
         \uB124\uAC00 \uC5BB\uAC8C \uB420 \uAC83\uC740, \uC774\uAC83\uC774\uC9C0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[43].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[44].contents
       value: "\uC5F4\uC1E0 <b><\uC778\uB0B4></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[44].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[45].contents
       value: "\uC18C\uAC10\uC740?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[45].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[46].contents
       value: "\xB7\xB7\xB7?"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[46].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[47].contents
       value: "\xB7\xB7\xB7\uC774\uBD10, \uC774\uB807\uAC8C \uAC10\uD765 \uC5C6\uC774
         \uAD74 \uAC70\uC57C? \uADF8\uAC83\uB4E4\uC774 \uB124\uAC00 \uCC3E\uACE0 \uC788\uB358
         \uAC83\uC774\uB77C\uACE0."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[47].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[48].contents
       value: "\xB7\xB7\xB7\uB0B4\uAC00 \uC774\uAC78 \uC65C \uCC3E\uC544\uC57C \uD558\uB294\uC9C0
         \uBAA8\uB974\uACA0\uC5B4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[48].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].contents
       value: "\uAC74\uC870\uD558\uAE30\uB294! \uBA87 \uBC88\uC774\uB098 \uB9D0\uD588\uB4EF
         \uB124\uAC00 \uC815 \uC758\uBBF8\uB97C \uCC3E\uC9C0 \uBABB\uD558\uACA0\uB2E4\uBA74
         \uB3CC\uC544\uAC00\uB3C4 \uC88B\uC544. \n\uC2DC\uAC04\uC740 \uC5B8\uC81C\uB098
         \uC18C\uC911\uD558\uACE0, \uC120\uD0DD\uC740 \uC5B8\uC81C\uB098 \uB124 \uBAAB\uC774\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[49].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].contents
       value: "\xB7\xB7\xB7."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].contents
       value: "(\uCEF7 \uC52C)> (\uBA54\uC778 \uD544\uB4DC)"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].contents
       value: "\uC544\uBB34\uD2BC. \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
         \uB05D\uC774 \uB098\uBA74, \uB108\uB294 \uB2E4\uC2DC \uD5C8\uC218\uACF5\uAC04\uC5D0
         \uB3C4\uCC29\uD558\uAC8C \uB420 \uAC70\uC57C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[53].contents
       value: "\uADF8 \uC774\uD6C4\uC758 \uC77C\uC740 \uB3D9\uC77C\uD558\uC9C0. \uC6D0\uD558\uB2E4\uBA74
         \uB2E4\uB978 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uB97C
         \uB354 \uB4E4\uC744 \uC218\uB3C4 \uC788\uACE0, \n\uB3CC\uC544\uAC08 \uC218\uB3C4
         \uC788\uC5B4."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[53].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[54].contents
       value: "\uADF8\uB9AC\uACE0 \uBC29\uAE08 \uC804\uC740 \uADF8\uC800 \uC608\uC2DC\uC600\uC744
         \uBFD0\uC774\uB2C8, \uB124\uAC8C \uC8FC\uC5B4\uC9C4 \uC5F4\uC1E0\uB294 \uD68C\uC218\uD558\uB3C4\uB85D
         \uD560\uAC8C."
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[54].contents
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[55].contents
       value: "\uC5F4\uC1E0 <b><\uC778\uB0B4></b>\uB97C \uD68C\uC218\uB2F9\uD588\uB2E4!"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
-      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[55].contents
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[56].contents
-      value: "\uC544\uBB34\uD2BC. \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
-        \uB05D\uC774 \uB098\uBA74, \uB108\uB294 \uB2E4\uC2DC \uD5C8\uC218\uACF5\uAC04\uC5D0
-        \uB3C4\uCC29\uD558\uAC8C \uB420 \uAC70\uC57C."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[57].contents
@@ -9506,7 +9505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].dialogueType
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].dialogueType
@@ -9514,11 +9513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].dialogueType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].dialogueType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[16].dialogueType
@@ -9526,11 +9525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[17].dialogueType
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[18].dialogueType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[19].dialogueType
@@ -9550,11 +9549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].dialogueType
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].dialogueType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].dialogueType
@@ -9570,11 +9569,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[28].dialogueType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[29].dialogueType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[30].dialogueType
@@ -9606,11 +9605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].dialogueType
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].dialogueType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].dialogueType
@@ -9622,11 +9621,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[41].dialogueType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[42].dialogueType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[43].dialogueType
@@ -9658,11 +9657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].dialogueType
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].dialogueType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].dialogueType
@@ -9678,11 +9677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[55].dialogueType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[56].dialogueType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[57].dialogueType
@@ -10099,15 +10098,15 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 49e10a0411bb2a546957d5567716df5a, type: 2}
+      objectReference: {fileID: 11400000, guid: ea35485d035144c4eb36995f322e4205, type: 2}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 49e10a0411bb2a546957d5567716df5a, type: 2}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[21].playableAsset
       value: 
@@ -10115,11 +10114,11 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 724a67143f5542644a19aa0cdeeb606c, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 724a67143f5542644a19aa0cdeeb606c, type: 2}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].playableAsset
       value: 
@@ -10135,11 +10134,11 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].playableAsset
       value: 
@@ -10159,11 +10158,11 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].playableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].playableAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].playableAsset
       value: 
@@ -10654,7 +10653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].option.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].extrapolationMode
@@ -10670,7 +10669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].option.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].extrapolationMode
@@ -10722,7 +10721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[23].option.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].extrapolationMode
@@ -10730,7 +10729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].option.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].extrapolationMode
@@ -10806,7 +10805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[37].option.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].extrapolationMode
@@ -10814,7 +10813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].option.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].extrapolationMode
@@ -10822,7 +10821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].option.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].extrapolationMode
@@ -10890,7 +10889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[50].option.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].extrapolationMode
@@ -10898,7 +10897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].option.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].extrapolationMode
@@ -10906,7 +10905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].option.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[53].extrapolationMode
@@ -10934,7 +10933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[56].option.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[57].extrapolationMode
@@ -11330,7 +11329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].option.Array.data[0]
-      value: Hold
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[12].option.Array.data[1]
@@ -11358,7 +11357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[13].option.Array.data[2]
-      value: " name=Main/Prologue/#1-3 \uAC00\uC815\uC9D1"
+      value: " name=Main/Prologue/#1-2 \uB098\uB8E8 \uC8FC\uC778\uACF5 \uBAA9\uAC78\uC774"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].option.Array.data[0]
@@ -11367,6 +11366,10 @@ PrefabInstance:
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].option.Array.data[1]
       value: ' 1.5'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[14].option.Array.data[2]
+      value: " name=Main/Prologue/#1-3 \uAC00\uC815\uC9D1"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[15].option.Array.data[0]
@@ -11410,11 +11413,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].option.Array.data[0]
-      value: Reset
+      value: Hold
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].option.Array.data[1]
       value: ' 1.5'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[24].option.Array.data[2]
+      value: " name=Main/Prologue/#1-4 \uAC15\uC544\uC9C0"
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[25].option.Array.data[0]
@@ -11454,7 +11461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].option.Array.data[0]
-      value: Right
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[38].option.Array.data[1]
@@ -11462,7 +11469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].option.Array.data[0]
-      value: Reset
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[39].option.Array.data[1]
+      value: ' Appear'
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[40].option.Array.data[0]
@@ -11498,7 +11509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].option.Array.data[0]
-      value: Right
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[51].option.Array.data[1]
@@ -11506,7 +11517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].option.Array.data[0]
-      value: Reset
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
+      propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[52].option.Array.data[1]
+      value: ' Appear'
       objectReference: {fileID: 0}
     - target: {fileID: 2257833677231867231, guid: 3abd2deb243d9f049949d08ffe19a401, type: 3}
       propertyPath: interactionData.Array.data[1].dialogueData.dialogueElements.Array.data[53].option.Array.data[0]
