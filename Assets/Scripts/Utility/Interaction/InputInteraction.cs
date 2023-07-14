@@ -57,7 +57,7 @@ namespace Utility.Interaction
             }
         }
 
-        public void Interact()
+        public override void StartInteraction(int index = -1)
         {
             Debug.Log($"인터랙트 - {gameObject}");
             if (defaultFloatingMark)
@@ -75,7 +75,7 @@ namespace Utility.Interaction
                     }
                 }
             };
-            StartInteraction();
+            base.StartInteraction();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -102,7 +102,7 @@ namespace Utility.Interaction
                 defaultFloatingMark.SetActive(true);
             }
 
-            player.OnInteractAction = Interact;
+            player.OnInteractAction = () => { StartInteraction(); };
         }
 
         private void OnTriggerExit2D(Collider2D col)
