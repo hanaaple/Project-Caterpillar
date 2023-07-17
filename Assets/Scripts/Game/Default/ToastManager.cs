@@ -8,6 +8,13 @@ namespace Game.Default
 {
     public class ToastManager : MonoBehaviour
     {
+        private enum ToastType
+        {
+            Dark = 0,
+            Light = 1
+        }
+        
+        [SerializeField] private ToastType toastType;
         [SerializeField] private Transform toastMessageParent;
         [SerializeField] private float textSec;
 
@@ -22,6 +29,8 @@ namespace Game.Default
         private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int IndexHash = Animator.StringToHash("Index");
         private static readonly int DisAppearHash = Animator.StringToHash("DisAppear");
+        private static readonly int TypeHash = Animator.StringToHash("Type");
+        private static readonly int PlayHash = Animator.StringToHash("Play");
 
         private void Awake()
         {
@@ -37,8 +46,6 @@ namespace Game.Default
         public void Enqueue(string toastContent)
         {
             _toastQueue.Enqueue(toastContent);
-
-
             _toastCoroutine ??= StartCoroutine(StartToast());
         }
 
@@ -82,15 +89,14 @@ namespace Game.Default
             while (_toastQueue.Count > 0)
             {
                 var toasts = GetActiveToastMessages();
-                foreach (var t in toasts)
+                foreach (var toast in toasts)
                 {
-                    var animator = t.GetComponent<Animator>();
-                    var index = animator.GetInteger(IndexHash);
-                    animator.SetInteger(IndexHash, index + 1);
+                    var index = toast.GetInteger(IndexHash);
+                    toast.SetInteger(IndexHash, index + 1);
 
                     if (index > 2)
                     {
-                        t.gameObject.SetActive(false);
+                        toast.gameObject.SetActive(false);
                     }
                 }
 
@@ -102,6 +108,8 @@ namespace Game.Default
                 toastMessage.transform.SetAsLastSibling();
                 toastMessage.gameObject.SetActive(true);
                 toastAnimator.SetInteger(IndexHash, 0);
+                toastAnimator.SetInteger(TypeHash, (int) toastType);
+                toastAnimator.SetTrigger(PlayHash);
 
                 _toastMessageParentAnimator.SetTrigger(ResetHash);
 
