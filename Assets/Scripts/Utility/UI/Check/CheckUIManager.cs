@@ -29,14 +29,14 @@ namespace Utility.UI.Check
             {
                 var noIndex = Array.FindIndex(checkHighlightItems,
                     item => item.buttonType == CheckHighlightItem.ButtonType.No);
-                if (_checkHighlighter.selectedIndex == noIndex)
-                {
-                    checkHighlightItems[noIndex].button.onClick?.Invoke();
-                }
-                else
-                {
-                    _checkHighlighter.Select(noIndex);
-                }
+                // if (_checkHighlighter.selectedIndex == noIndex)
+                // {
+                checkHighlightItems[noIndex].button.onClick?.Invoke();
+                // }
+                // else
+                // {
+                //     _checkHighlighter.Select(noIndex);
+                // }
             });
         }
 

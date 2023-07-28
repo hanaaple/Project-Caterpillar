@@ -44,7 +44,7 @@ namespace Utility.UI.Preference
         {
             _inputActions = new InputActions(nameof(PreferenceManager))
             {
-                OnCancel = _ =>
+                OnEsc = () =>
                 {
                     if (preferencePanel.activeSelf && !rebindCheckUIManager.gameObject.activeSelf)
                     {

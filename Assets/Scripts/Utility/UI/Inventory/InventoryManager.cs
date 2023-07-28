@@ -58,6 +58,7 @@ namespace Utility.UI.Inventory
     public class InventoryItem : HighlightItem
     {
         public ItemManager.ItemType itemType;
+
         // [SerializeField] private Sprite defaultSprite;
         // [SerializeField] private Sprite selectedSprite;
         public GameObject itemPanel;
@@ -150,7 +151,7 @@ namespace Utility.UI.Inventory
             Positive,
             Negative
         }
-        
+
         [SerializeField] private Button inventoryButton;
         [SerializeField] private InventoryMenuItem[] inventoryMenuItems;
         [SerializeField] private InventoryItem[] inventoryItems;
@@ -211,25 +212,25 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
             {
-                var exitIndex = Array.FindIndex(inventoryMenuItems,
-                    item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
-                if (_menuHighlighter.selectedIndex == exitIndex)
-                {
-                    SetInventory(false);
-                }
-                else
-                {
-                    _itemHighlighter.DeSelect();
-                    _menuHighlighter.Select(exitIndex);
-                }
+                // var exitIndex = Array.FindIndex(inventoryMenuItems,
+                // item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
+                // if (_menuHighlighter.selectedIndex == exitIndex)
+                // {
+                SetInventory(false);
+                // }
+                // else
+                // {
+                // _itemHighlighter.DeSelect();
+                // _menuHighlighter.Select(exitIndex);
+                // }
             });
 
-            _itemHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
-            {
-                HighlightHelper.Instance.SetLast(_menuHighlighter);
-            });
-            
-            
+            _itemHighlighter.Init(Highlighter.ArrowType.Horizontal,
+                () => { HighlightHelper.Instance.SetLast(_menuHighlighter); });
+
+            _menuHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };
+            _itemHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };
+
             // Menu UpDown
             _menuHighlighter.InputActions.OnArrow += _onMenuArrow;
             _itemHighlighter.InputActions.OnArrow += _onItemArrow;
@@ -241,7 +242,7 @@ namespace Utility.UI.Inventory
             inventoryButton.onClick.AddListener(() => SetInventory(true));
 
             // Menu Arrow Select
-            for(var idx = 0; idx < inventoryMenuItems.Length; idx++)
+            for (var idx = 0; idx < inventoryMenuItems.Length; idx++)
             {
                 var index = idx;
                 var inventoryMenuItem = inventoryMenuItems[idx];
@@ -303,7 +304,7 @@ namespace Utility.UI.Inventory
                 {
                     HighlightHelper.Instance.SetLast(_menuHighlighter, true);
 
-                    switch(inventoryMenuItem.inventoryMenuType)
+                    switch (inventoryMenuItem.inventoryMenuType)
                     {
                         case InventoryMenuItem.InventoryMenuType.Bag:
                             bagPanel.SetActive(true);
@@ -324,7 +325,7 @@ namespace Utility.UI.Inventory
                 {
                     Debug.Log("OnSelect");
                     HighlightHelper.Instance.SetLast(_itemHighlighter, true);
-                    for(var index = 0; index < highlights.Length; index++)
+                    for (var index = 0; index < highlights.Length; index++)
                     {
                         var highlight = highlights[index];
                         var animator = highlight.GetComponent<Animator>();
@@ -332,6 +333,7 @@ namespace Utility.UI.Inventory
                         highlight.rectTransform.anchoredPosition = Vector2.zero;
                         animator.SetInteger(State, index + 1);
                     }
+
                     inventoryItem.itemPanel.SetActive(true);
                 };
 
@@ -343,13 +345,14 @@ namespace Utility.UI.Inventory
                         highlight.GetComponent<Animator>().SetInteger(State, 0);
                         highlight.transform.SetParent(_highlightParent);
                     }
+
                     inventoryItem.itemPanel.SetActive(false);
                 };
 
                 inventoryItem.onPointerEnter = () =>
                 {
                     Debug.Log("OnPointerEnter");
-                    for(var index = 0; index < highlights.Length; index++)
+                    for (var index = 0; index < highlights.Length; index++)
                     {
                         var highlight = highlights[index];
                         var animator = highlight.GetComponent<Animator>();
@@ -361,7 +364,8 @@ namespace Utility.UI.Inventory
                 inventoryItem.onPointerExit = () =>
                 {
                     Debug.Log("OnPointerExit");
-                    Debug.Log($"버튼: {inventoryItem.button.gameObject}, 현재: {highlights[0].transform.parent.gameObject}");
+                    Debug.Log(
+                        $"버튼: {inventoryItem.button.gameObject}, 현재: {highlights[0].transform.parent.gameObject}");
                     if (inventoryItem.button.transform != highlights[0].transform.parent)
                     {
                         Debug.Log("하이라이트 빼지마라");
@@ -413,7 +417,7 @@ namespace Utility.UI.Inventory
             NecklaceState activeState;
 
             var active = Mathf.Abs(tendencyData.activation - tendencyData.inactive);
-            if (active >= equivalentRange)
+            if (active <= equivalentRange)
             {
                 activeState = NecklaceState.Equivalent;
             }
@@ -425,9 +429,9 @@ namespace Utility.UI.Inventory
             {
                 activeState = NecklaceState.Negative;
             }
-            
+
             var ascent = Mathf.Abs(tendencyData.ascent - tendencyData.descent);
-            if (ascent >= equivalentRange)
+            if (ascent <= equivalentRange)
             {
                 ascentState = NecklaceState.Equivalent;
             }
@@ -439,6 +443,9 @@ namespace Utility.UI.Inventory
             {
                 ascentState = NecklaceState.Negative;
             }
+
+            Debug.Log($"Active: {activeState}, Ascent: {ascentState}\n" +
+                      $"{tendencyData.activation}, {tendencyData.inactive}, {tendencyData.ascent} {tendencyData.descent}");
 
             necklace.sprite = Array.Find(necklaceTypes,
                 item => item.activeState == activeState && item.ascentState == ascentState).sprite;
@@ -456,12 +463,14 @@ namespace Utility.UI.Inventory
                 necklacePanel.SetActive(false);
                 _menuHighlighter.Select(0);
 
-                var bagButton = Array.Find(inventoryMenuItems, item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Bag);
+                var bagButton = Array.Find(inventoryMenuItems,
+                    item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Bag);
                 bagButton.button.onClick?.Invoke();
             }
             else
             {
-                var exitButton = Array.Find(inventoryMenuItems, item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
+                var exitButton = Array.Find(inventoryMenuItems,
+                    item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 exitButton.button.onClick?.Invoke();
             }
         }

@@ -41,9 +41,9 @@ namespace Utility.InputSystem
 
         public static void ResetInputAction()
         {
-            foreach (var inputActions in InputActionsList)
+            while (InputActionsList.Count > 0)
             {
-                PopInputAction(inputActions);
+                PopInputAction(InputActionsList.Last());
             }
         }
 
@@ -428,6 +428,21 @@ namespace Utility.InputSystem
             BindInputActions.Clear();
 
             RebindReset?.Invoke();
+        }
+
+        public static bool IsAnyKeyDuplicated(InputAction a, InputAction b)
+        {
+            var aArray = a.bindings.Select(inputBinding => inputBinding.ToDisplayString()).ToArray();
+            var bArray = b.bindings.Select(inputBinding => inputBinding.ToDisplayString()).ToArray();
+            var array = aArray.Concat(bArray).Distinct().ToArray();
+            
+            Debug.Log(string.Join(", ", array));
+            Debug.Log($"Is Duplicated - {array.Length != aArray.Length + bArray.Length}");
+            
+            Debug.Log($"A: {string.Join(", ", aArray)}");
+            Debug.Log($"B: {string.Join(", ", bArray)}");
+
+            return array.Length != aArray.Length + bArray.Length;
         }
     }
 }
