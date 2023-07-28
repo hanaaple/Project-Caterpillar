@@ -27,7 +27,6 @@ namespace Utility.InputSystem
         public Action<InputAction.CallbackContext> OnAnyKey; // any key
         public Action<InputAction.CallbackContext> OnLeftClick; // mouse leftClick
 
-        private readonly Action<InputAction.CallbackContext> _onExecute;
         private readonly Action<InputAction.CallbackContext> _onFixedExecute;
         private readonly Action<InputAction.CallbackContext> _onInteract;
         private readonly Action<InputAction.CallbackContext> _onEsc;
@@ -36,9 +35,22 @@ namespace Utility.InputSystem
         {
             Name = name;
             _onEsc = _ => { OnEsc?.Invoke(); };
-            _onFixedExecute = _ => { OnFixedExecute?.Invoke(); };
-            _onInteract = _ => { OnInteract?.Invoke(); };
-            _onExecute = _ => { OnExecute?.Invoke(); };
+            _onFixedExecute = _ =>
+            {
+                OnExecute?.Invoke();
+                OnFixedExecute?.Invoke();
+            };
+            
+            _onInteract = _ =>
+            {
+                var input = InputManager.InputControl.Input;
+                if (!InputManager.IsAnyKeyDuplicated(input.Interact, input.Execute))
+                {
+                    // 키가 겹치지 않은 경우 실행, z, z인 경우 한쪽에서만 실행되도록
+                    OnExecute?.Invoke();
+                }
+                OnInteract?.Invoke();
+            };
         }
 
         /// <summary>
@@ -57,11 +69,9 @@ namespace Utility.InputSystem
                 if (OnArrow != null)
                     inputActions.Arrow.performed += OnArrow;
 
-                if (OnFixedExecute != null)
-                    inputActions.Execute.performed += _onFixedExecute;
+                inputActions.Execute.performed += _onFixedExecute;
 
-                if (OnEsc != null)
-                    inputActions.Pause.performed += _onEsc;
+                inputActions.Pause.performed += _onEsc;
 
                 if (OnMovePerformed != null)
                     inputActions.Move.performed += OnMovePerformed;
@@ -69,8 +79,7 @@ namespace Utility.InputSystem
                 if (OnMoveCanceled != null)
                     inputActions.Move.canceled += OnMoveCanceled;
 
-                if (OnInteract != null)
-                    inputActions.Interact.performed += _onInteract;
+                inputActions.Interact.performed += _onInteract;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed += OnInventory;
@@ -80,12 +89,6 @@ namespace Utility.InputSystem
 
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed += OnLeftClick;
-
-                if (OnExecute != null)
-                {
-                    inputActions.Execute.performed += _onExecute;
-                    inputActions.Interact.performed += _onExecute;
-                }
             }
             else
             {
@@ -96,11 +99,9 @@ namespace Utility.InputSystem
                 if (OnArrow != null)
                     inputActions.Arrow.performed -= OnArrow;
 
-                if (OnFixedExecute != null)
-                    inputActions.Execute.performed -= _onFixedExecute;
+                inputActions.Execute.performed -= _onFixedExecute;
 
-                if (OnEsc != null)
-                    inputActions.Pause.performed -= _onEsc;
+                inputActions.Pause.performed -= _onEsc;
 
                 if (OnMovePerformed != null)
                     inputActions.Move.performed -= OnMovePerformed;
@@ -108,8 +109,7 @@ namespace Utility.InputSystem
                 if (OnMoveCanceled != null)
                     inputActions.Move.canceled -= OnMoveCanceled;
 
-                if (OnInteract != null)
-                    inputActions.Interact.performed -= _onInteract;
+                inputActions.Interact.performed -= _onInteract;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed -= OnInventory;
@@ -119,12 +119,6 @@ namespace Utility.InputSystem
 
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed -= OnLeftClick;
-                
-                if (OnExecute != null)
-                {
-                    inputActions.Execute.performed -= _onExecute;
-                    inputActions.Interact.performed -= _onExecute;
-                }
             }
         }
     }
