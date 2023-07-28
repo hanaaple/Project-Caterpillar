@@ -15,7 +15,7 @@ namespace Utility.Game
         {
             _inputActions = new InputActions(nameof(MiniGame))
             {
-                OnPause = _ =>
+                OnEsc = () =>
                 {
                     PlayUIManager.Instance.pauseManager.onPause?.Invoke();
                     PlayUIManager.Instance.pauseManager.onExit = () =>

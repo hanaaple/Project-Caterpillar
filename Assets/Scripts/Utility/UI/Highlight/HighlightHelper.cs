@@ -119,11 +119,11 @@ namespace Utility.UI.Highlight
                     {
                         return;
                     }
-                    
+
                     var input = _.ReadValue<Vector2>();
                     OnArrow(input, arrowType);
                 },
-                OnExecute = _ =>
+                OnExecute = () =>
                 {
                     if (selectedIndex != -1)
                     {
@@ -134,7 +134,7 @@ namespace Utility.UI.Highlight
                         Select(0);
                     }
                 },
-                OnCancel = _ => { onCancel?.Invoke(); }
+                OnEsc = () => { onCancel?.Invoke(); }
             };
         }
 

@@ -54,7 +54,7 @@ namespace Utility.Player
         {
             _inputActions = new InputActions(nameof(Utility.Player.Player))
             {
-                OnInteract = _ =>
+                OnInteract = () =>
                 {
                     if (Player != null)
                     {
@@ -63,7 +63,7 @@ namespace Utility.Player
                 },
                 OnMovePerformed = Input,
                 OnMoveCanceled = Input,
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); },
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); },
                 OnActive = isActive =>
                 {
                     if (!isActive)

@@ -748,18 +748,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -3191710452394518872, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 2
   displayStringOptions: 0
   inputBinding:
     m_Name: down
-    m_Id: 1ff8873e-7afd-4409-b705-0cc190405d93
+    m_Id: 03e9a76f-0391-4999-80c4-08c600cfd3d4
     m_Path: <Keyboard>/downArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Arrow
+    m_Action: Move
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 3286513454394594720}
@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 1797710746117341627}
   - component: {fileID: 5700719635863444437}
   m_Layer: 5
-  m_Name: Execute Key
+  m_Name: Interact Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,18 +1201,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 908093582893162563, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -2649987638226354437, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
-  selectedBinding: 1
+  selectedBinding: 0
   displayStringOptions: 0
   inputBinding:
     m_Name: 
-    m_Id: b628fb78-7650-434d-baa0-a277a0269567
+    m_Id: c1b23c73-480a-4f7b-a413-ddc94ef48804
     m_Path: <Keyboard>/z
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Execute
+    m_Action: Interact
     m_Flags: 0
   keyText: {fileID: 0}
   rebindButton: {fileID: 6844926022995806921}
@@ -1998,7 +1998,7 @@ RectTransform:
   - {fileID: 4783325454297574348}
   - {fileID: 7971299695914123253}
   m_Father: {fileID: 8354940084186199048}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2206,7 +2206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCDE8\uC18C"
+  m_text: "\uC778\uBCA4\uD1A0\uB9AC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cddb5938518ab14489060ba79675f533, type: 2}
   m_sharedMaterial: {fileID: -2408384294170225761, guid: cddb5938518ab14489060ba79675f533, type: 2}
@@ -2416,18 +2416,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -3191710452394518872, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 3
   displayStringOptions: 0
   inputBinding:
     m_Name: left
-    m_Id: 71c014b3-af0d-43e7-a084-60f693038ae5
+    m_Id: ec7a1e92-7c04-42fe-98d8-5963465e3da9
     m_Path: <Keyboard>/leftArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Arrow
+    m_Action: Move
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 6515463258077585678}
@@ -2616,7 +2616,7 @@ GameObject:
   - component: {fileID: 8389161644017003769}
   - component: {fileID: 8273371842214289523}
   m_Layer: 5
-  m_Name: Cancel Key
+  m_Name: Inventory Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2655,18 +2655,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: -5483277470623277756, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -1179653082314382179, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 0
   displayStringOptions: 0
   inputBinding:
     m_Name: 
-    m_Id: 0ba3c252-1334-4243-ad90-32e833e80883
+    m_Id: 5a09f9f7-dc1b-4974-ac10-9dd4976811cc
     m_Path: <Keyboard>/x
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Cancel
+    m_Action: Inventory
     m_Flags: 0
   keyText: {fileID: 0}
   rebindButton: {fileID: 8134486816921968762}
@@ -2839,7 +2839,7 @@ RectTransform:
   - {fileID: 7706834413374968508}
   - {fileID: 6071121675613036985}
   m_Father: {fileID: 8354940084186199048}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4367,8 +4367,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1660304993719292793}
-  - {fileID: 8878154451031990315}
   - {fileID: 2955367258382631116}
+  - {fileID: 8878154451031990315}
   m_Father: {fileID: 8438701960334732692}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6810,18 +6810,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -3191710452394518872, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 1
   displayStringOptions: 0
   inputBinding:
     m_Name: up
-    m_Id: e022fa43-971c-4301-aed8-01a93d705092
+    m_Id: 8368b8ab-f37c-4557-a131-aa4ac7fc70f9
     m_Path: <Keyboard>/upArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Arrow
+    m_Action: Move
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 6058971629193867977}
@@ -7866,18 +7866,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db906d9b81a38945beb7b655c21cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionReference: {fileID: 1945790886404471679, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  inputActionReference: {fileID: -3191710452394518872, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
   excludeMouse: 1
   selectedBinding: 4
   displayStringOptions: 0
   inputBinding:
     m_Name: right
-    m_Id: bec122fa-a1e8-4023-b8a3-cf5698295f30
+    m_Id: be1bc682-9378-4efb-be83-9f11dbd118b2
     m_Path: <Keyboard>/rightArrow
     m_Interactions: 
     m_Processors: 
     m_Groups: KeyBoard
-    m_Action: Arrow
+    m_Action: Move
     m_Flags: 8
   keyText: {fileID: 0}
   rebindButton: {fileID: 7600762453944152841}

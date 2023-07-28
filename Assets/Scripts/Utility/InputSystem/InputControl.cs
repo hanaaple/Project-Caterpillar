@@ -46,15 +46,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""cba3569a-008d-47af-aae0-ca692caebc8b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""99d753ef-87c0-4e26-b3ad-37daffb388e6"",
@@ -178,45 +169,12 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b628fb78-7650-434d-baa0-a277a0269567"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Execute"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bbb0d5a3-22ff-4d98-84e8-a30116931ed8"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Execute"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0ba3c252-1334-4243-ad90-32e833e80883"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22cee0aa-57b0-4621-822f-cdb10d954a5c"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -384,7 +342,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Input = asset.FindActionMap("Input", throwIfNotFound: true);
         m_Input_Arrow = m_Input.FindAction("Arrow", throwIfNotFound: true);
         m_Input_Execute = m_Input.FindAction("Execute", throwIfNotFound: true);
-        m_Input_Cancel = m_Input.FindAction("Cancel", throwIfNotFound: true);
         m_Input_Pause = m_Input.FindAction("Pause", throwIfNotFound: true);
         m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
@@ -452,7 +409,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private IInputActions m_InputActionsCallbackInterface;
     private readonly InputAction m_Input_Arrow;
     private readonly InputAction m_Input_Execute;
-    private readonly InputAction m_Input_Cancel;
     private readonly InputAction m_Input_Pause;
     private readonly InputAction m_Input_Move;
     private readonly InputAction m_Input_Interact;
@@ -465,7 +421,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputActions(@InputControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Arrow => m_Wrapper.m_Input_Arrow;
         public InputAction @Execute => m_Wrapper.m_Input_Execute;
-        public InputAction @Cancel => m_Wrapper.m_Input_Cancel;
         public InputAction @Pause => m_Wrapper.m_Input_Pause;
         public InputAction @Move => m_Wrapper.m_Input_Move;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
@@ -487,9 +442,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Execute.started -= m_Wrapper.m_InputActionsCallbackInterface.OnExecute;
                 @Execute.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnExecute;
                 @Execute.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnExecute;
-                @Cancel.started -= m_Wrapper.m_InputActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnCancel;
                 @Pause.started -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
@@ -518,9 +470,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Execute.started += instance.OnExecute;
                 @Execute.performed += instance.OnExecute;
                 @Execute.canceled += instance.OnExecute;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -583,7 +532,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     {
         void OnArrow(InputAction.CallbackContext context);
         void OnExecute(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);

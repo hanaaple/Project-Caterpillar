@@ -12,26 +12,33 @@ namespace Utility.InputSystem
         public readonly string Name;
 
         public Action<bool> OnActive;
-        
-        // UI
-        public Action<InputAction.CallbackContext> OnArrow;
-        public Action<InputAction.CallbackContext> OnExecute;
-        public Action<InputAction.CallbackContext> OnCancel;
 
-        public Action<InputAction.CallbackContext> OnPause;
+        public Action<InputAction.CallbackContext> OnArrow; // const arrow
+        public Action<InputAction.CallbackContext> OnMovePerformed; // arrow
+        public Action<InputAction.CallbackContext> OnMoveCanceled; // arrow
 
-        // Player
-        public Action<InputAction.CallbackContext> OnInteract;
-        public Action<InputAction.CallbackContext> OnInventory;
-        public Action<InputAction.CallbackContext> OnMovePerformed;
-        public Action<InputAction.CallbackContext> OnMoveCanceled;
+        public Action OnExecute; // enter, space, z key, OnFixedExecute와 OnInteract를 같이 쓰는 경우 사용
+        public Action OnFixedExecute; // enter, space key
+        public Action OnInteract; // z key
 
-        public Action<InputAction.CallbackContext> OnAnyKey;
-        public Action<InputAction.CallbackContext> OnLeftClick;
+        public Action OnEsc; // escape Key
+        public Action<InputAction.CallbackContext> OnInventory; // x Key
+
+        public Action<InputAction.CallbackContext> OnAnyKey; // any key
+        public Action<InputAction.CallbackContext> OnLeftClick; // mouse leftClick
+
+        private readonly Action<InputAction.CallbackContext> _onExecute;
+        private readonly Action<InputAction.CallbackContext> _onFixedExecute;
+        private readonly Action<InputAction.CallbackContext> _onInteract;
+        private readonly Action<InputAction.CallbackContext> _onEsc;
 
         public InputActions(string name)
         {
             Name = name;
+            _onEsc = _ => { OnEsc?.Invoke(); };
+            _onFixedExecute = _ => { OnFixedExecute?.Invoke(); };
+            _onInteract = _ => { OnInteract?.Invoke(); };
+            _onExecute = _ => { OnExecute?.Invoke(); };
         }
 
         /// <summary>
@@ -50,14 +57,11 @@ namespace Utility.InputSystem
                 if (OnArrow != null)
                     inputActions.Arrow.performed += OnArrow;
 
-                if (OnExecute != null)
-                    inputActions.Execute.performed += OnExecute;
+                if (OnFixedExecute != null)
+                    inputActions.Execute.performed += _onFixedExecute;
 
-                if (OnCancel != null)
-                    inputActions.Cancel.performed += OnCancel;
-
-                if (OnPause != null)
-                    inputActions.Pause.performed += OnPause;
+                if (OnEsc != null)
+                    inputActions.Pause.performed += _onEsc;
 
                 if (OnMovePerformed != null)
                     inputActions.Move.performed += OnMovePerformed;
@@ -66,7 +70,7 @@ namespace Utility.InputSystem
                     inputActions.Move.canceled += OnMoveCanceled;
 
                 if (OnInteract != null)
-                    inputActions.Interact.performed += OnInteract;
+                    inputActions.Interact.performed += _onInteract;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed += OnInventory;
@@ -76,6 +80,12 @@ namespace Utility.InputSystem
 
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed += OnLeftClick;
+
+                if (OnExecute != null)
+                {
+                    inputActions.Execute.performed += _onExecute;
+                    inputActions.Interact.performed += _onExecute;
+                }
             }
             else
             {
@@ -86,14 +96,11 @@ namespace Utility.InputSystem
                 if (OnArrow != null)
                     inputActions.Arrow.performed -= OnArrow;
 
-                if (OnExecute != null)
-                    inputActions.Execute.performed -= OnExecute;
+                if (OnFixedExecute != null)
+                    inputActions.Execute.performed -= _onFixedExecute;
 
-                if (OnCancel != null)
-                    inputActions.Cancel.performed -= OnCancel;
-
-                if (OnPause != null)
-                    inputActions.Pause.performed -= OnPause;
+                if (OnEsc != null)
+                    inputActions.Pause.performed -= _onEsc;
 
                 if (OnMovePerformed != null)
                     inputActions.Move.performed -= OnMovePerformed;
@@ -102,16 +109,22 @@ namespace Utility.InputSystem
                     inputActions.Move.canceled -= OnMoveCanceled;
 
                 if (OnInteract != null)
-                    inputActions.Interact.performed -= OnInteract;
+                    inputActions.Interact.performed -= _onInteract;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed -= OnInventory;
-                
+
                 if (OnAnyKey != null)
                     inputActions.AnyKey.performed -= OnAnyKey;
-                
+
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed -= OnLeftClick;
+                
+                if (OnExecute != null)
+                {
+                    inputActions.Execute.performed -= _onExecute;
+                    inputActions.Interact.performed -= _onExecute;
+                }
             }
         }
     }
