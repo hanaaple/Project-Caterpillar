@@ -194,7 +194,7 @@ namespace Utility.InputSystem
         }
 
         public static void StartRebind(string actionName, int bindingIndex, GameObject bindingPanel,
-            TMP_Text statusText, bool excludeMouse)
+            TMP_Text statusText, bool excludeMouse, string[] excludeInputActionPaths)
         {
             var inputAction = InputControl.asset.FindAction(actionName);
             if (inputAction == null || inputAction.bindings.Count <= bindingIndex)
@@ -208,17 +208,17 @@ namespace Utility.InputSystem
                 var firstPartIndex = bindingIndex + 1;
                 if (firstPartIndex < inputAction.bindings.Count && inputAction.bindings[firstPartIndex].isComposite)
                 {
-                    DoRebind(inputAction, bindingIndex, statusText, bindingPanel, true, excludeMouse);
+                    DoRebind(inputAction, bindingIndex, statusText, bindingPanel, true, excludeMouse, excludeInputActionPaths);
                 }
             }
             else
             {
-                DoRebind(inputAction, bindingIndex, statusText, bindingPanel, false, excludeMouse);
+                DoRebind(inputAction, bindingIndex, statusText, bindingPanel, false, excludeMouse, excludeInputActionPaths);
             }
         }
 
         private static void DoRebind(InputAction actionToRebind, int bindingIndex, TMP_Text statusText,
-            GameObject bindingPanel, bool allCompositeParts, bool excludeMouse)
+            GameObject bindingPanel, bool allCompositeParts, bool excludeMouse, string[] excludeInputActionPaths)
         {
             if (actionToRebind == null || bindingIndex < 0)
             {
@@ -235,6 +235,8 @@ namespace Utility.InputSystem
 
             var rebind = actionToRebind.PerformInteractiveRebinding(bindingIndex)
                 .WithCancelingThrough("<Keyboard>/escape")
+                .WithControlsHavingToMatchPath("<Keyboard>")
+                .WithControlsExcluding("<Keyboard>/anyKey")
                 .OnComplete(_ =>
                 {
                     actionToRebind.Enable();
@@ -245,10 +247,11 @@ namespace Utility.InputSystem
                         if (nextBindingIndex < actionToRebind.bindings.Count &&
                             actionToRebind.bindings[nextBindingIndex].isComposite)
                         {
-                            DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse);
+                            DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse, excludeInputActionPaths);
                         }
                     }
 
+                    // var action = InputControl.asset.FindAction(actionName);
                     string bindingName = GetBindingName(actionToRebind.name, bindingIndex);
                     var bind = BindInputActions.Find(item => item.InputAction.name == actionToRebind.name &&
                                                              item.BindingIndex == bindingIndex);
@@ -256,7 +259,7 @@ namespace Utility.InputSystem
 
                     if (bind == null)
                     {
-                        Debug.Log(originBindingName + "  " + bindingName);
+                        Debug.Log($"{originBindingName},  {bindingName}, {actionToRebind.bindings[bindingIndex].effectivePath}");
                     }
                     else
                     {
@@ -284,6 +287,12 @@ namespace Utility.InputSystem
                         BindInputActions.Remove(bind);
                         Debug.Log("하이  " + BindInputActions.Count);
                     }
+                    
+                    foreach (var inputControlBinding in _inputControl.bindings)
+                    {
+                        // 이미 바인딩 되어있는 키(Rebind 가능한 것만)로 바꿀 경우
+                        // 서로 키 바꾸기
+                    }
 
                     RebindComplete?.Invoke();
                     bindingPanel.SetActive(false);
@@ -295,6 +304,15 @@ namespace Utility.InputSystem
                     RebindCanceled?.Invoke();
                     bindingPanel.SetActive(false);
                 });
+
+            if (excludeInputActionPaths != null)
+            {
+                foreach (var path in excludeInputActionPaths)
+                {
+                    rebind.WithControlsExcluding(path);
+                    Debug.Log($"불가능 - {path}");
+                }
+            }
 
             if (excludeMouse)
             {

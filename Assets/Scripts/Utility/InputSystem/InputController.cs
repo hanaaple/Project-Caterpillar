@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,11 +7,42 @@ using UnityEngine.UI;
 
 namespace Utility.InputSystem
 {
+    [Serializable]
+    public class InputControlDisplay
+    {
+        [SerializeField] private InputActionReference inputActionReference;
+        [Range(0, 10)] [SerializeField] private int selectedBinding;
+
+        [Header("Binding Info - DO NOT EDIT")] public InputBinding inputBinding;
+
+        public void OnValidate()
+        {
+            if (inputActionReference == null)
+            {
+                return;
+            }
+
+            GetBindingInfo();
+        }
+
+        private void GetBindingInfo()
+        {
+            if (inputActionReference.action != null)
+            {
+                if (inputActionReference.action.bindings.Count > selectedBinding)
+                {
+                    inputBinding = inputActionReference.action.bindings[selectedBinding];
+                }
+            }
+        }
+    }
+
     public class InputController : MonoBehaviour
     {
         [SerializeField] private InputActionReference inputActionReference;
 
         [SerializeField] private bool excludeMouse = true;
+        [SerializeField] private InputControlDisplay[] excludeInputActions;
 
         [Range(0, 10)] [SerializeField] private int selectedBinding;
 
@@ -21,10 +54,9 @@ namespace Utility.InputSystem
         [Header("Ui Fields")] [SerializeField] private TMP_Text keyText;
         [SerializeField] private Button rebindButton;
         [SerializeField] private TMP_Text rebindText;
-    
+
         private int _bindingIndex;
         private string _actionName;
-
 
         public GameObject bindingPanel;
 
@@ -41,6 +73,7 @@ namespace Utility.InputSystem
                 InputAction action = InputManager.InputControl.asset.FindAction(_actionName);
                 InputManager.SaveBindingOverride(action);
             }
+
             InputManager.RebindComplete += UpdateUi;
             InputManager.RebindCanceled += UpdateUi;
             InputManager.RebindEnd += UpdateUi;
@@ -63,6 +96,7 @@ namespace Utility.InputSystem
             {
                 return;
             }
+
             GetBindingInfo();
             UpdateUi();
         }
@@ -72,11 +106,19 @@ namespace Utility.InputSystem
             if (inputActionReference.action != null)
             {
                 _actionName = inputActionReference.action.name;
-            
+
                 if (inputActionReference.action.bindings.Count > selectedBinding)
                 {
                     inputBinding = inputActionReference.action.bindings[selectedBinding];
                     _bindingIndex = selectedBinding;
+                }
+            }
+
+            if (excludeInputActions != null)
+            {
+                foreach (var inputControlDisplay in excludeInputActions)
+                {
+                    inputControlDisplay.OnValidate();
                 }
             }
         }
@@ -103,19 +145,20 @@ namespace Utility.InputSystem
 
         private void DoRebind()
         {
-            InputManager.StartRebind(_actionName, _bindingIndex, bindingPanel, rebindText, excludeMouse);
+            InputManager.StartRebind(_actionName, _bindingIndex, bindingPanel, rebindText, excludeMouse,
+                excludeInputActions?.Select(item => item.inputBinding.effectivePath).ToArray());
         }
 
         public void ResetBinding()
         {
             InputManager.ResetBinding(_actionName, _bindingIndex);
         }
-    
+
         public void TempResetBinding()
         {
             InputManager.TempResetBinding(_actionName, _bindingIndex);
         }
-    
+
         // public void LoadBindingOverride()
         // {
         //     InputManager.inputActions.Clear();
