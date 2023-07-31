@@ -197,22 +197,24 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () =>
             {
-                var exitIndex = Array.FindIndex(inventoryMenuItems,
-                    item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
-                if (_menuHighlighter.selectedIndex == exitIndex)
-                {
-                    SetInventory(false);
-                }
-                else
-                {
-                    _itemHighlighter.DeSelect();
-                    _menuHighlighter.Select(exitIndex);
-                }
+                // var exitIndex = Array.FindIndex(inventoryMenuItems,
+                // item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
+                // if (_menuHighlighter.selectedIndex == exitIndex)
+                // {
+                SetInventory(false);
+                // }
+                // else
+                // {
+                // _itemHighlighter.DeSelect();
+                // _menuHighlighter.Select(exitIndex);
+                // }
             });
 
             _itemHighlighter.Init(Highlighter.ArrowType.Horizontal,
                 () => { HighlightHelper.Instance.SetLast(_menuHighlighter); });
 
+            _menuHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };
+            _itemHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };
 
             // Menu UpDown
             _menuHighlighter.InputActions.OnArrow += _onMenuArrow;

@@ -105,7 +105,7 @@ namespace Game.Stage1.Camping
             
             _inputActions = new InputActions("ShadowGameManager")
             {
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
             };
 
             Play();

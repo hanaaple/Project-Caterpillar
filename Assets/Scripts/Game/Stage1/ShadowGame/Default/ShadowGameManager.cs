@@ -120,12 +120,12 @@ namespace Game.Stage1.ShadowGame.Default
 
             _inputActions = new InputActions("ShadowGameManager")
             {
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
             };
 
             _tutorialInputActions = new InputActions("ShadowGame Tutorial")
             {
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
             };
 
             _popupInputActions = new InputActions("Item Popup")

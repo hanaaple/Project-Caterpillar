@@ -135,7 +135,7 @@ namespace Utility.Dialogue
             _playableDirector = _playableDirectors.Get();
             _playableDirector.transform.SetParent(transform);
 
-            dialogueInputArea.onClick.AddListener(() => { OnInputDialogue(); });
+            dialogueInputArea.onClick.AddListener(OnInputDialogue);
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
 
@@ -152,7 +152,7 @@ namespace Utility.Dialogue
 
             _choiceHighlighter.Init(Highlighter.ArrowType.Vertical);
 
-            _choiceHighlighter.InputActions.OnPause = _ =>
+            _choiceHighlighter.InputActions.OnEsc = () =>
             {
                 PlayUIManager.Instance.pauseManager.onPause?.Invoke();
                 PlayUIManager.Instance.pauseManager.onExit = () =>
@@ -185,9 +185,9 @@ namespace Utility.Dialogue
 
             _dialogueInputActions = new InputActions(nameof(DialogueController))
             {
-                // It Works When Before Save
+                // if both work, error
                 OnExecute = OnInputDialogue,
-                OnPause = _ =>
+                OnEsc = () =>
                 {
                     PlayUIManager.Instance.pauseManager.onPause?.Invoke();
                     PlayUIManager.Instance.pauseManager.onExit = () =>
@@ -195,7 +195,7 @@ namespace Utility.Dialogue
                         EndDialogue();
                         PlayUIManager.Instance.pauseManager.onExit = () => { };
                     };
-                }
+                },
             };
         }
 
@@ -248,7 +248,7 @@ namespace Utility.Dialogue
             ProgressDialogue();
         }
 
-        private void OnInputDialogue(InputAction.CallbackContext obj = default)
+        private void OnInputDialogue()
         {
             if (InputManager.InputActionsList.Last() != _dialogueInputActions)
             {
@@ -616,11 +616,19 @@ namespace Utility.Dialogue
             {
                 StartCoroutine(WaitSecAfterAction(dialogue.skipWaitSec, () =>
                 {
+                    var action = _dialogueInputActions.OnEsc;
+                    _dialogueInputActions.OnEsc = () =>
+                    {
+                        skipButton.onClick.Invoke();
+                    };
+
                     skipButton.gameObject.SetActive(true);
                     var targetIndex = dialogueData.index + dialogue.skipLength;
 
                     _onSkip = () =>
                     {
+                        _dialogueInputActions.OnEsc = action;
+                        
                         skipButton.gameObject.SetActive(false);
                         dialogueData.index = targetIndex;
                         dialogueData.dialogueElements[targetIndex].OnStartAction = null;

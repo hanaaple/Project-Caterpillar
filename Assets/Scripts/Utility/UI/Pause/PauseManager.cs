@@ -74,7 +74,7 @@ namespace Utility.UI.Pause
                 SetActive(false);
             });
             
-            _pauseHighlighter.InputActions.OnPause = _ =>
+            _pauseHighlighter.InputActions.OnEsc = () =>
             {
                 SetActive(false);
             };

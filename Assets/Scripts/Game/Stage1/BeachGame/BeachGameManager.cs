@@ -96,7 +96,7 @@ namespace Game.Stage1.BeachGame
             
             _inputActions = new InputActions("BeachGameManager")
             {
-                OnPause = _ => { PlayUIManager.Instance.pauseManager.onPause(); }
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
             };
             
             foreach (var interactions in beachInteractions)
