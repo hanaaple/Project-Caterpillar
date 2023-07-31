@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2157c72796d40e796ad10574dcdebe5, type: 3}
+  m_Name: Tendency Table
+  m_EditorClassIdentifier: 
+  tendencyProps:
+  - tendencyType: 0
+    ascent: 2
+    descent: 0
+    activation: 2
+    inactive: 0
+  - tendencyType: 1
+    ascent: 1
+    descent: 0
+    activation: 0
+    inactive: 3
+  - tendencyType: 2
+    ascent: 0
+    descent: 1
+    activation: 0
+    inactive: 2
+  - tendencyType: 3
+    ascent: 2
+    descent: 0
+    activation: 0
+    inactive: 1
+  - tendencyType: 4
+    ascent: 0
+    descent: 2
+    activation: 1
+    inactive: 0
+  - tendencyType: 5
+    ascent: 0
+    descent: 2
+    activation: 0
+    inactive: 1
+  - tendencyType: 6
+    ascent: 2
+    descent: 0
+    activation: 1
+    inactive: 0
+  - tendencyType: 7
+    ascent: 2
+    descent: 0
+    activation: 2
+    inactive: 0
+  - tendencyType: 8
+    ascent: 0
+    descent: 2
+    activation: 1
+    inactive: 0
+  - tendencyType: 9
+    ascent: 0
+    descent: 1
+    activation: 2
+    inactive: 0
+  - tendencyType: 10
+    ascent: 0
+    descent: 1
+    activation: 2
+    inactive: 0
+  - tendencyType: 11
+    ascent: 0
+    descent: 2
+    activation: 0
+    inactive: 3
+  - tendencyType: 12
+    ascent: 3
+    descent: 0
+    activation: 1
+    inactive: 0
+  - tendencyType: 13
+    ascent: 0
+    descent: 1
+    activation: 0
+    inactive: 2

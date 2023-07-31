@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 using Utility.Core;
 using Utility.Interaction;
 using Utility.Serialize;
+using Utility.Tendency;
 
 namespace Utility.SaveSystem
 {
@@ -20,7 +21,7 @@ namespace Utility.SaveSystem
         
         // Enum이 저장되던가 체크해야됨 그래서 string으로 저장해둠
         // public ItemManager.ItemType items;
-        public TendencyData tendencyData;
+        public TendencyManager.TendencyData tendencyData;
     }
 
     [Serializable]

@@ -15,6 +15,7 @@ using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
 using Utility.Scene;
+using Utility.Tendency;
 using Utility.UI.Check;
 using Utility.UI.Highlight;
 using Utility.Util;
@@ -932,13 +933,13 @@ namespace Utility.Dialogue
             choicePanel.SetActive(false);
 
             var dialogueData = _baseDialogueData.Peek();
-            var tendencyValue = dialogueData.dialogueElements[choiceIndex].option
-                .Where(item => int.TryParse(item, out var _)).Select(int.Parse).ToArray();
-            if (tendencyValue.Length == 4)
+            
+            var tendency = Array.Find(dialogueData.dialogueElements[choiceIndex].option,
+                item => item.Contains("Tendency-"));
+            if (!string.IsNullOrEmpty(tendency))
             {
-                Debug.Log($"성향 (상승, 하강, 활성, 비활성): {string.Join(", ", tendencyValue)}");
-
-                TendencyManager.Instance.UpdateTendencyData(tendencyValue);
+                var tendencyName = tendency.Split("-")[1];
+                TendencyManager.Instance.UpdateTendencyData(tendencyName);
             }
 
             if (choiceContextLen != 0)

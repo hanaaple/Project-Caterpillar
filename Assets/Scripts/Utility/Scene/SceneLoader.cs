@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
+using Utility.Tendency;
 using Utility.Util;
 
 namespace Utility.Scene
