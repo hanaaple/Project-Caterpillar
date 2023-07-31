@@ -14,29 +14,35 @@ namespace Utility.UI.Preference
     {
         public GameObject panel;
         public Button button;
+        public Sprite activeSprite;
+        public Sprite inactiveSprite;
     }
 
     public class PreferenceManager : MonoBehaviour
     {
+        [Header("Common")]
         [SerializeField] private GameObject preferencePanel;
-
         [SerializeField] private Button preferenceExitButton;
-
-        [SerializeField] private GameObject rebindButtonPanel;
-
-        [SerializeField] private Button resetButton;
-
-        [SerializeField] private Button saveButton;
-
-        [SerializeField] private Button cancelSaveButton;
-
         [SerializeField] private PageProps[] pageProps;
-
-        [SerializeField] private TMP_Dropdown resolutionDropdown;
-
-        [SerializeField] private InputController[] inputController;
-
         [SerializeField] private CheckUIManager rebindCheckUIManager;
+        
+        [Header("Control")]
+        [SerializeField] private GameObject rebindButtonPanel;
+        [SerializeField] private Button resetButton;
+        [SerializeField] private Button saveButton;
+        [SerializeField] private Button cancelSaveButton;
+        [SerializeField] private InputController[] inputController;
+        
+        [Header("Audio & Resolution")]
+        [SerializeField] private TMP_Dropdown resolutionDropdown;
+        [SerializeField] private Button fullScreenButton;
+        [SerializeField] private Button windowScreenButton;
+        
+        [SerializeField] private Sprite window;
+        [SerializeField] private Sprite windowSelect;
+        [SerializeField] private Sprite fullscreen;
+        [SerializeField] private Sprite fullscreenSelect;
+        
 
         private InputActions _inputActions;
 
@@ -89,7 +95,6 @@ namespace Utility.UI.Preference
                 SetPreferencePanel(false);
             });
 
-
             foreach (var pageProp in pageProps)
             {
                 pageProp.button.onClick.AddListener(() =>
@@ -97,9 +102,11 @@ namespace Utility.UI.Preference
                     foreach (var t in pageProps)
                     {
                         t.panel.SetActive(false);
+                        t.button.image.sprite = t.inactiveSprite;
                     }
 
                     pageProp.panel.SetActive(true);
+                    pageProp.button.image.sprite = pageProp.activeSprite;
                 });
             }
 
@@ -112,8 +119,22 @@ namespace Utility.UI.Preference
                 Screen.SetResolution(x, y, false);
                 Debug.Log(resolutionDropdown.options[idx].image);
             });
-        }
+            
+            fullScreenButton.onClick.AddListener(() =>
+            {
+                fullScreenButton.image.sprite = fullscreenSelect;
+                windowScreenButton.image.sprite = window;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            });
 
+            windowScreenButton.onClick.AddListener(() =>
+            {
+                fullScreenButton.image.sprite = fullscreen;
+                windowScreenButton.image.sprite = windowSelect;
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+            });
+        }
+    
         private void SetRebindButton()
         {
             if (InputManager.IsChanged())
@@ -137,6 +158,17 @@ namespace Utility.UI.Preference
                 InputManager.RebindReset += SetRebindButton;
 
                 InputManager.PushInputAction(_inputActions);
+
+                if (Screen.fullScreenMode == FullScreenMode.Windowed)
+                {
+                    fullScreenButton.image.sprite = fullscreen;
+                    windowScreenButton.image.sprite = windowSelect;
+                }
+                else if (Screen.fullScreenMode == FullScreenMode.FullScreenWindow)
+                {
+                    fullScreenButton.image.sprite = fullscreenSelect;
+                    windowScreenButton.image.sprite = window;
+                }
             }
             else
             {

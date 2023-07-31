@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Utility.Core;
+using Utility.Tendency;
 
 namespace Utility.SaveSystem
 {

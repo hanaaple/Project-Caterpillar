@@ -137,31 +137,16 @@ namespace Utility.UI.Inventory
 
     public class InventoryManager : MonoBehaviour
     {
-        [Serializable]
-        public class NecklaceType
-        {
-            public Sprite sprite;
-            public NecklaceState ascentState;
-            public NecklaceState activeState;
-        }
-
-        public enum NecklaceState
-        {
-            Equivalent,
-            Positive,
-            Negative
-        }
-
         [SerializeField] private Button inventoryButton;
-        [SerializeField] private InventoryMenuItem[] inventoryMenuItems;
-        [SerializeField] private InventoryItem[] inventoryItems;
-        [SerializeField] private Image[] highlights;
         [SerializeField] private GameObject inventoryPanel;
-        [SerializeField] private GameObject bagPanel;
+        [SerializeField] private InventoryMenuItem[] inventoryMenuItems;
+        [SerializeField] private Image[] highlights;
+
+        [Header("Bag")] [SerializeField] private GameObject bagPanel;
+        [SerializeField] private InventoryItem[] inventoryItems;
 
         [Header("Necklace")] [SerializeField] private GameObject necklacePanel;
-        [SerializeField] private Image necklace;
-        [SerializeField] private NecklaceType[] necklaceTypes;
+        [SerializeField] private Necklace necklace;
 
         private Transform _highlightParent;
         private Highlighter _menuHighlighter;
@@ -240,6 +225,8 @@ namespace Utility.UI.Inventory
         {
             _highlightParent = highlights[0].transform.parent;
             inventoryButton.onClick.AddListener(() => SetInventory(true));
+            
+            necklace.Init();
 
             // Menu Arrow Select
             for (var idx = 0; idx < inventoryMenuItems.Length; idx++)
@@ -387,7 +374,7 @@ namespace Utility.UI.Inventory
             }
         }
 
-        private void LoadData()
+        private void LoadItemData()
         {
             // Get From ItemManager
             // ItemManager Have to load At Start Game
@@ -399,63 +386,16 @@ namespace Utility.UI.Inventory
             foreach (var item in inventoryItems)
             {
                 Debug.Log($"{item.itemType} - Active? {ownItems.Contains(item.itemType)}");
-                if (ownItems.Contains(item.itemType))
-                {
-                    item.SetActive(true);
-                }
-                else
-                {
-                    item.SetActive(false);
-                }
+                item.SetActive(ownItems.Contains(item.itemType));
             }
-
-            const int equivalentRange = 5;
-
-            var tendencyData = TendencyManager.Instance.GetTendencyData();
-
-            NecklaceState ascentState;
-            NecklaceState activeState;
-
-            var active = Mathf.Abs(tendencyData.activation - tendencyData.inactive);
-            if (active <= equivalentRange)
-            {
-                activeState = NecklaceState.Equivalent;
-            }
-            else if (tendencyData.activation > tendencyData.inactive)
-            {
-                activeState = NecklaceState.Positive;
-            }
-            else
-            {
-                activeState = NecklaceState.Negative;
-            }
-
-            var ascent = Mathf.Abs(tendencyData.ascent - tendencyData.descent);
-            if (ascent <= equivalentRange)
-            {
-                ascentState = NecklaceState.Equivalent;
-            }
-            else if (tendencyData.ascent > tendencyData.descent)
-            {
-                ascentState = NecklaceState.Positive;
-            }
-            else
-            {
-                ascentState = NecklaceState.Negative;
-            }
-
-            Debug.Log($"Active: {activeState}, Ascent: {ascentState}\n" +
-                      $"{tendencyData.activation}, {tendencyData.inactive}, {tendencyData.ascent} {tendencyData.descent}");
-
-            necklace.sprite = Array.Find(necklaceTypes,
-                item => item.activeState == activeState && item.ascentState == ascentState).sprite;
         }
 
         public void SetInventory(bool isActive)
         {
             if (isActive)
             {
-                LoadData();
+                LoadItemData();
+                necklace.UpdateDisplay();
                 HighlightHelper.Instance.Push(_menuHighlighter);
 
                 inventoryPanel.SetActive(true);
