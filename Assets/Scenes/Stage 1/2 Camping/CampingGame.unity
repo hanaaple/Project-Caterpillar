@@ -3552,7 +3552,6 @@ GameObject:
   - component: {fileID: 564354323}
   - component: {fileID: 564354322}
   - component: {fileID: 564354321}
-  - component: {fileID: 564354320}
   m_Layer: 5
   m_Name: 19
   m_TagString: Untagged
@@ -3580,18 +3579,6 @@ RectTransform:
   m_AnchoredPosition: {x: 109.8, y: -139.8}
   m_SizeDelta: {x: 145, y: 153}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &564354320
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564354318}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &564354321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3635,19 +3622,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 564354322}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 564354320}
-        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-        m_MethodName: set_alpha
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &564354322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3661,7 +3636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6874,10 +6849,6 @@ MonoBehaviour:
     m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cba3569a-008d-47af-aae0-ca692caebc8b
-    m_ActionName: Ui/Cancle[/Keyboard/x,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
     m_ActionName: Input/Pause[/Keyboard/escape]
   - m_PersistentCalls:
@@ -8813,7 +8784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1245877984}
-  - component: {fileID: 1245877985}
+  - component: {fileID: 1245877986}
   m_Layer: 5
   m_Name: Calander
   m_TagString: Untagged
@@ -8845,7 +8816,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1245877985
+--- !u!114 &1245877986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8854,10 +8825,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1245877983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a176f1bc3393426fa3440e8f569472ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 4906cc9cfc7122848b86ba8ce3afe496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 1083818508}
+  calendarButton: {fileID: 564354321}
 --- !u!1 &1250586099
 GameObject:
   m_ObjectHideFlags: 0
@@ -9932,7 +9904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHint: 1
   hint: {fileID: 891643047}
-  showPanel: {fileID: 1245877985}
+  showPanel: {fileID: 1245877986}
   toastContents:
   - "\uC774 \uB0A0\uC740\xB7\xB7\xB7."
   - "\uADF8\uB098\uC800\uB098 32\uC77C\uC774\uB77C\uB2C8\xB7\xB7\xB7?"

@@ -55,7 +55,7 @@ namespace Game.Stage1.Camping.Interaction.Show
         public override void ResetInteraction(bool isGameReset = false)
         {
             base.ResetInteraction(isGameReset);
-            showPanel.gameObject.SetActive(false);
+            showPanel.ResetPanel();
         }
     }
 }
