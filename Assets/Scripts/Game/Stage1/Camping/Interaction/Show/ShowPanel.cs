@@ -21,5 +21,10 @@ namespace Game.Stage1.Camping.Interaction.Show
         {
             gameObject.SetActive(false);
         }
+
+        public virtual void ResetPanel()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
