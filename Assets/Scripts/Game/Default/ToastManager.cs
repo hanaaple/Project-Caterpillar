@@ -41,6 +41,9 @@ namespace Game.Default
         {
             _toastQueue = new Queue<string>();
             _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
+
+            toastMessageParent.GetComponent<RectTransform>().sizeDelta = new Vector2(580,
+                10 + toastMessageParent.GetChild(0).GetComponent<RectTransform>().sizeDelta.y * 3);
         }
 
         public void Enqueue(string toastContent)
