@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Tab",
+                    "type": "Button",
+                    "id": "7a6bca68-1571-4c2d-be50-94cd0430b238",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "07429472-8ba7-4536-b3b8-a0168f098e0f",
@@ -263,6 +272,17 @@
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74b97f2d-6236-4873-bb5f-b651329f2bfe",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
