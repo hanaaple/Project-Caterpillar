@@ -7,6 +7,7 @@ using Utility.Scene;
 using Utility.UI.Inventory;
 using Utility.UI.Pause;
 using Utility.UI.Preference;
+using Utility.UI.QuickSlot;
 
 namespace Utility.Core
 {
@@ -41,6 +42,7 @@ namespace Utility.Core
         public PreferenceManager preferenceManager;
         public DialogueController dialogueController;
         public InventoryManager inventoryManager;
+        public QuickSlotManager quickSlotManager;
 
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
@@ -67,10 +69,11 @@ namespace Utility.Core
                 case PlayType.None:
                 case PlayType.StageField:
                 case PlayType.MiniGame:
-                    inventoryManager.SetEnable(false);
+                    quickSlotManager.SetEnable(false);
                     inventoryManager.SetEnable(false);
                     break;
                 case PlayType.MainField:
+                    quickSlotManager.SetEnable(true);
                     inventoryManager.SetEnable(true);
                     break;
                 default:

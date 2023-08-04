@@ -77,6 +77,14 @@ namespace Utility.Player
                     {
                         PlayUIManager.Instance.inventoryManager.SetInventory(true);
                     }
+                },
+                OnTab = () =>
+                {
+                    if (SceneHelper.Instance.playType == PlayType.MainField)
+                    {
+                        PlayUIManager.Instance.quickSlotManager.SetQuickSlot(!PlayUIManager.Instance.quickSlotManager
+                            .IsActive());
+                    }
                 }
             };
         }

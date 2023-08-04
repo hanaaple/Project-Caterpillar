@@ -55,6 +55,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a6bca68-1571-4c2d-be50-94cd0430b238"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""07429472-8ba7-4536-b3b8-a0168f098e0f"",
@@ -287,6 +296,17 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74b97f2d-6236-4873-bb5f-b651329f2bfe"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -343,6 +363,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Input_Arrow = m_Input.FindAction("Arrow", throwIfNotFound: true);
         m_Input_Execute = m_Input.FindAction("Execute", throwIfNotFound: true);
         m_Input_Pause = m_Input.FindAction("Pause", throwIfNotFound: true);
+        m_Input_Tab = m_Input.FindAction("Tab", throwIfNotFound: true);
         m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
         m_Input_Inventory = m_Input.FindAction("Inventory", throwIfNotFound: true);
@@ -410,6 +431,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Arrow;
     private readonly InputAction m_Input_Execute;
     private readonly InputAction m_Input_Pause;
+    private readonly InputAction m_Input_Tab;
     private readonly InputAction m_Input_Move;
     private readonly InputAction m_Input_Interact;
     private readonly InputAction m_Input_Inventory;
@@ -422,6 +444,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputAction @Arrow => m_Wrapper.m_Input_Arrow;
         public InputAction @Execute => m_Wrapper.m_Input_Execute;
         public InputAction @Pause => m_Wrapper.m_Input_Pause;
+        public InputAction @Tab => m_Wrapper.m_Input_Tab;
         public InputAction @Move => m_Wrapper.m_Input_Move;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
         public InputAction @Inventory => m_Wrapper.m_Input_Inventory;
@@ -445,6 +468,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnPause;
+                @Tab.started -= m_Wrapper.m_InputActionsCallbackInterface.OnTab;
+                @Tab.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnTab;
+                @Tab.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnTab;
                 @Move.started -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
@@ -473,6 +499,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Tab.started += instance.OnTab;
+                @Tab.performed += instance.OnTab;
+                @Tab.canceled += instance.OnTab;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -533,6 +562,7 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         void OnArrow(InputAction.CallbackContext context);
         void OnExecute(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);

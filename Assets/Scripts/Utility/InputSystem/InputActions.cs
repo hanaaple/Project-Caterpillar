@@ -24,15 +24,18 @@ namespace Utility.InputSystem
         public Action OnInteract; // z key
 
         public Action OnEsc; // escape Key
+        
         public Action<InputAction.CallbackContext> OnInventory; // x Key
 
         public Action<InputAction.CallbackContext> OnAnyKey; // any key
         public Action<InputAction.CallbackContext> OnLeftClick; // mouse leftClick
+        public Action OnTab;
 
         private readonly Action<InputAction.CallbackContext> _onArrow;
         private readonly Action<InputAction.CallbackContext> _onFixedExecute;
         private readonly Action<InputAction.CallbackContext> _onInteract;
         private readonly Action<InputAction.CallbackContext> _onEsc;
+        private readonly Action<InputAction.CallbackContext> _onTab;
 
         public InputActions(string name)
         {
@@ -54,12 +57,14 @@ namespace Utility.InputSystem
                 }
                 OnInteract?.Invoke();
             };
-            
+
             _onArrow = _ =>
             {
                 OnArrow?.Invoke(_);
                 OnAfterArrow?.Invoke(_);
             };
+
+            _onTab = _ => { OnTab?.Invoke(); };
         }
 
         /// <summary>
@@ -97,6 +102,8 @@ namespace Utility.InputSystem
 
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed += OnLeftClick;
+                
+                inputActions.Tab.performed += _onTab;
             }
             else
             {
@@ -126,6 +133,8 @@ namespace Utility.InputSystem
 
                 if (OnLeftClick != null)
                     inputActions.LeftClick.performed -= OnLeftClick;
+                
+                inputActions.Tab.performed -= _onTab;
             }
         }
     }
