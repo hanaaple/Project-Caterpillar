@@ -135,6 +135,8 @@ namespace Utility.Interaction
             {
                 return;
             }
+            
+            PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
 
             Debug.Log($"Start Interaction 이름: {gameObject.name}");
 
