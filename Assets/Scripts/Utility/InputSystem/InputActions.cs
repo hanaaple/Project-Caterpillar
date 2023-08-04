@@ -14,6 +14,8 @@ namespace Utility.InputSystem
         public Action<bool> OnActive;
 
         public Action<InputAction.CallbackContext> OnArrow; // const arrow
+        public Action<InputAction.CallbackContext> OnAfterArrow; // const arrow
+        
         public Action<InputAction.CallbackContext> OnMovePerformed; // arrow
         public Action<InputAction.CallbackContext> OnMoveCanceled; // arrow
 
@@ -29,6 +31,7 @@ namespace Utility.InputSystem
         public Action<InputAction.CallbackContext> OnLeftClick; // mouse leftClick
         public Action OnTab;
 
+        private readonly Action<InputAction.CallbackContext> _onArrow;
         private readonly Action<InputAction.CallbackContext> _onFixedExecute;
         private readonly Action<InputAction.CallbackContext> _onInteract;
         private readonly Action<InputAction.CallbackContext> _onEsc;
@@ -55,6 +58,12 @@ namespace Utility.InputSystem
                 OnInteract?.Invoke();
             };
 
+            _onArrow = _ =>
+            {
+                OnArrow?.Invoke(_);
+                OnAfterArrow?.Invoke(_);
+            };
+
             _onTab = _ => { OnTab?.Invoke(); };
         }
 
@@ -71,8 +80,7 @@ namespace Utility.InputSystem
                 InputManager.SetInputActions(true);
                 var inputActions = InputManager.InputControl.Input;
 
-                if (OnArrow != null)
-                    inputActions.Arrow.performed += OnArrow;
+                inputActions.Arrow.performed += _onArrow;
 
                 inputActions.Execute.performed += _onFixedExecute;
 
@@ -103,8 +111,7 @@ namespace Utility.InputSystem
 
                 var inputActions = InputManager.InputControl.Input;
 
-                if (OnArrow != null)
-                    inputActions.Arrow.performed -= OnArrow;
+                inputActions.Arrow.performed -= _onArrow;
 
                 inputActions.Execute.performed -= _onFixedExecute;
 

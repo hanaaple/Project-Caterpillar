@@ -46,11 +46,11 @@ namespace Utility.SaveSystem
             SaveLoadItem.Animator.SetBool("Selected", false);
         }
 
-        public override void EnterHighlight()
+        public override void EnterHighlightDisplay()
         {
         }
 
-        public override void SetSelect()
+        public override void SelectDisplay()
         {
             OnSelect?.Invoke();
             SaveLoadItem.Animator.SetBool("Selected", true);

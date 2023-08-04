@@ -33,8 +33,13 @@ namespace Utility.UI.Inventory
         [SerializeField] private Image necklaceImage;
         [SerializeField] private DynamicGrid dynamicGrid;
         [SerializeField] private NecklaceType[] necklaceTypes;
+        [SerializeField] private Sprite[] tendencySprites;
+        [SerializeField] private Animator blinkAnimator;
+        [SerializeField] private GameObject keywordPanel;
 
         [Header("For Debug")] [SerializeField] private List<TendencyItem> tendencyItems;
+        
+        private static readonly int BlinkEmptyHash = Animator.StringToHash("IsEmpty");
 
         public void Init()
         {
@@ -47,6 +52,17 @@ namespace Utility.UI.Inventory
             UpdateNecklaceImage();
             UpdateTendencyWord();
             dynamicGrid.UpdateRectSize();
+        }
+
+        public void SetKeywordActive(bool isActive)
+        {
+            blinkAnimator.SetBool(BlinkEmptyHash, isActive);
+            keywordPanel.SetActive(isActive);
+        }
+
+        public bool IsKeywordActive()
+        {
+            return blinkAnimator.GetBool(BlinkEmptyHash);
         }
 
         private void UpdateTendencyWord()
@@ -134,14 +150,16 @@ namespace Utility.UI.Inventory
                 if (tendencyProps.activation > 0)
                 {
                     // 1사분면
-                    const float c = 69 / 255f;
-                    tendencyItem.image.color = new Color(c, c, c);
+                    // const float c = 69 / 255f;
+                    // tendencyItem.text.color = new Color(c, c, c);
+                    tendencyItem.image.sprite = tendencySprites[0];
                 }
                 else if (tendencyProps.inactive > 0)
                 {
                     // 2사분면
-                    const float c = 53 / 255f;
-                    tendencyItem.image.color = new Color(c, c, c);
+                    // const float c = 53 / 255f;
+                    // tendencyItem.text.color = new Color(c, c, c);
+                    tendencyItem.image.sprite = tendencySprites[1];
                 }
 
                 tendencyItem.text.color = new Color(tc, tc, tc);
@@ -153,16 +171,17 @@ namespace Utility.UI.Inventory
                 if (tendencyProps.activation > 0)
                 {
                     // 4사분면
-                    const float c = 148 / 255f;
-                    tendencyItem.image.color = new Color(c, c, c);
+                    // const float c = 148 / 255f;
+                    // tendencyItem.text.color = new Color(c, c, c);
+                    tendencyItem.image.sprite = tendencySprites[3];
                 }
                 else if (tendencyProps.inactive > 0)
                 {
                     // 3사분면
-                    const float c = 191 / 255f;
-                    tendencyItem.image.color = new Color(c, c, c);
+                    // const float c = 191 / 255f;
+                    // tendencyItem.text.color = new Color(c, c, c);
+                    tendencyItem.image.sprite = tendencySprites[2];
                 }
-
                 tendencyItem.text.color = new Color(tc, tc, tc);
             }
 

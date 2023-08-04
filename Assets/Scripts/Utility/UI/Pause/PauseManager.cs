@@ -32,11 +32,11 @@ namespace Utility.UI.Pause
             button.image.sprite = defaultSprite;
         }
 
-        public override void EnterHighlight()
+        public override void EnterHighlightDisplay()
         {
         }
 
-        public override void SetSelect()
+        public override void SelectDisplay()
         {
             button.image.sprite = selectSprite;
         }

@@ -225,13 +225,18 @@ namespace Utility.UI.Highlight
 
         public void Select(HighlightItem highlightItem)
         {
-            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
-
             var idx = HighlightItems.FindIndex(item => item == highlightItem);
             if (idx == -1)
             {
                 Debug.LogError("에러");
             }
+            
+            if (selectedIndex == idx)
+            {
+                return;
+            }
+            
+            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
             HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
@@ -239,6 +244,16 @@ namespace Utility.UI.Highlight
 
         public void Select(int idx)
         {
+            if (!HighlightItems[idx].isEnable)
+            {
+                idx = HighlightItems.IndexOf(HighlightItems.First(item => item.isEnable));
+            }
+            
+            if (selectedIndex == idx)
+            {
+                return;
+            }
+            
             PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
@@ -253,9 +268,14 @@ namespace Utility.UI.Highlight
 
         public void OnHighlight(HighlightItem highlightItem)
         {
-            PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
-
             var idx = HighlightItems.FindIndex(item => item == highlightItem);
+            if (highlightedIndex == idx)
+            {
+                return;
+            }
+            
+            PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
+            
             highlightedIndex = idx;
             HighlightItems[idx].Push(HighlightItem.TransitionType.Highlight);
         }
@@ -471,7 +491,7 @@ namespace Utility.UI.Highlight
             _highlighters.Last().SetEnable(false, default, default, isReset);
         }
 
-        public void SetLast(Highlighter highlighter, bool isDuplicatePossible = false)
+        public void SetLast(Highlighter highlighter, bool isDuplicatePossible = false, bool isPreviousLastReset = false)
         {
             if (IsLast(highlighter))
             {
@@ -480,11 +500,21 @@ namespace Utility.UI.Highlight
 
             if (_highlighters.Count > 0)
             {
+                if (isPreviousLastReset)
+                {
+                    _highlighters.Last().selectedIndex = -1;
+                    _highlighters.Last().highlightedIndex = -1;
+                }
+
                 _highlighters.Last().SetEnable(false, isDuplicatePossible);
-                _highlighters.Remove(highlighter);
+                if (_highlighters.Contains(highlighter))
+                {
+                    _highlighters.Remove(highlighter);
+                }
             }
 
             _highlighters.Add(highlighter);
+            Debug.Log($"Add Highlight by SetLast {highlighter.name}");
 
             _highlighters.Last().SetEnable(true, isDuplicatePossible);
         }
@@ -506,6 +536,7 @@ namespace Utility.UI.Highlight
 
         public bool Contains(Highlighter highlighter)
         {
+            Debug.Log($"Is Contain? - {highlighter.name}, {_highlighters.Contains(highlighter)}");
             return _highlighters.Contains(highlighter);
         }
     }
