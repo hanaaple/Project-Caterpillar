@@ -39,11 +39,11 @@ namespace Utility.Dialogue
             _animator.SetBool(Selected, false);
         }
 
-        public override void EnterHighlight()
+        public override void EnterHighlightDisplay()
         {
         }
 
-        public override void SetSelect()
+        public override void SelectDisplay()
         {
             _animator.SetBool(Selected, true);
         }

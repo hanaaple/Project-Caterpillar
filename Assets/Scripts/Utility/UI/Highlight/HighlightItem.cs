@@ -45,6 +45,11 @@ namespace Utility.UI.Highlight
                 return;
             }
 
+            if (transitionType == TransitionType.Select)
+            {
+                Select();
+            }
+
             TransitionTypes.Add(transitionType);
             UpdateDisplay();
         }
@@ -74,11 +79,11 @@ namespace Utility.UI.Highlight
             {
                 if (transitionType.Equals(TransitionType.Select))
                 {
-                    SetSelect();
+                    SelectDisplay();
                 }
                 else if (transitionType.Equals(TransitionType.Highlight))
                 {
-                    EnterHighlight();
+                    EnterHighlightDisplay();
                 }
             }
         }
@@ -90,9 +95,22 @@ namespace Utility.UI.Highlight
 
         public abstract void SetDefault();
 
-        public abstract void EnterHighlight();
+        /// <summary>
+        /// Use For Display (sprite, color, etc...) It's work several times
+        /// </summary>
+        public abstract void EnterHighlightDisplay();
 
-        public abstract void SetSelect();
+        /// <summary>
+        /// Use For Display (sprite, color, etc...) It's work several times
+        /// </summary>
+        public abstract void SelectDisplay();
+        
+        /// <summary>
+        /// Use For Select Event
+        /// </summary>
+        public virtual void Select()
+        {
+        }
 
         public virtual void AddEventTrigger(EventTriggerType eventTriggerType, UnityAction<BaseEventData> onHighlight)
         {
