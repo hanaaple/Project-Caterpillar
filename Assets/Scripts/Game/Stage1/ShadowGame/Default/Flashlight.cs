@@ -43,13 +43,13 @@ namespace Game.Stage1.ShadowGame.Default
             SetLightRadiusPercentage(1f);
         }
 
-        public void MoveFlashLight(Vector3 followPos)
+        public void MoveFlashLight(Vector2 followPos)
         {
-            followPos = Vector3.Lerp(mainLight.transform.position, followPos, Time.deltaTime * followSpeed);
+            followPos = Vector2.Lerp(mainLight.transform.position, followPos, Time.deltaTime * followSpeed);
             mainLight.transform.position = followPos;
-    
+
             subLight.transform.up = Vector2.Lerp(subLight.transform.up,
-                (mainLight.transform.position - subLight.transform.position), 0.05f);
+                mainLight.transform.position - subLight.transform.position, 0.05f);
     
     
             // 거리 계산
