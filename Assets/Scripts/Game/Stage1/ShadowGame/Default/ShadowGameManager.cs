@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game.Default;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
@@ -21,30 +22,25 @@ namespace Game.Stage1.ShadowGame.Default
     {
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
-
         [SerializeField] private BoxCollider2D cameraBound;
-
 
         [Space(10)] [Header("Light")] [SerializeField]
         private Flashlight flashlight;
 
         [Space(20)] [Header("Canvas")] [SerializeField]
         private Button tutorialExitButton;
-
         [SerializeField] private Button retryButton;
         [SerializeField] private Button giveUpButton;
 
         [Space(20)] [Header("Play UI")] [SerializeField]
         private Animator heartAnimator;
-
         [SerializeField] private SpeechBubble[] damagedTexts;
         [SerializeField] private SpeechBubble[] defeatedTexts;
         [SerializeField] private Animator batteryAnimator;
         [SerializeField] private float itemPopupSec;
-        
+
         [Space(20)] [Header("스테이지")] [SerializeField]
         protected Animator gameAnimator;
-
         [SerializeField] private Animator stageAnimator;
         [SerializeField] protected ShadowMonster shadowMonster;
         [SerializeField] private ShadowGameItem[] shadowGameItems;
@@ -53,7 +49,6 @@ namespace Game.Stage1.ShadowGame.Default
 
         [Space(20)] [Header("디버깅용")] [SerializeField]
         protected int stageIndex;
-
 
         private int _mentality;
 
@@ -77,14 +72,11 @@ namespace Game.Stage1.ShadowGame.Default
         private int _selectedItemIndex;
 
         private InputActions _inputActions;
-        private InputActions _tutorialInputActions;
         private InputActions _popupInputActions;
 
         private Coroutine _stageUpdateCoroutine;
         private Coroutine _stageMonsterDefeatCoroutine;
         private Coroutine _itemTimer;
-
-        private Action _onItemShowEnd;
 
         private static readonly int MentalityHash = Animator.StringToHash("Mentality");
         private static readonly int StageIndexHash = Animator.StringToHash("StageIndex");
@@ -97,48 +89,37 @@ namespace Game.Stage1.ShadowGame.Default
         private static readonly int ClearHash = Animator.StringToHash("Clear");
 
         protected string NextScene;
-        
+
         private void Awake()
         {
-            _onItemShowEnd = () =>
-            {
-                foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
-                {
-                    SceneHelper.Instance.toastManager.Enqueue(toastContent);
-                }
-
-                TimeScaleHelper.Pop();
-                InputManager.PopInputAction(_popupInputActions);
-                if (_itemTimer != null)
-                {
-                    StopCoroutine(_itemTimer);
-                    _itemTimer = null;
-                }
-
-                shadowGameItems[_selectedItemIndex].uiPanel.gameObject.SetActive(false);
-            };
-
             _inputActions = new InputActions("ShadowGameManager")
             {
-                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
-            };
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); },
+                OnLeftClick = _ =>
+                {
+                    if (!_isPlaying)
+                    {
+                        return;
+                    }
 
-            _tutorialInputActions = new InputActions("ShadowGame Tutorial")
-            {
-                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
+                    foreach (var shadowGameItem in shadowGameItems)
+                    {
+                        shadowGameItem.TryClick();
+                    }
+                }
             };
 
             _popupInputActions = new InputActions("Item Popup")
             {
-                OnAnyKey = _ => _onItemShowEnd(),
-                OnLeftClick = _ => _onItemShowEnd()
+                OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); },
+                OnLeftClick = PopDownItem
             };
         }
 
         protected virtual void Start()
         {
             NextScene = "CampingScene";
-            
+
             flashlight.Init();
             _camera = Camera.main;
             _minBounds = cameraBound.bounds.min;
@@ -146,12 +127,8 @@ namespace Game.Stage1.ShadowGame.Default
             _yScreenHalfSize = _camera.orthographicSize;
             _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
-            tutorialExitButton.onClick.AddListener(() =>
-            {
-                tutorialExitButton.image.raycastTarget = false;
-                InputManager.PopInputAction(_tutorialInputActions);
-                StartCoroutine(StartGame());
-            });
+            tutorialExitButton.onClick.AddListener(StartGame);
+
             giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("Photographer Give Up"); });
             retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
@@ -173,15 +150,26 @@ namespace Game.Stage1.ShadowGame.Default
             Play();
         }
 
+        private void Update()
+        {
+            if (!_isPlaying)
+            {
+                return;
+            }
+
+            var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
+            flashlight.MoveFlashLight(worldPoint);
+            CameraMove(Input.mousePosition);
+        }
+        
         private void ResetSetting()
         {
-            tutorialExitButton.image.raycastTarget = true;
             _camera.transform.position = Vector3.back;
             Mentality = 3;
             stageIndex = 0;
-            
+
             flashlight.SetFlashLightPos(Vector3.zero);
-            
+
             stageAnimator.SetTrigger(ResetHash);
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
         }
@@ -198,20 +186,9 @@ namespace Game.Stage1.ShadowGame.Default
             gameAnimator.SetTrigger(TutorialHash);
         }
 
-        /// <summary>
-        /// Use by Animation Event
-        /// </summary>
-        public void PushTutorialInputActions()
+        private void StartGame()
         {
-            InputManager.PushInputAction(_tutorialInputActions);
-        }
-
-        private IEnumerator StartGame()
-        {
-            yield return new WaitForSeconds(1f);
-
             gameAnimator.SetTrigger(PlayHash);
-
             StartStage();
         }
 
@@ -231,7 +208,6 @@ namespace Game.Stage1.ShadowGame.Default
                 }
             }
 
-            gameAnimator.SetFloat(SecHash, 0f);
             _isPlaying = true;
             _stageUpdateCoroutine = StartCoroutine(StageUpdate());
             _stageMonsterDefeatCoroutine = StartCoroutine(CheckDefeat());
@@ -254,9 +230,8 @@ namespace Game.Stage1.ShadowGame.Default
 
         private IEnumerator CheckDefeat()
         {
-            Debug.Log("괴물 처치 체크 중");
             yield return new WaitUntil(() => shadowMonster.GetIsDefeated());
-            Debug.Log("괴물 처치 완료");
+            
             if (_stageUpdateCoroutine != null)
             {
                 StopCoroutine(_stageUpdateCoroutine);
@@ -278,12 +253,13 @@ namespace Game.Stage1.ShadowGame.Default
         private IEnumerator StageUpdate()
         {
             shadowMonster.Appear(stageIndex);
-            
-            yield return new WaitUntil(() => shadowMonster.monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
+
+            yield return new WaitUntil(
+                () => shadowMonster.monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
             // Set Attack Enable
             shadowMonster.SetActive(true);
-            
-            
+
+
             // 괴물 등장, 효과음
 
             var sec = 0f;
@@ -332,7 +308,9 @@ namespace Game.Stage1.ShadowGame.Default
             // 배경 연출 대기
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
             stageAnimator.SetTrigger(PlayHash);
-            yield return new WaitUntil(() => stageAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
+            yield return new WaitUntil(() =>
+                stageAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty") && shadowMonster.monsterAnimator
+                    .GetCurrentAnimatorStateInfo(0).IsName("Default"));
 
             Debug.Log(stageIndex + "스테이지 종료");
 
@@ -344,7 +322,13 @@ namespace Game.Stage1.ShadowGame.Default
             }
             else if (stageIndex < stageCount)
             {
-                // Recovery 이후에 다음 Stage 진행
+                var t = gameAnimator.GetFloat(SecHash);
+                while (t > 0f)
+                {
+                    t -= Time.deltaTime;
+                    gameAnimator.SetFloat(SecHash, t);
+                    yield return null;
+                }
                 StartStage(isClear);
             }
         }
@@ -357,7 +341,7 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 shadowGameItem.gameObject.SetActive(false);
             }
-            
+
             SceneLoader.Instance.LoadScene(NextScene);
         }
 
@@ -373,8 +357,7 @@ namespace Game.Stage1.ShadowGame.Default
         private IEnumerator ItemTimer()
         {
             yield return new WaitForSecondsRealtime(itemPopupSec);
-            _onItemShowEnd?.Invoke();
-            _itemTimer = null;
+            PopDownItem();
         }
 
         private void UpdateMentality()
@@ -396,36 +379,12 @@ namespace Game.Stage1.ShadowGame.Default
                 }
             }
         }
-
-        private void Update()
+        
+        private void CameraMove(Vector2 input)
         {
-            if (!_isPlaying)
-            {
-                return;
-            }
+            // Screen.currentResolution.width did not always work 
 
-            var input = new Vector3(Input.mousePosition.x,
-                Input.mousePosition.y, -_camera.transform.position.z);
-
-            var point = _camera.ScreenToWorldPoint(input);
-            flashlight.MoveFlashLight(point);
-            CameraMove(input);
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                foreach (var shadowGameItem in shadowGameItems)
-                {
-                    if (shadowGameItem.gameObject.activeSelf)
-                    {
-                        shadowGameItem.CheckClick();
-                    }
-                }
-            }
-        }
-
-        private void CameraMove(Vector3 input)
-        {
-            var cameraMoveVec = Vector3.zero;
+            var cameraMoveVec = Vector2.zero;
             // 우측 이동
             if (Screen.width * 0.9f < input.x)
             {
@@ -447,21 +406,13 @@ namespace Game.Stage1.ShadowGame.Default
             {
                 cameraMoveVec.y = -1;
             }
-            
-            Debug.Log($"{Screen.width}x{Screen.height}, {Screen.currentResolution.width * 0.9f}x{Screen.currentResolution.height * 0.9f}, {input}");
 
             var cameraTransform = _camera.transform;
-
-            var targetPos = cameraTransform.position + cameraMoveVec;
-
+            var targetPos = cameraTransform.position + (Vector3) cameraMoveVec;
             var clampX = cameraTransform.position.x;
             var clampY = cameraTransform.position.y;
 
-            //Debug.Log($"old: {cameraTransform.position.x}, {cameraTransform.position.y} ");
-
             cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetPos, cameraSpeed * Time.deltaTime);
-
-            // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
 
             if (_maxBounds.x - _xScreenHalfSize > 0)
             {
@@ -475,10 +426,7 @@ namespace Game.Stage1.ShadowGame.Default
                     _maxBounds.y - _yScreenHalfSize);
             }
 
-            //Debug.Log($"t: {cameraSpeed * Time.deltaTime}, maxBound: {_maxBounds.x} {_maxBounds.y}  screenSize half: {_xScreenHalfSize}, {_yScreenHalfSize}");
             cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
-
-            // Debug.Log($"new: {cameraTransform.position.x}, {cameraTransform.position.y}");
         }
 
         private IEnumerator ReStartGame()
@@ -490,7 +438,27 @@ namespace Game.Stage1.ShadowGame.Default
 
             // Wait Reset And Start Play
             // StartGame
-            StartCoroutine(StartGame());
+
+            yield return new WaitForSeconds(1f);
+            StartGame();
+        }
+
+        private void PopDownItem(InputAction.CallbackContext _ = default)
+        {
+            foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
+            {
+                SceneHelper.Instance.toastManager.Enqueue(toastContent);
+            }
+
+            TimeScaleHelper.Pop();
+            InputManager.PopInputAction(_popupInputActions);
+            if (_itemTimer != null)
+            {
+                StopCoroutine(_itemTimer);
+                _itemTimer = null;
+            }
+
+            shadowGameItems[_selectedItemIndex].uiPanel.gameObject.SetActive(false);
         }
     }
 }

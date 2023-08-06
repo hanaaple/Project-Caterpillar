@@ -18,8 +18,13 @@ namespace Game.Stage1.ShadowGame.Default
             return appearStageIndex == stageIndex;
         }
 
-        public void CheckClick()
+        public void TryClick()
         {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+            
             var cameraWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Vector2.Distance(transform.position, cameraWorldPos) <= radius)
             {
