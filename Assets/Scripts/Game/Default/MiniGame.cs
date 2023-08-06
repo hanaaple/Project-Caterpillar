@@ -3,17 +3,17 @@ using UnityEngine;
 using Utility.Core;
 using Utility.InputSystem;
 
-namespace Utility.Game
+namespace Game.Default
 {
     public abstract class MiniGame : MonoBehaviour
     {
-        private Action _onEndAction;
+        private Action<bool> _onEndAction;
         
-        private InputActions _inputActions;
+        protected InputActions InputActions;
 
         protected virtual void Init()
         {
-            _inputActions = new InputActions(nameof(MiniGame))
+            InputActions = new InputActions(nameof(MiniGame))
             {
                 OnEsc = () =>
                 {
@@ -28,17 +28,17 @@ namespace Utility.Game
             };
         }
 
-        public virtual void Play(Action onEndAction)
+        public virtual void Play(Action<bool> onEndAction = null)
         {
             Init();
             _onEndAction = onEndAction;
-            InputManager.PushInputAction(_inputActions);
+            InputManager.PushInputAction(InputActions);
         }
 
-        protected virtual void End()
+        protected virtual void End(bool isClear = true)
         {
-            InputManager.PopInputAction(_inputActions);
-            _onEndAction?.Invoke();
+            InputManager.PopInputAction(InputActions);
+            _onEndAction?.Invoke(isClear);
         }
     }
 }

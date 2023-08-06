@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Utility.Game.Stage1
+namespace Game.Stage1.MiniGame
 {
-    public class Diary : MiniGame
+    public class Diary : Default.MiniGame
     {
         [SerializeField] private Button button;
         [SerializeField] private Sprite[] sprites;
@@ -27,7 +27,7 @@ namespace Utility.Game.Stage1
             });
         }
 
-        public override void Play(Action onEndAction)
+        public override void Play(Action<bool> onEndAction = null)
         {
             _index = 0;
             button.image.raycastTarget = true;

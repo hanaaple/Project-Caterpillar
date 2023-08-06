@@ -31,6 +31,8 @@ namespace Utility.InputSystem
         public Action<InputAction.CallbackContext> OnLeftClick; // mouse leftClick
         public Action OnTab;
 
+        public Action<InputAction.CallbackContext> OnKeyBoard;  // OnAlphabet & Backspace
+        
         private readonly Action<InputAction.CallbackContext> _onArrow;
         private readonly Action<InputAction.CallbackContext> _onFixedExecute;
         private readonly Action<InputAction.CallbackContext> _onInteract;
@@ -104,6 +106,9 @@ namespace Utility.InputSystem
                     inputActions.LeftClick.performed += OnLeftClick;
                 
                 inputActions.Tab.performed += _onTab;
+                
+                if (OnKeyBoard != null)
+                    inputActions.Keyboard.performed += OnKeyBoard;
             }
             else
             {
@@ -135,6 +140,9 @@ namespace Utility.InputSystem
                     inputActions.LeftClick.performed -= OnLeftClick;
                 
                 inputActions.Tab.performed -= _onTab;
+                
+                if (OnKeyBoard != null)
+                    inputActions.Keyboard.performed -= OnKeyBoard;
             }
         }
     }

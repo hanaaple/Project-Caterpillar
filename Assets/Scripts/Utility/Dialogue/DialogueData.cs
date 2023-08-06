@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
+using Game.Default;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
-using Utility.Game;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -67,7 +67,7 @@ namespace Utility.Dialogue
             return waitInteractions.Count(item => !item.isWaitClear);
         }
     }
-
+    
     [Serializable]
     public class WaitInteraction
     {
@@ -136,11 +136,20 @@ namespace Utility.Dialogue
         public string playableDirectorName;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
-        [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop, true)]
+        // [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop, true)]
         public float waitSec;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.MiniGame)]
         public MiniGame miniGame;
+
+        [ConditionalHideInInspector("dialogueType", DialogueType.MiniGame)]
+        public bool isCustomEnd;
+
+        [ConditionalHideInInspector("isCustomEnd")]
+        public int failNextInteractionIndex;
+        
+        [ConditionalHideInInspector("isCustomEnd")]
+        public int clearNextInteractionIndex;
 
         //[ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         //public int interactIndex;

@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Utility.Game.Stage1
+namespace Game.Stage1.MiniGame
 {
-    public class Sketchbook : MiniGame
+    public class Sketchbook : Default.MiniGame
     {
         [SerializeField] private EventTrigger button;
         [SerializeField] private Image fill;
@@ -66,7 +65,7 @@ namespace Utility.Game.Stage1
             button.triggers.Add(onPointerDrag);
         }
 
-        protected override void End()
+        protected override void End(bool isClear = true)
         {
             button.triggers.Clear();
             base.End();
