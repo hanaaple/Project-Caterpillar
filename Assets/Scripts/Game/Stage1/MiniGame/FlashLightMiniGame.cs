@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Utility.Game.Stage1
+namespace Game.Stage1.MiniGame
 {
-    public class FlashLightMiniGame : MiniGame
+    public class FlashLightMiniGame : Default.MiniGame
     {
         [SerializeField] private EventTrigger[] eventTriggers;
         [SerializeField] private EventTrigger flashLight;
@@ -59,7 +57,7 @@ namespace Utility.Game.Stage1
             flashLight.triggers.Add(pointerEvent);
         }
 
-        protected override void End()
+        protected override void End(bool isClear = true)
         {
             foreach (var eventTrigger in eventTriggers)
             {
@@ -67,7 +65,7 @@ namespace Utility.Game.Stage1
             }
 
             flashLight.triggers.Clear();
-            base.End();
+            base.End(isClear);
         }
     }
 }

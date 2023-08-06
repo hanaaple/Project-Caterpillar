@@ -546,7 +546,7 @@ namespace Utility.Dialogue
                     }
 
                     // 멈춰
-                    dialogueElement.miniGame.Play(InteractContinue);
+                    // dialogueElement.miniGame.Play(InteractContinue);
                     break;
                 }
                 case DialogueType.Random:

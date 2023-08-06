@@ -7,9 +7,9 @@ using UnityEngine.Pool;
 using UnityEngine.UI;
 using Utility.Property;
 
-namespace Utility.Game.Stage1
+namespace Game.Stage1.MiniGame
 {
-    public class Sign : MiniGame
+    public class Sign : Default.MiniGame
     {
         private enum Direction
         {
@@ -81,15 +81,10 @@ namespace Utility.Game.Stage1
             }
         }
 
-        protected override void End()
+        protected override void End(bool isClear = true)
         {
             eventTrigger.triggers.Clear();
-            base.End();
-        }
-
-        private void Start()
-        {
-            Init();
+            base.End(isClear);
         }
 
         protected override void Init()
