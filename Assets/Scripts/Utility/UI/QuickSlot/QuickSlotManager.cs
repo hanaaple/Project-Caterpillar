@@ -12,6 +12,8 @@ namespace Utility.UI.QuickSlot
         [SerializeField] private Animator animator;
         [SerializeField] private DynamicGrid dynamicGrid;
         [SerializeField] private GameObject tendencyItemPrefab;
+        
+        [SerializeField] private Sprite[] tendencySprites;
 
         [Header("For Debug")] [SerializeField] private List<QuickSlotTendencyItem> tendencyItems;
 
@@ -74,6 +76,42 @@ namespace Utility.UI.QuickSlot
             tendencyItem.tendencyType = tendencyType;
             tendencyItem.text.text = tendencyType.ToString();
             tendencyItem.indexText.text = $"{tendencyItem.transform.GetSiblingIndex() + 1:00}";
+            
+            var tendencyProps = TendencyManager.Instance.GetTendencyType(tendencyType);
+            
+            if (tendencyProps.ascent > 0)
+            {
+                const float tc = 148 / 255f;
+
+                if (tendencyProps.activation > 0)
+                {
+                    // 1사분면
+                    tendencyItem.image.sprite = tendencySprites[0];
+                }
+                else if (tendencyProps.inactive > 0)
+                {
+                    // 2사분면
+                    tendencyItem.image.sprite = tendencySprites[1];
+                }
+
+                tendencyItem.text.color = new Color(tc, tc, tc);
+            }
+            else if (tendencyProps.descent > 0)
+            {
+                const float tc = 53 / 255f;
+
+                if (tendencyProps.activation > 0)
+                {
+                    // 4사분면
+                    tendencyItem.image.sprite = tendencySprites[3];
+                }
+                else if (tendencyProps.inactive > 0)
+                {
+                    // 3사분면
+                    tendencyItem.image.sprite = tendencySprites[2];
+                }
+                tendencyItem.text.color = new Color(tc, tc, tc);
+            }
 
             tendencyItems.Add(tendencyItem);
         }
