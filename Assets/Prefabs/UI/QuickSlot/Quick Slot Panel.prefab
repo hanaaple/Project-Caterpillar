@@ -500,4 +500,9 @@ MonoBehaviour:
   animator: {fileID: 5624729586531398346}
   dynamicGrid: {fileID: 4152596415706656259}
   tendencyItemPrefab: {fileID: 5782967941531901417, guid: 4ffe9026c82d30e4e8766065fa66372d, type: 3}
+  tendencySprites:
+  - {fileID: 21300000, guid: 36998da2992504946a0e9fdfccafb0fd, type: 3}
+  - {fileID: 21300000, guid: 4c8a2c3f361434848ac1f6ab18925705, type: 3}
+  - {fileID: 21300000, guid: 0d9023fe679e0394183d746e509c98e3, type: 3}
+  - {fileID: 21300000, guid: 5fafb2d841211554582674894a56e945, type: 3}
   tendencyItems: []
