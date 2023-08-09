@@ -38,7 +38,7 @@ namespace Utility.Interaction
             {
                 return;
             }
-            
+
             var dataArray = interactionData.Where(item => item.interactType != InteractType.Dialogue).ToArray();
             foreach (var data in dataArray)
             {
@@ -135,7 +135,7 @@ namespace Utility.Interaction
             {
                 return;
             }
-            
+
             PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
 
             Debug.Log($"Start Interaction 이름: {gameObject.name}");
@@ -154,13 +154,13 @@ namespace Utility.Interaction
                         if (interaction.dialogueData.dialogueElements.Length == 0)
                         {
                             PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
-                                () => { EndInteraction(index); });
+                                nextIndex => { EndInteraction(index, nextIndex); });
                             Debug.LogWarning("CutScene, Wait 세팅 안되어있을수도 주의");
                         }
                         else
                         {
-                            interaction.dialogueData.OnDialogueEnd = () => { EndInteraction(index); };
-                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
+                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData,
+                                nextIndex => { EndInteraction(index, nextIndex); });
                         }
 
                         break;
@@ -181,28 +181,32 @@ namespace Utility.Interaction
                         EndInteraction(index);
                         break;
                     case InteractType.Item:
-                        var join = interaction.itemInteractionTypes.Join(ItemManager.Instance.GetItem<ItemManager.ItemType>(),
+                        var join = interaction.itemInteractionTypes.Join(
+                            ItemManager.Instance.GetItem<ItemManager.ItemType>(),
                             inner => inner.itemType,
                             item => item, (inner, item) => inner.itemType).ToArray();
                         if (join.Length == 1)
                         {
-                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == join[0]);
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes,
+                                item => item.itemType == join[0]);
                             StartInteraction(targetItemInteraction.targetIndex);
                         }
                         else
                         {
-                            Debug.LogWarning($"아이템 조심\n"+
+                            Debug.LogWarning($"아이템 조심\n" +
                                              $"{ItemManager.Instance.GetItem<string>().Select(item => $"{item}, ")}\n" +
                                              $"{interaction.itemInteractionTypes.Select(item => $"{item}, ")}");
-                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes, item => item.itemType == ItemManager.ItemType.None);
+                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes,
+                                item => item.itemType == ItemManager.ItemType.None);
                             StartInteraction(targetItemInteraction.targetIndex);
                         }
+
                         break;
                 }
             }
         }
 
-        protected virtual void EndInteraction(int index = -1)
+        protected virtual void EndInteraction(int index = -1, int nextIndex = -1)
         {
             if (index == -1)
             {
@@ -214,9 +218,12 @@ namespace Utility.Interaction
             var interaction = GetInteractionData(index);
             var data = GetInteractionData(index).serializedInteractionData;
             data.isInteracted = true;
-            // interaction.onInteractionEnd?.Invoke();
 
-            var nextIndex = (index + 1) % interactionData.Length;
+            if (nextIndex == -1)
+            {
+                nextIndex = (index + 1) % interactionData.Length;
+            }
+
             var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
 
             // var collider2d = GetComponent<Collider2D>();
@@ -281,13 +288,13 @@ namespace Utility.Interaction
                     if (interaction.dialogueData.dialogueElements.Length == 0)
                     {
                         PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
-                            () => { EndInteraction(index); });
+                            nextIndex => { EndInteraction(index, nextIndex); });
                         Debug.LogWarning("CutScene, Wait 세팅 안되어있을수도 주의");
                     }
                     else
                     {
-                        interaction.dialogueData.OnDialogueEnd = () => { EndInteraction(index); };
-                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
+                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData,
+                            nextIndex => { EndInteraction(index, nextIndex); });
                     }
 
                     break;

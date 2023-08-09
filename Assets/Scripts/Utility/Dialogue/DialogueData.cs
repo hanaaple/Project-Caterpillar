@@ -17,7 +17,7 @@ namespace Utility.Dialogue
         public int index;
         public DialogueElement[] dialogueElements;
 
-        [NonSerialized] public UnityAction OnDialogueEnd;
+        [NonSerialized] public UnityAction<int> OnDialogueEnd;
 
         public DialogueData()
         {
