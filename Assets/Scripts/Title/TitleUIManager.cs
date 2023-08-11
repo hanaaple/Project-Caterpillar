@@ -74,7 +74,8 @@ namespace Title
             if (!GameManager.Instance.IsTitleCutSceneWorked)
             {
                 GameManager.Instance.IsTitleCutSceneWorked = true;
-                PlayUIManager.Instance.dialogueController.StartDialogue(dialogueData, _ => { Init(); });
+                dialogueData.OnDialogueEnd = _ => { Init(); };
+                PlayUIManager.Instance.dialogueController.StartDialogue(dialogueData);
             }
             else
             {

@@ -232,15 +232,13 @@ namespace Utility.Dialogue
             StartDialogue(dialogueData);
         }
 
-        public void StartDialogue(DialogueData dialogueData, UnityAction<int> dialogueEndAction = default)
+        public void StartDialogue(DialogueData dialogueData)
         {
             if (_isDialogue)
             {
                 Debug.Log("이미 진행 중임 왜?");
                 return;
             }
-
-            dialogueData.OnDialogueEnd = dialogueEndAction;
 
             InputManager.PushInputAction(_dialogueInputActions);
 
@@ -940,6 +938,10 @@ namespace Utility.Dialogue
             if (isEnd)
             {
                 dialogueData ??= _baseDialogueData.Pop();
+
+                Debug.Log(dialogueData.OnDialogueEnd);
+                Debug.Log(dialogueData.OnDialogueEnd == null);
+                Debug.Log(dialogueData.OnDialogueEnd == default);
 
                 baseDialogueData.Remove(dialogueData);
                 dialogueData.OnDialogueEnd?.Invoke(nextInteractionIndex);
