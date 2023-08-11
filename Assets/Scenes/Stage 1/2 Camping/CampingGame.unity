@@ -2198,6 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f39cda2d63ceb41b15039e9f017863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialHelper: {fileID: 498833577}
   filedPanel: {fileID: 1362900695}
   openMapButton: {fileID: 1473030038}
   resetButton: {fileID: 261955413}
@@ -3276,6 +3277,58 @@ MonoBehaviour:
   dragItem: {fileID: 777427753}
   x: 0
   y: 2
+--- !u!1 &498833576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498833578}
+  - component: {fileID: 498833577}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &498833577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498833576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98778c40698a4efab28d9e0f97def473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialSprites:
+  - {fileID: 21300000, guid: 393c908c34f1fe244a54cb37d47404ae, type: 3}
+  - {fileID: 21300000, guid: 98f607934098b3042977c91646a5674f, type: 3}
+  - {fileID: 21300000, guid: e573af219c0dac445b8237d7945863b3, type: 3}
+  - {fileID: 21300000, guid: 3e8e515da5c325e40892fd283d1c70e2, type: 3}
+  - {fileID: 21300000, guid: 33de8821624604d4dbacd73667b187ac, type: 3}
+  - {fileID: 21300000, guid: 9374d79031891474da700d32e64170d3, type: 3}
+  - {fileID: 21300000, guid: fc273e05b1c9fbf4a971cf74134651a8, type: 3}
+--- !u!4 &498833578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498833576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526397919
 GameObject:
   m_ObjectHideFlags: 0

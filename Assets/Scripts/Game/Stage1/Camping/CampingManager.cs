@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.Scene;
+using Utility.Tutorial;
 using Random = UnityEngine.Random;
 
 namespace Game.Stage1.Camping
@@ -22,6 +23,8 @@ namespace Game.Stage1.Camping
             public int time;
             public Color color;
         }
+
+        [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
 
         [Header("필드")] [SerializeField] private GameObject filedPanel;
         [SerializeField] private Button openMapButton;
@@ -113,8 +116,11 @@ namespace Game.Stage1.Camping
 
         public void Play()
         {
-            InputManager.PushInputAction(_inputActions);
-            StartCoroutine(StartTimer());
+            PlayUIManager.Instance.tutorialManager.StartTutorial(tutorialHelper, () =>
+            {
+                InputManager.PushInputAction(_inputActions);
+                StartCoroutine(StartTimer());
+            });
         }
 
         private IEnumerator StartTimer()

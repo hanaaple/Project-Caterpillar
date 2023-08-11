@@ -4,6 +4,7 @@ using UnityEngine;
 using Utility.Core;
 using Utility.Player;
 using Utility.Property;
+using Utility.Tutorial;
 
 namespace Utility.Scene
 {
@@ -52,6 +53,9 @@ namespace Utility.Scene
 
         [ConditionalHideInInspector("playType", PlayType.StageField, default, true)]
         public BindProperty bindProperty;
+        
+        public bool isTutorial;
+        [ConditionalHideInInspector("isTutorial")] public TutorialHelper tutorialHelper;
 
         private void Awake()
         {

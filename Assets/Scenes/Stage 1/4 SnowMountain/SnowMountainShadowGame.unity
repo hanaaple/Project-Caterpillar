@@ -1372,7 +1372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237432205
 GameObject:
@@ -6888,6 +6888,57 @@ Transform:
   m_Father: {fileID: 528583793}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1583885264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583885266}
+  - component: {fileID: 1583885265}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1583885265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583885264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98778c40698a4efab28d9e0f97def473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialSprites:
+  - {fileID: 21300000, guid: 650f5b2ef4e8b46499d643f05e1733a0, type: 3}
+  - {fileID: 21300000, guid: 1d4dd797fb8617f45a4d20e200d0063c, type: 3}
+  - {fileID: 21300000, guid: aa7d57171c609ab409daa576aa5e114d, type: 3}
+  - {fileID: 21300000, guid: c2a861bdb2861a34ab6a28a5e3007ba2, type: 3}
+  - {fileID: 21300000, guid: 767caed2221a4d04884d385c69ef488b, type: 3}
+  - {fileID: 21300000, guid: 922804c2794e2ec40ba45cf2d2588c07, type: 3}
+--- !u!4 &1583885266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583885264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1662302249
 GameObject:
   m_ObjectHideFlags: 0
@@ -7103,10 +7154,6 @@ MonoBehaviour:
     m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cba3569a-008d-47af-aae0-ca692caebc8b
-    m_ActionName: Ui/Cancle[/Keyboard/x,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
     m_ActionName: Input/Pause[/Keyboard/escape]
   - m_PersistentCalls:
@@ -7129,6 +7176,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
     m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a6bca68-1571-4c2d-be50-94cd0430b238
+    m_ActionName: Input/Tab[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
+    m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Input
@@ -7288,7 +7343,7 @@ Transform:
   - {fileID: 1360341433}
   - {fileID: 22631730}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1715950591
 MonoBehaviour:
@@ -7302,6 +7357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff69e81738914f4f8f52231ada70bee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialHelper: {fileID: 1583885265}
   cameraSpeed: 4
   cameraBound: {fileID: 528583794}
   flashlight: {fileID: 1125824677}

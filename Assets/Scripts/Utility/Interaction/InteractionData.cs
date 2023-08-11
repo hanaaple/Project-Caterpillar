@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.Property;
+using Utility.Tutorial;
 
 namespace Utility.Interaction
 {
@@ -14,6 +15,7 @@ namespace Utility.Interaction
         Animator,
         OneOff,
         Item,
+        Tutorial,
     }
     
     [Serializable]
@@ -63,6 +65,9 @@ namespace Utility.Interaction
         
         [ConditionalHideInInspector("interactType", InteractType.Item)]
         public ItemInteractionType[] itemInteractionTypes;
+        
+        [ConditionalHideInInspector("interactType", InteractType.Tutorial)]
+        public TutorialHelper tutorialHelper;
         
         public bool isMove;
 

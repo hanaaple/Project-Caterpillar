@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
-using Utility.Core;
 using Utility.Interaction;
 using Utility.Serialize;
 using Utility.Tendency;
@@ -12,9 +10,10 @@ namespace Utility.SaveSystem
     public class SaveData
     {
         public SaveCoverData saveCoverData;
-
+        
         public SerializableTransform playerSerializableTransform;
         
+        // Npc들 상태
         public List<InteractionSaveData> interactionData;
 
         public string[] items;
