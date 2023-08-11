@@ -159,8 +159,8 @@ namespace Utility.Interaction
                         }
                         else
                         {
-                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData,
-                                nextIndex => { EndInteraction(index, nextIndex); });
+                            interaction.dialogueData.OnDialogueEnd = nextIndex => { EndInteraction(index, nextIndex); };
+                            PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
                         }
 
                         break;
@@ -216,6 +216,7 @@ namespace Utility.Interaction
 
         protected virtual void EndInteraction(int index = -1, int nextIndex = -1)
         {
+            Debug.LogWarning("왜 실행 안해");
             if (index == -1)
             {
                 index = interactionIndex;
@@ -301,8 +302,8 @@ namespace Utility.Interaction
                     }
                     else
                     {
-                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData,
-                            nextIndex => { EndInteraction(index, nextIndex); });
+                        interaction.dialogueData.OnDialogueEnd = nextIndex => { EndInteraction(index, nextIndex); };
+                        PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
                     }
 
                     break;

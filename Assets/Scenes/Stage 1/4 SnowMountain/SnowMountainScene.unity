@@ -405,6 +405,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -602,6 +603,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1284,6 +1286,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1345,6 +1348,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2180,6 +2184,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2346,6 +2351,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2834,6 +2840,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3728,6 +3735,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4042,6 +4050,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4372,6 +4381,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4520,6 +4530,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4904,6 +4915,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4965,6 +4977,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5128,6 +5141,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5329,6 +5343,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5610,6 +5625,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6441,6 +6457,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6616,6 +6633,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6677,6 +6695,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -6886,6 +6905,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -7602,6 +7622,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -8301,9 +8322,7 @@ MonoBehaviour:
         contents: "\uC88B\uC544. \uB2E4\uC2DC \uC774\uB3D9\uD558\uC790."
         dialogueType: 1
         expression: 0
-        option:
-        - Left
-        - ' Appear'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -8442,6 +8461,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9589,6 +9609,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -9599,8 +9620,8 @@ MonoBehaviour:
       interactNextIndex: 1
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnLoadScene: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -10041,28 +10062,8 @@ MonoBehaviour:
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 
-        dialogueType: 11
-        expression: 0
-        option:
-        - Reset
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 0
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -10124,6 +10125,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -10290,6 +10292,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -10572,6 +10575,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -11011,6 +11015,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -11395,6 +11400,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -11619,6 +11625,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -12344,6 +12351,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -13983,6 +13991,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -14654,6 +14663,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -15021,6 +15031,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -15948,6 +15959,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -16439,6 +16451,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -16688,6 +16701,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -17069,6 +17083,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5807807672357530623, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672357530623, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672357530623, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5807807672359590245, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17089,8 +17115,32 @@ PrefabInstance:
       propertyPath: edges.Array.data[95].v2.y
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5807807672359590266, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672359590266, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672359590266, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5807807672382495958, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672382495959, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672382495959, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807672382495959, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5807807672548641232, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
@@ -17209,6 +17259,34 @@ PrefabInstance:
       propertyPath: startPos.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5807807673157528734, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673157528734, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673157528734, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673317361028, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673317361029, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673317361029, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673317361029, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5807807673415636790, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 526.5
@@ -17248,6 +17326,22 @@ PrefabInstance:
     - target: {fileID: 5807807673777272594, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 448.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673849289692, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673849289693, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673849289693, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807807673849289693, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5807807674000137868, guid: d7b6bad68cb5ae04eb09039904ad57b5, type: 3}
       propertyPath: m_AnchoredPosition.x
