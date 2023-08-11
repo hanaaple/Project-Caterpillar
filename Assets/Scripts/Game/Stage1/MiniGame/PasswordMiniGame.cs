@@ -12,6 +12,11 @@ namespace Game.Stage1.MiniGame
         [Header("For Debug")] [SerializeField] private string password;
         [SerializeField] private int selectedIndex;
 
+        private void Start()
+        {
+            Play();
+        }
+
         protected override void Init()
         {
             base.Init();

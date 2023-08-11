@@ -546,7 +546,6 @@ namespace Utility.Dialogue
                         Debug.LogError("세팅 오류, Script -> Interaction 세팅");
                     }
 
-                    // 멈춰
                     dialogueElement.miniGame.Play(isSuccess =>
                     {
                         if (dialogueElement.isCustomEnd)
@@ -554,7 +553,7 @@ namespace Utility.Dialogue
                             if (isSuccess)
                             {
                                 // 성공 여부, NextIndex를 넘겨줘야됨
-                                EndDialogue(true, dialogueElement.clearNextInteractionIndex);
+                                EndDialogue(true, dialogueElement.successNextInteractionIndex);
                             }
                             else
                             {
