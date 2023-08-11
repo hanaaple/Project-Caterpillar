@@ -146,10 +146,10 @@ namespace Utility.Dialogue
         public bool isCustomEnd;
 
         [ConditionalHideInInspector("isCustomEnd")]
-        public int failNextInteractionIndex;
+        public int successNextInteractionIndex;
         
         [ConditionalHideInInspector("isCustomEnd")]
-        public int clearNextInteractionIndex;
+        public int failNextInteractionIndex;
 
         //[ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         //public int interactIndex;

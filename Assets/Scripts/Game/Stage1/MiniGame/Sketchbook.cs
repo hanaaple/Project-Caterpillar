@@ -20,7 +20,7 @@ namespace Game.Stage1.MiniGame
 
         private void OnValidate()
         {
-            // UpdateDisplay();
+            UpdateDisplay();
         }
 
         protected override void Init()

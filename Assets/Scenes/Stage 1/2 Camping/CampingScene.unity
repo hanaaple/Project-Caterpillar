@@ -415,6 +415,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -432,6 +435,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2443,6 +2449,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 2
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2464,6 +2473,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2483,6 +2495,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2504,6 +2519,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2521,6 +2539,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2539,6 +2560,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2556,6 +2580,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2573,6 +2600,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2590,6 +2620,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2608,6 +2641,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2644,6 +2680,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2663,6 +2702,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2681,6 +2723,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2710,6 +2755,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2750,6 +2798,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2769,6 +2820,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2790,6 +2844,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2807,6 +2864,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2828,6 +2888,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2845,6 +2908,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2863,6 +2929,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2881,6 +2950,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2899,6 +2971,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2916,6 +2991,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2935,6 +3013,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2956,6 +3037,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2973,6 +3057,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2992,6 +3079,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3009,6 +3099,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3027,6 +3120,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3044,6 +3140,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3053,10 +3152,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - 0
-        - 2
-        - 1
-        - 0
+        - "Tendency-\uB2E4\uAC10"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3065,6 +3161,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3082,6 +3181,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3091,10 +3193,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - 0
-        - 2
-        - 0
-        - 1
+        - "Tendency-\uCCA0\uC800"
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3103,6 +3202,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3120,6 +3222,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3137,6 +3242,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3154,6 +3262,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3172,6 +3283,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3194,6 +3308,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3220,6 +3337,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3242,6 +3362,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 3
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3260,12 +3383,15 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: "\uC544\uC774\uC791"
-        contents: "\uB9C8\uC57C! \uD1A0\uBBF8! \uCFE0\uD0A4\uB3C4!"
+        contents: "\uB9C8\uC57C! \uD1A0\uBBF8! \uCFE0\uD0A4!"
         dialogueType: 1
         expression: 0
         option: []
@@ -3277,6 +3403,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3295,6 +3424,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3313,6 +3445,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3330,6 +3465,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3347,6 +3485,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3461,6 +3602,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3480,6 +3624,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3498,6 +3645,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3516,6 +3666,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3534,6 +3687,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3843,6 +3999,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4126,6 +4285,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4143,6 +4305,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: -1
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4410,6 +4575,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4429,6 +4597,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4446,6 +4617,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4463,6 +4637,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4481,6 +4658,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5030,6 +5210,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5049,6 +5232,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5068,6 +5254,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5085,6 +5274,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5103,6 +5295,9 @@ MonoBehaviour:
         playableDirectorName: 
         waitSec: 0
         miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
