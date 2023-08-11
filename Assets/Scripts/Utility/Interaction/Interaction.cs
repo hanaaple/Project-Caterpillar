@@ -202,6 +202,14 @@ namespace Utility.Interaction
                         }
 
                         break;
+                    case InteractType.Tutorial:
+                    {
+                        PlayUIManager.Instance.tutorialManager.StartTutorial(interaction.tutorialHelper, () =>
+                        {
+                            EndInteraction();
+                        });
+                        break;
+                    }
                 }
             }
         }

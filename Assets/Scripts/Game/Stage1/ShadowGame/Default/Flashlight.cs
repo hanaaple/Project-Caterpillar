@@ -46,9 +46,9 @@ namespace Game.Stage1.ShadowGame.Default
         public void MoveFlashLight(Vector2 followPos)
         {
             followPos = Vector2.Lerp(mainLight.transform.position, followPos, Time.deltaTime * followSpeed);
-            mainLight.transform.position = followPos;
+            mainLight.transform.position = new Vector3(followPos.x, followPos.y, mainLight.transform.position.z);
 
-            subLight.transform.up = Vector2.Lerp(subLight.transform.up,
+            subLight.transform.up = Vector3.Lerp(subLight.transform.up,
                 mainLight.transform.position - subLight.transform.position, 0.05f);
     
     
@@ -87,12 +87,12 @@ namespace Game.Stage1.ShadowGame.Default
             subLight.intensity = (intensity - globalLight.intensity) * 0.6f;
         }
     
-        public void SetFlashLightPos(Vector3 followPos)
+        public void SetFlashLightPos(Vector2 followPos)
         {
-            followPos = Vector3.Lerp(mainLight.transform.position, followPos, 1);
-            mainLight.transform.position = followPos;
+            followPos = Vector2.Lerp(mainLight.transform.position, followPos, 1);
+            mainLight.transform.position = new Vector3(followPos.x, followPos.y, mainLight.transform.position.z);
     
-            subLight.transform.up = Vector2.Lerp(subLight.transform.up,
+            subLight.transform.up = Vector3.Lerp(subLight.transform.up,
                 (mainLight.transform.position - subLight.transform.position), 1);
     
     

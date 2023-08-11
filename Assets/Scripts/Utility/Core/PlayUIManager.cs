@@ -43,7 +43,8 @@ namespace Utility.Core
         public DialogueController dialogueController;
         public InventoryManager inventoryManager;
         public QuickSlotManager quickSlotManager;
-
+        public TutorialManager tutorialManager;
+        
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
 

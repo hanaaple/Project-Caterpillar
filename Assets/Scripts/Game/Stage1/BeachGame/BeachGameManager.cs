@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.Scene;
+using Utility.Tutorial;
 
 namespace Game.Stage1.BeachGame
 {
@@ -24,7 +25,7 @@ namespace Game.Stage1.BeachGame
         Dolphin
     }
 
-    public class BeachGameManager : MonoBehaviour
+    public class BeachGameManager : MonoBehaviour, IGamePlayable
     {
         [Serializable]
         private class BeachInteractions
@@ -34,6 +35,8 @@ namespace Game.Stage1.BeachGame
             public BeachInteraction[] interactions;
             [NonSerialized] public bool IsClear;
         }
+        
+        [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
         
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
         [SerializeField] private BeachInteractions[] beachInteractions;
@@ -49,12 +52,17 @@ namespace Game.Stage1.BeachGame
         private InputActions _inputActions;
         
         private static readonly int OpenHash = Animator.StringToHash("Open");
+        private static readonly int EndHash = Animator.StringToHash("GameEnd");
 
         private void Start()
         {
             Initialize();
+            Play();
+        }
 
-            GameStart();
+        public void Play()
+        {
+            PlayUIManager.Instance.tutorialManager.StartTutorial(tutorialHelper, GameStart);
         }
 
         private void Initialize()
@@ -215,7 +223,7 @@ namespace Game.Stage1.BeachGame
 
             SceneHelper.Instance.toastManager.onToastEnd = () =>
             {
-                albumAnimator.SetTrigger("GameEnd");
+                albumAnimator.SetTrigger(EndHash);
                 StartCoroutine(GameEndCoroutine());
             };
         }

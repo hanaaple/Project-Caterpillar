@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.Scene;
+using Utility.Tutorial;
 using Utility.Util;
 
 namespace Game.Stage1.ShadowGame.Default
@@ -20,8 +21,11 @@ namespace Game.Stage1.ShadowGame.Default
 
     public class ShadowGameManager : MonoBehaviour, IGamePlayable
     {
+        [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
+
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
+
         [SerializeField] private BoxCollider2D cameraBound;
 
         [Space(10)] [Header("Light")] [SerializeField]
@@ -29,11 +33,13 @@ namespace Game.Stage1.ShadowGame.Default
 
         [Space(20)] [Header("Canvas")] [SerializeField]
         private Button tutorialExitButton;
+
         [SerializeField] private Button retryButton;
         [SerializeField] private Button giveUpButton;
 
         [Space(20)] [Header("Play UI")] [SerializeField]
         private Animator heartAnimator;
+
         [SerializeField] private SpeechBubble[] damagedTexts;
         [SerializeField] private SpeechBubble[] defeatedTexts;
         [SerializeField] private Animator batteryAnimator;
@@ -41,6 +47,7 @@ namespace Game.Stage1.ShadowGame.Default
 
         [Space(20)] [Header("스테이지")] [SerializeField]
         protected Animator gameAnimator;
+
         [SerializeField] private Animator stageAnimator;
         [SerializeField] protected ShadowMonster shadowMonster;
         [SerializeField] private ShadowGameItem[] shadowGameItems;
@@ -161,7 +168,7 @@ namespace Game.Stage1.ShadowGame.Default
             flashlight.MoveFlashLight(worldPoint);
             CameraMove(Input.mousePosition);
         }
-        
+
         private void ResetSetting()
         {
             _camera.transform.position = Vector3.back;
@@ -176,8 +183,11 @@ namespace Game.Stage1.ShadowGame.Default
 
         public void Play()
         {
-            InputManager.PushInputAction(_inputActions);
-            StartTutorial();
+            PlayUIManager.Instance.tutorialManager.StartTutorial(tutorialHelper, () =>
+            {
+                InputManager.PushInputAction(_inputActions);
+                StartTutorial();
+            });
         }
 
         private void StartTutorial()
@@ -231,7 +241,7 @@ namespace Game.Stage1.ShadowGame.Default
         private IEnumerator CheckDefeat()
         {
             yield return new WaitUntil(() => shadowMonster.GetIsDefeated());
-            
+
             if (_stageUpdateCoroutine != null)
             {
                 StopCoroutine(_stageUpdateCoroutine);
@@ -329,6 +339,7 @@ namespace Game.Stage1.ShadowGame.Default
                     gameAnimator.SetFloat(SecHash, t);
                     yield return null;
                 }
+
                 StartStage(isClear);
             }
         }
@@ -379,7 +390,7 @@ namespace Game.Stage1.ShadowGame.Default
                 }
             }
         }
-        
+
         private void CameraMove(Vector2 input)
         {
             // Screen.currentResolution.width did not always work 
