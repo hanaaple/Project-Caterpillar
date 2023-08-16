@@ -1,0 +1,3194 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1067089238009313880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7569007383947581775}
+  - component: {fileID: 3292935747668534277}
+  - component: {fileID: 1619639782477989067}
+  m_Layer: 11
+  m_Name: Naru
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7569007383947581775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067089238009313880}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6238848950328017657}
+  m_Father: {fileID: 3630341119223012534}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3292935747668534277
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067089238009313880}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -212501049
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1936552597, guid: 9210b294adb8a2e4d817cb125c47a474, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.08, y: 1.66}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!70 &1619639782477989067
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067089238009313880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1, y: 0}
+  m_Size: {x: 1.1, y: 1.7}
+  m_Direction: 0
+--- !u!1 &3630341119223012528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3630341119223012534}
+  - component: {fileID: 2257833677231867231}
+  - component: {fileID: 8759562747109508579}
+  - component: {fileID: 1914733980213469156}
+  - component: {fileID: 4221840157343641053}
+  m_Layer: 11
+  m_Name: Naru
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3630341119223012534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7569007383947581775}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2257833677231867231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901e0f19339a42559e093b794488befe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: In12312
+  interactionData:
+  - interactType: 5
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 0}
+    dialogueData:
+      index: 0
+      dialogueElements: []
+    itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 1
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: 8d75d3640d589554599dd1308f1e10f0, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - Appear
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uC774\uBD10! \uAD1C\uCC2E\uC544? \uB124\uAC00 \uB5A8\uC5B4\uC9C0\uB294
+          \uAC78 \uBD24\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Right
+        - Appear
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uC800\uB7F0, \uD639\uC2DC \uAE30\uC5B5 \uB098\uB294 \uAC83\uC774
+          \uC788\uC5B4?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: 
+        contents: "(\uACE0\uAC1C\uB97C \uC813\uB294\uB2E4.)"
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uBB50\u2026 \uB108\uBB34 \uAC71\uC815\uD558\uC9C0\uB294 \uB9C8.\n\uD558\uB298\uC5D0\uC11C
+          \uC0AC\uB78C\uC774 \uB5A8\uC5B4\uC9C4 \uC801\uC774 \uC774\uBC88\uC774 \uCC98\uC74C\uC740
+          \uC544\uB2C8\uAC70\uB4E0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8\uB2E4\uC9C0 \uD2B9\uBCC4\uD55C \uC77C\uC740 \uC544\uB2C8\uC9C0.
+          \uC624\uD788\uB824 \uC885\uC885 \uC788\uB358 \uC77C \uC774\uB77C\uACE0
+          \uD560\uAE4C?\n\uBB3C\uB860, \uC644\uC804\uD788 \uAE30\uC5B5\uC774 \uC5C6\uB294
+          \uACBD\uC6B0\uB294 \uD754\uD558\uC9C0 \uC54A\uC9C0\uB9CC."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC6B0\uB9AC\uB294 \uADF8\uB4E4\uC744 <b>\u2018\uAE38\uC744 \uC783\uC740
+          \uC0AC\uB78C\uB4E4\u2019</b>\uC774\uB77C\uACE0 \uBD88\uB7EC."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: 
+        contents: "\uB3CC\uC544\uAC00\uACE0 \uC2F6\uC5B4."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uBAA8\uB450\uB4E4 \uADF8\uB807\uAC8C \uC774\uC57C\uAE30\uD558\uB354\uB77C.
+          \uAE30\uC5B5\uC774 \uC628\uC804\uCE58 \uC54A\uC740\uB370\uB3C4. \uCC38
+          \uC774\uC0C1\uD55C \uC77C\uC774\uC9C0?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uAD1C\uCC2E\uC544, \uC5FC\uB824\uD560 \uD544\uC694\uB294 \uC5C6\uC5B4.
+          \uB300\uAC8C \uC874\uC7AC\uB4E4\uC740 \uC2A4\uC2A4\uB85C \uB3CC\uC544\uAC08
+          \uAE38\uC744 \uC54C\uACE0 \uC788\uAC70\uB4E0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8\uB798. \uC608\uB97C \uB4E4\uC790\uBA74 \uADF8\uB4E4 \uC911
+          \uB300\uB2E4\uC218\uAC00 \uD5A5\uD588\uB358 \uACF3\uC774 <b>'\uB974\uB93C\uC5D0
+          \uD30C\uD3B8\uC5F0\uBABB\u2019</b>\uC774\uC5C8\uB2E4\uB358\uAC00."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "<b>\u2018\uB974\uB93C\uC5D0 \uD30C\uD3B8\uC5F0\uBABB\u2019</b>\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uADF8\uB798. \uC774\uB300\uB85C \uBD81\uB3D9\uCABD\uC73C\uB85C
+          \uCB49 \uAC78\uC5B4\uAC00\uC11C \uADF8 \uAE38\uB85C \uB3CC\uC544\uAC00\uB3C4
+          \uC88B\uC544."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8\uB807\uC9C0\uB9CC\xB7\xB7\xB7. \uB9CC\uC57D \uB124\uAC00
+          \uC774\uACF3\uC5D0\uC11C \uCC3E\uACE0 \uC2F6\uC740 \uAC83\uC774 \uC788\uB2E4\uACE0
+          \uD55C\uB2E4\uBA74,\n\uC774\uAC83\uC774 \uB108\uC5D0\uAC8C \uB3C4\uC6C0\uC774
+          \uB420 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uBA54\uC778 \uD544\uB4DC) : \uBAA9\uAC78\uC774 \uC544\uC774\uD15C\uC744
+          \uD074\uB85C\uC988\uC5C5\uD55C \uADF8\uB9BC\uC774 \uB72C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        - ' name=Main/Prologue/#0-1 Get Necklace'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0.1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "<b>\u2018\uC815\uCCB4 \uBD88\uBA85\uC758 \uBAA9\uAC78\uC774\u2019</b>\uB97C
+          \uD68D\uB4DD\uD558\uC600\uB2E4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uBA54\uC778 \uD544\uB4DC) : \uBAA9\uAC78\uC774 \uC544\uC774\uD15C\uC744
+          \uD074\uB85C\uC988\uC5C5\uD55C \uADF8\uB9BC\uC774 \uC0AC\uB77C\uC9C4\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        - ' name=Main/Prologue/#0-2 Remove Necklace'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 942f7e01fb074b74ca911513a625e3be, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0.1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uCC3E\uACE0 \uC2F6\uC740 \uAC83?"
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uBB34\uC2A8 \uC18C\uB9AC\uB97C \uD558\uB294 \uAC70\uC57C?"
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC774\uB7F0\xB7\xB7\xB7. \uC124\uB9C8\uD558\uB2C8 \uD558\uB298\uC5D0\uC11C
+          \uC0AC\uB78C\uB4E4\uC774 \uC885\uC885 \uB5A8\uC5B4\uC9C0\uB294 \uACF5\uAC04\uC774
+          \uC77C\uBC18\uC801\uC774\uB77C\uACE0 \n\uC0DD\uAC01\uD558\uB294 \uAC74
+          \uC544\uB2C8\uC9C0?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\xB7\xB7\xB7\uC7AC\uC218\uAC00 \uC5C6\uB294 \uB0A0\uC5D0\uB294
+          \uBA38\uB9AC\uB85C \uB5A8\uC5B4\uC9C0\uB294 \uC77C\uB3C4 \uC788\uC744 \uC218
+          \uC788\uC9C0.\n\uBA38\uD53C\uAC00 \uC88B\uC544\uD560 \uADF8\uB7F0 \uB0A0\uB4E4
+          \uB9D0\uC774\uC57C. \uD06C\uAC8C \uBB38\uC81C\uB420 \uAC83\uC740 \uC544\uB2C8\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uD55C\uBC88 \uC5B8\uAE09\uD588\uB358 \uAC83\uCC98\uB7FC \uC6B0\uB9AC\uB294
+          \uB108\uD76C\uB97C \u2018\uAE38\uC744 \uC783\uC740 \uC0AC\uB78C\uB4E4\u2019\uC774\uB77C\uACE0
+          \uBD88\uB7EC."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\u2018\uAE38\uC744 \uC783\uC740 \uC0AC\uB78C\uB4E4\u2019\uC740
+          \uC7AC\uB7C9\uAECF \uC774 \uACF3\uC744 \uBA38\uBB3C\uB2E4 \uB5A0\uB098\uAC08
+          \uC218 \uC788\uC9C0.\n\xB7\xB7\xB7\uBB3C\uB860 \uC774 \uC5B4\uC0C9\uD558\uACE0
+          \uB530\uBD84\uD55C \uACF5\uAC04\uC744 \uC88B\uC544\uD558\uB294 \uC0AC\uB78C\uB4E4\uC740
+          \uBA87 \uC5C6\uC5C8\uAE30\uB294 \uD574\uB3C4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uD558\uC9C0\uB9CC \uADF8\uB807\uAC8C \uB5A0\uB098\uAC14\uB358
+          \uB2E4\uC218\uB294 \uADFC\uC2DC\uC77C \uB0B4 \uB2E4\uC2DC\uAE08 \uC774
+          \uACF3 \uD558\uB298\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uACE4 \uD588\uC5B4.
+          \n\uADF8\uB7EC\uD55C \uC0AC\uC2E4\uC740 \uC804\uD600 \uAE30\uC5B5\uD558\uC9C0
+          \uBABB\uD588\uACE0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\xB7\xB7\xB7\uB108\uB3C4 \uC774 \uC815\uCCB4 \uBAA8\uB97C \uACF5\uAC04\uC5D0
+          \uB2E4\uC2DC \uBA38\uB9AC\uBD80\uD130 \uB5A8\uC5B4\uC9C0\uACE0 \uC2F6\uC740
+          \uB9C8\uC74C\uC740 \uC5C6\uC796\uC544?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uBB50\xB7\xB7\xB7 \uADF8\uB807\uB2E4\uACE0 \u2018\uC624\uB798
+          \uBA38\uBB38 \uC0AC\uB78C\uC740 \uC808\uB300 \uB2E4\uC2DC \uB5A8\uC5B4\uC9C0\uC9C0
+          \uC54A\uC558\uB2E4\u2019\uB294 \uB73B\uC740 \uC544\uB2C8\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC778\uC0DD\uC774\uB780 \uC6D0\uB798 \uBCC0\uD654\uBB34\uC30D\uD55C
+          \uBC95\uC774\uB2C8, \uD558\uB298\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uB294 \uBBF8\uC544\uAC00
+          \uB418\uB294 \uC77C\uCBE4 \uD754\uD558\uC9C0. \n\uC120\uD0DD\uC740 \uC628\uC804\uD788
+          \uB124 \uBAAB\uC774\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7\uBB34\uC2A8 \uC18C\uB9AC\uB97C \uD558\uB294\uC9C0
+          \uC798 \uBAA8\uB974\uACA0\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uB108\uBB34 \uAE4A\uAC8C \uC0DD\uAC01\uD560 \uD544\uC694\uB294
+          \uC5C6\uC5B4.\n\uC9C0\uAE08\uC740 \uC77C\uB2E8 \uB124\uAC00 \uB9C8\uC74C
+          \uAC00\uB294 \uB300\uB85C \uD558\uB3C4\uB85D \uD574."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uC54C\uACA0\uC5B4."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uC548 \uD560\uB798."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: ???
+        contents: "\xB7\xB7\xB7\uC774\uB7F0! \uB0B4 \uC815\uC2E0 \uC880 \uBD10. \n\uC2DC\uC2DC\uD55C
+          \uC774\uC57C\uAE30\uB294 \uC81C\uCCD0 \uB450\uACE0 \uBAA9\uAC78\uC774\uB97C
+          \uC5B4\uB5BB\uAC8C \uC4F0\uB294\uC9C0 \uC54C\uB824 \uC904\uAC8C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+    itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 1
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: b60b461cdfd361b4b9fc1e4be591e283, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
+      - name: 0
+        subject: 
+        contents: "(\uBA54\uC778 \uD544\uB4DC)> (\uCEF7 \uC52C \uC804\uD658): \uD5C8\uC218
+          \uACF5\uAC04\uC758 \uC804\uACBD\uC744 \uBE44\uCD98\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 3'
+        - " name=Main/Prologue/#1-1 \uD5C8\uC218\uACF5\uAC04"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 10856c65bbd1aab479458bccbccf132f, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 3
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC774\uACF3 <b>\u2018\uD5C8\uC218 \uACF5\uAC04\u2019</b>\uC5D0\uB294
+          \uB2E4\uC591\uD55C <b>\u2018\uAE30\uC5B5\u2019</b>\uB4E4\uC774 \uC874\uC7AC\uD574."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8\uAC83\uB4E4\uC740 \uB610\uD55C \uAC10\uC815\uC744 \uAC00\uB9AC\uC9C0
+          \uC54A\uC9C0. \uD558\uC9C0\uB9CC \uAC81\uBA39\uC744 \uD544\uC694\uB294
+          \uC5C6\uC5B4. \n\uB124\uAC00 \uB9CC\uC77C \uC774\uACF3\uC5D0 \uC870\uAE08
+          \uB354 \uBA38\uBB34\uB974\uAE38 \uACB0\uC815\uD588\uB2E4\uACE0 \uD558\uB354\uB77C\uB3C4\xB7\xB7\xB7
+          \n\uD560 \uC77C\uC740 \uC5B4\uB835\uC9C0 \uC54A\uAC70\uB4E0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\xB7\xB7\xB7\uADF8\uC800 \uB124\uAC00 \uC6D0\uD558\uB294 \uB9CC\uD07C
+          <b>\u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uB97C \uB4E4\uC5B4\uC8FC\uBA74
+          \uB3FC.</b> \uAC04\uB2E8\uD558\uC9C0?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uBBFF\uC744 \uC218 \uC5C6\uACA0\uC9C0\uB9CC \uC7A5\uB2F4\uD558\uAC74\uB300
+          \uADF8\uAC83\uB9CC \uD558\uB354\uB77C\uB3C4 \uB124\uAC00 \uC783\uC5B4\uBC84\uB838\uB358
+          \uBB34\uC5B8\uAC00\uB97C \n\uCC3E\uB294 \uB370\uC5D0\uB294 \uD070  \uB3C4\uC6C0\uC774
+          \uB420 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uBAA9\uAC78\uC774\uB294?"
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uBAA9\uAC78\uC774\uB294 \uB124\uAC00 \u2018\uAE30\uC5B5\u2019\uB4E4\uC5D0
+          \uB2FF\uC744 \uC218 \uC788\uB3C4\uB85D \uB108\uB97C \uBCF4\uC870\uD574\uC8FC\uB294
+          \uC77C\uC744 \uD558\uAC8C \uB420 \uAC83\uC774\uACE0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC74C\xB7\xB7\xB7 \uADF8\uB798! \uB9D0\uB85C\uB9CC \uC124\uBA85\uD558\uAE30
+          \uBCF4\uB2E4\uB294 \uC608\uC2DC\uB97C \uBCF4\uC5EC\uC8FC\uB294 \uD3B8\uC774
+          \uB124\uAC8C\uB3C4 \uC88B\uACA0\uC9C0?\n\uC790, \uC77C\uB2E8 \uB0B4 \uC190\uC744
+          \uC7A1\uC544\uBD10."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC190\uC73C\uB85C \uCD94\uC815\uB418\uB294 \uAC83\uC744 \uC7A1\uB294\uB2E4.)"
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uC8FC\uC778\uACF5\uC740
+          \uB098\uB8E8\uC640 \uC190\uC744 \uC7A1\uACE0 \uC8FC\uC778\uACF5\uC758 \uBAA9\uAC78\uC774\uC5D0\uC11C\uB294
+          \uAE30\uBB18\uD55C \uBE5B\uC774 \uB09C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 1.5'
+        - " name=Main/Prologue/#1-2 \uB098\uB8E8 \uC8FC\uC778\uACF5 \uBAA9\uAC78\uC774"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uAC00\uC815\uC9D1\uC73C\uB85C
+          \uBCF4\uC774\uB294 \uACF5\uAC04."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 1.5'
+        - " name=Main/Prologue/#1-3 \uAC00\uC815\uC9D1"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 49e10a0411bb2a546957d5567716df5a, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC5B4\uB54C? \uBB34\uC5C7\uC774 \uBCF4\uC5EC?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uB2E4\uB978 \uACF5\uAC04\uC774\uC57C."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uBB3C\uAC74\uB4E4\uC774 \uB9CC\uC838\uC9C0\uC9C0 \uC54A\uC544."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uB124\uAC00 \uBCF4\uB294 \uAC83\uC740 \u2018\uAE30\uC5B5\u2019\uC758
+          \uC77C\uBD80\uC57C. \uC9C1\uC811\uC801\uC778 \uC601\uD5A5\uC740 \uC904
+          \uC218 \uC5C6\uC9C0.\n\uADF8\uAC83\uB4E4\uC740 \uC774\uBBF8 \uACFC\uAC70\uC5D0
+          \uC77C\uC5B4\uB09C \uD655\uC815\uB41C \uC774\uC57C\uAE30\uB4E4\uC774\uAC70\uB4E0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\xB7\xB7\xB7\uB108\uB294 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758
+          \uC774\uC57C\uAE30\uAC00 \uC9C4\uD589\uB418\uB294 \uB3D9\uC548 \uC774\uC57C\uAE30\uC758
+          \uC911\uC694\uD55C \uAE30\uB85C\uC18D\uC5D0\uC11C \uBA87 \uAC00\uC9C0 \uC120\uD0DD\uC744
+          \uD558\uAC8C  \uB420 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC120\uD0DD\uC73C\uB85C \uC774\uBBF8 \uD655\uC815\uB41C \uC774\uC57C\uAE30\uAC00
+          \uC88C\uC9C0\uC6B0\uC9C0\uB418\uB294 \uC77C\uB3C4 \uC5C6\uC73C\uB2C8 \uBD80\uB2F4
+          \uAC00\uC9C8 \uD544\uC694\uB3C4 \n\uC5C6\uACA0\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uBB3C\uB860 \uADF8\uB807\uB2E4\uACE0 \uD574\uC11C \uC774 \uC77C\uB828\uC758
+          \uD589\uC704\uAC00 \uC804\uD600 \uC758\uBBF8\uAC00 \uC5C6\uC9C0\uB294 \uC54A\uC544.\n\uB298
+          \uC0C1 \uADF8\uB7AC\uB4EF\uC774 \uB124 \uC120\uD0DD\uC740 \uACE7 \uB124
+          \uC77C\uBD80\uAC00 \uB420 \uD14C\uB2C8\uAE4C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uB9D0\uC774 \uAE38\uC5B4\uC84C\uB124. \uC9C1\uC811 \uBCF4\uC5EC
+          \uC904\uAC8C. \uADF8\uB798. \uB124 \uC55E\uC5D0 \uAC15\uC544\uC9C0, \uBCF4\uC774\uC9C0?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uCEF7 \uC52C \uC804\uD658): \uAC00\uC815\uC9D1
+          \uBC30\uACBD \uC18D \uAC15\uC544\uC9C0\uC640 \uADF8 \uC55E\uC758 \uBC25\uADF8\uB987\uC774
+          \uBCF4\uC778\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 1.5'
+        - " name=Main/Prologue/#1-4 \uAC15\uC544\uC9C0"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 724a67143f5542644a19aa0cdeeb606c, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\uBCF4\uC5EC."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uB9CC\uC77C \uB124\uAC00 \uAC15\uC544\uC9C0\uC758 \uC785\uC7A5\uC774\uC5C8\uB2E4\uBA74
+          \uC55E\uC5D0 \uB193\uC778 \uADFC\uC0AC\uD55C \uBC25\uC0C1\uC744 \uBA39\uC744
+          \uAC70\uC57C?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\xB7\xB7\xB7\uB108\uBB34 \uADF8\uB807\uAC8C \uBCF4\uC9C0 \uB9C8.
+          \uC774\uAC74 \uC5B4\uB514\uAE4C\uC9C0\uB098 \uC608\uC2DC\uB77C\uACE0! \n\uAC00\uB828\uD55C
+          \uAC15\uC544\uC9C0\uC5D0\uAC8C\uB294 \uC774 \uD55C\uB07C\uAC00 \uC778\uC0DD\uC758
+          \uC911\uC694\uD55C \uAE30\uB85C\uC77C \uC218 \uC788\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\uBA39\uC744\uAC8C."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC88B\uC544. \uADF8\uAC8C \uB124 \uC120\uD0DD\uC774\uAD6C\uB098.
+          \uB124 \uC120\uD0DD\uACFC\uB294 \uBCC4\uAC1C\uB85C \uC774\uC57C\uAE30 \uC18D
+          \uAC15\uC544\uC9C0\uB294 \uBC25\uC744 \uBA39\uC5C8\uC5B4. \n\uADF8\uB9AC\uACE0
+          \uADF8 \uACFC\uC815\uC18D\uC5D0\uC11C \uB124\uAC00 \uC5BB\uAC8C \uB420
+          \uAC83\uC740, \uC774\uAC83\uC774\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "\uC5F4\uC1E0 <b><\uB9CC\uC871></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC18C\uAC10\uC740?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\xB7\xB7\xB7\uC774\uBD10, \uC774\uB807\uAC8C \uAC10\uD765 \uC5C6\uC774
+          \uAD74 \uAC70\uC57C? \uADF8\uAC83\uB4E4\uC774 \uB124\uAC00 \uCC3E\uACE0
+          \uC788\uB358 \uAC83\uC774\uB77C\uACE0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7\uB0B4\uAC00 \uC774\uAC78 \uC65C \uCC3E\uC544\uC57C
+          \uD558\uB294\uC9C0 \uBAA8\uB974\uACA0\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uAC74\uC870\uD558\uAE30\uB294! \uBA87 \uBC88\uC774\uB098 \uB9D0\uD588\uB4EF
+          \uB124\uAC00 \uC815 \uC758\uBBF8\uB97C \uCC3E\uC9C0 \uBABB\uD558\uACA0\uB2E4\uBA74
+          \uB3CC\uC544\uAC00\uB3C4 \uC88B\uC544. \n\uC2DC\uAC04\uC740 \uC5B8\uC81C\uB098
+          \uC18C\uC911\uD558\uACE0, \uC120\uD0DD\uC740 \uC5B8\uC81C\uB098 \uB124
+          \uBAAB\uC774\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uBA54\uC778 \uD544\uB4DC)"
+        dialogueType: 6
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uC544\uBB34\uD2BC. \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
+          \uB05D\uC774 \uB098\uBA74, \uB108\uB294 \uB2E4\uC2DC \uD5C8\uC218\uACF5\uAC04\uC5D0
+          \uB3C4\uCC29\uD558\uAC8C \uB420 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Right
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8 \uC774\uD6C4\uC758 \uC77C\uC740 \uB3D9\uC77C\uD558\uC9C0.
+          \uC6D0\uD558\uB2E4\uBA74 \uB2E4\uB978 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758
+          \uC774\uC57C\uAE30\uB97C \uB354 \uB4E4\uC744 \uC218\uB3C4 \uC788\uACE0,
+          \n\uB3CC\uC544\uAC08 \uC218\uB3C4 \uC788\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "\uC5F4\uC1E0 <b><\uB9CC\uC871></b>\uC744 \uD68C\uC218\uB2F9\uD588\uB2E4!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uBA39\uC9C0 \uC54A\uC744\uB798."
+        dialogueType: 2
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC88B\uC544. \uADF8\uAC8C \uB124 \uC120\uD0DD\uC774\uAD6C\uB098.
+          \uB124 \uC120\uD0DD\uACFC\uB294 \uBCC4\uAC1C\uB85C \uC774\uC57C\uAE30 \uC18D
+          \uAC15\uC544\uC9C0\uB294 \uBC25\uC744 \uBA39\uC5C8\uC5B4. \n\uADF8\uB9AC\uACE0
+          \uADF8 \uACFC\uC815\uC18D\uC5D0\uC11C \uB124\uAC00 \uC5BB\uAC8C \uB420
+          \uAC83\uC740, \uC774\uAC83\uC774\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "\uC5F4\uC1E0 <b><\uC778\uB0B4></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uC18C\uAC10\uC740?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\xB7\xB7\xB7\uC774\uBD10, \uC774\uB807\uAC8C \uAC10\uD765 \uC5C6\uC774
+          \uAD74 \uAC70\uC57C? \uADF8\uAC83\uB4E4\uC774 \uB124\uAC00 \uCC3E\uACE0
+          \uC788\uB358 \uAC83\uC774\uB77C\uACE0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7\uB0B4\uAC00 \uC774\uAC78 \uC65C \uCC3E\uC544\uC57C
+          \uD558\uB294\uC9C0 \uBAA8\uB974\uACA0\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uAC74\uC870\uD558\uAE30\uB294! \uBA87 \uBC88\uC774\uB098 \uB9D0\uD588\uB4EF
+          \uB124\uAC00 \uC815 \uC758\uBBF8\uB97C \uCC3E\uC9C0 \uBABB\uD558\uACA0\uB2E4\uBA74
+          \uB3CC\uC544\uAC00\uB3C4 \uC88B\uC544. \n\uC2DC\uAC04\uC740 \uC5B8\uC81C\uB098
+          \uC18C\uC911\uD558\uACE0, \uC120\uD0DD\uC740 \uC5B8\uC81C\uB098 \uB124
+          \uBAAB\uC774\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uBA54\uC778 \uD544\uB4DC)"
+        dialogueType: 6
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uC544\uBB34\uD2BC. \u2018\uAE30\uC5B5\u2019\uB4E4\uC758 \uC774\uC57C\uAE30\uAC00
+          \uB05D\uC774 \uB098\uBA74, \uB108\uB294 \uB2E4\uC2DC \uD5C8\uC218\uACF5\uAC04\uC5D0
+          \uB3C4\uCC29\uD558\uAC8C \uB420 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Right
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8 \uC774\uD6C4\uC758 \uC77C\uC740 \uB3D9\uC77C\uD558\uC9C0.
+          \uC6D0\uD558\uB2E4\uBA74 \uB2E4\uB978 \u2018\uAE30\uC5B5\u2019\uB4E4\uC758
+          \uC774\uC57C\uAE30\uB97C \uB354 \uB4E4\uC744 \uC218\uB3C4 \uC788\uACE0,
+          \n\uB3CC\uC544\uAC08 \uC218\uB3C4 \uC788\uC5B4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uADF8\uB9AC\uACE0 \uBC29\uAE08 \uC804\uC740 \uADF8\uC800 \uC608\uC2DC\uC600\uC744
+          \uBFD0\uC774\uB2C8, \uB124\uAC8C \uC8FC\uC5B4\uC9C4 \uC5F4\uC1E0\uB294
+          \uD68C\uC218\uD558\uB3C4\uB85D \uD560\uAC8C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "\uC5F4\uC1E0 <b><\uC778\uB0B4></b>\uB97C \uD68C\uC218\uB2F9\uD588\uB2E4!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 3
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+    itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 1
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: e0f4632a1f7a54c4c874d71175b3fc34, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\uB108\uBB34 \uC18D\uC0C1\uD574 \uD558\uC9C0\uB294 \uB9C8. \uC774
+          \uD3B8\uC774 \uB124\uAC8C\uB3C4 \uC88B\uC744 \uAC70\uC57C. "
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\u2018\uAE30\uC5B5\u2019\uC758 \uC774\uC57C\uAE30\uB97C \uC628\uC804\uD788
+          \uB4E4\uC5B4\uC8FC\uAC8C \uB418\uBA74, \u2018\uAE30\uC5B5\u2019\uC740 \uAC10\uC0AC\uD568\uC758
+          \uD45C\uC2DC\uB85C \uBCF4\uB2F5\uC744 \uC904 \uAC70\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: ???
+        contents: "\uB098\uB3C4 \uBE44\uB85D \uC5F4\uC1E0\uB294 \uD68C\uC218\uD574
+          \uAC08 \uC218\uBC16\uC5D0 \uC5C6\uC5C8\uC9C0\uB9CC, \uC774 \uAC83\uB9CC\uD07C\uC740
+          \uAC74\uB124\uC5B4 \uC904 \uC218 \uC788\uC9C0!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uBA54\uC778 \uD544\uB4DC) : \uB098\uB8E8\uC778\uD615(\uC73C\uB85C
+          \uCD94\uC815\uB418\uB294) \uC544\uC774\uD15C\uC744 \uD074\uB85C\uC988\uC5C5\uD55C
+          \uADF8\uB9BC\uC774 \uB72C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        - ' name=Main/Prologue/#2-1 Get Naru Doll'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 2f7d671ed627602409470cb0bc263609, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0.1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "<\uC2DC\uC2A4\uD15C>"
+        contents: "<b>\u2018\uBB49\uD145\uC774\u2019</b>\uB97C \uD68D\uB4DD\uD558\uC600\uB2E4."
+        dialogueType: 1
+        expression: 0
+        option:
+        - NaruDoll:Add
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "(\xB7\xB7\xB7\uC2A4\uC2A4\uB85C\uB97C \uBCF8 \uB534 \uC778\uD615\uC73C\uB85C
+          \uCD94\uC815\uB41C\uB2E4.)"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uBA54\uC778 \uD544\uB4DC) : \uBAA9\uAC78\uC774 \uC544\uC774\uD15C\uC744
+          \uD074\uB85C\uC988\uC5C5\uD55C \uADF8\uB9BC\uC774 \uC0AC\uB77C\uC9C4\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' 0.1'
+        - ' name=Main/Prologue/#2-2 Remove Naru Doll'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 0f403b9381714424983a398484fd7d62, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0.1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: ???
+        contents: "\xB7\xB7\xB7\uC790! \uB0B4\uAC00 \uC124\uBA85\uD560 \uAC83\uC740
+          \uC5EC\uAE30 \uAE4C\uC9C0\uC57C.\n\uC774 \uC774\uD6C4\uB85C\uB294 \uB124
+          \uBC1C\uAC78\uC74C\uC774 \uB2FF\uB294 \uB300\uB85C \uC6C0\uC9C1\uC774\uB3C4\uB85D
+          \uD574. \uD639\uC2DC \uAD81\uAE08\uD55C \uC810 \uC788\uC5B4?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7\uB108\uB294 \uB204\uAD6C\uC57C?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: "\uB098\uB8E8"
+        contents: "\uB098\uB294 \uB098\uB8E8\uC57C."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: "\uB098\uB8E8"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: "\uB098\uB8E8"
+        contents: "\uC0AD\uB9C9\uD55C \uB188! \uC54C\uC544. \uB0B4 \uC815\uCCB4\uB97C
+          \uBB3B\uB294 \uAC70\uC9C0? \uC774\uB7F0 \uC5F0\uACE0\uB3C4 \uC5C6\uB294
+          \uACF3\uC5D0 \uB5A8\uC5B4\uC84C\uC73C\uB2C8 \uB098\uB97C \n\uACBD\uACC4\uD558\uB294
+          \uAC83\uB3C4 \uC774\uD574\uAC00 \uB418\uC9C0 \uC54A\uB294 \uAC83\uC740
+          \uC544\uB2C8\uC9C0."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uB098\uB8E8"
+        contents: "\xB7\xB7\xB7\uB098\uB294 \uADF8\uC800 \uAE38\uC7A1\uC774\uC77C
+          \uBFD0\uC774\uC57C. \uBAA8\uB4E0 \uD574\uB2F5\uC740 \uB124 \uC2A4\uC2A4\uB85C
+          \uCC3E\uC744 \uC218 \uC788\uACA0\uC9C0. "
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+    itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 1
+      interactNextIndex: 0
+      isLoop: 0
+      isInteracted: 0
+  - interactType: 1
+    animator: {fileID: 0}
+    state: 0
+    jsonAsset: {fileID: 4900000, guid: 933e4870ace932e438452adb6c17703b, type: 3}
+    dialogueData:
+      index: 0
+      dialogueElements:
+      - name: 3
+        subject: "\uB098\uB8E8"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 1
+        option:
+        - Right
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7?"
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - ' Appear'
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 9
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 3
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 9
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 4
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 9
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 5
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 10
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 3
+        subject: "\uB098\uB8E8"
+        contents: "\xB7\xB7\xB7!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 2
+        subject: "\uC544\uC778"
+        contents: "\xB7\xB7\xB7!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 11
+        expression: 0
+        option:
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+    itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
+    isMove: 0
+    targetTransform: {fileID: 0}
+    moveSpeed: 0
+    serializedInteractionData:
+      id: 0
+      isInteractable: 1
+      isNextInteractable: 0
+      interactNextIndex: 0
+      isLoop: 1
+      isInteracted: 0
+  isOnAwake: 1
+  interactionIndex: 0
+  defaultFloatingMark: {fileID: 5760228473941566048}
+  floatingMarks: []
+  defaultOffset: {x: 0.5, y: 1.5}
+--- !u!95 &8759562747109508579
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e74017e2e2e0f44e9a01f749c0b37a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1914733980213469156
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
+--- !u!212 &4221840157343641053
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630341119223012528}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.08, y: 1.66}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1001 &9114445867870108134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7569007383947581775}
+    m_Modifications:
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570639267234061190, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+      propertyPath: m_Name
+      value: NPC Bubble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+--- !u!1 &5760228473941566048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+  m_PrefabInstance: {fileID: 9114445867870108134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6238848950328017657 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2948129500639165215, guid: dc9ecf192a2cb4b4ba97d131f700ec33, type: 3}
+  m_PrefabInstance: {fileID: 9114445867870108134}
+  m_PrefabAsset: {fileID: 0}

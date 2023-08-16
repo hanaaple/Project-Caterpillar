@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility.SaveSystem;
+using Utility.Interaction;
 
 namespace Utility.Core
 {
@@ -31,14 +31,14 @@ namespace Utility.Core
                 return _instance;
             }
         }
-        
+
         [NonSerialized] public bool IsTitleCutSceneWorked;
-        
+
         [NonSerialized] public Player.Player Player;
 
         [NonSerialized] public List<Interaction.Interaction> InteractionObjects;
-
-        // [NonSerialized] public int loadedIndex;
+        
+        [NonSerialized] public List<Npc> Npc;
 
         private static GameManager Create()
         {
@@ -49,6 +49,7 @@ namespace Utility.Core
         private void Awake()
         {
             InteractionObjects = new List<Interaction.Interaction>();
+            Npc = new List<Npc>();
         }
 
         public void AddInteraction(Interaction.Interaction interaction)
@@ -56,30 +57,15 @@ namespace Utility.Core
             InteractionObjects.Add(interaction);
         }
 
-        public void Load(int saveDataIndex)
+        public void AddMainFieldNpc(Npc npc)
         {
-            var saveData = SaveManager.GetSaveData(saveDataIndex);
-            // if (saveData.interactionData != null)
-            // {
-            //     foreach (var interactionSaveData in saveData.interactionData)
-            //     {
-            //         var interaction = InteractionObjects.Find(item => item.id == interactionSaveData.id);
-            //
-            //         foreach (var interactionData in interaction.interactionData)
-            //         {
-            //             var loadedSerializedData = interactionSaveData.serializedInteractionData.Find(item =>
-            //                 item.id == interactionData.serializedInteractionData.id);
-            //
-            //             interactionData.serializedInteractionData = loadedSerializedData;
-            //         }
-            //     }
-            // }
+            Npc.Add(npc);
+        }
 
-            // if (Player)
-            // {
-            //     Player.transform.position = saveData.playerSerializableTransform.position;
-            //     Player.transform.rotation = saveData.playerSerializableTransform.rotation;
-            // }
+        public void Clear()
+        {
+            InteractionObjects.Clear();
+            Npc.Clear();
         }
     }
 }

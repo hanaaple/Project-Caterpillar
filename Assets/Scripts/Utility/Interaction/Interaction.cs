@@ -10,7 +10,6 @@ using Utility.Dialogue;
 using Utility.JsonLoader;
 using Utility.Player;
 using Utility.SaveSystem;
-using Utility.Scene;
 
 namespace Utility.Interaction
 {
@@ -21,7 +20,7 @@ namespace Utility.Interaction
 
         public InteractionData[] interactionData;
 
-        [SerializeField] protected bool isOnLoadScene;
+        // [SerializeField] protected bool isOnLoadScene;
 
         [SerializeField] protected bool isOnAwake;
 
@@ -53,13 +52,11 @@ namespace Utility.Interaction
         {
             GameManager.Instance.AddInteraction(this);
 
+            // 이거만 어떻게 막아보자
             if (isOnAwake)
             {
+                Debug.LogWarning("ㅎㅇ111");
                 StartInteraction();
-            }
-            else if (isOnLoadScene)
-            {
-                SceneLoader.Instance.onLoadSceneEnd += () => { StartInteraction(); };
             }
         }
 

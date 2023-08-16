@@ -22,17 +22,9 @@ namespace Utility.SaveSystem
                 if (_instance == null)
                 {
                     var obj = FindObjectOfType<SavePanelManager>();
-                    if (obj != null)
-                    {
-                        _instance = obj;
-                    }
-                    else
-                    {
-                        _instance = Instantiate(Resources.Load<SavePanelManager>("SavePanelManager"));
-                    }
+                    _instance = obj != null ? obj : Instantiate(Resources.Load<SavePanelManager>("SavePanelManager"));
 
                     DontDestroyOnLoad(_instance);
-                    _instance._onLoad = new UnityEvent();
                     _instance.OnSave = new UnityEvent();
                     _instance.OnSavePanelInActive = new UnityEvent();
                 }
@@ -48,18 +40,18 @@ namespace Utility.SaveSystem
             Load
         }
 
-        [SerializeField] private GameObject loadingPanel;
+        [Header("Canvas")] [SerializeField] private GameObject loadingPanel;
         [SerializeField] private Button savePanelExitButton;
         [SerializeField] private TMP_Text savePanelText;
 
-        [SerializeField] private Transform saveItemParent;
+        [Header("Save Item")] [SerializeField] private Transform saveItemParent;
         [SerializeField] private GameObject saveItemPrefab;
 
-        [SerializeField] private Slider slider;
+        [Header("Scroll")] [SerializeField] private Slider slider;
         [SerializeField] private RectTransform scrollView;
         [SerializeField] private RectTransform content;
 
-        [Header("Check")] [SerializeField] private CheckUIManager checkUIManager;
+        [Header("Check UI")] [SerializeField] private CheckUIManager checkUIManager;
         [TextArea] [SerializeField] private string newLoadText;
         [TextArea] [SerializeField] private string saveCoverText;
         [TextArea] [SerializeField] private string deleteText;
@@ -67,33 +59,26 @@ namespace Utility.SaveSystem
         [NonSerialized] public UnityEvent OnSave;
         [NonSerialized] public UnityEvent OnSavePanelInActive;
 
-        private UnityEvent _onLoad;
-
         private Highlighter _highlighter;
-
         private SaveLoadType _saveLoadType;
+        private string _targetSceneName;
 
         private void Awake()
         {
-            _highlighter = new Highlighter("Save Highlight")
-            {
-                HighlightItems = new List<HighlightItem>()
-            };
+            _highlighter = new Highlighter("Save Highlight") {HighlightItems = new List<HighlightItem>()};
 
-            _highlighter.Init(
-                Highlighter.ArrowType.Vertical,
-                () => { savePanelExitButton.onClick?.Invoke(); });
+            _highlighter.Init(Highlighter.ArrowType.Vertical, () => { savePanelExitButton.onClick?.Invoke(); });
 
             SetItemData();
             // Add + (추가하기)
             var emptyItem = saveItemParent.GetChild(saveItemParent.childCount - 1).gameObject;
-            Add(emptyItem);
+            AddItem(emptyItem);
 
             // 유니티 Prefab에서 무조건 마지막 Element로는 추가하기 Item으로 세팅 -> 굳이 그런 예외사항까지 체크할 필욘 없어보임.
             for (var i = 0; i < saveItemParent.childCount - 1; i++)
             {
                 var saveLoadItem = saveItemParent.GetChild(i).gameObject;
-                Add(saveLoadItem);
+                AddItem(saveLoadItem);
             }
         }
 
@@ -102,16 +87,29 @@ namespace Utility.SaveSystem
             checkUIManager.Initialize();
             checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () => { checkUIManager.Pop(); });
 
-            savePanelExitButton.onClick.AddListener(() => { SetSaveLoadPanelActive(false, SaveLoadType.None); });
+            savePanelExitButton.onClick.AddListener(() => { SetActiveSaveLoadPanel(false); });
         }
 
-        public void SetSaveLoadPanelActive(bool isActive, SaveLoadType saveLoadType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <param name="saveLoadType"> Save or Load, if isActive false, type is None </param>
+        /// <param name="targetScene"></param>
+        public void SetActiveSaveLoadPanel(bool isActive, SaveLoadType saveLoadType = SaveLoadType.None,
+            string targetScene = "")
         {
             _saveLoadType = saveLoadType;
 
             if (saveLoadType == SaveLoadType.Save)
             {
                 savePanelText.text = "Save";
+                if (string.IsNullOrEmpty(targetScene))
+                {
+                    Debug.LogWarning("Save - TargetScene 설정 오류 contents에 저장을 목표로 하는 Scene 이름을 넣으세요.");
+                }
+
+                _targetSceneName = targetScene;
             }
             else if (saveLoadType == SaveLoadType.Load)
             {
@@ -127,7 +125,7 @@ namespace Utility.SaveSystem
                 // Load All Cover File
                 foreach (var saveLoadItemProps in _highlighter.HighlightItems)
                 {
-                    ((SaveLoadItemProps)saveLoadItemProps).UpdateUI();
+                    ((SaveLoadItemProps) saveLoadItemProps).UpdateUI();
                 }
 
                 HighlightHelper.Instance.Push(_highlighter);
@@ -158,12 +156,12 @@ namespace Utility.SaveSystem
             {
                 while (saveDataLength < saveItemParent.childCount - 1)
                 {
-                    Remove(saveItemParent.GetChild(0).GetComponent<SaveLoadItem>());
+                    RemoveItem(saveItemParent.GetChild(0).GetComponent<SaveLoadItem>());
                 }
             }
         }
 
-        private void Add(GameObject saveLoadObject, bool isActive = false)
+        private void AddItem(GameObject saveLoadObject, bool isActive = false)
         {
             var saveLoadItem = saveLoadObject.GetComponent<SaveLoadItem>();
 
@@ -171,7 +169,7 @@ namespace Utility.SaveSystem
             {
                 OnSelect = () =>
                 {
-                    var itemRectTransform = (RectTransform)saveLoadItem.transform;
+                    var itemRectTransform = (RectTransform) saveLoadItem.transform;
 
                     //현재 화면 상에 보이는 위치 0 ~ 1 + scrollView * offset
                     var up = itemRectTransform.anchoredPosition.y + content.rect.height / 2 +
@@ -236,7 +234,7 @@ namespace Utility.SaveSystem
                         checkUIManager.SetText(saveCoverText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
-                            var saveData = SaveHelper.GetSaveData();
+                            var saveData = SaveHelper.GetSaveData(_targetSceneName);
 
                             var saveDataIndex = saveLoadItemProps.SaveDataIndex;
                             SaveManager.Save(saveDataIndex, saveData);
@@ -259,11 +257,9 @@ namespace Utility.SaveSystem
                         {
                             SceneLoader.Instance.onLoadSceneEnd += () =>
                             {
-                                SaveHelper.Load(saveDataIndex);
-                                SetSaveLoadPanelActive(false, SaveLoadType.None);
+                                SetActiveSaveLoadPanel(false);
                             };
                             SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveDataIndex);
-                            _onLoad?.Invoke();
                         }
                         else
                         {
@@ -278,7 +274,7 @@ namespace Utility.SaveSystem
                     checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                     {
                         var saveDataIndex = saveLoadItemProps.SaveDataIndex;
-                        Remove(saveLoadItem);
+                        RemoveItem(saveLoadItem);
                         SaveManager.Delete(saveDataIndex);
                         checkUIManager.Pop();
                     });
@@ -290,7 +286,7 @@ namespace Utility.SaveSystem
                 {
                     if (_saveLoadType == SaveLoadType.Save)
                     {
-                        var saveData = SaveHelper.GetSaveData();
+                        var saveData = SaveHelper.GetSaveData(_targetSceneName);
                         var newSaveDataIndex = SaveManager.GetNewSaveIndex();
 
                         Debug.Log($"New Save Data Index: {newSaveDataIndex}");
@@ -301,7 +297,7 @@ namespace Utility.SaveSystem
                         var item = Instantiate(saveItemPrefab, saveItemParent);
                         addItem.SetAsLastSibling();
 
-                        Add(item, true);
+                        AddItem(item, true);
 
                         StartCoroutine(WaitSave(newSaveDataIndex, () =>
                         {
@@ -316,13 +312,8 @@ namespace Utility.SaveSystem
                         checkUIManager.SetText(newLoadText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
+                            SceneLoader.Instance.onLoadSceneEnd += () => { SetActiveSaveLoadPanel(false); };
                             SceneLoader.Instance.LoadScene("MainScene");
-
-                            SceneLoader.Instance.onLoadSceneEnd += () =>
-                            {
-                                SetSaveLoadPanelActive(false, SaveLoadType.None);
-                            };
-                            _onLoad?.Invoke();
 
                             checkUIManager.Pop();
                         });
@@ -333,10 +324,10 @@ namespace Utility.SaveSystem
 
         // Highlighter에 추가된 상태라고 가정
         // Remove Add Item은 없으니까 무시
-        private void Remove(SaveLoadItem saveLoadItem)
+        private void RemoveItem(SaveLoadItem saveLoadItem)
         {
             var saveLoadItemProps = _highlighter.HighlightItems.Find(item =>
-                ((SaveLoadItemProps)item).SaveLoadItem == saveLoadItem);
+                ((SaveLoadItemProps) item).SaveLoadItem == saveLoadItem);
             _highlighter.RemoveItem(saveLoadItemProps, true);
 
             DestroyImmediate(saveLoadItem.gameObject);

@@ -416,7 +416,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 862201342}
@@ -614,7 +613,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -1359,7 +1357,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 22795414}
@@ -2195,7 +2192,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1161439131}
@@ -2362,7 +2358,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -2851,7 +2846,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -3746,7 +3740,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1980399643}
@@ -4061,7 +4054,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 586305725}
@@ -4988,7 +4980,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 600021622}
@@ -5152,7 +5143,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1743730734}
@@ -5354,7 +5344,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -5636,7 +5625,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -6468,7 +6456,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 474900930}
@@ -6706,7 +6693,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -6916,7 +6902,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -9588,6 +9573,26 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
       - name: 0
+        subject: 
+        contents: SnowMountainShadowGame
+        dialogueType: 5
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "(\uCEF7 \uC52C)> (\uC218\uB85D \uAC8C\uC7844): \u2018\uB208 \uC313\uC778
           \uC124\uC0B0\u2019 (\uB514\uD39C\uC2A4 \uAC8C\uC784)"
         contents: SnowMountainShadowGame
@@ -9620,7 +9625,6 @@ MonoBehaviour:
       interactNextIndex: 1
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
@@ -10136,7 +10140,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 750177962}
@@ -10303,7 +10306,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -10586,7 +10588,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1600352794}
@@ -11026,7 +11027,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 321711372}
@@ -11411,7 +11411,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1010967187}
@@ -11636,7 +11635,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -12362,7 +12360,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1476801163}
@@ -13192,7 +13189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: rightPortal
   interactionData: []
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions: []
@@ -14002,7 +13998,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -14674,7 +14669,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -15042,7 +15036,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 2132668208}
@@ -15970,7 +15963,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -16462,7 +16454,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1757533884}
@@ -16712,7 +16703,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:

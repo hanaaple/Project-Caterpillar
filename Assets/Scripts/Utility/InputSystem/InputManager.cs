@@ -454,11 +454,11 @@ namespace Utility.InputSystem
             var bArray = b.bindings.Select(inputBinding => inputBinding.ToDisplayString()).ToArray();
             var array = aArray.Concat(bArray).Distinct().ToArray();
             
-            Debug.Log(string.Join(", ", array));
-            Debug.Log($"Is Duplicated - {array.Length != aArray.Length + bArray.Length}");
+//            Debug.Log(string.Join(", ", array));
+//            Debug.Log($"Is Duplicated - {array.Length != aArray.Length + bArray.Length}");
             
-            Debug.Log($"A: {string.Join(", ", aArray)}");
-            Debug.Log($"B: {string.Join(", ", bArray)}");
+//            Debug.Log($"A: {string.Join(", ", aArray)}");
+//            Debug.Log($"B: {string.Join(", ", bArray)}");
 
             return array.Length != aArray.Length + bArray.Length;
         }

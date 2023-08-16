@@ -2587,7 +2587,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 180341454}
@@ -4751,7 +4750,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 
+        contents: ShadowGame
         dialogueType: 5
         expression: 0
         option: []
@@ -4801,8 +4800,7 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -5312,7 +5310,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1382195766}
@@ -7168,7 +7165,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1199799338}
@@ -7520,7 +7516,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 103677324}
@@ -8280,7 +8275,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1356764912}

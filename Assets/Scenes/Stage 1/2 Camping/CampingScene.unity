@@ -442,6 +442,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -452,7 +453,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 78106579}
@@ -2298,6 +2298,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2308,7 +2309,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 162813042}
@@ -2387,7 +2387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: leftPortal
   interactionData: []
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions: []
@@ -2762,6 +2761,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3453,7 +3453,7 @@ MonoBehaviour:
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 
+        contents: CampingGame
         dialogueType: 5
         expression: 0
         option: []
@@ -3492,6 +3492,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3502,8 +3503,7 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -3694,6 +3694,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3704,7 +3705,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1912273411}
@@ -4006,6 +4006,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4016,7 +4017,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -4312,6 +4312,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4322,7 +4323,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 692929912}
@@ -4665,6 +4665,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4675,7 +4676,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 612189024}
@@ -5302,6 +5302,7 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5312,7 +5313,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 264342654}

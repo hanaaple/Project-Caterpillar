@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
+using Utility.SaveSystem;
 using Utility.Scene;
 using Utility.Tutorial;
 using Random = UnityEngine.Random;
@@ -97,7 +98,11 @@ namespace Game.Stage1.Camping
 
             retryButton.onClick.AddListener(ResetGame);
 
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("Photographer Give Up"); });
+            giveUpButton.onClick.AddListener(() =>
+            {
+                SaveHelper.SetNpcData(NpcType.Photographer, NpcState.Fail);
+                SceneLoader.Instance.LoadScene("MainScene");
+            });
 
 
             foreach (var interaction in interactions)

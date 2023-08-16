@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility.Dialogue;
 using Utility.Scene;
+using Utility.Tutorial;
 using Utility.UI.Inventory;
 using Utility.UI.Pause;
 using Utility.UI.Preference;
