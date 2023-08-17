@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Utility.InputSystem
@@ -22,6 +23,7 @@ namespace Utility.InputSystem
         public Action OnExecute; // enter, space, z key, OnFixedExecute와 OnInteract를 같이 쓰는 경우 사용
         public Action OnFixedExecute; // enter, space key
         public Action OnInteract; // z key
+        public Action OnInteractCanceled;
 
         public Action OnEsc; // escape Key
         
@@ -36,6 +38,7 @@ namespace Utility.InputSystem
         private readonly Action<InputAction.CallbackContext> _onArrow;
         private readonly Action<InputAction.CallbackContext> _onFixedExecute;
         private readonly Action<InputAction.CallbackContext> _onInteract;
+        private readonly Action<InputAction.CallbackContext> _onInteractCanceled;
         private readonly Action<InputAction.CallbackContext> _onEsc;
         private readonly Action<InputAction.CallbackContext> _onTab;
 
@@ -58,6 +61,11 @@ namespace Utility.InputSystem
                     OnExecute?.Invoke();
                 }
                 OnInteract?.Invoke();
+            };
+
+            _onInteractCanceled = _ =>
+            {
+                OnInteractCanceled?.Invoke();
             };
 
             _onArrow = _ =>
@@ -95,6 +103,7 @@ namespace Utility.InputSystem
                     inputActions.Move.canceled += OnMoveCanceled;
 
                 inputActions.Interact.performed += _onInteract;
+                inputActions.Interact.canceled += _onInteractCanceled;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed += OnInventory;
@@ -129,6 +138,7 @@ namespace Utility.InputSystem
                     inputActions.Move.canceled -= OnMoveCanceled;
 
                 inputActions.Interact.performed -= _onInteract;
+                inputActions.Interact.canceled -= _onInteractCanceled;
 
                 if (OnInventory != null)
                     inputActions.Inventory.performed -= OnInventory;
