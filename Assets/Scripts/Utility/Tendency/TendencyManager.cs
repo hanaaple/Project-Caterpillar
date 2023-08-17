@@ -5,7 +5,7 @@ using Utility.SaveSystem;
 
 namespace Utility.Tendency
 {
-    public class TendencyManager : MonoBehaviour
+    public class TendencyManager
     {
         [Serializable]
         public class TendencyData
@@ -24,17 +24,29 @@ namespace Utility.Tendency
                 activation = tendencyData.activation;
                 inactive = tendencyData.inactive;
             }
+
+            public void Clear()
+            {
+                tendencyItems.Clear();
+                ascent = 0;
+                descent = 0;
+                activation = 0;
+                inactive = 0;
+            }
         }
 
-        public static TendencyManager _instance;
+        private static TendencyManager _instance;
 
-        public static TendencyManager Instance => _instance;
+        public static TendencyManager Instance
+        {
+            get { return _instance ??= new TendencyManager(); }
+        }
 
-        public TendencyData _tendencyData;
-        private TendencyData _savedTendencyData;
-        private TendencyTable _tendencyTable;
+        private readonly TendencyData _tendencyData;
+        private readonly TendencyData _savedTendencyData;
+        private readonly TendencyTable _tendencyTable;
 
-        private void Awake()
+        private TendencyManager()
         {
             _instance = this;
 
@@ -95,6 +107,12 @@ namespace Utility.Tendency
             var saveData = SaveManager.GetSaveData(saveDataIndex);
             _tendencyData.Copy(saveData.tendencyData);
             _savedTendencyData.Copy(saveData.tendencyData);
+        }
+
+        public void Clear()
+        {
+            _tendencyData.Clear();
+            _savedTendencyData.Clear();
         }
     }
 }

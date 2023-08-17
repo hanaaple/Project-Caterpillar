@@ -49,7 +49,7 @@ namespace Utility.Scene
 
         public Action onLoadScene;
         public Action onLoadSceneEnd;
-
+    
         private static SceneLoader Create()
         {
             var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
@@ -145,16 +145,47 @@ namespace Utility.Scene
                         continue;
                     }
 
+
+                    if (_loadSceneName == "TitleScene")
+                    {
+                        SaveHelper.Clear();
+                    }
+                    else
+                    {
+                        onLoadSceneEnd += () =>
+                        {
+                            // SaveData를 Load한 경우
+                            if (index != -1)
+                            {
+                                SaveHelper.LoadSaveData(index);
+                            }
+
+                            SaveHelper.LoadSceneData();
+                        };
+                    }
+                    
                     if (index == -1)
                     {
-                        GameManager.Instance.InteractionObjects.Clear();
+                        // Title -> Game이 아닌 경우
+                        if (SceneManager.GetActiveScene().name != "TitleScene")
+                        {
+                            if (_loadSceneName != "TitleScene")
+                            {
+                                // Game -> Title이 아닌 경우
+                                SaveHelper.SaveSceneData();
+                            }
+
+                            GameManager.Instance.Clear();
+                        }
+                        
                         op.allowSceneActivation = true;
                         yield break;
                     }
+                    
 
                     if (SaveManager.IsLoaded(index))
                     {
-                        GameManager.Instance.InteractionObjects.Clear();
+                        GameManager.Instance.Clear();
                         op.allowSceneActivation = true;
                         yield break;
                     }

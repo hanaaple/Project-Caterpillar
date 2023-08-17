@@ -89,6 +89,11 @@ namespace Utility.Core
             }
         }
 
+        public void Clear()
+        {
+            items.Clear();
+        }
+
         public void AddRandomItem(ItemType itemType)
         {
             if (Enum.GetValues(typeof(ItemType)).Length - 1 == items.Count)

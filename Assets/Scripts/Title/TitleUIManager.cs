@@ -92,7 +92,7 @@ namespace Title
                     case HighlightTitleItem.ButtonType.Continue:
                         highlightItem.button.onClick.AddListener(() =>
                         {
-                            SavePanelManager.Instance.SetSaveLoadPanelActive(true,
+                            SavePanelManager.Instance.SetActiveSaveLoadPanel(true,
                                 SavePanelManager.SaveLoadType.Load);
                         });
                         break;

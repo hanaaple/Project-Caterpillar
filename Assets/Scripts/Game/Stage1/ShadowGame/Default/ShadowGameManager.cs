@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utility.Core;
 using Utility.InputSystem;
+using Utility.SaveSystem;
 using Utility.Scene;
 using Utility.Tutorial;
 using Utility.Util;
@@ -123,7 +124,7 @@ namespace Game.Stage1.ShadowGame.Default
             };
         }
 
-        protected virtual void Start()
+        private void Start()
         {
             NextScene = "CampingScene";
 
@@ -136,7 +137,11 @@ namespace Game.Stage1.ShadowGame.Default
 
             tutorialExitButton.onClick.AddListener(StartGame);
 
-            giveUpButton.onClick.AddListener(() => { SceneLoader.Instance.LoadScene("Photographer Give Up"); });
+            giveUpButton.onClick.AddListener(() =>
+            {
+                SaveHelper.SetNpcData(NpcType.Photographer, NpcState.Fail);
+                SceneLoader.Instance.LoadScene("MainScene");
+            });
             retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
@@ -344,7 +349,7 @@ namespace Game.Stage1.ShadowGame.Default
             }
         }
 
-        private void ClearGame()
+        protected virtual void ClearGame()
         {
             InputManager.PopInputAction(_inputActions);
             gameAnimator.SetTrigger(ClearHash);

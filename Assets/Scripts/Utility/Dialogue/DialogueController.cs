@@ -372,13 +372,14 @@ namespace Utility.Dialogue
 
                     break;
                 case DialogueType.Save:
-                    SavePanelManager.Instance.SetSaveLoadPanelActive(true, SavePanelManager.SaveLoadType.Save);
+                    var targetScene = dialogueElement.contents;
+                    SavePanelManager.Instance.SetActiveSaveLoadPanel(true, SavePanelManager.SaveLoadType.Save, targetScene);
 
                     SavePanelManager.Instance.OnSave.AddListener(() =>
                     {
-                        OnInputDialogue();
                         SavePanelManager.Instance.OnSavePanelInActive?.RemoveAllListeners();
-                        SavePanelManager.Instance.SetSaveLoadPanelActive(false, SavePanelManager.SaveLoadType.None);
+                        SavePanelManager.Instance.SetActiveSaveLoadPanel(false);
+                        OnInputDialogue();
                     });
 
                     SavePanelManager.Instance.OnSavePanelInActive.AddListener(() =>

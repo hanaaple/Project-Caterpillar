@@ -272,8 +272,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -292,12 +292,13 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -308,7 +309,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 862201342}
@@ -1105,8 +1105,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1125,8 +1125,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1146,12 +1146,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1162,7 +1163,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 842194013}
@@ -1492,8 +1492,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1512,12 +1512,13 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -1528,7 +1529,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1980399643}
@@ -2033,6 +2033,7 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2043,7 +2044,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 474900930}
@@ -2122,7 +2122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: leftPortal
   interactionData: []
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions: []
@@ -2184,8 +2183,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2206,8 +2205,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2230,8 +2229,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2251,8 +2250,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2272,8 +2271,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2292,8 +2291,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2314,8 +2313,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2335,8 +2334,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2356,8 +2355,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2376,8 +2375,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2397,8 +2396,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2436,8 +2435,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2458,8 +2457,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2479,8 +2478,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2511,12 +2510,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -2554,8 +2554,8 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2576,8 +2576,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2600,8 +2600,8 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2621,8 +2621,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2645,8 +2645,8 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2666,8 +2666,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2690,8 +2690,8 @@ MonoBehaviour:
         waitSec: 3
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2710,8 +2710,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2730,8 +2730,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2755,8 +2755,8 @@ MonoBehaviour:
         waitSec: 1.5
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2775,8 +2775,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2799,8 +2799,8 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2820,8 +2820,8 @@ MonoBehaviour:
         waitSec: -1
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2842,8 +2842,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2864,8 +2864,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2884,8 +2884,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2904,8 +2904,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2925,8 +2925,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2945,8 +2945,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2966,8 +2966,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2986,8 +2986,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3006,8 +3006,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3026,8 +3026,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3048,8 +3048,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3068,8 +3068,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3089,8 +3089,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3118,8 +3118,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3139,14 +3139,14 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 
+        contents: BeachGame
         dialogueType: 5
         expression: 0
         option: []
@@ -3159,8 +3159,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3179,12 +3179,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3195,8 +3196,7 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 0
       isInteracted: 0
-  isOnLoadScene: 1
-  isOnAwake: 0
+  isOnAwake: 1
   interactionIndex: 0
 --- !u!4 &1169877396
 Transform:
@@ -3667,12 +3667,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -3683,7 +3684,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   portalWaitInteractions:
@@ -4178,8 +4178,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4200,8 +4200,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4220,8 +4220,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4240,8 +4240,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4260,8 +4260,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4281,8 +4281,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4302,12 +4302,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -4318,7 +4319,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 932647302}
@@ -4969,8 +4969,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4992,8 +4992,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5012,8 +5012,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5032,8 +5032,8 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5053,12 +5053,13 @@ MonoBehaviour:
         waitSec: 0
         miniGame: {fileID: 0}
         isCustomEnd: 0
+        successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        clearNextInteractionIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
     itemInteractionTypes: []
+    tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
@@ -5069,7 +5070,6 @@ MonoBehaviour:
       interactNextIndex: 0
       isLoop: 1
       isInteracted: 0
-  isOnLoadScene: 0
   isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 364655138}
