@@ -9,14 +9,14 @@ using Utility.Util;
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialPanel;
-    
     [SerializeField] private Image tutorialImage;
+    [SerializeField] private Animator pressKeyAnimator;
     
     private InputActions _inputActions;
-
     private TutorialHelper _tutorialHelper;
-
     private Action _onEndAction;
+    
+    private static readonly int IsPressHash = Animator.StringToHash("IsPress");
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
             OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); },
             OnInteract = () =>
             {
+                pressKeyAnimator.SetBool(IsPressHash, true);
                 if (_tutorialHelper.GetIsEnd())
                 {
                     TimeScaleHelper.Pop();
@@ -36,6 +37,10 @@ public class TutorialManager : MonoBehaviour
                 {
                     _tutorialHelper.StartNext();
                 }
+            },
+            OnInteractCanceled = () =>
+            {
+                pressKeyAnimator.SetBool(IsPressHash, false);
             }
         };
     }
@@ -47,6 +52,7 @@ public class TutorialManager : MonoBehaviour
         
         _tutorialHelper.Init(tutorialImage);
         tutorialPanel.SetActive(true);
+        pressKeyAnimator.SetBool(IsPressHash, false);
         InputManager.PushInputAction(_inputActions);
         TimeScaleHelper.Push(0f);
     }

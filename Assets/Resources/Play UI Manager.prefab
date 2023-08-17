@@ -1152,6 +1152,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5341685225583747354, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
+      propertyPath: pressKeyAnimator
+      value: 
+      objectReference: {fileID: 8754248251226506996}
     - target: {fileID: 5977234292642265249, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
       propertyPath: m_Name
       value: Tutorial Panel
@@ -1256,5 +1260,10 @@ MonoBehaviour:
 --- !u!224 &3766532399153200272 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7950919542279007342, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
+  m_PrefabInstance: {fileID: 6490318665861746942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8754248251226506996 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2553373963685598730, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
   m_PrefabInstance: {fileID: 6490318665861746942}
   m_PrefabAsset: {fileID: 0}
