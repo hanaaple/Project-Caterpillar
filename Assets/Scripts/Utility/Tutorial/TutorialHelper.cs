@@ -5,8 +5,6 @@ namespace Utility.Tutorial
 {
     public class TutorialHelper : MonoBehaviour
     {
-        // SaveData당 1회만 실행되어야함
-
         [SerializeField] private Sprite[] tutorialSprites;
 
         private int _index;
