@@ -1150,7 +1150,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1394457251240418481, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5341685225583747354, guid: e7dc8eb8089af8843bde29137791dbc9, type: 3}
       propertyPath: pressKeyAnimator
