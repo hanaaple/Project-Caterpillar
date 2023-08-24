@@ -72,16 +72,51 @@ AnimationClip:
     path: Interaction Key
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.33333334
+        value: 4
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Interaction Key/Interaction Text
+    classID: 224
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
+      value: {fileID: 21300000, guid: f1db410770af9d14e84f9b71b8b2cd55, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: bce53afb586bd0e4db60a97897e124b6, type: 3}
+      value: {fileID: 21300000, guid: 9514f6af706bb95499ecbfaee428caa4, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
+      value: {fileID: 21300000, guid: f1db410770af9d14e84f9b71b8b2cd55, type: 3}
     attribute: m_Sprite
     path: Interaction Key
     classID: 114
@@ -101,6 +136,13 @@ AnimationClip:
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 265061269
+      attribute: 538195251
+      script: {fileID: 0}
+      typeID: 224
+      customType: 28
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 522189009
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -108,16 +150,15 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
-    - {fileID: 21300000, guid: bce53afb586bd0e4db60a97897e124b6, type: 3}
-    - {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
-    - {fileID: 21300000, guid: 388c6b0cb45ef0f408371af9ef9e1a6f, type: 3}
+    - {fileID: 21300000, guid: f1db410770af9d14e84f9b71b8b2cd55, type: 3}
+    - {fileID: 21300000, guid: 9514f6af706bb95499ecbfaee428caa4, type: 3}
+    - {fileID: 21300000, guid: f1db410770af9d14e84f9b71b8b2cd55, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -186,6 +227,43 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
     path: Interaction Key
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.33333334
+        value: 4
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Interaction Key/Interaction Text
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
