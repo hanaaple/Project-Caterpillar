@@ -75,6 +75,8 @@ namespace Utility.Dialogue
         [Header("좌 애니메이터")] [SerializeField] private Animator leftAnimator;
         [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
 
+        [Header("반발 확률")] [SerializeField] private float repulsionPercentage = .3f;
+        
         [Space(10)] [Header("디버깅용")] [SerializeField]
         private List<DialogueData> baseDialogueData;
 
@@ -949,10 +951,10 @@ namespace Utility.Dialogue
             }
         }
 
-        private void OnClickChoice(int choiceIndex, int choiceLen, int choiceContextLen)
+        private void OnClickChoice(int choiceIndex, int choiceCount, int choiceContextLen)
         {
             Debug.Log($"Dialogue Index: {choiceIndex}\n" +
-                      $"선택 개수: {choiceLen}\n" +
+                      $"선택 개수: {choiceCount}\n" +
                       $"대화 길이: {choiceContextLen}");
 
             HighlightHelper.Instance.Pop(_choiceHighlighter);
@@ -976,7 +978,7 @@ namespace Utility.Dialogue
                     dialogueElements = new DialogueElement[choiceContextLen]
                 };
 
-                Array.Copy(_baseDialogueData.Peek().dialogueElements, choiceIndex + choiceLen,
+                Array.Copy(_baseDialogueData.Peek().dialogueElements, choiceIndex + choiceCount,
                     choiceDialogueData.dialogueElements, 0, choiceContextLen);
 
                 Initialize(choiceDialogueData);
@@ -1004,6 +1006,7 @@ namespace Utility.Dialogue
             choicePanel.SetActive(true);
 
             var choicedCount = 0;
+            var choiceList = new List<(int, int, int)>();
             var currentDialogueData = _baseDialogueData.Peek();
             while (currentDialogueData.index < currentDialogueData.dialogueElements.Length &&
                    currentDialogueData.dialogueElements[currentDialogueData.index].dialogueType !=
@@ -1042,9 +1045,10 @@ namespace Utility.Dialogue
                           $"선택 개수: {choiceCount}\n" +
                           $"선택 Context 길이: {choiceContextLen}");
 
+                var choiceIndex = currentDialogueData.index;
+                choiceList.Add((choiceIndex, choiceCount, choiceContextLen));
                 for (var i = 0; i < choiceCount; i++)
                 {
-                    var choiceIndex = currentDialogueData.index;
                     var choiceButton = choiceSelectors[choicedCount + i].button;
 
                     var highlightItem = _choiceHighlighter.HighlightItems.Find(item => item.button == choiceButton);
@@ -1053,24 +1057,153 @@ namespace Utility.Dialogue
                     choiceButton.gameObject.SetActive(true);
                     choiceButton.GetComponentInChildren<TMP_Text>().text =
                         currentDialogueData.dialogueElements[choiceIndex + i].contents;
-
-                    choiceButton.onClick.RemoveAllListeners();
-                    choiceButton.onClick.AddListener(() =>
-                    {
-                        OnClickChoice(choiceIndex, choiceCount, choiceContextLen);
-                    });
                 }
 
                 currentDialogueData.index += choiceCount + choiceContextLen;
                 choicedCount += choiceCount;
 
                 // Debug.Log($"다음 Index: {currentDialogueData.index}\n" +
-                //           $"선택된 개수: {choicedCount}\n");
+                // $"선택된 개수: {choicedCount}\n");
             }
 
             Debug.Log($"총 선택 개수: {choicedCount}");
 
+            for (var clickedIndex = 0; clickedIndex < choiceList.Count; clickedIndex++)
+            {
+                // Items -> choiceIndex, choiceCount, choiceContextLen
+                var choiceCount = choiceList[clickedIndex].Item2;
+                var choiceContextLength = choiceList[clickedIndex].Item3;
+
+                for (var clickedChoiceCountIndex = 0; clickedChoiceCountIndex < choiceCount; clickedChoiceCountIndex++)
+                {
+                    // 1. 선택한 선택지의 확률을 얻어낸다 ex - 1:3:4 -> 1:7 -> 1/8
+                    // 2 - 1. 성공 시 해당 Index 대화 실행
+                    // 2 - 2. 실패 시 남은 개수를 계산
+                    // 2 - 2 - 1. 여러 개 남은 경우 1부터 반복
+                    // 2 - 2 - 2. 1개 남은 경우 -> 해당 Index의 대화 실행
+
+                    var choiceButton = choiceSelectors[clickedIndex + clickedChoiceCountIndex].button;
+
+                    var clickedChoiceCountIndex1 = clickedChoiceCountIndex;
+                    var clickedIndex1 = clickedIndex;
+                    choiceButton.onClick.AddListener(() =>
+                    {
+                        var choiceIndex = choiceList[clickedIndex1].Item1 + clickedChoiceCountIndex1;
+                        if (currentDialogueData.dialogueElements[choiceIndex].option == null ||
+                            currentDialogueData.dialogueElements[choiceIndex].option.Length == 0)
+                        {
+                            Debug.Log("누른 그대로");
+                            OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
+                            return;
+                        }
+
+                        // 확률 target 예외 리스트 추가
+                        var exceptList = new List<int> {choiceIndex};
+                        Debug.Log($"예외 추가 - {choiceIndex}");
+                        var choicePercentage = GetChoicePercentage(choiceList, choiceIndex, exceptList);
+
+                        var randomValue = Random.Range(0f, 1f);
+                        Debug.Log($"Choice - 확률: {choicePercentage}, 랜덤: {randomValue}");
+                        if (choicePercentage >= randomValue)
+                        {
+                            // 누른 그대로
+                            Debug.Log("누른 그대로");
+                            OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
+                        }
+                        else
+                        {
+                            for (var tClickedIndex = 0; tClickedIndex < choiceList.Count; tClickedIndex++)
+                            {
+                                // Items -> choiceIndex, choiceCount, choiceContextLen
+                                var tChoiceCount = choiceList[tClickedIndex].Item2;
+
+                                for (var tChoiceCountIndex = 0; tChoiceCountIndex < tChoiceCount; tChoiceCountIndex++)
+                                {
+                                    var tChoiceIndex = choiceList[tClickedIndex].Item1 + tChoiceCountIndex;
+                                    if (exceptList.Contains(tChoiceIndex))
+                                    {
+                                        continue;
+                                    }
+
+                                    Debug.Log($"예외 추가 - {tChoiceIndex}");
+                                    exceptList.Add(tChoiceIndex);
+                                    var tChoicePercentage = GetChoicePercentage(choiceList, tChoiceIndex, exceptList);
+                                    
+                                    var tRandomValue = Random.Range(0f, 1f);
+
+                                    Debug.Log($"{tClickedIndex + tChoiceCountIndex} Choice - 확률: {tChoicePercentage}, 랜덤: {tRandomValue}");
+                                    if (tChoicePercentage >= tRandomValue)
+                                    {
+                                        Debug.Log($"{tClickedIndex + tChoiceCountIndex} 눌림");
+                                        OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
             HighlightHelper.Instance.Push(_choiceHighlighter);
+        }
+
+        private float GetChoicePercentage(List<(int, int, int)> choiceList, int choiceIndex, List<int> exceptIndexList)
+        {
+            var currentDialogueData = _baseDialogueData.Peek();
+            
+            // Get Percentage
+            var targetTendency = currentDialogueData.dialogueElements[choiceIndex].option.Select(int.Parse)
+                .ToArray();
+            var tendencyData = TendencyManager.Instance.GetTendencyData();
+
+            var ascent = tendencyData.ascent - tendencyData.descent;
+            var active = tendencyData.activation - tendencyData.inactive;
+
+            var choiceDiff = Mathf.Abs(ascent - targetTendency[0]) + Mathf.Abs(active - targetTendency[1]);
+
+            var otherDiff = 0;
+
+            var otherCount = 0;
+            for (var index = 0; index < choiceList.Count; index++)
+            {
+                var choiceItem = choiceList[index];
+                // Choice Count
+                for (var choiceCountIdx = 0; choiceCountIdx < choiceItem.Item2; choiceCountIdx++)
+                {
+                    if (exceptIndexList.Contains(choiceItem.Item1 + choiceCountIdx))
+                    {
+                        continue;
+                    }
+
+                    var tTargetTendency = currentDialogueData.dialogueElements[choiceItem.Item1 + choiceCountIdx]
+                        .option.Select(int.Parse)
+                        .ToArray();
+                    var tDiff = Mathf.Abs(ascent - tTargetTendency[0]) +
+                                Mathf.Abs(active - tTargetTendency[1]);
+
+                    Debug.Log($"Add {index + choiceCountIdx} - {tDiff}   {choiceItem.Item1 + choiceCountIdx} 없음");
+                    otherDiff += tDiff;
+                    otherCount++;
+                }
+            }
+
+            (otherDiff, choiceDiff) = (choiceDiff, otherDiff);
+
+            var total = choiceDiff + otherDiff;
+            var choicePercentage = (1 - repulsionPercentage) +
+                                   repulsionPercentage * ((float) choiceDiff / total);
+
+            var failPercentage = repulsionPercentage * ((float) otherDiff / total);
+            
+            Debug.Log($" {choiceDiff} : {otherDiff} 성공 확률: {choicePercentage}, 실패 확률: {failPercentage}");
+            
+            if (otherCount == 0)
+            {
+                choicePercentage = 1.1f;
+            }
+            
+            return choicePercentage;
         }
 
         private void InitRandom()
