@@ -24,6 +24,7 @@ namespace Game.Stage1.MiniGame
             {
                 if (selectedIndex == passwordItems.Length)
                 {
+                    Debug.Log($"정답: {correct}"); 
                     if (password == correct)
                     {
                         End();
@@ -67,14 +68,19 @@ namespace Game.Stage1.MiniGame
 
 
             selectedIndex++;
-            if (passwordItems.Length > selectedIndex + 1)
+            if (passwordItems.Length > selectedIndex)
             {
-                passwordItems[selectedIndex + 1].Select();
+                passwordItems[selectedIndex].Select();
             }
         }
 
         private void Pop()
         {
+            if (selectedIndex == 0)
+            {
+                return;
+            }
+            
             if (passwordItems.Length > selectedIndex)
             {
                 passwordItems[selectedIndex].DeSelect();
