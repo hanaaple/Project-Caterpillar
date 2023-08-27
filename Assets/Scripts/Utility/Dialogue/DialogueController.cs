@@ -1088,24 +1088,26 @@ namespace Utility.Dialogue
                     var clickedIndex1 = clickedIndex;
                     choiceButton.onClick.AddListener(() =>
                     {
-                        if (currentDialogueData.dialogueElements[clickedIndex1].option == null ||
-                            currentDialogueData.dialogueElements[clickedIndex1].option.Length == 0)
+                        var choiceIndex = choiceList[clickedIndex1].Item1 + clickedChoiceCountIndex1;
+                        if (currentDialogueData.dialogueElements[choiceIndex].option == null ||
+                            currentDialogueData.dialogueElements[choiceIndex].option.Length == 0)
                         {
+                            Debug.Log("누른 그대로");
                             OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
+                            return;
                         }
 
-                        // clickedIndex1 + choiceCountIndex1 이후만 체크해야됨
-                        // 자 그러면 처음에 2번을 누른 경우에는 1번도 체크해야되는데
-                        // 처음에 누른거 제외 + 자기 번호 이전꺼 제외
-                        var exceptList = new List<int>();
-                        var choicePercentage = GetChoicePercentage(choiceList, clickedIndex1, clickedChoiceCountIndex1,
-                            exceptList);
-                        exceptList.Add(clickedIndex1 + clickedChoiceCountIndex1);
+                        // 확률 target 예외 리스트 추가
+                        var exceptList = new List<int> {choiceIndex};
+                        Debug.Log($"예외 추가 - {choiceIndex}");
+                        var choicePercentage = GetChoicePercentage(choiceList, choiceIndex, exceptList);
 
                         var randomValue = Random.Range(0f, 1f);
-                        if (choicePercentage <= randomValue)
+                        Debug.Log($"Choice - 확률: {choicePercentage}, 랜덤: {randomValue}");
+                        if (choicePercentage >= randomValue)
                         {
                             // 누른 그대로
+                            Debug.Log("누른 그대로");
                             OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
                         }
                         else
@@ -1117,13 +1119,22 @@ namespace Utility.Dialogue
 
                                 for (var tChoiceCountIndex = 0; tChoiceCountIndex < tChoiceCount; tChoiceCountIndex++)
                                 {
-                                    var tChoicePercentage = GetChoicePercentage(choiceList, tClickedIndex,
-                                        tChoiceCountIndex, exceptList);
-                                    exceptList.Add(tClickedIndex + tChoiceCountIndex);
+                                    var tChoiceIndex = choiceList[tClickedIndex].Item1 + tChoiceCountIndex;
+                                    if (exceptList.Contains(tChoiceIndex))
+                                    {
+                                        continue;
+                                    }
+
+                                    Debug.Log($"예외 추가 - {tChoiceIndex}");
+                                    exceptList.Add(tChoiceIndex);
+                                    var tChoicePercentage = GetChoicePercentage(choiceList, tChoiceIndex, exceptList);
+                                    
                                     var tRandomValue = Random.Range(0f, 1f);
 
-                                    if (tChoicePercentage <= tRandomValue)
+                                    Debug.Log($"{tClickedIndex + tChoiceCountIndex} Choice - 확률: {tChoicePercentage}, 랜덤: {tRandomValue}");
+                                    if (tChoicePercentage >= tRandomValue)
                                     {
+                                        Debug.Log($"{tClickedIndex + tChoiceCountIndex} 눌림");
                                         OnClickChoice(clickedIndex1, choiceCount, choiceContextLength);
                                         break;
                                     }
@@ -1137,9 +1148,8 @@ namespace Utility.Dialogue
             HighlightHelper.Instance.Push(_choiceHighlighter);
         }
 
-        private float GetChoicePercentage(List<(int, int, int)> choiceList, int clickedIndex, int choiceCountIndex, List<int> exceptIndexList)
+        private float GetChoicePercentage(List<(int, int, int)> choiceList, int choiceIndex, List<int> exceptIndexList)
         {
-            var choiceIndex = choiceList[clickedIndex].Item1;
             var currentDialogueData = _baseDialogueData.Peek();
             
             // Get Percentage
@@ -1154,22 +1164,27 @@ namespace Utility.Dialogue
 
             var otherDiff = 0;
 
-            foreach (var choiceItem in choiceList)
+            var otherCount = 0;
+            for (var index = 0; index < choiceList.Count; index++)
             {
+                var choiceItem = choiceList[index];
                 // Choice Count
-                for (var idx = 0; idx < choiceItem.Item2; idx++)
+                for (var choiceCountIdx = 0; choiceCountIdx < choiceItem.Item2; choiceCountIdx++)
                 {
-                    if (choiceItem.Item1 + idx == clickedIndex + choiceCountIndex || exceptIndexList.Contains(choiceItem.Item1 + idx))
+                    if (exceptIndexList.Contains(choiceItem.Item1 + choiceCountIdx))
                     {
                         continue;
                     }
 
-                    var tTargetTendency = currentDialogueData.dialogueElements[choiceItem.Item1 + idx]
+                    var tTargetTendency = currentDialogueData.dialogueElements[choiceItem.Item1 + choiceCountIdx]
                         .option.Select(int.Parse)
                         .ToArray();
                     var tDiff = Mathf.Abs(ascent - tTargetTendency[0]) +
                                 Mathf.Abs(active - tTargetTendency[1]);
+
+                    Debug.Log($"Add {index + choiceCountIdx} - {tDiff}   {choiceItem.Item1 + choiceCountIdx} 없음");
                     otherDiff += tDiff;
+                    otherCount++;
                 }
             }
 
@@ -1181,7 +1196,12 @@ namespace Utility.Dialogue
 
             var failPercentage = repulsionPercentage * ((float) otherDiff / total);
             
-            Debug.Log($"성공 확률: {choicePercentage}, 실패 확률: {failPercentage}");
+            Debug.Log($" {choiceDiff} : {otherDiff} 성공 확률: {choicePercentage}, 실패 확률: {failPercentage}");
+            
+            if (otherCount == 0)
+            {
+                choicePercentage = 1.1f;
+            }
             
             return choicePercentage;
         }
