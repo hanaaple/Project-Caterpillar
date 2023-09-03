@@ -113,7 +113,6 @@ namespace Utility.Core
                 break;
             }
         }
-
         
         public void SetItem(string[] options)
         {
@@ -162,7 +161,7 @@ namespace Utility.Core
                 }
             }
         }
-
+        
         public T[] GetItem<T>()
         {
             if (typeof(T) == typeof(string))
@@ -175,6 +174,11 @@ namespace Utility.Core
                 return items.ToArray() as T[];
             }
             return null;
+        }
+
+        public void RemoveItem(ItemType itemType)
+        {
+            items.Remove(itemType);
         }
     }
 }
