@@ -178,24 +178,37 @@ namespace Utility.Interaction
                         EndInteraction(index);
                         break;
                     case InteractType.Item:
-                        var join = interaction.itemInteractionTypes.Join(
-                            ItemManager.Instance.GetItem<ItemManager.ItemType>(),
-                            inner => inner.itemType,
-                            item => item, (inner, item) => inner.itemType).ToArray();
-                        if (join.Length == 1)
+                        // Item List가 있고 없고 2가지 경우만 따짐
+                        
+                        // interaction.itemInteractionType.itemTypes
+                        // ItemManager.Instance.GetItem<ItemManager.ItemType>()
+                        // 중복 비교 
+                        // 중복 개수
+
+                        var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                        var count = interaction.itemInteractionType.itemTypes.Except(items).Count();
+
+                        if (count == 0)
                         {
-                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes,
-                                item => item.itemType == join[0]);
-                            StartInteraction(targetItemInteraction.targetIndex);
+                            // 아이템 전부 있음
+                            Debug.Log("아이템 전부 있음");
+                            StartInteraction(interaction.itemInteractionType.targetIndex);
+
+                            if (interaction.itemInteractionType.isDestroyItem)
+                            {
+                                Debug.Log("아이템 제거");
+                                foreach (var itemType in interaction.itemInteractionType.itemTypes)
+                                {
+                                    ItemManager.Instance.RemoveItem(itemType);   
+                                }
+                            }
                         }
                         else
                         {
-                            Debug.LogWarning($"아이템 조심\n" +
-                                             $"{ItemManager.Instance.GetItem<string>().Select(item => $"{item}, ")}\n" +
-                                             $"{interaction.itemInteractionTypes.Select(item => $"{item}, ")}");
-                            var targetItemInteraction = Array.Find(interaction.itemInteractionTypes,
-                                item => item.itemType == ItemManager.ItemType.None);
-                            StartInteraction(targetItemInteraction.targetIndex);
+                            // 아이템 없음
+                            Debug.Log(
+                                $"아이템 없음 - {string.Join(", ", interaction.itemInteractionType.itemTypes.Except(items))}");
+                            StartInteraction(interaction.itemInteractionType.defaultInteractionIndex);
                         }
 
                         break;

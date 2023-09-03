@@ -41,6 +41,8 @@ namespace Utility.Tendency
         {
             get { return _instance ??= new TendencyManager(); }
         }
+        
+        public Action OnTendencyUpdate;
 
         private readonly TendencyData _tendencyData;
         private readonly TendencyData _savedTendencyData;
@@ -92,6 +94,8 @@ namespace Utility.Tendency
             _tendencyData.inactive += tendencyProps.inactive;
             Debug.Log(
                 $"성향 (상승, 하강, 활성, 비활성): {tendencyProps.ascent}, {tendencyProps.descent}, {tendencyProps.activation}, {tendencyProps.inactive}");
+            
+            OnTendencyUpdate?.Invoke();
         }
 
         /// <summary>

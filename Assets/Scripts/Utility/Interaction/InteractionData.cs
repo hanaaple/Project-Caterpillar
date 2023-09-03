@@ -21,8 +21,10 @@ namespace Utility.Interaction
     [Serializable]
     public class ItemInteractionType
     {
-        public ItemManager.ItemType itemType;
+        public ItemManager.ItemType[] itemTypes;
         public int targetIndex;
+        public int defaultInteractionIndex;
+        public bool isDestroyItem;
     }
 
     [Serializable]
@@ -64,7 +66,7 @@ namespace Utility.Interaction
         public DialogueData dialogueData;
         
         [ConditionalHideInInspector("interactType", InteractType.Item)]
-        public ItemInteractionType[] itemInteractionTypes;
+        public ItemInteractionType itemInteractionType;
         
         [ConditionalHideInInspector("interactType", InteractType.Tutorial)]
         public TutorialHelper tutorialHelper;
