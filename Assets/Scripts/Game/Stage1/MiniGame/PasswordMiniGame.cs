@@ -62,7 +62,7 @@ namespace Game.Stage1.MiniGame
 
         private void Push(string key)
         {
-            passwordItems[selectedIndex].DeSelect();
+            passwordItems[selectedIndex].DeBlink();
             passwordItems[selectedIndex].SetText(key);
             password += key;
 
