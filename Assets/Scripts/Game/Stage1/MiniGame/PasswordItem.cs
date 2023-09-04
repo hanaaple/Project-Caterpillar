@@ -8,17 +8,26 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private Animator animators;
         [SerializeField] private TMP_Text text;
         
-        private static readonly int IsEmptyHash = Animator.StringToHash("IsEmpty");
+        private static readonly int SelectHash = Animator.StringToHash("Select");
+        private static readonly int BlinkHash = Animator.StringToHash("Blink");
 
         public void Select()
         {
-            animators.SetBool(IsEmptyHash, false);
+            animators.SetBool(SelectHash, true);
+            animators.SetBool(BlinkHash, true);
         }
         
         public void DeSelect()
         {
-            animators.SetBool(IsEmptyHash, true);
+            animators.SetBool(SelectHash, false);
+            animators.SetBool(BlinkHash, false);
         }
+
+        public void DeBlink()
+        {
+            animators.SetBool(BlinkHash, false);
+        }
+        
 
         public void SetText(string key)
         {
@@ -27,7 +36,7 @@ namespace Game.Stage1.MiniGame
 
         public void Remove()
         {
-            animators.SetBool(IsEmptyHash, true);
+            animators.SetBool(SelectHash, false);
             text.text = "";
         }
     }
