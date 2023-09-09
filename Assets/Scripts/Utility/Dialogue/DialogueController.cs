@@ -58,6 +58,8 @@ namespace Utility.Dialogue
         [SerializeField] private Button dialogueInputArea;
         [SerializeField] private Button skipButton;
         [SerializeField] private CheckUIManager skipCheckUIManager;
+        [SerializeField] private Animator letterBoxAnimator;
+        
         [Header("텍스트 속도")] [SerializeField] private float textSpeed;
 
         [Space(10)] [Header("CutScene")] public GameObject cutSceneImage;
@@ -100,6 +102,7 @@ namespace Utility.Dialogue
         private bool _isUnfolding;
         private int _selectedIdx;
         private bool _isSkipEnable;
+        private bool _isFocusMode;
         private Coroutine _printCoroutine;
         private Coroutine _waitCutsceneEnableCoroutine;
         private Coroutine _waitCutsceneEndCoroutine;
@@ -111,6 +114,7 @@ namespace Utility.Dialogue
         private static readonly int CharacterHash = Animator.StringToHash("Character");
         private static readonly int ExpressionHash = Animator.StringToHash("Expression");
         private static readonly int InActiveHash = Animator.StringToHash("Inactive");
+        private static readonly int IsFocusHash = Animator.StringToHash("IsFocus");
 
         private void Awake()
         {
@@ -359,6 +363,7 @@ namespace Utility.Dialogue
             {
                 case DialogueType.Script:
                 {
+                    SetFocusMode(true);
                     StartDialoguePrint();
 
                     ScriptOption(dialogueElement);
@@ -940,6 +945,9 @@ namespace Utility.Dialogue
 
             if (isEnd)
             {
+                // if any next dialogue exist
+                SetFocusMode(false);
+                
                 dialogueData ??= _baseDialogueData.Pop();
 
                 Debug.Log(dialogueData.OnDialogueEnd);
@@ -1316,6 +1324,18 @@ namespace Utility.Dialogue
             Debug.Log("컷씬 끝났다고 판정내림");
 
             action?.Invoke();
+        }
+
+        public void SetFocusMode(bool isFocus)
+        {
+            if (_isFocusMode == isFocus)
+            {
+                return;
+            }
+            
+            _isFocusMode = isFocus;
+
+            letterBoxAnimator.SetBool(IsFocusHash, isFocus);
         }
 
         private bool IsDialogueEnd()
