@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility.Core;
+using Utility.Player;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -59,7 +60,6 @@ namespace Utility.Interaction
 
         public override void StartInteraction(int index = -1)
         {
-            Debug.Log($"인터랙트 - {gameObject}");
             if (defaultFloatingMark)
             {
                 defaultFloatingMark.SetActive(false);
@@ -75,7 +75,7 @@ namespace Utility.Interaction
                     }
                 }
             };
-            base.StartInteraction();
+            base.StartInteraction(index);
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -95,14 +95,13 @@ namespace Utility.Interaction
                 }
             }
 
-            // Debug.Log($"들어옴! {col} {col.gameObject}");
             if (defaultFloatingMark)
             {
                 defaultFloatingMark.transform.SetParent(PlayUIManager.Instance.floatingMarkParent.transform);
                 defaultFloatingMark.SetActive(true);
             }
 
-            player.OnInteractAction = () => { StartInteraction(); };
+            PlayerManager.Instance.PushInteraction(this);
         }
 
         private void OnTriggerExit2D(Collider2D col)
@@ -112,13 +111,12 @@ namespace Utility.Interaction
                 return;
             }
 
-            // Debug.Log($"나감! {col} {col.gameObject}");
             if (defaultFloatingMark)
             {
                 defaultFloatingMark.SetActive(false);
             }
 
-            player.OnInteractAction = null;
+            PlayerManager.Instance.PopInteraction(this);
         }
 
         private void OnDestroy()

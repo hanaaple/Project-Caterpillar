@@ -259,7 +259,8 @@ namespace Game.Stage1.BeachGame
                 var curIdx = stackList[index];
                 var nextIdx = stackList[index + 1];
 
-                var curSpriteRenderer = backgrounds[curIdx].GetComponent<SpriteRenderer>();
+                var curSpriteRenderers = backgrounds[curIdx].GetComponentsInChildren<SpriteRenderer>();
+                var nextSpriteRenderers = backgrounds[nextIdx].GetComponentsInChildren<SpriteRenderer>();
                 var nextSpriteRenderer = backgrounds[nextIdx].GetComponent<SpriteRenderer>();
                 nextSpriteRenderer.sortingOrder = 3;
 
@@ -270,8 +271,15 @@ namespace Game.Stage1.BeachGame
                 while (t <= 1f)
                 {
                     t += Time.deltaTime / timer;
-                    curSpriteRenderer.color = GetColorAlpha(curSpriteRenderer.color, 1 - t);
-                    nextSpriteRenderer.color = GetColorAlpha(nextSpriteRenderer.color, t);
+                    foreach (var curSpriteRenderer in curSpriteRenderers)
+                    {
+                        SetColorAlpha(curSpriteRenderer, 1 - t);
+                    }
+
+                    foreach (var spriteRenderer in nextSpriteRenderers)
+                    {
+                        SetColorAlpha(spriteRenderer, t);
+                    }
 
                     yield return null;
                 }
@@ -299,10 +307,11 @@ namespace Game.Stage1.BeachGame
             }
         }
 
-        private static Color GetColorAlpha(Color color, float alpha)
+        private static void SetColorAlpha(SpriteRenderer spriteRenderer, float alpha)
         {
+            var color = spriteRenderer.color;
             color.a = alpha;
-            return color;
+            spriteRenderer.color = color;
         }
     }
 }

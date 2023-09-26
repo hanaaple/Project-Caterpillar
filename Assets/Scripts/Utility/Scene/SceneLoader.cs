@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
@@ -43,50 +44,34 @@ namespace Utility.Scene
         [SerializeField] private Image progressBar;
         [SerializeField] private float fadeSec;
 
-        [NonSerialized] public bool IsLoading;
-
         private string _loadSceneName;
 
         public Action onLoadScene;
         public Action onLoadSceneEnd;
-    
+
         private static SceneLoader Create()
         {
             var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
             return Instantiate(sceneLoaderPrefab);
         }
-        
-        // 게임에서 MainScene으로 가는 경우 Load했던 SaveData로 초기화시켜야됨
-        // + 게임 엔딩에서 MainScene으로 가는 경우 안됨
-        // 으아악
 
-        // Scene 별로 상태를 저장할 필요가 있어보임.
-        
         // Title -> Load (Just Load Data)
         // Interaction MoveMap (Do Not Load Data, But have to Save Scene State)
         // Game Over - Go to MainScene (Reset MainScene ~ GameScene)
         // Game Ending - MainScene
 
-        
+
         // if stage field moves continuous, have to save them!!!
         // i think it have to like this!!
         // so In SceneHelper, Add Property of Is Save
 
-
         // if Load -> Main Scene, GameManager.Instance.Load(saveDataIndex);
-        public void LoadScene(string sceneName, int index = -1)
+        public void LoadScene(string targetSceneName, int index = -1)
         {
-            // Scene 상태 저장
-            // 정확히는 MainScene만 저장하면 됨.
-            // 현재로써는?
-            // Player, interaction
-            // field인 경우 저장한다면 scene을 제외한 data를 load하면 안됨.
-            
-            IsLoading = true;
             // 모든 입력 금지
             onLoadScene?.Invoke();
             onLoadScene = () => { };
-            Debug.Log("Load");
+            Debug.Log($"Load targetScene - {targetSceneName}, {index}");
 
             if (index != -1)
             {
@@ -100,33 +85,36 @@ namespace Utility.Scene
                 }
                 else
                 {
-                    Debug.LogError("오류");
+                    Debug.LogError($"{index}의 저장 데이터가 존재하지 않음");
                 }
             }
 
+            AudioManager.Instance.StopBgm();
             TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);
             SceneManager.sceneLoaded += LoadSceneEnd;
-            _loadSceneName = sceneName;
-            StartCoroutine(Load(sceneName, index));
+            _loadSceneName = targetSceneName;
+            StartCoroutine(Load(targetSceneName, index));
         }
 
-        private IEnumerator Load(string sceneName, int index)
+        private IEnumerator Load(string targetSceneName, int index)
         {
             InputManager.ResetInputAction();
             progressBar.fillAmount = 0f;
             yield return StartCoroutine(Fade(true));
 
-            var op = SceneManager.LoadSceneAsync(sceneName);
+            var op = SceneManager.LoadSceneAsync(targetSceneName);
             op.allowSceneActivation = false;
 
             var timer = 0f;
-            var waitForSecondsRt = new WaitForSecondsRealtime(Time.unscaledDeltaTime);
+            const float timeInterval = 0.02f;
+            var waitForSecondsRt = new WaitForSecondsRealtime(timeInterval);
+
             while (!op.isDone)
             {
                 yield return waitForSecondsRt;
-                timer += Time.unscaledDeltaTime;
+                timer += timeInterval;
 
                 if (op.progress < 0.9f)
                 {
@@ -140,55 +128,50 @@ namespace Utility.Scene
                 {
                     progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
 
-                    if (!Mathf.Approximately(progressBar.fillAmount, 1.0f))
+                    if (!Mathf.Approximately(progressBar.fillAmount, 1f))
                     {
                         continue;
                     }
 
-
-                    if (_loadSceneName == "TitleScene")
+                    if (index != -1)
                     {
+                        if (SaveManager.IsLoaded(index))
+                        {
+                            // LoadSaveData가 LoadSceneData보다 먼저 발생하면 안됨.
+                            onLoadSceneEnd += () => { SaveHelper.LoadSaveData(index); };
+                        }
+                        else
+                        {
+                            Debug.LogWarning("SaveData 불러오는 중");
+                            continue;
+                        }
+                    }
+
+                    // LoadSaveData 순서 주의
+                    onLoadSceneEnd += SaveHelper.LoadSceneData;
+
+                    // SaveData Clear
+                    if (targetSceneName == "TitleScene")
+                    {
+                        // Timer.Reset();
                         SaveHelper.Clear();
                     }
                     else
                     {
-                        onLoadSceneEnd += () =>
-                        {
-                            // SaveData를 Load한 경우
-                            if (index != -1)
-                            {
-                                SaveHelper.LoadSaveData(index);
-                            }
-
-                            SaveHelper.LoadSceneData();
-                        };
+                        // LoadSceneData 순서 주의 이후에 실행되어야됨.
+                        onLoadSceneEnd += GameManager.Instance.StartOnAwakeInteraction;
+                        // Timer.Play();
                     }
-                    
-                    if (index == -1)
+
+                    // Game -> Game, Save SceneData
+                    if (SceneManager.GetActiveScene().name != "TitleScene" && targetSceneName != "TitleScene")
                     {
-                        // Title -> Game이 아닌 경우
-                        if (SceneManager.GetActiveScene().name != "TitleScene")
-                        {
-                            if (_loadSceneName != "TitleScene")
-                            {
-                                // Game -> Title이 아닌 경우
-                                SaveHelper.SaveSceneData();
-                            }
-
-                            GameManager.Instance.Clear();
-                        }
-                        
-                        op.allowSceneActivation = true;
-                        yield break;
+                        SaveHelper.SaveSceneData();
                     }
-                    
 
-                    if (SaveManager.IsLoaded(index))
-                    {
-                        GameManager.Instance.Clear();
-                        op.allowSceneActivation = true;
-                        yield break;
-                    }
+                    GameManager.Instance.Clear();
+                    op.allowSceneActivation = true;
+                    yield break;
                 }
             }
         }
@@ -202,25 +185,23 @@ namespace Utility.Scene
 
             Debug.Log("OnLoadSceneEnd");
 
-            IsLoading = false;
-
-            TimeScaleHelper.Pop();
-
-            StartCoroutine(Fade(false));
             onLoadSceneEnd?.Invoke();
             onLoadSceneEnd = () => { };
             SceneManager.sceneLoaded -= LoadSceneEnd;
+
+            StartCoroutine(Fade(false, TimeScaleHelper.Pop));
         }
 
-        private IEnumerator Fade(bool isFadeIn)
+        private IEnumerator Fade(bool isFadeIn, Action onEndAction = default)
         {
             var timer = 0f;
+            const float timeInterval = 0.02f;
+            var waitForSecondsRt = new WaitForSecondsRealtime(timeInterval);
 
-            var waitForSecondsRt = new WaitForSecondsRealtime(Time.unscaledDeltaTime);
-            while (timer <= 1)
+            while (timer <= 1f)
             {
                 yield return waitForSecondsRt;
-                timer += Time.unscaledDeltaTime / fadeSec;
+                timer += timeInterval / fadeSec;
                 sceneLoaderCanvasGroup.alpha = Mathf.Lerp(isFadeIn ? 0 : 1, isFadeIn ? 1 : 0, timer);
             }
 
@@ -228,6 +209,8 @@ namespace Utility.Scene
             {
                 gameObject.SetActive(false);
             }
+
+            onEndAction?.Invoke();
         }
     }
 }

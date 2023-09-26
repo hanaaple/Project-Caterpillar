@@ -71,11 +71,11 @@ namespace Utility.Core
                 case PlayType.None:
                 case PlayType.StageField:
                 case PlayType.MiniGame:
-                    quickSlotManager.SetEnable(false);
+                    quickSlotManager.SetActive(false);
                     inventoryManager.SetEnable(false);
                     break;
                 case PlayType.MainField:
-                    quickSlotManager.SetEnable(true);
+                    quickSlotManager.SetActive(true);
                     inventoryManager.SetEnable(true);
                     break;
                 default:

@@ -24,23 +24,31 @@ namespace Utility.UI.QuickSlot
             tendencyItems = new List<QuickSlotTendencyItem>();
         }
 
-        public void SetQuickSlot(bool isActive)
+        public void SetQuickSlot(bool isOpen)
         {
-            if (isActive)
+            if (isOpen)
             {
                 UpdateTendencyWord();
                 dynamicGrid.UpdateRectSize();
             }
 
-            animator.SetBool(IsOpenHash, isActive);
+            if (IsActive())
+            {
+                animator.SetBool(IsOpenHash, isOpen);
+            }
         }
 
-        public void SetEnable(bool isEnable)
+        public void SetActive(bool isActive)
         {
-            quickSlotPanel.gameObject.SetActive(isEnable);
+            quickSlotPanel.gameObject.SetActive(isActive);
+        }
+        
+        private bool IsActive()
+        {
+            return quickSlotPanel.gameObject.activeSelf;
         }
 
-        public bool IsActive()
+        public bool IsOpen()
         {
             return animator.GetBool(IsOpenHash);
         }

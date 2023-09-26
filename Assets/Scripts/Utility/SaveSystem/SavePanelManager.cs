@@ -114,6 +114,7 @@ namespace Utility.SaveSystem
             else if (saveLoadType == SaveLoadType.Load)
             {
                 savePanelText.text = "Load";
+                _targetSceneName = "";
             }
 
             gameObject.SetActive(isActive);
@@ -255,7 +256,7 @@ namespace Utility.SaveSystem
                         var saveCoverData = SaveManager.GetSaveCoverData(saveDataIndex);
                         if (saveCoverData != null)
                         {
-                            SceneLoader.Instance.onLoadSceneEnd += () =>
+                            SceneLoader.Instance.onLoadScene += () =>
                             {
                                 SetActiveSaveLoadPanel(false);
                             };
@@ -312,7 +313,7 @@ namespace Utility.SaveSystem
                         checkUIManager.SetText(newLoadText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
-                            SceneLoader.Instance.onLoadSceneEnd += () => { SetActiveSaveLoadPanel(false); };
+                            SceneLoader.Instance.onLoadScene += () => { SetActiveSaveLoadPanel(false); };
                             SceneLoader.Instance.LoadScene("MainScene");
 
                             checkUIManager.Pop();

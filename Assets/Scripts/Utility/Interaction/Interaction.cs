@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using Utility.Audio;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.JsonLoader;
@@ -19,10 +20,6 @@ namespace Utility.Interaction
         public string id;
 
         public InteractionData[] interactionData;
-
-        // [SerializeField] protected bool isOnLoadScene;
-
-        [SerializeField] protected bool isOnAwake;
 
         // for debugging
         [SerializeField] public int interactionIndex;
@@ -52,17 +49,40 @@ namespace Utility.Interaction
         {
             GameManager.Instance.AddInteraction(this);
 
-            // 이거만 어떻게 막아보자
-            if (isOnAwake)
-            {
-                Debug.LogWarning("ㅎㅇ111");
-                StartInteraction();
-            }
+            UpdateId();
         }
 
         protected virtual void Start()
         {
             gameObject.layer = LayerMask.NameToLayer("OnlyPlayerCheck");
+        }
+
+        public void UpdateId()
+        {
+            for (var index = 0; index < interactionData.Length; index++)
+            {
+                var interaction = interactionData[index];
+                interaction.serializedInteractionData.id = index;
+            }
+        }
+
+        public void OnAwakeInteraction()
+        {
+            Debug.LogWarning(interactionIndex);
+            Debug.LogWarning(interactionData.Length);
+            Debug.LogWarning(gameObject.activeSelf);
+            Debug.LogWarning(interactionIndex >= interactionData.Length || !gameObject.activeSelf);
+            if (interactionIndex >= interactionData.Length || !gameObject.activeSelf)
+            {
+                return;
+            }
+
+            var data = interactionData[interactionIndex];
+            if (data.isOnAwake)
+            {
+                Debug.Log($"OnAwake - {gameObject.name}, Index - {interactionIndex}, Order - {data.order}");
+                StartInteraction();
+            }
         }
 
         public void InitializeWait(WaitInteraction waitInteraction, Action onClearAction)
@@ -133,11 +153,14 @@ namespace Utility.Interaction
                 return;
             }
 
-            PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
-
-            Debug.Log($"Start Interaction 이름: {gameObject.name}");
-
             var interaction = GetInteractionData(index);
+
+            Debug.Log($"Start Interaction 이름: {gameObject.name} {interaction.interactType}");
+
+            if (interaction.serializedInteractionData.isPauseBgm)
+            {
+                AudioManager.Instance.ReduceBgmVolume();
+            }
 
             if (interaction.isMove)
             {
@@ -148,6 +171,7 @@ namespace Utility.Interaction
                 switch (interaction.interactType)
                 {
                     case InteractType.Dialogue:
+                        PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
                         if (interaction.dialogueData.dialogueElements.Length == 0)
                         {
                             PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
@@ -179,7 +203,7 @@ namespace Utility.Interaction
                         break;
                     case InteractType.Item:
                         // Item List가 있고 없고 2가지 경우만 따짐
-                        
+
                         // interaction.itemInteractionType.itemTypes
                         // ItemManager.Instance.GetItem<ItemManager.ItemType>()
                         // 중복 비교 
@@ -192,16 +216,16 @@ namespace Utility.Interaction
                         {
                             // 아이템 전부 있음
                             Debug.Log("아이템 전부 있음");
-                            StartInteraction(interaction.itemInteractionType.targetIndex);
-
                             if (interaction.itemInteractionType.isDestroyItem)
                             {
                                 Debug.Log("아이템 제거");
                                 foreach (var itemType in interaction.itemInteractionType.itemTypes)
                                 {
-                                    ItemManager.Instance.RemoveItem(itemType);   
+                                    ItemManager.Instance.RemoveItem(itemType);
                                 }
                             }
+
+                            StartInteraction(interaction.itemInteractionType.targetIndex);
                         }
                         else
                         {
@@ -214,10 +238,45 @@ namespace Utility.Interaction
                         break;
                     case InteractType.Tutorial:
                     {
-                        PlayUIManager.Instance.tutorialManager.StartTutorial(interaction.tutorialHelper, () =>
+                        PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
+                        PlayUIManager.Instance.tutorialManager.StartTutorial(interaction.tutorialHelper,
+                            () => { EndInteraction(); });
+                        break;
+                    }
+                    case InteractType.Audio:
+                    {
+                        if (interaction.isBgm)
                         {
-                            EndInteraction();
-                        });
+                            if (interaction.isAudioClip)
+                            {
+                                AudioManager.Instance.PlayBgmWithFade(interaction.audioClip);
+                            }
+                            else if (interaction.isTimelineAudio)
+                            {
+                                AudioManager.Instance.PlayBgmWithFade(interaction.audioTimeline);
+                            }
+                            else
+                            {
+                                Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
+                            }
+                        }
+                        else if (interaction.isSfx)
+                        {
+                            if (interaction.isAudioClip)
+                            {
+                                AudioManager.Instance.PlaySfx(interaction.audioClip);
+                            }
+                            else if (interaction.isTimelineAudio)
+                            {
+                                AudioManager.Instance.PlaySfx(interaction.audioTimeline);
+                            }
+                            else
+                            {
+                                Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
+                            }
+                        }
+
+                        EndInteraction();
                         break;
                     }
                 }
@@ -226,52 +285,52 @@ namespace Utility.Interaction
 
         protected virtual void EndInteraction(int index = -1, int nextIndex = -1)
         {
-            Debug.LogWarning("왜 실행 안해");
             if (index == -1)
             {
                 index = interactionIndex;
             }
 
-            Debug.Log($"{gameObject.name} 인터랙션 종료");
-
             var interaction = GetInteractionData(index);
             var data = GetInteractionData(index).serializedInteractionData;
             data.isInteracted = true;
+
+            Debug.Log($"{gameObject.name} 종료 인터랙션 - {index}, {nextIndex}");
 
             if (nextIndex == -1)
             {
                 nextIndex = (index + 1) % interactionData.Length;
             }
 
-            var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
+            Debug.Log($"목표 -> {nextIndex}");
 
-            // var collider2d = GetComponent<Collider2D>();
-            //collider2d.enabled = false;
+            var nextInteraction = GetInteractionData(nextIndex).serializedInteractionData;
 
             if (data.isNextInteractable)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
-                // collider2d.enabled = true;
-            }
-
-            if (data.isLoop)
-            {
-                // collider2d.enabled = true;
             }
 
             if (data.interactNextIndex)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
-
-                StartInteraction(nextIndex);
             }
 
+            if (!data.interactNextIndex)
+            {
+                AudioManager.Instance.ReturnBgmVolume();
+            }
+            
             interaction.onEndAction?.Invoke();
             interaction.onEndAction = () => { };
             OnEndInteraction?.Invoke();
             OnEndInteraction = () => { };
+
+            if (data.interactNextIndex)
+            {
+                StartInteraction(nextIndex);
+            }
         }
 
         private IEnumerator MoveTo(int index)
@@ -345,8 +404,14 @@ namespace Utility.Interaction
                 index = interactionIndex;
             }
 
+            if (index >= interactionData.Length)
+            {
+                return false;
+            }
+
             var interaction = interactionData[index].serializedInteractionData;
-            return (interaction.isLoop || !interaction.isInteracted) && interaction.isInteractable;
+            return (interaction.isLoop || !interaction.isInteracted) && interaction.isInteractable &&
+                   gameObject.activeSelf;
         }
 
         public InteractionData GetInteractionData(int index = -1)
@@ -363,14 +428,13 @@ namespace Utility.Interaction
         {
             var interactionSaveData = new InteractionSaveData
             {
+                name = gameObject.name,
                 id = id,
                 interactionIndex = interactionIndex,
                 serializedInteractionData = new List<SerializedInteractionData>()
             };
-            for (var index = 0; index < interactionData.Length; index++)
+            foreach (var interaction in interactionData)
             {
-                var interaction = interactionData[index];
-                interaction.serializedInteractionData.id = index;
                 interactionSaveData.serializedInteractionData.Add(interaction.serializedInteractionData);
             }
 
@@ -384,6 +448,11 @@ namespace Utility.Interaction
             {
                 var interaction = interactionData[index];
 
+                if (interaction.dialogueData?.dialogueElements == null || interaction.dialogueData.dialogueElements.Length == 0)
+                {
+                    continue;
+                }
+                
                 for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
                 {
                     var dialogueElement = interaction.dialogueData.dialogueElements[idx];
@@ -396,7 +465,7 @@ namespace Utility.Interaction
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                             break;
                         }
-
+                        
                         case DialogueType.CutScene:
                         {
                             var timelineAsset = (TimelineAsset) dialogueElement.playableAsset;
@@ -436,6 +505,11 @@ namespace Utility.Interaction
                                     $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                             }
 
+                            break;
+                        }
+                        case DialogueType.Audio:
+                        {
+                            Debug.LogWarning($"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
                             break;
                         }
                     }

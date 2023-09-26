@@ -4,7 +4,6 @@ using UnityEngine;
 using Utility.Core;
 using Utility.Player;
 using Utility.Property;
-using Utility.Tutorial;
 
 namespace Utility.Scene
 {
@@ -45,15 +44,18 @@ namespace Utility.Scene
         
         public PlayType playType;
 
-        [ConditionalHideInInspector("playType", PlayType.MiniGame, default, true)]
+        [ConditionalHideInInspector("playType", PlayType.MiniGame, false, true)]
         public ToastManager toastManager;
 
-        [ConditionalHideInInspector("playType", PlayType.MainField | PlayType.StageField, default, true)]
+        [ConditionalHideInInspector("playType", PlayType.MainField | PlayType.StageField, false, true)]
         public FieldProperty fieldProperty;
 
-        [ConditionalHideInInspector("playType", PlayType.StageField, default, true)]
+        [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
         public BindProperty bindProperty;
-
+        
+        /// <summary>
+        /// Awake가 OnSceneLoadEnd보다 먼저 발생하여 Awake에서 사용
+        /// </summary>
         private void Awake()
         {
             Instance = this;
@@ -79,7 +81,7 @@ namespace Utility.Scene
             PlayUIManager.Instance.Init(playType);
             PlayerManager.Instance.Init(playType);
         }
-
+        
         public T GetBindObject<T>(string bindObjectName) where T : UnityEngine.Object
         {
             T returnValue = null;

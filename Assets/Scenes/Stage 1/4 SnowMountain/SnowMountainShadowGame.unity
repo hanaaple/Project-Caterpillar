@@ -7358,6 +7358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialHelper: {fileID: 1583885265}
+  bgm: {fileID: 8300000, guid: acb6410a4d921f64194efd2c58dc09c6, type: 3}
   cameraSpeed: 4
   cameraBound: {fileID: 528583794}
   flashlight: {fileID: 1125824677}

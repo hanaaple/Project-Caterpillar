@@ -5060,7 +5060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2240738939412477445}
-  audioSourceName: Bgm
+  audioSourceType: 0
   text: {fileID: 5802172222702057644}
   toggle: {fileID: 4462133558461735448}
 --- !u!1 &5958447861936447067
@@ -6200,7 +6200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 4456789191767441702}
-  audioSourceName: Sfx
+  audioSourceType: 1
   text: {fileID: 3598557641857176744}
   toggle: {fileID: 8142119358067893106}
 --- !u!1 &6561713525077831434

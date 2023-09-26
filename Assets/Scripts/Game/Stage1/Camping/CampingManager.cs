@@ -7,6 +7,7 @@ using Game.Stage1.Camping.Interaction.Map;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
@@ -27,6 +28,8 @@ namespace Game.Stage1.Camping
 
         [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
 
+        [Header("Audio")] [SerializeField] private AudioClip bgm;
+        
         [Header("필드")] [SerializeField] private GameObject filedPanel;
         [SerializeField] private Button openMapButton;
         [SerializeField] private Button resetButton;
@@ -125,6 +128,7 @@ namespace Game.Stage1.Camping
             {
                 InputManager.PushInputAction(_inputActions);
                 StartCoroutine(StartTimer());
+                AudioManager.Instance.PlayBgmWithFade(bgm);
             });
         }
 

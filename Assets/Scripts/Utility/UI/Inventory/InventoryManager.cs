@@ -196,7 +196,7 @@ namespace Utility.UI.Inventory
 
             _menuHighlighter.Init(Highlighter.ArrowType.Horizontal, () => { SetInventory(false); });
             _itemHighlighter.Init(Highlighter.ArrowType.Horizontal,
-                () => { HighlightHelper.Instance.SetLast(_menuHighlighter, default, true); });
+                () => { HighlightHelper.Instance.SetLast(_menuHighlighter, false, true); });
 
             _menuHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };
             _itemHighlighter.InputActions.OnInventory = _ => { SetInventory(false); };

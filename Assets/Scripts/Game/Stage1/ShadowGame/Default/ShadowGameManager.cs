@@ -4,6 +4,7 @@ using Game.Default;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.SaveSystem;
@@ -24,18 +25,17 @@ namespace Game.Stage1.ShadowGame.Default
     {
         [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
 
+        [Header("Audio")] [SerializeField] private AudioClip bgm;
+        
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
-
         [SerializeField] private BoxCollider2D cameraBound;
 
         [Space(10)] [Header("Light")] [SerializeField]
         private Flashlight flashlight;
 
         [Space(20)] [Header("Canvas")] [SerializeField]
-        private Button tutorialExitButton;
-
-        [SerializeField] private Button retryButton;
+        private Button retryButton;
         [SerializeField] private Button giveUpButton;
 
         [Space(20)] [Header("Play UI")] [SerializeField]
@@ -88,7 +88,6 @@ namespace Game.Stage1.ShadowGame.Default
 
         private static readonly int MentalityHash = Animator.StringToHash("Mentality");
         private static readonly int StageIndexHash = Animator.StringToHash("StageIndex");
-        private static readonly int TutorialHash = Animator.StringToHash("Tutorial");
         private static readonly int PlayHash = Animator.StringToHash("Play");
         private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int AttackHash = Animator.StringToHash("Attack");
@@ -135,14 +134,12 @@ namespace Game.Stage1.ShadowGame.Default
             _yScreenHalfSize = _camera.orthographicSize;
             _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
-            tutorialExitButton.onClick.AddListener(StartGame);
-
             giveUpButton.onClick.AddListener(() =>
             {
                 SaveHelper.SetNpcData(NpcType.Photographer, NpcState.Fail);
                 SceneLoader.Instance.LoadScene("MainScene");
             });
-            retryButton.onClick.AddListener(() => { StartCoroutine(ReStartGame()); });
+            retryButton.onClick.AddListener(ReStartGame);
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
             {
@@ -184,6 +181,7 @@ namespace Game.Stage1.ShadowGame.Default
 
             stageAnimator.SetTrigger(ResetHash);
             stageAnimator.SetInteger(StageIndexHash, stageIndex);
+            gameAnimator.SetFloat(SecHash, 0);
         }
 
         public void Play()
@@ -191,18 +189,17 @@ namespace Game.Stage1.ShadowGame.Default
             PlayUIManager.Instance.tutorialManager.StartTutorial(tutorialHelper, () =>
             {
                 InputManager.PushInputAction(_inputActions);
-                StartTutorial();
+                ResetSetting();
+                StartCoroutine(StartGame());
             });
         }
 
-        private void StartTutorial()
+        private IEnumerator StartGame()
         {
-            ResetSetting();
-            gameAnimator.SetTrigger(TutorialHash);
-        }
-
-        private void StartGame()
-        {
+            yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
+            yield return new WaitForSeconds(1f);
+            
+            AudioManager.Instance.PlayBgmWithFade(bgm);
             gameAnimator.SetTrigger(PlayHash);
             StartStage();
         }
@@ -445,18 +442,11 @@ namespace Game.Stage1.ShadowGame.Default
             cameraTransform.position = new Vector3(clampX, clampY, cameraTransform.position.z);
         }
 
-        private IEnumerator ReStartGame()
+        private void ReStartGame()
         {
             ResetSetting();
             gameAnimator.SetTrigger(ResetHash);
-            gameAnimator.SetFloat(SecHash, 0);
-            yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
-
-            // Wait Reset And Start Play
-            // StartGame
-
-            yield return new WaitForSeconds(1f);
-            StartGame();
+            StartCoroutine(StartGame());
         }
 
         private void PopDownItem(InputAction.CallbackContext _ = default)

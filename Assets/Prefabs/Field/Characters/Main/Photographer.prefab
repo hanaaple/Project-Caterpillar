@@ -97,54 +97,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &3493499426382509235
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3493499426382509234}
-  - component: {fileID: 3493499426382509237}
-  m_Layer: 11
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3493499426382509234
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3493499426382509235}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3493499427491173993}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3493499426382509237
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3493499426382509235}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: -1.13}
-  m_Size: {x: 1.1, y: 1.7}
-  m_Direction: 0
 --- !u!1 &3493499426454071848
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +108,7 @@ GameObject:
   - component: {fileID: 3493499426454071850}
   - component: {fileID: 3493499426454071851}
   - component: {fileID: 3493499426454071853}
+  - component: {fileID: 5147824369472111541}
   m_Layer: 0
   m_Name: Photographer
   m_TagString: Untagged
@@ -253,45 +206,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3493499427191521838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3493499427191521825}
-  - component: {fileID: 3493499427191521824}
-  m_Layer: 11
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3493499427191521825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3493499427191521838}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3493499427706569256}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3493499427191521824
+--- !u!70 &5147824369472111541
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3493499427191521838}
+  m_GameObject: {fileID: 3493499426454071848}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -429,7 +350,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3493499428005741455}
-  - {fileID: 3493499426382509234}
   m_Father: {fileID: 3493499426454071850}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -476,6 +396,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -496,6 +422,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -519,6 +451,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -539,6 +477,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -564,6 +508,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -584,6 +534,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -608,6 +564,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -620,12 +582,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 1
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 1
       isLoop: 0
+      isPauseBgm: 1
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -640,7 +611,7 @@ MonoBehaviour:
         dialogueType: 1
         expression: 0
         option:
-        - Right
+        - Left
         - ' Appear'
         interactionWaitType: 0
         waitInteractions:
@@ -653,6 +624,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -674,6 +651,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -694,13 +677,47 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 4
+        subject: ???
+        contents: "\xB7\xB7\xB7\uD5E5\uD5E5!"
+        dialogueType: 1
+        expression: 0
+        option:
+        - Left
+        - InActive
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
-        subject: ???
-        contents: "\xB7\xB7\xB7\uD5E5\uD5E5!"
-        dialogueType: 1
+        subject: 
+        contents: 
+        dialogueType: 11
         expression: 0
         option:
         - Reset
@@ -715,6 +732,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -740,6 +763,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -749,10 +778,7 @@ MonoBehaviour:
           \uAC00\uBA74 \uB124\uAC00 \uC88B\uC544\uD558\uB294 \uAC83\uC744\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-2'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -764,6 +790,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -789,6 +821,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -813,6 +851,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -837,6 +881,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -849,12 +899,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 1
       isLoop: 0
+      isPauseBgm: 0
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -884,6 +943,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -909,6 +974,41 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uCEF7 \uC52C)> (\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC)\r"
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - -1
+        - "name = Stage 1/End/Hospital/#1-2 \uC554\uC804"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 3b8efe59626979442afea796a7365478, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -916,481 +1016,6 @@ MonoBehaviour:
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uC81C \uAC00\uC871\uC740 \uBAA8\uB450 \uC8FD\uC740
           \uAC74\uAC00\uC694?"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Left
-        - ' Appear'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 0
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\xB7\xB7\xB7\uC5B4\uB5BB\uAC8C \uADF8\uB807\uAC8C \uC0DD\uAC01\uD558\uAC8C
-          \uB418\uC5C8\uB294\uC9C0 \uC5EC\uCB64\uBD10\uB3C4 \uAD1C\uCC2E\uC744\uAE4C\uC694?"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Reset
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 0
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 3'
-        - ' name=Main/Stage1/#1-1'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 308c6e06bf5503e45a149b885de9e7a5, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 3
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uC0AC\uC2E4 \uC81C\uAC00 \uAE30\uC5B5\uD558\uACE0
-          \uC788\uB294 \uAC83\uB9CC \uAC19\uC544\uC694\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-2'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 02bede5eb42dfa746a581176c4cdb5ff, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uD0C0\uC774\uD551 \uC18C\uB9AC\uC640
-          \uD568\uAED8 \uC758\uC0AC\uAC00 \uBB34\uC5B8\uAC00\uB97C \uC785\uB825\uD55C\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        - " name=Stage 1/End/Hospital/\uD0C0\uC774\uD551"
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 9ef6e7060e73ce4488e8331e4d8a1a67, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
-          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "(\xB7\xB7\xB7?)"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-5'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: bad21e4ff7fdbc84aad6db4b6a0383b5, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\uB9CE\uC774 \uD798\uB4DC\uC168\uACA0\uAD70\uC694\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-6'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: d8a7a5c846b9eb341b7d4e262a8e8b0b, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\xB7\xB7\xB7\uC5B4\uB460 \uC18D\uC5D0\uC11C \uD1A0\uBBF8\uB97C
-          \uACF5\uACA9\uD574\uC624\uB358 \uBB34\uC5B8\uAC00, \uC0AC\uB78C\uC744 \uB36E\uC744
-          \uC815\uB3C4\uC758 \uACF5\uACA9\uC131\uC744 \uAC00\uC9C0\uB358 \uBC8C\uB808,
-          \uB2E4 \uB9DD\uAC00\uC9C4 \uD574\uBCC0\uAC00\xB7\xB7\xB7.\_"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-7'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: e21d9b1468f1092409bd00f3bf85e15a, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\xB7\xB7\xB7\uADF8\uB9AC\uACE0 \uD1A0\uBBF8\uC758 \uBC29\uC5D0\uC11C
-          \uBCF4\uC558\uB358 \uBB34\uC5B8\uAC00\uB294 \uB2E4\uC2DC\uAE08 \uD3ED\uC124
-          \uC18D\uC5D0\uC11C \uACF5\uACA9\uD574\uC654\uB2E4\uACE0\uC694?"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-8'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: e84891dbf7975a449ba0b018ab273b9a, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uB124, \uC81C\uAC00 \uBAA8\uB4E0 \uAC83\uC744 \uAE30\uC5B5\uD574\uC694."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-9'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: c9c3c82b1aa7a824fb81d62f9da8f218, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uBBFF\uAE30 \uD798\uB4DC\uC2E0 \uC77C\uC774\uB77C\uB294 \uAC83\uC740
-          \uC54C\uC9C0\uB9CC\xB7\xB7\xB7!"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-10'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: e59ec0b636a425940881e7abbb7f1c09, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7\uC5B4\uCA4C\uBA74 \uC81C \uAC00\uC871\uB4E4\uC740
-          \uC544\uC9C1 \uC8FD\uC9C0 \uC54A\uC558\uC744 \uC9C0\uB3C4 \uBAB0\uB77C\uC694."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-11'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 418bf4adb55d52f4186a10fe5421f72e, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\uC624, \uC774\uB7F0\xB7\xB7\xB7. \uC218\uC0C9\uB300\uB97C \uD30C\uACAC\uD574
-          \uC8FC\uC138\uC694! \uC9C0\uAE08 \uB2F9\uC7A5\uC774\uC694!"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-12'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: d0309e44d207dae409ba83cfad5b732c, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\uC9C4\uC815\uD558\uC138\uC694, \uD658\uC790\uBD84. \uADF8 \uC774\uC57C\uAE30\uB294
-          \uCC28\uCC28 \uD574\uBCF4\uC8E0. \uC9C0\uAE08\uC740 \uC548\uC815\uC774
-          \uC6B0\uC120\uC785\uB2C8\uB2E4."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-13'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 0ecfa50b7fe72fb428ccbb133ce24dfd, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "\xB7\xB7\xB7."
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-14'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 514db9512a1ba034693702947bf09252, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uD0C0\uC774\uD551 \uC18C\uB9AC\uC640
-          \uD568\uAED8 \uC758\uC0AC\uAC00 \uBB34\uC5B8\uAC00\uB97C \uC785\uB825\uD55C\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        - " name=Stage 1/End/Hospital/\uD0C0\uC774\uD551"
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 9ef6e7060e73ce4488e8331e4d8a1a67, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
-          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
-          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' -1'
-        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC544\uC774\uC791"
-        contents: "(\xB7\xB7\xB7.)"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-18'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 1.5
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 4
-        subject: "\uC758\uC0AC"
-        contents: "\uAE30\uC5B5\uC774 \uD30C\uD3B8\uCC98\uB7FC \uB4DC\uBB38\uB4DC\uBB38
-          \uB098\uC2E0\uB2E4\uACE0 \uD558\uC168\uC8E0?"
         dialogueType: 1
         expression: 0
         option:
@@ -1407,6 +1032,565 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\xB7\xB7\xB7\uC5B4\uB5BB\uAC8C \uADF8\uB807\uAC8C \uC0DD\uAC01\uD558\uAC8C
+          \uB418\uC5C8\uB294\uC9C0 \uC5EC\uCB64\uBD10\uB3C4 \uAD1C\uCC2E\uC744\uAE4C\uC694?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 308c6e06bf5503e45a149b885de9e7a5, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 3
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7\uC0AC\uC2E4 \uC81C\uAC00 \uAE30\uC5B5\uD558\uACE0
+          \uC788\uB294 \uAC83\uB9CC \uAC19\uC544\uC694\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 02bede5eb42dfa746a581176c4cdb5ff, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uD0C0\uC774\uD551 \uC18C\uB9AC\uC640
+          \uD568\uAED8 \uC758\uC0AC\uAC00 \uBB34\uC5B8\uAC00\uB97C \uC785\uB825\uD55C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/End/Hospital/\uD0C0\uC774\uD551"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 9ef6e7060e73ce4488e8331e4d8a1a67, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
+          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "(\xB7\xB7\xB7?)"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: bad21e4ff7fdbc84aad6db4b6a0383b5, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\uB9CE\uC774 \uD798\uB4DC\uC168\uACA0\uAD70\uC694\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: d8a7a5c846b9eb341b7d4e262a8e8b0b, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\xB7\xB7\xB7\uC5B4\uB460 \uC18D\uC5D0\uC11C \uD1A0\uBBF8\uB97C
+          \uACF5\uACA9\uD574\uC624\uB358 \uBB34\uC5B8\uAC00, \uC0AC\uB78C\uC744 \uB36E\uC744
+          \uC815\uB3C4\uC758 \uACF5\uACA9\uC131\uC744 \uAC00\uC9C0\uB358 \uBC8C\uB808,
+          \uB2E4 \uB9DD\uAC00\uC9C4 \uD574\uBCC0\uAC00\xB7\xB7\xB7.\_"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: e21d9b1468f1092409bd00f3bf85e15a, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\xB7\xB7\xB7\uADF8\uB9AC\uACE0 \uD1A0\uBBF8\uC758 \uBC29\uC5D0\uC11C
+          \uBCF4\uC558\uB358 \uBB34\uC5B8\uAC00\uB294 \uB2E4\uC2DC\uAE08 \uD3ED\uC124
+          \uC18D\uC5D0\uC11C \uACF5\uACA9\uD574\uC654\uB2E4\uACE0\uC694?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: e84891dbf7975a449ba0b018ab273b9a, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7\uB124, \uC81C\uAC00 \uBAA8\uB4E0 \uAC83\uC744 \uAE30\uC5B5\uD574\uC694."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: c9c3c82b1aa7a824fb81d62f9da8f218, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\uBBFF\uAE30 \uD798\uB4DC\uC2E0 \uC77C\uC774\uB77C\uB294 \uAC83\uC740
+          \uC54C\uC9C0\uB9CC\xB7\xB7\xB7!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: e59ec0b636a425940881e7abbb7f1c09, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7\uC5B4\uCA4C\uBA74 \uC81C \uAC00\uC871\uB4E4\uC740
+          \uC544\uC9C1 \uC8FD\uC9C0 \uC54A\uC558\uC744 \uC9C0\uB3C4 \uBAB0\uB77C\uC694."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 418bf4adb55d52f4186a10fe5421f72e, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\uC624, \uC774\uB7F0\xB7\xB7\xB7. \uC218\uC0C9\uB300\uB97C \uD30C\uACAC\uD574
+          \uC8FC\uC138\uC694! \uC9C0\uAE08 \uB2F9\uC7A5\uC774\uC694!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: d0309e44d207dae409ba83cfad5b732c, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\uC9C4\uC815\uD558\uC138\uC694, \uD658\uC790\uBD84. \uADF8 \uC774\uC57C\uAE30\uB294
+          \uCC28\uCC28 \uD574\uBCF4\uC8E0. \uC9C0\uAE08\uC740 \uC548\uC815\uC774
+          \uC6B0\uC120\uC785\uB2C8\uB2E4."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 0ecfa50b7fe72fb428ccbb133ce24dfd, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "\xB7\xB7\xB7."
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 514db9512a1ba034693702947bf09252, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uD0C0\uC774\uD551 \uC18C\uB9AC\uC640
+          \uD568\uAED8 \uC758\uC0AC\uAC00 \uBB34\uC5B8\uAC00\uB97C \uC785\uB825\uD55C\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/End/Hospital/\uD0C0\uC774\uD551"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 9ef6e7060e73ce4488e8331e4d8a1a67, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
+          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "(\uC2A4\uD14C\uC774\uC9C0 \uD544\uB4DC) : \uC544\uC774\uC791\uC758
+          \uADD3\uAC00\uC5D0 \uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C\uC774 \uB4E4\uB9B0\uB2E4."
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - ' -1'
+        - " name=Stage 1/End/Hospital/\uCE74\uBA54\uB77C \uD6A8\uACFC\uC74C"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 7eb1ec87e6f28634c9e864c41b44c540, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC544\uC774\uC791"
+        contents: "(\xB7\xB7\xB7.)"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 1.5
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 4
+        subject: "\uC758\uC0AC"
+        contents: "\uAE30\uC5B5\uC774 \uD30C\uD3B8\uCC98\uB7FC \uB4DC\uBB38\uB4DC\uBB38
+          \uB098\uC2E0\uB2E4\uACE0 \uD558\uC168\uC8E0?"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1429,6 +1613,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1437,8 +1627,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1450,6 +1639,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1474,6 +1669,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1498,6 +1699,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1522,6 +1729,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1546,6 +1759,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1566,6 +1785,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1586,6 +1811,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1598,8 +1829,7 @@ MonoBehaviour:
           \uAC04 \uC801\uC774 \uC5C6\uB2E4\uBA74\uC694?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1611,6 +1841,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1619,8 +1855,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7\uADF8\uAC8C \uBB34\uC2A8 \uB9D0\uC500\uC774\uC2DC\uC8E0\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1632,6 +1867,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1656,6 +1897,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1664,8 +1911,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1677,6 +1923,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1685,8 +1937,7 @@ MonoBehaviour:
         contents: "(\uC9C0\uAE08\xB7\xB7\xB7. \uBE44\uC6C3\uC9C0 \uC54A\uC558\uB358\uAC00?)"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1698,6 +1949,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1722,6 +1979,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1731,8 +1994,7 @@ MonoBehaviour:
           \uBB50\uC9C0?)"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1744,6 +2006,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1768,6 +2036,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1777,8 +2051,7 @@ MonoBehaviour:
           \uC758\uC0AC\uAC00 \uB9DE\uAE34 \uD558\uB358\uAC00?)"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1790,6 +2063,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1814,6 +2093,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1822,8 +2107,7 @@ MonoBehaviour:
         contents: "(\uD639\uC2DC \uB098\uB97C \uCC0D\uACE0 \uC788\uB358 \uAC74\uAC00\xB7\xB7\xB7?)"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1835,6 +2119,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1859,6 +2149,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1883,6 +2179,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1907,6 +2209,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1915,8 +2223,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7\uD658\uC790\uBD84\xB7\xB7\xB7?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1928,6 +2235,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1936,8 +2249,7 @@ MonoBehaviour:
         contents: "\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1949,6 +2261,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1957,8 +2275,7 @@ MonoBehaviour:
         contents: "\uB108\xB7\xB7\xB7 \uC774\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1970,6 +2287,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -1978,8 +2301,7 @@ MonoBehaviour:
         contents: "\uD658\uC790\uBD84\xB7\xB7\xB7?! \uD658\uC790\uBD84! \uC9C4\uC815\uD558\uC138\uC694!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -1991,6 +2313,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2000,8 +2328,7 @@ MonoBehaviour:
           \uB300\uCCB4 \uBB50\uB0D0\uACE0!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2013,6 +2340,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2021,8 +2354,7 @@ MonoBehaviour:
         contents: "\uC9C0\uAE08 \uB0A0 \uCC0D\uACE0 \uC788\uB294\uAC70\uC9C0\xB7\xB7\xB7?!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2034,6 +2366,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2043,8 +2381,7 @@ MonoBehaviour:
           \uBD88\uD589\uC774 \uC6C3\uC74C\uAC70\uB9AC\uB358\uAC00?!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2056,27 +2393,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: "\uC758\uC0AC"
-        contents: "\uBB34\uC2A8 \uC18C\uB9AC\uB97C \uD558\uC2DC\uB294 \uAC81\uB2C8\uAE4C!"
-        dialogueType: 1
-        expression: 0
-        option:
-        - Reset
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 0}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: 0
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2087,8 +2409,7 @@ MonoBehaviour:
           \uC0DD\uAC01\uD588\uB098?!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2100,6 +2421,38 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: "\uC758\uC0AC"
+        contents: "\uBB34\uC2A8 \uC18C\uB9AC\uB97C \uD558\uC2DC\uB294 \uAC81\uB2C8\uAE4C!"
+        dialogueType: 1
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2109,8 +2462,7 @@ MonoBehaviour:
           \uC870\uAE08\uB9CC \uC9C4\uC815\uD574\uC8FC\uC138\uC694!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2122,6 +2474,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2132,8 +2490,7 @@ MonoBehaviour:
           \uBCF4\uC9C0?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2145,6 +2502,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2153,8 +2516,7 @@ MonoBehaviour:
         contents: "\uC820\uC7A5! \uC81C\uBC1C \uC880! \uAC04\uD638\uC0AC!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2166,6 +2528,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2175,7 +2543,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - Reset
+        - "Tendency-\uC18C\uBAA8 "
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2187,6 +2555,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2195,11 +2569,7 @@ MonoBehaviour:
         contents: "\uC5F4\uC1E0 <b><\uC18C\uBAA8></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
-        option:
-        - 0
-        - ' 1'
-        - ' 2'
-        - ' 0'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2211,6 +2581,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2220,7 +2596,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - Reset
+        - "Tendency-\uC778\uB0B4 "
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2232,6 +2608,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2240,11 +2622,7 @@ MonoBehaviour:
         contents: "\uC5F4\uC1E0 <b><\uC778\uB0B4></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
-        option:
-        - 0
-        - ' 2'
-        - ' 0'
-        - ' 3'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2256,6 +2634,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2264,8 +2648,7 @@ MonoBehaviour:
         contents: 
         dialogueType: 3
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2277,6 +2660,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2298,6 +2687,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2323,6 +2718,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2331,8 +2732,7 @@ MonoBehaviour:
         contents: "\uC9C4\uC815\uD558\uC138\uC694! \uD658\uC790\uBD84!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2344,6 +2744,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2353,8 +2759,7 @@ MonoBehaviour:
           \uCC0D\uC9C0 \uB9D0\uB77C\uACE0!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2366,6 +2771,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2375,8 +2786,7 @@ MonoBehaviour:
           \uC9C4\uC815\uD558\uC2DC\uACE0 \uC774\uAC70 \uB193\uC73C\uC138\uC694!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2388,6 +2798,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2397,10 +2813,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - 3
-        - ' 0'
-        - ' 1'
-        - ' 0'
+        - "Tendency-\uC6A9\uAE30 "
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2412,6 +2825,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2420,8 +2839,7 @@ MonoBehaviour:
         contents: "\uC5F4\uC1E0 <b><\uC6A9\uAE30></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2433,6 +2851,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2442,10 +2866,7 @@ MonoBehaviour:
         dialogueType: 2
         expression: 0
         option:
-        - 0
-        - ' 1'
-        - ' 0'
-        - ' 2'
+        - "Tendency-\uB3C4\uD53C "
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2457,6 +2878,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2465,8 +2892,7 @@ MonoBehaviour:
         contents: "\uC5F4\uC1E0 <b><\uB3C4\uD53C></b>\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2478,6 +2904,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2486,8 +2918,7 @@ MonoBehaviour:
         contents: 
         dialogueType: 3
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2499,6 +2930,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2523,6 +2960,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2546,6 +2989,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2555,8 +3004,7 @@ MonoBehaviour:
           \uD3C9\uC0DD\uC744 \uB178\uB825 \uD588\uC5B4\xB7\xB7\xB7!"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2568,6 +3016,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2576,8 +3030,7 @@ MonoBehaviour:
         contents: "\uD3C9\uC0DD\uC744 \uB178\uB825\uD588\xB7\xB7\xB7\uB2E4\uACE0\xB7\xB7\xB7."
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2589,6 +3042,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2614,6 +3073,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2639,6 +3104,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2664,6 +3135,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2688,6 +3165,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2700,12 +3183,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 1
       isLoop: 0
+      isPauseBgm: 0
       isInteracted: 0
   - interactType: 4
     animator: {fileID: 0}
@@ -2723,12 +3215,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 0
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -2737,6 +3238,35 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements:
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - -1
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 7ed8442de90c44b41b657de75cfcb7de, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
       - name: 4
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uB0B4 \uC774\uC57C\uAE30\uB294 \uC5EC\uAE30 \uAE4C\uC9C0\uC57C."
@@ -2756,6 +3286,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2778,6 +3314,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2799,6 +3341,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2807,8 +3355,7 @@ MonoBehaviour:
         contents: "\uB124 \uC0DD\uAC01\uC740 \uC5B4\uB54C?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2820,6 +3367,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2828,10 +3381,7 @@ MonoBehaviour:
         contents: "\uB354\uD560 \uB098\uC704 \uC5C6\uC774 \uC5F4\uC2EC\uD788 \uD588\uC5B4."
         dialogueType: 2
         expression: 0
-        option:
-        - Hold
-        - ' 3'
-        - ' name=Main/Stage1/#1-1'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2843,6 +3393,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2851,10 +3407,7 @@ MonoBehaviour:
         contents: "\uBB34\uC5B8\uAC00 \uCC29\uAC01\uC744 \uD558\uACE0 \uC788\uC5B4."
         dialogueType: 2
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-2'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2866,18 +3419,21 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 3
+        contents: 
         dialogueType: 3
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-3'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2889,6 +3445,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2898,10 +3460,7 @@ MonoBehaviour:
           \uC54A\uC744 \uAC83 \uAC19\uC9C0."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-4'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2913,6 +3472,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2922,10 +3487,7 @@ MonoBehaviour:
           \uB3CC\uC544\uC624\uC9C0 \uC54A\uC544."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-5'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2937,6 +3499,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2946,10 +3514,7 @@ MonoBehaviour:
           \uB4E4\uC5B4\uC918\uC11C. \uB9C8\uC74C\uC774 \uD6E8\uC52C \uB193\uC5EC."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-6'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -2961,6 +3526,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2985,6 +3556,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3007,6 +3584,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3031,35 +3614,18 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 10
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-10'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7ed8442de90c44b41b657de75cfcb7de, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 11
+        contents: 
         dialogueType: 11
         expression: 0
         option:
@@ -3075,6 +3641,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3087,12 +3659,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 1
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 0
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -3120,12 +3701,18 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "\uB124."
+        contents: 
         dialogueType: 11
         expression: 0
         option:
@@ -3141,6 +3728,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3153,12 +3746,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 1
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -3167,6 +3769,35 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements:
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 6
+        expression: 0
+        option:
+        - Hold
+        - -1
+        - Reset
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 11400000, guid: 7ed8442de90c44b41b657de75cfcb7de, type: 2}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
       - name: 4
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uB0B4 \uC774\uC57C\uAE30\uB294 \uC5EC\uAE30 \uAE4C\uC9C0\uC57C."
@@ -3186,6 +3817,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3208,6 +3845,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3229,6 +3872,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3237,8 +3886,7 @@ MonoBehaviour:
         contents: "\uB124 \uC0DD\uAC01\uC740 \uC5B4\uB54C?"
         dialogueType: 1
         expression: 0
-        option:
-        - Reset
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3250,6 +3898,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3258,10 +3912,7 @@ MonoBehaviour:
         contents: "\uB354\uD560 \uB098\uC704 \uC5C6\uC774 \uC5F4\uC2EC\uD788 \uD588\uC5B4."
         dialogueType: 2
         expression: 0
-        option:
-        - Hold
-        - ' 3'
-        - ' name=Main/Stage1/#1-1'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3273,6 +3924,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3281,10 +3938,7 @@ MonoBehaviour:
         contents: "\uBB34\uC5B8\uAC00 \uCC29\uAC01\uC744 \uD558\uACE0 \uC788\uC5B4."
         dialogueType: 2
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-2'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3296,18 +3950,21 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 3
+        contents: 
         dialogueType: 3
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-3'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3319,6 +3976,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3328,10 +3991,7 @@ MonoBehaviour:
           \uC54A\uC744 \uAC83 \uAC19\uC9C0."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-4'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3343,6 +4003,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3352,10 +4018,7 @@ MonoBehaviour:
           \uB3CC\uC544\uC624\uC9C0 \uC54A\uC544."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-5'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3367,6 +4030,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3376,10 +4045,7 @@ MonoBehaviour:
           \uB4E4\uC5B4\uC918\uC11C. \uB9C8\uC74C\uC774 \uD6E8\uC52C \uB193\uC5EC."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-6'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3391,6 +4057,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3415,6 +4087,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3437,6 +4115,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3461,6 +4145,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3471,10 +4161,7 @@ MonoBehaviour:
           \uAC00\uC838\uAC00\uB294 \uD3B8\uC774 \uB354 \uC88B\uACA0\uC9C0."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-10'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3486,6 +4173,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3510,6 +4203,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3532,6 +4231,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3556,6 +4261,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3566,10 +4277,7 @@ MonoBehaviour:
           \uC2F6\uC5B4."
         dialogueType: 1
         expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-14'
+        option: []
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
@@ -3581,35 +4289,18 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: 15
-        dialogueType: 6
-        expression: 0
-        option:
-        - Hold
-        - ' 1.5'
-        - ' name=Main/Stage1/#1-15'
-        interactionWaitType: 0
-        waitInteractions:
-          waitInteractions: []
-        playableAsset: {fileID: 11400000, guid: 7ed8442de90c44b41b657de75cfcb7de, type: 2}
-        extrapolationMode: 0
-        playableDirectorName: 
-        waitSec: -1
-        miniGame: {fileID: 0}
-        isCustomEnd: 0
-        successNextInteractionIndex: 0
-        failNextInteractionIndex: 0
-        isSkipEnable: 0
-        skipLength: 0
-        skipWaitSec: 0
-      - name: 0
-        subject: 
-        contents: 16
+        contents: 
         dialogueType: 11
         expression: 0
         option:
@@ -3625,6 +4316,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3637,12 +4334,21 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 1
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 0
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -3670,12 +4376,18 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
       - name: 0
         subject: 
-        contents: "\uB124."
+        contents: 
         dialogueType: 11
         expression: 0
         option:
@@ -3691,6 +4403,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3703,15 +4421,23 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 1
       isInteracted: 0
-  isOnAwake: 0
-  interactionIndex: 2
+  interactionIndex: 0
   defaultFloatingMark: {fileID: 3493499428005741451}
   floatingMarks: []
   defaultOffset: {x: 1, y: 2}
@@ -3762,7 +4488,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3493499427271203860}
-  - {fileID: 3493499427191521825}
   m_Father: {fileID: 3493499426454071850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3787,7 +4512,7 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements:
-      - name: 0
+      - name: 4
         subject: "\uC544\uC774\uC791"
         contents: "\xB7\xB7\xB7\uB354 \uC774\uC0C1 \uB124\uAC8C \uD560 \uC774\uC57C\uAE30\uB294
           \uC5C6\uC5B4."
@@ -3807,6 +4532,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3829,6 +4560,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3849,6 +4586,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3870,6 +4613,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3882,14 +4631,22 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 1
       isInteracted: 0
-  isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 3493499427271203856}
   floatingMarks: []
@@ -4007,54 +4764,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &4041155210453381807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7044296764506729811}
-  - component: {fileID: 4315318103946035964}
-  m_Layer: 11
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7044296764506729811
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4041155210453381807}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7730999388518462883}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &4315318103946035964
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4041155210453381807}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: -1.13}
-  m_Size: {x: 1.1, y: 1.7}
-  m_Direction: 0
 --- !u!1 &7730999388518462885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,7 +4795,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4086147809066902709}
-  - {fileID: 7044296764506729811}
   m_Father: {fileID: 3493499426454071850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4131,6 +4839,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4151,6 +4865,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4172,6 +4892,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4193,9 +4919,41 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 3
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isAudioClip: 1
+        isTimelineAudio: 0
+        isBgm: 1
+        isSfx: 0
+        audioClip: {fileID: 8300000, guid: bb00870017ca08e4295c5f9abcd0d0a7, type: 3}
+        audioTimeline: {fileID: 0}
+        isSkipEnable: 0
+        skipLength: 15
+        skipWaitSec: 3
       - name: 0
         subject: 
         contents: "(\uBA54\uC778 \uD544\uB4DC)> (\uCEF7 \uC52C \uC804\uD658): \uC0AC\uC9C4\uC0AC\uAC00
@@ -4217,6 +4975,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 1
         skipLength: 15
         skipWaitSec: 3
@@ -4240,6 +5004,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4263,6 +5033,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4286,6 +5062,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4309,6 +5091,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4332,6 +5120,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4355,6 +5149,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4378,6 +5178,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4401,6 +5207,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4424,6 +5236,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4447,6 +5265,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4470,6 +5294,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4493,6 +5323,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4516,6 +5352,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4539,6 +5381,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4562,6 +5410,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4585,6 +5439,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4605,6 +5465,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4625,6 +5491,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4649,6 +5521,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4669,6 +5547,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4689,6 +5573,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4709,6 +5599,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4729,6 +5625,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4749,6 +5651,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4770,6 +5678,12 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
+        isAudioClip: 0
+        isTimelineAudio: 0
+        isBgm: 0
+        isSfx: 0
+        audioClip: {fileID: 0}
+        audioTimeline: {fileID: 0}
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4782,14 +5696,22 @@ MonoBehaviour:
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
+    isOnAwake: 0
+    order: 0
+    isAudioClip: 0
+    isTimelineAudio: 0
+    isBgm: 0
+    isSfx: 0
+    audioClip: {fileID: 0}
+    audioTimeline: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
       interactNextIndex: 0
       isLoop: 1
+      isPauseBgm: 1
       isInteracted: 0
-  isOnAwake: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 2436518452715979820}
   floatingMarks: []

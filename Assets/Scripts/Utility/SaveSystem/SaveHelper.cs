@@ -1,21 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility.Core;
+using Utility.Player;
 using Utility.Tendency;
 
 namespace Utility.SaveSystem
 {
     public static class SaveHelper
     {
-        private static readonly List<SceneSaveData> SceneSaveData = new();
-        
+        public static readonly List<SceneData> SceneSaveData = new();
+
         public static void SetNpcData(NpcType npcType, NpcState npcState)
         {
-            var sceneData = SceneSaveData.Find(item => item.sceneName == SceneManager.GetActiveScene().name);
-            var npcData = sceneData.npcData.Find(item => item.npcType == npcType);
-            npcData.state = npcState;
+            // 1. ActiveScene인 경우 해당 npcState 변경
+            // 2. 다른 Scene에서 이미 있는 정보를 저장하는 경우
+
+            Debug.Log($"{SceneManager.GetActiveScene().name}");
+
+            var npc = GameManager.Instance.npc.Find(item => item.npcType == npcType);
+
+            // ActiveScene인 경우
+            if (npc != null)
+            {
+                npc.SetNpcState(npcState);
+            }
+            else
+            {
+                var sceneData = SceneSaveData.Find(item => item.npcData.Any(npcData => npcData.npcType == npcType));
+
+                // Active인데 NpcList에 아직 추가되지 않거나
+                // 저장되지 않은 경우
+                if (sceneData == null)
+                {
+                    Debug.LogError($"저장된 데이터가 없거나 현재 Scene에 Npc가 없습니다. {npcType}");
+                }
+                else
+                {
+                    if (sceneData.sceneName == SceneManager.GetActiveScene().name)
+                    {
+                        Debug.LogError("현재 Scene이나 Npc가 없습니다.");
+                    }
+                    else
+                    {
+                        sceneData.UpdateNpcData(npcType, npcState);
+                    }
+                }
+            }
         }
 
         public static SaveData GetSaveData(string targetSceneName)
@@ -28,7 +60,7 @@ namespace Utility.SaveSystem
                 {
                     playTime = 1122
                 },
-                sceneSaveData = new List<SceneSaveData>()
+                sceneSaveData = new List<SceneData>()
             };
 
             if (string.IsNullOrEmpty(targetSceneName))
@@ -42,144 +74,150 @@ namespace Utility.SaveSystem
                 saveData.saveCoverData.sceneName = targetSceneName;
             }
 
-            if (SceneManager.GetActiveScene().name == "MainScene")
+            saveData.saveCoverData.describe = saveData.saveCoverData.sceneName switch
             {
-                saveData.saveCoverData.describe = "이상한 숲";
-            }
-            else if (SceneManager.GetActiveScene().name == "SmallRoomScene")
-            {
-                saveData.saveCoverData.describe = "작은 방";
-            }
-            else if (SceneManager.GetActiveScene().name == "CampingScene")
-            {
-                saveData.saveCoverData.describe = "한적한 캠핑장";
-            }
-            else if (SceneManager.GetActiveScene().name == "BeachScene")
-            {
-                saveData.saveCoverData.describe = "해변가";
-            }
-
-            SaveSceneData();
+                "MainScene" => "이상한 숲",
+                "SmallRoomScene" => "작은 방",
+                "ShadowGame" => "어두운 작은 방",
+                "CampingScene" => "한적한 캠핑장",
+                "CampingGame" => "모기가 들끓는 캠핑장",
+                "BeachScene" => "해변가",
+                "BeachGame" => "모래사장",
+                "SnowMountainScene" => "설산",
+                "SnowMountainShadowGame" => "어두운 설산",
+                _ => saveData.saveCoverData.describe
+            };
 
             foreach (var sceneSaveData in SceneSaveData)
             {
                 saveData.sceneSaveData.Add(sceneSaveData);
             }
 
-            // if (GameManager.Instance.Player)
-            // {
-            //     saveData.playerSerializableTransform.position = GameManager.Instance.Player.transform.position;
-            //     saveData.playerSerializableTransform.rotation = GameManager.Instance.Player.transform.rotation;
-            // }
-
             return saveData;
         }
 
-        // Title -> Game
+        // OnLoadSceneEnd Title -> Load Game
         public static void LoadSaveData(int saveDataIndex)
         {
+            Debug.Log("Title -> Load Save Data");
             var saveData = SaveManager.GetSaveData(saveDataIndex);
-            
+
             ItemManager.Instance.Load(saveDataIndex);
             TendencyManager.Instance.Load(saveDataIndex);
-            
+
             SceneSaveData.Clear();
             foreach (var sceneSaveData in saveData.sceneSaveData)
             {
+                Debug.Log($"Title -> Load Scene - {sceneSaveData.sceneName}");
                 SceneSaveData.Add(sceneSaveData);
             }
-
-            // if (GameManager.Instance.Player)
-            // {
-            //     GameManager.Instance.Player.transform.position = saveData.playerSerializableTransform.position;
-            //     GameManager.Instance.Player.transform.rotation = saveData.playerSerializableTransform.rotation;
-            // }
         }
 
-        // Save SceneData
+        /// <summary>
+        /// Save SceneData
+        /// On LoadScene GameScene to GameScene
+        /// </summary>
         public static void SaveSceneData()
         {
-            Debug.Log($"Saved Scene Name: {SceneManager.GetActiveScene().name}");
-            
-            var sceneData = new SceneSaveData
+            Debug.Log($"Save Target Scene Name: {SceneManager.GetActiveScene().name}");
+
+            var sceneData = SceneSaveData.Find(item => item.sceneName == SceneManager.GetActiveScene().name);
+            if (sceneData != null)
             {
-                sceneName = SceneManager.GetActiveScene().name,
-                interactionData = new List<InteractionSaveData>(),
-                npcData = new List<NpcData>()
-            };
-            
-            // Save SceneData -> Npc
-            if (SceneManager.GetActiveScene().name == "MainScene")
+                Debug.Log("Save - Override");
+                foreach (var npcData in GameManager.Instance.npc.Select(
+                             interactionData => interactionData.GetSaveData()))
+                {
+                    sceneData.UpdateNpcData(npcData.npcType, npcData.state);
+                }
+
+                foreach (var interaction in GameManager.Instance.interactionObjects)
+                {
+                    sceneData.UpdateInteractionData(interaction.GetInteractionSaveData());
+                }
+            }
+            else
             {
-                foreach (var interactionData in GameManager.Instance.Npc)
+                Debug.Log("Save - New");
+                sceneData = new SceneData
+                {
+                    sceneName = SceneManager.GetActiveScene().name,
+                    interactionData = new List<InteractionSaveData>(),
+                    npcData = new List<NpcData>()
+                };
+
+                // Save SceneData -> Npc
+                foreach (var interactionData in GameManager.Instance.npc)
                 {
                     sceneData.npcData.Add(interactionData.GetSaveData());
                 }
-            }
-            
-            // Save SceneData -> Interaction
-            foreach (var interaction in GameManager.Instance.InteractionObjects)
-            {
-                sceneData.interactionData.Add(interaction.GetInteractionSaveData());
+
+                // Save SceneData -> Interaction
+                foreach (var interaction in GameManager.Instance.interactionObjects)
+                {
+                    sceneData.interactionData.Add(interaction.GetInteractionSaveData());
+                }
+
+                var index = SceneSaveData.FindIndex(item => item.sceneName == sceneData.sceneName);
+                if (index != -1)
+                {
+                    SceneSaveData.Remove(SceneSaveData[index]);
+                }
+
+                SceneSaveData.Add(sceneData);
             }
 
-            var index = SceneSaveData.FindIndex(item => item.sceneName == sceneData.sceneName);
-            if (index != -1)
+            if (PlayerManager.Instance.Player)
             {
-                SceneSaveData.Remove(SceneSaveData[index]);
+                sceneData.playerSerializableTransform.position = PlayerManager.Instance.Player.transform.position;
+                sceneData.playerSerializableTransform.rotation = PlayerManager.Instance.Player.transform.rotation;
             }
-            SceneSaveData.Add(sceneData);
         }
-        
-        // Load SceneData
+
+        // OnLoadSceneEnd Load SceneData
         public static void LoadSceneData()
         {
             Debug.Log($"Loaded Scene Name: {SceneManager.GetActiveScene().name}");
-            
+
+            if (SceneManager.GetActiveScene().name == "TitleScene")
+            {
+                return;
+            }
+
             // Load SceneData -> Npc
             var sceneData = SceneSaveData.Find(item => item.sceneName == SceneManager.GetActiveScene().name);
             if (sceneData == default)
             {
-                Debug.Log("Scene 데이터 없심!");
-                
-                foreach (var npc in GameManager.Instance.Npc)
+                Debug.Log($"Scene - {SceneManager.GetActiveScene().name} 저장된 데이터 없심!");
+
+                foreach (var npc in GameManager.Instance.npc)
                 {
-                    var targetInteraction = Array.Find(npc.npcInteraction,
-                        item => item.npcState == NpcState.Default).interaction;
+                    npc.SetNpcState(NpcState.Default);
 
-                    foreach (var npcInteraction in npc.npcInteraction)
-                    {
-                        npcInteraction.interaction.gameObject.SetActive(false);
-                    }
-
-                    targetInteraction.gameObject.SetActive(true);
-                    
                     Debug.Log($"{npc.npcType} - {NpcState.Default}");
                 }
+
                 return;
             }
 
             foreach (var npcData in sceneData.npcData)
             {
-                var npc = GameManager.Instance.Npc.Find(item => item.npcType == npcData.npcType);
+                var npc = GameManager.Instance.npc.Find(item => item.npcType == npcData.npcType);
+                npc.SetNpcState(npcData.state);
 
-                var targetInteraction = Array.Find(npc.npcInteraction,
-                    item => item.npcState == npcData.state).interaction;
-
-                foreach (var npcInteraction in npc.npcInteraction)
-                {
-                    npcInteraction.interaction.gameObject.SetActive(false);
-                }
-
-                targetInteraction.gameObject.SetActive(true);
-                
                 Debug.Log($"{npcData.npcType} - {npcData.state}");
             }
 
             // Load SceneData -> Interaction
             foreach (var interactionSaveData in sceneData.interactionData)
             {
-                var interaction = GameManager.Instance.InteractionObjects.Find(item => item.id == interactionSaveData.id);
+                var interaction =
+                    GameManager.Instance.interactionObjects.Find(item => item.id == interactionSaveData.id);
+                if (!interaction)
+                {
+                    Debug.LogError($"name: {interactionSaveData.name} - id: {interactionSaveData.id}의 Interaction이 없심 조심행");
+                }
+                
                 interaction.interactionIndex = interactionSaveData.interactionIndex;
 
                 foreach (var interactionData in interaction.interactionData)
@@ -189,6 +227,13 @@ namespace Utility.SaveSystem
 
                     interactionData.serializedInteractionData = loadedSerializedData;
                 }
+            }
+            
+            if (PlayerManager.Instance.Player)
+            {
+                PlayerManager.Instance.Player.transform.position = sceneData.playerSerializableTransform.position;
+                PlayerManager.Instance.Player.transform.rotation = sceneData.playerSerializableTransform.rotation;
+                PlayerManager.Instance.CameraMove();
             }
         }
 

@@ -102,6 +102,9 @@ namespace Utility.InputSystem
             }
         }
 
+        /// <summary>
+        /// inputActions.Value - true is Push, false is Pop
+        /// </summary>
         private static void EnqueueInputAction()
         {
             var inputActions = QueueInputActions.Dequeue();
@@ -347,7 +350,7 @@ namespace Utility.InputSystem
                 if (!string.IsNullOrEmpty(loadActionMap))
                 {
                     action.ApplyBindingOverride(i, loadActionMap);
-                    Debug.Log("로드");
+                    // Debug.Log("로드");
                 }
                 else
                 {

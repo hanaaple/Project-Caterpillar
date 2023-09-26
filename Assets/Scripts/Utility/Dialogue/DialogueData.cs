@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
+using UnityEngine.Timeline;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -153,7 +154,25 @@ namespace Utility.Dialogue
 
         //[ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         //public int interactIndex;
+        
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
+        public bool isAudioClip;
+        
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
+        public bool isTimelineAudio;
+        
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
+        public bool isBgm;
+        
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
+        public bool isSfx;
 
+        [ConditionalHideInInspector("isAudioClip")]
+        public AudioClip audioClip;
+        
+        [ConditionalHideInInspector("isTimelineAudio")]
+        public TimelineAsset audioTimeline;
+        
         public bool isSkipEnable;
 
         [ConditionalHideInInspector("isSkipEnable")]

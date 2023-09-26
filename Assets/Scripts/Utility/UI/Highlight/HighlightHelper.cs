@@ -273,7 +273,7 @@ namespace Utility.UI.Highlight
             {
                 return;
             }
-            
+
             PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
             
             highlightedIndex = idx;
@@ -434,7 +434,7 @@ namespace Utility.UI.Highlight
 
             if (_highlighters.Count > 0)
             {
-                _highlighters.Last().SetEnable(false, isDuplicatePossible, default, isReset);
+                _highlighters.Last().SetEnable(false, isDuplicatePossible, false, isReset);
             }
 
             _highlighters.Add(highlighter);
@@ -464,7 +464,7 @@ namespace Utility.UI.Highlight
 
         private void Remove(Highlighter highlighter, bool isDestroy)
         {
-            highlighter.SetEnable(false, default, isDestroy);
+            highlighter.SetEnable(false, false, isDestroy);
             _highlighters.Remove(highlighter);
 
             if (_highlighters.Count > 0)
@@ -488,7 +488,7 @@ namespace Utility.UI.Highlight
 
         public void Disable(bool isReset)
         {
-            _highlighters.Last().SetEnable(false, default, default, isReset);
+            _highlighters.Last().SetEnable(false, false, false, isReset);
         }
 
         public void SetLast(Highlighter highlighter, bool isDuplicatePossible = false, bool isPreviousLastReset = false)

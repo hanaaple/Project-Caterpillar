@@ -50,6 +50,7 @@
     Random = 9,
     RandomEnd = 10,
     ImmediatelyExecute = 11,
+    Audio = 12,
   }
 
   public enum InteractionWaitType

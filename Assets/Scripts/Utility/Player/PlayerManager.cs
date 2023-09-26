@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Core;
@@ -35,6 +37,7 @@ namespace Utility.Player
         }
 
         [NonSerialized] public Player Player;
+        [NonSerialized] private List<Interaction.Interaction> _interactions;
         private Camera _camera;
         private Vector3 _minBounds;
         private Vector3 _maxBounds;
@@ -58,7 +61,7 @@ namespace Utility.Player
                 {
                     if (Player != null)
                     {
-                        Player.OnInteractAction?.Invoke();
+                        Interact();
                     }
                 },
                 OnMovePerformed = Input,
@@ -83,7 +86,7 @@ namespace Utility.Player
                     if (SceneHelper.Instance.playType == PlayType.MainField)
                     {
                         PlayUIManager.Instance.quickSlotManager.SetQuickSlot(!PlayUIManager.Instance.quickSlotManager
-                            .IsActive());
+                            .IsOpen());
                     }
                 }
             };
@@ -91,8 +94,9 @@ namespace Utility.Player
 
         public void Init(PlayType playType)
         {
-            Push(playType);
+            PushInputAction(playType);
             UpdateCamera();
+            _interactions = new List<Interaction.Interaction>();
         }
 
         private void UpdateCamera()
@@ -112,8 +116,19 @@ namespace Utility.Player
                 _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
             }
         }
-        
-        public void Push(PlayType playType)
+
+        private void Interact()
+        {
+            if (_interactions.Count == 0)
+            {
+                return;
+            }
+
+            var nearInteraction = _interactions.OrderBy(item => Vector2.Distance(item.transform.position, Player.transform.position)).First();
+            nearInteraction.StartInteraction();
+        }
+
+        private void PushInputAction(PlayType playType)
         {
             if (playType is PlayType.MainField or PlayType.StageField)
             {
@@ -121,14 +136,24 @@ namespace Utility.Player
             }
         }
 
-        public void Pop()
+        public void PopInputAction()
         {
             InputManager.PopInputAction(_inputActions);
         }
 
-        public void SetPlayer(Player mPlayer = null)
+        public void PushInteraction(Interaction.Interaction interaction)
         {
-            Debug.LogWarning($"기존: {Player}, 새로운 플레이 캐릭터: {mPlayer}");
+            _interactions.Add(interaction);
+        }
+        
+        public void PopInteraction(Interaction.Interaction interaction)
+        {
+            _interactions.Remove(interaction);
+        }
+
+        public void SetPlayer(Player mPlayer)
+        {
+            // Debug.LogWarning($"기존: {Player}, 새로운 플레이 캐릭터: {mPlayer}");
             Player = mPlayer;
         }
 
@@ -167,7 +192,7 @@ namespace Utility.Player
             CameraMove();
         }
 
-        private void CameraMove()
+        public void CameraMove()
         {
             if (!Player || !SceneHelper.Instance.fieldProperty.isCameraMove)
             {

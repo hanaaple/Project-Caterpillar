@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utility.Interaction;
+using Utility.Player;
+using Utility.SaveSystem;
 
 namespace Utility.Core
 {
+
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance;
@@ -34,11 +38,9 @@ namespace Utility.Core
 
         [NonSerialized] public bool IsTitleCutSceneWorked;
 
-        [NonSerialized] public Player.Player Player;
-
-        [NonSerialized] public List<Interaction.Interaction> InteractionObjects;
-        
-        [NonSerialized] public List<Npc> Npc;
+        [Header("For Debug")] public List<Interaction.Interaction> interactionObjects;
+        public List<Npc> npc;
+        public List<SceneData> sceneSaveData = new();
 
         private static GameManager Create()
         {
@@ -48,24 +50,78 @@ namespace Utility.Core
 
         private void Awake()
         {
-            InteractionObjects = new List<Interaction.Interaction>();
-            Npc = new List<Npc>();
+            interactionObjects = new List<Interaction.Interaction>();
+            npc = new List<Npc>();
         }
 
         public void AddInteraction(Interaction.Interaction interaction)
         {
-            InteractionObjects.Add(interaction);
+            if (!interactionObjects.Contains(interaction))
+            {
+                interactionObjects.Add(interaction);
+            }
         }
 
         public void AddMainFieldNpc(Npc npc)
         {
-            Npc.Add(npc);
+            this.npc.Add(npc);
+        }
+
+        public void StartOnAwakeInteraction()
+        {
+            var interactions = interactionObjects.OrderByDescending(item =>
+            {
+
+                if (item.interactionIndex >= item.interactionData.Length)
+                {
+                    return -int.MaxValue;
+                }
+
+                var data = item.interactionData[item.interactionIndex];
+
+                if (data.isOnAwake)
+                {
+                    return data.order;
+                }
+
+                return -int.MaxValue;
+            }).ToArray();
+
+            foreach (var interaction in interactions)
+            {
+                if (interaction.interactionIndex >= interaction.interactionData.Length || !gameObject.activeSelf)
+                {
+                    continue;
+                }
+
+                var data = interaction.interactionData[interaction.interactionIndex];
+                if (data.isOnAwake)
+                {
+                    Debug.Log($"OnAwake - {gameObject.name}, Index - {interaction.interactionIndex}, Order - {data.order}");
+                }    
+            }
+
+            foreach (var interaction in interactions)
+            {
+                interaction.OnAwakeInteraction();
+            }
         }
 
         public void Clear()
         {
-            InteractionObjects.Clear();
-            Npc.Clear();
+            interactionObjects.Clear();
+            npc.Clear();
+            PlayUIManager.Instance.dialogueController.Clear();
+            PlayerManager.Instance.PopInputAction();
+        }
+
+        private void OnValidate()
+        {
+            sceneSaveData.Clear();
+            foreach (var sceneData in SaveHelper.SceneSaveData)
+            {
+                sceneSaveData.Add(sceneData);
+            }
         }
     }
 }

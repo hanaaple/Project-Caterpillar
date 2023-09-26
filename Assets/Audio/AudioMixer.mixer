@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7603449094881935640
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: b5055b5f65cda9e42b9220208c037491
+  m_EffectName: Receive
+  m_MixLevel: 11852b2baa403b64aa18bfde2f5ecda5
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-7233704197530853478
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -62,7 +76,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 6fb9b1f89c553bc4a892f97e4fe1276b
+    name: MyExposedParam
+  - guid: dc5c6d3e3df182a48b3bc17272580fab
+    name: MyExposedParam 1
+  - guid: 15ebcf44ddd31dd4fb556e338f420f03
+    name: MyExposedParam 2
   m_AudioMixerGroupViews:
   - guids:
     - b37522bde42217c428b894496b0e166d
@@ -116,6 +136,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 4919d9c6f6ee0b244a9feb0f8aa6f9db
   m_FloatValues:
+    6fb9b1f89c553bc4a892f97e4fe1276b: 0
     dc5c6d3e3df182a48b3bc17272580fab: 0
   m_TransitionOverrides: {}
 --- !u!243 &5138896048516754080
@@ -137,3 +158,23 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &6575510149408682612
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5802bcfc28da1eb4794479b6750543cb
+  m_EffectName: ParamEQ
+  m_MixLevel: 963c0285be90c374799ca22ecf0d370a
+  m_Parameters:
+  - m_ParameterName: Center freq
+    m_GUID: c80fdabdd0bc6c04ebd2ee73aef868e3
+  - m_ParameterName: Octave range
+    m_GUID: ad55274a430352b4eaa1480f4540ff1d
+  - m_ParameterName: Frequency gain
+    m_GUID: 4536b1ddca4154345aaba1122f09c774
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

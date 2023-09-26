@@ -108,7 +108,7 @@ namespace Game.Stage1.ShadowGame.Default
         
         public void PlayOneShot(AudioClip audioClip)
         {
-            AudioManager.PlaySfx(audioClip);
+            AudioManager.Instance.PlaySfx(audioClip);
         }
 
         public void SetActive(bool isActive)

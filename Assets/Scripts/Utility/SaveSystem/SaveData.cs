@@ -11,9 +11,7 @@ namespace Utility.SaveSystem
     {
         public SaveCoverData saveCoverData;
 
-        // public SerializableTransform playerSerializableTransform;
-
-        public List<SceneSaveData> sceneSaveData;
+        public List<SceneData> sceneSaveData;
 
         public string[] items;
 
@@ -26,7 +24,7 @@ namespace Utility.SaveSystem
         public NpcType npcType;
         public NpcState state;
     }
-    
+
     public enum NpcType
     {
         None,
@@ -48,30 +46,45 @@ namespace Utility.SaveSystem
     }
 
     [Serializable]
-    public struct SceneSaveData
+    public class SceneData
     {
         public string sceneName;
         public List<InteractionSaveData> interactionData;
         public List<NpcData> npcData;
         
-        public static bool operator ==(SceneSaveData op1,  SceneSaveData op2) 
+        public SerializableTransform playerSerializableTransform;
+
+        public void UpdateNpcData(NpcType npcType, NpcState npcState)
         {
-            return op1.Equals(op2);
+            var npc = npcData.Find(item => item.npcType == npcType);
+            npc.state = npcState;
         }
 
-        public static bool operator !=(SceneSaveData op1, SceneSaveData op2)
+        public void UpdateInteractionData(InteractionSaveData interactionSaveData)
+        {
+            var data = interactionData.Find(item => item.id == interactionSaveData.id);
+
+            data.id = interactionSaveData.id;
+            data.serializedInteractionData = interactionSaveData.serializedInteractionData;
+        }
+
+        public static bool operator ==(SceneData op1, SceneData op2)
+        {
+            return Equals(op1, op2);
+        }
+
+        public static bool operator !=(SceneData op1, SceneData op2)
         {
             return !(op1 == op2);
         }
     }
 
     [Serializable]
-    public struct InteractionSaveData
+    public class InteractionSaveData
     {
+        public string name;
         public string id;
-
         public int interactionIndex;
-
         public List<SerializedInteractionData> serializedInteractionData;
     }
 
@@ -79,9 +92,7 @@ namespace Utility.SaveSystem
     public class SaveCoverData
     {
         public string describe;
-
         public string sceneName;
-
         public int playTime;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Audio;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.SaveSystem;
@@ -8,7 +9,7 @@ using Utility.Scene;
 using Utility.UI.Highlight;
 
 namespace Title
-{
+{   
     [Serializable]
     public class HighlightTitleItem : HighlightItem
     {
@@ -51,6 +52,8 @@ namespace Title
 
         [SerializeField] private DialogueData dialogueData;
 
+        [SerializeField] private AudioClip bgm;
+        
         private Highlighter _highlighter;
 
         private void Awake()
@@ -115,6 +118,8 @@ namespace Title
             }
 
             HighlightHelper.Instance.Push(_highlighter);
+            
+            AudioManager.Instance.PlayBgmWithFade(bgm);
         }
     }
 }

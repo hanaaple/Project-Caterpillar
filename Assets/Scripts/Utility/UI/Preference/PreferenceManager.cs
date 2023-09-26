@@ -59,7 +59,7 @@ namespace Utility.UI.Preference
                 }
             };
 
-            AudioManager.LoadAudio();
+            AudioManager.Instance.LoadAudio();
         }
 
         private void Start()

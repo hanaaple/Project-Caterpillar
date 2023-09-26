@@ -1,6 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Utility.Audio;
 
 namespace Utility.Player
 {
@@ -32,10 +31,10 @@ namespace Utility.Player
         [Header("Setting")] [Range(1, 20f)] [SerializeField]
         private float playerSpeed;
 
-        internal Action OnInteractAction;
+        [SerializeField] private AudioClip audioClip;
+        [Range(0, 1)] [SerializeField] private float volume;
 
         private Animator _animator;
-        private Action<InputAction.CallbackContext> _onInteract;
 
         private readonly int _isMove = Animator.StringToHash("isMove");
 
@@ -56,7 +55,7 @@ namespace Utility.Player
             {
                 if (PlayerManager.Instance.IsPlayer(this))
                 {
-                    PlayerManager.Instance.SetPlayer();
+                    PlayerManager.Instance.SetPlayer(null);
                 }
 
                 return;
@@ -76,13 +75,13 @@ namespace Utility.Player
             {
                 if (PlayerManager.Instance.IsPlayer(this))
                 {
-                    PlayerManager.Instance.SetPlayer();
+                    PlayerManager.Instance.SetPlayer(null);
                     // False
                 }
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
 
@@ -102,7 +101,7 @@ namespace Utility.Player
             {
                 return;
             }
-            
+
             // Debug.Log($"이동: {input}");
 
             if (input.x < 0)
@@ -137,6 +136,11 @@ namespace Utility.Player
             {
                 _animator.SetBool(_isMove, true);
             }
+        }
+
+        public void PlaySfx()
+        {
+            AudioManager.Instance.PlaySfx(audioClip, volume, false);
         }
 
         private void MoveCharacter(Vector2 input)

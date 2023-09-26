@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Utility.InputSystem;
 
 namespace Game.Stage1.MiniGame
 {
@@ -12,11 +11,6 @@ namespace Game.Stage1.MiniGame
         [Header("For Debug")] [SerializeField] private string password;
         [SerializeField] private int selectedIndex;
 
-        private void Start()
-        {
-            Play();
-        }
-
         protected override void Init()
         {
             base.Init();
@@ -24,10 +18,14 @@ namespace Game.Stage1.MiniGame
             {
                 if (selectedIndex == passwordItems.Length)
                 {
-                    Debug.Log($"정답: {correct}"); 
+                    Debug.Log($"정답: {password}, {correct}, password == correct {password == correct}"); 
                     if (password == correct)
                     {
-                        End();
+                        End(true);
+                    }
+                    else
+                    {
+                        End(false);
                     }
                 }
             };
@@ -56,7 +54,6 @@ namespace Game.Stage1.MiniGame
         public override void Play(Action<bool> onEndAction = null)
         {
             base.Play(onEndAction);
-            InputManager.PushInputAction(InputActions);
             passwordItems[selectedIndex].Select();
         }
 
@@ -65,7 +62,7 @@ namespace Game.Stage1.MiniGame
             passwordItems[selectedIndex].DeBlink();
             passwordItems[selectedIndex].SetText(key);
             password += key;
-
+            Debug.Log(password);
 
             selectedIndex++;
             if (passwordItems.Length > selectedIndex)
@@ -87,7 +84,8 @@ namespace Game.Stage1.MiniGame
             }
 
             selectedIndex--;
-            password.Remove(selectedIndex);
+            password = password.Remove(selectedIndex);
+            Debug.Log(password);
 
             passwordItems[selectedIndex].SetText("");
             passwordItems[selectedIndex].Select();

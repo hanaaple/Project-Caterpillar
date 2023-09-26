@@ -35,11 +35,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage 1/4 SnowMountain/SnowMountainShadowGame.unity
     guid: 1279fc75702375c47bf76bb11662004d
-  - enabled: 1
-    path: Assets/Scenes/Stage 1/Photographer End.unity
-    guid: 4730b49bdcc46744887350abe6ce6c21
-  - enabled: 1
-    path: Assets/Scenes/Stage 1/Photographer Give Up.unity
-    guid: d8ff45c4bafd05f4588c4dc263ddaff4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 667076931870687449492d029500e0cc, type: 2}

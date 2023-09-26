@@ -50,6 +50,11 @@ namespace Utility.UI.Highlight
                 Select();
             }
 
+            // if (transitionType == TransitionType.Highlight)
+            // {
+            //     // Audio UI Highlgiht
+            // }
+
             TransitionTypes.Add(transitionType);
             UpdateDisplay();
         }
@@ -96,12 +101,12 @@ namespace Utility.UI.Highlight
         public abstract void SetDefault();
 
         /// <summary>
-        /// Use For Display (sprite, color, etc...) It's work several times
+        /// Use For Display (sprite, color, etc...) It works several times
         /// </summary>
         public abstract void EnterHighlightDisplay();
 
         /// <summary>
-        /// Use For Display (sprite, color, etc...) It's work several times
+        /// Use For Display (sprite, color, etc...) It works several times
         /// </summary>
         public abstract void SelectDisplay();
         

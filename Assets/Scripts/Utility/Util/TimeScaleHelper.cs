@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Utility.Util
 {
@@ -10,7 +11,7 @@ namespace Utility.Util
         public static void Push(float timeScale)
         {
             TimeScaleStack.Push(timeScale);
-            Time.timeScale = timeScale;
+            SetTimeScale(timeScale);
         }
 
         public static void Pop()
@@ -19,12 +20,19 @@ namespace Utility.Util
             if (TimeScaleStack.Count > 0)
             {
                 var timeScale = TimeScaleStack.Peek();
-                Time.timeScale = timeScale;
+                SetTimeScale(timeScale);
             }
             else
             {
-                Time.timeScale = 1f;
+                SetTimeScale(1f);
             }
+        }
+
+        private static void SetTimeScale(float timeScale)
+        {
+            Time.timeScale = timeScale;
+            AudioManager.Instance.GetAudioSource(AudioSourceType.Sfx).pitch = timeScale;
+            AudioManager.Instance.GetAudioSource(AudioSourceType.Bgm).pitch = timeScale;
         }
     }
 }

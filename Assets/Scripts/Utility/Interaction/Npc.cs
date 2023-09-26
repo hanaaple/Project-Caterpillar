@@ -20,10 +20,29 @@ namespace Utility.Interaction
 
         private void Awake()
         {
+            foreach (var interaction in npcInteraction)
+            {
+                GameManager.Instance.AddInteraction(interaction.interaction);
+
+                interaction.interaction.UpdateId();
+            }
+
             GameManager.Instance.AddMainFieldNpc(this);
         }
-        
+
         // OnLoadSceneEnd, Save MainFieldData to GameManager
+
+        public void SetNpcState(NpcState npcState)
+        {
+            var targetInteraction = Array.Find(npcInteraction, item => item.npcState == npcState).interaction;
+
+            foreach (var interaction in npcInteraction)
+            {
+                interaction.interaction.gameObject.SetActive(false);
+            }
+
+            targetInteraction.gameObject.SetActive(true);
+        }
 
         public NpcData GetSaveData()
         {

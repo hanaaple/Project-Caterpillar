@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Interaction.Ending;
 using Utility.SaveSystem;
 
 namespace Utility.Tendency
@@ -47,6 +48,7 @@ namespace Utility.Tendency
         private readonly TendencyData _tendencyData;
         private readonly TendencyData _savedTendencyData;
         private readonly TendencyTable _tendencyTable;
+        private readonly EndingTable _endingTable;
 
         private TendencyManager()
         {
@@ -61,7 +63,7 @@ namespace Utility.Tendency
                 tendencyItems = new List<TendencyType>()
             };
             _tendencyTable = Resources.Load<TendencyTable>("Tendency Table");
-
+            _endingTable = Resources.Load<EndingTable>("Ending Table");
         }
 
         public TendencyData GetTendencyData()
@@ -78,6 +80,12 @@ namespace Utility.Tendency
         {
             return Array.Find(_tendencyTable.tendencyProps, item => item.tendencyType == tendencyType);
         }
+        
+        public EndingType GetEndingType()
+        {
+            // _endingTable 계산
+            return default;
+        }
 
         /// <summary>
         /// Update Data
@@ -93,7 +101,7 @@ namespace Utility.Tendency
             _tendencyData.activation += tendencyProps.activation;
             _tendencyData.inactive += tendencyProps.inactive;
             Debug.Log(
-                $"성향 (상승, 하강, 활성, 비활성): {tendencyProps.ascent}, {tendencyProps.descent}, {tendencyProps.activation}, {tendencyProps.inactive}");
+                $"성향 {tendencyName} (상승, 하강, 활성, 비활성): {tendencyProps.ascent}, {tendencyProps.descent}, {tendencyProps.activation}, {tendencyProps.inactive}");
             
             OnTendencyUpdate?.Invoke();
         }

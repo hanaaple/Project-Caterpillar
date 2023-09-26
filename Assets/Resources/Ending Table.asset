@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d19c91d03ac481fb6d51c34d4e3b57c, type: 3}
+  m_Name: Ending Table
+  m_EditorClassIdentifier: 
+  endingProps:
+  - endingType: 0
+    ascent: 0
+    ascentOperator: 0
+    descent: 0
+    descentOperator: 0
+    activation: 0
+    activationOperator: 0
+    inactive: 0
+    inactiveOperator: 0
+  - endingType: 1
+    ascent: 10
+    ascentOperator: 2
+    descent: 10
+    descentOperator: 2
+    activation: 10
+    activationOperator: 2
+    inactive: 10
+    inactiveOperator: 2
+  - endingType: 2
+    ascent: 10
+    ascentOperator: 3
+    descent: 10
+    descentOperator: 2
+    activation: 10
+    activationOperator: 2
+    inactive: 10
+    inactiveOperator: 2
+  - endingType: 3
+    ascent: 10
+    ascentOperator: 2
+    descent: 10
+    descentOperator: 3
+    activation: 10
+    activationOperator: 2
+    inactive: 10
+    inactiveOperator: 2
+  - endingType: 4
+    ascent: 10
+    ascentOperator: 2
+    descent: 10
+    descentOperator: 2
+    activation: 10
+    activationOperator: 3
+    inactive: 10
+    inactiveOperator: 2
+  - endingType: 5
+    ascent: 10
+    ascentOperator: 2
+    descent: 10
+    descentOperator: 2
+    activation: 10
+    activationOperator: 2
+    inactive: 10
+    inactiveOperator: 3
+  - endingType: 6
+    ascent: 10
+    ascentOperator: 3
+    descent: 10
+    descentOperator: 3
+    activation: 10
+    activationOperator: 2
+    inactive: 10
+    inactiveOperator: 2
+  - endingType: 7
+    ascent: 10
+    ascentOperator: 2
+    descent: 10
+    descentOperator: 2
+    activation: 10
+    activationOperator: 3
+    inactive: 10
+    inactiveOperator: 3

@@ -139,13 +139,13 @@ namespace Utility.UI.Inventory
             var tendencyProps = TendencyManager.Instance.GetTendencyType(tendencyType);
 
 
-            // 1- 454545 (R: 69 G: 69 B: 69), text - 949494 (R: 148 G: 148 B: 148)
-            // 2- 353535 (R: 53 G: 53 B: 53), text - 949494 (R: 148 G: 148 B: 148)
-            // 3- bfbfbf (R: 191 G: 191 B: 191), text - 353535 (R: 53 G: 53 B: 53)
-            // 4- 949494 (R: 148 G: 148 B: 148), text - 353535 (R: 53 G: 53 B: 53)
+            // 1- 454545 (R: 69 G: 69 B: 69), text - 353535 (R: 53 G: 53 B: 53)
+            // 2- 353535 (R: 53 G: 53 B: 53), text - 353535 (R: 53 G: 53 B: 53)
+            // 3- bfbfbf (R: 191 G: 191 B: 191), text - 949494 (R: 148 G: 148 B: 148)
+            // 4- 949494 (R: 148 G: 148 B: 148), text - 949494 (R: 148 G: 148 B: 148)
             if (tendencyProps.ascent > 0)
             {
-                const float tc = 148 / 255f;
+                const float tc = 53 / 255f;
 
                 if (tendencyProps.activation > 0)
                 {
@@ -166,7 +166,7 @@ namespace Utility.UI.Inventory
             }
             else if (tendencyProps.descent > 0)
             {
-                const float tc = 53 / 255f;
+                const float tc = 148 / 255f;
 
                 if (tendencyProps.activation > 0)
                 {

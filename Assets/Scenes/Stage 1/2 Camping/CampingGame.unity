@@ -2199,6 +2199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialHelper: {fileID: 498833577}
+  bgm: {fileID: 8300000, guid: 6bac030eda299c34c90d6eed1fb6b828, type: 3}
   filedPanel: {fileID: 1362900695}
   openMapButton: {fileID: 1473030038}
   resetButton: {fileID: 261955413}
@@ -6924,6 +6925,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
     m_ActionName: Input/Inventory[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a6bca68-1571-4c2d-be50-94cd0430b238
+    m_ActionName: Input/Tab[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
+    m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Input
@@ -10172,6 +10181,10 @@ PrefabInstance:
       propertyPath: playType
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4ec03caa29683f4895bf1644508ad25, type: 3}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: toastManager
       value: 

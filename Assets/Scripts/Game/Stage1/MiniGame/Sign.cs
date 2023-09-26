@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -34,24 +35,28 @@ namespace Game.Stage1.MiniGame
         }
 
         [SerializeField] private GameObject prefab;
-        
         [SerializeField] private EventTrigger eventTrigger;
         [SerializeField] private RectTransform form;
         [SerializeField] private Transform root;
         [SerializeField] private Image start;
-        [ConditionalHideInInspector("isEnd", true)]
-        [SerializeField] private Image end;
+        [ConditionalHideInInspector("isEnd", true)] [SerializeField]
+        private Image end;
 
         [SerializeField] private Vector2Int formSize;
-        [SerializeField] private Vector2Int startPos;
+        
         [SerializeField] private bool isEnd;
+        
+        [Header("Start Position")]
+        [SerializeField] private Vector2Int startPos;
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPos;
-        
-        [Header("Setting")]
-        [SerializeField] private Vector2Int startPoint;
+
+        [Header("Setting Point")] [SerializeField] private Vector2Int startPoint;
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPoint;
+
+        [ConditionalHideInInspector("isEnd")] [SerializeField]
+        private float endTime;
         
         [SerializeField] private Edge[] edges;
 
@@ -97,7 +102,12 @@ namespace Game.Stage1.MiniGame
 
             _path.Push(new Point {Pos = startPoint});
             PushPoint(startPos);
-            
+
+            if (isEnd)
+            {
+                StartCoroutine(EndTimer());
+            }
+
             var pointerEvent = new EventTrigger.Entry
             {
                 eventID = EventTriggerType.Drag
@@ -156,7 +166,7 @@ namespace Game.Stage1.MiniGame
             if (_path.Count == 1)
             {
                 // Debug.Log($"IsEnable? {targetPos}, {startPos}");
-                
+
                 if (Mathf.Approximately(Vector2.Distance(targetPos, startPos), 0))
                 {
                     return true;
@@ -233,7 +243,7 @@ namespace Game.Stage1.MiniGame
                 }
                 else
                 {
-                    Debug.Log($"좌우 - src: ({v1} - {v2}) - ({item.v1} - {item.v2})");
+                    // Debug.Log($"좌우 - src: ({v1} - {v2}) - ({item.v1} - {item.v2})");
                     // 좌우 이동인 경우 && 같은 x값만 검색 경우
                     if (!Mathf.Approximately(item.v1.x, item.v2.x) || !Mathf.Approximately(v1.x, item.v1.x))
                     {
@@ -252,7 +262,7 @@ namespace Game.Stage1.MiniGame
                         maxV = item.v2;
                     }
 
-                    Debug.Log($"edge {minV} -> {maxV}");
+                    // Debug.Log($"edge {minV} -> {maxV}");
 
                     return (int) minV.y <= (int) v1.y && (int) maxV.y >= (int) v2.y;
                 }
@@ -262,12 +272,6 @@ namespace Game.Stage1.MiniGame
         private void PushPoint(Vector2 targetPos)
         {
             var beforePoint = _path.Peek();
-            _path.Push(new Point
-            {
-                Animator = _pointObjectPool.Get(), Pos = targetPos
-            });
-            
-            Debug.Log($"Push {targetPos}, {_path.Count}");
 
             var dir = targetPos - beforePoint.Pos;
 
@@ -298,20 +302,40 @@ namespace Game.Stage1.MiniGame
                 beforePoint.Animator.SetInteger(Next, (int) next);
             }
 
-
             if (!isEnd && Mathf.Approximately(Vector2.Distance(targetPos, endPoint), 0))
             {
+                // EndPoint는 이미 있으므로 생성 X
                 End();
-                return;
+            }
+            else
+            {
+                var point = new Point {Animator = _pointObjectPool.Get(), Pos = targetPos};
+                point.Animator.transform.SetParent(root);
+                point.Animator.transform.position =
+                    GetPointPosition(targetPos, point.Animator.GetComponent<RectTransform>().rect.size);
+                point.Animator.SetInteger(Before, (int) before);
+
+                _path.Push(point);
+                Debug.Log($"Push {targetPos}, {_path.Count}");
+                
+                // endPos -> endPoint로 연결 후 자동 종료
+                if (!isEnd && Mathf.Approximately(Vector2.Distance(targetPos, endPos), 0))
+                {
+                    PushPoint(endPoint);
+                }
+            }
+        }
+
+        private IEnumerator EndTimer()
+        {
+            var t = 0f;
+            while (t <= endTime)
+            {
+                t += Time.deltaTime;
+                yield return null;
             }
 
-            var point = _path.Peek();
-            Debug.Log(point.Animator.transform.parent);
-            point.Animator.transform.SetParent(root);
-            Debug.Log(point.Animator.transform.parent);
-            point.Animator.transform.position =
-                GetPointPosition(targetPos, point.Animator.GetComponent<RectTransform>().rect.size);
-            point.Animator.SetInteger(Before, (int) before);
+            End();
         }
     }
 }
