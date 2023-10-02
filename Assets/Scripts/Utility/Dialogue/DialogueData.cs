@@ -57,18 +57,18 @@ namespace Utility.Dialogue
                 }
             }
         }
-        
+
         public bool IsWaitClear()
         {
             return waitInteractions.All(item => item.isWaitClear);
         }
-        
+
         public int GetWaitCount()
         {
             return waitInteractions.Count(item => !item.isWaitClear);
         }
     }
-    
+
     [Serializable]
     public class WaitInteraction
     {
@@ -85,13 +85,13 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("isInteraction")]
         public bool isCustom;
-        
+
         [ConditionalHideInInspector("isInteraction", true)]
         public bool isPortal;
 
         [ConditionalHideInInspector("isPortal")]
         public int targetMapIndex;
-        
+
         public bool isWaitClear;
 
         public void Clear()
@@ -122,7 +122,9 @@ namespace Utility.Dialogue
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public InteractionWaitType interactionWaitType;
 
-        [FormerlySerializedAs("waitWaitInteraction")] [FormerlySerializedAs("waitInteraction")] [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
+        [FormerlySerializedAs("waitWaitInteraction")]
+        [FormerlySerializedAs("waitInteraction")]
+        [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public WaitInteractions waitInteractions;
 
         // Enable Set Interactable or Set Interactable In Timeline 
@@ -132,7 +134,7 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("dialogueType", DialogueType.CutScene)]
         public DirectorWrapMode extrapolationMode;
-        
+
         [ConditionalHideInInspector("extrapolationMode", DirectorWrapMode.Loop)]
         public string playableDirectorName;
 
@@ -148,31 +150,34 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("isCustomEnd")]
         public int successNextInteractionIndex;
-        
+
         [ConditionalHideInInspector("isCustomEnd")]
         public int failNextInteractionIndex;
 
         //[ConditionalHideInInspector("dialogueType", DialogueType.Interact)]
         //public int interactIndex;
-        
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isAudioClip;
-        
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isTimelineAudio;
-        
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isBgm;
-        
+
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isSfx;
 
         [ConditionalHideInInspector("isAudioClip")]
         public AudioClip audioClip;
-        
+
         [ConditionalHideInInspector("isTimelineAudio")]
         public TimelineAsset audioTimeline;
-        
+
+        [ConditionalHideInInspector("dialogueType", DialogueType.DialogueEnd)]
+        public int endTargetIndex;
+
         public bool isSkipEnable;
 
         [ConditionalHideInInspector("isSkipEnable")]

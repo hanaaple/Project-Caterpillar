@@ -574,10 +574,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -891,10 +891,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3175,10 +3175,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3207,10 +3207,13 @@ MonoBehaviour:
       index: 0
       dialogueElements: []
     itemInteractionType:
-      itemTypes: 02000000
+      itemData:
+      - itemType: 2
+        itemUseType: 0
+        isDestroyItem: 0
       targetIndex: 5
       defaultInteractionIndex: 4
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3651,10 +3654,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -3738,10 +3741,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4326,10 +4329,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4413,10 +4416,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -4623,10 +4626,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
@@ -5688,10 +5691,10 @@ MonoBehaviour:
         skipLength: 0
         skipWaitSec: 0
     itemInteractionType:
-      itemTypes: 
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopItemBranch: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}

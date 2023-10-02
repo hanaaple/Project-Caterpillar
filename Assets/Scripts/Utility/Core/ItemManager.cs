@@ -40,7 +40,9 @@ namespace Utility.Core
             None,
             NaruDoll,
             Ring,
-            Camera
+            Camera,
+            수상한편지,
+            해진보따리
         }
 
         private static ItemManager _instance;
@@ -68,6 +70,8 @@ namespace Utility.Core
 
         [SerializeField] private List<ItemType> items;
         
+        [SerializeField] private ItemType holdingItem;
+        
         private static ItemManager Create()
         {
             var itemManagerPrefab = Resources.Load<ItemManager>("ItemManager");
@@ -92,6 +96,7 @@ namespace Utility.Core
         public void Clear()
         {
             items.Clear();
+            holdingItem = default;
         }
 
         public void AddRandomItem(ItemType itemType)
@@ -112,6 +117,17 @@ namespace Utility.Core
                 items.Add(itemType);
                 break;
             }
+        }
+        
+        public void HoldHand(ItemType itemType)
+        {
+            if (!items.Contains(itemType))
+            {
+                Debug.LogWarning($"착용할 아이템 없음 {itemType}");
+            }
+            
+            // if Player -> Player.Update
+            holdingItem = itemType;
         }
         
         public void SetItem(string[] options)
@@ -174,6 +190,11 @@ namespace Utility.Core
                 return items.ToArray() as T[];
             }
             return null;
+        }
+        
+        public ItemType GetHoldingItem()
+        {
+            return holdingItem;
         }
 
         public void RemoveItem(ItemType itemType)

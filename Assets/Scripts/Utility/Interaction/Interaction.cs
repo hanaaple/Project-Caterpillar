@@ -105,7 +105,7 @@ namespace Utility.Interaction
                 var targetData = GetInteractionData(waitInteraction.targetIndex);
                 targetData.serializedInteractionData.isInteracted = false;
 
-                targetData.onEndAction += () =>
+                targetData.OnEndAction += () =>
                 {
                     waitInteraction.Clear();
 
@@ -171,6 +171,7 @@ namespace Utility.Interaction
                 switch (interaction.interactType)
                 {
                     case InteractType.Dialogue:
+                    {
                         PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
                         if (interaction.dialogueData.dialogueElements.Length == 0)
                         {
@@ -185,8 +186,9 @@ namespace Utility.Interaction
                         }
 
                         break;
-
+                    }
                     case InteractType.Animator:
+                    {
                         if (!interaction.animator)
                         {
                             Debug.LogWarning("Animator가 없음");
@@ -198,10 +200,15 @@ namespace Utility.Interaction
                         }
 
                         break;
+                    }
                     case InteractType.OneOff:
+                    {
                         EndInteraction(index);
                         break;
+                    }
                     case InteractType.Item:
+                    {
+
                         // Item List가 있고 없고 2가지 경우만 따짐
 
                         // interaction.itemInteractionType.itemTypes
@@ -209,33 +216,81 @@ namespace Utility.Interaction
                         // 중복 비교 
                         // 중복 개수
 
-                        var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-                        var count = interaction.itemInteractionType.itemTypes.Except(items).Count();
+                        var hold = interaction.itemInteractionData.itemData
+                            .Where(item => item.itemUseType == ItemUseType.HoldHand);
 
-                        if (count == 0)
+                        var holdItemData = hold as ItemData[] ?? hold.ToArray();
+                        if (holdItemData.Any())
                         {
-                            // 아이템 전부 있음
-                            Debug.Log("아이템 전부 있음");
-                            if (interaction.itemInteractionType.isDestroyItem)
+                            if (holdItemData.All(item => item.itemType == ItemManager.Instance.GetHoldingItem()))
                             {
-                                Debug.Log("아이템 제거");
-                                foreach (var itemType in interaction.itemInteractionType.itemTypes)
+                                var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+
+                                // 보유 중인 아이템 중복 제외
+                                var count = interaction.itemInteractionData.itemData
+                                    .Where(item => item.itemUseType == ItemUseType.Possess)
+                                    .Select(item => item.itemType)
+                                    .Except(items).Count();
+                                if (count == 0)
                                 {
-                                    ItemManager.Instance.RemoveItem(itemType);
+                                    // 성공
+                                    Debug.Log("아이템 전부 있음");
+                                    foreach (var itemData in interaction.itemInteractionData.itemData)
+                                    {
+                                        if (itemData.isDestroyItem)
+                                        {
+                                            Debug.Log($"아이템 제거 - {itemData.itemType}");
+                                            ItemManager.Instance.RemoveItem(itemData.itemType);
+                                        }
+                                    }
+
+                                    StartInteraction(interaction.itemInteractionData.targetIndex);
+                                    break;
                                 }
                             }
-
-                            StartInteraction(interaction.itemInteractionType.targetIndex);
                         }
                         else
                         {
-                            // 아이템 없음
-                            Debug.Log(
-                                $"아이템 없음 - {string.Join(", ", interaction.itemInteractionType.itemTypes.Except(items))}");
-                            StartInteraction(interaction.itemInteractionType.defaultInteractionIndex);
+                            var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+
+                            // 보유 중인 아이템 중복 제외
+                            var count = interaction.itemInteractionData.itemData
+                                .Where(item => item.itemUseType == ItemUseType.Possess).Select(item => item.itemType)
+                                .Except(items).Count();
+                            if (count == 0)
+                            {
+                                // 성공
+                                Debug.Log("아이템 전부 있음");
+                                foreach (var itemData in interaction.itemInteractionData.itemData)
+                                {
+                                    if (itemData.isDestroyItem)
+                                    {
+                                        Debug.Log($"아이템 제거 - {itemData.itemType}");
+                                        ItemManager.Instance.RemoveItem(itemData.itemType);
+                                    }
+                                }
+
+                                StartInteraction(interaction.itemInteractionData.targetIndex);
+                                break;
+                            }
                         }
 
+                        // 아이템 없음
+                        Debug.Log(
+                            $"아이템 목록 - {string.Join(", ", interaction.itemInteractionData.itemData.Select(item => $"{item.itemType}, {item.itemUseType}"))}");
+
+                        // isLoopDefault 에 따라 변경
+                        // isNextInteract인 경우 -> 알아서 실행이 되다가 돌아와? -> 다 실행되고 돌아와야됨
+                        var tmpInteractionIndex = interactionIndex;
+                        if (interaction.itemInteractionData.isLoopDefault)
+                        {
+                            interaction.OnCompletelyEndAction += () => { interactionIndex = tmpInteractionIndex; };
+                        }
+
+                        StartInteraction(interaction.itemInteractionData.defaultInteractionIndex);
+
                         break;
+                }
                     case InteractType.Tutorial:
                     {
                         PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
@@ -321,15 +376,20 @@ namespace Utility.Interaction
             {
                 AudioManager.Instance.ReturnBgmVolume();
             }
-            
-            interaction.onEndAction?.Invoke();
-            interaction.onEndAction = () => { };
+
+            interaction.OnEndAction?.Invoke();
+            interaction.OnEndAction = () => { };
             OnEndInteraction?.Invoke();
             OnEndInteraction = () => { };
 
             if (data.interactNextIndex)
             {
                 StartInteraction(nextIndex);
+            }
+            else
+            {
+                interaction.OnCompletelyEndAction.Invoke();
+                interaction.OnCompletelyEndAction = () => { };
             }
         }
 
@@ -448,27 +508,29 @@ namespace Utility.Interaction
             {
                 var interaction = interactionData[index];
 
-                if (interaction.dialogueData?.dialogueElements == null || interaction.dialogueData.dialogueElements.Length == 0)
+                if (interaction.dialogueData?.dialogueElements == null ||
+                    interaction.dialogueData.dialogueElements.Length == 0)
                 {
                     continue;
                 }
-                
+
                 for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
                 {
                     var dialogueElement = interaction.dialogueData.dialogueElements[idx];
 
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap
+                            or DialogueType.DialogueEnd:
                         {
                             Debug.LogWarning(
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.playableAsset}");
                             break;
                         }
-                        
+
                         case DialogueType.CutScene:
                         {
-                            var timelineAsset = (TimelineAsset) dialogueElement.playableAsset;
+                            var timelineAsset = (TimelineAsset)dialogueElement.playableAsset;
 
                             if (timelineAsset != null)
                             {
@@ -479,7 +541,7 @@ namespace Utility.Interaction
                                 }
                             }
 
-                            if (dialogueElement.option is {Length: > 0})
+                            if (dialogueElement.option is { Length: > 0 })
                             {
                                 if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
                                 {
@@ -509,7 +571,8 @@ namespace Utility.Interaction
                         }
                         case DialogueType.Audio:
                         {
-                            Debug.LogWarning($"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                            Debug.LogWarning(
+                                $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
                             break;
                         }
                     }
@@ -537,42 +600,10 @@ namespace Utility.Interaction
                 {
                     var dialogueElement = interaction.dialogueData.dialogueElements[idx];
 
-                    // if (dialogueElement.dialogueType == DialogueType.WaitInteract && idx != interaction.dialogueData.dialogueElements.Length - 1)
-                    // {
-                    //     var newArray = new InteractionData[interactionData.Length + 1];
-                    //     // 0 ~ index - 1
-                    //     // index
-                    //     // index ~ interactionData.Length - 1   ->    index + 1 ~ newArray.Length - 1
-                    //
-                    //     
-                    //     // 0 ~ index까지 앞에 저장
-                    //     // index + 1 ~ interactionData.Length 까지 앞에 저장
-                    //     
-                    //     var interactionDataIndex = index + 1;
-                    //     
-                    //     Array.Copy(interactionData, 0, newArray, 0, interactionDataIndex);
-                    //     Array.Copy(interactionData, interactionDataIndex, newArray, interactionDataIndex + 1, interactionData.Length - interactionDataIndex);
-                    //     
-                    //     // newArray[index].dialogueData.dialogueElements =
-                    //     
-                    //     newArray[index].
-                    //     
-                    //     newArray[index + 1] = newArray[index].DeepCopy();
-                    //     newArray[index + 1].jsonAsset = null;
-                    //     
-                    //     newArray[index + 1].dialogueData
-                    //     
-                    //     newArray[index].dialogueData.
-                    //     
-                    //     Debug.Log(newArray.Select(item => $"{item.interactType}, {item.dialogueData.dialogueElements.Length}"));
-                    //     // dialogueElement[idx + 1] ~ dialogueElement[interaction.dialogueData.dialogueElement.Length - 1]
-                    //         
-                    //     index++;
-                    // }
-
                     switch (dialogueElement.dialogueType)
                     {
-                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap:
+                        case DialogueType.MiniGame or DialogueType.WaitInteract or DialogueType.MoveMap
+                            or DialogueType.DialogueEnd:
                         {
                             Debug.LogWarning(
                                 $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
@@ -581,7 +612,7 @@ namespace Utility.Interaction
 
                         case DialogueType.CutScene:
                         {
-                            if (dialogueElement.option is {Length: > 0})
+                            if (dialogueElement.option is { Length: > 0 })
                             {
                                 if (dialogueElement.option.Contains("Reset"))
                                 {
@@ -645,6 +676,13 @@ namespace Utility.Interaction
                                     $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
                             }
 
+                            break;
+                        }
+
+                        case DialogueType.Audio:
+                        {
+                            Debug.LogWarning(
+                                $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
                             break;
                         }
                     }

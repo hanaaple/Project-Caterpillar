@@ -17,16 +17,32 @@ namespace Utility.Interaction
         OneOff,
         Item,
         Tutorial,
-        Audio
+        Audio,
+    }
+    
+    public enum ItemUseType
+    {
+        Possess,
+        HoldHand,
     }
 
     [Serializable]
-    public class ItemInteractionType
+    public class ItemData
     {
-        public ItemManager.ItemType[] itemTypes;
+        public ItemManager.ItemType itemType;
+        public ItemUseType itemUseType;
+        public bool isDestroyItem;
+    }
+
+    [Serializable]
+    public class ItemInteractionData
+    {
+        public ItemData[] itemData;
         public int targetIndex;
         public int defaultInteractionIndex;
-        public bool isDestroyItem;
+        
+        // 조건에 실패하여 Default인 경우 -> Default index 실행 후 -> Item Index로 돌아올 것인지, 그대로 실행 쭉 할 것인지 (기본) 선택 가능하게
+        public bool isLoopDefault;
     }
 
     /// <summary>
@@ -71,8 +87,8 @@ namespace Utility.Interaction
         [ConditionalHideInInspector("interactType", InteractType.Dialogue)]
         public DialogueData dialogueData;
 
-        [ConditionalHideInInspector("interactType", InteractType.Item)]
-        public ItemInteractionType itemInteractionType;
+        [FormerlySerializedAs("itemInteractionType")] [ConditionalHideInInspector("interactType", InteractType.Item)]
+        public ItemInteractionData itemInteractionData;
 
         [ConditionalHideInInspector("interactType", InteractType.Tutorial)]
         public TutorialHelper tutorialHelper;
@@ -109,7 +125,8 @@ namespace Utility.Interaction
 
         public SerializedInteractionData serializedInteractionData;
 
-        public Action onEndAction;
+        public Action OnEndAction;
+        public Action OnCompletelyEndAction;
 
         //public InteractionEvent onInteractionEndEvent;
 

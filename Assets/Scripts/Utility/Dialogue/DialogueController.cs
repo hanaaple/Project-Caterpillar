@@ -259,7 +259,7 @@ namespace Utility.Dialogue
 
                     _isCutSceneSkipEnable = false;
                     _playableDirector.time = _playableDirector.duration -
-                                             2 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings
+                                             2 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings
                                              .frameRate;
                     _playableDirector.RebuildGraph();
                     _playableDirector.Play();
@@ -424,7 +424,7 @@ namespace Utility.Dialogue
                     playableDirector.extrapolationMode = dialogueElement.extrapolationMode;
                     playableDirector.time = 0;
 
-                    var timelineAsset = (TimelineAsset) playableDirector.playableAsset;
+                    var timelineAsset = (TimelineAsset)playableDirector.playableAsset;
                     if (timelineAsset != null)
                     {
                         var tracks = timelineAsset.GetOutputTracks()
@@ -526,12 +526,13 @@ namespace Utility.Dialogue
                     var isPaused = AudioManager.Instance.GetIsPaused();
                     if (!isPaused)
                     {
-                        if (dialogueElement.option.Any(item => item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
+                        if (dialogueElement.option.Any(item =>
+                                item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
                         {
                             isPaused = true;
                         }
                     }
-                    
+
                     AudioManager.Instance.ReturnBgmVolume();
 
                     Debug.Log($"클리어 대기, {waitInteractions.waitInteractions.Length}개");
@@ -684,6 +685,11 @@ namespace Utility.Dialogue
 
                     break;
                 }
+                case DialogueType.DialogueEnd:
+                {
+                    EndDialogue(true, dialogueElement.endTargetIndex);
+                    break;
+                }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -773,12 +779,12 @@ namespace Utility.Dialogue
                 {
                     var rightCharacter = rightAnimator.GetInteger(CharacterHash);
                     var leftCharacter = leftAnimator.GetInteger(CharacterHash);
-                    if (rightCharacter == (int) dialogue.name &&
+                    if (rightCharacter == (int)dialogue.name &&
                         !rightAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
                     {
                         animator = rightAnimator;
                     }
-                    else if (leftCharacter == (int) dialogue.name &&
+                    else if (leftCharacter == (int)dialogue.name &&
                              !leftAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
                     {
                         animator = leftAnimator;
@@ -790,12 +796,12 @@ namespace Utility.Dialogue
                 {
                     if (dialogue.name != CharacterType.Keep)
                     {
-                        animator.SetInteger(CharacterHash, (int) dialogue.name);
+                        animator.SetInteger(CharacterHash, (int)dialogue.name);
                     }
 
                     if (dialogue.expression != Expression.Keep)
                     {
-                        animator.SetInteger(ExpressionHash, (int) dialogue.expression - 1);
+                        animator.SetInteger(ExpressionHash, (int)dialogue.expression - 1);
                     }
 
                     var state = Array.Find(dialogue.option, item => Enum.TryParse(item, out CharacterOption _));
@@ -905,7 +911,7 @@ namespace Utility.Dialogue
             }
 
             var dialogueData = _baseDialogueData.Peek();
-            
+
             Debug.Log($"Set Character Animator {animator.gameObject} {state} {dialogueData.index}");
             animator.SetTrigger(state.ToString());
         }
@@ -936,7 +942,7 @@ namespace Utility.Dialogue
             if (dialogueItem.option != null)
             {
                 var options = dialogueItem.option.Where(item => item.All(char.IsDigit))
-                    .Select(item => (int) float.Parse(item)).ToArray();
+                    .Select(item => (int)float.Parse(item)).ToArray();
                 if (options.Length > 0)
                 {
                     if (options.Contains(0))
@@ -1184,7 +1190,7 @@ namespace Utility.Dialogue
                         }
 
                         // 확률 target 예외 리스트 추가
-                        var exceptList = new List<int> {choiceIndex};
+                        var exceptList = new List<int> { choiceIndex };
                         Debug.Log($"예외 추가 - {choiceIndex}");
                         var choicePercentage = GetChoicePercentage(choiceList, choiceIndex, exceptList);
 
@@ -1285,9 +1291,9 @@ namespace Utility.Dialogue
 
             var total = choiceDiff + otherDiff;
             var choicePercentage = (1 - repulsionPercentage) +
-                                   repulsionPercentage * ((float) choiceDiff / total);
+                                   repulsionPercentage * ((float)choiceDiff / total);
 
-            var failPercentage = repulsionPercentage * ((float) otherDiff / total);
+            var failPercentage = repulsionPercentage * ((float)otherDiff / total);
 
             Debug.Log($" {choiceDiff} : {otherDiff} 성공 확률: {choicePercentage}, 실패 확률: {failPercentage}");
 
@@ -1390,15 +1396,15 @@ namespace Utility.Dialogue
                       $"duration: {_playableDirector.duration}");
 
             Debug.Log(
-                $"Time: {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate}\n" +
+                $"Time: {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate}\n" +
                 $"Pause: {_playableDirector.state == PlayState.Paused}\n" +
                 $"IsValid: {_playableDirector.playableGraph.IsValid()}\n" +
-                $"IsCutSceneWorking {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate || _playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid()}");
+                $"IsCutSceneWorking {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate || _playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid()}");
 
 
             var waitUntil = new WaitUntil(() =>
                 Math.Abs(_playableDirector.duration - _playableDirector.time) <=
-                1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate ||
+                1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate ||
                 _playableDirector.state == PlayState.Paused &&
                 !_playableDirector.playableGraph.IsValid());
 

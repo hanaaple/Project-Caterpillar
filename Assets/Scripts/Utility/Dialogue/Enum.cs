@@ -51,6 +51,7 @@
     RandomEnd = 10,
     ImmediatelyExecute = 11,
     Audio = 12,
+    DialogueEnd = 13
   }
 
   public enum InteractionWaitType
