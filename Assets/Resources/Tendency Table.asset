@@ -83,3 +83,28 @@ MonoBehaviour:
     descent: 1
     activation: 0
     inactive: 2
+  - tendencyType: 14
+    ascent: 0
+    descent: 1
+    activation: 0
+    inactive: 2
+  - tendencyType: 15
+    ascent: 1
+    descent: 0
+    activation: 2
+    inactive: 0
+  - tendencyType: 16
+    ascent: 2
+    descent: 0
+    activation: 1
+    inactive: 0
+  - tendencyType: 17
+    ascent: 1
+    descent: 0
+    activation: 0
+    inactive: 1
+  - tendencyType: 18
+    ascent: 0
+    descent: 2
+    activation: 0
+    inactive: 2

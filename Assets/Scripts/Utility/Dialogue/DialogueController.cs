@@ -965,6 +965,7 @@ namespace Utility.Dialogue
             for (var index = 0; index < dialogueItem.contents.Length; index++)
             {
                 var t = dialogueItem.contents[index];
+                // 어카지
                 if (t.Equals('<'))
                 {
                     while (!t.Equals('>'))

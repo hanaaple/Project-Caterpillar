@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 using Utility.Audio;
 using Utility.Core;
 using Utility.Dialogue;
@@ -388,7 +387,7 @@ namespace Utility.Interaction
             }
             else
             {
-                interaction.OnCompletelyEndAction.Invoke();
+                interaction.OnCompletelyEndAction?.Invoke();
                 interaction.OnCompletelyEndAction = () => { };
             }
         }
@@ -530,19 +529,19 @@ namespace Utility.Interaction
 
                         case DialogueType.CutScene:
                         {
-                            var timelineAsset = (TimelineAsset)dialogueElement.playableAsset;
-
-                            if (timelineAsset != null)
-                            {
-                                var tracks = timelineAsset.GetOutputTracks();
-                                foreach (var temp in tracks.Where(item => item is AnimationTrack))
-                                {
-                                    // Debug.Log(temp.name);
-                                }
-                            }
+                            // var timelineAsset = (TimelineAsset)dialogueElement.playableAsset;
+                            // if (timelineAsset != null)
+                            // {
+                            //     var tracks = timelineAsset.GetOutputTracks();
+                            //     foreach (var temp in tracks.Where(item => item is AnimationTrack))
+                            //     {
+                            //         // Debug.Log(temp.name);
+                            //     }
+                            // }
 
                             if (dialogueElement.option is { Length: > 0 })
                             {
+                                
                                 if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
                                 {
                                     var timelinePath = Array
@@ -606,7 +605,7 @@ namespace Utility.Interaction
                             or DialogueType.DialogueEnd:
                         {
                             Debug.LogWarning(
-                                $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
+                                $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.contents}");
                             break;
                         }
 
@@ -614,7 +613,14 @@ namespace Utility.Interaction
                         {
                             if (dialogueElement.option is { Length: > 0 })
                             {
-                                if (dialogueElement.option.Contains("Reset"))
+                                var ignoreSpacingOptions = (string[])dialogueElement.option.Clone();
+                                
+                                for (var i = 0; i < ignoreSpacingOptions.Length; i++)
+                                {
+                                    ignoreSpacingOptions[i] = ignoreSpacingOptions[i].Replace(" ", "");
+                                }
+                                
+                                if (ignoreSpacingOptions.Contains("Reset"))
                                 {
                                     interaction.dialogueData.dialogueElements[idx].playableAsset =
                                         Resources.Load<PlayableAsset>("Timeline/Reset");
@@ -624,7 +630,7 @@ namespace Utility.Interaction
                                 }
 
                                 interaction.dialogueData.dialogueElements[idx].extrapolationMode =
-                                    dialogueElement.option.Contains("Hold", StringComparer.OrdinalIgnoreCase)
+                                    ignoreSpacingOptions.Contains("Hold", StringComparer.OrdinalIgnoreCase)
                                         ? DirectorWrapMode.Hold
                                         : DirectorWrapMode.None;
 
@@ -632,7 +638,7 @@ namespace Utility.Interaction
                                 //  var digitOptions = Array.FindAll(dialogueElement.option,
                                 //      item => item.Any(char.IsDigit));
                                 // var floats = digitOptions.Select(float.Parse).ToArray();
-                                var floats = dialogueElement.option.Where(item => float.TryParse(item, out _))
+                                var floats = ignoreSpacingOptions.Where(item => float.TryParse(item, out _))
                                     .Select(float.Parse).ToArray();
                                 interaction.dialogueData.dialogueElements[idx].waitSec =
                                     floats.Length == 1 ? floats[0] : 0f;

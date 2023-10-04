@@ -17,7 +17,12 @@ namespace Utility.Tendency
         소모,
         인내,
         용기,
-        도피
+        도피,
+        정석,
+        모험,
+        쟁취,
+        융통,
+        감인
     }
 
     [Serializable]
