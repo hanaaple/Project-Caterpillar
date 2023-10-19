@@ -24,7 +24,6 @@ namespace Utility.Util
                     else
                     {
                         _instance = Create();
-                        Debug.LogWarning("Create함");
                     }
 
                     DontDestroyOnLoad(_instance);
@@ -42,8 +41,6 @@ namespace Utility.Util
 
         private void Awake()
         {
-            Debug.LogWarning("Awake임");
-
             _objectPools = new Dictionary<Type, dynamic>();
             
             var playableDirectorPool = new ObjectPool<PlayableDirector>(

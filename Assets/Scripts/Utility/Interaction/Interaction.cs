@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using Utility.Audio;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.JsonLoader;
 using Utility.Player;
 using Utility.SaveSystem;
+using Object = UnityEngine.Object;
 
 namespace Utility.Interaction
 {
@@ -67,10 +69,6 @@ namespace Utility.Interaction
 
         public void OnAwakeInteraction()
         {
-            Debug.LogWarning(interactionIndex);
-            Debug.LogWarning(interactionData.Length);
-            Debug.LogWarning(gameObject.activeSelf);
-            Debug.LogWarning(interactionIndex >= interactionData.Length || !gameObject.activeSelf);
             if (interactionIndex >= interactionData.Length || !gameObject.activeSelf)
             {
                 return;
@@ -79,7 +77,7 @@ namespace Utility.Interaction
             var data = interactionData[interactionIndex];
             if (data.isOnAwake)
             {
-                Debug.Log($"OnAwake - {gameObject.name}, Index - {interactionIndex}, Order - {data.order}");
+                Debug.Log($"OnAwake - {gameObject.name}, Index - {interactionIndex}, Order - {data.priority}");
                 StartInteraction();
             }
         }
@@ -156,9 +154,9 @@ namespace Utility.Interaction
 
             Debug.Log($"Start Interaction 이름: {gameObject.name} {interaction.interactType}");
 
-            if (interaction.serializedInteractionData.isPauseBgm)
+            if (interaction.serializedInteractionData.isReduceBgm)
             {
-                AudioManager.Instance.ReduceBgmVolume();
+                AudioManager.Instance.ReduceVolume();
             }
 
             if (interaction.isMove)
@@ -373,7 +371,7 @@ namespace Utility.Interaction
 
             if (!data.interactNextIndex)
             {
-                AudioManager.Instance.ReturnBgmVolume();
+                AudioManager.Instance.ReturnVolume();
             }
 
             interaction.OnEndAction?.Invoke();
@@ -570,8 +568,34 @@ namespace Utility.Interaction
                         }
                         case DialogueType.Audio:
                         {
-                            Debug.LogWarning(
-                                $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                            if (dialogueElement.option is {Length: > 0})
+                            {
+                                if (dialogueElement.option.Any(item =>
+                                        item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    var audioPath =
+                                        Array.Find(dialogueElement.option, item => item.Contains("path="))
+                                            .Split("=")[1];
+                                    var obj = Resources.Load<Object>($"Audio/{audioPath}");
+                                    if (!obj)
+                                    {
+                                        Debug.LogWarning(
+                                            $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.LogWarning(
+                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                }
+                            }
+                            else
+                            {
+                                Debug.LogWarning(
+                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+
+                            }
+
                             break;
                         }
                     }
@@ -687,8 +711,55 @@ namespace Utility.Interaction
 
                         case DialogueType.Audio:
                         {
-                            Debug.LogWarning(
-                                $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                            if (dialogueElement.option is {Length: > 0})
+                            {
+                                if (dialogueElement.option.Any(item =>
+                                        item.Contains("path=", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    var audioPath =
+                                        Array.Find(dialogueElement.option, item => item.Contains("path="))
+                                            .Split("=")[1];
+                                    var obj = Resources.Load<Object>($"Audio/{audioPath}");
+                                    if (obj)
+                                    {
+                                        if (obj is AudioClip)
+                                        {
+                                            interaction.dialogueData.dialogueElements[idx].audioClip = obj as AudioClip;
+                                        }
+                                        else if (obj is PlayableAsset)
+                                        {
+                                            interaction.dialogueData.dialogueElements[idx].audioTimeline =
+                                                obj as TimelineAsset;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.LogWarning(
+                                            $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                    }
+
+                                    if (dialogueElement.option.Any(item => item.Contains("Sfx", StringComparison.OrdinalIgnoreCase)))
+                                    {
+                                        interaction.dialogueData.dialogueElements[idx].isSfx = true;
+                                    }
+                                    else if (dialogueElement.option.Any(item => item.Contains("Bgm", StringComparison.OrdinalIgnoreCase)))
+                                    {
+                                        interaction.dialogueData.dialogueElements[idx].isBgm = true;
+                                    }
+
+                                }
+                                else
+                                {
+                                    Debug.LogWarning(
+                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                }
+                            }
+                            else
+                            {
+                                Debug.LogWarning(
+                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                            }
+
                             break;
                         }
                     }

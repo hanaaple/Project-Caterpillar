@@ -108,6 +108,11 @@ namespace Utility.UI.Preference
                     pageProp.panel.SetActive(true);
                     pageProp.button.image.sprite = pageProp.activeSprite;
                 });
+
+                if (pageProp.panel.activeSelf)
+                {
+                    pageProp.button.image.sprite = pageProp.activeSprite;
+                }
             }
 
             resolutionDropdown.onValueChanged.AddListener(idx =>

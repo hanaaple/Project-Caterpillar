@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using Utility.Audio;
 
@@ -5,6 +8,13 @@ namespace Utility.Player
 {
     public class Player : MonoBehaviour
     {
+        [Serializable]
+        public struct StepProps
+        {
+            public AudioClip audioClip;
+            public float timeInterval;
+        }
+        
         public bool IsCharacterControllable
         {
             get => isCharacterControllable;
@@ -31,10 +41,15 @@ namespace Utility.Player
         [Header("Setting")] [Range(1, 20f)] [SerializeField]
         private float playerSpeed;
 
-        [SerializeField] private AudioClip audioClip;
+        [SerializeField] private float stepOffset;
+        [SerializeField] private StepProps[] stepProps;
+        
         [Range(0, 1)] [SerializeField] private float volume;
 
         private Animator _animator;
+        private int _stepIndex;
+        private bool _isStepAudioPlaying;
+        private float _stepOffsetTimer;
 
         private readonly int _isMove = Animator.StringToHash("isMove");
 
@@ -93,6 +108,21 @@ namespace Utility.Player
             RotateCharacter(input);
             SetCharacterAnimator(input != Vector2.zero);
             MoveCharacter(input);
+            if (input != Vector2.zero)
+            {
+                if (stepOffset > _stepOffsetTimer)
+                {
+                    _stepOffsetTimer += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    PlaySfx();
+                }
+            }
+            else
+            {
+                _stepOffsetTimer = 0;
+            }
         }
 
         public void RotateCharacter(Vector2 input)
@@ -101,8 +131,6 @@ namespace Utility.Player
             {
                 return;
             }
-
-            // Debug.Log($"이동: {input}");
 
             if (input.x < 0)
             {
@@ -138,9 +166,28 @@ namespace Utility.Player
             }
         }
 
-        public void PlaySfx()
+        private void PlaySfx()
         {
-            AudioManager.Instance.PlaySfx(audioClip, volume, false);
+            if (_isStepAudioPlaying || stepProps.Any(item => AudioManager.Instance.IsPlayingSfx(item.audioClip)))
+            {
+                return;
+            }
+            
+            // Animator에서 하느냐 여기서 offset을 추가할 수 있게 하느냐
+            
+            _isStepAudioPlaying = true;
+            
+            var step = stepProps[_stepIndex];
+            AudioManager.Instance.PlaySfx(step.audioClip, volume, false);
+            
+            StartCoroutine(Timer());
+        }
+
+        private IEnumerator Timer()
+        {
+            yield return stepProps[_stepIndex].audioClip.length + stepProps[_stepIndex].timeInterval; 
+            _stepIndex = (_stepIndex + 1) % stepProps.Length;
+            _isStepAudioPlaying = false;
         }
 
         private void MoveCharacter(Vector2 input)

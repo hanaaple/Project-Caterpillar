@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.Util;
@@ -12,6 +13,8 @@ namespace Utility.Tutorial
         [SerializeField] private GameObject tutorialPanel;
         [SerializeField] private Image tutorialImage;
         [SerializeField] private Animator pressKeyAnimator;
+        [SerializeField] private AudioClip activeAudioClip;
+        [SerializeField] private AudioClip turnPageAudioClip;
 
         private InputActions _inputActions;
         private TutorialHelper _tutorialHelper;
@@ -36,6 +39,7 @@ namespace Utility.Tutorial
                     }
                     else
                     {
+                        AudioManager.Instance.PlaySfx(turnPageAudioClip, 1f, true, true);
                         _tutorialHelper.StartNext();
                     }
                 },
@@ -53,6 +57,7 @@ namespace Utility.Tutorial
             pressKeyAnimator.SetBool(IsPressHash, false);
             InputManager.PushInputAction(_inputActions);
             TimeScaleHelper.Push(0f);
+            AudioManager.Instance.PlaySfx(activeAudioClip, 1f, true, true);
         }
     }
 }

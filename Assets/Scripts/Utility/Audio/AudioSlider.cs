@@ -41,8 +41,9 @@ namespace Utility.Audio
             var audioSource = AudioManager.Instance.GetAudioSource(audioSourceType);
             toggle.isOn = !audioSource.mute;
             _toggleAnimator.SetBool(IsOnHash, toggle.isOn);
-            
-            var slideValue = Mathf.Lerp(slider.minValue, slider.maxValue, AudioManager.Instance.GetBgmVolume(audioSourceType));
+
+            var slideValue = Mathf.Lerp(slider.minValue, slider.maxValue,
+                AudioManager.Instance.GetVolume(audioSourceType));
             slider.value = slideValue;
         }
     }

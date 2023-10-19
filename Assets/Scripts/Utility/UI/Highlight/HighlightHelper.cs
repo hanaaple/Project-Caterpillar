@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utility.Audio;
 using Utility.InputSystem;
 
 namespace Utility.UI.Highlight
@@ -36,17 +37,16 @@ namespace Utility.UI.Highlight
             HighlightIsSelect
         }
 
-        public HighlightType highlightType;
-
-        public List<HighlightItem> HighlightItems;
-
-        public InputActions InputActions;
-
         public int selectedIndex = -1;
         public int highlightedIndex = -1;
-
         public bool enabled;
 
+        public AudioClip highlightAudioClip;
+
+        public InputActions InputActions;
+        public HighlightType highlightType;
+        public List<HighlightItem> HighlightItems;
+        
         public Action onPush;
 
         public Highlighter(string name)
@@ -81,8 +81,8 @@ namespace Utility.UI.Highlight
                 if (highlightType == HighlightType.None)
                 {
                     highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
-                        delegate { OnHighlight(highlightItem); });
-                    highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { OnUnHighlight(); });
+                        delegate { Highlight(highlightItem); });
+                    highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { DeHighlight(); });
                 }
                 else if (highlightType == HighlightType.HighlightIsSelect)
                 {
@@ -99,7 +99,7 @@ namespace Utility.UI.Highlight
             {
                 if (highlightType == HighlightType.None)
                 {
-                    OnUnHighlight();
+                    DeHighlight();
                 }
             }
         }
@@ -186,8 +186,8 @@ namespace Utility.UI.Highlight
                     if (highlightType == HighlightType.None)
                     {
                         highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
-                            delegate { OnHighlight(highlightItem); });
-                        highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { OnUnHighlight(); });
+                            delegate { Highlight(highlightItem); });
+                        highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { DeHighlight(); });
                     }
                     else if (highlightType == HighlightType.HighlightIsSelect)
                     {
@@ -230,16 +230,8 @@ namespace Utility.UI.Highlight
             {
                 Debug.LogError("에러");
             }
-            
-            if (selectedIndex == idx)
-            {
-                return;
-            }
-            
-            PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
-            selectedIndex = idx;
-            HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
+            Select(idx);
         }
 
         public void Select(int idx)
@@ -254,6 +246,8 @@ namespace Utility.UI.Highlight
                 return;
             }
             
+            // Audio Select
+            
             PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
@@ -261,12 +255,11 @@ namespace Utility.UI.Highlight
         }
 
         public void DeSelect()
-        {
+        {    
             PopItem(selectedIndex, HighlightItem.TransitionType.Select);
-            selectedIndex = -1;
         }
 
-        public void OnHighlight(HighlightItem highlightItem)
+        public void Highlight(HighlightItem highlightItem)
         {
             var idx = HighlightItems.FindIndex(item => item == highlightItem);
             if (highlightedIndex == idx)
@@ -274,16 +267,17 @@ namespace Utility.UI.Highlight
                 return;
             }
 
+            AudioManager.Instance.PlaySfx(highlightAudioClip);
+            
             PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
             
             highlightedIndex = idx;
             HighlightItems[idx].Push(HighlightItem.TransitionType.Highlight);
         }
 
-        public void OnUnHighlight()
+        public void DeHighlight()
         {
             PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
-            highlightedIndex = -1;
         }
 
         private void PopItem(int index, HighlightItem.TransitionType transitionType)
@@ -291,6 +285,15 @@ namespace Utility.UI.Highlight
             if (index == -1)
             {
                 return;
+            }
+
+            if (transitionType == HighlightItem.TransitionType.Highlight)
+            {
+                highlightedIndex = -1;
+            }
+            else if (transitionType == HighlightItem.TransitionType.Select)
+            {
+                selectedIndex = -1;
             }
 
             HighlightItems[index].Pop(transitionType);
@@ -409,6 +412,9 @@ namespace Utility.UI.Highlight
             }
         }
 
+        [SerializeField] private AudioClip defaultHighlightAudioClip;
+        [SerializeField] private AudioClip defaultClickAudioClip;
+        
         private List<Highlighter> _highlighters;
 
         private static HighlightHelper Create()

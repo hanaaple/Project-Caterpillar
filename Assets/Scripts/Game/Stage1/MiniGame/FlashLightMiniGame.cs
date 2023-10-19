@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utility.Audio;
 
 namespace Game.Stage1.MiniGame
 {
@@ -8,6 +9,9 @@ namespace Game.Stage1.MiniGame
     {
         [SerializeField] private EventTrigger[] eventTriggers;
         [SerializeField] private EventTrigger flashLight;
+        
+        [SerializeField] private AudioClip takeAudioClip;
+        [SerializeField] private AudioClip dropAudioClip;
         
         private Vector2 _offset;
 
@@ -18,7 +22,7 @@ namespace Game.Stage1.MiniGame
             foreach (var eventTrigger in eventTriggers)
             {
                 eventTrigger.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
-                
+
                 var pointerDown = new EventTrigger.Entry
                 {
                     eventID = EventTriggerType.PointerDown
@@ -27,9 +31,9 @@ namespace Game.Stage1.MiniGame
                 pointerDown.callback.AddListener(_ =>
                 {
                     var pointerEventData = _ as PointerEventData;
-                    _offset = pointerEventData.position - (Vector2)((RectTransform) eventTrigger.transform).position;
+                    _offset = pointerEventData.position - (Vector2) ((RectTransform) eventTrigger.transform).position;
                 });
-                
+
                 pointerEvent = new EventTrigger.Entry
                 {
                     eventID = EventTriggerType.Drag
@@ -42,9 +46,25 @@ namespace Game.Stage1.MiniGame
                     ((RectTransform) eventTrigger.transform).position = pointerEventData.position - _offset;
                 });
 
+                var beginDrag = new EventTrigger.Entry
+                {
+                    eventID = EventTriggerType.BeginDrag
+                };
+
+                beginDrag.callback.AddListener(_ => { AudioManager.Instance.PlaySfx(takeAudioClip); });
+
+                var endDrag = new EventTrigger.Entry
+                {
+                    eventID = EventTriggerType.EndDrag
+                };
+
+                endDrag.callback.AddListener(_ => { AudioManager.Instance.PlaySfx(dropAudioClip); });
+
 
                 eventTrigger.triggers.Add(pointerDown);
                 eventTrigger.triggers.Add(pointerEvent);
+                eventTrigger.triggers.Add(beginDrag);
+                eventTrigger.triggers.Add(endDrag);
             }
 
             flashLight.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;

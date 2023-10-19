@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Audio;
 using Utility.Scene;
 
 namespace Game.Stage1.Camping.Interaction.Show
@@ -7,6 +8,9 @@ namespace Game.Stage1.Camping.Interaction.Show
     {
         [SerializeField] private ShowPanel showPanel;
 
+        [SerializeField] private AudioClip openAudioClip;
+        [SerializeField] private AudioClip closeAudioClip;
+        
         [TextArea] public string[] toastContents;
 
         private bool _isToasted;
@@ -16,6 +20,7 @@ namespace Game.Stage1.Camping.Interaction.Show
             showPanel.Initialize();
             showPanel.exitButton.onClick.AddListener(() =>
             {
+                AudioManager.Instance.PlaySfx(closeAudioClip);
                 showPanel.Hide();
                 setInteractable(true);
             });
@@ -32,6 +37,7 @@ namespace Game.Stage1.Camping.Interaction.Show
         public void Show()
         {
             Debug.Log($"{enabled}");
+            AudioManager.Instance.PlaySfx(openAudioClip);
             showPanel.Show();
             setInteractable(false);
             Appear();

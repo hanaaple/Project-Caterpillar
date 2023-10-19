@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utility.Audio;
 
 namespace Game.Stage1.BeachGame
 {
@@ -19,6 +20,8 @@ namespace Game.Stage1.BeachGame
         [Range(1, 5)] [SerializeField] private float rotSpeed;
 
         [Range(1, 5)] [SerializeField] private float angleWeight;
+        
+        [SerializeField] private AudioClip turnAudioClip;
 
         private float[] _angles;
         private float _size;
@@ -88,6 +91,8 @@ namespace Game.Stage1.BeachGame
             {
                 return;
             }
+            
+            AudioManager.Instance.PlaySfx(turnAudioClip, 1f, false);
 
             var beforeAngle = transform.eulerAngles.z;
 

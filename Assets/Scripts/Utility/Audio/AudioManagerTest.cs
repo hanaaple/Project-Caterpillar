@@ -51,12 +51,12 @@ namespace Utility.Audio
         
         public void ReduceBgmVolume()
         {
-            AudioManager.Instance.ReduceBgmVolume();
+            AudioManager.Instance.ReduceVolume();
         }
         
         public void ReturnBgmVolume()
         {
-            AudioManager.Instance.ReturnBgmVolume();
+            AudioManager.Instance.ReturnVolume();
         }
     }
 }

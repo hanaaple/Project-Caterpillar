@@ -39,12 +39,14 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private RectTransform form;
         [SerializeField] private Transform root;
         [SerializeField] private Image start;
-        [ConditionalHideInInspector("isEnd", true)] [SerializeField]
-        private Image end;
-
         [SerializeField] private Vector2Int formSize;
+
+        [SerializeField] private AudioClip arriveAudioClip;
+        [SerializeField] private AudioClip moveOneAudioClip;
         
         [SerializeField] private bool isEnd;
+        [ConditionalHideInInspector("isEnd", true)] [SerializeField]
+        private Image end;
         
         [Header("Start Position")]
         [SerializeField] private Vector2Int startPos;
@@ -54,7 +56,7 @@ namespace Game.Stage1.MiniGame
         [Header("Setting Point")] [SerializeField] private Vector2Int startPoint;
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPoint;
-
+        
         [ConditionalHideInInspector("isEnd")] [SerializeField]
         private float endTime;
         

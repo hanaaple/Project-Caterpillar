@@ -81,7 +81,7 @@ namespace Utility.Core
 
                 if (data.isOnAwake)
                 {
-                    return data.order;
+                    return data.priority;
                 }
 
                 return -int.MaxValue;
@@ -89,7 +89,7 @@ namespace Utility.Core
 
             foreach (var interaction in interactions)
             {
-                if (interaction.interactionIndex >= interaction.interactionData.Length || !gameObject.activeSelf)
+                if (interaction.interactionIndex >= interaction.interactionData.Length || !interaction.gameObject.activeSelf)
                 {
                     continue;
                 }
@@ -97,7 +97,7 @@ namespace Utility.Core
                 var data = interaction.interactionData[interaction.interactionIndex];
                 if (data.isOnAwake)
                 {
-                    Debug.Log($"OnAwake - {gameObject.name}, Index - {interaction.interactionIndex}, Order - {data.order}");
+                    Debug.Log($"OnAwake - {interaction.gameObject.name}, Index - {interaction.interactionIndex}, Order - {data.priority}");
                 }    
             }
 

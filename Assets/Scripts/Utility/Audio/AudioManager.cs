@@ -55,16 +55,16 @@ namespace Utility.Audio
         private Coroutine _fadeInCoroutine;
         private Coroutine _fadeOutCoroutine;
 
-        private const float ReducePercentage = 0.25f;
+        private const float ReducePercentage = 0.1f;
 
         private bool IsReduced
         {
             get => _isReduced;
             set
             {
-                Debug.Log($"Set Pause {value}");
+                Debug.Log($"Set Audio Reduce {value}");
                 _isReduced = value;
-                SetVolume(AudioSourceType.Bgm, _bgmVolumeValue);
+                UpdateVolume();
             }
         }
 
@@ -81,14 +81,16 @@ namespace Utility.Audio
 
         public void SetVolume(AudioSourceType audioSourceType, float volumeValue)
         {
-            var audioSource = GetAudioSource(audioSourceType);
-            audioSource.volume = _isReduced ? volumeValue * ReducePercentage : volumeValue;
-
-            Debug.Log($"{audioSourceType} - {volumeValue}");
             if (audioSourceType == AudioSourceType.Bgm)
             {
                 _bgmVolumeValue = volumeValue;
             }
+            else if (audioSourceType == AudioSourceType.Sfx)
+            {
+                sfx.volume = volumeValue;
+            }
+
+            UpdateVolume();
         }
 
         public void SetMute(AudioSourceType audioSourceType, bool isMute)
@@ -100,6 +102,14 @@ namespace Utility.Audio
         public void PlaySfx(TimelineAsset timelineAsset, float volume = 1f, bool isOneShot = true)
         {
             CheckGarbageCollect();
+
+            if (!timelineAsset)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+            
+            Debug.Log($"Play Sfx - {timelineAsset}");
 
             if (isOneShot)
             {
@@ -153,8 +163,22 @@ namespace Utility.Audio
             }
         }
 
-        public void PlaySfx(AudioClip audioClip, float volume = 1f, bool isOneShot = true)
+        public void PlaySfx(AudioClip audioClip, float volume = 1f, bool isOneShot = true,
+            bool isWithoutTimeScale = false)
         {
+            if (!audioClip)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+            
+            Debug.Log($"Play Sfx - {audioClip}");
+
+            if (isWithoutTimeScale)
+            {
+                sfx.pitch = 1;
+            }
+
             CheckGarbageCollect();
 
             if (isOneShot)
@@ -174,6 +198,12 @@ namespace Utility.Audio
 
         public void PlayBgmWithFade(TimelineAsset timelineAsset)
         {
+            if (!timelineAsset)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+
             if ((bgmPlayableDirector.playableAsset == null && bgm.clip == null) || _fadeInCoroutine != null)
             {
                 // FadeIn -> StopCoroutine -> PlayBgm (Contain Reset Volume) -> FadeIn
@@ -211,9 +241,20 @@ namespace Utility.Audio
                 }
             }
         }
-
-        public void PlayBgmWithFade(AudioClip audioClip)
+        
+        public void PlayBgmWithFade(AudioClip audioClip, float fadeSec = -1)
         {
+            if (!audioClip)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+
+            if (fadeSec < 0)
+            {
+                fadeSec = FadeSec;
+            }
+
             if ((bgmPlayableDirector.playableAsset == null && bgm.clip == null) || _fadeInCoroutine != null)
             {
                 // FadeIn -> StopCoroutine -> PlayBgm (Contain Reset Volume) -> FadeIn
@@ -236,7 +277,7 @@ namespace Utility.Audio
 
                     var t = Mathf.InverseLerp(0, _bgmVolumeValue, bgm.volume);
 
-                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(audioClip); }, t));
+                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, () => { PlayBgm(audioClip); }, t));
                 }
                 else
                 {
@@ -248,7 +289,7 @@ namespace Utility.Audio
                     else
                     {
                         // FadeOut And Play Or Just Play
-                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(audioClip); }
+                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, () => { PlayBgm(audioClip); }
                         ));
                     }
                 }
@@ -257,6 +298,14 @@ namespace Utility.Audio
 
         private void PlayBgm(TimelineAsset timelineAsset)
         {
+            if (!timelineAsset)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+
+            Debug.Log($"Play bgm - {timelineAsset}");
+
             if (bgmPlayableDirector.playableAsset != timelineAsset)
             {
                 StopBgm();
@@ -287,6 +336,14 @@ namespace Utility.Audio
 
         private void PlayBgm(AudioClip audioClip)
         {
+            if (!audioClip)
+            {
+                Debug.LogWarning("Audio 비어있음");
+                return;
+            }
+
+            Debug.Log($"Play bgm - {audioClip}");
+
             if (bgm.clip != audioClip)
             {
                 StopBgm();
@@ -305,41 +362,49 @@ namespace Utility.Audio
             }
         }
 
-        public void ReturnBgmVolume()
+        public void ReturnVolume()
         {
-            Debug.Log($"Try Play Bgm Continue  {(IsReduced ? "성공" : "이미 실행 중")}");
-            if (!IsReduced)
-            {
-                return;
-            }
-
             IsReduced = false;
         }
 
-        public void ReduceBgmVolume()
+        public void ReduceVolume()
         {
-            Debug.Log($"Try Pause  {(IsReduced ? "이미 멈춤" : "성공")}");
-            if (IsReduced)
-            {
-                return;
-            }
-
             IsReduced = true;
         }
 
-        public void StopBgm()
+        private void UpdateVolume()
+        {
+            bgm.volume = _isReduced ? _bgmVolumeValue * ReducePercentage : _bgmVolumeValue;
+            sfx.volume = sfx.volume;
+            
+            Debug.Log($"Bgm(Reduce - {_isReduced}) - {bgm.volume}, Sfx - {sfx.volume}");
+        }
+
+        private void StopBgm(bool isContinue = true)
         {
             StopAllCoroutines();
-            bgm.volume = _bgmVolumeValue;
 
-            // 항상 FadeOut..?
-            IsReduced = false;
-            // 원래대로 돌려
+            if (!isContinue)
+            {
+                IsReduced = false;
+            }
+
             bgm.clip = null;
             bgm.Stop();
             bgmPlayableDirector.Stop();
             bgmPlayableDirector.playableAsset = null;
             bgmPlayableDirector.time = 0;
+        }
+
+        private void StopSfx()
+        {
+            sfx.Stop();
+        }
+
+        public void StopAudio()
+        {
+            StopSfx();
+            StopBgm(false);
         }
 
         private bool IsPlayingSfx(TimelineAsset timelineAsset)
@@ -367,7 +432,7 @@ namespace Utility.Audio
             return true;
         }
 
-        private bool IsPlayingSfx(AudioClip audioClip)
+        public bool IsPlayingSfx(AudioClip audioClip)
         {
             if (!_sfxClipDictionary.ContainsKey(audioClip) ||
                 Time.time - _sfxClipDictionary[audioClip] >= audioClip.length)
@@ -449,20 +514,10 @@ namespace Utility.Audio
 
         public AudioSource GetAudioSource(string audioSource)
         {
-            if (audioSource == bgm.name)
-            {
-                return bgm;
-            }
-
-            if (audioSource == sfx.name)
-            {
-                return sfx;
-            }
-
-            return null;
+            return Enum.TryParse<AudioSourceType>(audioSource, out var result) ? GetAudioSource(result) : bgm;
         }
 
-        public float GetBgmVolume(AudioSourceType audioSourceType)
+        public float GetVolume(AudioSourceType audioSourceType)
         {
             if (audioSourceType == AudioSourceType.Sfx)
             {
@@ -477,7 +532,7 @@ namespace Utility.Audio
             return -1;
         }
 
-        public bool GetIsPaused()
+        public bool GetIsReduced()
         {
             return IsReduced;
         }

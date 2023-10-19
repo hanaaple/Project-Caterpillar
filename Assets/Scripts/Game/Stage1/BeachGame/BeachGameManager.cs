@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Default;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
 using Utility.Scene;
@@ -28,24 +30,30 @@ namespace Game.Stage1.BeachGame
     public class BeachGameManager : MonoBehaviour, IGamePlayable
     {
         [Serializable]
-        private class BeachInteractions
+        private class BeachInteractionList
         {
             public BeachInteractType beachInteractType;
 
             public BeachInteraction[] interactions;
+            
+            public AudioClip audioClip;
             [NonSerialized] public bool IsClear;
         }
         
         [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
         
+        [Header("Bgm")] [SerializeField] private AudioClip bgm;
+        
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
-        [SerializeField] private BeachInteractions[] beachInteractions;
+        [FormerlySerializedAs("beachInteractions")] [SerializeField] private BeachInteractionList[] beachInteractionList;
+        [SerializeField] private AudioClip collectAudioClip;
 
         [Header("Field UI")] [SerializeField] private WatchDragger watchDragger;
 
         [Header("Album UI")] [SerializeField] private Button albumButton;
         [SerializeField] private Animator albumAnimator;
         [SerializeField] private AlbumPicture[] albumPictures;
+        [SerializeField] private AudioClip albumCloseAudioClip;
 
         [SerializeField] private ToastData endToastData;
         
@@ -71,6 +79,7 @@ namespace Game.Stage1.BeachGame
             {
                 if (albumAnimator.GetBool(OpenHash))
                 {
+                    AudioManager.Instance.PlaySfx(albumCloseAudioClip);
                     albumAnimator.SetBool(OpenHash, false);
                     SetInteractable(true);
                 }
@@ -107,14 +116,20 @@ namespace Game.Stage1.BeachGame
                 OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); }
             };
             
-            foreach (var interactions in beachInteractions)
+            foreach (var beachInteraction in beachInteractionList)
             {
-                for (var index = 0; index < interactions.interactions.Length; index++)
+                for (var index = 0; index < beachInteraction.interactions.Length; index++)
                 {
-                    var interaction = interactions.interactions[index];
+                    var interaction = beachInteraction.interactions[index];
                     interaction.Init();
 
-                    switch (interactions.beachInteractType)
+                    interaction.onInteract += () =>
+                    {
+                        AudioManager.Instance.PlaySfx(collectAudioClip);
+                        AudioManager.Instance.PlaySfx(beachInteraction.audioClip);
+                    };
+
+                    switch (beachInteraction.beachInteractType)
                     {
                         case BeachInteractType.ConchMeat:
                         case BeachInteractType.Cocktail:
@@ -124,25 +139,25 @@ namespace Game.Stage1.BeachGame
                         case BeachInteractType.Pearl:
                         case BeachInteractType.Dolphin:
                         {
-                            interaction.onInteract = () =>
+                            interaction.onInteract += () =>
                             {
                                 Debug.Log("유리 외 인터랙션");
-                                interactions.IsClear = true;
+                                beachInteraction.IsClear = true;
                                 interaction.gameObject.SetActive(false);
-                                foreach (var t in interactions.interactions)
+                                foreach (var t in beachInteraction.interactions)
                                 {
                                     t.Interactable = false;
                                 }
 
                                 var albumPicture = Array.Find(albumPictures,
-                                    item => item.beachInteractType == interactions.beachInteractType);
+                                    item => item.beachInteractType == beachInteraction.beachInteractType);
                                 albumPicture.SetPanel(PictureState.Clear);
 
                                 // SceneHelper.Instance.toastManager.Enqueue($"[{interactions.krName}]를 획득했습니다.");
 
-                                var isGameClear = beachInteractions.All(item => item.IsClear);
-                                var isClearCount = beachInteractions.Count(item => item.IsClear);
-                                Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractions.Length);
+                                var isGameClear = beachInteractionList.All(item => item.IsClear);
+                                var isClearCount = beachInteractionList.Count(item => item.IsClear);
+                                Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractionList.Length);
                                 if (isGameClear)
                                 {
                                     GameEnd();
@@ -153,24 +168,24 @@ namespace Game.Stage1.BeachGame
                         case BeachInteractType.Fragment:
                         {
                             var idx = index;
-                            interaction.onInteract = () =>
+                            interaction.onInteract += () =>
                             {
                                 Debug.Log("유리 인터랙션");
                                 var albumPicture = Array.Find(albumPictures,
-                                    item => item.beachInteractType == interactions.beachInteractType);
+                                    item => item.beachInteractType == beachInteraction.beachInteractType);
                                 albumPicture.SetPanel(idx);
 
                                 interaction.gameObject.SetActive(false);
                                 interaction.Interactable = false;
 
-                                var isClear = interactions.interactions.All(item => !item.Interactable);
+                                var isClear = beachInteraction.interactions.All(item => !item.Interactable);
                                 if (isClear)
                                 {
-                                    interactions.IsClear = true;
+                                    beachInteraction.IsClear = true;
 
-                                    var isGameClear = beachInteractions.All(item => item.IsClear);
-                                    var isClearCount = beachInteractions.Count(item => item.IsClear);
-                                    Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractions.Length);
+                                    var isGameClear = beachInteractionList.All(item => item.IsClear);
+                                    var isClearCount = beachInteractionList.Count(item => item.IsClear);
+                                    Debug.Log("클리어 현황 : " + isClearCount + " / " + beachInteractionList.Length);
                                     if (isGameClear)
                                     {
                                         GameEnd();
@@ -198,6 +213,8 @@ namespace Game.Stage1.BeachGame
             {
                 albumPicture.Reeset();
             }
+            
+            AudioManager.Instance.PlayBgmWithFade(bgm);
 
             StartCoroutine(HintTimer());
         }
@@ -298,7 +315,7 @@ namespace Game.Stage1.BeachGame
         private void SetInteractable(bool isInteractable)
         {
             watchDragger.Interactable = isInteractable;
-            foreach (var interactions in beachInteractions)
+            foreach (var interactions in beachInteractionList)
             {
                 foreach (var beachInteraction in interactions.interactions)
                 {

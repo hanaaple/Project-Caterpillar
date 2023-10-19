@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.ShadowGame.Default
 {
@@ -10,6 +11,8 @@ namespace Game.Stage1.ShadowGame.Default
 
         [SerializeField] private float radius;
         [SerializeField] private int appearStageIndex;
+        
+        [SerializeField] private AudioClip acquireAudioClip;
         
         [NonSerialized] public Action OnClick;
 
@@ -28,13 +31,9 @@ namespace Game.Stage1.ShadowGame.Default
             var cameraWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Vector2.Distance(transform.position, cameraWorldPos) <= radius)
             {
-                Click();
+                OnClick?.Invoke();
+                AudioManager.Instance.PlaySfx(acquireAudioClip);
             }
-        }
-        
-        private void Click()
-        {
-            OnClick?.Invoke();
         }
 
         private void OnDrawGizmos()

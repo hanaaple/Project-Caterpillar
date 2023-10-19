@@ -1,5 +1,6 @@
 using Game.Stage1.Camping.Interaction.Show;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.Camping.Interaction.Diary
 {
@@ -10,6 +11,8 @@ namespace Game.Stage1.Camping.Interaction.Diary
 
         [SerializeField] private Diary diary;
         [SerializeField] private ShowInteraction tornDiary;
+        
+        [SerializeField] private AudioClip fireAudioClip;
 
         private void Awake()
         {
@@ -26,6 +29,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
             diary.onPickUp = () => { bag.IsOut = true; };
             diary.onFire = () =>
             {
+                AudioManager.Instance.PlaySfx(fireAudioClip);
                 diary.gameObject.SetActive(false);
                 tornDiary.gameObject.SetActive(true);
             };

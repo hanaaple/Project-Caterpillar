@@ -89,7 +89,7 @@ namespace Utility.Scene
                 }
             }
 
-            AudioManager.Instance.StopBgm();
+            AudioManager.Instance.StopAudio();
             TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);

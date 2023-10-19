@@ -59,7 +59,7 @@ namespace Utility.Interaction
 
         public bool interactNextIndex;
         public bool isLoop;
-        public bool isPauseBgm;
+        [FormerlySerializedAs("isPauseBgm")] public bool isReduceBgm;
 
         [Header("For Debugging")] public bool isInteracted;
         // public bool isWaitClear;
@@ -102,8 +102,8 @@ namespace Utility.Interaction
 
         public bool isOnAwake;
 
-        [ConditionalHideInInspector("isOnAwake")]
-        public int order;
+        [FormerlySerializedAs("order")] [ConditionalHideInInspector("isOnAwake")]
+        public int priority;
 
         [ConditionalHideInInspector("interactType", InteractType.Audio)]
         public bool isAudioClip;

@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace Utility.Drag_Drop
@@ -7,25 +7,20 @@ namespace Utility.Drag_Drop
     public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private Canvas canvas;
-        [SerializeField] private bool isInteractable;
+        [SerializeField] protected bool isInteractable;
         
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
 
-        internal UnityEvent OnBeginDragAction;
+        internal Action OnBeginDragAction;
 
-        private void Awake()
-        {
-            OnBeginDragAction = new UnityEvent();
-        }
-
-        protected virtual void Start()
+        protected void Start()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _rectTransform = GetComponent<RectTransform>();
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        public virtual void OnBeginDrag(PointerEventData eventData)
         {
             if (isInteractable)
             {
@@ -35,7 +30,7 @@ namespace Utility.Drag_Drop
             }
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        public virtual void OnEndDrag(PointerEventData eventData)
         {
             if (isInteractable)
             {

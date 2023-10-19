@@ -48,6 +48,9 @@ namespace Game.Stage1.Camping
 
         [SerializeField] private Button mapExitButton;
         [SerializeField] private Button campingButton;
+        
+        [SerializeField] private AudioClip openAudioClip;
+        [SerializeField] private AudioClip closeAudioClip;
 
         [Header("지도 - 클리어 조건")] [SerializeField]
         private CampingDropItem[] clearDropItems;

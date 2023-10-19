@@ -10,7 +10,7 @@ namespace Game.Stage1.Camping.Interaction.Show
 
         [SerializeField] private GameObject[] panels;
         
-        private int _index;
+        protected int Index;
 
         public override void Initialize()
         {
@@ -27,17 +27,17 @@ namespace Game.Stage1.Camping.Interaction.Show
             });
         }
 
-        private void SetPage(int changeValue)
+        protected virtual void SetPage(int changeValue)
         {
-            panels[_index].SetActive(false);
-            _index = Mathf.Clamp(_index + changeValue, 0, panels.Length - 1);
-            panels[_index].SetActive(true);
+            panels[Index].SetActive(false);
+            Index = Mathf.Clamp(Index + changeValue, 0, panels.Length - 1);
+            panels[Index].SetActive(true);
         }
 
         public override void Show()
         {
             base.Show();
-            SetPage(-panels.Length);
+            SetPage(-int.MaxValue);
         }
     }
 }

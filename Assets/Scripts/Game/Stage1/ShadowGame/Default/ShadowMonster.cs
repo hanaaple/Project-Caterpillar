@@ -106,6 +106,8 @@ namespace Game.Stage1.ShadowGame.Default
             monsterAnimator.SetFloat(AttackedSecHash, _attackedTime / judgmentSec);
         }
         
+        
+        // used by Animation Event
         public void PlayOneShot(AudioClip audioClip)
         {
             AudioManager.Instance.PlaySfx(audioClip);

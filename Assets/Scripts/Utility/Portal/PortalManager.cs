@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utility.Audio;
 using Utility.Core;
 using Utility.Player;
 
@@ -23,6 +24,8 @@ namespace Utility.Portal
         [SerializeField] private Transform rightTarget;
 
         [SerializeField] private GameObject[] maps;
+        
+        [SerializeField] private AudioClip portalAudioClip;
 
         private int _index;
 
@@ -109,6 +112,8 @@ namespace Utility.Portal
             var player = PlayerManager.Instance.Player;
             player.IsCharacterControllable = false;
             player.SetCharacterAnimator(false);
+
+            AudioManager.Instance.PlaySfx(portalAudioClip);
 
             PlayUIManager.Instance.FadeOut(() =>
             {

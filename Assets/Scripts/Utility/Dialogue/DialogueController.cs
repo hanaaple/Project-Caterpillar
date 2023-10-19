@@ -63,14 +63,10 @@ namespace Utility.Dialogue
         [SerializeField] private CheckUIManager skipCheckUIManager;
         [SerializeField] private Animator letterBoxAnimator;
 
-        [Header("텍스트 속도")] [SerializeField] private float textSpeed;
-
         [Space(10)] [Header("CutScene")] public GameObject cutSceneImage;
 
         [FormerlySerializedAs("cutSceneAnimator")] [SerializeField]
         private Animator defaultCutSceneAnimator;
-
-        [Header("Timeline")] [SerializeField] private PlayableDirector playableDirectorPrefab;
 
         [Header("Choice")] [SerializeField] private ChoiceSelector[] choiceSelectors;
 
@@ -79,7 +75,10 @@ namespace Utility.Dialogue
 
         [Header("좌 애니메이터")] [SerializeField] private Animator leftAnimator;
         [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
+        
+        [Header("Audio")] [SerializeField] private AudioClip scriptTurnAudioClip;
 
+        [Header("텍스트 속도")] [SerializeField] private float textSpeed = .1f;
         [Header("반발 확률")] [SerializeField] private float repulsionPercentage = .3f;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
@@ -274,39 +273,6 @@ namespace Utility.Dialogue
 
                     InteractContinue();
                 }
-
-                // if (_playableDirector.playableAsset &&
-                //     !(Math.Abs(_playableDirector.time - _playableDirector.duration) <=
-                //       1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate ||
-                //       (_playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid())))
-                // {
-                //     if (_isCutSceneSkipEnable)
-                //     {
-                //         _isCutSceneSkipEnable = false;
-                //         Debug.Log("스킵되어라!");
-                //         _playableDirector.time = _playableDirector.duration
-                //                                  - 2 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings
-                //                                  .frameRate;
-                //         _playableDirector.RebuildGraph();
-                //         _playableDirector.Play();
-                //         // 자동으로 넘어가기 전까지 입력 방지해야됨.
-                //     }
-                // }
-                // else
-                // {
-                //     if (_isCutScenePlaying)
-                //     {
-                //         return;
-                //     }
-                //     
-                //     if (PlayUIManager.Instance.IsFade())
-                //     {
-                //         Debug.Log("OnInputDialogue, Fade 중");
-                //         return;
-                //     }
-                //
-                //     InteractContinue();
-                // }
             }
         }
 
@@ -447,6 +413,7 @@ namespace Utility.Dialogue
                             {
                                 playableDirector.SetGenericBinding(temp, defaultCutSceneAnimator);
                             }
+                            
                             //Debug.Log($"Track 명: {temp.name}, Track Type: {temp.GetType()}, 바인드 오브젝트 {bindObject?.name}");
                         }
                     }
@@ -523,17 +490,14 @@ namespace Utility.Dialogue
 
                     EndDialogue(false);
                     SetFocusMode(false);
-                    var isPaused = AudioManager.Instance.GetIsPaused();
-                    if (!isPaused)
+                    var isReduced = AudioManager.Instance.GetIsReduced();
+
+                    if (dialogueElement.option.Any(item => item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
                     {
-                        if (dialogueElement.option.Any(item =>
-                                item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
-                        {
-                            isPaused = true;
-                        }
+                        isReduced = true;
                     }
 
-                    AudioManager.Instance.ReturnBgmVolume();
+                    AudioManager.Instance.ReturnVolume();
 
                     Debug.Log($"클리어 대기, {waitInteractions.waitInteractions.Length}개");
 
@@ -551,9 +515,9 @@ namespace Utility.Dialogue
                         if (dialogueElement.interactionWaitType == InteractionWaitType.ImmediatelyInteract)
                         {
                             StartDialogue(dialogueData);
-                            if (isPaused)
+                            if (isReduced)
                             {
-                                AudioManager.Instance.ReduceBgmVolume();
+                                AudioManager.Instance.ReduceVolume();
                             }
                         }
                         else
@@ -648,11 +612,11 @@ namespace Utility.Dialogue
                 {
                     if (dialogueElement.isBgm)
                     {
-                        if (dialogueElement.isAudioClip)
+                        if (dialogueElement.audioClip)
                         {
                             AudioManager.Instance.PlayBgmWithFade(dialogueElement.audioClip);
                         }
-                        else if (dialogueElement.isTimelineAudio)
+                        else if (dialogueElement.audioTimeline)
                         {
                             AudioManager.Instance.PlayBgmWithFade(dialogueElement.audioTimeline);
                         }
@@ -663,11 +627,11 @@ namespace Utility.Dialogue
                     }
                     else if (dialogueElement.isSfx)
                     {
-                        if (dialogueElement.isAudioClip)
+                        if (dialogueElement.audioClip)
                         {
                             AudioManager.Instance.PlaySfx(dialogueElement.audioClip);
                         }
-                        else if (dialogueElement.isTimelineAudio)
+                        else if (dialogueElement.audioTimeline)
                         {
                             AudioManager.Instance.PlaySfx(dialogueElement.audioTimeline);
                         }
@@ -704,6 +668,7 @@ namespace Utility.Dialogue
             var dialogue = dialogueData.dialogueElements[dialogueData.index];
             if (dialogue.isSkipEnable)
             {
+                Debug.LogWarning($"스킵 가능!! {dialogueData.index}");
                 StartCoroutine(WaitSecAfterAction(dialogue.skipWaitSec, () =>
                 {
                     var action = _dialogueInputActions.OnEsc;
@@ -918,6 +883,11 @@ namespace Utility.Dialogue
 
         private void StartDialoguePrint()
         {
+            if (dialoguePanel.activeSelf)
+            {
+                AudioManager.Instance.PlaySfx(scriptTurnAudioClip);
+            }
+
             dialoguePanel.SetActive(true);
             _isUnfolding = true;
             blinkingIndicator.SetActive(false);
@@ -999,6 +969,8 @@ namespace Utility.Dialogue
                 StopCoroutine(_printCoroutine);
                 _printCoroutine = null;
             }
+            
+            // isCompleted = true;
 
             _isUnfolding = false;
             var currentDialogueData = _baseDialogueData.Peek();
@@ -1252,6 +1224,8 @@ namespace Utility.Dialogue
                 return 1.1f;
             }
 
+            
+            // 선택지 - Option - (ascent or descent), (active or inactive)
             // Get Percentage
             var targetTendency = currentDialogueData.dialogueElements[choiceIndex].option.Select(int.Parse)
                 .ToArray();
@@ -1259,9 +1233,40 @@ namespace Utility.Dialogue
 
             var ascent = tendencyData.ascent - tendencyData.descent;
             var active = tendencyData.activation - tendencyData.inactive;
-
+            
+            // 선택지 (상승, 비활성) -> 플레이어(상승, 활성)
+            // | 동일한 척도 - 다른 척도 |
+            
+            // 선택지(상승) - 플레이어(상승)
+            
+            // 플레이어 값만으로 계산
+            // 모두 동일 -> 0
+            // 모두 상이 -> | ascent | + | active |
+            // 일편 상이 -> | |ascent| - |active| |
+            
+            // 대표값이란 -> 성향 방향성
+            
+            // 차이 절대값
+            // 우리가 값 그 선택ㅈ에 속성하고 
+            
+            // 11-> 3%, 12 -> 6%, 20 -> 30%
+            
+            // 반발된 경우 -> 나머지 선택지 중에서 랜덤
+            
+            // 플레이어 (상승, 활성) -> 선택지 (상승, 활성) -> | ascent | + | active |, 선택지 (상승, 비활성) -> | ascent | - | active |, 선택지 (하강, 비활성) -> (| ascent | + | active |) / 2
+            
+            
+            
+            // | 1 선택지 값 | / total (| 선택지 값 |)
+            
+            
             var choiceDiff = Mathf.Abs(ascent - targetTendency[0]) + Mathf.Abs(active - targetTendency[1]);
 
+            // 상승 활성  선택지 1(상승 비활성), 2(하강 비활성) 
+            
+            // 상승 활성 ->  상승 비활성이 2개, 하강 비활성 1개
+            
+            
             var otherDiff = 0;
 
             var otherCount = 0;

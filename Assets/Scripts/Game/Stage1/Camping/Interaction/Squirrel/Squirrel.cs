@@ -11,22 +11,25 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         
         [SerializeField] private DragItem egg;
         [SerializeField] private DragItem[] apples;
+
+        [SerializeField] private AudioClip noteDropAudioClip;
         
         private static readonly int ClearHash = Animator.StringToHash("Clear");
 
         private void Start()
         {
-            egg.OnFire = () =>
+            egg.onFire = () =>
             {
                 egg.gameObject.SetActive(false);
                 // snakeAnimator.Set
                 birdAnimator.SetBool(ClearHash, true);
                 noteAnimator.SetBool(ClearHash, true);
+                
             };
             
             foreach (var apple in apples)
             {
-                apple.OnFire = () =>
+                apple.onFire = () =>
                 {
                     apple.gameObject.SetActive(false);
                     foreach (var t in apples)

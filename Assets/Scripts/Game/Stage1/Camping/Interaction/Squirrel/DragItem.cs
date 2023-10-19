@@ -1,14 +1,19 @@
 using System;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.Camping.Interaction.Squirrel
 {
     public class DragItem : MonoBehaviour
     {
         [SerializeField] private CircleCollider2D target;
+        
+        [SerializeField] private AudioClip takeAudioClip;
+        [SerializeField] private AudioClip dropAudioClip;
 
-        [NonSerialized] public Action OnFire;
         [NonSerialized] public Collider2D Collider2D;
+        
+        public Action onFire;
         
         private Vector3 _originPos;
         private bool _isInit;
@@ -27,6 +32,7 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
             _isInit = true;
             Collider2D = GetComponent<Collider2D>();
         }
+        // onDragStart
 
         private void OnMouseDrag()
         {
@@ -38,10 +44,11 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
 
         private void OnMouseUp()
         {
+            AudioManager.Instance.PlaySfx(dropAudioClip);
             if (target.enabled && Vector2.Distance(target.transform.position, transform.position) < target.radius * 1.2f)
             {
                 Debug.Log("Drag Fire!");
-                OnFire?.Invoke();
+                onFire?.Invoke();
             }
         }
 

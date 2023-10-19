@@ -10,6 +10,9 @@ namespace Game.Stage1.Camping.Interaction.Diary
         [SerializeField] private CircleCollider2D fire;
         [SerializeField] private Animator diaryAnimator;
         
+        [SerializeField] private AudioClip takeAudioClip;
+        [SerializeField] private AudioClip dropAudioClip;
+        
         public Action onOpen;
         public Action onFire;
         public Action onPickUp;

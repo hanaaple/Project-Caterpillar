@@ -2,7 +2,9 @@ using System;
 using Game.Default;
 using Game.Stage1.Camping.Interaction.Show;
 using UnityEngine;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Scene;
 
 namespace Game.Stage1.Camping.Interaction
@@ -48,6 +50,10 @@ namespace Game.Stage1.Camping.Interaction
         [SerializeField] private Button left;
         [SerializeField] private Button center;
 
+        [SerializeField] private AudioClip clickAudioCLip;
+        [SerializeField] private TimelineAsset turnAudioTimelineAsset;
+        [SerializeField] private AudioClip activeAudioClip;
+        
         [SerializeField] private BilliardBallIcon[] billiardBallIcons;
 
         [SerializeField] private BilliardBallToastData[] toastData;
@@ -107,6 +113,7 @@ namespace Game.Stage1.Camping.Interaction
             });
             center.onClick.AddListener(() =>
             {
+                AudioManager.Instance.PlaySfx(clickAudioCLip);
                 billiardBallAnimator.SetTrigger(ResetHash);
                 var resetToastData =
                     Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Reset);
@@ -133,6 +140,7 @@ namespace Game.Stage1.Camping.Interaction
 
         private void PushInput(Vector2 input)
         {
+            AudioManager.Instance.PlaySfx(turnAudioTimelineAsset);
             _pos += input;
             UpdateUI();
         }
@@ -154,6 +162,7 @@ namespace Game.Stage1.Camping.Interaction
                 return;
             }
 
+            AudioManager.Instance.PlaySfx(activeAudioClip);
             billiardBallAnimator.SetTrigger(billiardBallIcon.iconType.ToString());
 
             var iconToastData = Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Icon);

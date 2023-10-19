@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Core;
 using Utility.UI.Highlight;
 
@@ -24,6 +26,7 @@ namespace Utility.UI.Inventory
 
         public InventoryMenuType inventoryMenuType;
 
+        public Action onPointerEnter;
         public Action onSelect;
 
         public override void SetDefault()
@@ -37,6 +40,7 @@ namespace Utility.UI.Inventory
             {
                 button.image.sprite = defaultSprite;
             }
+            onPointerEnter?.Invoke();
         }
 
         public override void SelectDisplay()
@@ -119,6 +123,10 @@ namespace Utility.UI.Inventory
 
         [Header("Bag")] [SerializeField] private GameObject bagPanel;
         [SerializeField] private InventoryItem[] inventoryItems;
+        [SerializeField] private AudioClip bagHighlightAudioClip;
+        [SerializeField] private AudioClip bagClickAudioClip;
+        [SerializeField] private AudioClip bagMenuClickAudioClip;
+        [SerializeField] private AudioClip bagExitAudioClip;
 
         [Header("Necklace")] [SerializeField] private GameObject necklacePanel;
         [SerializeField] private Necklace necklace;
@@ -209,6 +217,16 @@ namespace Utility.UI.Inventory
         private void Start()
         {
             _highlightParent = highlights[0].transform.parent;
+            
+            
+            var eventTrigger = inventoryButton.GetComponent<EventTrigger>();
+            var pointerEnter = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter
+            };
+            pointerEnter.callback.AddListener(_ => AudioManager.Instance.PlaySfx(bagHighlightAudioClip));
+            eventTrigger.triggers.Add(pointerEnter);
+            
             inventoryButton.onClick.AddListener(() => SetInventory(true));
 
             necklace.Init();
@@ -220,6 +238,16 @@ namespace Utility.UI.Inventory
             {
                 var index = idx;
                 var inventoryMenuItem = inventoryMenuItems[idx];
+                
+                inventoryMenuItem.onPointerEnter = () =>
+                {
+                    AudioManager.Instance.PlaySfx(bagHighlightAudioClip);
+                };
+                
+                inventoryMenuItem.button.onClick.AddListener(() =>
+                {
+                    AudioManager.Instance.PlaySfx(bagMenuClickAudioClip);    
+                });
 
                 switch (inventoryMenuItem.inventoryMenuType)
                 {
@@ -343,6 +371,8 @@ namespace Utility.UI.Inventory
                         highlight.rectTransform.anchoredPosition = Vector2.zero;
                         animator.SetInteger(State, index + 1);
                     }
+
+                    AudioManager.Instance.PlaySfx(bagHighlightAudioClip);
                 };
                 inventoryItem.onPointerExit = () =>
                 {
@@ -391,13 +421,16 @@ namespace Utility.UI.Inventory
                 necklace.UpdateDisplay();
                 HighlightHelper.Instance.Push(_menuHighlighter);
                 inventoryPanel.SetActive(true);
-
+                AudioManager.Instance.PlaySfx(bagClickAudioClip);
+                
                 var bagButton = Array.Find(inventoryMenuItems,
                     item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Bag);
                 bagButton.button.onClick?.Invoke();
             }
             else
             {
+                AudioManager.Instance.PlaySfx(bagExitAudioClip);
+                
                 var exitButton = Array.Find(inventoryMenuItems,
                     item => item.inventoryMenuType == InventoryMenuItem.InventoryMenuType.Exit);
                 exitButton.button.onClick?.Invoke();

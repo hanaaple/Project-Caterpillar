@@ -10,6 +10,8 @@ namespace Utility.Util
         [SerializeField] private string animatorTrigger;
         [SerializeField] private string animationName;
         [SerializeField] private AnimationClip animationClip;
+        
+        public Action onTriggerEnter;
 
         private void Start()
         {
@@ -25,6 +27,12 @@ namespace Utility.Util
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.isTrigger)
+            {
+                return;
+            }
+            
+            onTriggerEnter?.Invoke();
             animator.SetTrigger(animatorTrigger);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.MiniGame
 {
@@ -8,6 +9,10 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private PasswordItem[] passwordItems;
         [SerializeField] private string correct;
 
+        [SerializeField] private AudioClip dialAudioClip;
+        [SerializeField] private AudioClip failAudioClip;
+        [SerializeField] private AudioClip clearAudioClip;
+        
         [Header("For Debug")] [SerializeField] private string password;
         [SerializeField] private int selectedIndex;
 
@@ -59,6 +64,7 @@ namespace Game.Stage1.MiniGame
 
         private void Push(string key)
         {
+            AudioManager.Instance.PlaySfx(dialAudioClip);
             passwordItems[selectedIndex].DeBlink();
             passwordItems[selectedIndex].SetText(key);
             password += key;
@@ -89,6 +95,20 @@ namespace Game.Stage1.MiniGame
 
             passwordItems[selectedIndex].SetText("");
             passwordItems[selectedIndex].Select();
+        }
+
+        protected override void End(bool isClear = true)
+        {
+            if (isClear)
+            {
+                AudioManager.Instance.PlaySfx(clearAudioClip);
+            }
+            else
+            {
+                AudioManager.Instance.PlaySfx(failAudioClip);
+            }
+
+            base.End(isClear);
         }
     }
 }

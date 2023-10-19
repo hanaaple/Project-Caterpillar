@@ -158,21 +158,15 @@ namespace Utility.Dialogue
         //public int interactIndex;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
-        public bool isAudioClip;
-
-        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
-        public bool isTimelineAudio;
-
-        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isBgm;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public bool isSfx;
 
-        [ConditionalHideInInspector("isAudioClip")]
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public AudioClip audioClip;
 
-        [ConditionalHideInInspector("isTimelineAudio")]
+        [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public TimelineAsset audioTimeline;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.DialogueEnd)]
