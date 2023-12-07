@@ -1,29 +1,30 @@
 using System;
 using Game.Default;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utility.Scene;
 
 namespace Game.Stage1.BeachGame
 {
-    public class BeachInteraction : MonoBehaviour
+    public class BeachInteraction : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private ToastData toastData;
         
-        [NonSerialized] public bool Interactable;
+        [NonSerialized] public bool IsInteractable;
         [NonSerialized] public bool IsStop;
 
         public Action onInteract;
 
         public void Init()
         {
-            Interactable = true;
+            IsInteractable = true;
             IsStop = false;
             gameObject.SetActive(true);
         }
 
-        private void OnMouseUp()
+        public void OnPointerUp(PointerEventData eventData)
         {
-            if (!Interactable || IsStop)
+            if (!IsInteractable || IsStop)
             {
                 return;
             }
@@ -41,6 +42,10 @@ namespace Game.Stage1.BeachGame
             }
             
             onInteract?.Invoke();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
         }
     }
 }

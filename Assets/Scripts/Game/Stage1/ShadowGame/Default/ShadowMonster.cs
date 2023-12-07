@@ -15,6 +15,11 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private float judgmentSec;
         [SerializeField] private float judgmentPercentage;  // 0.5
 
+        // sfx, loop, fade
+        [SerializeField] private AudioData breathAudioData;
+        
+        [SerializeField] private AudioData attackAudioData;
+
         private float _attackedTime;
         private bool _isEnable;
         
@@ -34,7 +39,9 @@ namespace Game.Stage1.ShadowGame.Default
         
         public void Attack()
         {
-            SetActive(false);
+            attackAudioData.Play();
+            
+            SetEnable(false);
 
             StartCoroutine(DisappearCoroutine());
         }
@@ -42,7 +49,7 @@ namespace Game.Stage1.ShadowGame.Default
         // Defeat Animation 타이밍 조정 필요 -> 미사용?
         public void Defeat(Action onDefeatStart, Action onDisappear)
         {
-            SetActive(false);
+            SetEnable(false);
             onDefeatStart?.Invoke();
             StartCoroutine(DisappearCoroutine(onDisappear));
         }
@@ -106,15 +113,27 @@ namespace Game.Stage1.ShadowGame.Default
             monsterAnimator.SetFloat(AttackedSecHash, _attackedTime / judgmentSec);
         }
         
+        
+        // used by Animation Event
         public void PlayOneShot(AudioClip audioClip)
         {
             AudioManager.Instance.PlaySfx(audioClip);
         }
 
-        public void SetActive(bool isActive)
+        public void SetEnable(bool isEnable)
         {
             // Defeat 
-            _isEnable = isActive;
+            _isEnable = isEnable;
+
+            if (isEnable)
+            {
+                // 숨소리
+                breathAudioData.Play();
+            }
+            else
+            {
+                breathAudioData.Stop();
+            }
         }
         
         public bool GetIsDefeated()

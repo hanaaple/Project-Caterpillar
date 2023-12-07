@@ -6,51 +6,32 @@ namespace Utility.Portal
 {
     public class Portal : Interaction.Interaction
     {
-        [Serializable]
-        public class PortalWaitInteraction
-        {
-            public bool isDefaultPortal;
-            public int mapIndex;
-            public WaitInteractions waitInteractions;
-        }
-
-        [Space(10)] [SerializeField] private PortalWaitInteraction[] portalWaitInteractions;
-        
-        
+        [Space(10)] [SerializeField] private WaitInteractions waitInteractions;
         public int portalIndex;
 
-        [NonSerialized] public int MapIndex;
+        [NonSerialized] public int CurMapIndex;
+        [NonSerialized] public bool TeleportEndIsFadeOut;
 
-        public Action onPortal;
+        public Action onTryTeleport;
         public Action onEndTeleport;
 
         protected override void Start()
         {
             base.Start();
-            foreach (var portalWaitInteraction in portalWaitInteractions)
+            waitInteractions.Initialize(() =>
             {
-                portalWaitInteraction.waitInteractions?.Initialize(() =>
-                {
-                    Debug.Log($"포탈 클리어 남은 개수: {portalWaitInteraction.waitInteractions.GetWaitCount()}");
-                });
-            }
+                Debug.Log($"포탈 클리어 남은 개수: {waitInteractions.GetWaitCount()}");
+            });
         }
 
         protected void OnTriggerEnter2D(Collider2D col)
         {
-            onPortal?.Invoke();
+            onTryTeleport?.Invoke();
         }
-
+        
         public bool IsWaitClear()
         {
-            var portal = Array.Find(portalWaitInteractions, item => item.isDefaultPortal);
-            if (portal != null)
-            {
-                return portal.waitInteractions.IsWaitClear();
-            }
-            
-            var portalWaitInteraction = Array.Find(portalWaitInteractions, item => item.mapIndex == MapIndex);
-            return portalWaitInteraction?.waitInteractions?.IsWaitClear() ?? true;
+            return waitInteractions.IsWaitClear();
         }
     }
 }

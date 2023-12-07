@@ -6,17 +6,19 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using Utility.Util;
+using Object = UnityEngine.Object;
 
 namespace Utility.Audio
 {
-    public enum AudioSourceType
-    {
-        Bgm,
-        Sfx
-    }
-
     public class AudioManager : MonoBehaviour
     {
+        private class AudioClipData
+        {
+            public AudioSource AudioSource;
+            public float Volume;
+            public bool IsFading;
+        }
+
         private static AudioManager _instance;
 
         public static AudioManager Instance
@@ -42,36 +44,88 @@ namespace Utility.Audio
             }
         }
 
+        /// <summary>
+        /// Do not Set AudioSource Volume directly
+        /// </summary>
         [Header("오디오 소스")] [SerializeField] private AudioSource bgm;
+
+        /// <summary>
+        /// Do not Set AudioSource Volume directly
+        /// </summary>
         [SerializeField] private AudioSource sfx;
 
         [Header("Bgm PlayableDirector")] [SerializeField]
         private PlayableDirector bgmPlayableDirector;
 
+        [Header("Debug")] [SerializeField]
+        private bool isDebug;
+
         /// AudioSource(Bgm) - FadeIn 도중에 volume value가 도중에 바뀌는 경우 FadeIn이 제대로 작동하지 않는 것을 방지하기 위해 사용 
+        private float BGMVolumeValue
+        {
+            get => _bgmVolumeValue;
+            set
+            {
+                _bgmVolumeValue = value;
+                UpdateVolume();
+            }
+        }
+
         private float _bgmVolumeValue;
+
+        private float BGMPlayValue
+        {
+            get => _bgmPlayValue;
+            set
+            {
+                _bgmPlayValue = value;
+                UpdateVolume();
+            }
+        }
+
+        private float _bgmPlayValue = 1f;
 
         private bool _isReduced;
         private Coroutine _fadeInCoroutine;
         private Coroutine _fadeOutCoroutine;
 
-        private const float ReducePercentage = 0.25f;
+        // 문제점 1. 동일한 AudioClip, TimelineAsset을 사용하는 경우 어떻게 대처하느냐
+        private readonly Dictionary<AudioClip, (float, Action)> _distinctSfxClipDictionary = new();
+
+        // PlayableDirector, EndAction
+        private readonly Dictionary<TimelineAsset, (PlayableDirector, Action)> _distinctSfxTimelineDictionary = new();
+
+        // use for Get Volume on fadeOut
+        private readonly Dictionary<PlayableDirector, float> _sfxAsBgmPlayableDirectors = new();
+        private readonly List<AudioClipData> _sfxAsBgmAudioClipData = new();
+
+        // Manage FadeOut
+        private readonly Dictionary<Object, (Coroutine, Action)> _fadeOutSfxAsBgmCoroutine = new();
+
+        // Manage IgnoreTimeScale AudioSources,  PlayableDirector Works by self
+        private readonly List<AudioSource> _ignoreTimeScaleAudioSources = new();
+
+        // Update Volume & Manage ObjectPool
+        private readonly List<AudioSource> _sfxAudioSourcePool = new();
+        private readonly List<PlayableDirector> _playableDirectorPool = new();
+
+        private const float ReducePercentage = 0.2f;
+        private const float FadeSec = .5f;
 
         private bool IsReduced
         {
             get => _isReduced;
             set
             {
-                Debug.Log($"Set Pause {value}");
+                if (isDebug)
+                {
+                    Debug.Log($"Set Audio Reduce {value}");
+                }
+
                 _isReduced = value;
-                SetVolume(AudioSourceType.Bgm, _bgmVolumeValue);
+                UpdateVolume();
             }
         }
-
-        private readonly Dictionary<AudioClip, float> _sfxClipDictionary = new();
-        private readonly Dictionary<TimelineAsset, PlayableDirector> _sfxTimelineDictionary = new();
-
-        private const float FadeSec = .5f;
 
         private static AudioManager Create()
         {
@@ -79,101 +133,369 @@ namespace Utility.Audio
             return Instantiate(sceneLoaderPrefab);
         }
 
-        public void SetVolume(AudioSourceType audioSourceType, float volumeValue)
+        public void PlaySfx(Object audioObject, float volume = 1f, bool isOneShot = true,
+            bool ignoreTimeScale = false)
         {
-            var audioSource = GetAudioSource(audioSourceType);
-            audioSource.volume = _isReduced ? volumeValue * ReducePercentage : volumeValue;
-
-            Debug.Log($"{audioSourceType} - {volumeValue}");
-            if (audioSourceType == AudioSourceType.Bgm)
+            if (audioObject is AudioClip audioClip)
             {
-                _bgmVolumeValue = volumeValue;
+                PlaySfx(audioClip, volume, isOneShot, ignoreTimeScale);
+            }
+            else if (audioObject is TimelineAsset timelineAsset)
+            {
+                PlaySfx(timelineAsset, volume, isOneShot, ignoreTimeScale);
             }
         }
 
-        public void SetMute(AudioSourceType audioSourceType, bool isMute)
+        public void PlaySfx(TimelineAsset timelineAsset, float volume = 1f, bool isOneShot = true,
+            bool ignoreTimeScale = false)
         {
-            var audioSource = GetAudioSource(audioSourceType);
-            audioSource.mute = isMute;
-        }
-
-        public void PlaySfx(TimelineAsset timelineAsset, float volume = 1f, bool isOneShot = true)
-        {
-            CheckGarbageCollect();
-
-            if (isOneShot)
+            if (!timelineAsset)
             {
-                var playableDirector = ObjectPoolHelper.Instance.Get<PlayableDirector>();
-                playableDirector.gameObject.name = timelineAsset.name;
-                playableDirector.playableAsset = timelineAsset;
-
-                var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
-
-                foreach (var audioTrack in audioTracks)
+                if (isDebug)
                 {
-                    playableDirector.SetGenericBinding(audioTrack, sfx);
-
-                    audioTrack.CreateCurves("NameOfAnimationClip");
-                    audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume",
-                        AnimationCurve.Linear(0, volume, 1, volume));
-                    audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "stereoPan",
-                        AnimationCurve.Linear(0, 0, 1, 0));
-                    audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "spatialBlend",
-                        AnimationCurve.Linear(0, 0, 1, 0));
+                    Debug.LogWarning("Audio 비어있음");
                 }
 
-                playableDirector.Play();
+                return;
             }
-            else
+
+            if (!isOneShot && IsPlayingSfx(timelineAsset))
             {
-                if (!IsPlayingSfx(timelineAsset))
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Play Sfx - {timelineAsset}");
+            }
+
+            var playableDirector = ObjectPoolHelper.Instance.Get<PlayableDirector>();
+            _playableDirectorPool.Add(playableDirector);
+            playableDirector.gameObject.name = timelineAsset.name;
+            playableDirector.playableAsset = timelineAsset;
+
+            if (ignoreTimeScale)
+            {
+                playableDirector.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
+            }
+
+            var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
+            foreach (var audioTrack in audioTracks)
+            {
+                playableDirector.SetGenericBinding(audioTrack, sfx);
+            }
+
+            SetAudioTrackVolume(timelineAsset, volume);
+
+            playableDirector.Play();
+
+            var coroutine = StartCoroutine(WaitEnd((float) playableDirector.duration, ignoreTimeScale, () =>
+            {
+                if (!isOneShot)
                 {
-                    var playableDirector = ObjectPoolHelper.Instance.Get<PlayableDirector>();
-                    playableDirector.gameObject.name = timelineAsset.name;
-                    playableDirector.playableAsset = timelineAsset;
-
-                    var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
-
-                    foreach (var audioTrack in audioTracks)
+                    if (_distinctSfxTimelineDictionary.TryGetValue(timelineAsset, out var keyValue))
                     {
-                        playableDirector.SetGenericBinding(audioTrack, sfx);
-                        audioTrack.CreateCurves("NameOfAnimationClip");
+                        keyValue.Item2?.Invoke();
+                    }
+                }
+                else
+                {
+                    _playableDirectorPool.Remove(playableDirector);
+                    ObjectPoolHelper.Instance.Release(playableDirector);
+                }
+            }));
 
-                        audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume",
-                            AnimationCurve.Linear(0, volume, 1, volume));
-                        audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "stereoPan",
-                            AnimationCurve.Linear(0, 0, 1, 0));
-                        audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "spatialBlend",
-                            AnimationCurve.Linear(0, 0, 1, 0));
+            if (!isOneShot)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning(
+                        $"중복 불가능 추가, {Time.time}, {(float) playableDirector.duration}, {Time.timeScale}, {(float) playableDirector.duration / Time.timeScale}");
+                }
+
+                _distinctSfxTimelineDictionary.Add(timelineAsset, (playableDirector, () =>
+                {
+                    if (isDebug)
+                    {
+                        Debug.LogWarning($"삭제, {Time.time}, {playableDirector.duration}");
                     }
 
-                    _sfxTimelineDictionary.Add(timelineAsset, playableDirector);
-                    playableDirector.Play();
-                }
+                    _distinctSfxTimelineDictionary.Remove(timelineAsset);
+                    _playableDirectorPool.Remove(playableDirector);
+                    ObjectPoolHelper.Instance.Release(playableDirector);
+                    StopCoroutine(coroutine);
+                }));
             }
         }
 
-        public void PlaySfx(AudioClip audioClip, float volume = 1f, bool isOneShot = true)
+        public void PlaySfx(AudioClip audioClip, float volume = 1f, bool isOneShot = true, bool ignoreTimeScale = false)
         {
-            CheckGarbageCollect();
-
-            if (isOneShot)
+            if (!audioClip)
             {
-                sfx.PlayOneShot(audioClip);
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+                return;
+            }
+
+            if (!isOneShot && IsPlayingSfx(audioClip))
+            {
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Play Sfx - {audioClip}\n" +
+                          $"length: {audioClip.length}\n" +
+                          $"ignoreTimeScale: {ignoreTimeScale}");
+            }
+
+            AudioSource audioSource;
+            if (ignoreTimeScale)
+            {
+                audioSource = ObjectPoolHelper.Instance.Get<AudioSource>();
+                _sfxAudioSourcePool.Add(audioSource);
+                audioSource.outputAudioMixerGroup = sfx.outputAudioMixerGroup;
+                UpdateVolume();
+                audioSource.pitch = 1;
+                _ignoreTimeScaleAudioSources.Add(audioSource);
             }
             else
             {
-                // SfxTimeline is not Playing & SfxClip is Not Playing
-                if (!IsPlayingSfx(audioClip))
+                audioSource = sfx;
+            }
+
+            audioSource.PlayOneShot(audioClip, volume);
+
+            var coroutine = StartCoroutine(WaitEnd(audioClip.length, ignoreTimeScale,
+                () =>
                 {
-                    _sfxClipDictionary.Add(audioClip, Time.time);
-                    sfx.PlayOneShot(audioClip, volume);
+                    if (!isOneShot)
+                    {
+                        if (_distinctSfxClipDictionary.TryGetValue(audioClip, out var keyValue))
+                        {
+                            keyValue.Item2?.Invoke();
+                        }
+                    }
+                    else if (ignoreTimeScale)
+                    {
+                        _sfxAudioSourcePool.Remove(audioSource);
+                        _ignoreTimeScaleAudioSources.Remove(audioSource);
+                        ObjectPoolHelper.Instance.Release(audioSource);
+                    }
+                }));
+
+            if (!isOneShot)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning(
+                        $"중복 불가능 추가, {Time.time}, {audioClip.length}, {Time.timeScale}, {audioClip.length / Time.timeScale}");
                 }
+
+                _distinctSfxClipDictionary.Add(audioClip, (Time.time, () =>
+                {
+                    if (isDebug)
+                    {
+                        Debug.LogWarning($"삭제, {Time.time}, {audioClip.length}");
+                    }
+
+                    if (ignoreTimeScale)
+                    {
+                        _sfxAudioSourcePool.Remove(audioSource);
+                        _ignoreTimeScaleAudioSources.Remove(audioSource);
+                        ObjectPoolHelper.Instance.Release(audioSource);
+                    }
+
+                    _distinctSfxClipDictionary.Remove(audioClip);
+                    StopCoroutine(coroutine);
+                }));
             }
         }
 
-        public void PlayBgmWithFade(TimelineAsset timelineAsset)
+        public void PlaySfxAsBgm(Object audioObject, float volume = 1f, bool isFade = false,
+            bool ignoreTimeScale = false, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
         {
+            if (audioObject is AudioClip audioClip)
+            {
+                PlaySfxAsBgm(audioClip, volume, isFade, ignoreTimeScale, fadeSec, animationCurve);
+            }
+            else if (audioObject is TimelineAsset timelineAsset)
+            {
+                PlaySfxAsBgm(timelineAsset, volume, isFade, ignoreTimeScale, fadeSec, animationCurve);
+            }
+        }
+
+        private void PlaySfxAsBgm(AudioClip audioClip, float volume = 1f, bool isFade = false,
+            bool ignoreTimeScale = false, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
+        {
+            if (!audioClip)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            if (_fadeOutSfxAsBgmCoroutine.ContainsKey(audioClip))
+            {
+                // Debug.LogWarning($"Stop FadeOut Coroutine {audioClip}");
+                StopCoroutine(_fadeOutSfxAsBgmCoroutine[audioClip].Item1);
+                _fadeOutSfxAsBgmCoroutine[audioClip].Item2?.Invoke();
+            }
+
+            if (_sfxAsBgmAudioClipData.Any(item => item.AudioSource.clip == audioClip))
+            {
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Play Sfx - {audioClip}");
+            }
+
+            var audioSource = ObjectPoolHelper.Instance.Get<AudioSource>();
+            var audioData = new AudioClipData {AudioSource = audioSource, Volume = volume};
+            audioSource.outputAudioMixerGroup = sfx.outputAudioMixerGroup;
+            UpdateVolume();
+            audioSource.clip = audioClip;
+            audioSource.loop = true;
+
+            if (ignoreTimeScale)
+            {
+                audioSource.pitch = 1;
+                _ignoreTimeScaleAudioSources.Add(audioSource);
+            }
+            else
+            {
+                if (TimeScaleHelper.GetIsStop())
+                {
+                    audioSource.pitch = TimeScaleHelper.GetTimeScale();
+                }
+            }
+
+            // 1. X -> Fadein(new)
+            _sfxAudioSourcePool.Add(audioSource);
+            _sfxAsBgmAudioClipData.Add(audioData);
+            audioSource.Play();
+
+            if (isFade)
+            {
+                animationCurve ??= AnimationCurve.Linear(0, 0, 1, 1);
+
+                if (fadeSec <= 0)
+                {
+                    fadeSec = FadeSec;
+                }
+
+                StartCoroutine(FadeInAudioSource(audioData, fadeSec,
+                    animationCurve));
+            }
+        }
+
+        private void PlaySfxAsBgm(TimelineAsset timelineAsset, float volume = 1f, bool isFade = false,
+            bool ignoreTimeScale = false, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
+        {
+            if (!timelineAsset)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            if (_fadeOutSfxAsBgmCoroutine.ContainsKey(timelineAsset))
+            {
+                // Debug.LogWarning($"Stop FadeOut Coroutine {timelineAsset}");
+                StopCoroutine(_fadeOutSfxAsBgmCoroutine[timelineAsset].Item1);
+                _fadeOutSfxAsBgmCoroutine[timelineAsset].Item2?.Invoke();
+            }
+
+            if (_sfxAsBgmPlayableDirectors.Any(item => item.Key.playableAsset == timelineAsset))
+            {
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Play Sfx - {timelineAsset}");
+            }
+
+            var playableDirector = ObjectPoolHelper.Instance.Get<PlayableDirector>();
+            _playableDirectorPool.Add(playableDirector);
+            playableDirector.gameObject.name = timelineAsset.name;
+            playableDirector.playableAsset = timelineAsset;
+            playableDirector.extrapolationMode = DirectorWrapMode.Loop;
+
+            if (ignoreTimeScale)
+            {
+                playableDirector.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
+            }
+
+            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
+            foreach (var audioTrack in audioTracks)
+            {
+                playableDirector.SetGenericBinding(audioTrack, sfx);
+            }
+
+            // 1. X -> Fadein(new)
+            _sfxAsBgmPlayableDirectors.Add(playableDirector, volume);
+            playableDirector.Play();
+
+            if (isFade)
+            {
+                animationCurve ??= AnimationCurve.Linear(0, 0, 1, 1);
+
+                if (fadeSec <= 0)
+                {
+                    fadeSec = FadeSec;
+                }
+
+                StartCoroutine(FadeInPlayableDirectorSfx(playableDirector, fadeSec, volume, animationCurve));
+            }
+        }
+
+        public void PlayBgmWithFade(Object audioObject, float volume = 1f, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
+        {
+            if (audioObject is AudioClip audioClip)
+            {
+                PlayBgmWithFade(audioClip, volume, fadeSec, animationCurve);
+            }
+            else if (audioObject is TimelineAsset timelineAsset)
+            {
+                PlayBgmWithFade(timelineAsset, volume, fadeSec, animationCurve);
+            }
+        }
+
+        public void PlayBgmWithFade(TimelineAsset timelineAsset, float volume = 1f, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
+        {
+            if (!timelineAsset)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            if (fadeSec <= 0)
+            {
+                fadeSec = FadeSec;
+            }
+
+            animationCurve ??= AnimationCurve.Linear(0, 0, 1, 1);
+
             if ((bgmPlayableDirector.playableAsset == null && bgm.clip == null) || _fadeInCoroutine != null)
             {
                 // FadeIn -> StopCoroutine -> PlayBgm (Contain Reset Volume) -> FadeIn
@@ -183,7 +505,7 @@ namespace Utility.Audio
                     _fadeInCoroutine = null;
                 }
 
-                PlayBgm(timelineAsset);
+                PlayBgm(timelineAsset, volume, fadeSec, animationCurve);
             }
             else
             {
@@ -194,26 +516,46 @@ namespace Utility.Audio
                 {
                     StopCoroutine(_fadeOutCoroutine);
 
-                    var t = Mathf.InverseLerp(0, _bgmVolumeValue, bgm.volume);
+                    var t = Mathf.InverseLerp(0, GetBgmSourceVolume(), bgm.volume);
 
-                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(timelineAsset); }, t));
+                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, animationCurve,
+                        () => { PlayBgm(timelineAsset, volume, fadeSec, animationCurve); }, t));
                 }
                 else
                 {
                     if (timelineAsset == bgmPlayableDirector.playableAsset as TimelineAsset)
                     {
-                        PlayBgm(timelineAsset);
+                        PlayBgm(timelineAsset, volume, fadeSec, animationCurve);
                     }
                     else
                     {
-                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(timelineAsset); }));
+                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, animationCurve,
+                            () => { PlayBgm(timelineAsset, volume, fadeSec, animationCurve); }));
                     }
                 }
             }
         }
 
-        public void PlayBgmWithFade(AudioClip audioClip)
+        public void PlayBgmWithFade(AudioClip audioClip, float volume = 1f, float fadeSec = -1,
+            AnimationCurve animationCurve = null)
         {
+            if (!audioClip)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            if (fadeSec <= 0)
+            {
+                fadeSec = FadeSec;
+            }
+
+            animationCurve ??= AnimationCurve.Linear(0, 0, 1, 1);
+
             if ((bgmPlayableDirector.playableAsset == null && bgm.clip == null) || _fadeInCoroutine != null)
             {
                 // FadeIn -> StopCoroutine -> PlayBgm (Contain Reset Volume) -> FadeIn
@@ -223,7 +565,7 @@ namespace Utility.Audio
                     _fadeInCoroutine = null;
                 }
 
-                PlayBgm(audioClip);
+                PlayBgm(audioClip, volume, fadeSec, animationCurve);
             }
             else
             {
@@ -234,32 +576,50 @@ namespace Utility.Audio
                 {
                     StopCoroutine(_fadeOutCoroutine);
 
-                    var t = Mathf.InverseLerp(0, _bgmVolumeValue, bgm.volume);
+                    var t = Mathf.InverseLerp(0, GetBgmSourceVolume(), bgm.volume);
 
-                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(audioClip); }, t));
+                    _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, animationCurve,
+                        () => { PlayBgm(audioClip, volume, fadeSec, animationCurve); }, t));
                 }
                 else
                 {
                     // if (audioClip == bgm.clip) -> No Fade Out
                     if (audioClip == bgm.clip)
                     {
-                        PlayBgm(audioClip);
+                        PlayBgm(audioClip, volume, fadeSec, animationCurve);
                     }
                     else
                     {
                         // FadeOut And Play Or Just Play
-                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(FadeSec, () => { PlayBgm(audioClip); }
+                        _fadeOutCoroutine = StartCoroutine(FadeOutBgm(fadeSec, animationCurve,
+                            () => { PlayBgm(audioClip, volume, fadeSec, animationCurve); }
                         ));
                     }
                 }
             }
         }
 
-        private void PlayBgm(TimelineAsset timelineAsset)
+        private void PlayBgm(TimelineAsset timelineAsset, float volume, float fadeSec, AnimationCurve animationCurve)
         {
+            if (!timelineAsset)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            BGMPlayValue = volume;
+            if (isDebug)
+            {
+                Debug.Log($"Play bgm - {timelineAsset}");
+            }
+
             if (bgmPlayableDirector.playableAsset != timelineAsset)
             {
-                StopBgm();
+                ResetBgm();
 
                 var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
 
@@ -281,15 +641,31 @@ namespace Utility.Audio
             {
                 // 항상 FadeIn
                 bgmPlayableDirector.Play();
-                _fadeInCoroutine = StartCoroutine(FadeInBgm(FadeSec));
+                _fadeInCoroutine = StartCoroutine(FadeInBgm(fadeSec, animationCurve));
             }
         }
 
-        private void PlayBgm(AudioClip audioClip)
+        private void PlayBgm(AudioClip audioClip, float volume, float fadeSec, AnimationCurve animationCurve)
         {
+            if (!audioClip)
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning("Audio 비어있음");
+                }
+
+                return;
+            }
+
+            BGMPlayValue = volume;
+            if (isDebug)
+            {
+                Debug.Log($"Play bgm - {audioClip}");
+            }
+
             if (bgm.clip != audioClip)
             {
-                StopBgm();
+                ResetBgm();
                 bgm.clip = audioClip;
             }
 
@@ -297,71 +673,290 @@ namespace Utility.Audio
             {
                 IsReduced = false;
             }
-            else
-            {
-                // 항상 FadeIn
-                bgm.Play();
-                _fadeInCoroutine = StartCoroutine(FadeInBgm(FadeSec));
-            }
+
+            // 항상 FadeIn
+            bgm.Play();
+            _fadeInCoroutine = StartCoroutine(FadeInBgm(fadeSec, animationCurve));
         }
 
-        public void ReturnBgmVolume()
+        public void ReturnVolume()
         {
-            Debug.Log($"Try Play Bgm Continue  {(IsReduced ? "성공" : "이미 실행 중")}");
-            if (!IsReduced)
-            {
-                return;
-            }
-
             IsReduced = false;
         }
 
-        public void ReduceBgmVolume()
+        public void ReduceVolume()
         {
-            Debug.Log($"Try Pause  {(IsReduced ? "이미 멈춤" : "성공")}");
-            if (IsReduced)
-            {
-                return;
-            }
-
             IsReduced = true;
         }
 
-        public void StopBgm()
+        private void UpdateVolume()
+        {
+            bgm.volume = GetBgmSourceVolume();
+            sfx.volume = sfx.volume;
+
+            foreach (var sfxAudioSource in _sfxAudioSourcePool.Where(sfxAudioSource =>
+                         _sfxAsBgmAudioClipData.All(item => item.AudioSource != sfxAudioSource)))
+            {
+                sfxAudioSource.volume = sfx.volume;
+            }
+
+            foreach (var audioData in _sfxAsBgmAudioClipData)
+            {
+                if (audioData.IsFading)
+                {
+                    continue;
+                }
+
+                audioData.AudioSource.volume = audioData.Volume * sfx.volume;
+            }
+        }
+
+        private float GetBgmSourceVolume()
+        {
+            return _isReduced ? BGMPlayValue * BGMVolumeValue * ReducePercentage : BGMPlayValue * BGMVolumeValue;
+        }
+
+        public void UpdateTimeScale(float pitch)
+        {
+            sfx.pitch = pitch;
+            bgm.pitch = pitch;
+
+            foreach (var audioData in _sfxAsBgmAudioClipData)
+            {
+                if (_ignoreTimeScaleAudioSources.Contains(audioData.AudioSource))
+                {
+                    continue;
+                }
+
+                audioData.AudioSource.pitch = pitch;
+            }
+        }
+
+        private void ResetBgm()
         {
             StopAllCoroutines();
-            bgm.volume = _bgmVolumeValue;
 
-            // 항상 FadeOut..?
-            IsReduced = false;
-            // 원래대로 돌려
-            bgm.clip = null;
-            bgm.Stop();
+            if (isDebug)
+            {
+                Debug.LogWarning("Reset Bgm");
+            }
+
             bgmPlayableDirector.Stop();
             bgmPlayableDirector.playableAsset = null;
             bgmPlayableDirector.time = 0;
         }
 
+        public void StopBgm(bool isContinue = true)
+        {
+            StopAllCoroutines();
+
+            if (!isContinue)
+            {
+                IsReduced = false;
+            }
+
+            if (isDebug)
+            {
+                Debug.LogWarning("Stop Bgm");
+            }
+
+            if (!isContinue)
+            {
+                bgm.clip = null;
+                bgm.Stop();
+            }
+
+            BGMPlayValue = 1f;
+
+            bgmPlayableDirector.Stop();
+            bgmPlayableDirector.playableAsset = null;
+            bgmPlayableDirector.time = 0;
+        }
+
+        private void StopSfx()
+        {
+            if (isDebug)
+            {
+                Debug.LogWarning("Stop Sfx");
+            }
+
+            sfx.Stop();
+        }
+
+        public void StopSfxAsBgm(Object audioObject, bool isFade = false)
+        {
+            if (audioObject is AudioClip audioClip)
+            {
+                StopSfxAsBgm(audioClip, isFade);
+            }
+            else if (audioObject is TimelineAsset timelineAsset)
+            {
+                StopSfxAsBgm(timelineAsset, isFade);
+            }
+        }
+
+        private void StopSfxAsBgm(AudioClip audioClip, bool isFade = false)
+        {
+            var audioData = _sfxAsBgmAudioClipData.Find(item => item.AudioSource.clip == audioClip);
+
+            if (audioData == null)
+            {
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Stop Sfx With Fade - {audioClip}, {isFade}");
+            }
+
+            void EndAction()
+            {
+                if (_ignoreTimeScaleAudioSources.Contains(audioData.AudioSource))
+                {
+                    _ignoreTimeScaleAudioSources.Remove(audioData.AudioSource);
+                }
+
+                _sfxAsBgmAudioClipData.Remove(audioData);
+                if (_sfxAudioSourcePool.Contains(audioData.AudioSource))
+                {
+                    _sfxAudioSourcePool.Remove(audioData.AudioSource);
+                    ObjectPoolHelper.Instance.Release(audioData.AudioSource);
+                }
+            }
+
+            if (isFade)
+            {
+                var coroutine = StartCoroutine(FadeOutAudioSource(audioData, () =>
+                {
+                    // Debug.LogWarning("Remove FadeOut Coroutine");
+                    _fadeOutSfxAsBgmCoroutine.Remove(audioClip);
+                    EndAction();
+                }));
+
+                // Debug.LogWarning("Add FadeOut Coroutine");
+                _fadeOutSfxAsBgmCoroutine.Add(audioClip, (coroutine, () =>
+                {
+                    // Debug.LogWarning("Remove FadeOut Coroutine");
+                    _fadeOutSfxAsBgmCoroutine.Remove(audioClip);
+                    EndAction();
+                }));
+            }
+            else
+            {
+                EndAction();
+            }
+        }
+
+        private void StopSfxAsBgm(TimelineAsset timelineAsset, bool isFade = false)
+        {
+            var playableDirector =
+                _sfxAsBgmPlayableDirectors.FirstOrDefault(item => item.Key.playableAsset == timelineAsset);
+
+            if (playableDirector.Key == null)
+            {
+                return;
+            }
+
+            if (isDebug)
+            {
+                Debug.Log($"Stop Sfx With Fade - {timelineAsset}");
+            }
+
+            void EndAction()
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning($"FadeOut End - {timelineAsset}");
+                }
+                _sfxAsBgmPlayableDirectors.Remove(playableDirector.Key);
+                _playableDirectorPool.Remove(playableDirector.Key);
+                ObjectPoolHelper.Instance.Release(playableDirector.Key);
+            }
+
+            if (isFade)
+            {
+                var coroutine =
+                    StartCoroutine(FadeOutPlayableDirector(playableDirector.Key, playableDirector.Value, () =>
+                    {
+                        // Debug.LogWarning("Remove FadeOut Coroutine");
+                        _fadeOutSfxAsBgmCoroutine.Remove(timelineAsset);
+                        EndAction();
+                    }));
+                // Debug.LogWarning("Add FadeOut Coroutine");
+                _fadeOutSfxAsBgmCoroutine.Add(timelineAsset, (coroutine, () =>
+                {
+                    // Debug.LogWarning("Remove FadeOut Coroutine");
+                    _fadeOutSfxAsBgmCoroutine.Remove(timelineAsset);
+                    EndAction();
+                }));
+            }
+            else
+            {
+                EndAction();
+            }
+        }
+
+        public void StopAudio()
+        {
+            if (isDebug)
+            {
+                Debug.LogWarning("Stop Audio");
+            }
+
+            StopSfx();
+
+            foreach (var sfxAudioSource in _sfxAudioSourcePool)
+            {
+                ObjectPoolHelper.Instance.Release(sfxAudioSource);
+            }
+
+            foreach (var playableDirector in _playableDirectorPool)
+            {
+                ObjectPoolHelper.Instance.Release(playableDirector);
+            }
+
+            _sfxAsBgmPlayableDirectors.Clear();
+            _sfxAsBgmAudioClipData.Clear();
+            _distinctSfxClipDictionary.Clear();
+            _distinctSfxTimelineDictionary.Clear();
+            _ignoreTimeScaleAudioSources.Clear();
+            _sfxAudioSourcePool.Clear();
+            _playableDirectorPool.Clear();
+
+            StopBgm(false);
+        }
+
         private bool IsPlayingSfx(TimelineAsset timelineAsset)
         {
             // if IsPlayingSfx Any SfxAudio return true
-            if (!_sfxTimelineDictionary.ContainsKey(timelineAsset))
+            if (!_distinctSfxTimelineDictionary.ContainsKey(timelineAsset))
             {
+                if (isDebug)
+                {
+                    Debug.LogWarning("미보유 중");
+                }
+
                 return false;
             }
 
-            var playableDirector = _sfxTimelineDictionary[timelineAsset];
-
-            // Debug.LogWarning($"{playableDirector.duration},   {playableDirector.time}");
-            // Debug.LogWarning(Math.Abs(playableDirector.duration - playableDirector.time) <= 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.frameRate);
-            // Debug.LogWarning($"{playableDirector.state},  {playableDirector.playableGraph.IsValid()}");
-            // Debug.LogWarning(playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid());
+            var (playableDirector, endAction) = _distinctSfxTimelineDictionary[timelineAsset];
 
             if (Math.Abs(playableDirector.duration - playableDirector.time) <=
                 1 / ((TimelineAsset) playableDirector.playableAsset).editorSettings.frameRate ||
                 playableDirector.state == PlayState.Paused && !playableDirector.playableGraph.IsValid())
             {
+                if (isDebug)
+                {
+                    Debug.LogWarning("실행 종료된 상태임");
+                }
+
+                endAction?.Invoke();
                 return false;
+            }
+
+            if (isDebug)
+            {
+                Debug.LogWarning("실행 중");
             }
 
             return true;
@@ -369,72 +964,207 @@ namespace Utility.Audio
 
         private bool IsPlayingSfx(AudioClip audioClip)
         {
-            if (!_sfxClipDictionary.ContainsKey(audioClip) ||
-                Time.time - _sfxClipDictionary[audioClip] >= audioClip.length)
+            if (!_distinctSfxClipDictionary.ContainsKey(audioClip))
             {
+                return false;
+            }
+
+            var (length, endAction) = _distinctSfxClipDictionary[audioClip];
+
+            if (Time.time - length >= audioClip.length)
+            {
+                endAction?.Invoke();
                 return false;
             }
 
             return true;
         }
 
-        private void CheckGarbageCollect()
+        private IEnumerator FadeInBgm(float fadeSec, AnimationCurve animationCurve)
         {
-            var toRemoveClip = new List<AudioClip>();
-            foreach (var keyValuePair in _sfxClipDictionary)
+            var t = 0f;
+            var bgmPlayValue = BGMPlayValue;
+            while (t <= 1f)
             {
-                if (!IsPlayingSfx(keyValuePair.Key))
-                {
-                    toRemoveClip.Add(keyValuePair.Key);
-                }
+                t += Time.deltaTime / fadeSec;
+                var value = animationCurve.Evaluate(t);
+                BGMPlayValue = Mathf.Lerp(0, bgmPlayValue, value);
+                yield return null;
             }
 
-            foreach (var audioClip in toRemoveClip)
-            {
-                _sfxClipDictionary.Remove(audioClip);
-            }
-
-
-            var toRemoveTimeline = new List<TimelineAsset>();
-            foreach (var keyValuePair in _sfxTimelineDictionary)
-            {
-                if (!IsPlayingSfx(keyValuePair.Key))
-                {
-                    toRemoveTimeline.Add(keyValuePair.Key);
-                }
-            }
-
-            foreach (var timelineAsset in toRemoveTimeline)
-            {
-                ObjectPoolHelper.Instance.Release(_sfxTimelineDictionary[timelineAsset]);
-                _sfxTimelineDictionary.Remove(timelineAsset);
-            }
+            BGMPlayValue = bgmPlayValue;
+            _fadeInCoroutine = null;
         }
 
-        private IEnumerator FadeInBgm(float fadeSec)
+        private IEnumerator FadeOutBgm(float fadeSec, AnimationCurve animationCurve, Action onEndAction, float t = 1f)
         {
+            var bgmPlayValue = BGMPlayValue;
+            while (t >= 0f)
+            {
+                t -= Time.deltaTime / fadeSec;
+                var value = animationCurve.Evaluate(t);
+                BGMPlayValue = Mathf.Lerp(bgmPlayValue, 0, value);
+                yield return null;
+            }
+
+            BGMPlayValue = bgmPlayValue;
+            _fadeOutCoroutine = null;
+            onEndAction.Invoke();
+        }
+
+        private IEnumerator FadeInAudioSource(AudioClipData audioClipData, float fadeSec,
+            AnimationCurve animationCurve)
+        {
+            audioClipData.IsFading = true;
+
             var t = 0f;
             while (t <= 1f)
             {
                 t += Time.deltaTime / fadeSec;
-                bgm.volume = Mathf.Lerp(0, _bgmVolumeValue, t);
+                var value = animationCurve.Evaluate(t);
+                audioClipData.AudioSource.volume = Mathf.Lerp(0, sfx.volume * audioClipData.Volume, value);
                 yield return null;
             }
 
-            _fadeInCoroutine = null;
+            audioClipData.IsFading = false;
         }
 
-        private IEnumerator FadeOutBgm(float fadeSec, Action onEndAction, float t = 1f)
+        private IEnumerator FadeOutAudioSource(AudioClipData audioClipData, Action fadeEndAction)
         {
-            while (t >= 0f)
+            audioClipData.IsFading = true;
+
+            var t = 1f;
+            while (t >= 0)
             {
-                t -= Time.deltaTime / fadeSec;
-                bgm.volume = Mathf.Lerp(_bgmVolumeValue, 0, t);
+                t -= Time.deltaTime / FadeSec;
+                audioClipData.AudioSource.volume = Mathf.Lerp(0, sfx.volume * audioClipData.Volume, t);
                 yield return null;
             }
 
-            _fadeOutCoroutine = null;
-            onEndAction.Invoke();
+            audioClipData.IsFading = false;
+            fadeEndAction?.Invoke();
+        }
+
+        private static IEnumerator FadeInPlayableDirectorSfx(PlayableDirector playableDirector, float volume,
+            float fadeSec, AnimationCurve animationCurve)
+        {
+            var timelineAsset = playableDirector.playableAsset as TimelineAsset;
+
+            if (timelineAsset == null)
+            {
+                yield break;
+            }
+
+            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack).ToList();
+
+            var minSec = (float) Math.Min(timelineAsset.duration, fadeSec);
+
+            foreach (var audioTrack in audioTracks)
+            {
+                if (audioTrack.curves != null)
+                {
+                    audioTrack.curves.ClearCurves();
+                }
+
+                audioTrack.CreateCurves("NameOfAnimationClip");
+
+                var firstTime = animationCurve.keys[0].time;
+                var lastTime = animationCurve.keys[animationCurve.length - 1].time;
+
+                var minValue = animationCurve.keys.Min(item => item.value);
+                var maxValue = animationCurve.keys.Max(item => item.value);
+
+                // data -> new curve (0 ~ fadeSec, 0 ~ volume)
+
+                foreach (var animationCurveKey in animationCurve.keys)
+                {
+                    var targetTime = (animationCurveKey.time - firstTime) / (lastTime + firstTime) * fadeSec;
+                    var targetValue = (animationCurveKey.time - minValue) / (minValue + maxValue) * volume;
+
+                    var newKeyFrame = animationCurveKey;
+                    newKeyFrame.time = targetTime;
+                    newKeyFrame.value = targetValue;
+
+                    var index = Array.FindIndex(animationCurve.keys, item => item.Equals(animationCurveKey));
+                    animationCurve.MoveKey(index, newKeyFrame);
+                }
+
+                // audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume", AnimationCurve.Linear(0, 0, minSec, 1));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume", animationCurve);
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "stereoPan",
+                    AnimationCurve.Linear(0, 0, 1, 0));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "spatialBlend",
+                    AnimationCurve.Linear(0, 0, 1, 0));
+            }
+            // timelineAsset duration보다 긴 경우 fadeSec가 긴 경우 무시, 최대값 timelineAsset duration으로  
+
+            yield return new WaitForSeconds(minSec);
+
+            SetAudioTrackVolume(timelineAsset, volume);
+        }
+
+        private static IEnumerator FadeOutPlayableDirector(PlayableDirector playableDirector, float volume,
+            Action fadeEndAction)
+        {
+            var timelineAsset = playableDirector.playableAsset as TimelineAsset;
+
+            if (timelineAsset == null)
+            {
+                yield break;
+            }
+
+            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack).ToList();
+            var minSec = (float) Math.Min(timelineAsset.duration, playableDirector.time + FadeSec);
+
+            Debug.LogWarning($"fadeout - {minSec},   {timelineAsset.duration}, {playableDirector.time + FadeSec}");
+            foreach (var audioTrack in audioTracks)
+            {
+                if (audioTrack.curves != null)
+                {
+                    audioTrack.curves.ClearCurves();
+                }
+
+                audioTrack.CreateCurves("NameOfAnimationClip");
+
+                // data -> new curve (cur ~ (cur + fadeSec or end), 0 ~ volume)
+
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume",
+                    AnimationCurve.Linear((float) playableDirector.time, volume, minSec, 0));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "stereoPan",
+                    AnimationCurve.Linear(0, 0, 1, 0));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "spatialBlend",
+                    AnimationCurve.Linear(0, 0, 1, 0));
+            }
+            // timelineAsset duration보다 긴 경우 fadeSec가 긴 경우 무시, 최대값 timelineAsset duration으로  
+
+            playableDirector.RebuildGraph();
+
+            var minWaitSec = (float) Math.Min(timelineAsset.duration - playableDirector.time, FadeSec);
+            yield return new WaitForSeconds(minWaitSec);
+
+            foreach (var audioTrack in audioTracks)
+            {
+                if (audioTrack.curves != null)
+                {
+                    audioTrack.curves.ClearCurves();
+                }
+            }
+
+            fadeEndAction?.Invoke();
+        }
+
+        private static IEnumerator WaitEnd(float waitSec, bool ignoreTimeScale, Action onEndAction)
+        {
+            if (ignoreTimeScale)
+            {
+                yield return new WaitForSecondsRealtime(waitSec);
+            }
+            else
+            {
+                yield return new WaitForSeconds(waitSec);
+            }
+
+            onEndAction?.Invoke();
         }
 
         public AudioSource GetAudioSource(AudioSourceType audioSourceType)
@@ -449,20 +1179,33 @@ namespace Utility.Audio
 
         public AudioSource GetAudioSource(string audioSource)
         {
-            if (audioSource == bgm.name)
-            {
-                return bgm;
-            }
-
-            if (audioSource == sfx.name)
-            {
-                return sfx;
-            }
-
-            return null;
+            return Enum.TryParse<AudioSourceType>(audioSource, out var result) ? GetAudioSource(result) : bgm;
         }
 
-        public float GetBgmVolume(AudioSourceType audioSourceType)
+        /// <param name="audioSourceType"> Bgm or Sfx </param>
+        /// <param name="volumeValue"> 0 ~ 1</param>
+        public void SetVolume(AudioSourceType audioSourceType, float volumeValue)
+        {
+            if (audioSourceType == AudioSourceType.Bgm)
+            {
+                BGMVolumeValue = volumeValue;
+            }
+            else if (audioSourceType == AudioSourceType.Sfx)
+            {
+                sfx.volume = volumeValue;
+            }
+
+            UpdateVolume();
+        }
+
+        public void SetMute(AudioSourceType audioSourceType, bool isMute)
+        {
+            var audioSource = GetAudioSource(audioSourceType);
+            audioSource.mute = isMute;
+        }
+
+        // return 0 ~ 1 volume
+        public float GetVolume(AudioSourceType audioSourceType)
         {
             if (audioSourceType == AudioSourceType.Sfx)
             {
@@ -471,13 +1214,13 @@ namespace Utility.Audio
 
             if (audioSourceType == AudioSourceType.Bgm)
             {
-                return _bgmVolumeValue;
+                return BGMVolumeValue;
             }
 
             return -1;
         }
 
-        public bool GetIsPaused()
+        public bool GetIsReduced()
         {
             return IsReduced;
         }
@@ -487,7 +1230,7 @@ namespace Utility.Audio
             PlayerPrefs.SetString("SfxMute", sfx.mute.ToString());
             PlayerPrefs.SetString("BgmMute", bgm.mute.ToString());
             PlayerPrefs.SetFloat("Sfx", sfx.volume);
-            PlayerPrefs.SetFloat("Bgm", _bgmVolumeValue);
+            PlayerPrefs.SetFloat("Bgm", BGMVolumeValue);
         }
 
         public void LoadAudio()
@@ -533,6 +1276,28 @@ namespace Utility.Audio
             else
             {
                 SetVolume(AudioSourceType.Bgm, .5f);
+            }
+        }
+
+        private static void SetAudioTrackVolume(TimelineAsset timelineAsset, float volume)
+        {
+            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
+
+            foreach (var audioTrack in audioTracks)
+            {
+                if (audioTrack.curves != null)
+                {
+                    audioTrack.curves.ClearCurves();
+                }
+
+                audioTrack.CreateCurves("NameOfAnimationClip");
+
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "volume",
+                    AnimationCurve.Linear(0, volume, 1, volume));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "stereoPan",
+                    AnimationCurve.Linear(0, 0, 1, 0));
+                audioTrack.curves.SetCurve(string.Empty, typeof(AudioTrack), "spatialBlend",
+                    AnimationCurve.Linear(0, 0, 1, 0));
             }
         }
 

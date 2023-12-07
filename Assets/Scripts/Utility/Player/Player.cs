@@ -1,10 +1,21 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Timeline;
 using Utility.Audio;
 
 namespace Utility.Player
 {
     public class Player : MonoBehaviour
     {
+        [Serializable]
+        public struct StepProps
+        {
+            public float timeInterval;
+
+            public AudioData audioData;
+        }
+
         public bool IsCharacterControllable
         {
             get => isCharacterControllable;
@@ -31,23 +42,15 @@ namespace Utility.Player
         [Header("Setting")] [Range(1, 20f)] [SerializeField]
         private float playerSpeed;
 
-        [SerializeField] private AudioClip audioClip;
-        [Range(0, 1)] [SerializeField] private float volume;
+        [SerializeField] private float stepOffset;
+        [SerializeField] private StepProps[] stepProps;
 
         private Animator _animator;
+        private int _stepIndex;
+        private bool _isStepAudioPlaying;
+        private float _stepOffsetTimer;
 
         private readonly int _isMove = Animator.StringToHash("isMove");
-
-        // This function not work on animation
-        // private void OnValidate()
-        // {
-        //     if (!Application.isPlaying || !gameObject.activeSelf)
-        //     {
-        //         return;
-        //     }
-        //
-        //     UpdateControl();
-        // }
 
         private void UpdateControl(bool isEnable = true)
         {
@@ -69,14 +72,12 @@ namespace Utility.Player
                 }
 
                 PlayerManager.Instance.SetPlayer(this);
-                // True
             }
             else
             {
                 if (PlayerManager.Instance.IsPlayer(this))
                 {
                     PlayerManager.Instance.SetPlayer(null);
-                    // False
                 }
             }
         }
@@ -93,6 +94,21 @@ namespace Utility.Player
             RotateCharacter(input);
             SetCharacterAnimator(input != Vector2.zero);
             MoveCharacter(input);
+            if (input != Vector2.zero)
+            {
+                if (stepOffset > _stepOffsetTimer)
+                {
+                    _stepOffsetTimer += Time.fixedDeltaTime;
+                }
+                else
+                {
+                    PlaySfx();
+                }
+            }
+            else
+            {
+                _stepOffsetTimer = 0;
+            }
         }
 
         public void RotateCharacter(Vector2 input)
@@ -101,8 +117,6 @@ namespace Utility.Player
             {
                 return;
             }
-
-            // Debug.Log($"이동: {input}");
 
             if (input.x < 0)
             {
@@ -138,9 +152,36 @@ namespace Utility.Player
             }
         }
 
-        public void PlaySfx()
+        private void PlaySfx()
         {
-            AudioManager.Instance.PlaySfx(audioClip, volume, false);
+            if (_isStepAudioPlaying)
+            {
+                return;
+            }
+
+            _isStepAudioPlaying = true;
+
+            var step = stepProps[_stepIndex];
+            step.audioData.Play();
+
+            StartCoroutine(Timer());
+        }
+
+        private IEnumerator Timer()
+        {
+            float audioLength = 0;
+
+            audioLength = stepProps[_stepIndex].audioData.audioObject switch
+            {
+                AudioClip audioClip => audioClip.length,
+                TimelineAsset timelineAsset => (float) timelineAsset.duration,
+                _ => audioLength
+            };
+
+
+            yield return audioLength + stepProps[_stepIndex].timeInterval;
+            _stepIndex = (_stepIndex + 1) % stepProps.Length;
+            _isStepAudioPlaying = false;
         }
 
         private void MoveCharacter(Vector2 input)

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Timeline;
+using Utility.Audio;
 using Utility.Core;
 using Utility.Dialogue;
 using Utility.Property;
@@ -17,9 +18,10 @@ namespace Utility.Interaction
         OneOff,
         Item,
         Tutorial,
-        Audio,
+        Audio = 8,
+        StopAudio = 16,
     }
-    
+
     public enum ItemUseType
     {
         Possess,
@@ -40,7 +42,7 @@ namespace Utility.Interaction
         public ItemData[] itemData;
         public int targetIndex;
         public int defaultInteractionIndex;
-        
+
         // 조건에 실패하여 Default인 경우 -> Default index 실행 후 -> Item Index로 돌아올 것인지, 그대로 실행 쭉 할 것인지 (기본) 선택 가능하게
         public bool isLoopDefault;
     }
@@ -57,9 +59,16 @@ namespace Utility.Interaction
         [FormerlySerializedAs("isContinuable")]
         public bool isNextInteractable;
 
-        public bool interactNextIndex;
+        [FormerlySerializedAs("interactNextIndex")]
+        public bool isInteractNextIndex;
+
+        public bool isCustomNextIndex;
+
+        [ConditionalHideInInspector("isCustomNextIndex")]
+        public int targetIndex;
+
         public bool isLoop;
-        public bool isPauseBgm;
+        [FormerlySerializedAs("isPauseBgm")] public bool isReduceBgm;
 
         [Header("For Debugging")] public bool isInteracted;
         // public bool isWaitClear;
@@ -102,8 +111,8 @@ namespace Utility.Interaction
 
         public bool isOnAwake;
 
-        [ConditionalHideInInspector("isOnAwake")]
-        public int order;
+        [FormerlySerializedAs("order")] [ConditionalHideInInspector("isOnAwake")]
+        public int priority;
 
         [ConditionalHideInInspector("interactType", InteractType.Audio)]
         public bool isAudioClip;
@@ -117,11 +126,20 @@ namespace Utility.Interaction
         [ConditionalHideInInspector("interactType", InteractType.Audio)]
         public bool isSfx;
 
+        [ConditionalHideInInspector("interactType", InteractType.Audio)] [Range(0, 1)]
+        public float volume = 1;
+
         [ConditionalHideInInspector("isAudioClip")]
         public AudioClip audioClip;
 
         [ConditionalHideInInspector("isTimelineAudio")]
         public TimelineAsset audioTimeline;
+
+        [ConditionalHideInInspector("interactType", InteractType.Audio | InteractType.StopAudio, false, true)]
+        public AudioData audioData;
+
+        [ConditionalHideInInspector("interactType", InteractType.StopAudio)]
+        public bool isStopBgm;
 
         public SerializedInteractionData serializedInteractionData;
 

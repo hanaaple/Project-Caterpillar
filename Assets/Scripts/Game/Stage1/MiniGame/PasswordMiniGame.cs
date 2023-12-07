@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.MiniGame
 {
@@ -7,7 +8,12 @@ namespace Game.Stage1.MiniGame
     {
         [SerializeField] private PasswordItem[] passwordItems;
         [SerializeField] private string correct;
-
+        
+        [SerializeField] private AudioData dialAudioData;
+        [SerializeField] private AudioData failAudioData;
+        [SerializeField] private AudioData clearAudioData;
+        
+        
         [Header("For Debug")] [SerializeField] private string password;
         [SerializeField] private int selectedIndex;
 
@@ -44,6 +50,7 @@ namespace Game.Stage1.MiniGame
                 }
             };
 
+            password = string.Empty;
             selectedIndex = 0;
             foreach (var passwordItem in passwordItems)
             {
@@ -59,6 +66,7 @@ namespace Game.Stage1.MiniGame
 
         private void Push(string key)
         {
+            dialAudioData.Play();
             passwordItems[selectedIndex].DeBlink();
             passwordItems[selectedIndex].SetText(key);
             password += key;
@@ -89,6 +97,20 @@ namespace Game.Stage1.MiniGame
 
             passwordItems[selectedIndex].SetText("");
             passwordItems[selectedIndex].Select();
+        }
+
+        protected override void End(bool isClear = true)
+        {
+            if (isClear)
+            {
+                clearAudioData.Play();
+            }
+            else
+            {
+                failAudioData.Play();
+            }
+
+            base.End(isClear);
         }
     }
 }

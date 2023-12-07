@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utility.Audio;
 
 namespace Game.Stage1.BeachGame
 {
@@ -19,6 +20,8 @@ namespace Game.Stage1.BeachGame
         [Range(1, 5)] [SerializeField] private float rotSpeed;
 
         [Range(1, 5)] [SerializeField] private float angleWeight;
+        
+        [SerializeField] private AudioClip turnAudioClip;
 
         private float[] _angles;
         private float _size;
@@ -31,29 +34,34 @@ namespace Game.Stage1.BeachGame
         [NonSerialized] public Stack<int> PastIndex;
         [NonSerialized] public bool Interactable;
 
-        private void Start()
-        {
-            PastIndex = new Stack<int>();
-        }
-
         private void OnEnable()
         {
-            UpdateData();
+            UpdateDisplay();
         }
 
         private void OnValidate()
         {
-            UpdateData();
+            UpdateDisplay();
+        }
+        
+        public void Init()
+        {
+            PastIndex = new Stack<int>();
+            
+            Interactable = true;
+            SetRotation(_angles[defaultIndex]);
+            Index = Array.FindIndex(_angles,
+                angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(_angles[defaultIndex]));
         }
 
-        private void UpdateData()
+        private void UpdateDisplay()
         {
             _angles = new float[divCount];
             actions = new Action[divCount];
 
             _size = 360f / divCount;
             var angle = startRot - _size / 2;
-            for (int i = 0; i < divCount; i++)
+            for (var i = 0; i < divCount; i++)
             {
                 angle %= 360;
                 _angles[i] = angle;
@@ -88,6 +96,8 @@ namespace Game.Stage1.BeachGame
             {
                 return;
             }
+            
+            AudioManager.Instance.PlaySfx(turnAudioClip, 1f, false);
 
             var beforeAngle = transform.eulerAngles.z;
 
@@ -240,14 +250,6 @@ namespace Game.Stage1.BeachGame
             var targetVector = new Vector2(Mathf.Cos((targetAngle + 90) * Mathf.Deg2Rad),
                 Mathf.Sin((targetAngle + 90) * Mathf.Deg2Rad));
             transform.up = targetVector;
-        }
-
-        public void Reseet()
-        {
-            Interactable = true;
-            SetRotation(_angles[defaultIndex]);
-            Index = Array.FindIndex(_angles,
-                angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(_angles[defaultIndex]));
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Utility.Util
                     else
                     {
                         _instance = Create();
-                        Debug.LogWarning("Create함");
                     }
 
                     DontDestroyOnLoad(_instance);
@@ -42,15 +41,12 @@ namespace Utility.Util
 
         private void Awake()
         {
-            Debug.LogWarning("Awake임");
-
             _objectPools = new Dictionary<Type, dynamic>();
             
             var playableDirectorPool = new ObjectPool<PlayableDirector>(
                 () =>
                 {
-                    var playableDirector = Instantiate(playableDirectorPrefab);
-                    playableDirector.playOnAwake = false;
+                    var playableDirector = Instantiate(playableDirectorPrefab, transform);
                     return playableDirector;
                 },
                 item => { item.gameObject.SetActive(true); },
@@ -61,27 +57,52 @@ namespace Utility.Util
                     item.extrapolationMode = DirectorWrapMode.None;
                     item.time = 0;
                     item.Stop();
-                },
-                item => { Destroy(item.gameObject); });
+                });
             
             _objectPools.Add(typeof(PlayableDirector), playableDirectorPool);
-            // Debug.Log(_objectPools[typeof(PlayableDirector)] as ObjectPool<PlayableDirector>);
-            // Debug.Log(playableDirectorPool);
+            
+            var audioSourceObjectPool = new ObjectPool<AudioSource>(
+                () =>
+                {
+                    var audioSource = Instantiate(audioSourcePrefab, transform);
+                    return audioSource;
+                },
+                item =>
+                {
+                    item.gameObject.SetActive(true);
+                },
+                item =>
+                {
+                    item.Stop();
+                    item.clip = null;
+                    item.playOnAwake  = false;
+                    item.outputAudioMixerGroup = null;
+                    item.mute = false;
+                    item.loop = false;
+                    item.volume = 1;
+                    item.pitch = 1;
+                    item.time = 0;
+                    item.gameObject.SetActive(false);
+                });
+            
+            _objectPools.Add(typeof(AudioSource), audioSourceObjectPool);
         }
 
         [SerializeField] private PlayableDirector playableDirectorPrefab;
+        [SerializeField] private AudioSource audioSourcePrefab;
 
         private Dictionary<Type, dynamic> _objectPools;
 
         public T Get<T>() where T : class
         {
-            Debug.LogWarning($"Get {_objectPools[typeof(T)] as ObjectPool<T>}");
-            return (_objectPools[typeof(T)] as ObjectPool<T>).Get();
+            var returnObj = (_objectPools[typeof(T)] as ObjectPool<T>).Get();
+            // Debug.LogWarning($"Get {returnObj.GetType()}");
+            return returnObj;
         }
         
         public void Release<T>(T releaseObject) where T : class
         {
-            Debug.LogWarning($"Release {_objectPools[typeof(T)] as ObjectPool<T>}");
+            // Debug.LogWarning($"Release {releaseObject.GetType()}");
             (_objectPools[typeof(T)] as ObjectPool<T>).Release(releaseObject);
         }
     }

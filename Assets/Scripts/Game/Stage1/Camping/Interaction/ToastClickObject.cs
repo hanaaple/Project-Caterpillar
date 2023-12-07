@@ -1,6 +1,7 @@
 using System;
 using Game.Default;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utility.Property;
 using Utility.Scene;
 
@@ -12,7 +13,7 @@ namespace Game.Stage1.Camping.Interaction
         public ToastClickObject[] toastClickObjects;
     }
 
-    public class ToastClickObject : MonoBehaviour
+    public class ToastClickObject : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private bool isShareCount;
 
@@ -28,8 +29,8 @@ namespace Game.Stage1.Camping.Interaction
                 toastClickObjects = null;
             }
         }
-
-        private void OnMouseDown()
+        
+        public void OnPointerDown(PointerEventData eventData)
         {
             Toast();
         }

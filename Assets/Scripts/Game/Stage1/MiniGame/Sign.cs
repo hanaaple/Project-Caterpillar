@@ -6,7 +6,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Property;
+using Utility.Util;
 
 namespace Game.Stage1.MiniGame
 {
@@ -31,7 +33,7 @@ namespace Game.Stage1.MiniGame
         private class Point
         {
             public Animator Animator;
-            public Vector2 Pos;
+            public Vector2Int Pos;
         }
 
         [SerializeField] private GameObject prefab;
@@ -39,12 +41,16 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private RectTransform form;
         [SerializeField] private Transform root;
         [SerializeField] private Image start;
-        [ConditionalHideInInspector("isEnd", true)] [SerializeField]
-        private Image end;
-
         [SerializeField] private Vector2Int formSize;
+        // [SerializeField] private int pointSize;
+        [SerializeField] private float lineOffset;
+
+        [SerializeField] private AudioData arriveAudioData;
+        [SerializeField] private AudioData moveOneAudioData;
         
         [SerializeField] private bool isEnd;
+        [ConditionalHideInInspector("isEnd", true)] [SerializeField]
+        private Image end;
         
         [Header("Start Position")]
         [SerializeField] private Vector2Int startPos;
@@ -54,7 +60,7 @@ namespace Game.Stage1.MiniGame
         [Header("Setting Point")] [SerializeField] private Vector2Int startPoint;
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPoint;
-
+        
         [ConditionalHideInInspector("isEnd")] [SerializeField]
         private float endTime;
         
@@ -62,27 +68,55 @@ namespace Game.Stage1.MiniGame
 
         private Stack<Point> _path;
         private ObjectPool<Animator> _pointObjectPool;
+        private Image _formImage;
 
+        private Vector2 PointSize => (form.sizeDelta - LineOffset) / formSize;
+        // private Vector2 UnitSize => PointSize - LineOffset;
+        private Vector2 PivotPos => (Vector2) form.position - form.sizeDelta / 2 + LineOffset / 2;
+        
+        private Vector2 LineOffset
+        {
+            get
+            {
+                if (_formImage == null)
+                {
+                    _formImage = form.GetComponent<Image>();
+                }
+                
+                var ratio = form.sizeDelta / _formImage.sprite.rect.size;
+                
+                return lineOffset * ratio;
+            }
+        }
+        
+        
         private static readonly int Before = Animator.StringToHash("Before");
         private static readonly int Next = Animator.StringToHash("Next");
 
-        private void OnEnable()
-        {
-            OnValidate();
-        }
-
         private void OnValidate()
         {
+            if (_path != null)
+            {
+                foreach (var point in _path)
+                {
+                    ((RectTransform) point.Animator.transform).sizeDelta = PointSize;
+                    point.Animator.transform.SetParent(root);
+                    point.Animator.transform.position = GetPointPosition(point.Pos);
+                }
+            }
+
             if (start)
             {
+                ((RectTransform) start.transform).sizeDelta = PointSize;
                 start.transform.SetParent(root);
-                start.transform.position = GetPointPosition(startPoint, start.GetComponent<RectTransform>().rect.size);
+                start.transform.position = GetPointPosition(startPoint);
             }
 
             if (end)
             {
+                ((RectTransform) end.transform).sizeDelta = PointSize;
                 end.transform.SetParent(root);
-                end.transform.position = GetPointPosition(endPoint, end.GetComponent<RectTransform>().rect.size);
+                end.transform.position = GetPointPosition(endPoint);
             }
         }
 
@@ -108,25 +142,15 @@ namespace Game.Stage1.MiniGame
                 StartCoroutine(EndTimer());
             }
 
-            var pointerEvent = new EventTrigger.Entry
-            {
-                eventID = EventTriggerType.Drag
-            };
-
-            pointerEvent.callback.AddListener(_ =>
+            EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.Drag, _ =>
             {
                 var pointerEventData = _ as PointerEventData;
-                var pos = (Vector2) form.position - form.sizeDelta / 2;
+                var xy = (pointerEventData.position - PivotPos) / PointSize;
+                var point = new Vector2Int(Mathf.FloorToInt(xy.x), Mathf.FloorToInt(xy.y));
 
-                var unitSize = form.sizeDelta / formSize;
-
-                var xy = (pointerEventData.position - pos) / unitSize;
-                xy.x = Mathf.FloorToInt(xy.x);
-                xy.y = Mathf.FloorToInt(xy.y);
-
-                if (_path.Any(item => Mathf.Approximately(Vector2.Distance(item.Pos, xy), 0)))
+                if (_path.Any(item => item.Pos == point))
                 {
-                    while (_path.Peek().Pos != xy && _path.Count > 1)
+                    while (_path.Peek().Pos != point && _path.Count > 1)
                     {
                         var popItem = _path.Pop();
                         Debug.Log($"Pop - {popItem.Pos}. {_path.Count}");
@@ -138,40 +162,40 @@ namespace Game.Stage1.MiniGame
                     }
                 }
 
-                // Debug.Log($"{xy}, {IsEnable(xy)}");
-
-                if (!IsEnable(xy))
+                if (!IsEnable(point))
                 {
                     return;
                 }
 
                 // 이미 뚫은 Path인 경우 뒤로 돌리기
 
-                PushPoint(xy);
-            });
-
-            eventTrigger.triggers.Add(pointerEvent);
+                PushPoint(point);
+            }); 
         }
 
-        private Vector2 GetPointPosition(Vector2 pos, Vector2 size)
+        private Vector2 GetPointPosition(Vector2Int pointPos)
         {
-            var pivotPos = (Vector2) form.position - form.sizeDelta / 2;
-            var unitSize = form.sizeDelta / formSize;
-            var targetPos = pivotPos + new Vector2(unitSize.x * pos.x, unitSize.y * pos.y) + size / 2;
+            Debug.Log($"pos - {pointPos}, Pivot - {PivotPos}, PointSize - {PointSize}");
+            var targetPos = PivotPos + new Vector2(PointSize.x * pointPos.x, PointSize.y * pointPos.y) + PointSize / 2;
+            
             return targetPos;
         }
 
-        private bool IsEnable(Vector2 targetPos)
+        private bool IsEnable(Vector2Int targetPos)
         {
             if (_path.Count == 1)
             {
                 // Debug.Log($"IsEnable? {targetPos}, {startPos}");
-
-                if (Mathf.Approximately(Vector2.Distance(targetPos, startPos), 0))
+                if (targetPos == startPos)
                 {
                     return true;
                 }
 
+                return false;
+            }
+
+            if (targetPos.y < 0 || targetPos.y > formSize.y || targetPos.x < 0 || targetPos.x > formSize.x)
+            {
                 return false;
             }
 
@@ -183,8 +207,7 @@ namespace Game.Stage1.MiniGame
                 return false;
             }
 
-            var l1Distance =
-                (int) (Mathf.Abs(lastPoint.Pos.x - targetPos.x) + Mathf.Abs(lastPoint.Pos.y - targetPos.y));
+            var l1Distance = Mathf.Abs(lastPoint.Pos.x - targetPos.x) + Mathf.Abs(lastPoint.Pos.y - targetPos.y);
             if (l1Distance != 1)
             {
                 return false;
@@ -192,7 +215,7 @@ namespace Game.Stage1.MiniGame
 
             Vector2 v1, v2;
 
-            if (Mathf.Approximately(targetPos.x, lastPoint.Pos.x))
+            if (targetPos.x == lastPoint.Pos.x)
             {
                 // 위아래로 가는 경우 y값 큰 값 기준으로 (x, y) (x + 1, y)
                 var maxY = Mathf.Max(targetPos.y, lastPoint.Pos.y);
@@ -269,29 +292,29 @@ namespace Game.Stage1.MiniGame
             });
         }
 
-        private void PushPoint(Vector2 targetPos)
+        private void PushPoint(Vector2Int targetPos)
         {
             var beforePoint = _path.Peek();
 
             var dir = targetPos - beforePoint.Pos;
 
             Direction next = default, before = default;
-            if (Mathf.Approximately(Vector2.Distance(dir, Vector2.up), 0))
+            if (dir == Vector2.up)
             {
                 next = Direction.Up;
                 before = Direction.Down;
             }
-            else if (Mathf.Approximately(Vector2.Distance(dir, Vector2.left), 0))
+            else if (dir == Vector2.left)
             {
                 next = Direction.Left;
                 before = Direction.Right;
             }
-            else if (Mathf.Approximately(Vector2.Distance(dir, Vector2.down), 0))
+            else if (dir == Vector2.down)
             {
                 next = Direction.Down;
                 before = Direction.Up;
             }
-            else if (Mathf.Approximately(Vector2.Distance(dir, Vector2.right), 0))
+            else if (dir == Vector2Int.right)
             {
                 next = Direction.Right;
                 before = Direction.Left;
@@ -302,24 +325,26 @@ namespace Game.Stage1.MiniGame
                 beforePoint.Animator.SetInteger(Next, (int) next);
             }
 
-            if (!isEnd && Mathf.Approximately(Vector2.Distance(targetPos, endPoint), 0))
+            if (!isEnd && targetPos == endPoint)
             {
                 // EndPoint는 이미 있으므로 생성 X
                 End();
+                arriveAudioData.Play();
             }
             else
             {
                 var point = new Point {Animator = _pointObjectPool.Get(), Pos = targetPos};
+                ((RectTransform) point.Animator.transform).sizeDelta = PointSize;
                 point.Animator.transform.SetParent(root);
-                point.Animator.transform.position =
-                    GetPointPosition(targetPos, point.Animator.GetComponent<RectTransform>().rect.size);
+                point.Animator.transform.position = GetPointPosition(point.Pos);
                 point.Animator.SetInteger(Before, (int) before);
 
                 _path.Push(point);
-                Debug.Log($"Push {targetPos}, {_path.Count}");
-                
+                Debug.Log($"Push {point.Pos}, {_path.Count}");
+                moveOneAudioData.Play();
+
                 // endPos -> endPoint로 연결 후 자동 종료
-                if (!isEnd && Mathf.Approximately(Vector2.Distance(targetPos, endPos), 0))
+                if (!isEnd && point.Pos == endPos)
                 {
                     PushPoint(endPoint);
                 }

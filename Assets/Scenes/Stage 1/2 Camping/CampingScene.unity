@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &2798880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537577, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537591, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759303289871537591, guid: 5f914062c159b424f8af4318d883968c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f914062c159b424f8af4318d883968c, type: 3}
 --- !u!1001 &78106577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,6 +463,32 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 56c8baffc9657c248891495aad6dd867, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC2DC\uC2A4\uD15C"
         contents: "\u2018\uC0AC\uC9C4\uAE30\u2019\uB97C \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
@@ -410,6 +497,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -418,12 +506,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -436,6 +523,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: fa598a1dbd9f94742926cc2e8caae87c, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -444,44 +532,64 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 78106579}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!212 &136625576
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1149,74 +1257,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &343869225
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 343869228}
-  - component: {fileID: 343869227}
-  - component: {fileID: 343869226}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &343869226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &343869227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &343869228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &344365427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,6 +1740,70 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2610855488458301389, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 692929911}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &820334616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820334618}
+  - component: {fileID: 820334617}
+  m_Layer: 0
+  m_Name: WaitInteractionHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &820334617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820334616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0936720f43fb4b1aa0c4f400cb719b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitInteractions:
+  - interaction: {fileID: 136625574}
+    isInteraction: 1
+    startIndex: 0
+    targetIndex: 0
+    isCustom: 0
+    isPortal: 0
+    targetMapIndex: 0
+    isActionAfterFadeOut: 0
+    isWaitClear: 0
+  - interaction: {fileID: 1854005710}
+    isInteraction: 1
+    startIndex: 0
+    targetIndex: 0
+    isCustom: 0
+    isPortal: 0
+    targetMapIndex: 0
+    isActionAfterFadeOut: 0
+    isWaitClear: 0
+  interactionWaitType: 1
+--- !u!4 &820334618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820334616}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871529270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1862,161 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &895453317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895453318}
+  - component: {fileID: 895453319}
+  m_Layer: 0
+  m_Name: BgmDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &895453318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895453317}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1896088519}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &895453319
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895453317}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: d8d8cd3867ace86468fca620e0373727, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 1
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -7305145070311664491, guid: 342da95e8db3b724cb4e354842daac59, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 13ff6e7e76166da4da03f5836de674a3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 04e1e91cd35888145a5cda9012c17f0f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1034882430447563492, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3530752849757465134, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 4e116d177304a244893659670d8bde07, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5826911156550906387, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 10856c65bbd1aab479458bccbccf132f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2575593694295761141, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 308c6e06bf5503e45a149b885de9e7a5, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 02bede5eb42dfa746a581176c4cdb5ff, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1479539406139436115, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: ab4196ce22087f94f919acdf9f72556c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: bad21e4ff7fdbc84aad6db4b6a0383b5, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d8a7a5c846b9eb341b7d4e262a8e8b0b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: e84891dbf7975a449ba0b018ab273b9a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 0ecfa50b7fe72fb428ccbb133ce24dfd, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d47499facc2fd61489bae8504549f9a2, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: da2b491cc0feb05408f53a14968ae348, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 3988bb320006ebc42b5116f10f880581, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7099670733745018139, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3776786456884512802, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: cbd488eb0e6f9474083704f1dc27fd36, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 77667a1304e25964397d31f6e926a991, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 588d5631d7468444e8618a6cb2bd4293, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 0a1447f996e40054285947d5d1b812c3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2378011033242206032, guid: 7e2254ae427d44d418c8e25cfc485d50, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7144296745256259277, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d5073a27dd075194e80fb60f011d00d4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5658254942224199233, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6735520827863898909, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2605469046497843973, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6515349319526992569, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -353472702398267380, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8824378121620593995, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4607060890663169941, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5787328013856540060, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4063672558260374905, guid: d465b68513e167d468afc6033827d046, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4063672558260374905, guid: cc0f8fa5c0305da49a8e0c8721a551d8, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4607060890663169941, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5787328013856540060, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -386406198428244951, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 936698917054986778, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7408465024480319650, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1643928675405138432, guid: d8d8cd3867ace86468fca620e0373727, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &908892887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,105 +2284,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1022431000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1022431003}
-  - component: {fileID: 1022431001}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1022431001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022431000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 60d053b6-8023-4d44-8066-01e5a24bc7ff
-    m_ActionName: Ui/Select[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4017a23-0745-4845-b13d-9e69ddff1e94
-    m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cba3569a-008d-47af-aae0-ca692caebc8b
-    m_ActionName: Ui/Cancle[/Keyboard/x,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
-    m_ActionName: Input/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 07429472-8ba7-4536-b3b8-a0168f098e0f
-    m_ActionName: Input/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 553d4523-ae73-4104-99ac-694b4d606a47
-    m_ActionName: Input/Interact[/Keyboard/z]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
-    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
-    m_ActionName: Input/LeftClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
-    m_ActionName: Input/Inventory[/Keyboard/x]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: KeyBoard
-  m_DefaultActionMap: Input
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!4 &1022431003
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022431000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1054149301
 GameObject:
@@ -2321,35 +2482,56 @@ MonoBehaviour:
     dialogueData:
       index: 0
       dialogueElements: []
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 0
+      isReduceBgm: 0
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 162813042}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!1 &1151717801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2606,11 @@ MonoBehaviour:
   id: leftPortal
   interactionData: []
   interactionIndex: 0
-  portalWaitInteractions: []
+  portalWaitInteraction:
+    waitInteractions:
+      waitInteractions: []
+  waitInteractions:
+    waitInteractions: []
   portalIndex: 0
 --- !u!1 &1169877394
 GameObject:
@@ -2457,37 +2643,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 123123
   interactionData:
-  - interactType: 6
+  - interactType: 8
     animator: {fileID: 0}
     state: 0
     jsonAsset: {fileID: 0}
     dialogueData:
       index: 0
       dialogueElements: []
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 1
-    order: 0
+    priority: 0
     isAudioClip: 1
     isTimelineAudio: 0
     isBgm: 1
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 8300000, guid: 6f0fe07b72716f241b6a3dcc1782dc3a, type: 3}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 8300000, guid: 6f0fe07b72716f241b6a3dcc1782dc3a, type: 3}
+      volume: 1
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 1
+      isInteractNextIndex: 1
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 0
+      isReduceBgm: 0
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -2510,6 +2716,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 802564c2cc37bdb4fb486161c6729d64, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2518,12 +2725,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2540,6 +2746,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2548,12 +2755,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2568,6 +2774,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2576,12 +2783,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2598,6 +2804,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2606,12 +2813,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2624,6 +2830,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2632,12 +2839,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2651,6 +2857,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2659,12 +2866,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2677,6 +2883,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2685,12 +2892,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2703,6 +2909,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2711,12 +2918,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2729,6 +2935,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2737,12 +2944,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2756,6 +2962,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2764,12 +2971,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2792,6 +2998,7 @@ MonoBehaviour:
             isCustom: 0
             isPortal: 0
             targetMapIndex: 0
+            isActionAfterFadeOut: 0
             isWaitClear: 0
           - interaction: {fileID: 1854005710}
             isInteraction: 1
@@ -2800,7 +3007,9 @@ MonoBehaviour:
             isCustom: 0
             isPortal: 0
             targetMapIndex: 0
+            isActionAfterFadeOut: 0
             isWaitClear: 0
+        waitInteractionHelper: {fileID: 820334617}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2809,12 +3018,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2829,6 +3037,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2837,12 +3046,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2856,6 +3064,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2864,12 +3073,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2893,7 +3101,9 @@ MonoBehaviour:
             isCustom: 0
             isPortal: 0
             targetMapIndex: 0
+            isActionAfterFadeOut: 0
             isWaitClear: 0
+        waitInteractionHelper: {fileID: 1980341604}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2902,39 +3112,58 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 1
+      isInteractNextIndex: 1
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -2957,6 +3186,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 2d37f74e2774c9345b9adc6ce0f487e2, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2965,12 +3195,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/Play/Stage 1/2 Camping/\uC0AC\uC9C4\uAE30 \uC124\uCE58/Mountain
+          Audio - TV Remote Batteries Changing - Sound (1)"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 9d1b539fa10d64e4dbd70df9ad7a1e3f, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -2985,6 +3242,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2993,12 +3251,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3015,6 +3272,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         playableDirectorName: 
@@ -3023,12 +3281,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3041,6 +3298,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3049,12 +3307,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3071,6 +3328,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         playableDirectorName: 
@@ -3079,12 +3337,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3097,6 +3354,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3105,12 +3363,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3124,6 +3381,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3132,12 +3390,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3151,6 +3408,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3159,12 +3417,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3178,6 +3435,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3186,12 +3444,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3204,6 +3461,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3212,12 +3470,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3232,6 +3489,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3240,12 +3498,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3262,6 +3519,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 278f4c32ec6513844b0618a725964ca0, type: 2}
         extrapolationMode: 2
         playableDirectorName: 
@@ -3270,12 +3528,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3288,6 +3545,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3296,12 +3554,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: "\uAE09\uBC15\uD55C \uC18C\uB9AC"
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/Play/Stage 1/1 SmallRoom/\uBD88\uAE38\uD55C \uC18C\uB9AC/LDj_Audio
+          - Annoying Horror Screamer (Mp3)"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: fe8e7ebf7d5d7a349bf5cce2e4c35a4b, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3316,6 +3601,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3324,12 +3610,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3342,6 +3627,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3350,12 +3636,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3369,6 +3654,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3377,12 +3663,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3395,6 +3680,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3403,12 +3689,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3422,6 +3707,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3430,12 +3716,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/UI/Dialogue/\uC2DC\uC2A4\uD15C \uD68D\uB4DD/Positive click button
+          1"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 1a9a118ee16cd2f4eb93250618448bef, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3448,6 +3761,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3456,12 +3770,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3475,6 +3788,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3483,12 +3797,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/UI/Dialogue/\uC2DC\uC2A4\uD15C \uD68D\uB4DD/Positive click button
+          1"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 1a9a118ee16cd2f4eb93250618448bef, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3501,6 +3842,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3509,12 +3851,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3527,6 +3868,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3535,12 +3877,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3553,6 +3894,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3561,12 +3903,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3580,6 +3921,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3588,12 +3930,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/Play/Stage 1/2 Camping/\uC0AC\uC9C4\uAE30 \uD68C\uC218/Mountain
+          Audio - TV Remote Batteries Changing - Sound (2)"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 79b5e0bb1aacb714285214bac9eb0f19, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3611,6 +3980,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: ab5575033fbe71b4797a095e5715fe2b, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3619,12 +3989,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3645,7 +4014,9 @@ MonoBehaviour:
             isCustom: 0
             isPortal: 1
             targetMapIndex: 0
+            isActionAfterFadeOut: 1
             isWaitClear: 0
+        waitInteractionHelper: {fileID: 1867047338}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3654,12 +4025,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3677,6 +4047,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3685,12 +4056,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3704,6 +4074,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3712,12 +4083,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3730,6 +4100,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3738,12 +4109,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3757,6 +4127,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3765,12 +4136,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3784,6 +4154,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3792,12 +4163,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3810,6 +4180,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3818,12 +4189,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3836,6 +4206,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3844,39 +4215,58 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 0
+      isReduceBgm: 0
       isInteracted: 0
   interactionIndex: 0
 --- !u!4 &1169877396
@@ -3971,6 +4361,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3979,12 +4370,39 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option:
+        - "path=Sfx/Play/Stage 1/2 Camping/\uAC15\uC544\uC9C0 \uC9D6\uB294 \uC18C\uB9AC/Cartoon
+          Game Dog Bark"
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: 0
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 3c59c91a45741ec4ea669c3c4d48b9fc, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -3999,6 +4417,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4007,12 +4426,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4026,6 +4444,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4034,12 +4453,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4053,6 +4471,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4061,12 +4480,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4080,6 +4498,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4088,44 +4507,64 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1912273411}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!4 &1273478224
 Transform:
   m_ObjectHideFlags: 0
@@ -4142,6 +4581,551 @@ Transform:
   m_Father: {fileID: 1574620784}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1285900671
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447695608200736215, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274102028910338804, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: signalAssetEventPairs.Array.data[0].events.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266524403882715142, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Name
+      value: PlayableDirector
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266524403882715142, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_WrapMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_InitialState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_PlayableAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 342da95e8db3b724cb4e354842daac59, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 13ff6e7e76166da4da03f5836de674a3, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 04e1e91cd35888145a5cda9012c17f0f, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: -1034882430447563492, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].key
+      value: 
+      objectReference: {fileID: 3530752849757465134, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[7].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 4e116d177304a244893659670d8bde07, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[9].key
+      value: 
+      objectReference: {fileID: 5826911156550906387, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[10].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 10856c65bbd1aab479458bccbccf132f, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[11].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[12].key
+      value: 
+      objectReference: {fileID: 2575593694295761141, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[13].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 308c6e06bf5503e45a149b885de9e7a5, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[14].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 02bede5eb42dfa746a581176c4cdb5ff, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[15].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[16].key
+      value: 
+      objectReference: {fileID: 1479539406139436115, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[17].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: ab4196ce22087f94f919acdf9f72556c, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[18].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: bad21e4ff7fdbc84aad6db4b6a0383b5, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[19].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: d8a7a5c846b9eb341b7d4e262a8e8b0b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[20].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: e84891dbf7975a449ba0b018ab273b9a, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[21].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 0ecfa50b7fe72fb428ccbb133ce24dfd, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[22].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: d47499facc2fd61489bae8504549f9a2, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[23].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: da2b491cc0feb05408f53a14968ae348, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[24].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 3988bb320006ebc42b5116f10f880581, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[25].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[26].key
+      value: 
+      objectReference: {fileID: -7099670733745018139, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[27].key
+      value: 
+      objectReference: {fileID: -3776786456884512802, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[28].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: cbd488eb0e6f9474083704f1dc27fd36, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[29].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 77667a1304e25964397d31f6e926a991, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[30].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 588d5631d7468444e8618a6cb2bd4293, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[31].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 0a1447f996e40054285947d5d1b812c3, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[32].key
+      value: 
+      objectReference: {fileID: 2378011033242206032, guid: 7e2254ae427d44d418c8e25cfc485d50, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[33].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[34].key
+      value: 
+      objectReference: {fileID: 7144296745256259277, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[35].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: d5073a27dd075194e80fb60f011d00d4, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[36].key
+      value: 
+      objectReference: {fileID: -5658254942224199233, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[37].key
+      value: 
+      objectReference: {fileID: 6735520827863898909, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[38].key
+      value: 
+      objectReference: {fileID: 2605469046497843973, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[39].key
+      value: 
+      objectReference: {fileID: 6515349319526992569, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[40].key
+      value: 
+      objectReference: {fileID: -353472702398267380, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[41].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[42].key
+      value: 
+      objectReference: {fileID: 8824378121620593995, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[43].key
+      value: 
+      objectReference: {fileID: 4607060890663169941, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[44].key
+      value: 
+      objectReference: {fileID: 5787328013856540060, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[45].key
+      value: 
+      objectReference: {fileID: -4063672558260374905, guid: d465b68513e167d468afc6033827d046, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[46].key
+      value: 
+      objectReference: {fileID: -4063672558260374905, guid: cc0f8fa5c0305da49a8e0c8721a551d8, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[47].key
+      value: 
+      objectReference: {fileID: 4607060890663169941, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[48].key
+      value: 
+      objectReference: {fileID: 5787328013856540060, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[49].key
+      value: 
+      objectReference: {fileID: -386406198428244951, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[50].key
+      value: 
+      objectReference: {fileID: 936698917054986778, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[51].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[52].key
+      value: 
+      objectReference: {fileID: 7408465024480319650, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[53].key
+      value: 
+      objectReference: {fileID: -7305145070311664491, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[7].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[10].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[11].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[13].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[14].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[15].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[17].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[18].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[19].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[20].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[21].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[22].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[23].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[24].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[25].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[28].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[29].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[30].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[31].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[35].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[36].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[37].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[38].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[39].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[41].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[42].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[43].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[45].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[46].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[47].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[51].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[53].value
+      value: 
+      objectReference: {fileID: 2125966400}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Signals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Signals.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: bd947d5cd4a246242b86f77230eef61a, type: 2}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Signals.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 26c1c58eeaf28674a87bc0d142d4999a, type: 2}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1285900672}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1285900673}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Utility.Util.SignalReceiveInterface, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e2254ae427d44d418c8e25cfc485d50, type: 2}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Timeline.TimelineAsset, Unity.Timeline
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+--- !u!1 &1285900672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2266524403882715142, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+  m_PrefabInstance: {fileID: 1285900671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1285900673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2903855963135218134, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+  m_PrefabInstance: {fileID: 1285900671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285900672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6f73fe099ef414599dcc83eb8a5169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1329757153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,6 +5184,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1405442308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405442310}
+  - component: {fileID: 1405442309}
+  m_Layer: 0
+  m_Name: PlayableDirectorBindHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1405442309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405442308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008dcff222315dd4ab51c725893a1a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirectors:
+  - {fileID: 7641162730822622907}
+  - {fileID: 895453319}
+--- !u!4 &1405442310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405442308}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574620783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4235,6 +5266,108 @@ Transform:
   - {fileID: 1854005708}
   m_Father: {fileID: 2037201559}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1678680230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678680232}
+  - component: {fileID: 1678680231}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1678680231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678680230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60d053b6-8023-4d44-8066-01e5a24bc7ff
+    m_ActionName: Ui/Select[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4017a23-0745-4845-b13d-9e69ddff1e94
+    m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
+    m_ActionName: Input/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 07429472-8ba7-4536-b3b8-a0168f098e0f
+    m_ActionName: Input/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553d4523-ae73-4104-99ac-694b4d606a47
+    m_ActionName: Input/Interact[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a6bca68-1571-4c2d-be50-94cd0430b238
+    m_ActionName: Input/Tab[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
+    m_ActionName: Input/Inventory[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
+    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
+    m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
+    m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: KeyBoard
+  m_DefaultActionMap: Input
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &1678680232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678680230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1689030988
 GameObject:
@@ -4410,6 +5543,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4418,44 +5552,61 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 0
+      isReduceBgm: 0
       isInteracted: 0
   interactionIndex: 0
-  portalWaitInteractions:
-  - isDefaultPortal: 0
-    mapIndex: 0
+  portalWaitInteraction:
     waitInteractions:
       waitInteractions:
       - interaction: {fileID: 1854005710}
@@ -4465,6 +5616,7 @@ MonoBehaviour:
         isCustom: 0
         isPortal: 0
         targetMapIndex: 0
+        isActionAfterFadeOut: 0
         isWaitClear: 0
       - interaction: {fileID: 136625574}
         isInteraction: 1
@@ -4473,7 +5625,28 @@ MonoBehaviour:
         isCustom: 0
         isPortal: 0
         targetMapIndex: 0
+        isActionAfterFadeOut: 0
         isWaitClear: 0
+  waitInteractions:
+    waitInteractions:
+    - interaction: {fileID: 1854005710}
+      isInteraction: 1
+      startIndex: 0
+      targetIndex: 0
+      isCustom: 0
+      isPortal: 0
+      targetMapIndex: 0
+      isActionAfterFadeOut: 0
+      isWaitClear: 0
+    - interaction: {fileID: 136625574}
+      isInteraction: 1
+      startIndex: 0
+      targetIndex: 0
+      isCustom: 0
+      isPortal: 0
+      targetMapIndex: 0
+      isActionAfterFadeOut: 0
+      isWaitClear: 0
   portalIndex: 0
 --- !u!1 &1783804325
 GameObject:
@@ -4505,7 +5678,7 @@ Transform:
   m_Children:
   - {fileID: 2240617060515791367}
   m_Father: {fileID: 1896088519}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829902790
 GameObject:
@@ -4706,6 +5879,32 @@ MonoBehaviour:
       index: 0
       dialogueElements:
       - name: 0
+        subject: 
+        contents: 
+        dialogueType: 12
+        expression: 0
+        option: []
+        interactionWaitType: 0
+        waitInteractions:
+          waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
+        playableAsset: {fileID: 0}
+        extrapolationMode: 0
+        playableDirectorName: 
+        waitSec: -1
+        miniGame: {fileID: 0}
+        isCustomEnd: 0
+        successNextInteractionIndex: 0
+        failNextInteractionIndex: 0
+        isBgm: 0
+        isSfx: 1
+        audioClip: {fileID: 8300000, guid: 56c8baffc9657c248891495aad6dd867, type: 3}
+        audioTimeline: {fileID: 0}
+        endTargetIndex: 0
+        isSkipEnable: 0
+        skipLength: 0
+        skipWaitSec: 0
+      - name: 0
         subject: "\uC2DC\uC2A4\uD15C"
         contents: "\u2018\uD544\uB984\u2019\uC744 \uD68D\uB4DD\uD558\uC600\uB2E4."
         dialogueType: 1
@@ -4714,6 +5913,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4722,12 +5922,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -4740,6 +5939,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: fb569e1a55003a747ac57dbb25daa077, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4748,44 +5948,64 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 692929912}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!212 &1854005711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4838,6 +6058,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1867047337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867047339}
+  - component: {fileID: 1867047338}
+  m_Layer: 0
+  m_Name: WaitInteractionHelper (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1867047338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867047337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0936720f43fb4b1aa0c4f400cb719b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitInteractions:
+  - interaction: {fileID: 1151717804}
+    isInteraction: 0
+    startIndex: 0
+    targetIndex: 0
+    isCustom: 0
+    isPortal: 1
+    targetMapIndex: 0
+    isActionAfterFadeOut: 1
+    isWaitClear: 0
+  interactionWaitType: 1
+--- !u!4 &1867047339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867047337}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896088518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,9 +6149,10 @@ Transform:
   - {fileID: 2037201559}
   - {fileID: 403536629}
   - {fileID: 1169877396}
+  - {fileID: 895453318}
   - {fileID: 1783804326}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1896088520
 Animator:
@@ -5028,6 +6304,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5036,12 +6313,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5056,6 +6332,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5064,12 +6341,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5082,6 +6358,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5090,12 +6367,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5108,6 +6384,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5116,12 +6393,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5135,6 +6411,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5143,44 +6420,64 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 612189024}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!4 &1911391316
 Transform:
   m_ObjectHideFlags: 0
@@ -5356,6 +6653,61 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 1912273409}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1980341603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980341605}
+  - component: {fileID: 1980341604}
+  m_Layer: 0
+  m_Name: WaitInteractionHelper (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1980341604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980341603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0936720f43fb4b1aa0c4f400cb719b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitInteractions:
+  - interaction: {fileID: 1129601716}
+    isInteraction: 1
+    startIndex: 0
+    targetIndex: 0
+    isCustom: 0
+    isPortal: 0
+    targetMapIndex: 0
+    isActionAfterFadeOut: 0
+    isWaitClear: 0
+  interactionWaitType: 1
+--- !u!4 &1980341605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980341603}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1996347192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,6 +6761,85 @@ MonoBehaviour:
   maps:
   - {fileID: 2037201558}
   - {fileID: 403536628}
+  portalAudioClip: {fileID: 8300000, guid: 296cdbe1923d7f64c8d070fb54e2fc1c, type: 3}
+--- !u!1 &2015873674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015873677}
+  - component: {fileID: 2015873676}
+  - component: {fileID: 2015873675}
+  m_Layer: 0
+  m_Name: Event System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2015873675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015873674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -1680190386980627800, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+--- !u!114 &2015873676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015873674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &2015873677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015873674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2037201558
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,6 +6875,7 @@ Transform:
   - {fileID: 922258762}
   - {fileID: 634070114}
   - {fileID: 1574620784}
+  - {fileID: 5711926667431990043}
   m_Father: {fileID: 1896088519}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5478,6 +6910,104 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2125966399
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376325, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376326, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: isFade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376327, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Name
+      value: Play UI Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059953817382376327, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085242180949748243, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: isFade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181203655634538734, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929583475131651144, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581703577588835377, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581703577588835377, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581703577588835377, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581703577588835377, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+--- !u!95 &2125966400 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 917404838965037454, guid: 16bc873b461e47e449de076f2293ed1e, type: 3}
+  m_PrefabInstance: {fileID: 2125966399}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1278854199793375714
 Transform:
   m_ObjectHideFlags: 0
@@ -5527,8 +7057,42 @@ MonoBehaviour:
   isCharacterControllable: 1
   frontIsRight: 1
   playerSpeed: 9.6
-  audioClip: {fileID: 0}
-  volume: 0
+  stepOffset: 0.1
+  stepProps:
+  - timeInterval: 0.1
+    audioData:
+      audioObject: {fileID: 8300000, guid: a6aa2f0faa58b7a43870cf26a6ac3d4d, type: 3}
+      volume: 0.494
+      audioSourceType: 1
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - timeInterval: 0.1
+    audioData:
+      audioObject: {fileID: 8300000, guid: c34c153299fd0ef4cb6b9282814ace13, type: 3}
+      volume: 0.57
+      audioSourceType: 1
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
 --- !u!70 &2240617060515791361
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5707,6 +7271,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5715,12 +7280,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5735,6 +7299,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5743,12 +7308,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5763,6 +7327,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5771,12 +7336,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5789,6 +7353,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5797,12 +7362,11 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
@@ -5816,6 +7380,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5824,44 +7389,64 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
         audioTimeline: {fileID: 0}
+        endTargetIndex: 0
         isSkipEnable: 0
         skipLength: 0
         skipWaitSec: 0
-    itemInteractionType:
-      itemTypes: 
+    itemInteractionData:
+      itemData: []
       targetIndex: 0
       defaultInteractionIndex: 0
-      isDestroyItem: 0
+      isLoopDefault: 0
     tutorialHelper: {fileID: 0}
     isMove: 0
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 0
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      ignoreTimeScale: 0
+      isFade: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 264342654}
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
+  interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
 --- !u!61 &4362748723284574220
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5888,6 +7473,165 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0909843, y: 5.45}
   m_EdgeRadius: 0
+--- !u!4 &5711926667431990043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198659723474835146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2037201559}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6198659723474835146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5711926667431990043}
+  - component: {fileID: 7641162730822622907}
+  m_Layer: 0
+  m_Name: BgmDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &7641162730822622907
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198659723474835146}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: e061184a37d9a054cadd5029acfd06b0, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 1
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -7305145070311664491, guid: 342da95e8db3b724cb4e354842daac59, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 13ff6e7e76166da4da03f5836de674a3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 04e1e91cd35888145a5cda9012c17f0f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1034882430447563492, guid: 95889f9966d47ec46a5d6ba2c3b18c55, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3530752849757465134, guid: 7d560e1b1e2344944b5656aa371dc3e1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 4e116d177304a244893659670d8bde07, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5826911156550906387, guid: 141642b56cb35124c998b6708c707ba4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 10856c65bbd1aab479458bccbccf132f, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2575593694295761141, guid: ea35485d035144c4eb36995f322e4205, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 308c6e06bf5503e45a149b885de9e7a5, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 02bede5eb42dfa746a581176c4cdb5ff, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1479539406139436115, guid: c3143ae631adfc2479b83e739e7796d3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: ab4196ce22087f94f919acdf9f72556c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: bad21e4ff7fdbc84aad6db4b6a0383b5, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d8a7a5c846b9eb341b7d4e262a8e8b0b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: e84891dbf7975a449ba0b018ab273b9a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 0ecfa50b7fe72fb428ccbb133ce24dfd, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d47499facc2fd61489bae8504549f9a2, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: da2b491cc0feb05408f53a14968ae348, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 3988bb320006ebc42b5116f10f880581, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: e643172f00220e840a3fdb2348ae6199, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7099670733745018139, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3776786456884512802, guid: 4ff178b3fdbdb9241959e763c6bc5782, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: cbd488eb0e6f9474083704f1dc27fd36, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 77667a1304e25964397d31f6e926a991, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 588d5631d7468444e8618a6cb2bd4293, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 0a1447f996e40054285947d5d1b812c3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2378011033242206032, guid: 7e2254ae427d44d418c8e25cfc485d50, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7144296745256259277, guid: dbf7781db58416848a9fa5e4914451dc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: d5073a27dd075194e80fb60f011d00d4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5658254942224199233, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6735520827863898909, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2605469046497843973, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6515349319526992569, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -353472702398267380, guid: 5fe4dcdd5a4e3f344b058340d82a981b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8824378121620593995, guid: 16c8ebe57b2011841b81435c9a744f8e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4607060890663169941, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5787328013856540060, guid: 247d64e65be1ffc408977cfbbc97a712, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4063672558260374905, guid: d465b68513e167d468afc6033827d046, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4063672558260374905, guid: cc0f8fa5c0305da49a8e0c8721a551d8, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4607060890663169941, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5787328013856540060, guid: 47c65581be20cb242a02bd43c591ca3a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -386406198428244951, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 936698917054986778, guid: 502232d4c33c5a043b88cd31353fab39, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7408465024480319650, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1440764319139943629, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7305145070311664491, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7408465024480319650, guid: e061184a37d9a054cadd5029acfd06b0, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!61 &8097084897524322047
 BoxCollider2D:
   m_ObjectHideFlags: 0

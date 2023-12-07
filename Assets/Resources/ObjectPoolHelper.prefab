@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirectorPrefab: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+  audioSourcePrefab: {fileID: 543078669061822479, guid: 9bc96ef7dd0e31c4e8174dab87f6a8fe, type: 3}

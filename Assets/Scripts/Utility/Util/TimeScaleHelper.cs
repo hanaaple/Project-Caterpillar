@@ -31,8 +31,18 @@ namespace Utility.Util
         private static void SetTimeScale(float timeScale)
         {
             Time.timeScale = timeScale;
-            AudioManager.Instance.GetAudioSource(AudioSourceType.Sfx).pitch = timeScale;
-            AudioManager.Instance.GetAudioSource(AudioSourceType.Bgm).pitch = timeScale;
+            
+            AudioManager.Instance.UpdateTimeScale(timeScale);
+        }
+        
+        public static bool GetIsStop()
+        {
+            return TimeScaleStack.Count > 0;
+        }
+        
+        public static float GetTimeScale()
+        {
+            return TimeScaleStack.Peek();
         }
     }
 }

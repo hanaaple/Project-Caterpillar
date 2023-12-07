@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Utility.Audio;
 
 namespace Game.Stage1.ShadowGame.Default
 {
@@ -11,6 +13,8 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private float radius;
         [SerializeField] private int appearStageIndex;
         
+        [SerializeField] private AudioData acquireAudioData;
+        
         [NonSerialized] public Action OnClick;
 
         public bool IsEnable(int stageIndex)
@@ -18,23 +22,19 @@ namespace Game.Stage1.ShadowGame.Default
             return appearStageIndex == stageIndex;
         }
 
-        public void TryClick()
+        public void TryClick(Camera cam)
         {
             if (!gameObject.activeSelf)
             {
                 return;
             }
             
-            var cameraWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var cameraWorldPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             if (Vector2.Distance(transform.position, cameraWorldPos) <= radius)
             {
-                Click();
+                OnClick?.Invoke();
+                acquireAudioData.Play();
             }
-        }
-        
-        private void Click()
-        {
-            OnClick?.Invoke();
         }
 
         private void OnDrawGizmos()

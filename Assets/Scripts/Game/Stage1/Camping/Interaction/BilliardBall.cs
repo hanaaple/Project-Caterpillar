@@ -2,7 +2,9 @@ using System;
 using Game.Default;
 using Game.Stage1.Camping.Interaction.Show;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Scene;
 
 namespace Game.Stage1.Camping.Interaction
@@ -29,15 +31,15 @@ namespace Game.Stage1.Camping.Interaction
             Tree,
             Rock,
             Lake,
-            MosquitoRepellent
-            ,BilliardBall
+            MosquitoRepellent,
+            BilliardBall
         }
 
         public IconType iconType;
         public Vector2 iconPos;
     }
 
-    public class BilliardBall : CampingInteraction
+    public class BilliardBall : CampingInteraction, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private ShowPanel showPanel;
         [SerializeField] private Animator billiardBallAnimator;
@@ -48,6 +50,10 @@ namespace Game.Stage1.Camping.Interaction
         [SerializeField] private Button left;
         [SerializeField] private Button center;
 
+        [SerializeField] private AudioData clickAudioData;
+        [SerializeField] private AudioData turnAudioData;
+        [SerializeField] private AudioData activeAudioData;
+        
         [SerializeField] private BilliardBallIcon[] billiardBallIcons;
 
         [SerializeField] private BilliardBallToastData[] toastData;
@@ -61,7 +67,7 @@ namespace Game.Stage1.Camping.Interaction
         private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int DefaultHash = Animator.StringToHash("Default");
 
-        private void OnMouseUp()
+        public void OnPointerUp(PointerEventData eventData)
         {
             var appearToastData =
                 Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Appear);
@@ -77,14 +83,18 @@ namespace Game.Stage1.Camping.Interaction
 
             setInteractable(false);
             
-            _pos = Vector2.one;
             showPanel.Show();
-            UpdateUI();
-            Appear();
         }
 
         private void Start()
         {
+            showPanel.onShow += () =>
+            {
+                _pos = Vector2.one;
+                UpdateUI();
+                Appear();
+            };
+            
             up.onClick.AddListener(() =>
             {
                 billiardBallAnimator.SetTrigger(UpHash);
@@ -107,6 +117,7 @@ namespace Game.Stage1.Camping.Interaction
             });
             center.onClick.AddListener(() =>
             {
+                clickAudioData.Play();
                 billiardBallAnimator.SetTrigger(ResetHash);
                 var resetToastData =
                     Array.Find(toastData, item => item.toastType == BilliardBallToastData.ToastType.Reset);
@@ -133,6 +144,8 @@ namespace Game.Stage1.Camping.Interaction
 
         private void PushInput(Vector2 input)
         {
+            turnAudioData.Play();
+
             _pos += input;
             UpdateUI();
         }
@@ -153,6 +166,8 @@ namespace Game.Stage1.Camping.Interaction
                 billiardBallAnimator.SetTrigger(DefaultHash);
                 return;
             }
+            
+            activeAudioData.Play();
 
             billiardBallAnimator.SetTrigger(billiardBallIcon.iconType.ToString());
 
@@ -173,6 +188,10 @@ namespace Game.Stage1.Camping.Interaction
         private bool IsReset()
         {
             return (int)_pos.x < 0 || (int)_pos.x > 4 || (int)_pos.y < 0 || (int)_pos.y > 4;
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
         }
     }
 }

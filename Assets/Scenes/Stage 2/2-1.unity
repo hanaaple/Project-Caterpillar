@@ -987,74 +987,6 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &343869225
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 343869228}
-  - component: {fileID: 343869227}
-  - component: {fileID: 343869226}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &343869226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &343869227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &343869228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343869225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411629537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1349,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1425,8 +1358,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1446,6 +1377,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1454,8 +1386,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1473,6 +1403,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1481,8 +1412,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1501,6 +1430,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1509,8 +1439,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1529,6 +1457,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1537,8 +1466,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1556,6 +1483,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1564,8 +1492,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1584,6 +1510,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1592,8 +1519,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1612,25 +1537,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1832776290}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &437732302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1774,6 +1722,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1782,8 +1731,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1802,6 +1749,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1810,8 +1758,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1830,6 +1776,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -1838,8 +1785,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -1858,25 +1803,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 51388531}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &456801565
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2135,6 +2103,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2143,8 +2112,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2162,6 +2129,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2170,8 +2138,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2191,6 +2157,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2199,8 +2166,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2219,6 +2184,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2227,8 +2193,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2247,6 +2211,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2255,8 +2220,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2275,25 +2238,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1380124327}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &495970572
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2346,6 +2332,108 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &520702508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520702510}
+  - component: {fileID: 520702509}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &520702509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520702508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60d053b6-8023-4d44-8066-01e5a24bc7ff
+    m_ActionName: Ui/Select[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4017a23-0745-4845-b13d-9e69ddff1e94
+    m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
+    m_ActionName: Input/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 07429472-8ba7-4536-b3b8-a0168f098e0f
+    m_ActionName: Input/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553d4523-ae73-4104-99ac-694b4d606a47
+    m_ActionName: Input/Interact[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a6bca68-1571-4c2d-be50-94cd0430b238
+    m_ActionName: Input/Tab[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
+    m_ActionName: Input/Inventory[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
+    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
+    m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
+    m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: KeyBoard
+  m_DefaultActionMap: Input
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &520702510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520702508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &527930658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2803,6 +2891,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2811,8 +2900,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2830,6 +2917,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2838,8 +2926,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2859,6 +2945,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2867,8 +2954,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2887,6 +2972,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -2895,8 +2981,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -2915,25 +2999,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 2035637160}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &637713291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3212,6 +3319,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3220,8 +3328,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3239,6 +3345,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3247,8 +3354,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3267,6 +3372,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3275,8 +3381,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3294,6 +3398,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3302,8 +3407,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3323,6 +3426,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3331,8 +3435,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3350,6 +3452,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3358,8 +3461,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3378,6 +3479,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3386,8 +3488,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3406,6 +3506,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3414,8 +3515,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3433,6 +3532,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3441,8 +3541,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3461,6 +3559,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3469,8 +3568,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3489,25 +3586,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 18415394}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &786610113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3662,6 +3782,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3670,8 +3791,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3690,6 +3809,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3698,8 +3818,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3718,6 +3836,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3726,8 +3845,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3745,6 +3862,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3753,8 +3871,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3773,6 +3889,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3781,8 +3898,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3800,6 +3915,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3808,8 +3924,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3827,6 +3941,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3835,8 +3950,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3854,6 +3967,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3862,8 +3976,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3882,6 +3994,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3890,8 +4003,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3918,7 +4029,9 @@ MonoBehaviour:
             isCustom: 0
             isPortal: 0
             targetMapIndex: 0
+            isActionAfterFadeOut: 0
             isWaitClear: 0
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3927,8 +4040,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -3947,20 +4058,42 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 1
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 1
+      isInteractNextIndex: 1
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   - interactType: 1
     animator: {fileID: 0}
@@ -3978,6 +4111,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -3986,8 +4120,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4005,6 +4137,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4013,8 +4146,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4032,6 +4163,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4040,8 +4172,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4059,6 +4189,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4067,8 +4198,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4086,6 +4215,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4094,8 +4224,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4113,6 +4241,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4121,8 +4250,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4140,6 +4267,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4148,8 +4276,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4167,6 +4293,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4175,8 +4302,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4195,6 +4320,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4203,8 +4329,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4222,6 +4346,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4230,8 +4355,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4249,6 +4372,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4257,8 +4381,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4276,6 +4398,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4284,8 +4407,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4305,6 +4426,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4313,8 +4435,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4332,6 +4452,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4340,8 +4461,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4359,6 +4478,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4367,8 +4487,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4386,6 +4504,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4394,8 +4513,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4413,6 +4530,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4421,8 +4539,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4441,6 +4557,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4449,8 +4566,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4468,6 +4583,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4476,8 +4592,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4495,6 +4609,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4503,8 +4618,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4522,6 +4635,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4530,8 +4644,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4550,6 +4662,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4558,8 +4671,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4577,6 +4688,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4585,8 +4697,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4605,6 +4715,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4613,8 +4724,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4634,6 +4743,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4642,8 +4752,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4661,6 +4769,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4669,8 +4778,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4688,6 +4795,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4696,8 +4804,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4715,6 +4821,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4723,8 +4830,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4742,6 +4847,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4750,8 +4856,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4770,6 +4874,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4778,8 +4883,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4798,6 +4901,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4806,8 +4910,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4825,6 +4927,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4833,8 +4936,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4853,6 +4954,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4861,8 +4963,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4880,6 +4980,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4888,8 +4989,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4908,6 +5007,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4916,8 +5016,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4935,6 +5033,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4943,8 +5042,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4962,6 +5059,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4970,8 +5068,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -4990,6 +5086,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -4998,8 +5095,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5018,6 +5113,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5026,8 +5122,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5045,6 +5139,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5053,8 +5148,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5074,6 +5167,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5082,8 +5176,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5102,20 +5194,42 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
 --- !u!1 &835408148
@@ -5209,6 +5323,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5217,8 +5332,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5236,6 +5349,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5244,8 +5358,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5265,6 +5377,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5273,8 +5386,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5294,6 +5405,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5302,8 +5414,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5321,6 +5431,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5329,8 +5440,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5350,6 +5459,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5358,8 +5468,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5379,6 +5487,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5387,8 +5496,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5408,6 +5515,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5416,8 +5524,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5439,6 +5545,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5447,8 +5554,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5466,6 +5571,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5474,8 +5580,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5494,6 +5598,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5502,8 +5607,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5523,6 +5626,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5531,8 +5635,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5551,6 +5653,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5559,8 +5662,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5583,6 +5684,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 335983cbc4eca8c43baba15d0bcb7e02, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5591,8 +5693,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5611,25 +5711,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1273233484}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &835408152
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5774,6 +5897,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5782,8 +5906,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5803,6 +5925,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5811,8 +5934,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5830,6 +5951,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5838,8 +5960,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5858,6 +5978,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5866,8 +5987,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5887,6 +6006,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5895,8 +6015,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5915,6 +6033,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5923,8 +6042,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5942,6 +6059,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5950,8 +6068,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5970,6 +6086,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -5978,8 +6095,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -5997,6 +6112,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6005,8 +6121,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6024,6 +6138,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6032,8 +6147,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6052,6 +6165,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6060,8 +6174,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6079,6 +6191,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6087,8 +6200,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6106,6 +6217,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6114,8 +6226,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6135,6 +6245,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6143,8 +6254,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6163,6 +6272,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6171,8 +6281,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6191,6 +6299,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6199,8 +6308,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6218,6 +6325,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6226,8 +6334,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6245,6 +6351,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6253,8 +6360,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6273,6 +6378,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6281,8 +6387,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6302,6 +6406,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6310,8 +6415,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6329,6 +6432,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6337,8 +6441,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6356,6 +6458,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6364,8 +6467,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6387,6 +6488,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: ca59a90b0a88a4c4bae80ee7c1a3248d, type: 2}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6395,8 +6497,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6416,6 +6516,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6424,8 +6525,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6445,6 +6544,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6453,8 +6553,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6474,6 +6572,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6482,8 +6581,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6503,6 +6600,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6511,8 +6609,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6530,6 +6626,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6538,8 +6635,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6557,6 +6652,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6565,8 +6661,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6585,6 +6679,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6593,8 +6688,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6613,6 +6706,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6621,8 +6715,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6640,6 +6732,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -6648,8 +6741,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -6668,25 +6759,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1795854959}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &863735003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7083,6 +7197,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7091,8 +7206,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7112,6 +7225,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7120,8 +7234,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7142,6 +7254,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7150,8 +7263,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7170,25 +7281,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 476210346}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &969831417
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7499,6 +7633,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7507,8 +7642,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7527,6 +7660,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7535,8 +7669,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7555,6 +7687,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -7563,8 +7696,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -7583,25 +7714,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1912628700}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1010035000
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7789,108 +7943,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011404247}
   m_CullTransparentMesh: 1
---- !u!1 &1022431000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1022431003}
-  - component: {fileID: 1022431001}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1022431001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022431000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9e2f5de828c9bbc4995c193d9ffe4eb3, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 60d053b6-8023-4d44-8066-01e5a24bc7ff
-    m_ActionName: Ui/Select[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4017a23-0745-4845-b13d-9e69ddff1e94
-    m_ActionName: Ui/Execute[/Keyboard/enter,/Keyboard/z]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 99d753ef-87c0-4e26-b3ad-37daffb388e6
-    m_ActionName: Input/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 07429472-8ba7-4536-b3b8-a0168f098e0f
-    m_ActionName: Input/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 553d4523-ae73-4104-99ac-694b4d606a47
-    m_ActionName: Input/Interact[/Keyboard/z]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
-    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
-    m_ActionName: Input/LeftClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f1458855-33a7-434f-9e93-b3af2449b947
-    m_ActionName: Input/Inventory[/Keyboard/x]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7a6bca68-1571-4c2d-be50-94cd0430b238
-    m_ActionName: Input/Tab[/Keyboard/tab]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
-    m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: KeyBoard
-  m_DefaultActionMap: Input
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!4 &1022431003
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022431000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1067400323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8176,6 +8228,84 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 1199529801}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1244251356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244251359}
+  - component: {fileID: 1244251358}
+  - component: {fileID: 1244251357}
+  m_Layer: 0
+  m_Name: Event System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1244251357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244251356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -1680190386980627800, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+--- !u!114 &1244251358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244251356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1244251359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244251356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1273233482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8612,6 +8742,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8620,8 +8751,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8639,6 +8768,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8647,8 +8777,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8666,6 +8794,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8674,8 +8803,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8693,6 +8820,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8701,8 +8829,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8720,6 +8846,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8728,8 +8855,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8747,6 +8872,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8755,8 +8881,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8774,6 +8898,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8782,8 +8907,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8802,6 +8925,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8810,8 +8934,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8829,6 +8951,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8837,8 +8960,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8856,6 +8977,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8864,8 +8986,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8883,6 +9003,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8891,8 +9012,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8911,6 +9030,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -8919,8 +9039,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -8939,25 +9057,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 22565311}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1399732624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9134,6 +9275,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9142,8 +9284,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9162,6 +9302,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9170,8 +9311,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9190,25 +9329,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 590180626}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1577151678
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9352,6 +9514,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9360,8 +9523,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9379,6 +9540,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9387,8 +9549,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9406,6 +9566,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9414,8 +9575,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9433,6 +9592,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9441,8 +9601,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9461,6 +9619,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9469,8 +9628,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9489,6 +9646,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9497,8 +9655,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9517,25 +9673,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 59327708}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1694139793
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9814,6 +9993,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9822,8 +10002,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9843,6 +10021,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9851,8 +10030,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9871,6 +10048,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9879,8 +10057,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9898,6 +10074,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9906,8 +10083,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9927,6 +10102,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9935,8 +10111,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9955,6 +10129,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9963,8 +10138,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -9982,6 +10155,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -9990,8 +10164,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -10010,6 +10182,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -10018,8 +10191,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -10037,6 +10208,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -10045,8 +10217,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -10064,6 +10234,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -10072,8 +10243,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -10092,6 +10261,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -10100,8 +10270,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -10120,25 +10288,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 1
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1199529803}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1753887495
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11449,6 +11640,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -11457,8 +11649,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -11478,6 +11668,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -11486,8 +11677,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -11507,6 +11696,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -11515,8 +11705,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -11534,6 +11722,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -11542,8 +11731,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -11562,6 +11749,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -11570,8 +11758,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -11590,25 +11776,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 1385929638}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &1977971865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11726,20 +11935,42 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 0
+      isReduceBgm: 0
       isInteracted: 0
   interactionIndex: 0
 --- !u!61 &1989194316
@@ -12111,6 +12342,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -12119,8 +12351,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -12139,6 +12369,7 @@ MonoBehaviour:
         interactionWaitType: 0
         waitInteractions:
           waitInteractions: []
+        waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
         playableDirectorName: 
@@ -12147,8 +12378,6 @@ MonoBehaviour:
         isCustomEnd: 0
         successNextInteractionIndex: 0
         failNextInteractionIndex: 0
-        isAudioClip: 0
-        isTimelineAudio: 0
         isBgm: 0
         isSfx: 0
         audioClip: {fileID: 0}
@@ -12167,25 +12396,48 @@ MonoBehaviour:
     targetTransform: {fileID: 0}
     moveSpeed: 0
     isOnAwake: 0
-    order: 0
+    priority: 0
     isAudioClip: 0
     isTimelineAudio: 0
     isBgm: 0
     isSfx: 0
+    volume: 1
     audioClip: {fileID: 0}
     audioTimeline: {fileID: 0}
+    audioData:
+      audioObject: {fileID: 0}
+      volume: 0
+      audioSourceType: 0
+      isLoop: 0
+      isOneShot: 0
+      isWithOutTimeScale: 0
+      isCustomFade: 0
+      fadeSec: 0
+      animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    isStopBgm: 0
+    isStopSfx: 0
+    isFadeOut: 0
+    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
       isNextInteractable: 0
-      interactNextIndex: 0
+      isInteractNextIndex: 0
+      isCustomNextIndex: 0
+      targetIndex: 0
       isLoop: 0
-      isPauseBgm: 1
+      isReduceBgm: 1
       isInteracted: 0
   interactionIndex: 0
   defaultFloatingMark: {fileID: 527930660}
   floatingMarks: []
   defaultOffset: {x: 0, y: 1.5}
+  interactAudioClip: {fileID: 0}
 --- !u!212 &2056171801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12284,7 +12536,8 @@ MonoBehaviour:
   isCharacterControllable: 1
   frontIsRight: 1
   playerSpeed: 9.6
-  audioClip: {fileID: 0}
+  stepOffset: 0
+  stepProps: []
   volume: 0
 --- !u!70 &2240617060000523817
 CapsuleCollider2D:

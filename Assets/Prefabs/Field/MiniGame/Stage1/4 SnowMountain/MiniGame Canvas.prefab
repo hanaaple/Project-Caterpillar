@@ -432,7 +432,55 @@ MonoBehaviour:
   - {fileID: 3216231801534557493}
   - {fileID: 2342970320518827475}
   - {fileID: 6961510753107964605}
-  correct: STERRR
+  correct: FAMILY
+  dialAudioData:
+    audioObject: {fileID: 8300000, guid: 8be4af73b380dec488fb768802ff8699, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  failAudioData:
+    audioObject: {fileID: 8300000, guid: b0b14f89d3303954487cc6fdf87d1b36, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  clearAudioData:
+    audioObject: {fileID: 8300000, guid: 68c6a47b576d8f946b8c09256277456d, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   password: 
   selectedIndex: 0
 --- !u!1 &3759686043305444112
@@ -1224,7 +1272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 397d0a937c41d2d42b010ca6590f604f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1376,7 +1424,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1426,7 +1474,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 884}
+  m_SizeDelta: {x: 1086, y: 884}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5807807672145198379
 CanvasRenderer:
@@ -1478,14 +1526,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: f70a3902015e5564da9323dc1e52bbf1, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807672145198356}
   form: {fileID: 5807807673085043708}
   root: {fileID: 5807807673085043708}
   start: {fileID: 5807807672093919921}
-  end: {fileID: 5807807673659863639}
   formSize: {x: 6, y: 1}
+  pointSize: 83
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807673659863639}
   startPos: {x: 0, y: 0}
   endPos: {x: 5, y: 0}
   startPoint: {x: -1, y: 0}
@@ -1575,7 +1656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d79c2578021730469aeddc09890fed8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1651,7 +1732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1727,7 +1808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1829,14 +1910,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: c8be749661eb7aa4296d81d2cad6bb7a, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807672357530620}
   form: {fileID: 5807807672468008711}
   root: {fileID: 5807807672468008711}
   start: {fileID: 5807807674091501749}
-  end: {fileID: 5807807673415636791}
   formSize: {x: 13, y: 13}
+  pointSize: 39
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807673415636791}
   startPos: {x: 0, y: 0}
   endPos: {x: 12, y: 12}
   startPoint: {x: -1, y: 0}
@@ -2080,14 +2194,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: cfc628a0096c5f94cb11267d8d0bffa4, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807672359590267}
   form: {fileID: 5807807673010703254}
   root: {fileID: 5807807673010703254}
   start: {fileID: 5807807672201809160}
-  end: {fileID: 0}
   formSize: {x: 15, y: 15}
+  pointSize: 33
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 1
+  end: {fileID: 0}
   startPos: {x: 0, y: 0}
   endPos: {x: 0, y: 0}
   startPoint: {x: -1, y: 0}
@@ -2407,14 +2554,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: 3134c0fe29e622f4ebb81cbd7b79c2e4, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807672382495956}
   form: {fileID: 5807807672920089312}
   root: {fileID: 5807807672920089312}
   start: {fileID: 5807807672048403222}
-  end: {fileID: 5807807672976747890}
   formSize: {x: 10, y: 10}
+  pointSize: 49
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807672976747890}
   startPos: {x: 0, y: 0}
   endPos: {x: 9, y: 9}
   startPoint: {x: -1, y: 0}
@@ -2666,7 +2846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3025,7 +3205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 397d0a937c41d2d42b010ca6590f604f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3282,14 +3462,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: 82dff0dece491ec44a9cf7d44f138106, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807673157528735}
   form: {fileID: 5807807673419233878}
   root: {fileID: 5807807673419233878}
   start: {fileID: 5807807674000137869}
-  end: {fileID: 5807807673777272595}
   formSize: {x: 7, y: 7}
+  pointSize: 69
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807673777272595}
   startPos: {x: 0, y: 0}
   endPos: {x: 6, y: 6}
   startPoint: {x: -1, y: 0}
@@ -3455,14 +3668,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: f70a3902015e5564da9323dc1e52bbf1, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807673317361050}
   form: {fileID: 5807807673964259299}
   root: {fileID: 5807807673964259299}
   start: {fileID: 5807807673576469725}
-  end: {fileID: 5807807672548641233}
   formSize: {x: 6, y: 3}
+  pointSize: 83
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807672548641233}
   startPos: {x: 0, y: 1}
   endPos: {x: 5, y: 1}
   startPoint: {x: -1, y: 1}
@@ -3574,7 +3820,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ddf6794c36eb68418f5d829a190fa3f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3806,7 +4052,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3958,7 +4204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9112091d30e1354fbece6590e7fc2b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4034,7 +4280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ceb33b654f3afee43a70921def64f91e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4136,14 +4382,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511d1403c84e4041a99abd27a130c129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3022521977842191023, guid: f70a3902015e5564da9323dc1e52bbf1, type: 3}
+  prefab: {fileID: 3022521977842191023, guid: 647b3a1715c52844395fbb893d537622, type: 3}
   eventTrigger: {fileID: 5807807673849289681}
   form: {fileID: 5807807673493360516}
   root: {fileID: 5807807673493360516}
   start: {fileID: 5807807672317284122}
-  end: {fileID: 5807807672251240056}
   formSize: {x: 6, y: 5}
+  pointSize: 83
+  arriveAudioData:
+    audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveOneAudioData:
+    audioObject: {fileID: 8300000, guid: 32fdfb638b57e7d45b7ab3cdac96f53a, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   isEnd: 0
+  end: {fileID: 5807807672251240056}
   startPos: {x: 0, y: 0}
   endPos: {x: 5, y: 4}
   startPoint: {x: -1, y: 0}
@@ -4637,7 +4916,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ceb33b654f3afee43a70921def64f91e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4713,7 +4992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ddf6794c36eb68418f5d829a190fa3f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc462e369b85cae458c69e36dea499d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

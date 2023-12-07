@@ -3,6 +3,7 @@ using Game.Default;
 using UnityEngine;
 using Utility.Core;
 using Utility.Player;
+using Utility.Portal;
 using Utility.Property;
 
 namespace Utility.Scene
@@ -52,6 +53,9 @@ namespace Utility.Scene
 
         [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
         public BindProperty bindProperty;
+        
+        [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
+        public PortalManager portalManager;
         
         /// <summary>
         /// Awake가 OnSceneLoadEnd보다 먼저 발생하여 Awake에서 사용

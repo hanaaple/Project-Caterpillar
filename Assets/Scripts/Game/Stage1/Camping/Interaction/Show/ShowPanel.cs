@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.Stage1.Camping.Interaction.Show
@@ -6,6 +7,8 @@ namespace Game.Stage1.Camping.Interaction.Show
     public class ShowPanel : MonoBehaviour
     {
         public Button exitButton;
+        
+        public Action onShow;
 
         public virtual void Initialize()
         {
@@ -14,6 +17,7 @@ namespace Game.Stage1.Camping.Interaction.Show
 
         public virtual void Show()
         {
+            onShow?.Invoke();
             gameObject.SetActive(true);
         }
         

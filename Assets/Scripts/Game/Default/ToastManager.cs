@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Default
 {
@@ -18,6 +19,8 @@ namespace Game.Default
         [SerializeField] private Transform toastMessageParent;
         [SerializeField] private float textSec;
 
+        [SerializeField] private AudioData typingAudioData;
+        
         public Action onToastEnd;
 
         private Queue<string> _toastQueue;
@@ -89,6 +92,8 @@ namespace Game.Default
                 toastMessageParent.gameObject.SetActive(true);
             }
 
+            typingAudioData.Play();
+            
             while (_toastQueue.Count > 0)
             {
                 var toasts = GetActiveToastMessages();
@@ -124,7 +129,7 @@ namespace Game.Default
                 // 전부 보이면 Text Print
                 var toastContent = _toastQueue.Dequeue();
                 var waitTextSec = new WaitForSeconds(textSec);
-
+                
                 for (var index = 0; index < toastContent.Length; index++)
                 {
                     var t = toastContent[index];
@@ -157,6 +162,7 @@ namespace Game.Default
             }
 
             _toastCoroutine = null;
+            typingAudioData.Stop();
             onToastEnd?.Invoke();
         }
 

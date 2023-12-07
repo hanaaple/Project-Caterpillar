@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.Audio;
 using Utility.Dialogue;
 using Utility.Scene;
 using Utility.Tutorial;
@@ -48,6 +49,9 @@ namespace Utility.Core
         
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
+        
+        public AudioData defaultHighlightAudioData;
+        public AudioData defaultClickAudioData;
 
         private bool _isFade;
 
@@ -83,6 +87,13 @@ namespace Utility.Core
             }
         }
 
+        public void ResetFade()
+        {
+            StopAllCoroutines();
+            fadeImage.gameObject.SetActive(false);
+            _isFade = false;
+        }
+
         public void FadeIn(Action onEndAction = null)
         {
             _isFade = true;
@@ -110,7 +121,11 @@ namespace Utility.Core
             }
 
             _isFade = false;
-            fadeImage.gameObject.SetActive(!isFadeIn);
+            if (isFadeIn)
+            {
+                fadeImage.gameObject.SetActive(false);
+            }
+
             onEndAction?.Invoke();
         }
 
@@ -119,6 +134,16 @@ namespace Utility.Core
             return _isFade;
         }
 
+        public void PlayAudioClick()
+        {
+            defaultClickAudioData.Play();
+        }
+        
+        public void PlayAudioHighlight()
+        {
+            defaultHighlightAudioData.Play();
+        }
+        
         public void Destroy()
         {
             _instance = null;

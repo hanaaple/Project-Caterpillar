@@ -91,22 +91,13 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AnyKey"",
-                    ""type"": ""Button"",
-                    ""id"": ""c11f3372-3b31-4353-9b35-05b5183a42cc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Keyboard"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""61f0287a-ba4a-4210-b465-0a8e58e0c837"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""LeftClick"",
@@ -116,6 +107,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""003332d4-d746-4e45-a068-6f67370c5523"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -270,28 +270,6 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""38d8598b-1358-443e-8ca6-34bbbf9e11c9"",
-                    ""path"": ""<Keyboard>/anyKey"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyBoard"",
-                    ""action"": ""AnyKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""96b8916d-f191-4c1f-9360-1e7cdd4a52bc"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse"",
-                    ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -613,6 +591,28 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                     ""action"": ""Keyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""961a7515-a6e1-4e09-ba8f-ea6934c1a3b0"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse"",
+                    ""action"": ""MouseWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96b8916d-f191-4c1f-9360-1e7cdd4a52bc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse"",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -673,9 +673,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
         m_Input_Inventory = m_Input.FindAction("Inventory", throwIfNotFound: true);
-        m_Input_AnyKey = m_Input.FindAction("AnyKey", throwIfNotFound: true);
         m_Input_Keyboard = m_Input.FindAction("Keyboard", throwIfNotFound: true);
         m_Input_LeftClick = m_Input.FindAction("LeftClick", throwIfNotFound: true);
+        m_Input_MouseWheel = m_Input.FindAction("MouseWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -742,9 +742,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Move;
     private readonly InputAction m_Input_Interact;
     private readonly InputAction m_Input_Inventory;
-    private readonly InputAction m_Input_AnyKey;
     private readonly InputAction m_Input_Keyboard;
     private readonly InputAction m_Input_LeftClick;
+    private readonly InputAction m_Input_MouseWheel;
     public struct InputActions
     {
         private @InputControl m_Wrapper;
@@ -756,9 +756,9 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Input_Move;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
         public InputAction @Inventory => m_Wrapper.m_Input_Inventory;
-        public InputAction @AnyKey => m_Wrapper.m_Input_AnyKey;
         public InputAction @Keyboard => m_Wrapper.m_Input_Keyboard;
         public InputAction @LeftClick => m_Wrapper.m_Input_LeftClick;
+        public InputAction @MouseWheel => m_Wrapper.m_Input_MouseWheel;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -789,15 +789,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Inventory.started -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnInventory;
-                @AnyKey.started -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
-                @AnyKey.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
-                @AnyKey.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnAnyKey;
                 @Keyboard.started -= m_Wrapper.m_InputActionsCallbackInterface.OnKeyboard;
                 @Keyboard.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnKeyboard;
                 @Keyboard.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnKeyboard;
                 @LeftClick.started -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
                 @LeftClick.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
                 @LeftClick.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnLeftClick;
+                @MouseWheel.started -= m_Wrapper.m_InputActionsCallbackInterface.OnMouseWheel;
+                @MouseWheel.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnMouseWheel;
+                @MouseWheel.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnMouseWheel;
             }
             m_Wrapper.m_InputActionsCallbackInterface = instance;
             if (instance != null)
@@ -823,15 +823,15 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
-                @AnyKey.started += instance.OnAnyKey;
-                @AnyKey.performed += instance.OnAnyKey;
-                @AnyKey.canceled += instance.OnAnyKey;
                 @Keyboard.started += instance.OnKeyboard;
                 @Keyboard.performed += instance.OnKeyboard;
                 @Keyboard.canceled += instance.OnKeyboard;
                 @LeftClick.started += instance.OnLeftClick;
                 @LeftClick.performed += instance.OnLeftClick;
                 @LeftClick.canceled += instance.OnLeftClick;
+                @MouseWheel.started += instance.OnMouseWheel;
+                @MouseWheel.performed += instance.OnMouseWheel;
+                @MouseWheel.canceled += instance.OnMouseWheel;
             }
         }
     }
@@ -881,8 +881,8 @@ public partial class @InputControl : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
-        void OnAnyKey(InputAction.CallbackContext context);
         void OnKeyboard(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnMouseWheel(InputAction.CallbackContext context);
     }
 }

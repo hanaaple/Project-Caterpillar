@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility.Core;
 using Utility.Player;
 using Utility.Tendency;
+using Utility.Util;
 
 namespace Utility.SaveSystem
 {
@@ -56,10 +58,7 @@ namespace Utility.SaveSystem
             {
                 items = ItemManager.Instance.GetItem<string>(),
                 tendencyData = TendencyManager.Instance.GetSaveTendencyData(),
-                saveCoverData = new SaveCoverData
-                {
-                    playTime = 1122
-                },
+                saveCoverData = new SaveCoverData(),
                 sceneSaveData = new List<SceneData>()
             };
 
@@ -88,8 +87,34 @@ namespace Utility.SaveSystem
                 _ => saveData.saveCoverData.describe
             };
 
+            switch (saveData.saveCoverData.sceneName)
+            {
+                case "MainScene":
+                case "SmallRoomScene":
+                case "ShadowGame":
+                case "CampingScene":
+                case "CampingGame":
+                case "BeachScene":
+                case "BeachGame":
+                case "SnowMountainScene":
+                case "SnowMountainShadowGame":
+                    saveData.saveCoverData.stageText = "1";
+                    break;
+                
+                case "stage2":
+                    saveData.saveCoverData.stageText = "2";
+                    break;
+            }
+
+            saveData.saveCoverData.playTime = PlayTimer.GetPlayTime();
+            var dateTime = DateTime.Now;
+            saveData.saveCoverData.date = $"{dateTime:yyyy}-{dateTime:MM}-{dateTime:dd}";
+            saveData.saveCoverData.lastPlayTime = $"{dateTime:HH:mm}";
+
+            // 현재 Scene의 Data는 저장을 안했음
             foreach (var sceneSaveData in SceneSaveData)
             {
+                Debug.LogWarning($"Save - Scene Data 추가: {sceneSaveData.sceneName}");
                 saveData.sceneSaveData.Add(sceneSaveData);
             }
 
@@ -115,12 +140,12 @@ namespace Utility.SaveSystem
 
         /// <summary>
         /// Save SceneData
-        /// On LoadScene GameScene to GameScene
+        /// It Works, on LoadScene GameScene to GameScene or OnSave
         /// </summary>
         public static void SaveSceneData()
         {
-            Debug.Log($"Save Target Scene Name: {SceneManager.GetActiveScene().name}");
-
+            Debug.Log($"Try Save Target Scene Name: {SceneManager.GetActiveScene().name}");
+            
             var sceneData = SceneSaveData.Find(item => item.sceneName == SceneManager.GetActiveScene().name);
             if (sceneData != null)
             {
@@ -138,6 +163,12 @@ namespace Utility.SaveSystem
             }
             else
             {
+                if (GameManager.Instance.npc.Count == 0 && GameManager.Instance.interactionObjects.Count == 0)
+                {
+                    Debug.LogWarning($"{SceneManager.GetActiveScene().name}에 저장할 데이터가 없습니다. 저장하지 않습니다.");
+                    return;
+                }
+                
                 Debug.Log("Save - New");
                 sceneData = new SceneData
                 {
@@ -145,7 +176,7 @@ namespace Utility.SaveSystem
                     interactionData = new List<InteractionSaveData>(),
                     npcData = new List<NpcData>()
                 };
-
+                
                 // Save SceneData -> Npc
                 foreach (var interactionData in GameManager.Instance.npc)
                 {
@@ -156,12 +187,6 @@ namespace Utility.SaveSystem
                 foreach (var interaction in GameManager.Instance.interactionObjects)
                 {
                     sceneData.interactionData.Add(interaction.GetInteractionSaveData());
-                }
-
-                var index = SceneSaveData.FindIndex(item => item.sceneName == sceneData.sceneName);
-                if (index != -1)
-                {
-                    SceneSaveData.Remove(SceneSaveData[index]);
                 }
 
                 SceneSaveData.Add(sceneData);

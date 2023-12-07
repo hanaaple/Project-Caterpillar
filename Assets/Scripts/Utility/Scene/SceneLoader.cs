@@ -77,10 +77,11 @@ namespace Utility.Scene
             {
                 if (SaveManager.IsLoaded(index))
                 {
-                    SaveManager.GetSaveData(index);
+                    Debug.Log("로드 된 상태임");
                 }
                 else if (SaveManager.Exists(index))
                 {
+                    Debug.Log("로드 시작");
                     SaveManager.Load(index);
                 }
                 else
@@ -89,7 +90,7 @@ namespace Utility.Scene
                 }
             }
 
-            AudioManager.Instance.StopBgm();
+            AudioManager.Instance.StopAudio();
             TendencyManager.Instance.SaveTendencyData();
             TimeScaleHelper.Push(0f);
             gameObject.SetActive(true);
@@ -170,6 +171,7 @@ namespace Utility.Scene
                     }
 
                     GameManager.Instance.Clear();
+                    PlayUIManager.Instance.ResetFade();
                     op.allowSceneActivation = true;
                     yield break;
                 }

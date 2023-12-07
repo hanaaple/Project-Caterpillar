@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Audio;
 
 namespace Game.Stage1.Camping.Interaction.Squirrel
 {
@@ -12,21 +13,28 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         [SerializeField] private DragItem egg;
         [SerializeField] private DragItem[] apples;
         
+        [SerializeField] private AudioData takeAppleAudioData;
+        
         private static readonly int ClearHash = Animator.StringToHash("Clear");
 
         private void Start()
         {
-            egg.OnFire = () =>
+            egg.onFire = () =>
             {
                 egg.gameObject.SetActive(false);
                 // snakeAnimator.Set
                 birdAnimator.SetBool(ClearHash, true);
                 noteAnimator.SetBool(ClearHash, true);
+                
             };
             
             foreach (var apple in apples)
             {
-                apple.OnFire = () =>
+                apple.onTake = () =>
+                {
+                    takeAppleAudioData.Play();
+                };
+                apple.onFire = () =>
                 {
                     apple.gameObject.SetActive(false);
                     foreach (var t in apples)
@@ -44,10 +52,10 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         {
             base.ResetInteraction(isGameReset);
             
-            egg.Reset();
+            egg.ResetDragItem();
             foreach (var apple in apples)
             {
-                apple.Reset();
+                apple.ResetDragItem();
             }
 
             birdAnimator.SetBool(ClearHash, false);

@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using UnityEngine.Timeline;
@@ -22,35 +24,6 @@ using Random = UnityEngine.Random;
 
 namespace Utility.Dialogue
 {
-    [Serializable]
-    public class ChoiceSelector : HighlightItem
-    {
-        private Animator _animator;
-        private static readonly int Selected = Animator.StringToHash("Selected");
-
-        public void Init(Animator animator)
-        {
-            _animator = animator;
-        }
-
-        public override void SetDefault()
-        {
-            if (_animator.gameObject.activeInHierarchy)
-            {
-                _animator.SetBool(Selected, false);
-            }
-        }
-
-        public override void EnterHighlightDisplay()
-        {
-        }
-
-        public override void SelectDisplay()
-        {
-            _animator.SetBool(Selected, true);
-        }
-    }
-
     public class DialogueController : MonoBehaviour
     {
         [Header("Panel")] [SerializeField] private GameObject dialoguePanel;
@@ -63,16 +36,13 @@ namespace Utility.Dialogue
         [SerializeField] private CheckUIManager skipCheckUIManager;
         [SerializeField] private Animator letterBoxAnimator;
 
-        [Header("텍스트 속도")] [SerializeField] private float textSpeed;
-
         [Space(10)] [Header("CutScene")] public GameObject cutSceneImage;
 
         [FormerlySerializedAs("cutSceneAnimator")] [SerializeField]
-        private Animator defaultCutSceneAnimator;
+        public Animator defaultCutSceneAnimator;
 
-        [Header("Timeline")] [SerializeField] private PlayableDirector playableDirectorPrefab;
-
-        [Header("Choice")] [SerializeField] private ChoiceSelector[] choiceSelectors;
+        [FormerlySerializedAs("choiceSelectors")] [Header("Choice")] [SerializeField]
+        private SelectHighlightItem[] selectHighlightItems;
 
         [Header("깜빡이는 애니메이션 들어간 ui")] [SerializeField]
         private GameObject blinkingIndicator;
@@ -80,6 +50,9 @@ namespace Utility.Dialogue
         [Header("좌 애니메이터")] [SerializeField] private Animator leftAnimator;
         [Header("우 애니메이터")] [SerializeField] private Animator rightAnimator;
 
+        [Header("Audio")] [SerializeField] private AudioClip scriptTurnAudioClip;
+
+        [Header("텍스트 속도")] [SerializeField] private float textSpeed = .1f;
         [Header("반발 확률")] [SerializeField] private float repulsionPercentage = .3f;
 
         [Space(10)] [Header("디버깅용")] [SerializeField]
@@ -123,21 +96,21 @@ namespace Utility.Dialogue
         {
             _activePlayableDirectors = new List<PlayableDirector>();
             _playableDirector = ObjectPoolHelper.Instance.Get<PlayableDirector>();
+            _playableDirector.gameObject.name = "Dialogue PlayableDirector";
             _playableDirector.transform.SetParent(transform);
 
-            dialogueInputArea.onClick.AddListener(OnInputDialogue);
             _baseDialogueData = new Stack<DialogueData>();
             baseDialogueData = new List<DialogueData>();
 
             _choiceHighlighter = new Highlighter("Choice Highlight")
             {
-                HighlightItems = new List<HighlightItem>(choiceSelectors),
+                HighlightItems = new List<HighlightItem>(selectHighlightItems),
                 highlightType = Highlighter.HighlightType.HighlightIsSelect
             };
 
-            foreach (var choiceSelector in choiceSelectors)
+            foreach (var selectHighlightItem in selectHighlightItems)
             {
-                choiceSelector.Init(choiceSelector.button.GetComponent<Animator>());
+                selectHighlightItem.Init(selectHighlightItem.button.GetComponent<Animator>());
             }
 
             _choiceHighlighter.Init(Highlighter.ArrowType.Vertical);
@@ -152,8 +125,13 @@ namespace Utility.Dialogue
                 };
             };
 
+            var eventTrigger = skipButton.GetComponent<EventTrigger>();
+
+            EventTriggerHelper.CreateOrAddEntry(eventTrigger, EventTriggerType.PointerEnter, PlayUIManager.Instance.PlayAudioHighlight);
+
             skipButton.onClick.AddListener(() =>
             {
+                PlayUIManager.Instance.PlayAudioClick();
                 TimeScaleHelper.Push(0f);
                 skipCheckUIManager.Push();
             });
@@ -179,14 +157,17 @@ namespace Utility.Dialogue
                 OnExecute = OnInputDialogue,
                 OnEsc = () =>
                 {
-                    PlayUIManager.Instance.pauseManager.onPause?.Invoke();
                     PlayUIManager.Instance.pauseManager.onExit = () =>
                     {
                         EndDialogue();
                         PlayUIManager.Instance.pauseManager.onExit = () => { };
                     };
-                },
+
+                    PlayUIManager.Instance.pauseManager.onPause?.Invoke();
+                }
             };
+
+            dialogueInputArea.onClick.AddListener(() => { _dialogueInputActions.OnExecute?.Invoke(); });
         }
 
         private void Initialize(DialogueData dialogueData)
@@ -234,7 +215,7 @@ namespace Utility.Dialogue
 
         private void OnInputDialogue()
         {
-            if (InputManager.InputActionsList.Last() != _dialogueInputActions)
+            if (InputManager.InputActionsList.Last() != _dialogueInputActions || !_dialogueInputActions.Enable)
             {
                 return;
             }
@@ -259,7 +240,7 @@ namespace Utility.Dialogue
 
                     _isCutSceneSkipEnable = false;
                     _playableDirector.time = _playableDirector.duration -
-                                             2 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings
+                                             2 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings
                                              .frameRate;
                     _playableDirector.RebuildGraph();
                     _playableDirector.Play();
@@ -274,39 +255,6 @@ namespace Utility.Dialogue
 
                     InteractContinue();
                 }
-
-                // if (_playableDirector.playableAsset &&
-                //     !(Math.Abs(_playableDirector.time - _playableDirector.duration) <=
-                //       1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate ||
-                //       (_playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid())))
-                // {
-                //     if (_isCutSceneSkipEnable)
-                //     {
-                //         _isCutSceneSkipEnable = false;
-                //         Debug.Log("스킵되어라!");
-                //         _playableDirector.time = _playableDirector.duration
-                //                                  - 2 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings
-                //                                  .frameRate;
-                //         _playableDirector.RebuildGraph();
-                //         _playableDirector.Play();
-                //         // 자동으로 넘어가기 전까지 입력 방지해야됨.
-                //     }
-                // }
-                // else
-                // {
-                //     if (_isCutScenePlaying)
-                //     {
-                //         return;
-                //     }
-                //     
-                //     if (PlayUIManager.Instance.IsFade())
-                //     {
-                //         Debug.Log("OnInputDialogue, Fade 중");
-                //         return;
-                //     }
-                //
-                //     InteractContinue();
-                // }
             }
         }
 
@@ -332,7 +280,7 @@ namespace Utility.Dialogue
                     if (waitDialogueElement.dialogueType == DialogueType.WaitInteract &&
                         !waitDialogueElement.waitInteractions.IsWaitClear())
                     {
-                        EndDialogue(true, -1, dialogueData);
+                        EndDialogue(true, -1, dialogueData, true);
                         return;
                     }
 
@@ -340,7 +288,7 @@ namespace Utility.Dialogue
                 }
                 else
                 {
-                    EndDialogue();
+                    EndDialogue(true, -1, null, true);
                 }
             }
             else
@@ -423,8 +371,11 @@ namespace Utility.Dialogue
                     playableDirector.playableAsset = dialogueElement.playableAsset;
                     playableDirector.extrapolationMode = dialogueElement.extrapolationMode;
                     playableDirector.time = 0;
+                    
+                    
+                    // path
 
-                    var timelineAsset = (TimelineAsset)playableDirector.playableAsset;
+                    var timelineAsset = (TimelineAsset) playableDirector.playableAsset;
                     if (timelineAsset != null)
                     {
                         var tracks = timelineAsset.GetOutputTracks()
@@ -447,6 +398,7 @@ namespace Utility.Dialogue
                             {
                                 playableDirector.SetGenericBinding(temp, defaultCutSceneAnimator);
                             }
+
                             //Debug.Log($"Track 명: {temp.name}, Track Type: {temp.GetType()}, 바인드 오브젝트 {bindObject?.name}");
                         }
                     }
@@ -458,7 +410,9 @@ namespace Utility.Dialogue
                     playableDirector.RebuildGraph();
                     playableDirector.Play();
 
-                    if (!string.IsNullOrEmpty(dialogueElement.playableDirectorName))
+                    // Loop인 경우
+                    if(dialogueElement.extrapolationMode == DirectorWrapMode.Loop)
+                    // if (!string.IsNullOrEmpty(dialogueElement.playableDirectorName))
                     {
                         InteractContinue();
                     }
@@ -514,28 +468,25 @@ namespace Utility.Dialogue
                 case DialogueType.WaitInteract:
                 {
                     var waitInteractions = dialogueElement.waitInteractions;
-                    if (waitInteractions.waitInteractions.Length == 0)
+                    if (waitInteractions.waitInteractionData.Length == 0)
                     {
-                        Debug.LogWarning($"세팅 오류, Interaction 개수: {waitInteractions.waitInteractions.Length}개");
+                        Debug.LogWarning($"세팅 오류, Interaction 개수: {waitInteractions.waitInteractionData.Length}개");
                         OnInputDialogue();
                         break;
                     }
 
-                    EndDialogue(false);
+                    EndDialogue(false, -1, null, true);
                     SetFocusMode(false);
-                    var isPaused = AudioManager.Instance.GetIsPaused();
-                    if (!isPaused)
+                    var isReduced = AudioManager.Instance.GetIsReduced();
+
+                    if (dialogueElement.option.Any(item => item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
                     {
-                        if (dialogueElement.option.Any(item =>
-                                item.Equals("Pause", StringComparison.OrdinalIgnoreCase)))
-                        {
-                            isPaused = true;
-                        }
+                        isReduced = true;
                     }
 
-                    AudioManager.Instance.ReturnBgmVolume();
+                    AudioManager.Instance.ReturnVolume();
 
-                    Debug.Log($"클리어 대기, {waitInteractions.waitInteractions.Length}개");
+                    Debug.Log($"클리어 대기, {waitInteractions.waitInteractionData.Length}개");
 
                     waitInteractions.Initialize(() =>
                     {
@@ -551,9 +502,9 @@ namespace Utility.Dialogue
                         if (dialogueElement.interactionWaitType == InteractionWaitType.ImmediatelyInteract)
                         {
                             StartDialogue(dialogueData);
-                            if (isPaused)
+                            if (isReduced)
                             {
-                                AudioManager.Instance.ReduceBgmVolume();
+                                AudioManager.Instance.ReduceVolume();
                             }
                         }
                         else
@@ -575,16 +526,10 @@ namespace Utility.Dialogue
                     {
                         if (dialogueElement.isCustomEnd)
                         {
-                            if (isSuccess)
-                            {
-                                // 성공 여부, NextIndex를 넘겨줘야됨
-                                // 왜 EndDialogue를 해주지
-                                EndDialogue(true, dialogueElement.successNextInteractionIndex);
-                            }
-                            else
-                            {
-                                EndDialogue(true, dialogueElement.failNextInteractionIndex);
-                            }
+                            EndDialogue(true,
+                                isSuccess
+                                    ? dialogueElement.successNextInteractionIndex
+                                    : dialogueElement.failNextInteractionIndex, null, true);
                         }
                         else
                         {
@@ -646,13 +591,15 @@ namespace Utility.Dialogue
                 }
                 case DialogueType.Audio:
                 {
+                    // if (dialogueElement.audioData.audioObject == null)
+                    // {
                     if (dialogueElement.isBgm)
                     {
-                        if (dialogueElement.isAudioClip)
+                        if (dialogueElement.audioClip)
                         {
                             AudioManager.Instance.PlayBgmWithFade(dialogueElement.audioClip);
                         }
-                        else if (dialogueElement.isTimelineAudio)
+                        else if (dialogueElement.audioTimeline)
                         {
                             AudioManager.Instance.PlayBgmWithFade(dialogueElement.audioTimeline);
                         }
@@ -663,11 +610,11 @@ namespace Utility.Dialogue
                     }
                     else if (dialogueElement.isSfx)
                     {
-                        if (dialogueElement.isAudioClip)
+                        if (dialogueElement.audioClip)
                         {
                             AudioManager.Instance.PlaySfx(dialogueElement.audioClip);
                         }
-                        else if (dialogueElement.isTimelineAudio)
+                        else if (dialogueElement.audioTimeline)
                         {
                             AudioManager.Instance.PlaySfx(dialogueElement.audioTimeline);
                         }
@@ -680,6 +627,11 @@ namespace Utility.Dialogue
                     {
                         Debug.LogError("오디오 세팅 오류 - Sfx, Bgm 구분");
                     }
+                    // }
+                    // else
+                    // {
+                    //     dialogueElement.audioData.Play();
+                    // }
 
                     InteractContinue();
 
@@ -704,9 +656,11 @@ namespace Utility.Dialogue
             var dialogue = dialogueData.dialogueElements[dialogueData.index];
             if (dialogue.isSkipEnable)
             {
+                Debug.LogWarning($"스킵 가능!! {dialogueData.index}");
                 StartCoroutine(WaitSecAfterAction(dialogue.skipWaitSec, () =>
                 {
-                    var action = _dialogueInputActions.OnEsc;
+                    Debug.LogWarning($"스킵 가능 Esc");
+                    var originalAction = _dialogueInputActions.OnEsc;
                     _dialogueInputActions.OnEsc = () => { skipButton.onClick.Invoke(); };
 
                     skipButton.gameObject.SetActive(true);
@@ -714,7 +668,8 @@ namespace Utility.Dialogue
 
                     _onSkip = () =>
                     {
-                        _dialogueInputActions.OnEsc = action;
+                        Debug.LogWarning($"스킵 실행 {dialogueData.index} -> {targetIndex}");
+                        _dialogueInputActions.OnEsc = originalAction;
 
                         skipButton.gameObject.SetActive(false);
                         dialogueData.index = targetIndex;
@@ -750,9 +705,10 @@ namespace Utility.Dialogue
                 dialogue.option[index] = dialogue.option[index].Replace(" ", "");
             }
 
-            var reset = Array.Find(dialogue.option, item => item.Equals("Reset", StringComparison.OrdinalIgnoreCase));
+            var characterAnimatorReset = Array.Find(dialogue.option,
+                item => item.Equals("Reset", StringComparison.OrdinalIgnoreCase));
             // Debug.LogWarning(reset);
-            if (!string.IsNullOrEmpty(reset))
+            if (!string.IsNullOrEmpty(characterAnimatorReset))
             {
                 SetDialogueCharacter(leftAnimator, CharacterOption.Disappear.ToString());
                 SetDialogueCharacter(rightAnimator, CharacterOption.Disappear.ToString());
@@ -779,12 +735,12 @@ namespace Utility.Dialogue
                 {
                     var rightCharacter = rightAnimator.GetInteger(CharacterHash);
                     var leftCharacter = leftAnimator.GetInteger(CharacterHash);
-                    if (rightCharacter == (int)dialogue.name &&
+                    if (rightCharacter == (int) dialogue.name &&
                         !rightAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
                     {
                         animator = rightAnimator;
                     }
-                    else if (leftCharacter == (int)dialogue.name &&
+                    else if (leftCharacter == (int) dialogue.name &&
                              !leftAnimator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
                     {
                         animator = leftAnimator;
@@ -796,12 +752,12 @@ namespace Utility.Dialogue
                 {
                     if (dialogue.name != CharacterType.Keep)
                     {
-                        animator.SetInteger(CharacterHash, (int)dialogue.name);
+                        animator.SetInteger(CharacterHash, (int) dialogue.name);
                     }
 
                     if (dialogue.expression != Expression.Keep)
                     {
-                        animator.SetInteger(ExpressionHash, (int)dialogue.expression - 1);
+                        animator.SetInteger(ExpressionHash, (int) dialogue.expression - 1);
                     }
 
                     var state = Array.Find(dialogue.option, item => Enum.TryParse(item, out CharacterOption _));
@@ -918,6 +874,11 @@ namespace Utility.Dialogue
 
         private void StartDialoguePrint()
         {
+            if (dialoguePanel.activeSelf)
+            {
+                AudioManager.Instance.PlaySfx(scriptTurnAudioClip);
+            }
+
             dialoguePanel.SetActive(true);
             _isUnfolding = true;
             blinkingIndicator.SetActive(false);
@@ -942,7 +903,7 @@ namespace Utility.Dialogue
             if (dialogueItem.option != null)
             {
                 var options = dialogueItem.option.Where(item => item.All(char.IsDigit))
-                    .Select(item => (int)float.Parse(item)).ToArray();
+                    .Select(item => (int) float.Parse(item)).ToArray();
                 if (options.Length > 0)
                 {
                     if (options.Contains(0))
@@ -1000,6 +961,8 @@ namespace Utility.Dialogue
                 _printCoroutine = null;
             }
 
+            // isCompleted = true;
+
             _isUnfolding = false;
             var currentDialogueData = _baseDialogueData.Peek();
             var dialogueItem = currentDialogueData.dialogueElements[currentDialogueData.index];
@@ -1019,17 +982,24 @@ namespace Utility.Dialogue
             }
         }
 
-        public void EndDialogue(bool isEnd = true, int nextInteractionIndex = -1, DialogueData dialogueData = null)
+        public async void EndDialogue(bool isEnd = true, int nextInteractionIndex = -1,
+            DialogueData dialogueData = null, bool isWait = false)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
 
-            dialoguePanel.SetActive(false);
+            skipButton.gameObject.SetActive(false);
+            _dialogueInputActions.Enable = false;
+
+            if (isWait)
+            {
+                await Task.Delay(200);
+            }
 
             _isDialogue = false;
+            _dialogueInputActions.Enable = true;
+            dialoguePanel.SetActive(false);
 
             InputManager.PopInputAction(_dialogueInputActions);
-
-            skipButton.gameObject.SetActive(false);
 
             if (isEnd)
             {
@@ -1086,7 +1056,7 @@ namespace Utility.Dialogue
 
         private void InitChoice()
         {
-            foreach (var dialogueSelector in choiceSelectors)
+            foreach (var dialogueSelector in selectHighlightItems)
             {
                 dialogueSelector.button.gameObject.SetActive(false);
                 dialogueSelector.button.GetComponentInChildren<TMP_Text>().text = "";
@@ -1142,7 +1112,7 @@ namespace Utility.Dialogue
                 choiceList.Add((choiceIndex, choiceCount, choiceContextLen));
                 for (var i = 0; i < choiceCount; i++)
                 {
-                    var choiceButton = choiceSelectors[choicedCount + i].button;
+                    var choiceButton = selectHighlightItems[choicedCount + i].button;
 
                     var highlightItem = _choiceHighlighter.HighlightItems.Find(item => item.button == choiceButton);
                     highlightItem.isEnable = true;
@@ -1175,7 +1145,7 @@ namespace Utility.Dialogue
                     // 2 - 2 - 1. 여러 개 남은 경우 1부터 반복
                     // 2 - 2 - 2. 1개 남은 경우 -> 해당 Index의 대화 실행
 
-                    var choiceButton = choiceSelectors[clickedIndex + clickedChoiceCountIndex].button;
+                    var choiceButton = selectHighlightItems[clickedIndex + clickedChoiceCountIndex].button;
 
                     var clickedChoiceCountIndex1 = clickedChoiceCountIndex;
                     var clickedIndex1 = clickedIndex;
@@ -1185,22 +1155,21 @@ namespace Utility.Dialogue
                         if (currentDialogueData.dialogueElements[choiceIndex].option == null ||
                             currentDialogueData.dialogueElements[choiceIndex].option.Length == 0)
                         {
-                            Debug.Log("누른 그대로");
+                            Debug.Log("누른 그대로 실행");
                             OnClickChoice(choiceIndex, choiceCount, choiceContextLength);
                             return;
                         }
 
                         // 확률 target 예외 리스트 추가
-                        var exceptList = new List<int> { choiceIndex };
-                        Debug.Log($"예외 추가 - {choiceIndex}");
+                        var exceptList = new List<int> {choiceIndex};
                         var choicePercentage = GetChoicePercentage(choiceList, choiceIndex, exceptList);
 
                         var randomValue = Random.Range(0f, 1f);
-                        Debug.Log($"Choice - 확률: {choicePercentage}, 랜덤: {randomValue}");
+                        Debug.Log($"예외 추가 - {choiceIndex}\n" +
+                                  $"Choice - 확률: {choicePercentage}, 랜덤: {randomValue}");
                         if (choicePercentage >= randomValue)
                         {
-                            // 누른 그대로
-                            Debug.Log("누른 그대로");
+                            Debug.Log("누른 그대로 실행");
                             OnClickChoice(choiceIndex, choiceCount, choiceContextLength);
                         }
                         else
@@ -1252,6 +1221,8 @@ namespace Utility.Dialogue
                 return 1.1f;
             }
 
+
+            // 선택지 - Option - (ascent or descent), (active or inactive)
             // Get Percentage
             var targetTendency = currentDialogueData.dialogueElements[choiceIndex].option.Select(int.Parse)
                 .ToArray();
@@ -1260,7 +1231,38 @@ namespace Utility.Dialogue
             var ascent = tendencyData.ascent - tendencyData.descent;
             var active = tendencyData.activation - tendencyData.inactive;
 
+            // 선택지 (상승, 비활성) -> 플레이어(상승, 활성)
+            // | 동일한 척도 - 다른 척도 |
+
+            // 선택지(상승) - 플레이어(상승)
+
+            // 플레이어 값만으로 계산
+            // 모두 동일 -> 0
+            // 모두 상이 -> | ascent | + | active |
+            // 일편 상이 -> | |ascent| - |active| |
+
+            // 대표값이란 -> 성향 방향성
+
+            // 차이 절대값
+            // 우리가 값 그 선택ㅈ에 속성하고 
+
+            // 11-> 3%, 12 -> 6%, 20 -> 30%
+
+            // 반발된 경우 -> 나머지 선택지 중에서 랜덤
+
+            // 플레이어 (상승, 활성) -> 선택지 (상승, 활성) -> | ascent | + | active |, 선택지 (상승, 비활성) -> | ascent | - | active |, 선택지 (하강, 비활성) -> (| ascent | + | active |) / 2
+
+
+
+            // | 1 선택지 값 | / total (| 선택지 값 |)
+
+
             var choiceDiff = Mathf.Abs(ascent - targetTendency[0]) + Mathf.Abs(active - targetTendency[1]);
+
+            // 상승 활성  선택지 1(상승 비활성), 2(하강 비활성) 
+
+            // 상승 활성 ->  상승 비활성이 2개, 하강 비활성 1개
+
 
             var otherDiff = 0;
 
@@ -1292,9 +1294,9 @@ namespace Utility.Dialogue
 
             var total = choiceDiff + otherDiff;
             var choicePercentage = (1 - repulsionPercentage) +
-                                   repulsionPercentage * ((float)choiceDiff / total);
+                                   repulsionPercentage * ((float) choiceDiff / total);
 
-            var failPercentage = repulsionPercentage * ((float)otherDiff / total);
+            var failPercentage = repulsionPercentage * ((float) otherDiff / total);
 
             Debug.Log($" {choiceDiff} : {otherDiff} 성공 확률: {choicePercentage}, 실패 확률: {failPercentage}");
 
@@ -1397,15 +1399,15 @@ namespace Utility.Dialogue
                       $"duration: {_playableDirector.duration}");
 
             Debug.Log(
-                $"Time: {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate}\n" +
+                $"Time: {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate}\n" +
                 $"Pause: {_playableDirector.state == PlayState.Paused}\n" +
                 $"IsValid: {_playableDirector.playableGraph.IsValid()}\n" +
-                $"IsCutSceneWorking {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate || _playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid()}");
+                $"IsCutSceneWorking {Math.Abs(_playableDirector.duration - _playableDirector.time) <= 1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate || _playableDirector.state == PlayState.Paused && !_playableDirector.playableGraph.IsValid()}");
 
 
             var waitUntil = new WaitUntil(() =>
                 Math.Abs(_playableDirector.duration - _playableDirector.time) <=
-                1 / ((TimelineAsset)_playableDirector.playableAsset).editorSettings.frameRate ||
+                1 / ((TimelineAsset) _playableDirector.playableAsset).editorSettings.frameRate ||
                 _playableDirector.state == PlayState.Paused &&
                 !_playableDirector.playableGraph.IsValid());
 
@@ -1446,6 +1448,11 @@ namespace Utility.Dialogue
             }
 
             _activePlayableDirectors.Clear();
+        }
+
+        public bool IsDialogue()
+        {
+            return _isDialogue;
         }
 
         private bool IsDialogueEnd()

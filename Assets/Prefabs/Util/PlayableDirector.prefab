@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2555936575526609015}
   - component: {fileID: 7239348370977572184}
   - component: {fileID: 2903855963135218134}
+  - component: {fileID: 1274102028910338804}
   m_Layer: 0
   m_Name: PlayableDirector
   m_TagString: Untagged
@@ -93,3 +94,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6f73fe099ef414599dcc83eb8a5169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1274102028910338804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266524403882715142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134fb655061442d8874e95b9dab85378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalAssetEventPairs:
+  - signalAsset: {fileID: 11400000, guid: bd947d5cd4a246242b86f77230eef61a, type: 2}
+    events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2903855963135218134}
+          m_TargetAssemblyTypeName: Utility.Util.SignalReceiveInterface, Assembly-CSharp
+          m_MethodName: PlayOneShot
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - signalAsset: {fileID: 11400000, guid: feb0fc8eb3c7f234ca1b60681e520813, type: 2}
+    events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2903855963135218134}
+          m_TargetAssemblyTypeName: Utility.Timeline.SignalReceiveInterface, Assembly-CSharp
+          m_MethodName: PlayBgm
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - signalAsset: {fileID: 11400000, guid: 2f70990ac64ec7941bdacf077ebfbecf, type: 2}
+    events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2903855963135218134}
+          m_TargetAssemblyTypeName: Utility.Timeline.SignalReceiveInterface, Assembly-CSharp
+          m_MethodName: StopSfx
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - signalAsset: {fileID: 11400000, guid: 8c1dd71583143f845a286e90b65b055a, type: 2}
+    events:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2903855963135218134}
+          m_TargetAssemblyTypeName: Utility.Timeline.SignalReceiveInterface, Assembly-CSharp
+          m_MethodName: PlaySfxAsBgm
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

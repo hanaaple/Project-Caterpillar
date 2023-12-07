@@ -100,41 +100,39 @@ namespace Utility.SaveSystem
             rijn.Mode = CipherMode.ECB;
             rijn.Padding = PaddingMode.Zeros;
             rijn.BlockSize = 256;
-            
-            using (var decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv))
+
+            try
             {
-                using (var fileStream = File.Open(SaveFilePath(idx), FileMode.Open))
+                var decryptor = rijn.CreateDecryptor(EncryptKey, EncryptIv);
+                var fileStream = File.Open(SaveFilePath(idx), FileMode.Open);
+
+                if (fileStream.Length <= 0)
                 {
-                    if (fileStream.Length <= 0)
-                    {
-                        Debug.Log("Load 오류 발생");
-                        fileStream.Close();
-                        return;
-                    }
-
-                    try
-                    {
-                        Stream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read);
-                        var saveData = (SaveData) new BinaryFormatter().Deserialize(cryptoStream);
-
-                        AddSaveData(idx, saveData);
-
-                        cryptoStream.Close();
-                    }
-                    catch (CryptographicException e)
-                    {
-                        Debug.LogWarning(e);
-                        var saveData = new SaveData
-                        {
-                            saveCoverData = new SaveCoverData
-                            {
-                                describe = "불러오기 오류"
-                            }
-                        };
-                        AddSaveData(idx, saveData);
-                    }
+                    Debug.Log("Load 오류 발생");
                     fileStream.Close();
+                    return;
                 }
+                
+                Stream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read);
+                var saveData = (SaveData) new BinaryFormatter().Deserialize(cryptoStream);
+
+                AddSaveData(idx, saveData);
+
+                cryptoStream.Close();
+                fileStream.Close();
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e);
+                var saveData = new SaveData
+                {
+                    saveCoverData = new SaveCoverData
+                    {
+                        describe = "불러오기 오류"
+                    }
+                };
+                AddSaveData(idx, saveData);
+                throw;
             }
 
             rijn.Clear();

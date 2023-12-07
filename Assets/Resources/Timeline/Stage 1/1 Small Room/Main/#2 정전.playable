@@ -41,6 +41,41 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-3607312244472862321
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a190d45de2ea9684bad0af55d4ad271a, type: 3}
+  m_Name: Custom Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  <parent>k__BackingField: {fileID: 6503214451318695901}
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 26c1c58eeaf28674a87bc0d142d4999a, type: 2}
+  obj: {fileID: 0}
+--- !u!114 &-654917207162843710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter Object
+  m_EditorClassIdentifier: Assembly-CSharp:Utility.Util:SignalEmitterObject
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: bd947d5cd4a246242b86f77230eef61a, type: 2}
+  parameter: {fileID: 11400000, guid: 7e2254ae427d44d418c8e25cfc485d50, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +96,24 @@ MonoBehaviour:
     m_Framerate: 60
     m_ScenePreview: 1
   m_DurationMode: 0
-  m_MarkerTrack: {fileID: 0}
+  m_MarkerTrack: {fileID: 6503214451318695901}
+--- !u!114 &3352417853572490352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter Sfx
+  m_EditorClassIdentifier: Assembly-CSharp:Utility.Timeline:SignalEmitterSfx
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: bd947d5cd4a246242b86f77230eef61a, type: 2}
+  parameter: {fileID: 8300000, guid: f248cc434a6f4ae4f85282ba3cb9817f, type: 3}
 --- !u!74 &4657808198485222552
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -248,3 +300,48 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &5300955685516855206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Audio Clip
+  m_EditorClassIdentifier: Assembly-CSharp:Utility.Util:SignalEmitterWithAudioClip
+  m_Time: 0.95
+  <parent>k__BackingField: {fileID: 6503214451318695901}
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 0}
+  parameter: {fileID: 8300000, guid: 68fa48a6923dc47c1bedf90b947d6bb5, type: 3}
+--- !u!114 &6503214451318695901
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a16748d9461eae46a725db9776d5390, type: 3}
+  m_Name: Markers
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -3607312244472862321}
+    - {fileID: 5300955685516855206}
+    - {fileID: -654917207162843710}
+    - {fileID: 3352417853572490352}

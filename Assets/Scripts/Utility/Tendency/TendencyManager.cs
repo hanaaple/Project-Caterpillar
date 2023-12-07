@@ -34,6 +34,11 @@ namespace Utility.Tendency
                 activation = 0;
                 inactive = 0;
             }
+            
+            public void DebugTendencyData()
+            {
+                Debug.Log($"성향 - (상승, 하강, 활성, 비활성): {ascent}, {descent}, {activation}, {inactive}");
+            }
         }
 
         private static TendencyManager _instance;

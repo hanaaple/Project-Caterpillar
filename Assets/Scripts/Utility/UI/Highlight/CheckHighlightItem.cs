@@ -11,9 +11,9 @@ namespace Utility.UI.Highlight
             Yes,
             No
         }
-        
+
         public ButtonType buttonType;
-        
+
         [SerializeField] private Sprite defaultSprite;
         [SerializeField] private Sprite selectSprite;
 
@@ -22,13 +22,16 @@ namespace Utility.UI.Highlight
             button.image.sprite = defaultSprite;
         }
 
-        public override void EnterHighlightDisplay()
+        public override void Select()
         {
+            base.Select();
+            button.image.sprite = selectSprite;
         }
 
-        public override void SelectDisplay()
+        public override void DeSelect()
         {
-            button.image.sprite = selectSprite;
+            base.DeSelect();
+            button.image.sprite = defaultSprite;
         }
     }
 }
