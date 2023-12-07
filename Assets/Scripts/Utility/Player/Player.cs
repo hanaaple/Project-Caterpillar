@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.Timeline;
 using Utility.Audio;
 
 namespace Utility.Player
@@ -11,10 +11,11 @@ namespace Utility.Player
         [Serializable]
         public struct StepProps
         {
-            public AudioClip audioClip;
             public float timeInterval;
+
+            public AudioData audioData;
         }
-        
+
         public bool IsCharacterControllable
         {
             get => isCharacterControllable;
@@ -43,8 +44,6 @@ namespace Utility.Player
 
         [SerializeField] private float stepOffset;
         [SerializeField] private StepProps[] stepProps;
-        
-        [Range(0, 1)] [SerializeField] private float volume;
 
         private Animator _animator;
         private int _stepIndex;
@@ -52,17 +51,6 @@ namespace Utility.Player
         private float _stepOffsetTimer;
 
         private readonly int _isMove = Animator.StringToHash("isMove");
-
-        // This function not work on animation
-        // private void OnValidate()
-        // {
-        //     if (!Application.isPlaying || !gameObject.activeSelf)
-        //     {
-        //         return;
-        //     }
-        //
-        //     UpdateControl();
-        // }
 
         private void UpdateControl(bool isEnable = true)
         {
@@ -84,14 +72,12 @@ namespace Utility.Player
                 }
 
                 PlayerManager.Instance.SetPlayer(this);
-                // True
             }
             else
             {
                 if (PlayerManager.Instance.IsPlayer(this))
                 {
                     PlayerManager.Instance.SetPlayer(null);
-                    // False
                 }
             }
         }
@@ -168,24 +154,32 @@ namespace Utility.Player
 
         private void PlaySfx()
         {
-            if (_isStepAudioPlaying || stepProps.Any(item => AudioManager.Instance.IsPlayingSfx(item.audioClip)))
+            if (_isStepAudioPlaying)
             {
                 return;
             }
-            
-            // Animator에서 하느냐 여기서 offset을 추가할 수 있게 하느냐
-            
+
             _isStepAudioPlaying = true;
-            
+
             var step = stepProps[_stepIndex];
-            AudioManager.Instance.PlaySfx(step.audioClip, volume, false);
-            
+            step.audioData.Play();
+
             StartCoroutine(Timer());
         }
 
         private IEnumerator Timer()
         {
-            yield return stepProps[_stepIndex].audioClip.length + stepProps[_stepIndex].timeInterval; 
+            float audioLength = 0;
+
+            audioLength = stepProps[_stepIndex].audioData.audioObject switch
+            {
+                AudioClip audioClip => audioClip.length,
+                TimelineAsset timelineAsset => (float) timelineAsset.duration,
+                _ => audioLength
+            };
+
+
+            yield return audioLength + stepProps[_stepIndex].timeInterval;
             _stepIndex = (_stepIndex + 1) % stepProps.Length;
             _isStepAudioPlaying = false;
         }

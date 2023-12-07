@@ -48,8 +48,9 @@ namespace Utility.Interaction
 
         protected virtual void Awake()
         {
+            // OnAwakeInteraction();
             GameManager.Instance.AddInteraction(this);
-
+            
             UpdateId();
         }
 
@@ -82,52 +83,73 @@ namespace Utility.Interaction
             }
         }
 
-        public void InitializeWait(WaitInteraction waitInteraction, Action onClearAction)
+        public void InitializeWait(WaitInteractionData waitInteractionData, Action onClearAction)
         {
-            waitInteraction.isWaitClear = false;
+            waitInteractionData.isWaitClear = false;
 
-            if (waitInteraction.isInteraction)
+            if (waitInteractionData.isInteraction)
             {
-                interactionIndex = waitInteraction.startIndex;
+                interactionIndex = waitInteractionData.startIndex;
 
 
                 var data = GetInteractionData();
                 data.serializedInteractionData.isInteracted = false;
 
-                if (!waitInteraction.isCustom)
+                if (!waitInteractionData.isCustom)
                 {
                     data.serializedInteractionData.isInteractable = true;
                 }
 
-                var targetData = GetInteractionData(waitInteraction.targetIndex);
+                var targetData = GetInteractionData(waitInteractionData.targetIndex);
                 targetData.serializedInteractionData.isInteracted = false;
 
                 targetData.OnEndAction += () =>
                 {
-                    waitInteraction.Clear();
+                    waitInteractionData.Clear();
 
                     onClearAction?.Invoke();
                 };
             }
-            else if (waitInteraction.isPortal)
+            else if (waitInteractionData.isPortal)
             {
-                var portal = waitInteraction.interaction as Portal.Portal;
+                // var portalaa = SceneHelper.Instance.portalManager;
+                //
+                // portalaa.AddOnTeleport(waitInteraction.targetMapIndex, () =>
+                // {
+                //     // 
+                // });
+
+                var portal = waitInteractionData.interaction as Portal.Portal;
                 if (!portal)
                 {
-                    Debug.LogError("Wait Interactions - Portal 오류");
+                    Debug.LogError($"Wait Interactions - Portal 오류 {waitInteractionData.interaction}");
+                    return;
                 }
 
+                var origin = portal.TeleportEndIsFadeOut;
+                Debug.LogWarning($"wait portal {portal.portalIndex} - {waitInteractionData.isActionAfterFadeOut}");
+                if (waitInteractionData.isActionAfterFadeOut)
+                {
+                    portal.TeleportEndIsFadeOut = true;
+                }
+
+                // 여기 FadeOut만 하고 바로 실행
                 portal.onEndTeleport += () =>
                 {
                     // 나중에 코드 수정해야됨
                     // 이거 말고
-                    // waitInteraction의 포탈의 TargetIndex가 portal이 이동한 결과인지
-                    if (waitInteraction.targetMapIndex != portal.MapIndex)
+                    // waitInteraction 포탈의 TargetIndex가 portal이 이동한 결과인지
+                    if (waitInteractionData.targetMapIndex != portal.CurMapIndex)
                     {
                         return;
                     }
+                    
+                    if (waitInteractionData.isActionAfterFadeOut)
+                    {
+                        portal.TeleportEndIsFadeOut = origin;
+                    }
 
-                    waitInteraction.Clear();
+                    waitInteractionData.Clear();
 
                     onClearAction?.Invoke();
                     onClearAction = () => { };
@@ -135,7 +157,7 @@ namespace Utility.Interaction
             }
 
             Debug.Log(
-                $"인터랙션 대기 초기화, Object: {gameObject} Start Index: {waitInteraction.startIndex}, Target Index: {waitInteraction.targetIndex}");
+                $"인터랙션 대기 초기화 정지 위치: {interactionIndex}, Object: {gameObject} Start Index: {waitInteractionData.startIndex}, Target Index: {waitInteractionData.targetIndex}");
         }
 
         public virtual void StartInteraction(int index = -1)
@@ -150,7 +172,9 @@ namespace Utility.Interaction
                 return;
             }
 
-            var interaction = GetInteractionData(index);
+            interactionIndex = index;
+
+            var interaction = GetInteractionData(interactionIndex);
 
             Debug.Log($"Start Interaction 이름: {gameObject.name} {interaction.interactType}");
 
@@ -161,7 +185,7 @@ namespace Utility.Interaction
 
             if (interaction.isMove)
             {
-                StartCoroutine(MoveTo(index));
+                StartCoroutine(MoveTo(interactionIndex));
             }
             else
             {
@@ -173,12 +197,12 @@ namespace Utility.Interaction
                         if (interaction.dialogueData.dialogueElements.Length == 0)
                         {
                             PlayUIManager.Instance.dialogueController.StartDialogue(interaction.jsonAsset.text,
-                                nextIndex => { EndInteraction(index, nextIndex); });
+                                nextIndex => { EndInteraction(interactionIndex, nextIndex); });
                             Debug.LogWarning("CutScene, Wait 세팅 안되어있을수도 주의");
                         }
                         else
                         {
-                            interaction.dialogueData.OnDialogueEnd = nextIndex => { EndInteraction(index, nextIndex); };
+                            interaction.dialogueData.OnDialogueEnd = nextIndex => { EndInteraction(interactionIndex, nextIndex); };
                             PlayUIManager.Instance.dialogueController.StartDialogue(interaction.dialogueData);
                         }
 
@@ -200,7 +224,7 @@ namespace Utility.Interaction
                     }
                     case InteractType.OneOff:
                     {
-                        EndInteraction(index);
+                        EndInteraction(interactionIndex);
                         break;
                     }
                     case InteractType.Item:
@@ -287,7 +311,7 @@ namespace Utility.Interaction
                         StartInteraction(interaction.itemInteractionData.defaultInteractionIndex);
 
                         break;
-                }
+                    }
                     case InteractType.Tutorial:
                     {
                         PlayUIManager.Instance.quickSlotManager.SetQuickSlot(false);
@@ -297,40 +321,73 @@ namespace Utility.Interaction
                     }
                     case InteractType.Audio:
                     {
-                        if (interaction.isBgm)
+                        if (interaction.audioData.audioObject != null)
                         {
-                            if (interaction.isAudioClip)
-                            {
-                                AudioManager.Instance.PlayBgmWithFade(interaction.audioClip);
-                            }
-                            else if (interaction.isTimelineAudio)
-                            {
-                                AudioManager.Instance.PlayBgmWithFade(interaction.audioTimeline);
-                            }
-                            else
-                            {
-                                Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
-                            }
+                            interaction.audioData.Play();
                         }
-                        else if (interaction.isSfx)
+                        else
                         {
-                            if (interaction.isAudioClip)
+                            if (interaction.isBgm)
                             {
-                                AudioManager.Instance.PlaySfx(interaction.audioClip);
+                                if (interaction.isAudioClip)
+                                {
+                                    AudioManager.Instance.PlayBgmWithFade(interaction.audioClip, interaction.volume);
+                                }
+                                else if (interaction.isTimelineAudio)
+                                {
+                                    AudioManager.Instance.PlayBgmWithFade(interaction.audioTimeline, interaction.volume);
+                                }
+                                else
+                                {
+                                    Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
+                                }
                             }
-                            else if (interaction.isTimelineAudio)
+                            else if (interaction.isSfx)
                             {
-                                AudioManager.Instance.PlaySfx(interaction.audioTimeline);
-                            }
-                            else
-                            {
-                                Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
+                                if (interaction.isAudioClip)
+                                {
+                                    AudioManager.Instance.PlaySfx(interaction.audioClip, interaction.volume);
+                                }
+                                else if (interaction.isTimelineAudio)
+                                {
+                                    AudioManager.Instance.PlaySfx(interaction.audioTimeline, interaction.volume);
+                                }
+                                else
+                                {
+                                    Debug.LogError("오디오 세팅 오류 - Clip, Timeline 구분");
+                                }
                             }
                         }
 
                         EndInteraction();
                         break;
                     }
+                    case InteractType.StopAudio:
+                    {
+                        if (interaction.audioData.audioObject != null)
+                        {
+                            interaction.audioData.Stop();
+                        }
+                        else
+                        {
+                            if (interaction.isStopBgm)
+                            {
+                                AudioManager.Instance.StopBgm();
+                            }
+                            else
+                            {
+                                Debug.LogError($"Error - StopAudio {interactionIndex}");
+                            }
+                        }
+
+                        EndInteraction();
+                        break;
+                    }
+                    case InteractType.Default:
+                        break;
+                    default:
+                        Debug.LogError($"Type - {interaction.interactType}은 없습니다.");
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
@@ -350,7 +407,14 @@ namespace Utility.Interaction
 
             if (nextIndex == -1)
             {
-                nextIndex = (index + 1) % interactionData.Length;
+                if (data.isCustomNextIndex)
+                {
+                    nextIndex = data.targetIndex;
+                }
+                else
+                {
+                    nextIndex = (index + 1) % interactionData.Length;
+                }
             }
 
             Debug.Log($"목표 -> {nextIndex}");
@@ -363,13 +427,12 @@ namespace Utility.Interaction
                 interactionIndex = nextIndex;
             }
 
-            if (data.interactNextIndex)
+            if (data.isInteractNextIndex)
             {
                 nextInteraction.isInteractable = true;
                 interactionIndex = nextIndex;
             }
-
-            if (!data.interactNextIndex)
+            else
             {
                 AudioManager.Instance.ReturnVolume();
             }
@@ -379,7 +442,7 @@ namespace Utility.Interaction
             OnEndInteraction?.Invoke();
             OnEndInteraction = () => { };
 
-            if (data.interactNextIndex)
+            if (data.isInteractNextIndex)
             {
                 StartInteraction(nextIndex);
             }
@@ -537,10 +600,9 @@ namespace Utility.Interaction
                             //     }
                             // }
 
-                            if (dialogueElement.option is { Length: > 0 })
+                            if (dialogueElement.option is {Length: > 0})
                             {
-                                
-                                if (dialogueElement.option.Contains("name=", StringComparer.OrdinalIgnoreCase))
+                                if (dialogueElement.option.Any(item => item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
                                 {
                                     var timelinePath = Array
                                         .Find(dialogueElement.option, item => item.Contains("name="))
@@ -550,6 +612,35 @@ namespace Utility.Interaction
                                     {
                                         Debug.LogWarning(
                                             $"interaction: {index}번, {idx}번 대화, timeline - {timelinePath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                    }
+                                    else
+                                    {
+                                        Debug.Log($"interaction: {index}번, {idx}번 대화, timeline - {timelinePath}, {dialogueElement.waitSec}");
+                                    }
+                                }
+                                else if (dialogueElement.option.Any(item => item.Contains("path=", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    var audioPath =
+                                        Array.Find(dialogueElement.option, item => item.Contains("path="))
+                                            .Split("=")[1];
+                                    var obj = Resources.Load<Object>($"Audio/{audioPath}");
+
+                                    if (obj)
+                                    {
+                                        if (obj is AudioClip clip)
+                                        {
+                                            interaction.dialogueData.dialogueElements[idx].audioClip = clip;
+                                        }
+                                        else if (obj is TimelineAsset timelineAsset)
+                                        {
+                                            interaction.dialogueData.dialogueElements[idx].audioTimeline = timelineAsset;
+                                        }
+                                        Debug.Log($"interaction: {index}번, {idx}번 대화, timeline - {audioPath}, {dialogueElement.waitSec}");
+                                    }
+                                    else
+                                    {
+                                        Debug.LogWarning(
+                                            $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
                                     }
                                 }
                                 else
@@ -571,7 +662,7 @@ namespace Utility.Interaction
                             if (dialogueElement.option is {Length: > 0})
                             {
                                 if (dialogueElement.option.Any(item =>
-                                        item.Contains("name=", StringComparison.OrdinalIgnoreCase)))
+                                        item.Contains("path=", StringComparison.OrdinalIgnoreCase)))
                                 {
                                     var audioPath =
                                         Array.Find(dialogueElement.option, item => item.Contains("path="))
@@ -580,19 +671,23 @@ namespace Utility.Interaction
                                     if (!obj)
                                     {
                                         Debug.LogWarning(
-                                            $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                            $"interaction: {index}번, {idx}번 대화, audio - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                    }
+                                    else
+                                    {
+                                        Debug.Log($"interaction: {index}번, {idx}번 대화, audio - {audioPath}");
                                     }
                                 }
                                 else
                                 {
                                     Debug.LogWarning(
-                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
                                 }
                             }
                             else
                             {
                                 Debug.LogWarning(
-                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
 
                             }
 
@@ -635,28 +730,35 @@ namespace Utility.Interaction
 
                         case DialogueType.CutScene:
                         {
-                            if (dialogueElement.option is { Length: > 0 })
+                            if (dialogueElement.option is {Length: > 0})
                             {
-                                var ignoreSpacingOptions = (string[])dialogueElement.option.Clone();
-                                
+                                var ignoreSpacingOptions = (string[]) dialogueElement.option.Clone();
+
                                 for (var i = 0; i < ignoreSpacingOptions.Length; i++)
                                 {
                                     ignoreSpacingOptions[i] = ignoreSpacingOptions[i].Replace(" ", "");
                                 }
-                                
+
                                 if (ignoreSpacingOptions.Contains("Reset"))
                                 {
                                     interaction.dialogueData.dialogueElements[idx].playableAsset =
                                         Resources.Load<PlayableAsset>("Timeline/Reset");
 
+                                    interaction.dialogueData.dialogueElements[idx].extrapolationMode =
+                                        DirectorWrapMode.Hold;
                                     interaction.dialogueData.dialogueElements[idx].waitSec = -1;
                                     continue;
                                 }
 
-                                interaction.dialogueData.dialogueElements[idx].extrapolationMode =
-                                    ignoreSpacingOptions.Contains("Hold", StringComparer.OrdinalIgnoreCase)
-                                        ? DirectorWrapMode.Hold
-                                        : DirectorWrapMode.None;
+                                if (ignoreSpacingOptions.Contains("Hold", StringComparer.OrdinalIgnoreCase))
+                                {
+                                    interaction.dialogueData.dialogueElements[idx].extrapolationMode = DirectorWrapMode.Hold;
+                                }
+                                else if (ignoreSpacingOptions.Contains("Loop", StringComparer.OrdinalIgnoreCase))
+                                {
+                                    interaction.dialogueData.dialogueElements[idx].extrapolationMode =
+                                        DirectorWrapMode.Loop;
+                                }
 
 
                                 //  var digitOptions = Array.FindAll(dialogueElement.option,
@@ -693,6 +795,37 @@ namespace Utility.Interaction
                                             $"interaction: {index}번, {idx}번 대화, timeline - {timelinePath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
                                     }
                                 }
+                                else if (dialogueElement.option.Any(item => item.Contains("path=", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    var audioPath =
+                                        Array.Find(dialogueElement.option, item => item.Contains("path="))
+                                            .Split("=")[1];
+                                    var obj = Resources.Load<Object>($"Audio/{audioPath}");
+
+                                    if (obj)
+                                    {
+                                        if (obj is AudioClip audioClip)
+                                        {
+                                            // PlaySfxAsBgm?
+                                            // 아무튼 Loop임
+                                            interaction.dialogueData.dialogueElements[idx].audioClip = audioClip;
+                                        }
+                                        if (obj is TimelineAsset timelineAsset)
+                                        {
+                                            interaction.dialogueData.dialogueElements[idx].playableAsset = timelineAsset;
+                                        }
+                                        else
+                                        {
+                                            Debug.LogWarning(
+                                                $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");    
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.LogWarning(
+                                            $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
+                                    }
+                                }
                                 else
                                 {
                                     Debug.LogWarning(
@@ -722,14 +855,13 @@ namespace Utility.Interaction
                                     var obj = Resources.Load<Object>($"Audio/{audioPath}");
                                     if (obj)
                                     {
-                                        if (obj is AudioClip)
+                                        if (obj is AudioClip clip)
                                         {
-                                            interaction.dialogueData.dialogueElements[idx].audioClip = obj as AudioClip;
+                                            interaction.dialogueData.dialogueElements[idx].audioClip = clip;
                                         }
-                                        else if (obj is PlayableAsset)
+                                        else if (obj is TimelineAsset asset)
                                         {
-                                            interaction.dialogueData.dialogueElements[idx].audioTimeline =
-                                                obj as TimelineAsset;
+                                            interaction.dialogueData.dialogueElements[idx].audioTimeline = asset;
                                         }
                                     }
                                     else
@@ -738,11 +870,13 @@ namespace Utility.Interaction
                                             $"interaction: {index}번, {idx}번 대화, timeline - {audioPath} 없음, {dialogueElement.dialogueType} 세팅해야함.");
                                     }
 
-                                    if (dialogueElement.option.Any(item => item.Contains("Sfx", StringComparison.OrdinalIgnoreCase)))
+                                    if (dialogueElement.option.Any(item =>
+                                            item.Contains("Sfx", StringComparison.OrdinalIgnoreCase)))
                                     {
                                         interaction.dialogueData.dialogueElements[idx].isSfx = true;
                                     }
-                                    else if (dialogueElement.option.Any(item => item.Contains("Bgm", StringComparison.OrdinalIgnoreCase)))
+                                    else if (dialogueElement.option.Any(item =>
+                                                 item.Contains("Bgm", StringComparison.OrdinalIgnoreCase)))
                                     {
                                         interaction.dialogueData.dialogueElements[idx].isBgm = true;
                                     }
@@ -751,17 +885,62 @@ namespace Utility.Interaction
                                 else
                                 {
                                     Debug.LogWarning(
-                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                        $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
                                 }
                             }
                             else
                             {
                                 Debug.LogWarning(
-                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.audioClip}, {dialogueElement.audioTimeline}");
+                                    $"{index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함.");
                             }
 
                             break;
                         }
+                    }
+                }
+            }
+        }
+
+        public void SetByWaitInteraction()
+        {
+            for (var index = 0; index < interactionData.Length; index++)
+            {
+                var interaction = interactionData[index];
+
+                if (interaction.dialogueData.dialogueElements == null ||
+                    interaction.dialogueData.dialogueElements.Length == 0)
+                {
+                    continue;
+                }
+                // Wait Interaction이 있는 경우, 나누기
+
+                for (var idx = 0; idx < interaction.dialogueData.dialogueElements.Length; idx++)
+                {
+                    var dialogueElement = interaction.dialogueData.dialogueElements[idx];
+
+                    if (dialogueElement.dialogueType != DialogueType.WaitInteract)
+                    {
+                        continue;
+                    }
+
+                    if (dialogueElement.waitInteractionHelper != null)
+                    {
+                        interaction.dialogueData.dialogueElements[idx].interactionWaitType =
+                            dialogueElement.waitInteractionHelper.interactionWaitType;
+
+                        interaction.dialogueData.dialogueElements[idx].waitInteractions =
+                            new WaitInteractions
+                            {
+                                waitInteractionData = dialogueElement.waitInteractionHelper.waitInteractions
+                            };
+
+                        Debug.Log(
+                            $"interaction: {index}번, {idx}번 대화, {dialogueElement.waitInteractionHelper}, {dialogueElement.contents}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning(
+                            $"interaction: {index}번, {idx}번 대화, {dialogueElement.dialogueType} 세팅해야함. {dialogueElement.contents}");
                     }
                 }
             }

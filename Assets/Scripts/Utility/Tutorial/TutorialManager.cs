@@ -13,8 +13,8 @@ namespace Utility.Tutorial
         [SerializeField] private GameObject tutorialPanel;
         [SerializeField] private Image tutorialImage;
         [SerializeField] private Animator pressKeyAnimator;
-        [SerializeField] private AudioClip activeAudioClip;
-        [SerializeField] private AudioClip turnPageAudioClip;
+        [SerializeField] private AudioData activeAudioData;
+        [SerializeField] private AudioData turnPageAudioData;
 
         private InputActions _inputActions;
         private TutorialHelper _tutorialHelper;
@@ -27,7 +27,7 @@ namespace Utility.Tutorial
             _inputActions = new InputActions(nameof(TutorialManager))
             {
                 OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause?.Invoke(); },
-                OnInteract = () =>
+                OnInteractPerformed = () =>
                 {
                     pressKeyAnimator.SetBool(IsPressHash, true);
                     if (_tutorialHelper.GetIsEnd())
@@ -39,7 +39,7 @@ namespace Utility.Tutorial
                     }
                     else
                     {
-                        AudioManager.Instance.PlaySfx(turnPageAudioClip, 1f, true, true);
+                        turnPageAudioData.Play();
                         _tutorialHelper.StartNext();
                     }
                 },
@@ -57,7 +57,7 @@ namespace Utility.Tutorial
             pressKeyAnimator.SetBool(IsPressHash, false);
             InputManager.PushInputAction(_inputActions);
             TimeScaleHelper.Push(0f);
-            AudioManager.Instance.PlaySfx(activeAudioClip, 1f, true, true);
+            activeAudioData.Play();
         }
     }
 }

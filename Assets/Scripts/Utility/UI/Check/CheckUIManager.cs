@@ -29,14 +29,7 @@ namespace Utility.UI.Check
             {
                 var noIndex = Array.FindIndex(checkHighlightItems,
                     item => item.buttonType == CheckHighlightItem.ButtonType.No);
-                // if (_checkHighlighter.selectedIndex == noIndex)
-                // {
                 checkHighlightItems[noIndex].button.onClick?.Invoke();
-                // }
-                // else
-                // {
-                //     _checkHighlighter.Select(noIndex);
-                // }
             });
         }
 
@@ -58,6 +51,7 @@ namespace Utility.UI.Check
 
         public void Push(bool isDuplicatePossible = false, bool isReset = false)
         {
+            Debug.Log("Push Check UI");
             gameObject.SetActive(true);
             HighlightHelper.Instance.Push(_checkHighlighter, isDuplicatePossible, isReset);
         }

@@ -414,7 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -439,6 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1149198977204317153}
+  - component: {fileID: 6925411526539276213}
   m_Layer: 5
   m_Name: Inventory Panel
   m_TagString: Untagged
@@ -470,6 +471,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &6925411526539276213
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149198977204317152}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1149198977309856935
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +806,7 @@ GameObject:
   - component: {fileID: 1149198977554169252}
   - component: {fileID: 1149198977554169251}
   - component: {fileID: 1149198977554169250}
+  - component: {fileID: 3835082042099580361}
   m_Layer: 5
   m_Name: Inventory Button
   m_TagString: Untagged
@@ -902,6 +916,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3835082042099580361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149198977554169248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1149198977641681780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,6 +3325,102 @@ MonoBehaviour:
     isEnable: 0
     itemType: 3
     itemPanel: {fileID: 5046850274994922303}
+  bagHighlightAudioData:
+    audioObject: {fileID: 8300000, guid: 296cdbe1923d7f64c8d070fb54e2fc1c, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  bagClickAudioData:
+    audioObject: {fileID: 11400000, guid: 3247d4a7d58f2964796d2974902a3ab6, type: 2}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  bagExitAudioData:
+    audioObject: {fileID: 8300000, guid: f8f6519f6ff976f43801ac593d94cd95, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 0
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  bagMenuHighlightAudioData:
+    audioObject: {fileID: 8300000, guid: 00f6b4b918ce5714199abb852c699a2a, type: 3}
+    volume: 0.3
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 1
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  bagMenuSelectAudioData:
+    audioObject: {fileID: 11400000, guid: ef3a935daeb6ddb48a6a74bf04cbfe08, type: 2}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 1
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  bagItemSelectAudioData:
+    audioObject: {fileID: 8300000, guid: 296cdbe1923d7f64c8d070fb54e2fc1c, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 0
+    isOneShot: 1
+    ignoreTimeScale: 1
+    isFade: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   necklacePanel: {fileID: 1149198977733598249}
   necklace: {fileID: 4386405725014432801}
 --- !u!1 &5468246161557100572

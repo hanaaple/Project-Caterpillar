@@ -4,18 +4,16 @@ using UnityEngine;
 
 namespace Utility.Util
 {
-    public class AnimationTrigger : MonoBehaviour
+    public class AnimationTrigger : Trigger
     {
         [SerializeField] private Animator animator;
         [SerializeField] private string animatorTrigger;
         [SerializeField] private string animationName;
         [SerializeField] private AnimationClip animationClip;
         
-        public Action onTriggerEnter;
-
-        private void Start()
+        protected override void Start()
         {
-            gameObject.layer = LayerMask.NameToLayer("OnlyPlayerCheck");
+            base.Start();
             
             var aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
             var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
@@ -25,14 +23,15 @@ namespace Utility.Util
             animator.runtimeAnimatorController = aoc;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
+            base.OnTriggerEnter2D(other);
+            
             if (other.isTrigger)
             {
                 return;
             }
             
-            onTriggerEnter?.Invoke();
             animator.SetTrigger(animatorTrigger);
         }
     }

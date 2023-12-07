@@ -93,6 +93,9 @@ namespace Utility.SaveSystem
     {
         public string describe;
         public string sceneName;
-        public int playTime;
+        public string stageText;
+        public TimeSpan playTime;
+        public string date;
+        public string lastPlayTime;
     }
 }

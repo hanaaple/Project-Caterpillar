@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Core;
 using Utility.InputSystem;
+using Utility.Interaction;
 using Utility.Scene;
 
 namespace Utility.Player
@@ -37,7 +38,7 @@ namespace Utility.Player
         }
 
         [NonSerialized] public Player Player;
-        [NonSerialized] private List<Interaction.Interaction> _interactions;
+        [NonSerialized] private List<InputInteraction> _inputInteractions;
         private Camera _camera;
         private Vector3 _minBounds;
         private Vector3 _maxBounds;
@@ -57,7 +58,7 @@ namespace Utility.Player
         {
             _inputActions = new InputActions(nameof(Utility.Player.Player))
             {
-                OnInteract = () =>
+                OnInteractPerformed = () =>
                 {
                     if (Player != null)
                     {
@@ -74,7 +75,7 @@ namespace Utility.Player
                         _input = Vector3.zero;
                     }
                 },
-                OnInventory = _ =>
+                OnInventory = () =>
                 {
                     if (SceneHelper.Instance.playType == PlayType.MainField)
                     {
@@ -96,7 +97,7 @@ namespace Utility.Player
         {
             PushInputAction(playType);
             UpdateCamera();
-            _interactions = new List<Interaction.Interaction>();
+            _inputInteractions = new List<InputInteraction>();
         }
 
         private void UpdateCamera()
@@ -119,13 +120,13 @@ namespace Utility.Player
 
         private void Interact()
         {
-            if (_interactions.Count == 0)
+            if (_inputInteractions.Count == 0)
             {
                 return;
             }
 
-            var nearInteraction = _interactions.OrderBy(item => Vector2.Distance(item.transform.position, Player.transform.position)).First();
-            nearInteraction.StartInteraction();
+            var nearInteraction = _inputInteractions.OrderBy(item => Vector2.Distance(item.transform.position, Player.transform.position)).First();
+            nearInteraction.StartInputInteraction();
         }
 
         private void PushInputAction(PlayType playType)
@@ -141,14 +142,14 @@ namespace Utility.Player
             InputManager.PopInputAction(_inputActions);
         }
 
-        public void PushInteraction(Interaction.Interaction interaction)
+        public void PushInteraction(InputInteraction interaction)
         {
-            _interactions.Add(interaction);
+            _inputInteractions.Add(interaction);
         }
         
-        public void PopInteraction(Interaction.Interaction interaction)
+        public void PopInteraction(InputInteraction interaction)
         {
-            _interactions.Remove(interaction);
+            _inputInteractions.Remove(interaction);
         }
 
         public void SetPlayer(Player mPlayer)

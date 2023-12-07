@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Game.Default;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,8 @@ using Utility.InputSystem;
 using Utility.SaveSystem;
 using Utility.Scene;
 using Utility.Tutorial;
+using Utility.UI.Check;
+using Utility.UI.Highlight;
 using Utility.Util;
 
 namespace Game.Stage1.ShadowGame.Default
@@ -25,18 +28,20 @@ namespace Game.Stage1.ShadowGame.Default
     {
         [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
 
-        [Header("Audio")] [SerializeField] private AudioClip bgm;
-        
+        [Header("Audio")] [SerializeField] private AudioData bgmAudioData;
+
+        /// <summary>
+        /// sfx, loop, fade
+        /// </summary>
+        [SerializeField] private AudioData crisisAudioData;
+
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
+
         [SerializeField] private BoxCollider2D cameraBound;
 
         [Space(10)] [Header("Light")] [SerializeField]
         private Flashlight flashlight;
-
-        [Space(20)] [Header("Canvas")] [SerializeField]
-        private Button retryButton;
-        [SerializeField] private Button giveUpButton;
 
         [Space(20)] [Header("Play UI")] [SerializeField]
         private Animator heartAnimator;
@@ -46,6 +51,13 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private Animator batteryAnimator;
         [SerializeField] private float itemPopupSec;
 
+        [Space(20)] [Header("GameOver")] [SerializeField]
+        private Button retryButton;
+
+        [SerializeField] private Button giveUpButton;
+        [SerializeField] private SelectHighlightItem[] gameOverHighlightItems;
+        [SerializeField] private CheckUIManager checkUIManager;
+
         [Space(20)] [Header("스테이지")] [SerializeField]
         protected Animator gameAnimator;
 
@@ -54,6 +66,7 @@ namespace Game.Stage1.ShadowGame.Default
         [SerializeField] private ShadowGameItem[] shadowGameItems;
         [SerializeField] private int stageCount;
         [SerializeField] private float stageSec;
+        [SerializeField] private float crisisSec = 7;
 
         [Space(20)] [Header("디버깅용")] [SerializeField]
         protected int stageIndex;
@@ -82,6 +95,8 @@ namespace Game.Stage1.ShadowGame.Default
         private InputActions _inputActions;
         private InputActions _popupInputActions;
 
+        private Highlighter _gameOverHighlighter;
+
         private Coroutine _stageUpdateCoroutine;
         private Coroutine _stageMonsterDefeatCoroutine;
         private Coroutine _itemTimer;
@@ -102,7 +117,7 @@ namespace Game.Stage1.ShadowGame.Default
             _inputActions = new InputActions("ShadowGameManager")
             {
                 OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); },
-                OnLeftClick = _ =>
+                OnLeftClick = () =>
                 {
                     if (!_isPlaying)
                     {
@@ -111,7 +126,7 @@ namespace Game.Stage1.ShadowGame.Default
 
                     foreach (var shadowGameItem in shadowGameItems)
                     {
-                        shadowGameItem.TryClick();
+                        shadowGameItem.TryClick(_camera);
                     }
                 }
             };
@@ -121,6 +136,21 @@ namespace Game.Stage1.ShadowGame.Default
                 OnEsc = () => { PlayUIManager.Instance.pauseManager.onPause(); },
                 OnLeftClick = PopDownItem
             };
+
+            _gameOverHighlighter = new Highlighter("GameOver Highlight")
+            {
+                HighlightItems = new List<HighlightItem>(gameOverHighlightItems),
+                highlightType = Highlighter.HighlightType.HighlightIsSelect
+            };
+
+            _gameOverHighlighter.onPush = () => { _gameOverHighlighter.Select(0); };
+
+            foreach (var highlightItem in gameOverHighlightItems)
+            {
+                highlightItem.Init(highlightItem.button.GetComponentInChildren<Animator>(true));
+            }
+
+            _gameOverHighlighter.Init(Highlighter.ArrowType.Horizontal);
         }
 
         private void Start()
@@ -134,11 +164,21 @@ namespace Game.Stage1.ShadowGame.Default
             _yScreenHalfSize = _camera.orthographicSize;
             _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 
-            giveUpButton.onClick.AddListener(() =>
+            checkUIManager.Initialize();
+            checkUIManager.SetText("이야기를 포기할 경우, 재 진행이 어렵습니다.\n이 기억의 이야기를 포기 하시겠습니까?");
+
+            checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
             {
+                checkUIManager.Pop();
+                HighlightHelper.Instance.Pop(_gameOverHighlighter);
                 SaveHelper.SetNpcData(NpcType.Photographer, NpcState.Fail);
                 SceneLoader.Instance.LoadScene("MainScene");
             });
+
+            checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () => { checkUIManager.Pop(); });
+
+            giveUpButton.onClick.AddListener(() => { checkUIManager.Push(); });
+
             retryButton.onClick.AddListener(ReStartGame);
 
             for (var idx = 0; idx < shadowGameItems.Length; idx++)
@@ -166,9 +206,9 @@ namespace Game.Stage1.ShadowGame.Default
                 return;
             }
 
-            var worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
+            var worldPoint = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             flashlight.MoveFlashLight(worldPoint);
-            CameraMove(Input.mousePosition);
+            CameraMove(Mouse.current.position.ReadValue());
         }
 
         private void ResetSetting()
@@ -198,8 +238,8 @@ namespace Game.Stage1.ShadowGame.Default
         {
             yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
             yield return new WaitForSeconds(1f);
-            
-            AudioManager.Instance.PlayBgmWithFade(bgm);
+
+            bgmAudioData.Play();
             gameAnimator.SetTrigger(PlayHash);
             StartStage();
         }
@@ -269,7 +309,7 @@ namespace Game.Stage1.ShadowGame.Default
             yield return new WaitUntil(
                 () => shadowMonster.monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
             // Set Attack Enable
-            shadowMonster.SetActive(true);
+            shadowMonster.SetEnable(true);
 
 
             // 괴물 등장, 효과음
@@ -277,10 +317,17 @@ namespace Game.Stage1.ShadowGame.Default
             var sec = 0f;
             while (sec <= stageSec)
             {
+                if (sec > crisisSec)
+                {
+                    crisisAudioData.Play();
+                }
+
                 gameAnimator.SetFloat(SecHash, sec / stageSec);
                 sec += Time.deltaTime;
                 yield return null;
             }
+
+            crisisAudioData.Stop();
 
             _isPlaying = false;
             Mentality--;
@@ -367,6 +414,14 @@ namespace Game.Stage1.ShadowGame.Default
             }
         }
 
+        /// <summary>
+        /// Animator Event
+        /// </summary>
+        public void GameOverPush()
+        {
+            HighlightHelper.Instance.Push(_gameOverHighlighter);
+        }
+
         private IEnumerator ItemTimer()
         {
             yield return new WaitForSecondsRealtime(itemPopupSec);
@@ -444,12 +499,13 @@ namespace Game.Stage1.ShadowGame.Default
 
         private void ReStartGame()
         {
+            HighlightHelper.Instance.Pop(_gameOverHighlighter);
             ResetSetting();
             gameAnimator.SetTrigger(ResetHash);
             StartCoroutine(StartGame());
         }
 
-        private void PopDownItem(InputAction.CallbackContext _ = default)
+        private void PopDownItem()
         {
             foreach (var toastContent in shadowGameItems[_selectedItemIndex].toastContents)
             {

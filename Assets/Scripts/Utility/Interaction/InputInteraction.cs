@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utility.Audio;
 using Utility.Core;
 using Utility.Player;
 #if UNITY_EDITOR
@@ -17,6 +18,12 @@ public class InputInteractionEditor : Editor
         if (GUILayout.Button("SetDialogue"))
         {
             generator.SetDialogue();
+            EditorUtility.SetDirty(generator);
+        }
+        
+        if (GUILayout.Button("Set WaitInteraction"))
+        {
+            generator.SetByWaitInteraction();
             EditorUtility.SetDirty(generator);
         }
         
@@ -43,11 +50,11 @@ namespace Utility.Interaction
 
         [Header("Floating Mark")] [FormerlySerializedAs("floatingMark")] [FormerlySerializedAs("ui")] [SerializeField]
         private GameObject defaultFloatingMark;
-
         [SerializeField] private FloatingMark[] floatingMarks;
-
         [FormerlySerializedAs("offset")] [SerializeField]
         private Vector2 defaultOffset;
+        
+        [SerializeField] private AudioClip interactAudioClip;
 
         private void Update()
         {
@@ -75,7 +82,15 @@ namespace Utility.Interaction
                     }
                 }
             };
+            
             base.StartInteraction(index);
+        }
+        
+        public void StartInputInteraction(int index = -1)
+        {
+            AudioManager.Instance.PlaySfx(interactAudioClip);
+            
+            StartInteraction(index);
         }
 
         private void OnTriggerEnter2D(Collider2D col)

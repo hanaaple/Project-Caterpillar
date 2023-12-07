@@ -8,10 +8,11 @@ namespace Game.Stage1.MiniGame
     {
         [SerializeField] private PasswordItem[] passwordItems;
         [SerializeField] private string correct;
-
-        [SerializeField] private AudioClip dialAudioClip;
-        [SerializeField] private AudioClip failAudioClip;
-        [SerializeField] private AudioClip clearAudioClip;
+        
+        [SerializeField] private AudioData dialAudioData;
+        [SerializeField] private AudioData failAudioData;
+        [SerializeField] private AudioData clearAudioData;
+        
         
         [Header("For Debug")] [SerializeField] private string password;
         [SerializeField] private int selectedIndex;
@@ -49,6 +50,7 @@ namespace Game.Stage1.MiniGame
                 }
             };
 
+            password = string.Empty;
             selectedIndex = 0;
             foreach (var passwordItem in passwordItems)
             {
@@ -64,7 +66,7 @@ namespace Game.Stage1.MiniGame
 
         private void Push(string key)
         {
-            AudioManager.Instance.PlaySfx(dialAudioClip);
+            dialAudioData.Play();
             passwordItems[selectedIndex].DeBlink();
             passwordItems[selectedIndex].SetText(key);
             password += key;
@@ -101,11 +103,11 @@ namespace Game.Stage1.MiniGame
         {
             if (isClear)
             {
-                AudioManager.Instance.PlaySfx(clearAudioClip);
+                clearAudioData.Play();
             }
             else
             {
-                AudioManager.Instance.PlaySfx(failAudioClip);
+                failAudioData.Play();
             }
 
             base.End(isClear);

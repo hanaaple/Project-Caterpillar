@@ -1,25 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using Utility.Drag_Drop;
 
 namespace Game.Stage1.Camping.Interaction.Map
 {
-    public class CampingDropItem : DropItem
+    public class CampingDropItem : MonoBehaviour, IDropHandler
     {
+        [SerializeField] protected CampingDragItem dragItem;
+        
         [SerializeField] private int x;
         [SerializeField] private int y;
 
         private bool _isInit;
-        private DragItem _originDragItem;
+        private CampingDragItem _originDragItem;
         
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
-
-            if (dragItem && dragItem.TryGetComponent(out CampingDragItem campingDragItem))
+            if (dragItem)
             {
-                campingDragItem.x = x;
-                campingDragItem.y = y;
+                dragItem.OnBeginDragAction = ResetDropItem;
+                var rectTransform = dragItem.GetComponent<RectTransform>();
+                rectTransform.anchoredPosition = rectTransform.anchoredPosition;
+                
+                if (dragItem.TryGetComponent(out CampingDragItem campingDragItem))
+                {
+                    campingDragItem.x = x;
+                    campingDragItem.y = y;
+                }
             }
 
             if (!_isInit)
@@ -29,12 +35,16 @@ namespace Game.Stage1.Camping.Interaction.Map
             }
         }
 
-        public override void OnDrop(PointerEventData eventData)
+        public void OnDrop(PointerEventData eventData)
         {
             if (!dragItem && eventData.pointerDrag &&
                 eventData.pointerDrag.TryGetComponent(out CampingDragItem campingDragItem))
             {
-                base.OnDrop(eventData);
+                dragItem = eventData.pointerDrag.GetComponent<CampingDragItem>();
+                dragItem.OnBeginDragAction = ResetDropItem;
+                dragItem.GetComponent<RectTransform>().anchoredPosition =
+                    GetComponent<RectTransform>().anchoredPosition;
+
                 campingDragItem.x = x;
                 campingDragItem.y = y;
             }
@@ -45,6 +55,17 @@ namespace Game.Stage1.Camping.Interaction.Map
             dragItem = _originDragItem;
             
             Start();
+        }
+        
+        private void ResetDropItem()
+        {
+            dragItem.OnBeginDragAction = () => {};
+            dragItem = null;
+        }
+
+        public bool HasItem()
+        {
+            return dragItem != null;
         }
     }
 }

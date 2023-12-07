@@ -10,18 +10,25 @@ namespace Utility.InputSystem
 {
     public static class InputManager
     {
+        private class BindInputAction
+        {
+            public InputAction InputAction;
+            public int BindingIndex;
+            public string OriginalDisplayName;
+        }
+
         private static InputControl _inputControl;
 
         public static InputControl InputControl
         {
             get { return _inputControl ??= new InputControl(); }
         }
-        
-        private static int _inputActionCount;
-        
+
         internal static readonly List<InputActions> InputActionsList = new();
-        private static readonly object LockObject = new();
+        private static bool _isPlaying;
+
         private static readonly Queue<KeyValuePair<InputActions, bool>> QueueInputActions = new();
+
         //action (Move, dialogue, interact ...), ID (1 - up, 2 - down ...)
         private static readonly List<BindInputAction> BindInputActions = new();
 
@@ -32,82 +39,110 @@ namespace Utility.InputSystem
         public static event Action RebindReset;
         public static event Action<InputAction, int> RebindStarted;
 
-        private class BindInputAction
-        {
-            public InputAction InputAction;
-            public int BindingIndex;
-            public string OriginalDisplayName;
-        }
-
         public static void ResetInputAction()
         {
-            while (InputActionsList.Count > 0)
+            if (InputActionsList.Count == 0)
             {
-                PopInputAction(InputActionsList.Last());
+                return;
             }
+
+            foreach (var inputActions in InputActionsList)
+            {
+                QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, false));
+            }
+
+            EnqueueInputAction();
         }
 
         public static void PushInputAction(InputActions inputActions)
         {
-            Debug.Log($"Push InputAction {inputActions.Name}");
+            Debug.Log($"Push InputAction {inputActions.Name}\n" +
+                      $"대기 개수: {QueueInputActions.Count}");
             QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, true));
             EnqueueInputAction();
         }
 
         public static void PopInputAction(InputActions inputActions)
         {
-            Debug.Log($"Pop InputAction {inputActions.Name}");
+            Debug.Log($"Pop InputAction {inputActions.Name}\n" +
+                      $"대기 개수: {QueueInputActions.Count}");
             QueueInputActions.Enqueue(new KeyValuePair<InputActions, bool>(inputActions, false));
             EnqueueInputAction();
         }
 
-        private static async void AsyncQueueInputAction()
+        /// <summary>
+        /// Error - Assertion failed z 쭉 누르면
+        /// </summary>
+        private static async void AsyncEnqueueInputAction()
         {
-            await Task.Delay(10);
-
-            lock (LockObject)
+            if (_isPlaying)
             {
-                var inputActions = QueueInputActions.Dequeue();
-                if (inputActions.Value)
+                return;
+            }
+            // InputControl.Input.Disable();
+            _isPlaying = true;
+            while (QueueInputActions.Count > 0)
+            {
+                var dequeue = QueueInputActions.Dequeue();
+                if (dequeue.Value)
                 {
                     if (InputActionsList.Count > 0)
                     {
                         InputActionsList.Last().SetAction(false);
+                        Debug.LogWarning($"Set InputAction {InputActionsList.Last().Name}");
+                        // Debug.Log($"Set Disable Last {InputActionsList.Last().Name}");
                     }
-                    InputActionsList.Add(inputActions.Key);
-                    inputActions.Key.SetAction(true);
+
+                    await Task.Delay(200);
                     
-                    Debug.Log($"Push {InputActionsList.Count}   {inputActions.Key.Name}\n" +
-                              $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+                    InputActionsList.Add(dequeue.Key);
+                    dequeue.Key.SetAction(true);
+                    Debug.Log(
+                        $"Push InputAction {InputActionsList.Count}   {dequeue.Key.Name}\n" +
+                        $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
                 }
                 else
                 {
-                    if (!InputActionsList.Contains(inputActions.Key))
+                    if (!InputActionsList.Contains(dequeue.Key))
                     {
-                        return;
+                        Debug.LogWarning($"{dequeue.Key.Name}이 존재하지 않음");
+                        break;
                     }
 
-                    inputActions.Key.SetAction(false);
-                    InputActionsList.Remove(inputActions.Key);
-            
-                    Debug.Log($"Pop {InputActionsList.Count}   {inputActions.Key.Name}\n" +
-                              $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
+                    dequeue.Key.SetAction(false);
+                    InputActionsList.Remove(dequeue.Key);
+                    
+                    Debug.Log(
+                        $"Pop InputAction {InputActionsList.Count}   {dequeue.Key.Name}\n" +
+                        $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
 
-                    // 몇초후에 가능하도록 Add
                     if (InputActionsList.Count > 0)
                     {
+                        // Debug.Log($"Set Enable Last {InputActionsList.Last().Name}");
+                        await Task.Delay(200);
                         InputActionsList.Last().SetAction(true);
                     }
                 }
             }
+            _isPlaying = false;
+            if (InputActionsList.Count > 0)
+            {
+                InputControl.Input.Enable();
+            }
+            else
+            {
+                InputControl.Input.Disable();
+            }
         }
 
         /// <summary>
-        /// inputActions.Value - true is Push, false is Pop
+        /// Error - Event Works by SetEnable(Last)
         /// </summary>
         private static void EnqueueInputAction()
         {
             var inputActions = QueueInputActions.Dequeue();
+
+            Debug.Log($"SetInputAction {inputActions.Key.Name} {inputActions.Value}");
             if (inputActions.Value)
             {
                 if (InputActionsList.Count > 0)
@@ -121,51 +156,28 @@ namespace Utility.InputSystem
                 Debug.Log($"Push {InputActionsList.Count}   {inputActions.Key.Name}\n" +
                           $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
             }
-            else
+            else if (InputActionsList.Contains(inputActions.Key))
             {
-                if (!InputActionsList.Contains(inputActions.Key))
-                {
-                    return;
-                }
-
-                inputActions.Key.SetAction(false);
                 InputActionsList.Remove(inputActions.Key);
+                inputActions.Key.SetAction(false);
 
-                Debug.Log($"Pop {InputActionsList.Count}   {inputActions.Key.Name}\n" +
-                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
-
-                // 몇초후에 가능하도록 Add
                 if (InputActionsList.Count > 0)
                 {
                     InputActionsList.Last().SetAction(true);
                 }
+
+                Debug.Log($"Pop {InputActionsList.Count}   {inputActions.Key.Name}\n" +
+                          $"{string.Concat(InputActionsList.Select(item => " > " + item.Name))}");
             }
-        }
 
-        public static void SetInputActions(bool isAdd)
-        {
-            if (isAdd)
+            // Last InputAction Works Immediately How Can I Solve this problem?
+            if (InputActionsList.Count > 0)
             {
-                if (_inputActionCount == 0)
-                {
-                    var inputActions = InputControl.Input;
-                    inputActions.Enable();
-                }
-
-                _inputActionCount++;
+                InputControl.Input.Enable();
             }
             else
             {
-                _inputActionCount--;
-                if (_inputActionCount == 0)
-                {
-                    var inputActions = InputControl.Input;
-                    inputActions.Disable();
-                }
-                else if (_inputActionCount < 0)
-                {
-                    Debug.LogError("오류");
-                }
+                InputControl.Input.Disable();
             }
         }
 
@@ -211,12 +223,14 @@ namespace Utility.InputSystem
                 var firstPartIndex = bindingIndex + 1;
                 if (firstPartIndex < inputAction.bindings.Count && inputAction.bindings[firstPartIndex].isComposite)
                 {
-                    DoRebind(inputAction, bindingIndex, statusText, bindingPanel, true, excludeMouse, excludeInputActionPaths);
+                    DoRebind(inputAction, bindingIndex, statusText, bindingPanel, true, excludeMouse,
+                        excludeInputActionPaths);
                 }
             }
             else
             {
-                DoRebind(inputAction, bindingIndex, statusText, bindingPanel, false, excludeMouse, excludeInputActionPaths);
+                DoRebind(inputAction, bindingIndex, statusText, bindingPanel, false, excludeMouse,
+                    excludeInputActionPaths);
             }
         }
 
@@ -250,7 +264,8 @@ namespace Utility.InputSystem
                         if (nextBindingIndex < actionToRebind.bindings.Count &&
                             actionToRebind.bindings[nextBindingIndex].isComposite)
                         {
-                            DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse, excludeInputActionPaths);
+                            DoRebind(actionToRebind, nextBindingIndex, statusText, bindingPanel, true, excludeMouse,
+                                excludeInputActionPaths);
                         }
                     }
 
@@ -262,7 +277,8 @@ namespace Utility.InputSystem
 
                     if (bind == null)
                     {
-                        Debug.Log($"{originBindingName},  {bindingName}, {actionToRebind.bindings[bindingIndex].effectivePath}");
+                        Debug.Log(
+                            $"{originBindingName},  {bindingName}, {actionToRebind.bindings[bindingIndex].effectivePath}");
                     }
                     else
                     {
@@ -290,7 +306,7 @@ namespace Utility.InputSystem
                         BindInputActions.Remove(bind);
                         Debug.Log("하이  " + BindInputActions.Count);
                     }
-                    
+
                     foreach (var inputControlBinding in _inputControl.bindings)
                     {
                         // 이미 바인딩 되어있는 키(Rebind 가능한 것만)로 바꿀 경우
@@ -456,10 +472,10 @@ namespace Utility.InputSystem
             var aArray = a.bindings.Select(inputBinding => inputBinding.ToDisplayString()).ToArray();
             var bArray = b.bindings.Select(inputBinding => inputBinding.ToDisplayString()).ToArray();
             var array = aArray.Concat(bArray).Distinct().ToArray();
-            
+
 //            Debug.Log(string.Join(", ", array));
 //            Debug.Log($"Is Duplicated - {array.Length != aArray.Length + bArray.Length}");
-            
+
 //            Debug.Log($"A: {string.Join(", ", aArray)}");
 //            Debug.Log($"B: {string.Join(", ", bArray)}");
 

@@ -36,28 +36,31 @@ namespace Game.Stage1.BeachGame
 
             public BeachInteraction[] interactions;
             
-            public AudioClip audioClip;
+            public AudioData audioData;
             [NonSerialized] public bool IsClear;
         }
         
         [Header("Tutorial")] [SerializeField] private TutorialHelper tutorialHelper;
-        
-        [Header("Bgm")] [SerializeField] private AudioClip bgm;
+
+        [Header("Audio")] [SerializeField] private AudioData bgmAudioData;
+        [SerializeField] private AudioData glassAudioData;
+        [SerializeField] private AudioData collectAudioData;
+        [SerializeField] private AudioData albumCloseAudioData;
         
         [Header("Field")] [SerializeField] private GameObject[] backgrounds;
         [FormerlySerializedAs("beachInteractions")] [SerializeField] private BeachInteractionList[] beachInteractionList;
-        [SerializeField] private AudioClip collectAudioClip;
+        [SerializeField] private int glassAudioMapIndex;
 
         [Header("Field UI")] [SerializeField] private WatchDragger watchDragger;
 
         [Header("Album UI")] [SerializeField] private Button albumButton;
         [SerializeField] private Animator albumAnimator;
         [SerializeField] private AlbumPicture[] albumPictures;
-        [SerializeField] private AudioClip albumCloseAudioClip;
 
         [SerializeField] private ToastData endToastData;
         
         private InputActions _inputActions;
+        private bool _isGlassPlayed;
         
         private static readonly int OpenHash = Animator.StringToHash("Open");
         private static readonly int EndHash = Animator.StringToHash("GameEnd");
@@ -79,7 +82,7 @@ namespace Game.Stage1.BeachGame
             {
                 if (albumAnimator.GetBool(OpenHash))
                 {
-                    AudioManager.Instance.PlaySfx(albumCloseAudioClip);
+                    albumCloseAudioData.Play();
                     albumAnimator.SetBool(OpenHash, false);
                     SetInteractable(true);
                 }
@@ -125,8 +128,14 @@ namespace Game.Stage1.BeachGame
 
                     interaction.onInteract += () =>
                     {
-                        AudioManager.Instance.PlaySfx(collectAudioClip);
-                        AudioManager.Instance.PlaySfx(beachInteraction.audioClip);
+                        if (beachInteraction.audioData.audioObject)
+                        {
+                            beachInteraction.audioData.Play();    
+                        }
+                        else
+                        {
+                            collectAudioData.Play();
+                        }
                     };
 
                     switch (beachInteraction.beachInteractType)
@@ -146,7 +155,7 @@ namespace Game.Stage1.BeachGame
                                 interaction.gameObject.SetActive(false);
                                 foreach (var t in beachInteraction.interactions)
                                 {
-                                    t.Interactable = false;
+                                    t.IsInteractable = false;
                                 }
 
                                 var albumPicture = Array.Find(albumPictures,
@@ -176,9 +185,9 @@ namespace Game.Stage1.BeachGame
                                 albumPicture.SetPanel(idx);
 
                                 interaction.gameObject.SetActive(false);
-                                interaction.Interactable = false;
+                                interaction.IsInteractable = false;
 
-                                var isClear = beachInteraction.interactions.All(item => !item.Interactable);
+                                var isClear = beachInteraction.interactions.All(item => !item.IsInteractable);
                                 if (isClear)
                                 {
                                     beachInteraction.IsClear = true;
@@ -208,13 +217,13 @@ namespace Game.Stage1.BeachGame
         {
             InputManager.PushInputAction(_inputActions);
             albumButton.gameObject.SetActive(true);
-            watchDragger.Reseet();
+            watchDragger.Init();
             foreach (var albumPicture in albumPictures)
             {
                 albumPicture.Reeset();
             }
             
-            AudioManager.Instance.PlayBgmWithFade(bgm);
+            bgmAudioData.Play();
 
             StartCoroutine(HintTimer());
         }
@@ -282,6 +291,11 @@ namespace Game.Stage1.BeachGame
                 nextSpriteRenderer.sortingOrder = 3;
 
                 backgrounds[nextIdx].SetActive(true);
+                if (nextIdx == glassAudioMapIndex && !_isGlassPlayed)
+                {
+                    glassAudioData.Play();
+                    _isGlassPlayed = true;
+                }
 
                 var t = 0f;
                 const float timer = .5f;

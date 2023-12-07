@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utility.Audio;
 using Utility.Scene;
 
 namespace Game.Stage1.Camping.Interaction.Show
 {
-    public class ShowInteraction : CampingInteraction
+    public class ShowInteraction : CampingInteraction, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private ShowPanel showPanel;
-
-        [SerializeField] private AudioClip openAudioClip;
-        [SerializeField] private AudioClip closeAudioClip;
+        
+        [SerializeField] private AudioData openAudioData;
+        [SerializeField] private AudioData closeAudioData;
         
         [TextArea] public string[] toastContents;
 
@@ -20,13 +21,13 @@ namespace Game.Stage1.Camping.Interaction.Show
             showPanel.Initialize();
             showPanel.exitButton.onClick.AddListener(() =>
             {
-                AudioManager.Instance.PlaySfx(closeAudioClip);
+                closeAudioData.Play();
                 showPanel.Hide();
                 setInteractable(true);
             });
         }
 
-        private void OnMouseUp()
+        public void OnPointerUp(PointerEventData eventData)
         {
             Show();
         }
@@ -37,7 +38,7 @@ namespace Game.Stage1.Camping.Interaction.Show
         public void Show()
         {
             Debug.Log($"{enabled}");
-            AudioManager.Instance.PlaySfx(openAudioClip);
+            openAudioData.Play();
             showPanel.Show();
             setInteractable(false);
             Appear();
@@ -62,6 +63,10 @@ namespace Game.Stage1.Camping.Interaction.Show
         {
             base.ResetInteraction(isGameReset);
             showPanel.ResetPanel();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
         }
     }
 }

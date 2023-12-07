@@ -6,7 +6,7 @@ namespace Game.Stage1.Camping.Interaction.Show
     public class PhotoFramePanel : PagePanel
     {
         [SerializeField] private int targetIndex;
-        [SerializeField] private AudioClip audioClip;
+        [SerializeField] private AudioData audioData;
         
         protected override void SetPage(int changeValue)
         {
@@ -14,7 +14,7 @@ namespace Game.Stage1.Camping.Interaction.Show
 
             if (Index == targetIndex)
             {
-                AudioManager.Instance.PlaySfx(audioClip);
+                audioData.Play();
             }
         }
     }

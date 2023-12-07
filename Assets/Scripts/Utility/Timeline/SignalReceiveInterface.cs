@@ -23,7 +23,12 @@ namespace Utility.Timeline
                 AudioManager.Instance.PlaySfx(timelineAsset);
             }
         }
-        
+
+        public void PlaySfxAsBgm(Object obj)
+        {
+            AudioManager.Instance.PlaySfxAsBgm(obj, 1f, true);
+        }
+
         public void PlayBgm(Object obj)
         {
             if (obj is AudioClip audioClip)
@@ -34,6 +39,12 @@ namespace Utility.Timeline
             {
                 AudioManager.Instance.PlayBgmWithFade(timelineAsset);
             }
+        }
+
+        // StopSfxWithFade
+        public void StopSfx(Object obj)
+        {
+            AudioManager.Instance.StopSfxAsBgm(obj, true);
         }
     }
 }

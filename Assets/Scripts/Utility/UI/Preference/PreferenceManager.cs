@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility.Audio;
+using Utility.Core;
 using Utility.InputSystem;
 using Utility.UI.Check;
 using Utility.UI.Highlight;
@@ -20,29 +21,28 @@ namespace Utility.UI.Preference
 
     public class PreferenceManager : MonoBehaviour
     {
-        [Header("Common")]
-        [SerializeField] private GameObject preferencePanel;
+        [Header("Common")] [SerializeField] private GameObject preferencePanel;
         [SerializeField] private Button preferenceExitButton;
         [SerializeField] private PageProps[] pageProps;
         [SerializeField] private CheckUIManager rebindCheckUIManager;
-        
-        [Header("Control")]
-        [SerializeField] private GameObject rebindButtonPanel;
+
+        [Header("Control")] [SerializeField] private GameObject rebindButtonPanel;
         [SerializeField] private Button resetButton;
         [SerializeField] private Button saveButton;
         [SerializeField] private Button cancelSaveButton;
         [SerializeField] private InputController[] inputController;
-        
-        [Header("Audio & Resolution")]
-        [SerializeField] private TMP_Dropdown resolutionDropdown;
+
+        [Header("Audio & Resolution")] [SerializeField]
+        private TMP_Dropdown resolutionDropdown;
+
         [SerializeField] private Button fullScreenButton;
         [SerializeField] private Button windowScreenButton;
-        
+
         [SerializeField] private Sprite window;
         [SerializeField] private Sprite windowSelect;
         [SerializeField] private Sprite fullscreen;
         [SerializeField] private Sprite fullscreenSelect;
-        
+
 
         private InputActions _inputActions;
 
@@ -54,7 +54,7 @@ namespace Utility.UI.Preference
                 {
                     if (preferencePanel.activeSelf && !rebindCheckUIManager.gameObject.activeSelf)
                     {
-                        SetPreferencePanel(false);
+                        preferenceExitButton.onClick?.Invoke();
                     }
                 }
             };
@@ -93,6 +93,7 @@ namespace Utility.UI.Preference
             preferenceExitButton.onClick.AddListener(() =>
             {
                 SetPreferencePanel(false);
+                PlayUIManager.Instance.PlayAudioClick();
             });
 
             foreach (var pageProp in pageProps)
@@ -107,6 +108,7 @@ namespace Utility.UI.Preference
 
                     pageProp.panel.SetActive(true);
                     pageProp.button.image.sprite = pageProp.activeSprite;
+                    PlayUIManager.Instance.PlayAudioClick();
                 });
 
                 if (pageProp.panel.activeSelf)
@@ -124,7 +126,7 @@ namespace Utility.UI.Preference
                 Screen.SetResolution(x, y, false);
                 Debug.Log(resolutionDropdown.options[idx].image);
             });
-            
+
             fullScreenButton.onClick.AddListener(() =>
             {
                 fullScreenButton.image.sprite = fullscreenSelect;
@@ -139,7 +141,7 @@ namespace Utility.UI.Preference
                 Screen.fullScreenMode = FullScreenMode.Windowed;
             });
         }
-    
+
         private void SetRebindButton()
         {
             if (InputManager.IsChanged())
@@ -185,14 +187,14 @@ namespace Utility.UI.Preference
                 {
                     // HighlightHelper.Instance.Enable();
                     preferencePanel.SetActive(false);
-                    
+
                     InputManager.RebindComplete -= SetRebindButton;
                     InputManager.RebindEnd -= SetRebindButton;
                     // InputManager.RebindLoad -= SetRebindButton;
                     InputManager.RebindReset -= SetRebindButton;
 
                     InputManager.PopInputAction(_inputActions);
-                }                
+                }
             }
         }
     }

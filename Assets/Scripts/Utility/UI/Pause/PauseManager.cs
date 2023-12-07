@@ -32,13 +32,16 @@ namespace Utility.UI.Pause
             button.image.sprite = defaultSprite;
         }
 
-        public override void EnterHighlightDisplay()
+        public override void Select()
         {
-        }
-
-        public override void SelectDisplay()
-        {
+            base.Select();
             button.image.sprite = selectSprite;
+        }
+        
+        public override void DeSelect()
+        {
+            base.DeSelect();
+            button.image.sprite = defaultSprite;
         }
     }
 
@@ -135,7 +138,6 @@ namespace Utility.UI.Pause
                         {
                             exitCheckUIManager.SetText("저장되지 않은 데이터가 있을 수 있습니다.\n게임을 종료하시겠습니까?");
                             exitCheckUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, Application.Quit);
-                            
                             exitCheckUIManager.Push();
                         });
                         break;

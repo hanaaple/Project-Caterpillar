@@ -1,15 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game.Stage1.Camping.Interaction.Diary
 {
     [RequireComponent(typeof(Animator))]
-    public class Bag : MonoBehaviour
+    public class Bag : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private GameObject diary;
         [SerializeField] private GameObject diaryMask;
-
-        [NonSerialized] public bool IsOut;
+        
+        [NonSerialized] public bool IsInteractable;
 
         private Animator _bagAnimator;
         private static readonly int IsOpenHash = Animator.StringToHash("IsOpen");
@@ -19,12 +20,12 @@ namespace Game.Stage1.Camping.Interaction.Diary
             _bagAnimator = GetComponent<Animator>();
         }
 
-        private void OnMouseDown()
+        public void OnPointerDown(PointerEventData eventData)
         {
             var isOpened = diaryMask.activeSelf;
             _bagAnimator.SetBool(IsOpenHash, !isOpened);
             
-            if (!IsOut)
+            if (IsInteractable)
             {
                 diary.SetActive(!isOpened);
             }
@@ -33,7 +34,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
         public void Reset()
         {
             _bagAnimator.SetBool(IsOpenHash, false);
-            IsOut = false;
+            IsInteractable = true;
         }
     }
 }

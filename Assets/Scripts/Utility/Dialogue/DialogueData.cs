@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using UnityEngine.Timeline;
+using Utility.Interaction;
 using Utility.JsonLoader;
 using Utility.Property;
 
@@ -45,11 +46,11 @@ namespace Utility.Dialogue
     [Serializable]
     public class WaitInteractions
     {
-        public WaitInteraction[] waitInteractions;
+        [FormerlySerializedAs("waitInteractions")] public WaitInteractionData[] waitInteractionData;
 
         public void Initialize(Action onClearAction = null)
         {
-            foreach (var waitInteraction in waitInteractions)
+            foreach (var waitInteraction in waitInteractionData)
             {
                 if (waitInteraction.interaction)
                 {
@@ -60,17 +61,17 @@ namespace Utility.Dialogue
 
         public bool IsWaitClear()
         {
-            return waitInteractions.All(item => item.isWaitClear);
+            return waitInteractionData.All(item => item.isWaitClear);
         }
 
         public int GetWaitCount()
         {
-            return waitInteractions.Count(item => !item.isWaitClear);
+            return waitInteractionData.Count(item => !item.isWaitClear);
         }
     }
 
     [Serializable]
-    public class WaitInteraction
+    public class WaitInteractionData
     {
         public Interaction.Interaction interaction;
 
@@ -83,6 +84,9 @@ namespace Utility.Dialogue
         [ConditionalHideInInspector("isInteraction")] [FormerlySerializedAs("index")]
         public int targetIndex;
 
+        /// <summary>
+        /// WaitClear 시작 이후 해당 Interaction을 Interactable하게 만들지 않음.
+        /// </summary>
         [ConditionalHideInInspector("isInteraction")]
         public bool isCustom;
 
@@ -91,6 +95,9 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("isPortal")]
         public int targetMapIndex;
+        
+        [ConditionalHideInInspector("isPortal")]
+        public bool isActionAfterFadeOut;
 
         public bool isWaitClear;
 
@@ -126,6 +133,9 @@ namespace Utility.Dialogue
         [FormerlySerializedAs("waitInteraction")]
         [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
         public WaitInteractions waitInteractions;
+
+        [ConditionalHideInInspector("dialogueType", DialogueType.WaitInteract)]
+        public WaitInteractionHelper waitInteractionHelper;
 
         // Enable Set Interactable or Set Interactable In Timeline 
 
@@ -168,6 +178,9 @@ namespace Utility.Dialogue
 
         [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
         public TimelineAsset audioTimeline;
+        
+        // [ConditionalHideInInspector("dialogueType", DialogueType.Audio)]
+        // public AudioData audioData;
 
         [ConditionalHideInInspector("dialogueType", DialogueType.DialogueEnd)]
         public int endTargetIndex;

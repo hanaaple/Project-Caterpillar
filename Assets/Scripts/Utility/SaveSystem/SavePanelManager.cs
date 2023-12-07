@@ -5,9 +5,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Utility.Core;
 using Utility.Scene;
 using Utility.UI.Check;
 using Utility.UI.Highlight;
+using Utility.Util;
 
 namespace Utility.SaveSystem
 {
@@ -50,6 +52,7 @@ namespace Utility.SaveSystem
         [Header("Scroll")] [SerializeField] private Slider slider;
         [SerializeField] private RectTransform scrollView;
         [SerializeField] private RectTransform content;
+        [Range(0, 20)][SerializeField] private int divideCount = 20;
 
         [Header("Check UI")] [SerializeField] private CheckUIManager checkUIManager;
         [TextArea] [SerializeField] private string newLoadText;
@@ -68,6 +71,21 @@ namespace Utility.SaveSystem
             _highlighter = new Highlighter("Save Highlight") {HighlightItems = new List<HighlightItem>()};
 
             _highlighter.Init(Highlighter.ArrowType.Vertical, () => { savePanelExitButton.onClick?.Invoke(); });
+            _highlighter.InputActions.OnMouseWheel = _ =>
+            {
+                // percentage 말고 고정된 value로 바꿔보자
+                var value = _.ReadValue<float>();
+                if (value > 0)
+                {
+                    value = slider.value + 1f / divideCount;
+                }
+                else if (value < 0)
+                {
+                    value = slider.value - 1f / divideCount;
+                }
+
+                slider.value = Mathf.Clamp01(value);
+            };
 
             SetItemData();
             // Add + (추가하기)
@@ -87,7 +105,11 @@ namespace Utility.SaveSystem
             checkUIManager.Initialize();
             checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.No, () => { checkUIManager.Pop(); });
 
-            savePanelExitButton.onClick.AddListener(() => { SetActiveSaveLoadPanel(false); });
+            savePanelExitButton.onClick.AddListener(() =>
+            {
+                SetActiveSaveLoadPanel(false); 
+                PlayUIManager.Instance.PlayAudioClick();
+            });
         }
 
         /// <summary>
@@ -126,7 +148,7 @@ namespace Utility.SaveSystem
                 // Load All Cover File
                 foreach (var saveLoadItemProps in _highlighter.HighlightItems)
                 {
-                    ((SaveLoadItemProps) saveLoadItemProps).UpdateUI();
+                    ((SaveLoadHighlightItem) saveLoadItemProps).UpdateUI();
                 }
 
                 HighlightHelper.Instance.Push(_highlighter);
@@ -166,9 +188,9 @@ namespace Utility.SaveSystem
         {
             var saveLoadItem = saveLoadObject.GetComponent<SaveLoadItem>();
 
-            var saveLoadItemProps = new SaveLoadItemProps(saveLoadItem)
+            var saveLoadItemProps = new SaveLoadHighlightItem(saveLoadItem)
             {
-                OnSelect = () =>
+                onSelect = () =>
                 {
                     var itemRectTransform = (RectTransform) saveLoadItem.transform;
 
@@ -228,27 +250,28 @@ namespace Utility.SaveSystem
             {
                 saveLoadItemProps.button.onClick.AddListener(() =>
                 {
+                    Debug.Log($"클릭 {_saveLoadType}");
                     if (_saveLoadType == SaveLoadType.Save)
                     {
-                        checkUIManager.Push();
-
                         checkUIManager.SetText(saveCoverText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
+                            SaveHelper.SaveSceneData();
                             var saveData = SaveHelper.GetSaveData(_targetSceneName);
-
+                        
                             var saveDataIndex = saveLoadItemProps.SaveDataIndex;
                             SaveManager.Save(saveDataIndex, saveData);
-
+                        
                             StartCoroutine(WaitSave(saveDataIndex, () =>
                             {
                                 OnSave?.Invoke();
-
+                        
                                 saveLoadItemProps.UpdateUI();
                             }));
-
+                        
                             checkUIManager.Pop();
                         });
+                        checkUIManager.Push();
                     }
                     else if (_saveLoadType == SaveLoadType.Load)
                     {
@@ -256,10 +279,12 @@ namespace Utility.SaveSystem
                         var saveCoverData = SaveManager.GetSaveCoverData(saveDataIndex);
                         if (saveCoverData != null)
                         {
-                            SceneLoader.Instance.onLoadScene += () =>
+                            SetActiveSaveLoadPanel(false);
+                            SceneLoader.Instance.onLoadSceneEnd += () =>
                             {
-                                SetActiveSaveLoadPanel(false);
+                                PlayTimer.SetTime(saveCoverData.playTime);
                             };
+                                
                             SceneLoader.Instance.LoadScene(saveCoverData.sceneName, saveDataIndex);
                         }
                         else
@@ -270,7 +295,6 @@ namespace Utility.SaveSystem
                 });
                 saveLoadItem.deleteButton.onClick.AddListener(() =>
                 {
-                    checkUIManager.Push();
                     checkUIManager.SetText(deleteText);
                     checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                     {
@@ -279,45 +303,48 @@ namespace Utility.SaveSystem
                         SaveManager.Delete(saveDataIndex);
                         checkUIManager.Pop();
                     });
+                    checkUIManager.Push();
                 });
             }
             else
             {
                 saveLoadItemProps.button.onClick.AddListener(() =>
                 {
+                    Debug.Log($"클릭 {_saveLoadType}");
                     if (_saveLoadType == SaveLoadType.Save)
                     {
+                        SaveHelper.SaveSceneData();
                         var saveData = SaveHelper.GetSaveData(_targetSceneName);
                         var newSaveDataIndex = SaveManager.GetNewSaveIndex();
-
+                        
                         Debug.Log($"New Save Data Index: {newSaveDataIndex}");
-
+                        
                         SaveManager.Save(newSaveDataIndex, saveData);
-
+                        
                         var addItem = saveItemParent.GetChild(saveItemParent.childCount - 1);
                         var item = Instantiate(saveItemPrefab, saveItemParent);
                         addItem.SetAsLastSibling();
-
+                        
                         AddItem(item, true);
-
+                        
                         StartCoroutine(WaitSave(newSaveDataIndex, () =>
                         {
                             OnSave?.Invoke();
-
+                        
                             saveLoadItemProps.UpdateUI();
                         }));
                     }
                     else if (_saveLoadType == SaveLoadType.Load)
                     {
-                        checkUIManager.Push();
                         checkUIManager.SetText(newLoadText);
                         checkUIManager.SetOnClickListener(CheckHighlightItem.ButtonType.Yes, () =>
                         {
-                            SceneLoader.Instance.onLoadScene += () => { SetActiveSaveLoadPanel(false); };
-                            SceneLoader.Instance.LoadScene("MainScene");
-
+                            SetActiveSaveLoadPanel(false);
+                            PlayTimer.ReStart();
                             checkUIManager.Pop();
+                            SceneLoader.Instance.LoadScene("MainScene");
                         });
+                        checkUIManager.Push();
                     }
                 });
             }
@@ -328,10 +355,16 @@ namespace Utility.SaveSystem
         private void RemoveItem(SaveLoadItem saveLoadItem)
         {
             var saveLoadItemProps = _highlighter.HighlightItems.Find(item =>
-                ((SaveLoadItemProps) item).SaveLoadItem == saveLoadItem);
+                ((SaveLoadHighlightItem) item).SaveLoadItem == saveLoadItem);
             _highlighter.RemoveItem(saveLoadItemProps, true);
-
+            
             DestroyImmediate(saveLoadItem.gameObject);
+            
+            foreach (var item in _highlighter.HighlightItems)
+            {
+                ((SaveLoadHighlightItem) item).UpdateUI();
+            }
+            // index 변경
         }
 
         private IEnumerator WaitSave(int index, Action onSaveAction)

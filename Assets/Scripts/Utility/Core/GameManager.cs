@@ -115,6 +115,7 @@ namespace Utility.Core
             PlayerManager.Instance.PopInputAction();
         }
 
+        // 아 이거 디버그용이구나
         private void OnValidate()
         {
             sceneSaveData.Clear();

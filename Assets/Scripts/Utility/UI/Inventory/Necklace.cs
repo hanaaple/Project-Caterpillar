@@ -93,11 +93,13 @@ namespace Utility.UI.Inventory
 
             var tendencyData = TendencyManager.Instance.GetTendencyData();
 
+            tendencyData.DebugTendencyData();
+
             NecklaceState ascentState;
             NecklaceState activeState;
 
             var active = Mathf.Abs(tendencyData.activation - tendencyData.inactive);
-            if (active >= equivalentRange)
+            if (active <= equivalentRange)
             {
                 activeState = NecklaceState.Equivalent;
             }
@@ -111,7 +113,7 @@ namespace Utility.UI.Inventory
             }
 
             var ascent = Mathf.Abs(tendencyData.ascent - tendencyData.descent);
-            if (ascent >= equivalentRange)
+            if (ascent <= equivalentRange)
             {
                 ascentState = NecklaceState.Equivalent;
             }
@@ -143,6 +145,8 @@ namespace Utility.UI.Inventory
             // 2- 353535 (R: 53 G: 53 B: 53), text - 353535 (R: 53 G: 53 B: 53)
             // 3- bfbfbf (R: 191 G: 191 B: 191), text - 949494 (R: 148 G: 148 B: 148)
             // 4- 949494 (R: 148 G: 148 B: 148), text - 949494 (R: 148 G: 148 B: 148)
+            
+            // Animator로 하면 깔끔한데 나중에 바꿔보던가
             if (tendencyProps.ascent > 0)
             {
                 const float tc = 53 / 255f;

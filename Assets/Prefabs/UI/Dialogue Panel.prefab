@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 756501485802887602}
   - component: {fileID: 7486878788746398732}
   - component: {fileID: 6007035587678631428}
+  - component: {fileID: 6348120752233028017}
   m_Layer: 5
   m_Name: Skip Button
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6348120752233028017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793105656463288878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1369472624025135190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,11 +3088,9 @@ MonoBehaviour:
   skipButton: {fileID: 756501485802887602}
   skipCheckUIManager: {fileID: 6206763606101311261}
   letterBoxAnimator: {fileID: 3904978452653741878}
-  textSpeed: 0.1
   cutSceneImage: {fileID: 1369472625288388294}
   defaultCutSceneAnimator: {fileID: 0}
-  playableDirectorPrefab: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
-  choiceSelectors:
+  selectHighlightItems:
   - button: {fileID: 1369472625972243193}
     isEnable: 1
   - button: {fileID: 1369472625072710103}
@@ -3088,6 +3100,8 @@ MonoBehaviour:
   blinkingIndicator: {fileID: 1369472625999095554}
   leftAnimator: {fileID: 1369472624895790771}
   rightAnimator: {fileID: 1369472624025135188}
+  scriptTurnAudioClip: {fileID: 8300000, guid: 492298b1ca95d0a4bbf32219998f85c2, type: 3}
+  textSpeed: 0.1
   repulsionPercentage: 0.3
   baseDialogueData: []
 --- !u!1 &6603327692329853913

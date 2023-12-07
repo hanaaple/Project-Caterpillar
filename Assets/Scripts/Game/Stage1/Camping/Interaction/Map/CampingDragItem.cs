@@ -1,37 +1,62 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utility.Audio;
-using Utility.Drag_Drop;
 
 namespace Game.Stage1.Camping.Interaction.Map
 {
-    public class CampingDragItem : DragItem
+    public class CampingDragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        public AudioClip takeAudioClip;
-        public AudioClip dropAudioClip;
+        [SerializeField] private Canvas canvas;
+        [SerializeField] protected bool isInteractable;
+        
+        private CanvasGroup _canvasGroup;
+        private RectTransform _rectTransform;
+
+        internal Action OnBeginDragAction;
+
+        
+        public AudioData takeAudioData;
+        public AudioData dropAudioData;
         
         [Header("For Debug")]
         public int x;
         public int y;
         
-        
-        public override void OnBeginDrag(PointerEventData eventData)
+        protected void Start()
         {
-            base.OnBeginDrag(eventData);
-            
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _rectTransform = GetComponent<RectTransform>();
+        }
+        
+        public void OnBeginDrag(PointerEventData eventData)
+        {
             if (isInteractable)
             {
-                AudioManager.Instance.PlaySfx(takeAudioClip);
+                OnBeginDragAction?.Invoke();
+                _canvasGroup.alpha = .6f;
+                _canvasGroup.blocksRaycasts = false;
+                
+                takeAudioData.Play();
+            }
+        }
+        
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (isInteractable)
+            {
+                _rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
             }
         }
 
-        public override void OnEndDrag(PointerEventData eventData)
+        public void OnEndDrag(PointerEventData eventData)
         {
-            base.OnEndDrag(eventData);
-            
             if (isInteractable)
             {
-                AudioManager.Instance.PlaySfx(dropAudioClip);
+                _canvasGroup.alpha = 1f;
+                _canvasGroup.blocksRaycasts = true;
+                
+                dropAudioData.Play();
             }
         }
     }

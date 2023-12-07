@@ -16,6 +16,12 @@ public class CustomInteractionEditor : Editor
             EditorUtility.SetDirty(generator);
         }
         
+        if (GUILayout.Button("Set WaitInteraction"))
+        {
+            generator.SetByWaitInteraction();
+            EditorUtility.SetDirty(generator);
+        }
+        
         if (GUILayout.Button("Debug"))
         {
             generator.DebugInteractionData();

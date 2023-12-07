@@ -11,10 +11,9 @@ namespace Game.Stage1.Camping.Interaction.Diary
 
         [SerializeField] private Diary diary;
         [SerializeField] private ShowInteraction tornDiary;
-        
-        [SerializeField] private AudioClip fireAudioClip;
+        [SerializeField] private AudioData fireAudioData;
 
-        private void Awake()
+        public void Awake()
         {
             bag.Init();
         }
@@ -26,10 +25,10 @@ namespace Game.Stage1.Camping.Interaction.Diary
                 //setInteractable(false);
                 //showPanel.SetActive(true);
             // };
-            diary.onPickUp = () => { bag.IsOut = true; };
+            diary.onPickUp = () => { bag.IsInteractable = false; };
             diary.onFire = () =>
             {
-                AudioManager.Instance.PlaySfx(fireAudioClip);
+                fireAudioData.Play();
                 diary.gameObject.SetActive(false);
                 tornDiary.gameObject.SetActive(true);
             };

@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utility.Audio;
+using Utility.Util;
 
 namespace Game.Stage1.MiniGame
 {
@@ -15,12 +18,17 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private float maxDegree;
 
         [SerializeField] private float radiusOffset;
+        
+        [SerializeField] private AudioData drawAudioData;
 
         [Range(0f, 360f)] [SerializeField] private float angle;
 
         private void OnValidate()
         {
-            UpdateDisplay();
+            if (!Application.isPlaying)
+            {
+                UpdateDisplay();
+            }
         }
 
         protected override void Init()
@@ -29,12 +37,7 @@ namespace Game.Stage1.MiniGame
 
             angle = 0;
             
-            var onPointerDrag = new EventTrigger.Entry
-            {
-                eventID = EventTriggerType.Drag
-            };
-
-            onPointerDrag.callback.AddListener(_ =>
+            EventTriggerHelper.AddEntry(button, EventTriggerType.Drag, _ =>
             {
                 var pointerEventData = _ as PointerEventData;
 
@@ -58,17 +61,14 @@ namespace Game.Stage1.MiniGame
                     End();
                 }
 
-
                 UpdateDisplay();
             });
-
-            button.triggers.Add(onPointerDrag);
         }
 
         protected override void End(bool isClear = true)
         {
             button.triggers.Clear();
-            base.End();
+            base.End(isClear);
         }
 
         private void UpdateDisplay()
@@ -80,6 +80,11 @@ namespace Game.Stage1.MiniGame
             fill.fillAmount = angle / 360;
 
             button.transform.position = radius * orientation + fill.rectTransform.position;
+
+            if (Application.isPlaying)
+            {
+                drawAudioData.Play();
+            }
         }
     }
 }

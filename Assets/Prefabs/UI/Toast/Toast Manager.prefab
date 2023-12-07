@@ -44,5 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6c808c288a42c4b8ed07137e224478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toastType: 0
   toastMessageParent: {fileID: 0}
   textSec: 0.02
+  typingAudioClip: {fileID: 8300000, guid: b9cc2727d44709f4d8abc18382665b01, type: 3}
+  typingAudioData:
+    audioObject: {fileID: 8300000, guid: b9cc2727d44709f4d8abc18382665b01, type: 3}
+    volume: 1
+    audioSourceType: 1
+    isLoop: 1
+    isOneShot: 0
+    isWithOutTimeScale: 0
+    isCustomFade: 0
+    fadeSec: 0
+    animationCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4

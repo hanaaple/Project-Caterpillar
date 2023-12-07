@@ -7,6 +7,7 @@ using Utility.Dialogue;
 using Utility.SaveSystem;
 using Utility.Scene;
 using Utility.UI.Highlight;
+using Utility.Util;
 
 namespace Title
 {   
@@ -35,14 +36,18 @@ namespace Title
             animator.SetBool(SelectedHash, false);
         }
 
-        public override void EnterHighlightDisplay()
+        public override void Select()
         {
-        }
-
-        public override void SelectDisplay()
-        {
+            base.Select();
             button.image.sprite = selectSprite;
             animator.SetBool(SelectedHash, true);
+        }
+        
+        public override void DeSelect()
+        {
+            base.DeSelect();
+            button.image.sprite = defaultSprite;
+            animator.SetBool(SelectedHash, false);
         }
     }
 
@@ -52,7 +57,7 @@ namespace Title
 
         [SerializeField] private DialogueData dialogueData;
 
-        [SerializeField] private AudioClip bgm;
+        [SerializeField] private AudioData bgmAudioData;
         
         private Highlighter _highlighter;
 
@@ -102,6 +107,7 @@ namespace Title
                     case HighlightTitleItem.ButtonType.NewStart:
                         highlightItem.button.onClick.AddListener(() =>
                         {
+                            PlayTimer.ReStart();
                             SceneLoader.Instance.LoadScene("MainScene");
                         });
                         break;
@@ -119,7 +125,7 @@ namespace Title
 
             HighlightHelper.Instance.Push(_highlighter);
             
-            AudioManager.Instance.PlayBgmWithFade(bgm);
+            bgmAudioData.Play();
         }
     }
 }
