@@ -2375,8 +2375,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 511.30432, y: 462.8957}
-  m_SizeDelta: {x: 48.418972, y: 48.421257}
+  m_AnchoredPosition: {x: 510.77173, y: 462.4616}
+  m_SizeDelta: {x: 48.322136, y: 48.324806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262654610
 MonoBehaviour:
@@ -5155,8 +5155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -16.307068, y: 22.236847}
-  m_SizeDelta: {x: 38.54386, y: 38.54386}
+  m_AnchoredPosition: {x: -16.839172, y: 21.7807}
+  m_SizeDelta: {x: 38.61988, y: 38.61988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &626374767
 MonoBehaviour:
@@ -5405,8 +5405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 523.3071, y: 484.76312}
-  m_SizeDelta: {x: 38.54386, y: 38.54386}
+  m_AnchoredPosition: {x: 523.8391, y: 485.21924}
+  m_SizeDelta: {x: 38.61988, y: 38.61988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &723763275
 MonoBehaviour:
@@ -5913,8 +5913,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -21.304321, y: 27.10434}
-  m_SizeDelta: {x: 48.418972, y: 48.421257}
+  m_AnchoredPosition: {x: -20.771729, y: 27.538391}
+  m_SizeDelta: {x: 48.322136, y: 48.324806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831022329
 MonoBehaviour:
@@ -26738,7 +26738,7 @@ MonoBehaviour:
   root: {fileID: 950064686}
   start: {fileID: 626374767}
   formSize: {x: 13, y: 13}
-  lineOffset: 7
+  lineOffset: 5
   arriveAudioData:
     audioObject: {fileID: 8300000, guid: 2a973c63ea59aa54186543902971a8d7, type: 3}
     volume: 1

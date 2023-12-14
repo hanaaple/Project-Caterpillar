@@ -113,7 +113,11 @@ namespace Utility.UI.Inventory
 
                     if (_menuHighlighter.selectedIndex == necklaceIndex)
                     {
-                        PlayUIManager.Instance.PlayAudioClick();
+                        if (!necklace.IsKeywordActive())
+                        {
+                            PlayUIManager.Instance.PlayAudioClick();
+                        }
+
                         necklace.SetKeywordActive(true);
                     }
                     else if (_menuHighlighter.selectedIndex == bagIndex)

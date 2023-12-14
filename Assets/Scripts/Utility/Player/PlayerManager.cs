@@ -45,7 +45,7 @@ namespace Utility.Player
         private float _yScreenHalfSize;
         private float _xScreenHalfSize;
 
-        private Vector3 _input;
+        private Vector2 _input;
         private InputActions _inputActions;
 
         private static PlayerManager Create()
@@ -72,7 +72,11 @@ namespace Utility.Player
                 {
                     if (!isActive)
                     {
-                        _input = Vector3.zero;
+                        _input = Vector2.zero;
+                    }
+                    else if(InputManager.InputControl.Input.Move.IsPressed())
+                    {
+                        _input = InputManager.InputControl.Input.Move.ReadValue<Vector2>();
                     }
                 },
                 OnInventory = () =>
