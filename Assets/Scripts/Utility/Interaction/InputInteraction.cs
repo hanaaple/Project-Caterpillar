@@ -56,12 +56,20 @@ namespace Utility.Interaction
         
         [SerializeField] private AudioClip interactAudioClip;
 
+        private Camera _camera;
+
+        protected override void Awake()
+        {
+            _camera = Camera.main;
+            base.Awake();
+        }
+
         private void Update()
         {
-            if (defaultFloatingMark && defaultFloatingMark.activeSelf && Camera.main)
+            if (defaultFloatingMark && defaultFloatingMark.activeSelf && _camera)
             {
                 defaultFloatingMark.transform.position =
-                    Camera.main.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
+                    _camera.WorldToScreenPoint(transform.position + (Vector3) defaultOffset);
             }
         }
 

@@ -183,7 +183,6 @@ namespace Utility.UI.Inventory
         {
             _highlightParent = highlights[0].transform.parent;
 
-
             var eventTrigger = inventoryButton.GetComponent<EventTrigger>();
             
             EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.PointerEnter, bagHighlightAudioData.Play);
@@ -367,12 +366,24 @@ namespace Utility.UI.Inventory
         {
             Debug.Log("Inventory Load Item");
 
-            var ownItems = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-
-            foreach (var item in inventoryItems)
+            var activeItems = from a in ItemManager.Instance.GetItem<ItemManager.ItemType>()
+                from b in inventoryItems
+                where a == b.itemType
+                select b;
+            
+            var inactiveItems = from a in ItemManager.Instance.GetItem<ItemManager.ItemType>()
+                from b in inventoryItems
+                where a != b.itemType
+                select b;            
+            
+            foreach (var item in activeItems)
             {
-                Debug.Log($"{item.itemType} - Active? {ownItems.Contains(item.itemType)}");
-                item.SetActive(ownItems.Contains(item.itemType));
+                item.SetActive(true);
+            }
+
+            foreach (var item in inactiveItems)
+            {
+                item.SetActive(false);
             }
         }
 

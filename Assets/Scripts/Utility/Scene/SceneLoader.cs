@@ -110,11 +110,10 @@ namespace Utility.Scene
 
             var timer = 0f;
             const float timeInterval = 0.02f;
-            var waitForSecondsRt = new WaitForSecondsRealtime(timeInterval);
 
             while (!op.isDone)
             {
-                yield return waitForSecondsRt;
+                yield return YieldInstructionProvider.WaitForSecondsRealtime(timeInterval);
                 timer += timeInterval;
 
                 if (op.progress < 0.9f)
@@ -198,11 +197,10 @@ namespace Utility.Scene
         {
             var timer = 0f;
             const float timeInterval = 0.02f;
-            var waitForSecondsRt = new WaitForSecondsRealtime(timeInterval);
 
             while (timer <= 1f)
             {
-                yield return waitForSecondsRt;
+                yield return YieldInstructionProvider.WaitForSecondsRealtime(timeInterval);
                 timer += timeInterval / fadeSec;
                 sceneLoaderCanvasGroup.alpha = Mathf.Lerp(isFadeIn ? 0 : 1, isFadeIn ? 1 : 0, timer);
             }

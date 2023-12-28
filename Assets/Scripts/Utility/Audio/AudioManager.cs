@@ -57,8 +57,7 @@ namespace Utility.Audio
         [Header("Bgm PlayableDirector")] [SerializeField]
         private PlayableDirector bgmPlayableDirector;
 
-        [Header("Debug")] [SerializeField]
-        private bool isDebug;
+        [Header("Debug")] [SerializeField] private bool isDebug;
 
         /// AudioSource(Bgm) - FadeIn 도중에 volume value가 도중에 바뀌는 경우 FadeIn이 제대로 작동하지 않는 것을 방지하기 위해 사용 
         private float BGMVolumeValue
@@ -236,6 +235,7 @@ namespace Utility.Audio
                 {
                     Debug.LogWarning("Audio 비어있음");
                 }
+
                 return;
             }
 
@@ -440,7 +440,7 @@ namespace Utility.Audio
                 playableDirector.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
             }
 
-            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
+            var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
             foreach (var audioTrack in audioTracks)
             {
                 playableDirector.SetGenericBinding(audioTrack, sfx);
@@ -621,7 +621,7 @@ namespace Utility.Audio
             {
                 ResetBgm();
 
-                var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
+                var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
 
                 foreach (var audioTrack in audioTracks)
                 {
@@ -694,19 +694,19 @@ namespace Utility.Audio
             bgm.volume = GetBgmSourceVolume();
             sfx.volume = sfx.volume;
 
-            foreach (var sfxAudioSource in _sfxAudioSourcePool.Where(sfxAudioSource =>
-                         _sfxAsBgmAudioClipData.All(item => item.AudioSource != sfxAudioSource)))
+            // sfxList - except sfxAsBgm
+            var sfxAudioSources =
+                from a in _sfxAudioSourcePool
+                from b in _sfxAsBgmAudioClipData
+                where a != b.AudioSource
+                select a;
+            foreach (var sfxAudioSource in sfxAudioSources)
             {
                 sfxAudioSource.volume = sfx.volume;
             }
 
-            foreach (var audioData in _sfxAsBgmAudioClipData)
+            foreach (var audioData in _sfxAsBgmAudioClipData.Where(audioData => !audioData.IsFading))
             {
-                if (audioData.IsFading)
-                {
-                    continue;
-                }
-
                 audioData.AudioSource.volume = audioData.Volume * sfx.volume;
             }
         }
@@ -721,14 +721,14 @@ namespace Utility.Audio
             sfx.pitch = pitch;
             bgm.pitch = pitch;
 
-            foreach (var audioData in _sfxAsBgmAudioClipData)
+            // sfxList - except _ignoreTimeScaleAudioSources
+            var query = from a in _sfxAsBgmAudioClipData
+                from b in _ignoreTimeScaleAudioSources
+                where b != a.AudioSource
+                select b;
+            foreach (var audioSource in query)
             {
-                if (_ignoreTimeScaleAudioSources.Contains(audioData.AudioSource))
-                {
-                    continue;
-                }
-
-                audioData.AudioSource.pitch = pitch;
+                audioSource.pitch = pitch;
             }
         }
 
@@ -785,13 +785,14 @@ namespace Utility.Audio
 
         public void StopSfxAsBgm(Object audioObject, bool isFade = false)
         {
-            if (audioObject is AudioClip audioClip)
+            switch (audioObject)
             {
-                StopSfxAsBgm(audioClip, isFade);
-            }
-            else if (audioObject is TimelineAsset timelineAsset)
-            {
-                StopSfxAsBgm(timelineAsset, isFade);
+                case AudioClip audioClip:
+                    StopSfxAsBgm(audioClip, isFade);
+                    break;
+                case TimelineAsset timelineAsset:
+                    StopSfxAsBgm(timelineAsset, isFade);
+                    break;
             }
         }
 
@@ -807,21 +808,6 @@ namespace Utility.Audio
             if (isDebug)
             {
                 Debug.Log($"Stop Sfx With Fade - {audioClip}, {isFade}");
-            }
-
-            void EndAction()
-            {
-                if (_ignoreTimeScaleAudioSources.Contains(audioData.AudioSource))
-                {
-                    _ignoreTimeScaleAudioSources.Remove(audioData.AudioSource);
-                }
-
-                _sfxAsBgmAudioClipData.Remove(audioData);
-                if (_sfxAudioSourcePool.Contains(audioData.AudioSource))
-                {
-                    _sfxAudioSourcePool.Remove(audioData.AudioSource);
-                    ObjectPoolHelper.Instance.Release(audioData.AudioSource);
-                }
             }
 
             if (isFade)
@@ -845,6 +831,23 @@ namespace Utility.Audio
             {
                 EndAction();
             }
+
+            return;
+
+            void EndAction()
+            {
+                if (_ignoreTimeScaleAudioSources.Contains(audioData.AudioSource))
+                {
+                    _ignoreTimeScaleAudioSources.Remove(audioData.AudioSource);
+                }
+
+                _sfxAsBgmAudioClipData.Remove(audioData);
+                if (_sfxAudioSourcePool.Contains(audioData.AudioSource))
+                {
+                    _sfxAudioSourcePool.Remove(audioData.AudioSource);
+                    ObjectPoolHelper.Instance.Release(audioData.AudioSource);
+                }
+            }
         }
 
         private void StopSfxAsBgm(TimelineAsset timelineAsset, bool isFade = false)
@@ -860,17 +863,6 @@ namespace Utility.Audio
             if (isDebug)
             {
                 Debug.Log($"Stop Sfx With Fade - {timelineAsset}");
-            }
-
-            void EndAction()
-            {
-                if (isDebug)
-                {
-                    Debug.LogWarning($"FadeOut End - {timelineAsset}");
-                }
-                _sfxAsBgmPlayableDirectors.Remove(playableDirector.Key);
-                _playableDirectorPool.Remove(playableDirector.Key);
-                ObjectPoolHelper.Instance.Release(playableDirector.Key);
             }
 
             if (isFade)
@@ -893,6 +885,20 @@ namespace Utility.Audio
             else
             {
                 EndAction();
+            }
+
+            return;
+
+            void EndAction()
+            {
+                if (isDebug)
+                {
+                    Debug.LogWarning($"FadeOut End - {timelineAsset}");
+                }
+
+                _sfxAsBgmPlayableDirectors.Remove(playableDirector.Key);
+                _playableDirectorPool.Remove(playableDirector.Key);
+                ObjectPoolHelper.Instance.Release(playableDirector.Key);
             }
         }
 
@@ -971,13 +977,13 @@ namespace Utility.Audio
 
             var (length, endAction) = _distinctSfxClipDictionary[audioClip];
 
-            if (Time.time - length >= audioClip.length)
+            if (Time.time - length < audioClip.length)
             {
-                endAction?.Invoke();
-                return false;
+                return true;
             }
 
-            return true;
+            endAction?.Invoke();
+            return false;
         }
 
         private IEnumerator FadeInBgm(float fadeSec, AnimationCurve animationCurve)
@@ -1055,7 +1061,7 @@ namespace Utility.Audio
                 yield break;
             }
 
-            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack).ToList();
+            var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
 
             var minSec = (float) Math.Min(timelineAsset.duration, fadeSec);
 
@@ -1098,7 +1104,7 @@ namespace Utility.Audio
             }
             // timelineAsset duration보다 긴 경우 fadeSec가 긴 경우 무시, 최대값 timelineAsset duration으로  
 
-            yield return new WaitForSeconds(minSec);
+            yield return YieldInstructionProvider.WaitForSeconds(minSec);
 
             SetAudioTrackVolume(timelineAsset, volume);
         }
@@ -1113,7 +1119,7 @@ namespace Utility.Audio
                 yield break;
             }
 
-            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack).ToList();
+            var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>().ToArray();
             var minSec = (float) Math.Min(timelineAsset.duration, playableDirector.time + FadeSec);
 
             Debug.LogWarning($"fadeout - {minSec},   {timelineAsset.duration}, {playableDirector.time + FadeSec}");
@@ -1140,7 +1146,7 @@ namespace Utility.Audio
             playableDirector.RebuildGraph();
 
             var minWaitSec = (float) Math.Min(timelineAsset.duration - playableDirector.time, FadeSec);
-            yield return new WaitForSeconds(minWaitSec);
+            yield return YieldInstructionProvider.WaitForSeconds(minWaitSec);
 
             foreach (var audioTrack in audioTracks)
             {
@@ -1157,11 +1163,11 @@ namespace Utility.Audio
         {
             if (ignoreTimeScale)
             {
-                yield return new WaitForSecondsRealtime(waitSec);
+                yield return YieldInstructionProvider.WaitForSecondsRealtime(waitSec);
             }
             else
             {
-                yield return new WaitForSeconds(waitSec);
+                yield return YieldInstructionProvider.WaitForSeconds(waitSec);
             }
 
             onEndAction?.Invoke();
@@ -1207,17 +1213,12 @@ namespace Utility.Audio
         // return 0 ~ 1 volume
         public float GetVolume(AudioSourceType audioSourceType)
         {
-            if (audioSourceType == AudioSourceType.Sfx)
+            return audioSourceType switch
             {
-                return sfx.volume;
-            }
-
-            if (audioSourceType == AudioSourceType.Bgm)
-            {
-                return BGMVolumeValue;
-            }
-
-            return -1;
+                AudioSourceType.Sfx => sfx.volume,
+                AudioSourceType.Bgm => BGMVolumeValue,
+                _ => -1
+            };
         }
 
         public bool GetIsReduced()
@@ -1281,7 +1282,7 @@ namespace Utility.Audio
 
         private static void SetAudioTrackVolume(TimelineAsset timelineAsset, float volume)
         {
-            var audioTracks = timelineAsset.GetOutputTracks().Where(item => item is AudioTrack);
+            var audioTracks = timelineAsset.GetOutputTracks().OfType<AudioTrack>();
 
             foreach (var audioTrack in audioTracks)
             {

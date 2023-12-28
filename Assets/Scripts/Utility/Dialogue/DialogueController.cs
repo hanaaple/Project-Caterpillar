@@ -921,12 +921,11 @@ namespace Utility.Dialogue
                 }
             }
 
-            var waitForSec = new WaitForSeconds(textSpeed / characterPrintSpeed);
+            var waitForSec = YieldInstructionProvider.WaitForSeconds(textSpeed / characterPrintSpeed);
 
             for (var index = 0; index < dialogueItem.contents.Length; index++)
             {
                 var t = dialogueItem.contents[index];
-                // 어카지
                 if (t.Equals('<'))
                 {
                     while (!t.Equals('>'))
@@ -1463,7 +1462,7 @@ namespace Utility.Dialogue
 
         private static IEnumerator WaitSecAfterAction(float sec, Action afterAction)
         {
-            yield return new WaitForSeconds(sec);
+            yield return YieldInstructionProvider.WaitForSeconds(sec);
             afterAction?.Invoke();
         }
     }

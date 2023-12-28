@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Utility.Audio;
+using Utility.Util;
 
 namespace Game.Default
 {
     public class ToastManager : MonoBehaviour
     {
-        private enum ToastType
-        {
-            Dark = 0,
-            Light = 1
-        }
+        // private enum ToastType
+        // {
+        //     Dark = 0,
+        //     Light = 1
+        // }
         
-        [SerializeField] private ToastType toastType;
+        // [SerializeField] private ToastType toastType;
+        [SerializeField] private GameObject toastMessagePrefab;
         [SerializeField] private Transform toastMessageParent;
         [SerializeField] private float textSec;
 
@@ -32,7 +34,7 @@ namespace Game.Default
         private static readonly int ResetHash = Animator.StringToHash("Reset");
         private static readonly int IndexHash = Animator.StringToHash("Index");
         private static readonly int DisAppearHash = Animator.StringToHash("DisAppear");
-        private static readonly int TypeHash = Animator.StringToHash("Type");
+        // private static readonly int TypeHash = Animator.StringToHash("Type");
         private static readonly int PlayHash = Animator.StringToHash("Play");
 
         private void Awake()
@@ -46,7 +48,7 @@ namespace Game.Default
             _toastMessageParentAnimator = toastMessageParent.GetComponent<Animator>();
 
             toastMessageParent.GetComponent<RectTransform>().sizeDelta = new Vector2(580,
-                10 + toastMessageParent.GetChild(0).GetComponent<RectTransform>().sizeDelta.y * 3);
+                10 + toastMessagePrefab.GetComponent<RectTransform>().sizeDelta.y * 3);
         }
 
         public void Enqueue(string toastContent)
@@ -65,7 +67,8 @@ namespace Game.Default
                 }
             }
 
-            var toastMessage = Instantiate(toastMessageParent.GetChild(0).gameObject, toastMessageParent);
+            // ObjectPoolHelper.Instance.Getgff<>()
+            var toastMessage = Instantiate(toastMessagePrefab, toastMessageParent);
 
             return toastMessage;
         }
@@ -116,7 +119,7 @@ namespace Game.Default
                 toastMessage.transform.SetAsLastSibling();
                 toastMessage.gameObject.SetActive(true);
                 toastAnimator.SetInteger(IndexHash, 0);
-                toastAnimator.SetInteger(TypeHash, (int) toastType);
+                // toastAnimator.SetInteger(TypeHash, (int) toastType);
                 toastAnimator.SetTrigger(PlayHash);
 
                 _toastMessageParentAnimator.SetTrigger(ResetHash);
@@ -128,7 +131,6 @@ namespace Game.Default
 
                 // 전부 보이면 Text Print
                 var toastContent = _toastQueue.Dequeue();
-                var waitTextSec = new WaitForSeconds(textSec);
                 
                 for (var index = 0; index < toastContent.Length; index++)
                 {
@@ -152,7 +154,7 @@ namespace Game.Default
 
                     if (!t.Equals(' '))
                     {
-                        yield return waitTextSec;
+                        yield return YieldInstructionProvider.WaitForSeconds(textSec);
                     }
                 }
 

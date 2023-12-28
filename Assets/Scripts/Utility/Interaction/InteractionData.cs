@@ -24,7 +24,7 @@ namespace Utility.Interaction
 
     public enum ItemUseType
     {
-        Possess,
+        Inventory,
         HoldHand,
     }
 

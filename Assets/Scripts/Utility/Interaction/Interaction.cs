@@ -237,46 +237,46 @@ namespace Utility.Interaction
                         // 중복 비교 
                         // 중복 개수
 
-                        var hold = interaction.itemInteractionData.itemData
-                            .Where(item => item.itemUseType == ItemUseType.HoldHand);
-
-                        var holdItemData = hold as ItemData[] ?? hold.ToArray();
-                        if (holdItemData.Any())
-                        {
-                            if (holdItemData.All(item => item.itemType == ItemManager.Instance.GetHoldingItem()))
-                            {
-                                var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
-
-                                // 보유 중인 아이템 중복 제외
-                                var count = interaction.itemInteractionData.itemData
-                                    .Where(item => item.itemUseType == ItemUseType.Possess)
-                                    .Select(item => item.itemType)
-                                    .Except(items).Count();
-                                if (count == 0)
-                                {
-                                    // 성공
-                                    Debug.Log("아이템 전부 있음");
-                                    foreach (var itemData in interaction.itemInteractionData.itemData)
-                                    {
-                                        if (itemData.isDestroyItem)
-                                        {
-                                            Debug.Log($"아이템 제거 - {itemData.itemType}");
-                                            ItemManager.Instance.RemoveItem(itemData.itemType);
-                                        }
-                                    }
-
-                                    StartInteraction(interaction.itemInteractionData.targetIndex);
-                                    break;
-                                }
-                            }
-                        }
-                        else
+                        // var hold = interaction.itemInteractionData.itemData
+                        //     .Where(item => item.itemUseType == ItemUseType.HoldHand);
+                        //
+                        // var holdItemData = hold as ItemData[] ?? hold.ToArray();
+                        // if (holdItemData.Any())
+                        // {
+                        //     if (holdItemData.All(item => item.itemType == ItemManager.Instance.GetHoldingItem()))
+                        //     {
+                        //         var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+                        //
+                        //         // 보유 중인 아이템 중복 제외
+                        //         var count = interaction.itemInteractionData.itemData
+                        //             .Where(item => item.itemUseType == ItemUseType.Inventory)
+                        //             .Select(item => item.itemType)
+                        //             .Except(items).Count();
+                        //         if (count == 0)
+                        //         {
+                        //             // 성공
+                        //             Debug.Log("아이템 전부 있음");
+                        //             foreach (var itemData in interaction.itemInteractionData.itemData)
+                        //             {
+                        //                 if (itemData.isDestroyItem)
+                        //                 {
+                        //                     Debug.Log($"아이템 제거 - {itemData.itemType}");
+                        //                     ItemManager.Instance.RemoveItem(itemData.itemType);
+                        //                 }
+                        //             }
+                        //
+                        //             StartInteraction(interaction.itemInteractionData.targetIndex);
+                        //             break;
+                        //         }
+                        //     }
+                        // }
+                        // else
                         {
                             var items = ItemManager.Instance.GetItem<ItemManager.ItemType>();
 
                             // 보유 중인 아이템 중복 제외
                             var count = interaction.itemInteractionData.itemData
-                                .Where(item => item.itemUseType == ItemUseType.Possess).Select(item => item.itemType)
+                                .Where(item => item.itemUseType == ItemUseType.Inventory).Select(item => item.itemType)
                                 .Except(items).Count();
                             if (count == 0)
                             {

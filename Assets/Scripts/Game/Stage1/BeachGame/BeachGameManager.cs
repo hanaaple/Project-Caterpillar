@@ -11,6 +11,7 @@ using Utility.Core;
 using Utility.InputSystem;
 using Utility.Scene;
 using Utility.Tutorial;
+using Utility.Util;
 
 namespace Game.Stage1.BeachGame
 {
@@ -262,7 +263,7 @@ namespace Game.Stage1.BeachGame
 
         private IEnumerator HintTimer()
         {
-            yield return new WaitForSeconds(10f);
+            yield return YieldInstructionProvider.WaitForSeconds(10f);
 
             foreach (var albumPicture in albumPictures)
             {

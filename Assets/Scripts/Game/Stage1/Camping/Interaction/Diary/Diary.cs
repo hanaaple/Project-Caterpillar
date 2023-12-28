@@ -16,14 +16,22 @@ namespace Game.Stage1.Camping.Interaction.Diary
         [SerializeField] private AudioData takeAudioData;
         [SerializeField] private AudioData dropAudioData;
 
-        public Action onOpen;
-        public Action onFire;
-        public Action onPickUp;
+        private Action _onOpen;
+        private Action _onFire;
+        private Action _onPickUp;
 
         private Vector2 _clickedPos;
         private bool _isDrag;
+        private Camera _camera;
 
         private static readonly int IsOutHash = Animator.StringToHash("IsOut");
+
+        public void Initialize(Action onPickUp, Action onFire)
+        {
+            _camera = Camera.main;
+            _onPickUp = onPickUp;
+            _onFire = onFire;
+        }
 
         // Out State에서 Drag해도 안움직일거임
         public void OnPointerDown(PointerEventData eventData)
@@ -33,7 +41,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
                 return;
             }
 
-            _clickedPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            _clickedPos = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             takeAudioData.Play();
         }
@@ -45,7 +53,7 @@ namespace Game.Stage1.Camping.Interaction.Diary
                 return;
             }
 
-            var pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            var pos = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             pos.z = 0;
 
             if (_isDrag)
@@ -69,18 +77,18 @@ namespace Game.Stage1.Camping.Interaction.Diary
                     _isDrag = false;
                     if (Vector3.Distance(fire.transform.position, transform.position) < fire.radius)
                     {
-                        onFire?.Invoke();
+                        _onFire?.Invoke();
                     }
                 }
                 else
                 {
-                    onOpen?.Invoke();
+                    _onOpen?.Invoke();
                 }
             }
             else
             {
                 diaryAnimator.SetBool(IsOutHash, true);
-                onPickUp?.Invoke();
+                _onPickUp?.Invoke();
             }
         }
 

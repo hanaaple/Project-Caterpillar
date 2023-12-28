@@ -237,7 +237,7 @@ namespace Game.Stage1.ShadowGame.Default
         private IEnumerator StartGame()
         {
             yield return new WaitUntil(() => gameAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty"));
-            yield return new WaitForSeconds(1f);
+            yield return YieldInstructionProvider.WaitForSeconds(1f);
 
             bgmAudioData.Play();
             gameAnimator.SetTrigger(PlayHash);
@@ -424,7 +424,7 @@ namespace Game.Stage1.ShadowGame.Default
 
         private IEnumerator ItemTimer()
         {
-            yield return new WaitForSecondsRealtime(itemPopupSec);
+            yield return YieldInstructionProvider.WaitForSecondsRealtime(itemPopupSec);
             PopDownItem();
         }
 
