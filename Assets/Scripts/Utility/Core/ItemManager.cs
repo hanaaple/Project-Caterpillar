@@ -46,15 +46,15 @@ namespace Utility.Core
         }
 
         private static ItemManager _instance;
-        
+
         public static ItemManager Instance
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     var obj = FindObjectOfType<ItemManager>();
-                    if(obj != null)
+                    if (obj != null)
                     {
                         _instance = obj;
                     }
@@ -62,16 +62,18 @@ namespace Utility.Core
                     {
                         _instance = Create();
                     }
+
                     DontDestroyOnLoad(_instance);
                 }
+
                 return _instance;
             }
         }
 
         [SerializeField] private List<ItemType> items;
-        
+
         [SerializeField] private ItemType holdingItem;
-        
+
         private static ItemManager Create()
         {
             var itemManagerPrefab = Resources.Load<ItemManager>("ItemManager");
@@ -99,65 +101,46 @@ namespace Utility.Core
             holdingItem = default;
         }
 
-        public void AddRandomItem(ItemType itemType)
-        {
-            if (Enum.GetValues(typeof(ItemType)).Length - 1 == items.Count)
-            {
-                return;
-            }
-
-            while(true)
-            {
-                if (itemType == ItemType.None || items.Contains(itemType))
-                {
-                    itemType = (ItemType)Random.Range(0, Enum.GetValues(typeof(ItemType)).Length);
-                    continue;
-                }
-
-                items.Add(itemType);
-                break;
-            }
-        }
-        
         public void HoldHand(ItemType itemType)
         {
             if (!items.Contains(itemType))
             {
                 Debug.LogWarning($"착용할 아이템 없음 {itemType}");
             }
-            
+
             // if Player -> Player.Update
             holdingItem = itemType;
         }
-        
+
         public void SetItem(string[] options)
         {
             if (options == null)
             {
                 return;
             }
+
             foreach (var option in options)
             {
                 if (!option.Contains(":"))
                 {
                     continue;
                 }
-                
+
                 // ItemName:Add
                 var t = option.Replace(" ", "").ToLower();
                 var item = t.Split(":");
                 var itemName = item[0];
                 var addRemove = item[1];
 
-                if(!Enum.TryParse(itemName, true, out ItemType itemType))
+                if (!Enum.TryParse(itemName, true, out ItemType itemType))
                 {
                     Debug.LogWarning($"{itemName} 아이템이 없다는딥쇼 쓰앵님");
                     return;
                 }
-                
+
                 Debug.LogWarning($"아이템 Set: {itemName}, {addRemove}");
-                
-                switch(addRemove)
+
+                switch (addRemove)
                 {
                     case "add":
                     {
@@ -177,21 +160,22 @@ namespace Utility.Core
                 }
             }
         }
-        
+
         public T[] GetItem<T>()
         {
             if (typeof(T) == typeof(string))
             {
-                return items.Select(item => item.ToString().ToLower()).ToArray() as T[];    
+                return items.Select(item => item.ToString().ToLower()).ToArray() as T[];
             }
-            
+
             if (typeof(T) == typeof(ItemType))
             {
                 return items.ToArray() as T[];
             }
+
             return null;
         }
-        
+
         public ItemType GetHoldingItem()
         {
             return holdingItem;
@@ -201,5 +185,27 @@ namespace Utility.Core
         {
             items.Remove(itemType);
         }
+
+#if UNITY_EDITOR
+        public void AddRandomItem(ItemType itemType)
+        {
+            if (Enum.GetValues(typeof(ItemType)).Length - 1 == items.Count)
+            {
+                return;
+            }
+
+            while (true)
+            {
+                if (itemType == ItemType.None || items.Contains(itemType))
+                {
+                    itemType = (ItemType) Random.Range(0, Enum.GetValues(typeof(ItemType)).Length);
+                    continue;
+                }
+
+                items.Add(itemType);
+                break;
+            }
+        }
+#endif
     }
 }

@@ -8,7 +8,6 @@ using Utility.SaveSystem;
 
 namespace Utility.Core
 {
-
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance;
@@ -38,9 +37,13 @@ namespace Utility.Core
 
         [NonSerialized] public bool IsTitleCutSceneWorked;
 
+        // Current Scene InteractionData
         [Header("For Debug")] public List<Interaction.Interaction> interactionObjects;
         public List<Npc> npc;
-        public List<SceneData> sceneSaveData = new();
+
+#if UNITY_EDITOR
+        public List<SceneData> sceneSaveData;
+#endif
 
         private static GameManager Create()
         {
@@ -56,10 +59,12 @@ namespace Utility.Core
 
         public void AddInteraction(Interaction.Interaction interaction)
         {
-            if (!interactionObjects.Contains(interaction))
+            if (interactionObjects.Contains(interaction))
             {
-                interactionObjects.Add(interaction);
+                return;
             }
+
+            interactionObjects.Add(interaction);
         }
 
         public void AddMainFieldNpc(Npc npc)
@@ -89,7 +94,8 @@ namespace Utility.Core
 
             foreach (var interaction in interactions)
             {
-                if (interaction.interactionIndex >= interaction.interactionData.Length || !interaction.gameObject.activeSelf)
+                if (interaction.interactionIndex >= interaction.interactionData.Length ||
+                    !interaction.gameObject.activeSelf)
                 {
                     continue;
                 }
@@ -97,8 +103,9 @@ namespace Utility.Core
                 var data = interaction.interactionData[interaction.interactionIndex];
                 if (data.isOnAwake)
                 {
-                    Debug.Log($"OnAwake - {interaction.gameObject.name}, Index - {interaction.interactionIndex}, Order - {data.priority}");
-                }    
+                    Debug.Log(
+                        $"OnAwake - {interaction.gameObject.name}, Index - {interaction.interactionIndex}, Order - {data.priority}");
+                }
             }
 
             foreach (var interaction in interactions)
@@ -115,7 +122,7 @@ namespace Utility.Core
             PlayerManager.Instance.PopInputAction();
         }
 
-        // 아 이거 디버그용이구나
+#if UNITY_EDITOR
         private void OnValidate()
         {
             sceneSaveData.Clear();
@@ -124,5 +131,6 @@ namespace Utility.Core
                 sceneSaveData.Add(sceneData);
             }
         }
+#endif
     }
 }

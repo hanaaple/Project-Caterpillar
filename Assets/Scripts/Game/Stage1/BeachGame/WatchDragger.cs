@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utility.Audio;
+using Utility.Util;
 
 namespace Game.Stage1.BeachGame
 {
@@ -228,7 +229,6 @@ namespace Game.Stage1.BeachGame
             var targetVector = new Vector2(Mathf.Cos((targetAngle + 90) * Mathf.Deg2Rad),
                 Mathf.Sin((targetAngle + 90) * Mathf.Deg2Rad));
 
-            var waitForFixedUpdate = new WaitForFixedUpdate();
             var t = 0f;
             Vector2 startVector = transform.up;
             while (t <= 1f)
@@ -236,7 +236,7 @@ namespace Game.Stage1.BeachGame
                 var afterVector = Vector2.Lerp(startVector, targetVector, t);
                 transform.up = afterVector;
                 t += Time.fixedDeltaTime * weight * rotSpeed;
-                yield return waitForFixedUpdate;
+                yield return YieldInstructionProvider.WaitForFixedUpdate();
             }
 
             var idx = Array.FindIndex(_angles, angle => Mathf.RoundToInt(angle) == Mathf.RoundToInt(targetAngle));

@@ -44,17 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6c808c288a42c4b8ed07137e224478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toastType: 0
+  toastMessagePrefab: {fileID: 4497507106595096771, guid: b8d5038e7a70f924eab8ff423e6a744b, type: 3}
   toastMessageParent: {fileID: 0}
   textSec: 0.02
-  typingAudioClip: {fileID: 8300000, guid: b9cc2727d44709f4d8abc18382665b01, type: 3}
   typingAudioData:
     audioObject: {fileID: 8300000, guid: b9cc2727d44709f4d8abc18382665b01, type: 3}
     volume: 1
     audioSourceType: 1
     isLoop: 1
     isOneShot: 0
-    isWithOutTimeScale: 0
+    ignoreTimeScale: 0
+    isFade: 0
     isCustomFade: 0
     fadeSec: 0
     animationCurve:

@@ -21,6 +21,7 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
         private Vector3 _originPos;
         private bool _isInit;
         private bool _isDrag;
+        private Camera _camera;
 
         public void Awake()
         {
@@ -32,6 +33,7 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
 
         private void Init()
         {
+            _camera = Camera.main;
             _originPos = transform.position;
             _isInit = true;
             Collider2D = GetComponent<Collider2D>();
@@ -46,7 +48,7 @@ namespace Game.Stage1.Camping.Interaction.Squirrel
             }
 
             _isDrag = true;
-            var pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            var pos = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             pos = new Vector3(pos.x, pos.y, 0);
 
             transform.position = pos;

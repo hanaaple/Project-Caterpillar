@@ -22,16 +22,15 @@ namespace Game.Stage1.Camping.Interaction.Diary
         {
             // diary.onOpen = () =>
             // {
-                //setInteractable(false);
-                //showPanel.SetActive(true);
+            //setInteractable(false);
+            //showPanel.SetActive(true);
             // };
-            diary.onPickUp = () => { bag.IsInteractable = false; };
-            diary.onFire = () =>
+            diary.Initialize(() => { bag.IsInteractable = false; }, () =>
             {
                 fireAudioData.Play();
                 diary.gameObject.SetActive(false);
                 tornDiary.gameObject.SetActive(true);
-            };
+            });
         }
 
         public override void ResetInteraction(bool isGameReset = false)

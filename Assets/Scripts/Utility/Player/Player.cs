@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Timeline;
 using Utility.Audio;
+using Utility.Util;
 
 namespace Utility.Player
 {
@@ -179,7 +180,7 @@ namespace Utility.Player
             };
 
 
-            yield return audioLength + stepProps[_stepIndex].timeInterval;
+            yield return YieldInstructionProvider.WaitForSeconds(audioLength + stepProps[_stepIndex].timeInterval);
             _stepIndex = (_stepIndex + 1) % stepProps.Length;
             _isStepAudioPlaying = false;
         }
