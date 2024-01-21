@@ -38,7 +38,7 @@ namespace Game.Stage1.ShadowGame.Default
         [Header("Camera")] [Range(1, 20f)] [SerializeField]
         private float cameraSpeed;
 
-        [SerializeField] private BoxCollider2D cameraBound;
+        [SerializeField] private CameraRange2D cameraBound;
 
         [Space(10)] [Header("Light")] [SerializeField]
         private Flashlight flashlight;
@@ -159,8 +159,8 @@ namespace Game.Stage1.ShadowGame.Default
 
             flashlight.Init();
             _camera = Camera.main;
-            _minBounds = cameraBound.bounds.min;
-            _maxBounds = cameraBound.bounds.max;
+            _minBounds = cameraBound.Min;
+            _maxBounds = cameraBound.Max;
             _yScreenHalfSize = _camera.orthographicSize;
             _xScreenHalfSize = _yScreenHalfSize * _camera.aspect;
 

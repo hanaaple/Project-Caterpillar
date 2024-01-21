@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace Utility.UI.Highlight
 {
+    /// <summary>
+    /// Should Init Before Highlighter.Init
+    /// </summary>
     [Serializable]
     public class SelectHighlightItem : HighlightItem
     {
         private Animator _animator;
         private static readonly int Selected = Animator.StringToHash("Selected");
-
+        
         public void Init(Animator animator)
         {
             _animator = animator;

@@ -95,7 +95,7 @@ namespace Utility.Player
             RotateCharacter(input);
             SetCharacterAnimator(input != Vector2.zero);
             MoveCharacter(input);
-            if (input != Vector2.zero)
+            if (input != Vector2.zero && stepProps.Length > 0)
             {
                 if (stepOffset > _stepOffsetTimer)
                 {

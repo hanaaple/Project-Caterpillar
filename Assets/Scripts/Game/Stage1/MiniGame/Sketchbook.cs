@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utility.Audio;
@@ -41,7 +40,7 @@ namespace Game.Stage1.MiniGame
             {
                 var pointerEventData = _ as PointerEventData;
 
-                var orientation = ((Vector3)pointerEventData.position - fill.rectTransform.position).normalized;
+                var orientation = ((Vector3)(pointerEventData.position * Operators.WindowToCanvasVector2) - fill.rectTransform.position).normalized;
 
                 angle = Vector3.SignedAngle(orientation, -fill.rectTransform.up, Vector3.back) + 180;
                 // if (fill.fillAmount * 360 < angle && )
@@ -74,13 +73,13 @@ namespace Game.Stage1.MiniGame
         private void UpdateDisplay()
         {
             angle = Mathf.Clamp(angle, minDegree, maxDegree);
-            var radius = fill.rectTransform.rect.width / 2 - radiusOffset;
-            var orientation = new Vector3(Mathf.Cos(Mathf.Deg2Rad * (angle + 90 + degreeOffset)),
+            var radius = fill.rectTransform.rect.width / 2 + radiusOffset;
+            var orientation = new Vector2(Mathf.Cos(Mathf.Deg2Rad * (angle + 90 + degreeOffset)),
                 Mathf.Sin(Mathf.Deg2Rad * (angle + 90 + degreeOffset))).normalized;
             fill.fillAmount = angle / 360;
 
-            button.transform.position = radius * orientation + fill.rectTransform.position;
-
+            ((RectTransform) button.transform).anchoredPosition = radius * orientation + fill.rectTransform.anchoredPosition;
+            
             if (Application.isPlaying)
             {
                 drawAudioData.Play();

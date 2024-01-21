@@ -727,7 +727,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1990677179123065872, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -812,7 +812,7 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 1041311182}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindObjects.Array.data[2]
       value: 
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 1041311182}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindAnimators.Array.data[2]
       value: 
@@ -844,7 +844,7 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindGameObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 2055848284}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindGameObjects.Array.data[1]
       value: 
@@ -888,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: fieldProperty.bindAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 1041311182}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: fieldProperty.bindAnimators.Array.data[2]
       value: 
@@ -896,11 +896,11 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindGameObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 2055848284}
+      objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: fieldProperty.bindGameObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 2055848284}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
 --- !u!1 &325816963
@@ -948,7 +948,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456801561
 GameObject:
@@ -1040,7 +1040,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1066,7 +1066,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1145,7 +1145,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1172,7 +1172,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1214,7 +1214,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -1224,9 +1225,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -1252,7 +1250,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1279,7 +1277,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1321,7 +1319,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -1331,9 +1330,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -1491,7 +1487,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1517,7 +1513,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1544,7 +1540,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1570,7 +1566,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1596,7 +1592,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1622,7 +1618,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1648,7 +1644,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1675,7 +1671,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1703,7 +1699,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1730,7 +1726,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1757,7 +1753,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1785,7 +1781,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1811,7 +1807,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1837,7 +1833,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1864,7 +1860,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1906,7 +1902,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -1916,9 +1913,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -1944,7 +1938,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -1971,7 +1965,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2013,7 +2007,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -2023,9 +2018,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -2165,16 +2157,16 @@ MonoBehaviour:
     m_ActionName: Input/Inventory[/Keyboard/x]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
-    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
     m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
     m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 003332d4-d746-4e45-a068-6f67370c5523
+    m_ActionName: Input/MouseWheel[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyBoard
   m_DefaultActionMap: Input
@@ -2193,13 +2185,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &582990271 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-  m_PrefabInstance: {fileID: 1041311181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &590180624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2405,7 +2392,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2434,7 +2421,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2461,7 +2448,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2489,7 +2476,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2520,7 +2507,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2547,7 +2534,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2575,7 +2562,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2603,7 +2590,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2629,7 +2616,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2656,7 +2643,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2698,7 +2685,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -2708,9 +2696,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -2736,7 +2721,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2763,7 +2748,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -2805,7 +2790,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -2815,9 +2801,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -3110,7 +3093,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3136,7 +3119,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3163,7 +3146,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3189,7 +3172,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3216,7 +3199,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3243,7 +3226,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3269,7 +3252,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3295,7 +3278,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3321,7 +3304,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3347,7 +3330,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3373,7 +3356,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3400,7 +3383,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3442,7 +3425,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -3452,9 +3436,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -3499,7 +3480,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -3509,9 +3491,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -3537,7 +3516,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3564,7 +3543,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3591,7 +3570,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3618,7 +3597,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3660,7 +3639,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -3670,9 +3650,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -3698,7 +3675,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3725,7 +3702,7 @@ MonoBehaviour:
         - "\uC218\uC0C1\uD55C\uD3B8\uC9C0:Remove"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3751,7 +3728,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3777,7 +3754,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3804,7 +3781,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3830,7 +3807,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3860,7 +3837,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3888,7 +3865,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3914,7 +3891,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3940,7 +3917,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3966,7 +3943,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -3994,7 +3971,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4020,7 +3997,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4048,7 +4025,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4078,7 +4055,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4106,7 +4083,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4134,7 +4111,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4160,7 +4137,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4186,7 +4163,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4212,7 +4189,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4239,7 +4216,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4266,7 +4243,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4294,7 +4271,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4320,7 +4297,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4348,7 +4325,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4377,7 +4354,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4403,7 +4380,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4429,7 +4406,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4455,7 +4432,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4482,7 +4459,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4508,7 +4485,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4534,7 +4511,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4562,7 +4539,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4588,7 +4565,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4615,7 +4592,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4642,7 +4619,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4668,7 +4645,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4695,7 +4672,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4722,7 +4699,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4748,7 +4725,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4776,7 +4753,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4802,7 +4779,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4844,7 +4821,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -4854,9 +4832,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -4882,7 +4857,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4910,7 +4885,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4936,7 +4911,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4963,7 +4938,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -4990,7 +4965,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5018,7 +4993,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5045,7 +5020,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5071,7 +5046,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5097,7 +5072,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5123,7 +5098,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5150,7 +5125,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5176,7 +5151,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5204,7 +5179,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5231,7 +5206,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5258,7 +5233,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5285,7 +5260,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5311,7 +5286,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5337,7 +5312,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5364,7 +5339,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5390,7 +5365,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5417,7 +5392,7 @@ MonoBehaviour:
         - "\uD574\uC9C4\uBCF4\uB530\uB9AC:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5444,7 +5419,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5471,7 +5446,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 1
         waitInteractions:
-          waitInteractions:
+          waitInteractionData:
           - interaction: {fileID: 1435842875}
             isInteraction: 1
             startIndex: 0
@@ -5507,7 +5482,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5533,7 +5508,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5559,7 +5534,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5586,7 +5561,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5614,7 +5589,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5641,7 +5616,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5668,7 +5643,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5694,7 +5669,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5721,7 +5696,7 @@ MonoBehaviour:
         - "\uD574\uC9C4\uBCF4\uB530\uB9AC:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5748,7 +5723,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5775,7 +5750,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 1
         waitInteractions:
-          waitInteractions:
+          waitInteractionData:
           - interaction: {fileID: 1435842875}
             isInteraction: 1
             startIndex: 0
@@ -5811,7 +5786,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5837,7 +5812,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5863,7 +5838,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5905,7 +5880,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -5915,9 +5891,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -5945,7 +5918,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5972,7 +5945,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -5999,7 +5972,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6026,7 +5999,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6052,7 +6025,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6079,7 +6052,7 @@ MonoBehaviour:
         - "\uD574\uC9C4\uBCF4\uB530\uB9AC:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6106,7 +6079,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6133,7 +6106,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 1
         waitInteractions:
-          waitInteractions:
+          waitInteractionData:
           - interaction: {fileID: 1435842875}
             isInteraction: 1
             startIndex: 0
@@ -6169,7 +6142,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6195,7 +6168,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6221,7 +6194,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6247,7 +6220,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6273,7 +6246,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6301,7 +6274,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6329,7 +6302,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6356,7 +6329,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6383,7 +6356,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6410,7 +6383,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6436,7 +6409,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6463,7 +6436,7 @@ MonoBehaviour:
         - "\uD574\uC9C4\uBCF4\uB530\uB9AC:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6490,7 +6463,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6517,7 +6490,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 1
         waitInteractions:
-          waitInteractions:
+          waitInteractionData:
           - interaction: {fileID: 1435842875}
             isInteraction: 1
             startIndex: 0
@@ -6553,7 +6526,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6580,7 +6553,7 @@ MonoBehaviour:
         - "Tendency-\uAC10\uC778"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6606,7 +6579,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6632,7 +6605,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6659,7 +6632,7 @@ MonoBehaviour:
         - "\uD574\uC9C4\uBCF4\uB530\uB9AC:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6686,7 +6659,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 1
         waitInteractions:
-          waitInteractions:
+          waitInteractionData:
           - interaction: {fileID: 1435842875}
             isInteraction: 1
             startIndex: 0
@@ -6723,7 +6696,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6749,7 +6722,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6775,7 +6748,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6801,7 +6774,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6828,7 +6801,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6855,7 +6828,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6881,7 +6854,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6907,7 +6880,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6934,7 +6907,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -6976,7 +6949,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -6986,9 +6960,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -7016,7 +6987,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7043,7 +7014,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7085,7 +7056,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -7095,9 +7067,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -7403,7 +7372,7 @@ MonoBehaviour:
         - FadeIn
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7433,7 +7402,7 @@ MonoBehaviour:
         - ' name=Stage 2/2-3/Rain'
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 2923e05cf0d13a647bad0840f4223909, type: 2}
         extrapolationMode: 0
@@ -7459,7 +7428,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7485,7 +7454,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7513,7 +7482,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7544,7 +7513,7 @@ MonoBehaviour:
         - " name=Stage 2/2-3/\uC6C5\uB369\uC774\uC5D0 \uBE44\uCE68"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: cc96ea73556149b4f886fd4b005ab271, type: 2}
         extrapolationMode: 0
@@ -7576,7 +7545,7 @@ MonoBehaviour:
         - " name=Stage 2/2-3/\uC6C5\uB369\uC774\uC5D0 \uBE44\uCE5C \uACE0\uC591\uC774"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 4a86b7405570df64eab74c6996bf4032, type: 2}
         extrapolationMode: 0
@@ -7602,7 +7571,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7629,7 +7598,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7656,7 +7625,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7683,7 +7652,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7710,7 +7679,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7736,7 +7705,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7763,7 +7732,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7791,7 +7760,7 @@ MonoBehaviour:
         - ' Reset'
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: d9cc5ac2356ce9c428349c143c99ebf5, type: 2}
         extrapolationMode: 0
@@ -7818,7 +7787,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -7860,7 +7829,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -7870,9 +7840,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -7975,7 +7942,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8001,7 +7968,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8028,7 +7995,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8054,7 +8021,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8081,7 +8048,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8107,7 +8074,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8133,7 +8100,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8159,7 +8126,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8186,7 +8153,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8212,7 +8179,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8238,7 +8205,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8264,7 +8231,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8292,7 +8259,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8318,7 +8285,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8344,7 +8311,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8371,7 +8338,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8397,7 +8364,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8423,7 +8390,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8450,7 +8417,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8478,7 +8445,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8504,7 +8471,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8530,7 +8497,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8558,7 +8525,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8584,7 +8551,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8612,7 +8579,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8642,7 +8609,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8671,7 +8638,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8698,7 +8665,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8729,7 +8696,7 @@ MonoBehaviour:
         - " name=Stage 2/2-3/Get \uC218\uC0C1\uD55C \uD3B8\uC9C0"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 8ed2358eade304d4a8f4ad20de68636f, type: 2}
         extrapolationMode: 0
@@ -8756,7 +8723,7 @@ MonoBehaviour:
         - "\uC218\uC0C1\uD55C\uD3B8\uC9C0:Add"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8783,7 +8750,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8814,7 +8781,7 @@ MonoBehaviour:
         - " name=Stage 2/2-3/Remove \uC218\uC0C1\uD55C \uD3B8\uC9C0"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: 0e30465856af2a247a527598342c2813, type: 2}
         extrapolationMode: 0
@@ -8840,7 +8807,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8866,7 +8833,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8892,7 +8859,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8919,7 +8886,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -8948,7 +8915,7 @@ MonoBehaviour:
         - " name=Stage 2/2-3/Npc Interact \uBCC0\uACBD"
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 11400000, guid: ba0994fde65b96b45a1fe81c2b9b82e5, type: 2}
         extrapolationMode: 0
@@ -8975,7 +8942,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -9017,7 +8984,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -9027,9 +8995,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -9055,7 +9020,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -9082,7 +9047,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -9124,7 +9089,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -9134,9 +9100,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -9371,7 +9334,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -9435,150 +9398,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1041311181
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1783804326}
-    m_Modifications:
-    - target: {fileID: 2240617060481132488, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Name
-      value: Player-Photographer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132488, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -17.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132490, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132491, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Size.x
-      value: 5.7825
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132491, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Size.y
-      value: 9.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132491, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -741747410, guid: b0c2256530e7a584aa3b6d0f9dbc95e5, type: 3}
-    - target: {fileID: 2240617060481132491, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132492, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Size.x
-      value: 1.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132492, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Size.y
-      value: 0.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132492, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132492, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132492, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Offset.y
-      value: -3.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240617060481132493, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: isCharacterControllable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Offset.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 5.7825
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 9.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 5.7825
-      objectReference: {fileID: 0}
-    - target: {fileID: 8097084897221356338, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 9.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8201896393482001728, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
---- !u!95 &1041311182 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2240617060481132494, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-  m_PrefabInstance: {fileID: 1041311181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1080452294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10242,32 +10063,21 @@ Transform:
   m_Father: {fileID: 1896088519}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1294902083
-BoxCollider2D:
+--- !u!114 &1294902083
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294902081}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 28.8, y: 10.8}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892a11757e09458458214372c0993f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0}
+  size: {x: 86.4, y: 32.4}
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1380114324
 GameObject:
   m_ObjectHideFlags: 0
@@ -10608,7 +10418,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10635,7 +10445,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10662,7 +10472,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10689,7 +10499,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10731,7 +10541,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -10741,9 +10552,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -10769,7 +10577,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10796,7 +10604,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -10838,7 +10646,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -10848,9 +10657,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -10995,7 +10801,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -11005,9 +10812,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -11278,7 +11082,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11305,7 +11109,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11347,7 +11151,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -11357,9 +11162,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -11385,7 +11187,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11412,7 +11214,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11454,7 +11256,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -11464,9 +11267,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -11624,7 +11424,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11652,7 +11452,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11678,7 +11478,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11704,7 +11504,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11732,7 +11532,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11759,7 +11559,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11785,7 +11585,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11812,7 +11612,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11838,7 +11638,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11869,7 +11669,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11897,7 +11697,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11926,7 +11726,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11953,7 +11753,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -11979,7 +11779,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12005,7 +11805,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12033,7 +11833,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12059,7 +11859,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12085,7 +11885,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12112,7 +11912,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12154,7 +11954,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -12164,9 +11965,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -12192,7 +11990,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12219,7 +12017,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12261,7 +12059,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -12271,9 +12070,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -12433,7 +12229,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12460,7 +12256,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12486,7 +12282,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12514,7 +12310,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12542,7 +12338,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12568,7 +12364,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12594,7 +12390,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12620,7 +12416,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12648,7 +12444,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12674,7 +12470,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12700,7 +12496,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12727,7 +12523,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12753,7 +12549,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12780,7 +12576,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12806,7 +12602,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12833,7 +12629,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12875,7 +12671,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -12885,9 +12682,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -12913,7 +12707,7 @@ MonoBehaviour:
         option: []
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12940,7 +12734,7 @@ MonoBehaviour:
         - Reset
         interactionWaitType: 0
         waitInteractions:
-          waitInteractions: []
+          waitInteractionData: []
         waitInteractionHelper: {fileID: 0}
         playableAsset: {fileID: 0}
         extrapolationMode: 0
@@ -12982,7 +12776,8 @@ MonoBehaviour:
       audioSourceType: 0
       isLoop: 0
       isOneShot: 0
-      isWithOutTimeScale: 0
+      ignoreTimeScale: 0
+      isFade: 0
       isCustomFade: 0
       fadeSec: 0
       animationCurve:
@@ -12992,9 +12787,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     isStopBgm: 0
-    isStopSfx: 0
-    isFadeOut: 0
-    audioObject: {fileID: 0}
     serializedInteractionData:
       id: 0
       isInteractable: 1
@@ -13090,7 +12882,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 582990271}
   - {fileID: 2240617060000523823}
   m_Father: {fileID: 1896088519}
   m_RootOrder: 4
@@ -13292,7 +13083,7 @@ Transform:
   - {fileID: 1574620784}
   - {fileID: 1783804326}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1896088520
 Animator:
@@ -13564,11 +13355,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3570639267234061190, guid: 4b51d8c1e3efb134fa6ab5b1d74a1619, type: 3}
   m_PrefabInstance: {fileID: 2035637158}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2055848284 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2240617060481132488, guid: c98bbec3b58f74249b273f0c8f85df13, type: 3}
-  m_PrefabInstance: {fileID: 1041311181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2073676637
 GameObject:
   m_ObjectHideFlags: 0
@@ -13598,7 +13384,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2240617060000523816
 MonoBehaviour:
@@ -13617,7 +13403,6 @@ MonoBehaviour:
   playerSpeed: 9.6
   stepOffset: 0
   stepProps: []
-  volume: 0
 --- !u!70 &2240617060000523817
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -13762,7 +13547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1783804326}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4404774700265789567
 BoxCollider2D:

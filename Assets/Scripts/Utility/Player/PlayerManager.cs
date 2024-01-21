@@ -85,6 +85,11 @@ namespace Utility.Player
                     {
                         PlayUIManager.Instance.inventoryManager.SetInventory(true);
                     }
+                    // Stage2 InventoryItemList Open
+                    else if (SceneHelper.Instance.playType == PlayType.StageField && SceneHelper.Instance.stageType == StageType.Stage2)
+                    {
+                        PlayUIManager.Instance.stage2InventoryManager.SetItemList(true);
+                    }
                 },
                 OnTab = () =>
                 {
@@ -112,9 +117,9 @@ namespace Utility.Player
             }
 
             _camera = Camera.main;
-            var bounds = SceneHelper.Instance.fieldProperty.boundBox.bounds;
-            _minBounds = bounds.min;
-            _maxBounds = bounds.max;
+            var bounds = SceneHelper.Instance.fieldProperty.boundBox;
+            _minBounds = bounds.Min;
+            _maxBounds = bounds.Max;
             if (_camera != null)
             {
                 _yScreenHalfSize = _camera.orthographicSize;

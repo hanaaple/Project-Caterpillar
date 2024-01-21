@@ -255,6 +255,7 @@ namespace Utility.Audio
             if (ignoreTimeScale)
             {
                 audioSource = ObjectPoolHelper.Instance.Get<AudioSource>();
+                audioSource.mute = sfx.mute;
                 _sfxAudioSourcePool.Add(audioSource);
                 audioSource.outputAudioMixerGroup = sfx.outputAudioMixerGroup;
                 UpdateVolume();
@@ -365,6 +366,7 @@ namespace Utility.Audio
             UpdateVolume();
             audioSource.clip = audioClip;
             audioSource.loop = true;
+            audioSource.mute = sfx.mute;
 
             if (ignoreTimeScale)
             {
@@ -1208,6 +1210,11 @@ namespace Utility.Audio
         {
             var audioSource = GetAudioSource(audioSourceType);
             audioSource.mute = isMute;
+
+            foreach (var sfxAudioSource in _sfxAudioSourcePool)
+            {
+                sfxAudioSource.mute = isMute;
+            }
         }
 
         // return 0 ~ 1 volume

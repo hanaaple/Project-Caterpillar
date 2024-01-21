@@ -46,6 +46,7 @@ namespace Utility.Core
         public InventoryManager inventoryManager;
         public QuickSlotManager quickSlotManager;
         public TutorialManager tutorialManager;
+        public Stage2InventoryManager stage2InventoryManager;
         
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
@@ -61,26 +62,42 @@ namespace Utility.Core
             return Instantiate(playUIManagerPrefab);
         }
 
-        public void Init(PlayType playType)
+        public void Init(PlayType playType, StageType stageType)
         {
-            SetPlayType(playType);
+            SetPlayType(playType, stageType);
             dialogueController.cutSceneImage.SetActive(false);
             fadeImage.gameObject.SetActive(false);
         }
 
-        private void SetPlayType(PlayType playType)
+        private void SetPlayType(PlayType playType, StageType stageType)
         {
             switch (playType)
             {
-                case PlayType.None:
-                case PlayType.StageField:
-                case PlayType.MiniGame:
+                case PlayType.None or PlayType.MiniGame:
                     quickSlotManager.SetActive(false);
                     inventoryManager.SetEnable(false);
+                    stage2InventoryManager.SetEnable(false);
                     break;
+                case PlayType.StageField:
+                {
+                    quickSlotManager.SetActive(false);
+                    inventoryManager.SetEnable(false);
+                    if (stageType == StageType.Stage2)
+                    {
+                        stage2InventoryManager.SetEnable(true);
+                        // stage2InventoryManager.SetEnable(true);
+                    }
+                    else
+                    {
+                        stage2InventoryManager.SetEnable(false);
+                    }
+
+                    break;
+                }
                 case PlayType.MainField:
                     quickSlotManager.SetActive(true);
                     inventoryManager.SetEnable(true);
+                    stage2InventoryManager.SetEnable(false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playType), playType, null);

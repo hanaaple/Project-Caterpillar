@@ -39,31 +39,36 @@ namespace Game.Stage1.MiniGame
         [SerializeField] private GameObject prefab;
         [SerializeField] private EventTrigger eventTrigger;
         [SerializeField] private RectTransform form;
-        [SerializeField] private Transform root;
         [SerializeField] private Image start;
+
         [SerializeField] private Vector2Int formSize;
+
         // [SerializeField] private int pointSize;
         [SerializeField] private float lineOffset;
 
         [SerializeField] private AudioData arriveAudioData;
         [SerializeField] private AudioData moveOneAudioData;
-        
+
         [SerializeField] private bool isEnd;
+
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Image end;
-        
-        [Header("Start Position")]
-        [SerializeField] private Vector2Int startPos;
+
+        [Header("Start Position")] [SerializeField]
+        private Vector2Int startPos;
+
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPos;
 
-        [Header("Setting Point")] [SerializeField] private Vector2Int startPoint;
+        [Header("Setting Point")] [SerializeField]
+        private Vector2Int startPoint;
+
         [ConditionalHideInInspector("isEnd", true)] [SerializeField]
         private Vector2Int endPoint;
-        
+
         [ConditionalHideInInspector("isEnd")] [SerializeField]
         private float endTime;
-        
+
         [SerializeField] private Edge[] edges;
 
         private Stack<Point> _path;
@@ -71,9 +76,11 @@ namespace Game.Stage1.MiniGame
         private Image _formImage;
 
         private Vector2 PointSize => (form.sizeDelta - LineOffset) / formSize;
+
         // private Vector2 UnitSize => PointSize - LineOffset;
-        private Vector2 PivotPos => (Vector2) form.position - form.sizeDelta / 2 + LineOffset / 2;
         
+        private Vector2 PivotPos => form.position * Operators.WindowToCanvasVector2 - form.sizeDelta / 2 + LineOffset / 2;
+
         private Vector2 LineOffset
         {
             get
@@ -82,14 +89,13 @@ namespace Game.Stage1.MiniGame
                 {
                     _formImage = form.GetComponent<Image>();
                 }
-                
+
                 var ratio = form.sizeDelta / _formImage.sprite.rect.size;
-                
+
                 return lineOffset * ratio;
             }
         }
-        
-        
+
         private static readonly int Before = Animator.StringToHash("Before");
         private static readonly int Next = Animator.StringToHash("Next");
 
@@ -99,24 +105,36 @@ namespace Game.Stage1.MiniGame
             {
                 foreach (var point in _path)
                 {
-                    ((RectTransform) point.Animator.transform).sizeDelta = PointSize;
-                    point.Animator.transform.SetParent(root);
-                    point.Animator.transform.position = GetPointPosition(point.Pos);
+                    var rectTransform = point.Animator.transform as RectTransform;
+                    if (rectTransform != null)
+                    {
+                        rectTransform.sizeDelta = PointSize;
+                        rectTransform.SetParent(form);
+                        rectTransform.anchoredPosition = GetPointAnchoredPosition(point.Pos);
+                    }
                 }
             }
 
             if (start)
             {
-                ((RectTransform) start.transform).sizeDelta = PointSize;
-                start.transform.SetParent(root);
-                start.transform.position = GetPointPosition(startPoint);
+                var rectTransform = start.transform as RectTransform;
+                if (rectTransform != null)
+                {
+                    rectTransform.sizeDelta = PointSize;
+                    rectTransform.SetParent(form);
+                    rectTransform.anchoredPosition = GetPointAnchoredPosition(startPoint);
+                }
             }
 
             if (end)
             {
-                ((RectTransform) end.transform).sizeDelta = PointSize;
-                end.transform.SetParent(root);
-                end.transform.position = GetPointPosition(endPoint);
+                var rectTransform = end.transform as RectTransform;
+                if (rectTransform != null)
+                {
+                    rectTransform.sizeDelta = PointSize;
+                    rectTransform.SetParent(form);
+                    rectTransform.anchoredPosition = GetPointAnchoredPosition(endPoint);
+                }
             }
         }
 
@@ -145,7 +163,8 @@ namespace Game.Stage1.MiniGame
             EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.Drag, _ =>
             {
                 var pointerEventData = _ as PointerEventData;
-                var xy = (pointerEventData.position - PivotPos) / PointSize;
+                
+                var xy = (pointerEventData.position * Operators.WindowToCanvasVector2 - PivotPos) / PointSize;
                 var point = new Vector2Int(Mathf.FloorToInt(xy.x), Mathf.FloorToInt(xy.y));
 
                 if (_path.Any(item => item.Pos == point))
@@ -170,14 +189,14 @@ namespace Game.Stage1.MiniGame
                 // 이미 뚫은 Path인 경우 뒤로 돌리기
 
                 PushPoint(point);
-            }); 
+            });
         }
 
-        private Vector2 GetPointPosition(Vector2Int pointPos)
+        private Vector2 GetPointAnchoredPosition(Vector2Int pointPos)
         {
-            Debug.Log($"pos - {pointPos}, Pivot - {PivotPos}, PointSize - {PointSize}");
-            var targetPos = PivotPos + new Vector2(PointSize.x * pointPos.x, PointSize.y * pointPos.y) + PointSize / 2;
-            
+            Debug.Log($"pos - {pointPos}, PointSize - {PointSize}");
+            var targetPos = new Vector2(PointSize.x * pointPos.x, PointSize.y * pointPos.y) + PointSize / 2 + LineOffset / 2;
+
             return targetPos;
         }
 
@@ -334,9 +353,15 @@ namespace Game.Stage1.MiniGame
             else
             {
                 var point = new Point {Animator = _pointObjectPool.Get(), Pos = targetPos};
-                ((RectTransform) point.Animator.transform).sizeDelta = PointSize;
-                point.Animator.transform.SetParent(root);
-                point.Animator.transform.position = GetPointPosition(point.Pos);
+                var rectTransform = point.Animator.transform as RectTransform;
+                if (rectTransform != null)
+                {
+                    rectTransform.sizeDelta = PointSize;
+                    rectTransform.SetParent(form);
+                    rectTransform.localScale = Vector3.one;
+                    rectTransform.anchoredPosition = GetPointAnchoredPosition(point.Pos);
+                }
+
                 point.Animator.SetInteger(Before, (int) before);
 
                 _path.Push(point);

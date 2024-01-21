@@ -42,6 +42,7 @@ namespace Utility.UI.Highlight
         public int selectedIndex = -1;
         public int highlightedIndex = -1;
         public bool enabled;
+        public bool isKeepHighlightState;
 
         public Object highlightAudioClip;
         public Object clickAudioClip;
@@ -54,6 +55,7 @@ namespace Utility.UI.Highlight
         public List<HighlightItem> HighlightItems;
 
         public Action onPush;
+        public Action onSelect;
 
         private bool _isCleared = true;
 
@@ -147,7 +149,7 @@ namespace Utility.UI.Highlight
             {
                 if (!isEnable && !isDuplicatePossible && !isDestroy)
                 {
-                    if (isReset)
+                    if (isReset && !isKeepHighlightState)
                     {
                         highlightedIndex = -1;
                         selectedIndex = -1;
@@ -194,7 +196,7 @@ namespace Utility.UI.Highlight
                     return;
                 }
 
-                if (isReset)
+                if (isReset && !isKeepHighlightState)
                 {
                     highlightedIndex = -1;
                     selectedIndex = -1;
@@ -242,6 +244,7 @@ namespace Utility.UI.Highlight
             PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
+            onSelect?.Invoke();
             HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
         }
 

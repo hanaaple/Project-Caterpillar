@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utility.Audio;
+using Utility.Util;
 
 namespace Game.Stage1.Camping.Interaction.Map
 {
@@ -45,7 +46,7 @@ namespace Game.Stage1.Camping.Interaction.Map
         {
             if (isInteractable)
             {
-                _rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+                _rectTransform.anchoredPosition += eventData.delta * Operators.WindowToCanvasVector2 / canvas.scaleFactor;
             }
         }
 

@@ -85,7 +85,7 @@ namespace Game.Stage1.BeachGame
                 return;
             }
 
-            _beforeVec = eventData.position - (Vector2) transform.position;
+            _beforeVec = eventData.position * Operators.WindowToCanvasVector2 - (Vector2) transform.position;
             StopAllCoroutines();
             PastIndex.Clear();
             PastIndex.Push(Index);
@@ -102,7 +102,7 @@ namespace Game.Stage1.BeachGame
 
             var beforeAngle = transform.eulerAngles.z;
 
-            var point = eventData.position - (Vector2) transform.position;
+            var point = eventData.position * Operators.WindowToCanvasVector2 - (Vector2) transform.position;
 
             var signedAngle = Vector2.SignedAngle(_beforeVec, point);
             var afterAngle = beforeAngle + signedAngle / angleWeight;
@@ -206,7 +206,7 @@ namespace Game.Stage1.BeachGame
 
             var beforeAngle = transform.eulerAngles.z;
 
-            var point = eventData.position - (Vector2) transform.position;
+            var point = eventData.position * Operators.WindowToCanvasVector2 - (Vector2) transform.position;
 
             var afterAngle = beforeAngle + Vector2.SignedAngle(_beforeVec, point) / angleWeight;
             afterAngle %= 360;

@@ -48,8 +48,8 @@ namespace Utility.UI.Highlight
         /// </summary>
         /// <param name="highlighter"></param>
         /// <param name="isDuplicatePossible"></param>
-        /// <param name="isReset"></param>
-        public void Push(Highlighter highlighter, bool isDuplicatePossible = false, bool isReset = true)
+        /// <param name="isLastReset"> if you want to reset state of last highlight item - true </param>
+        public void Push(Highlighter highlighter, bool isDuplicatePossible = false, bool isLastReset = true)
         {
             if (_highlighters.Contains(highlighter))
             {
@@ -60,11 +60,15 @@ namespace Utility.UI.Highlight
 
             if (_highlighters.Count > 0)
             {
-                _highlighters.Last().SetEnable(false, isDuplicatePossible, false, isReset);
+                _highlighters.Last().SetEnable(false, isDuplicatePossible, false, isLastReset);
             }
-            
-            highlighter.selectedIndex = -1;
-            highlighter.highlightedIndex = -1;
+
+            if (!highlighter.isKeepHighlightState)
+            {
+                highlighter.selectedIndex = -1;
+                highlighter.highlightedIndex = -1;
+            }
+
             highlighter.SetEnable(true);
             
             AddHighlighter(highlighter);
@@ -72,9 +76,6 @@ namespace Utility.UI.Highlight
             highlighter.onPush?.Invoke();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="highlighter"></param>
         /// <param name="isDestroy"> When destroy highlighter (ex - LoadScene)  </param>
         public void Pop(Highlighter highlighter, bool isDestroy = false)
@@ -174,11 +175,6 @@ namespace Utility.UI.Highlight
             // 여기서 Pop을 하는게 맞는가? 삭제하는거면 알겠는데
             highlighter.SetEnable(false, false, isDestroy);
             RemoveHighlighter(highlighter);
-
-            if (_highlighters.Count > 0)
-            {
-                _highlighters.Last().SetEnable(true);
-            }
         }
     }
 }

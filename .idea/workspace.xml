@@ -2,14 +2,701 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b716c6c9-e84b-4568-a90c-116c77de1448" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/001010.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/001010.json.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.bat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Json/Stage1/ep00.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/build.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Json/build.bat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Main/Main Field Character Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Main/Main Field Character Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Main/주인공_걷기 애니메이션.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Main/주인공_걷기 애니메이션.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/풀/Object Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/풀/Object Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Background 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Background 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Bondfire.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Bondfire.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Camera.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Camera.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Effect 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Effect 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Film.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Film.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Front 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Front 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Object 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 1/Object 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Background 2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Background 2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Effect 2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Effect 2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Front 2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Field 2/Front 2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Object Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Object Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장1_참고.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장1_참고.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 1 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 1 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 1 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 1 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 2 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 2 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 2 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 2 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 3 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 3 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 3 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 3 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 4 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 4 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 4 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 4 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 5 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 5 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 5 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 5 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 6 Back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 6 Back.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 6 Front.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Background/Background 6 Front.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Field Item Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/Field Item Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/검은 ver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/검은 ver.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/텍스트 색상.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/텍스트 색상.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/하얀 ver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/Password/하얀 ver.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Circle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Corner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Corner.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/End.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/End.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Middle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Middle.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Path Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Path Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Start.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/Path/Start.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Public/GameOver/GameOver Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Public/GameOver/GameOver Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/UI Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/UI Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/스테이지 화면/Item Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/스테이지 화면/Item Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/UI Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/UI Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/Panel/UI Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/Panel/UI Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/UI Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/UI Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Map/Item Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Map/Item Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Check/Check Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Check/Check Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Dialogue/Dialogue Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Dialogue/Dialogue Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Background.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Bag Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Bag Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Exit Button (Highlight).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Exit Button (Highlight).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Exit Button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/Exit Button.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/가방 (기본).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/가방 (기본).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/가방 (하이라이트).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/가방 (하이라이트).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/목걸이 (기본).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/목걸이 (기본).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/목걸이 (하이라이트).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Bag/목걸이 (하이라이트).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Default.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Default/가방 아이콘.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Default/가방 아이콘.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Item/시점괄호.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Item/시점괄호.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/2.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/3.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/4.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/배경 화살표.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/배경 화살표.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/스크롤바.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/스크롤바.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/키워드창 배경.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Keyword/키워드창 배경.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_노랑.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_노랑.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_동등.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_동등.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_초록.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/동등_초록.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/목걸이_뒤.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/목걸이_뒤.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/목걸이_앞.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/목걸이_앞.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_노랑.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_노랑.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_동등.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_동등.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_초록.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/빨강_초록.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_노랑.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_노랑.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_동등.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_동등.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_초록.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Necklace/Necklace/파랑_초록.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Loading/Lodaing Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Loading/Lodaing Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Pause/Pause Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Pause/Pause Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Audio/Audio Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Audio/Audio Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Background/Background Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Background/Background Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Control/Control Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Control/Control Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/QuickSlot Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/QuickSlot Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/Text Data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/Text Data.txt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Save/Save Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Save/Save Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Title/Title Atlas.spriteatlasv2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Title/Title Atlas.spriteatlasv2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Util/Optimizer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Util/Optimizer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_Android.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_iOS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Stage 1/주인공_걷기 애니메이션.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Characters/Stage 1/주인공_걷기 애니메이션.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무_한그루.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무_한그루.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계_뒤쪽.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계_뒤쪽.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계_앞쪽.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/나무/나무경계_앞쪽.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/메인필드_위치참조(불투명).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/메인필드_위치참조(불투명).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/메인필드_위치참조(투명).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/메인필드_위치참조(투명).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/배경.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/배경.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/이동루트_임시.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Main/이동루트_임시.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Front Object.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Front Object.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Path.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/Field/Path.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/1 Small Room/MiniGame/Box/Box 3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Background 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Background 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Background 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Background 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Bondfire.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Bondfire.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Camera.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Camera.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Film.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Film.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Front 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Front 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Front 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Front 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Tree Stump.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/Tree Stump.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장_이동경로.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장_이동경로.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/2 Camping/캠핑장_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Background 1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Background 1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Background 2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Background 2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Front 2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Path 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Path 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Path 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/3 Beach/Path 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/Step 3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/눈밭.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver1/눈밭.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/ezgif.com-gif-maker (24).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/거침/ezgif.com-gif-maker (24).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/ezgif.com-gif-maker (23).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/잔잔/ezgif.com-gif-maker (23).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/ezgif.com-gif-maker (22).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver2/중간/ezgif.com-gif-maker (22).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/세게/9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/잔잔/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver3/중간/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/세게/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/잔잔/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver4/중간/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/ezgif.com-gif-maker (44).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/세게/ezgif.com-gif-maker (44).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/ezgif.com-gif-maker (48).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Effect/Legacy/ver5/중간/ezgif.com-gif-maker (48).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산1/설산필드_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산2/설산필드2_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산3/설산필드3_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산4/설산필드4_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산5/설산필드5_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_참조.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산6/설산필드6_참조.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산필드_이동경로.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/Field/설산필드_이동경로.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/검은 ver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/검은 ver.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/전체참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/전체참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/텍스트 색상.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/텍스트 색상.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/하얀 ver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/비밀번호/하얀 ver.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_가로길.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_가로길.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_시작.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_시작.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_원형.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_원형.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_중간-24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_중간-24.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_중간-25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/경로/미로길_83_중간-25.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판1/표지판1_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판1/표지판1_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판2/표지판2_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판2/표지판2_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판3/표지판3_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판3/표지판3_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판4/표지판4_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판4/표지판4_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판5/표지판5_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판5/표지판5_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판6/표지판6_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판6/표지판6_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판7/표지판7_참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Field/Play/Stage 1/4 SnowMountain/MiniGame/표지판/표지판7/표지판7_참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Public/GameOver/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Public/GameOver/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/Map/뒤에 뭐 들어가는 오브젝트.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/Map/뒤에 뭐 들어가는 오브젝트.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/Map/바탕.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/Map/바탕.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/게임1,4 조작법.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/게임1,4 조작법.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/전체참고.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/1 Shadow Game/UI/전체참고.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Fail/ezgif.com-gif-maker (46).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Fail/ezgif.com-gif-maker (46).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Game Over/모기효과 가이드.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Game Over/모기효과 가이드.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Game Over/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/Game Over/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Animal Dictionary/0.전체_3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/Billiard Ball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/Billiard Ball.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_기본.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_기본.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_상.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_상.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_우.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_우.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_좌.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_좌.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_하.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/당구공_돌기_하.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/Legacy/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_상/ezgif.com-gif-maker (42).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_상/ezgif.com-gif-maker (42).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_우/ezgif.com-gif-maker (40).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_우/ezgif.com-gif-maker (40).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_좌/ezgif.com-gif-maker (39).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_좌/ezgif.com-gif-maker (39).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_하/ezgif.com-gif-maker (41).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/넘김_하/ezgif.com-gif-maker (41).gif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/전체참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Billiard Ball/전체참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Calander/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Calander/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Diary/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Diary/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Note/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/Note/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_기본.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_기본.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_열림.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_열림.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_열림_뒤집기.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/Hint UI/PhotoFrame/전체_열림_뒤집기.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/지도 참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/2 Camping/지도/지도 참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/Panel/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/3 Beach/UI/Panel/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Map/00. 전체.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Map/00. 전체.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Monster/괴물위치참조(불투명).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Monster/괴물위치참조(불투명).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Monster/괴물위치참조(투명).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Game/Stage 1/4 Shadow Game/Monster/괴물위치참조(투명).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Tutorial/Main/전체참고.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/Play/Tutorial/Main/전체참고.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Item/아이템 수집 배경.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/Item/아이템 수집 배경.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Background.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Exit Button (Highlight).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Exit Button (Highlight).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Exit Button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/Exit Button.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 (기본).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 (기본).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 (하이라이트).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 (하이라이트).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 아이콘.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/가방 아이콘.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/목걸이 (기본).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/목걸이 (기본).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/목걸이 (하이라이트).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/목걸이 (하이라이트).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/시점괄호.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/가방 UI/시점괄호.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/배경 화살표.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/배경 화살표.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/스크롤바.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/스크롤바.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/키워드창 배경.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/Keyword/키워드창 배경.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_노랑.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_노랑.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_동등.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_동등.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_초록.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/동등_초록.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_노랑.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_노랑.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_동등.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_동등.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_초록.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/빨강_초록.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_노랑.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_노랑.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_동등.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_동등.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_초록.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/State/파랑_초록.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/목걸이_뒤.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/목걸이_뒤.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/목걸이_앞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/목걸이_앞.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Inventory/목걸이 UI/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Pause/전체참고.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Pause/전체참고.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Audio/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Audio/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Control/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Preference/Control/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/새 텍스트 문서.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/새 텍스트 문서.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/QuickSlot/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Save/전체.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI/Save/전체.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/AudioMixer/AudioMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/AudioMixer/AudioMixer.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/1 SmallRoom/ShadowGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/1 SmallRoom/ShadowGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/1 SmallRoom/SmallRoomScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/1 SmallRoom/SmallRoomScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/2 Camping/CampingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/2 Camping/CampingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/3 Beach/BeachScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/3 Beach/BeachScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/4 SnowMountain/SnowMountainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/4 SnowMountain/SnowMountainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 1/4 SnowMountain/SnowMountainShadowGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 1/4 SnowMountain/SnowMountainShadowGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Stage 2/2-3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Stage1/ShadowGame/Default/ShadowGameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Stage1/ShadowGame/Default/ShadowGameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Audio/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Audio/AudioManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Player/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/SaveSystem/SaveData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/SaveSystem/SaveData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/SaveSystem/SavePanelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/SaveSystem/SavePanelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Scene/SceneHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Scene/SceneHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/HSSaemaul-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/HSSaemaul-Regular SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Bold SDF.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Bold SDF.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Bold.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Fonts/Maplestory Light.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/URP/New Universal Render Pipeline Asset_Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/URP/New Universal Render Pipeline Asset_Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +711,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/UISU/Documents/GitHub/Slanted_Structure/Temp/gradleOut"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

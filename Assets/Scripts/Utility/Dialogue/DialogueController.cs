@@ -112,7 +112,7 @@ namespace Utility.Dialogue
             {
                 selectHighlightItem.Init(selectHighlightItem.button.GetComponent<Animator>());
             }
-
+            
             _choiceHighlighter.Init(Highlighter.ArrowType.Vertical);
 
             _choiceHighlighter.InputActions.OnEsc = () =>

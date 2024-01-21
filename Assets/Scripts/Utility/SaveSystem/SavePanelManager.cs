@@ -24,7 +24,14 @@ namespace Utility.SaveSystem
                 if (_instance == null)
                 {
                     var obj = FindObjectOfType<SavePanelManager>();
-                    _instance = obj != null ? obj : Instantiate(Resources.Load<SavePanelManager>("SavePanelManager"));
+                    if (obj != null)
+                    {
+                        _instance = obj;
+                    }
+                    else
+                    {
+                        _instance = Create();
+                    }
 
                     DontDestroyOnLoad(_instance);
                     _instance.OnSave = new UnityEvent();
@@ -66,6 +73,11 @@ namespace Utility.SaveSystem
         private SaveLoadType _saveLoadType;
         private string _targetSceneName;
 
+        private static SavePanelManager Create()
+        {
+            var savePanelManagerPrefab = Resources.Load<SavePanelManager>("SavePanelManager");
+            return Instantiate(savePanelManagerPrefab);
+        }
         private void Awake()
         {
             _highlighter = new Highlighter("Save Highlight") {HighlightItems = new List<HighlightItem>()};

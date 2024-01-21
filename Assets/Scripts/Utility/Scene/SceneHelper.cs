@@ -3,8 +3,8 @@ using Game.Default;
 using UnityEngine;
 using Utility.Core;
 using Utility.Player;
-using Utility.Portal;
 using Utility.Property;
+using Utility.Util;
 
 namespace Utility.Scene
 {
@@ -23,13 +23,19 @@ namespace Utility.Scene
         Horizontal,
         Both
     }
+
+    public enum StageType
+    {
+        None,
+        Stage2
+    }
     
     public class SceneHelper : MonoBehaviour
     {
         [Serializable]
         public class FieldProperty
         {
-            public BoxCollider2D boundBox;
+            public CameraRange2D boundBox;
             public bool isCameraMove;
             public PlayerMoveType playerMoveType;
         }
@@ -44,6 +50,9 @@ namespace Utility.Scene
         public static SceneHelper Instance;
         
         public PlayType playType;
+        
+        [ConditionalHideInInspector("playType", PlayType.StageField)]
+        public StageType stageType;
 
         [ConditionalHideInInspector("playType", PlayType.MiniGame, false, true)]
         public ToastManager toastManager;
@@ -54,8 +63,8 @@ namespace Utility.Scene
         [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
         public BindProperty bindProperty;
         
-        [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
-        public PortalManager portalManager;
+        // [ConditionalHideInInspector("playType", PlayType.StageField, false, true)]
+        // public PortalManager portalManager;
         
         /// <summary>
         /// Awake가 OnSceneLoadEnd보다 먼저 발생하여 Awake에서 사용
@@ -82,7 +91,7 @@ namespace Utility.Scene
 
         private void Play()
         {
-            PlayUIManager.Instance.Init(playType);
+            PlayUIManager.Instance.Init(playType, stageType);
             PlayerManager.Instance.Init(playType);
         }
         

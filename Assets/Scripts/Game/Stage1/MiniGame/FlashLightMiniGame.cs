@@ -30,14 +30,13 @@ namespace Game.Stage1.MiniGame
                 EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.PointerDown, _ =>
                 {
                     var pointerEventData = _ as PointerEventData;
-                    _offset = pointerEventData.position - (Vector2) ((RectTransform) eventTrigger.transform).position;
+                    _offset = pointerEventData.position - (Vector2) eventTrigger.transform.position;
                 });
 
                 EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.Drag, _ =>
                 {
                     var pointerEventData = _ as PointerEventData;
-                    // Debug.Log($"{pointerEventData.position}");
-                    ((RectTransform) eventTrigger.transform).position = pointerEventData.position - _offset;
+                    eventTrigger.transform.position = pointerEventData.position - _offset;
                 });
 
                 EventTriggerHelper.AddEntry(eventTrigger, EventTriggerType.BeginDrag, _ =>
