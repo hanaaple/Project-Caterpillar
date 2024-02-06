@@ -121,6 +121,7 @@ namespace Utility.Interaction
             if (defaultFloatingMark)
             {
                 defaultFloatingMark.transform.SetParent(PlayUIManager.Instance.floatingMarkParent.transform);
+                defaultFloatingMark.transform.localScale = Vector3.one;
                 defaultFloatingMark.SetActive(true);
             }
 

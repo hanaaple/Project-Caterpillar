@@ -80,6 +80,8 @@ namespace Game.Stage1.MiniGame
 
             ((RectTransform) button.transform).anchoredPosition = radius * orientation + fill.rectTransform.anchoredPosition;
             
+            Debug.Log(radius);
+            
             if (Application.isPlaying)
             {
                 drawAudioData.Play();

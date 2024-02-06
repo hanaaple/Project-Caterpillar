@@ -38,6 +38,9 @@ namespace Utility.Player
         }
 
         [NonSerialized] public Player Player;
+        /// <summary>
+        /// Interactable Interaction, Added by Interaction (ColliderEnter)
+        /// </summary>
         [NonSerialized] private List<InputInteraction> _inputInteractions;
         private Camera _camera;
         private Vector3 _minBounds;

@@ -48,8 +48,8 @@ namespace Utility.Interaction
 
         protected virtual void Awake()
         {
-            // OnAwakeInteraction();
-            GameManager.Instance.AddInteraction(this);
+            OnAwakeInteraction();
+            // GameManager.Instance.AddInteraction(this);
             
             UpdateId();
         }

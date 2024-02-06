@@ -67,16 +67,36 @@ namespace Utility.SaveSystem
             data.id = interactionSaveData.id;
             data.serializedInteractionData = interactionSaveData.serializedInteractionData;
         }
+        
+        // default, null 비교
 
-        public static bool operator ==(SceneData op1, SceneData op2)
-        {
-            return Equals(op1, op2);
-        }
-
-        public static bool operator !=(SceneData op1, SceneData op2)
-        {
-            return !(op1 == op2);
-        }
+        // public static bool operator ==(SceneData op1, SceneData op2)
+        // {
+        //     return Equals(op1, op2);
+        // }
+        //
+        // public static bool operator !=(SceneData op1, SceneData op2)
+        // {
+        //     return !(op1 == op2);
+        // }
+        //
+        // protected bool Equals(SceneData other)
+        // {
+        //     return sceneName == other.sceneName && Equals(interactionData, other.interactionData) && Equals(npcData, other.npcData) && playerSerializableTransform.Equals(other.playerSerializableTransform);
+        // }
+        //
+        // public override bool Equals(object obj)
+        // {
+        //     if (ReferenceEquals(null, obj)) return false;
+        //     if (ReferenceEquals(this, obj)) return true;
+        //     if (obj.GetType() != GetType()) return false;
+        //     return Equals((SceneData) obj);
+        // }
+        //
+        // public override int GetHashCode()
+        // {
+        //     return HashCode.Combine(sceneName, interactionData, npcData, playerSerializableTransform);
+        // }
     }
 
     [Serializable]
