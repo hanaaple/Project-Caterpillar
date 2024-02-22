@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Timeline;
 using Utility.Property;
 using Object = UnityEngine.Object;
 
@@ -15,13 +16,13 @@ namespace Utility.Audio
     [Serializable]
     public class AudioData
     {
-        [SerializeField] public Object audioObject;
+        [SerializeField] private Object audioObject;
         [Range(0, 1)] [SerializeField] private float volume;
 
-        [SerializeField] internal AudioSourceType audioSourceType;
+        [SerializeField] private AudioSourceType audioSourceType;
         
         [ConditionalHideInInspector("audioSourceType", AudioSourceType.Sfx)] [SerializeField]
-        internal bool isLoop;
+        private bool isLoop;
 
         [ConditionalHideInInspector("audioSourceType", AudioSourceType.Sfx)] [SerializeField]
         private bool isOneShot;
@@ -42,6 +43,22 @@ namespace Utility.Audio
 
         [ConditionalHideInInspector("isCustomFade")] [SerializeField]
         private AnimationCurve animationCurve;
+        
+        public AudioSourceType AudioSourceType => audioSourceType;
+        public bool IsLoop => isLoop;
+        public Object AudioObject => audioObject;
+
+        public float Length {
+            get
+            {
+                return audioObject switch
+                {
+                    AudioClip audioClip => audioClip.length,
+                    TimelineAsset timelineAsset => (float)timelineAsset.duration,
+                    _ => 0f
+                };
+            }
+        }
 
         public void Play()
         {

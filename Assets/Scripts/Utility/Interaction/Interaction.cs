@@ -48,8 +48,8 @@ namespace Utility.Interaction
 
         protected virtual void Awake()
         {
-            OnAwakeInteraction();
-            // GameManager.Instance.AddInteraction(this);
+            //OnAwakeInteraction();
+            GameManager.Instance.AddInteraction(this);
             
             UpdateId();
         }
@@ -321,7 +321,7 @@ namespace Utility.Interaction
                     }
                     case InteractType.Audio:
                     {
-                        if (interaction.audioData.audioObject != null)
+                        if (interaction.audioData.AudioObject != null)
                         {
                             interaction.audioData.Play();
                         }
@@ -364,7 +364,7 @@ namespace Utility.Interaction
                     }
                     case InteractType.StopAudio:
                     {
-                        if (interaction.audioData.audioObject != null)
+                        if (interaction.audioData.AudioObject != null)
                         {
                             interaction.audioData.Stop();
                         }

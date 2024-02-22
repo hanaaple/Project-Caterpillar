@@ -697,11 +697,7 @@ namespace Utility.Audio
             sfx.volume = sfx.volume;
 
             // sfxList - except sfxAsBgm
-            var sfxAudioSources =
-                from a in _sfxAudioSourcePool
-                from b in _sfxAsBgmAudioClipData
-                where a != b.AudioSource
-                select a;
+            var sfxAudioSources = _sfxAudioSourcePool.Except(_sfxAsBgmAudioClipData.Select(item => item.AudioSource));
             foreach (var sfxAudioSource in sfxAudioSources)
             {
                 sfxAudioSource.volume = sfx.volume;
@@ -724,10 +720,7 @@ namespace Utility.Audio
             bgm.pitch = pitch;
 
             // sfxList - except _ignoreTimeScaleAudioSources
-            var query = from a in _sfxAsBgmAudioClipData
-                from b in _ignoreTimeScaleAudioSources
-                where b != a.AudioSource
-                select b;
+            var query = _sfxAsBgmAudioClipData.Select(item => item.AudioSource).Except(_ignoreTimeScaleAudioSources);
             foreach (var audioSource in query)
             {
                 audioSource.pitch = pitch;

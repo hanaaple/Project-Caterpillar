@@ -289,17 +289,18 @@ namespace Game.Stage1.ShadowGame.Default
                 StopCoroutine(_stageUpdateCoroutine);
                 _stageUpdateCoroutine = null;
             }
-
-            shadowMonster.Defeat(() =>
+            
+            crisisAudioData.Stop();
+            
+            foreach (var speechBubble in defeatedTexts)
             {
-                foreach (var speechBubble in defeatedTexts)
+                if (stageIndex == speechBubble.index)
                 {
-                    if (stageIndex == speechBubble.index)
-                    {
-                        SceneHelper.Instance.toastManager.Enqueue(speechBubble.text);
-                    }
+                    SceneHelper.Instance.toastManager.Enqueue(speechBubble.text);
                 }
-            }, () => { StartCoroutine(OnStageEnd(true)); });
+            }
+            
+            shadowMonster.Defeat(() => { StartCoroutine(OnStageEnd(true)); });
         }
 
         private IEnumerator StageUpdate()
@@ -370,7 +371,7 @@ namespace Game.Stage1.ShadowGame.Default
             yield return new WaitUntil(() =>
                 stageAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty") && shadowMonster.monsterAnimator
                     .GetCurrentAnimatorStateInfo(0).IsName("Default"));
-
+            
             Debug.Log(stageIndex + "스테이지 종료");
 
             stageIndex++;

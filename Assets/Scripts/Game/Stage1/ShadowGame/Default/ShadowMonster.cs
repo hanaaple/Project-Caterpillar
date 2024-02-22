@@ -47,10 +47,9 @@ namespace Game.Stage1.ShadowGame.Default
         }
 
         // Defeat Animation 타이밍 조정 필요 -> 미사용?
-        public void Defeat(Action onDefeatStart, Action onDisappear)
+        public void Defeat(Action onDisappear)
         {
             SetEnable(false);
-            onDefeatStart?.Invoke();
             StartCoroutine(DisappearCoroutine(onDisappear));
         }
 

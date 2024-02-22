@@ -31,30 +31,45 @@ namespace Utility.Core
                     else
                     {
                         _instance = Create();
+                        _instance.Init();
                     }
-
+                    
                     DontDestroyOnLoad(_instance);
                 }
 
                 return _instance;
             }
         }
-        
+
         public PauseManager pauseManager;
         public PreferenceManager preferenceManager;
         public DialogueController dialogueController;
-        public InventoryManager inventoryManager;
         public QuickSlotManager quickSlotManager;
         public TutorialManager tutorialManager;
-        public Stage2InventoryManager stage2InventoryManager;
-        
+
+        public IInventory Inventory
+        {
+            get => _inventory;
+            private set
+            {
+                if (_inventory == value) return;
+                value?.SetEnable(true);
+                _inventory?.SetEnable(false);
+                _inventory = value;
+            }
+        }
+
         public Transform floatingMarkParent;
         [SerializeField] private CanvasGroup fadeImage;
-        
+
         public AudioData defaultHighlightAudioData;
         public AudioData defaultClickAudioData;
 
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private Stage2InventoryManager stage2InventoryManager;
+
         private bool _isFade;
+        private IInventory _inventory;
 
         private static PlayUIManager Create()
         {
@@ -62,7 +77,13 @@ namespace Utility.Core
             return Instantiate(playUIManagerPrefab);
         }
 
-        public void Init(PlayType playType, StageType stageType)
+        private void Init()
+        {
+            inventoryManager.SetEnable(false);
+            stage2InventoryManager.SetEnable(false);
+        }
+
+        public void OnLoadSceneInit(PlayType playType, StageType stageType)
         {
             SetPlayType(playType, stageType);
             dialogueController.cutSceneImage.SetActive(false);
@@ -75,29 +96,15 @@ namespace Utility.Core
             {
                 case PlayType.None or PlayType.MiniGame:
                     quickSlotManager.SetActive(false);
-                    inventoryManager.SetEnable(false);
-                    stage2InventoryManager.SetEnable(false);
+                    Inventory = null;
                     break;
                 case PlayType.StageField:
-                {
                     quickSlotManager.SetActive(false);
-                    inventoryManager.SetEnable(false);
-                    if (stageType == StageType.Stage2)
-                    {
-                        stage2InventoryManager.SetEnable(true);
-                        // stage2InventoryManager.SetEnable(true);
-                    }
-                    else
-                    {
-                        stage2InventoryManager.SetEnable(false);
-                    }
-
+                    Inventory = stageType == StageType.Stage2 ? stage2InventoryManager : null;
                     break;
-                }
                 case PlayType.MainField:
                     quickSlotManager.SetActive(true);
-                    inventoryManager.SetEnable(true);
-                    stage2InventoryManager.SetEnable(false);
+                    Inventory = inventoryManager;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playType), playType, null);
@@ -155,12 +162,12 @@ namespace Utility.Core
         {
             defaultClickAudioData.Play();
         }
-        
+
         public void PlayAudioHighlight()
         {
             defaultHighlightAudioData.Play();
         }
-        
+
         public void Destroy()
         {
             _instance = null;

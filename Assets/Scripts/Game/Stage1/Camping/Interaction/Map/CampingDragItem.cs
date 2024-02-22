@@ -8,14 +8,7 @@ namespace Game.Stage1.Camping.Interaction.Map
 {
     public class CampingDragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        [SerializeField] private Canvas canvas;
         [SerializeField] protected bool isInteractable;
-        
-        private CanvasGroup _canvasGroup;
-        private RectTransform _rectTransform;
-
-        internal Action OnBeginDragAction;
-
         
         public AudioData takeAudioData;
         public AudioData dropAudioData;
@@ -24,9 +17,18 @@ namespace Game.Stage1.Camping.Interaction.Map
         public int x;
         public int y;
         
+        internal Action OnBeginDragAction;
+        
+        private CanvasGroup _canvasGroup;
+        private RectTransform _rectTransform;
+        
         protected void Start()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            if (!TryGetComponent(out _canvasGroup))
+            {
+                _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
+
             _rectTransform = GetComponent<RectTransform>();
         }
         
@@ -46,7 +48,7 @@ namespace Game.Stage1.Camping.Interaction.Map
         {
             if (isInteractable)
             {
-                _rectTransform.anchoredPosition += eventData.delta * Operators.WindowToCanvasVector2 / canvas.scaleFactor;
+                _rectTransform.anchoredPosition += eventData.delta * Operators.WindowToCanvasVector2;
             }
         }
 

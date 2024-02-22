@@ -7,6 +7,7 @@ namespace Game.Stage1.MiniGame
 {
     public class Diary : Default.MiniGame
     {
+        [SerializeField] private CanvasScaler canvasScaler;
         [SerializeField] private Button button;
         [SerializeField] private Sprite[] sprites;
         
@@ -29,6 +30,7 @@ namespace Game.Stage1.MiniGame
                 else
                 {
                     button.image.sprite = sprites[_index];
+                    SetNativeSize();
                     turnAudioData.Play();
                 }
             });
@@ -38,7 +40,16 @@ namespace Game.Stage1.MiniGame
         {
             _index = 0;
             button.image.raycastTarget = true;
+            SetNativeSize();
             base.Play(onEndAction);
+        }
+
+        private void SetNativeSize()
+        {
+            var delta = button.image.sprite.pixelsPerUnit / canvasScaler.referencePixelsPerUnit;
+            ((RectTransform)button.transform).sizeDelta =
+                new Vector2(button.image.sprite.texture.width, button.image.sprite.texture.height) / delta;
+            ((RectTransform)button.transform).anchoredPosition = Vector2.zero;
         }
     }
 }

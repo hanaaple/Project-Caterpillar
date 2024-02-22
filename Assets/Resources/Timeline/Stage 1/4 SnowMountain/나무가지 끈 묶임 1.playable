@@ -22,7 +22,7 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: 53324662ee0c4234dbb52cbc867b0c72, type: 3}
     attribute: m_Sprite
-    path: Map 7 (2)/Interactions/Branch String
+    path: 
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -33,7 +33,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1419128458
+      path: 0
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d21dcc2386d650c4597f3633c75a1f98, type: 3}
-  m_Name: Map
+  m_Name: Branch String 1
   m_EditorClassIdentifier: 
   m_Version: 3
   m_AnimClip: {fileID: 0}

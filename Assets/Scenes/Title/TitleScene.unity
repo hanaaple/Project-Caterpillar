@@ -1897,7 +1897,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -2164,16 +2164,16 @@ MonoBehaviour:
     m_ActionName: Input/Inventory[/Keyboard/x]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c11f3372-3b31-4353-9b35-05b5183a42cc
-    m_ActionName: Input/AnyKey[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 61f0287a-ba4a-4210-b465-0a8e58e0c837
     m_ActionName: Input/Keyboard[/Keyboard/a,/Keyboard/b,/Keyboard/c,/Keyboard/d,/Keyboard/e,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/i,/Keyboard/j,/Keyboard/k,/Keyboard/l,/Keyboard/m,/Keyboard/n,/Keyboard/o,/Keyboard/p,/Keyboard/q,/Keyboard/r,/Keyboard/s,/Keyboard/t,/Keyboard/u,/Keyboard/v,/Keyboard/w,/Keyboard/x,/Keyboard/y,/Keyboard/z,/Keyboard/backspace]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f2453e94-092d-45d5-a1da-d08e712a6173
     m_ActionName: Input/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 003332d4-d746-4e45-a068-6f67370c5523
+    m_ActionName: Input/MouseWheel[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyBoard
   m_DefaultActionMap: Input

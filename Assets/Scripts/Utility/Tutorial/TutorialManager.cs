@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Utility.Audio;
 using Utility.Core;
 using Utility.InputSystem;
+using Utility.Scene;
 using Utility.Util;
 
 namespace Utility.Tutorial
@@ -32,10 +33,12 @@ namespace Utility.Tutorial
                     pressKeyAnimator.SetBool(IsPressHash, true);
                     if (_tutorialHelper.GetIsEnd())
                     {
+                        SceneLoader.Instance.onLoadScene -= EndTutorial;
                         TimeScaleHelper.Pop();
                         InputManager.PopInputAction(_inputActions);
                         tutorialPanel.SetActive(false);
                         _onEndAction?.Invoke();
+                        _onEndAction = null;
                     }
                     else
                     {
@@ -58,6 +61,19 @@ namespace Utility.Tutorial
             InputManager.PushInputAction(_inputActions);
             TimeScaleHelper.Push(0f);
             activeAudioData.Play();
+
+            SceneLoader.Instance.onLoadScene += EndTutorial;
+        }
+
+        private void EndTutorial()
+        {
+            if (_onEndAction != null)
+            {
+                TimeScaleHelper.Pop();
+                InputManager.PopInputAction(_inputActions);
+                tutorialPanel.SetActive(false);
+                _onEndAction = null;
+            }
         }
     }
 }

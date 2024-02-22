@@ -86,12 +86,12 @@ namespace Utility.Player
                 {
                     if (SceneHelper.Instance.playType == PlayType.MainField)
                     {
-                        PlayUIManager.Instance.inventoryManager.SetInventory(true);
+                        PlayUIManager.Instance.Inventory.SetInventory(true);
                     }
                     // Stage2 InventoryItemList Open
                     else if (SceneHelper.Instance.playType == PlayType.StageField && SceneHelper.Instance.stageType == StageType.Stage2)
                     {
-                        PlayUIManager.Instance.stage2InventoryManager.SetItemList(true);
+                        PlayUIManager.Instance.Inventory.SetInventory(true);
                     }
                 },
                 OnTab = () =>

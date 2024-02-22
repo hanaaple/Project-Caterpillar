@@ -65,7 +65,7 @@ namespace Utility.UI.Inventory
         }
     }
 
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, IInventory
     {
         [SerializeField] private Button inventoryButton;
         [SerializeField] private GameObject inventoryPanel;
@@ -366,15 +366,9 @@ namespace Utility.UI.Inventory
         {
             Debug.Log("Inventory Load Item");
 
-            var activeItems = from a in ItemManager.Instance.GetItem<ItemManager.ItemType>()
-                from b in inventoryItems
-                where a == b.itemType
-                select b;
-            
-            var inactiveItems = from a in ItemManager.Instance.GetItem<ItemManager.ItemType>()
-                from b in inventoryItems
-                where a != b.itemType
-                select b;            
+            var itemList = ItemManager.Instance.GetItem<ItemManager.ItemType>();
+            var activeItems = inventoryItems.Where(item => itemList.Contains(item.itemType));
+            var inactiveItems = inventoryItems.Where(item => !itemList.Contains(item.itemType));
             
             foreach (var item in activeItems)
             {

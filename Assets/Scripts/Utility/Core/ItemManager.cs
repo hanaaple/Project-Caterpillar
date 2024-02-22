@@ -144,6 +144,8 @@ namespace Utility.Core
                 {
                     case "add":
                     {
+                        if(items.Contains(itemType))
+                            continue;
                         items.Add(itemType);
                         break;
                     }

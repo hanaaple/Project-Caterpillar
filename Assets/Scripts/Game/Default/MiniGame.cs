@@ -21,7 +21,7 @@ namespace Game.Default
                     PlayUIManager.Instance.pauseManager.onExit = () =>
                     {
                         // ??
-                        PlayUIManager.Instance.dialogueController.EndDialogue();
+                        PlayUIManager.Instance.dialogueController.EndDialogueImmediately();
                         PlayUIManager.Instance.pauseManager.onExit = () => { };
                     };
                 }

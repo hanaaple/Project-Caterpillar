@@ -129,7 +129,7 @@ namespace Game.Stage1.BeachGame
 
                     interaction.onInteract += () =>
                     {
-                        if (beachInteraction.audioData.audioObject)
+                        if (beachInteraction.audioData.AudioObject)
                         {
                             beachInteraction.audioData.Play();    
                         }

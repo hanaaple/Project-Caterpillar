@@ -32,7 +32,7 @@ namespace Utility.Util
                     }
                 };
 
-                if ((audioData.audioSourceType == AudioSourceType.Sfx && audioData.isLoop) || audioData.audioSourceType == AudioSourceType.Bgm)
+                if ((audioData.AudioSourceType == AudioSourceType.Sfx && audioData.IsLoop) || audioData.AudioSourceType == AudioSourceType.Bgm)
                 {
                     trigger.onTriggerExit2D = () =>
                     {

@@ -36,7 +36,11 @@ namespace Utility.UI.Highlight
             /// <summary>
             /// hover mouse == select(arrow), don't have to Implement HighlightItem -> EnterHighlight()
             /// </summary>
-            HighlightIsSelect
+            HighlightIsSelect,
+            /// <summary>
+            /// just click is select, select this type
+            /// </summary>
+            ClickIsSelect
         }
 
         public int selectedIndex = -1;
@@ -239,13 +243,15 @@ namespace Utility.UI.Highlight
                 return;
             }
 
-            // Audio Select
-
             PopItem(selectedIndex, HighlightItem.TransitionType.Select);
 
             selectedIndex = idx;
             onSelect?.Invoke();
             HighlightItems[idx].Push(HighlightItem.TransitionType.Select);
+            if (highlightType == HighlightType.HighlightIsSelect)
+            {
+                Highlight(idx);
+            }
         }
 
         public void DeSelect()
@@ -265,11 +271,16 @@ namespace Utility.UI.Highlight
             {
                 return;
             }
-
+            
             PopItem(highlightedIndex, HighlightItem.TransitionType.Highlight);
 
             highlightedIndex = idx;
             HighlightItems[idx].Push(HighlightItem.TransitionType.Highlight);
+            
+            if (highlightType == HighlightType.HighlightIsSelect)
+            {
+                Select(idx);
+            }
         }
 
         public void DeHighlight()
@@ -337,11 +348,6 @@ namespace Utility.UI.Highlight
 
                     if (HighlightItems[idx].isEnable)
                     {
-                        if (highlightType == HighlightType.HighlightIsSelect)
-                        {
-                            Highlight(idx);
-                        }
-
                         Select(idx);
                         return;
                     }
@@ -377,11 +383,6 @@ namespace Utility.UI.Highlight
 
                     if (HighlightItems[idx].isEnable)
                     {
-                        if (highlightType == HighlightType.HighlightIsSelect)
-                        {
-                            Highlight(idx);
-                        }
-
                         Select(idx);
                         return;
                     }
@@ -392,8 +393,11 @@ namespace Utility.UI.Highlight
         private void SetHighlightItemEvent(HighlightItem highlightItem)
         {
             // 이게 실행되기 전에 Button.OnClick이 먼저 실행되서 이 Action이 사라짐
-            highlightItem.AddEventTrigger(EventTriggerType.PointerDown,
-                delegate
+            
+            // 클릭이 아니라 Select에 소리가 나도록
+            if (highlightType == HighlightType.ClickIsSelect)
+            {
+                onSelect += () =>
                 {
                     if (ClickAudioData == null)
                     {
@@ -403,15 +407,35 @@ namespace Utility.UI.Highlight
                     {
                         ClickAudioData.Play();
                     }
-                });
+                };
+            }
+            else
+            {
+                highlightItem.AddEventTrigger(EventTriggerType.PointerDown,
+                    delegate
+                    {
+                        if (ClickAudioData == null)
+                        {
+                            AudioManager.Instance.PlaySfx(clickAudioClip, 1f, true, true);
+                        }
+                        else
+                        {
+                            ClickAudioData.Play();
+                        }
+                    });
+            }
 
-            highlightItem.AddEventTrigger(EventTriggerType.PointerEnter,
-                delegate { Highlight(highlightItem); });
+            highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { Highlight(highlightItem); });
             highlightItem.AddEventTrigger(EventTriggerType.PointerExit, delegate { DeHighlight(); });
 
-            if (highlightType == HighlightType.HighlightIsSelect)
+            // if (highlightType == HighlightType.HighlightIsSelect)
+            // {
+            //     highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { Select(highlightItem); });
+            // }
+            // else
+            if (highlightType == HighlightType.ClickIsSelect)
             {
-                highlightItem.AddEventTrigger(EventTriggerType.PointerEnter, delegate { Select(highlightItem); });
+                highlightItem.AddEventTrigger(EventTriggerType.PointerDown, delegate { Select(highlightItem); });
             }
         }
 
@@ -425,7 +449,7 @@ namespace Utility.UI.Highlight
             }
             else if (highlightAudioClip == null)
             {
-                highlightAudioClip = PlayUIManager.Instance.defaultHighlightAudioData.audioObject;
+                highlightAudioClip = PlayUIManager.Instance.defaultHighlightAudioData.AudioObject;
             }
 
             if (ClickAudioData == null)
@@ -434,7 +458,7 @@ namespace Utility.UI.Highlight
             }
             else if (clickAudioClip == null)
             {
-                clickAudioClip = PlayUIManager.Instance.defaultClickAudioData.audioObject;
+                clickAudioClip = PlayUIManager.Instance.defaultClickAudioData.AudioObject;
             }
 
             highlightItem.onHighlight += () =>

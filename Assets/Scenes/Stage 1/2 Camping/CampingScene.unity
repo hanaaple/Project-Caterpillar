@@ -476,8 +476,9 @@ GameObject:
   - component: {fileID: 136625574}
   - component: {fileID: 136625576}
   - component: {fileID: 136625573}
+  - component: {fileID: 136625577}
   m_Layer: 11
-  m_Name: Camera
+  m_Name: Camera Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -726,6 +727,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &136625577
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136625571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &162813041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,7 +1151,7 @@ PrefabInstance:
       objectReference: {fileID: 2240617060515791365}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindAnimators.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindGameObjects.Array.size
@@ -1143,7 +1164,11 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 136625577}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.data[2]
+      value: 
+      objectReference: {fileID: 1854005712}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindGameObjects.Array.data[0]
       value: 
@@ -5042,7 +5067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2266524403882715142, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_WrapMode
@@ -5055,10 +5080,10 @@ PrefabInstance:
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_PlayableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
+      objectReference: {fileID: 11400000, guid: fb569e1a55003a747ac57dbb25daa077, type: 2}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 54
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -5277,6 +5302,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7305145070311664491, guid: 0026d0498ac172f489b50a4be93a697c, type: 2}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[54].key
+      value: 
+      objectReference: {fileID: -7017373572408629720, guid: fb569e1a55003a747ac57dbb25daa077, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[55].key
+      value: 
+      objectReference: {fileID: 6714532464644236038, guid: fa598a1dbd9f94742926cc2e8caae87c, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
       objectReference: {fileID: 0}
@@ -5428,6 +5461,14 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[53].value
       value: 
       objectReference: {fileID: 2125966400}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[54].value
+      value: 
+      objectReference: {fileID: 1854005712}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[55].value
+      value: 
+      objectReference: {fileID: 136625577}
     - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 1
@@ -6176,8 +6217,9 @@ GameObject:
   - component: {fileID: 1854005710}
   - component: {fileID: 1854005711}
   - component: {fileID: 1854005709}
+  - component: {fileID: 1854005712}
   m_Layer: 11
-  m_Name: Film
+  m_Name: Film Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6426,6 +6468,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1854005712
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854005707}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1867047337
 GameObject:
   m_ObjectHideFlags: 0

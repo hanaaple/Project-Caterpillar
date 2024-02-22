@@ -149,44 +149,44 @@ namespace Utility.UI.Inventory
             // Animator로 하면 깔끔한데 나중에 바꿔보던가
             if (tendencyProps.ascent > 0)
             {
-                const float tc = 53 / 255f;
+                //const float tc = 53 / 255f;
 
                 if (tendencyProps.activation > 0)
                 {
                     // 1사분면
-                    // const float c = 69 / 255f;
-                    // tendencyItem.text.color = new Color(c, c, c);
+                    const float c = 191 / 255f;
+                    tendencyItem.text.color = new Color(c, c, c);
                     tendencyItem.image.sprite = tendencySprites[0];
                 }
                 else if (tendencyProps.inactive > 0)
                 {
                     // 2사분면
-                    // const float c = 53 / 255f;
-                    // tendencyItem.text.color = new Color(c, c, c);
+                    const float c = 148 / 255f;
+                    tendencyItem.text.color = new Color(c, c, c);
                     tendencyItem.image.sprite = tendencySprites[1];
                 }
 
-                tendencyItem.text.color = new Color(tc, tc, tc);
+                // tendencyItem.text.color = new Color(tc, tc, tc);
             }
             else if (tendencyProps.descent > 0)
             {
-                const float tc = 148 / 255f;
+                // const float tc = 148 / 255f;
 
                 if (tendencyProps.activation > 0)
                 {
                     // 4사분면
-                    // const float c = 148 / 255f;
-                    // tendencyItem.text.color = new Color(c, c, c);
+                    const float c = 53 / 255f;
+                    tendencyItem.text.color = new Color(c, c, c);
                     tendencyItem.image.sprite = tendencySprites[3];
                 }
                 else if (tendencyProps.inactive > 0)
                 {
                     // 3사분면
-                    // const float c = 191 / 255f;
-                    // tendencyItem.text.color = new Color(c, c, c);
+                    const float c = 97 / 255f;
+                    tendencyItem.text.color = new Color(c, c, c);
                     tendencyItem.image.sprite = tendencySprites[2];
                 }
-                tendencyItem.text.color = new Color(tc, tc, tc);
+                // tendencyItem.text.color = new Color(tc, tc, tc);
             }
 
             tendencyItems.Add(tendencyItem);

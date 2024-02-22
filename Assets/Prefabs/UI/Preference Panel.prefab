@@ -981,10 +981,10 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 6523677054187142898}
   fullScreenButton: {fileID: 3988231277740592160}
   windowScreenButton: {fileID: 6698471413133792062}
-  window: {fileID: 21300000, guid: 21705d377de61514381eedc36a0227db, type: 3}
-  windowSelect: {fileID: 21300000, guid: 286a1559222a15a459da87dd2d766dd7, type: 3}
-  fullscreen: {fileID: 21300000, guid: c0d1ca581d4f1824487dfe56459452ff, type: 3}
-  fullscreenSelect: {fileID: 21300000, guid: 8f8e3e48d5688a14f8ad2f0df5e72b66, type: 3}
+  window: {fileID: 21300000, guid: c0d1ca581d4f1824487dfe56459452ff, type: 3}
+  windowSelect: {fileID: 21300000, guid: 8f8e3e48d5688a14f8ad2f0df5e72b66, type: 3}
+  fullscreen: {fileID: 21300000, guid: 21705d377de61514381eedc36a0227db, type: 3}
+  fullscreenSelect: {fileID: 21300000, guid: 286a1559222a15a459da87dd2d766dd7, type: 3}
 --- !u!1 &1472045030977593544
 GameObject:
   m_ObjectHideFlags: 0
@@ -7901,7 +7901,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: 1280 x 720
       m_Image: {fileID: 0}
-    - m_Text: 960 * 540
+    - m_Text: 960 x 540
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

@@ -120,7 +120,7 @@ namespace Utility.Dialogue
                 PlayUIManager.Instance.pauseManager.onPause?.Invoke();
                 PlayUIManager.Instance.pauseManager.onExit = () =>
                 {
-                    EndDialogue();
+                    EndDialogueImmediately();
                     PlayUIManager.Instance.pauseManager.onExit = () => { };
                 };
             };
@@ -159,7 +159,7 @@ namespace Utility.Dialogue
                 {
                     PlayUIManager.Instance.pauseManager.onExit = () =>
                     {
-                        EndDialogue();
+                        EndDialogueImmediately();
                         PlayUIManager.Instance.pauseManager.onExit = () => { };
                     };
 
@@ -981,7 +981,7 @@ namespace Utility.Dialogue
             }
         }
 
-        public async void EndDialogue(bool isEnd = true, int nextInteractionIndex = -1,
+        private async void EndDialogue(bool isEnd = true, int nextInteractionIndex = -1,
             DialogueData dialogueData = null, bool isWait = false)
         {
             Debug.Log($"대화 끝, 종료 여부: {isEnd}");
@@ -1011,6 +1011,16 @@ namespace Utility.Dialogue
             }
         }
 
+        public void EndDialogueImmediately()
+        {
+            var dialogueData = _baseDialogueData.Peek();
+            if (dialogueData != null)
+            {
+                dialogueData.OnDialogueEnd = null;
+            }
+            EndDialogue();
+        }
+        
         private void OnClickChoice(int choiceIndex, int choiceCount, int choiceContextLen)
         {
             Debug.Log($"Dialogue Index: {choiceIndex}\n" +

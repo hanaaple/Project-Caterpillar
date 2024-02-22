@@ -123,8 +123,15 @@ namespace Utility.UI.Preference
                 var resolution = resolutionDropdown.options[idx].text;
                 var x = int.Parse(resolution.Split("x")[0]);
                 var y = int.Parse(resolution.Split("x")[1]);
-                Screen.SetResolution(x, y, false);
-                Debug.Log(resolutionDropdown.options[idx].image);
+                
+                if (Screen.fullScreenMode == FullScreenMode.FullScreenWindow)
+                {
+                    Screen.SetResolution(x, y,true);
+                }
+                else
+                {
+                    Screen.SetResolution(x, y,false);
+                }
             });
 
             fullScreenButton.onClick.AddListener(() =>
@@ -140,6 +147,21 @@ namespace Utility.UI.Preference
                 windowScreenButton.image.sprite = windowSelect;
                 Screen.fullScreenMode = FullScreenMode.Windowed;
             });
+            
+            var index = resolutionDropdown.options.FindIndex(item => item.text == $"{Screen.width} x {Screen.height}");
+            if (index != -1)
+            {
+                resolutionDropdown.SetValueWithoutNotify(index);
+            }
+            
+            if (Screen.fullScreenMode == FullScreenMode.FullScreenWindow)
+            {
+                fullScreenButton.onClick?.Invoke();
+            }
+            else
+            {
+                windowScreenButton.onClick?.Invoke();                
+            }
         }
 
         private void SetRebindButton()

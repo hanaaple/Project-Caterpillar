@@ -170,14 +170,7 @@ namespace Utility.Player
 
         private IEnumerator Timer()
         {
-            float audioLength = 0;
-
-            audioLength = stepProps[_stepIndex].audioData.audioObject switch
-            {
-                AudioClip audioClip => audioClip.length,
-                TimelineAsset timelineAsset => (float) timelineAsset.duration,
-                _ => audioLength
-            };
+            var audioLength = stepProps[_stepIndex].audioData.Length;
 
 
             yield return YieldInstructionProvider.WaitForSeconds(audioLength + stepProps[_stepIndex].timeInterval);

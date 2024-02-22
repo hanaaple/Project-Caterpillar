@@ -194,10 +194,11 @@ namespace Utility.SaveSystem
 
         public static int GetSaveIndex(int index)
         {
-            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories);
+            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories).Select(Path.GetFileName);
             var saveCoverData = Directory
                 .GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
-                .Select(item => item.Replace("Cover", "")).ToArray();
+                .Select(Path.GetFileName)
+                .Select(item => Path.GetFileName(item).Replace("Cover", "")).ToArray();
 
             var saveDataCount = 0;
             foreach (var data in saveData)
@@ -224,11 +225,13 @@ namespace Utility.SaveSystem
         public static int GetNewSaveIndex()
         {
             var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories)
+                .Select(Path.GetFileName)
                 .Select(item => item.Replace(SaveDirectoryPath, ""))
                 .Select(item => item.Replace("\\", ""));
 
             var saveCoverData = Directory
                 .GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
+                .Select(Path.GetFileName)
                 .Select(item => item.Replace(SaveDirectoryPath, ""))
                 .Select(item => item.Replace("\\", ""))
                 .Select(item => item.Replace("Cover", "")).ToArray();
@@ -248,8 +251,9 @@ namespace Utility.SaveSystem
 
         public static int GetSaveDataLength()
         {
-            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories);
+            var saveData = Directory.GetFiles(SaveDirectoryPath, "saveData*.save", SearchOption.AllDirectories).Select(Path.GetFileName);
             var saveCoverData = Directory.GetFiles(SaveDirectoryPath, "saveCoverData*.save", SearchOption.AllDirectories)
+                .Select(Path.GetFileName)
                 .Select(item => item.Replace("Cover", "")).ToArray();
 
             var count = saveData.Select(data => Array.Find(saveCoverData, item => item == data))

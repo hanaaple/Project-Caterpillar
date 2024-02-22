@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 24746746}
   - component: {fileID: 24746745}
   - component: {fileID: 24746744}
+  - component: {fileID: 24746747}
   m_Layer: 11
-  m_Name: Film
+  m_Name: Film Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,6 +386,26 @@ MonoBehaviour:
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
   interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
+--- !u!95 &24746747
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24746742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &80968363
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +924,7 @@ PrefabInstance:
       objectReference: {fileID: 2240617060515791365}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindAnimators.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindGameObjects.Array.size
@@ -916,7 +937,11 @@ PrefabInstance:
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindAnimators.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 24746747}
+    - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
+      propertyPath: bindProperty.bindAnimators.Array.data[2]
+      value: 
+      objectReference: {fileID: 872114341}
     - target: {fileID: 8711954447844429470, guid: bec5292b03bb93e49be7496392896d7c, type: 3}
       propertyPath: bindProperty.bindGameObjects.Array.data[0]
       value: 
@@ -2065,8 +2090,9 @@ GameObject:
   - component: {fileID: 872114340}
   - component: {fileID: 872114339}
   - component: {fileID: 872114338}
+  - component: {fileID: 872114341}
   m_Layer: 11
-  m_Name: Camera
+  m_Name: Camera Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2315,6 +2341,26 @@ MonoBehaviour:
   floatingMarks: []
   defaultOffset: {x: 0, y: 0}
   interactAudioClip: {fileID: 8300000, guid: d647fdaa62981d14f9d4a3eeae421596, type: 3}
+--- !u!95 &872114341
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872114336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &908892887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,10 +5273,10 @@ PrefabInstance:
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_PlayableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 2ac6b0fec1c57c044b62d4f43c00a318, type: 2}
+      objectReference: {fileID: 11400000, guid: 91f7b1da2ccb49e4ea480e898f1dfa83, type: 2}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 59
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -5469,6 +5515,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5254909116099138767, guid: 2ac6b0fec1c57c044b62d4f43c00a318, type: 2}
     - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[59].key
+      value: 
+      objectReference: {fileID: 6714532464644236038, guid: 6470db08d346f4447957a4000452d93d, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[60].key
+      value: 
+      objectReference: {fileID: -7017373572408629720, guid: 91f7b1da2ccb49e4ea480e898f1dfa83, type: 2}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
       objectReference: {fileID: 0}
@@ -5628,6 +5682,14 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[57].value
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[59].value
+      value: 
+      objectReference: {fileID: 872114341}
+    - target: {fileID: 2555936575526609015, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
+      propertyPath: m_SceneBindings.Array.data[60].value
+      value: 
+      objectReference: {fileID: 24746747}
     - target: {fileID: 7239348370977572184, guid: ebd600303b15d8c41af2385a76f0787f, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 1
